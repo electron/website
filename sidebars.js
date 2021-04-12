@@ -2,15 +2,15 @@ module.exports = {
   docs: [
     {
       type: 'category',
-      label: 'Docusaurus Tutorial',
+      label: 'IDK',
       items: [
-        'getting-started',
-        'create-a-page',
-        'create-a-document',
-        'create-a-blog-post',
-        'markdown-features',
-        'thank-you',
+        'README'
       ],
     },
   ],
+  api: [
+    'api/accelerator',
+    'api/app',
+    'api/auto-updater'
+  ]
 };

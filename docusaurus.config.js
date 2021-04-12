@@ -1,26 +1,32 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
-  title: 'My Site',
-  tagline: 'The tagline of my site',
+  title: 'Electron',
+  tagline: 'Build cross-platform desktop apps with JavaScript, HTML, and CSS',
   url: 'https://your-docusaurus-test-site.com',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: 'electron', // Usually your GitHub org/user name.
+  projectName: 'electron', // Usually your repo name.
   themeConfig: {
     navbar: {
-      title: 'My Site',
+      title: 'Electron',
       logo: {
         alt: 'My Site Logo',
         src: 'img/logo.svg',
       },
       items: [
         {
-          to: 'docs/',
-          activeBasePath: 'docs',
           label: 'Docs',
+          type: 'doc',
+          docId: 'README',
+          position: 'left',
+        },
+        {
+          label: 'API',
+          type: 'doc',
+          docId: 'api/accelerator',
           position: 'left',
         },
         {to: 'blog', label: 'Blog', position: 'left'},
