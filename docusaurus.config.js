@@ -2,7 +2,7 @@
 module.exports = {
   title: 'Electron',
   tagline: 'Build cross-platform desktop apps with JavaScript, HTML, and CSS',
-  url: 'https://your-docusaurus-test-site.com',
+  url: 'https://electronjs.org',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -20,7 +20,7 @@ module.exports = {
         {
           label: 'Docs',
           type: 'doc',
-          docId: 'README',
+          docId: 'introduction',
           position: 'left',
         },
         {
@@ -31,7 +31,7 @@ module.exports = {
         },
         {to: 'blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/electron/electron',
           label: 'GitHub',
           position: 'right',
         },
@@ -54,15 +54,15 @@ module.exports = {
           items: [
             {
               label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+              href: 'https://stackoverflow.com/questions/tagged/electron',
             },
             {
               label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
+              href: 'https://discordapp.com/invite/electron',
             },
             {
               label: 'Twitter',
-              href: 'https://twitter.com/docusaurus',
+              href: 'https://twitter.com/electronjs',
             },
           ],
         },
@@ -75,7 +75,7 @@ module.exports = {
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              href: 'https://github.com/electron/electron',
             },
           ],
         },
@@ -91,13 +91,13 @@ module.exports = {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           editUrl:
-            'https://github.com/facebook/docusaurus/edit/master/website/',
+            'https://github.com/electron/electronjs.org-new',
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           editUrl:
-            'https://github.com/facebook/docusaurus/edit/master/website/blog/',
+            'https://example.com',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
