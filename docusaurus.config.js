@@ -70,10 +70,6 @@ module.exports = {
           title: 'More',
           items: [
             {
-              label: 'Blog',
-              to: 'blog',
-            },
-            {
               label: 'GitHub',
               href: 'https://github.com/electron/electron',
             },
@@ -92,12 +88,6 @@ module.exports = {
           // Please change this to your repo.
           editUrl:
             'https://github.com/electron/electronjs.org-new',
-        },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          editUrl:
-            'https://example.com',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
