@@ -2,9 +2,9 @@
 module.exports = {
   title: 'Electron',
   tagline: 'Build cross-platform desktop apps with JavaScript, HTML, and CSS',
-  url: 'https://electronjs.org',
+  url: 'https://new.electronjs.org',
   baseUrl: '/',
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
   organizationName: 'electron', // Usually your GitHub org/user name.
@@ -20,16 +20,15 @@ module.exports = {
         {
           label: 'Docs',
           type: 'doc',
-          docId: 'introduction',
+          docId: 'tutorial/quick-start',
           position: 'left',
         },
         {
           label: 'API',
           type: 'doc',
-          docId: 'api/accelerator',
+          docId: 'api/app',
           position: 'left',
         },
-        {to: 'blog', label: 'Blog', position: 'left'},
         {
           href: 'https://github.com/electron/electron',
           label: 'GitHub',
@@ -45,7 +44,7 @@ module.exports = {
           items: [
             {
               label: 'Getting Started',
-              to: 'docs/',
+              to: 'docs/tutorial/quick-start',
             },
           ],
         },
@@ -85,7 +84,6 @@ module.exports = {
       {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
           editUrl:
             'https://github.com/electron/electronjs.org-new',
         },

@@ -9,6 +9,7 @@
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
+    "fetch-docs": "node scripts/fetch-docs.js",
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids"
@@ -32,5 +33,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "fs-extra": "^9.1.0",
+    "got": "^11.8.2",
+    "gunzip-maybe": "^1.4.2",
+    "tar": "^6.1.0"
   }
 }
