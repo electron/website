@@ -11,7 +11,7 @@ The Electron website has a new search engine that delivers instant results for
 API docs, tutorials, Electron-related npm packages, and more.
 
 <figure>
-  <a href="https://electronjs.org/?query=resize" style="display: block; text-align: center;">
+  <a href="https://electronjs.org/?query=resize">
     <img class="screenshot" src="https://user-images.githubusercontent.com/2289/41683719-417ca80a-7490-11e8-9a52-fb145f4251ba.png" alt="Electron Search Screenshot"/>
   </a>
 </figure>
