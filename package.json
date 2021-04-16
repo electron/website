@@ -11,7 +11,8 @@
     "clear": "docusaurus clear",
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
-    "write-heading-ids": "docusaurus write-heading-ids"
+    "write-heading-ids": "docusaurus write-heading-ids",
+    "prebuild": "node ./scripts/pre-build.js"
   },
   "dependencies": {
     "@docusaurus/core": "2.0.0-alpha.72",
@@ -32,5 +33,13 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "del": "^6.0.0",
+    "globby": "^11.0.3",
+    "got": "^11.8.2",
+    "gunzip-maybe": "^1.4.2",
+    "make-dir": "^3.1.0",
+    "tar-stream": "^2.2.0"
   }
 }
