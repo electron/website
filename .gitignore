@@ -1,3 +1,8 @@
 node_modules
 .docusaurus
 .DS_Store
+content/
+docs/
+blog/
+package-lock.json
+sidebars.js
