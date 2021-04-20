@@ -12,6 +12,7 @@
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
+    "test": "prettier -c ./scripts/",
     "prebuild": "node ./scripts/pre-build.js"
   },
   "dependencies": {
@@ -40,6 +41,7 @@
     "got": "^11.8.2",
     "gunzip-maybe": "^1.4.2",
     "make-dir": "^3.1.0",
+    "prettier": "^2.2.1",
     "tar-stream": "^2.2.0"
   }
 }
