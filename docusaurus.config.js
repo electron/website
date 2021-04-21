@@ -1,4 +1,6 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
+const fiddleEmbedder = require('./src/transformers/fiddle-embedder.js');
+
 module.exports = {
   title: 'Electron',
   tagline: 'Build cross-platform desktop apps with JavaScript, HTML, and CSS',
@@ -92,6 +94,7 @@ module.exports = {
           // Please change this to your repo.
           editUrl:
             'https://github.com/electron/electronjs.org-new',
+          remarkPlugins: [fiddleEmbedder]
         },
         blog: {
           showReadingTime: true,
