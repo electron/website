@@ -23,7 +23,7 @@ function matchNode(node) {
 const importNode = {
   type: 'import',
   value:
-    "import Tabs from '@theme/Tabs';\nimport TabItem from '@theme/TabItem';",
+    "import Tabs from '@theme/Tabs';\nimport TabItem from '@theme/TabItem';\n import LaunchButton from '@site/src/components/LaunchButton';",
 };
 
 /**
@@ -63,11 +63,15 @@ function transformer(tree) {
  * @param {string} dir 
  */
 function getFiddleAST(dir) {
-  const files = {}
-  const children = []
+  const files = {};
+  const children = [];
 
   // TODO: non-alphabetic sort
   const fileNames = fs.readdirSync(dir);
+
+  if (fileNames.length === 0) {
+    return children;
+  }
 
   for (const file of fileNames) {
     files[file] = fs.readFileSync(path.join(dir, file)).toString();
@@ -125,10 +129,16 @@ function getFiddleAST(dir) {
         value: `</TabItem>\n<TabItem value="${fileNames[index]}">`,
       });
     } else {
-      children.push({
-        type: 'jsx',
-        value: `</TabItem>\n</Tabs>`,
-      });
+      children.push(
+        {
+          type: 'jsx',
+          value: `</TabItem>\n</Tabs>`,
+        },
+        {
+          type: 'jsx',
+          value: `<LaunchButton url="https://fiddle.electronjs.org/launch?target=electron/v12.0.4/${dir}"/>`
+        },
+      );
     }
   }
 
