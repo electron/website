@@ -4,13 +4,7 @@ const fs = require('fs').promises;
 const path = require('path');
 const globby = require('globby');
 
-/**
- * MDX has some problems with strings like `Promise<void>` that need
- * to be converted to `Promise<void/>`. This scripts makes sure that
- * the contents of the documents are sanitized so they are ready to
- * be used by docusaurus.
- */
-
+/** The keywords that need to be escaped so MDX does not complain */
 const keywords = new Set([
   'any',
   'Boolean',
@@ -43,42 +37,85 @@ const keywords = new Set([
 ]);
 
 /**
+ * RegExp used to match the details of the arguments of a function
+ * in the documention and used in `apiTransformer`. It matches:
+ * >   * `userInfo` Record<String, unknown>
+ * ➡ ["  * ", "`userInfo` Record<String, unknown>", "userInfo", "Record<String, unknown>", ""]
+ * > * `channel` String
+ * ➡ ["* ", "`channel` String", "channel", "String", ""]
+ * > * `deliverImmediately` Boolean (optional) - `true` to post notifications immediately even when the subscribing app is inactive.
+ * ➡ ["* ", "...", "deliverImmediately", "Boolean (optional) ", "-"] ⚠ Note the trailing space in [3]
+ */
+const argumentRegex = /(\s*\*\s+)`([a-zA-Z]+?)`\s([\s\S]+?)($|\s-)/;
+
+/**
  * MDX has some problems with strings like `Promise<void>` when they
  * are out of code blocks.
  * This happens when declaring the types of the arguments. This method
  * replaces the closing `>` with the unicode character `&#62;` to
  * prevent this issue.
- *
+ * @param {string} line
+ */
+const apiTransformer = (line) => {
+  const matches = argumentRegex.exec(line);
+
+  if (!matches) {
+    return line;
+  }
+
+  const newLine = line.replace(
+    matches[0],
+    `${matches[1]}\`${matches[2].trim()}\` ${matches[3]
+      .trim()
+      .replace(/>/g, '&#62;')} ${matches[4].trim()}`.trim() // matches[4] could be empty and thus end up with a trailing space
+  );
+
+  return newLine;
+};
+
+/**
+ * RegExp use to match the old markdown format for fiddle
+ * in `fiddleTransformer`.
+ */
+const fiddleRegex = /^```javascript fiddle='(\S+)?'$/;
+
+/**
+ * Updates the markdown fiddle format from:
+ * ```
+ * ```javascript fiddle='docs/fiddles/screen/fit-screen'
+ * ```
+ * To
+ * ```
+ * ```fiddle docs/fiddles/example
+ * ```
+ * @param {string} line
+ */
+const fiddleTransformer = (line) => {
+  const matches = fiddleRegex.exec(line);
+  if (!matches) {
+    return line;
+  }
+
+  return `\`\`\`fiddle ${matches[1]}`;
+};
+
+/**
+ * Applies any transformation that can be executed line by line on
+ * the document to make sure it is ready to be consumed by
+ * docusaurus and our md extensions:
+ * * Fix types on regular text
+ * * Update the fiddle format
  * @param {string} doc
  */
-const sanitizeAPI = (doc) => {
-  /**
-   * Matches the following:
-   * >   * `userInfo` Record<String, unknown>
-   * ➡ ["  * ", "`userInfo` Record<String, unknown>", "userInfo", "Record<String, unknown>", ""]
-   * > * `channel` String
-   * ➡ ["* ", "`channel` String", "channel", "String", ""]
-   * > * `deliverImmediately` Boolean (optional) - `true` to post notifications immediately even when the subscribing app is inactive.
-   * ➡ ["* ", "...", "deliverImmediately", "Boolean (optional) ", "-"] ⚠ Note the trailing space in [3]
-   */
-  const argumentRegex = /(\s*\*\s+)`([a-zA-Z]+?)`\s([\s\S]+?)($|\s-)/;
+const transform = (doc) => {
   const lines = doc.split('\n');
   const newDoc = [];
+  const transformers = [apiTransformer, fiddleTransformer];
 
   for (const line of lines) {
-    const matches = argumentRegex.exec(line);
-
-    if (!matches) {
-      newDoc.push(line);
-      continue;
-    }
-
-    const newLine = line.replace(
-      matches[0],
-      `${matches[1]}\`${matches[2].trim()}\` ${matches[3]
-        .trim()
-        .replace(/>/g, '&#62;')} ${matches[4].trim()}`.trim() // matches[4] could be empty and thus end up with a trailing space
-    );
+    const newLine = transformers.reduce((newLine, transformer) => {
+      return transformer(newLine);
+    }, line);
 
     newDoc.push(newLine);
   }
@@ -148,8 +185,10 @@ const fixLinks = (content, linksMaps) => {
 };
 
 /**
- * Escapes the required characters to avoid issues with MDX and
- * makes a best effort to fix any internal link.
+ * The current doc's format on `electron/electron` cannot be used
+ * directly by docusaurus. This function trasform all the md files
+ * found in the given `root` (recursively) and makes sure they are
+ * ready to consumed by the website.
  * @param {string} root
  */
 const fixContent = async (root) => {
@@ -170,8 +209,10 @@ const fixContent = async (root) => {
   for (const filePath of files) {
     const content = await fs.readFile(path.join(root, filePath), 'utf-8');
 
-    let fixedContent = sanitizeAPI(content);
+    let fixedContent = transform(content);
 
+    // `fixLinks` analyzes the document globally instead of line by line, thus why
+    // it cannot be part of `trasform`
     fixedContent = fixLinks(fixedContent, linksMaps);
 
     await fs.writeFile(path.join(root, filePath), fixedContent, 'utf-8');
