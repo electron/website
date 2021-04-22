@@ -22,7 +22,7 @@ module.exports = {
         {
           label: 'Docs',
           type: 'doc',
-          docId: 'introduction',
+          docId: 'get-started/quick-start',
           position: 'left',
         },
         {
@@ -31,7 +31,7 @@ module.exports = {
           docId: 'api/accelerator',
           position: 'left',
         },
-        {to: 'blog', label: 'Blog', position: 'left'},
+        { to: 'blog', label: 'Blog', position: 'left' },
         {
           href: 'https://github.com/electron/electron',
           label: 'GitHub',
@@ -91,16 +91,13 @@ module.exports = {
       {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
-          editUrl:
-            'https://github.com/electron/electronjs.org-new',
-          remarkPlugins: [fiddleEmbedder]
+          editUrl: 'https://github.com/electron/electronjs.org-new',
+          remarkPlugins: [fiddleEmbedder],
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
-          editUrl:
-            'https://example.com',
+          editUrl: 'https://example.com',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
