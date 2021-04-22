@@ -8,19 +8,19 @@ const VERSION = 'v12.0.4';
 
 module.exports = function attacher() {
   return transformer;
-}
+};
 
 /**
  * Tests for AST nodes that match the following:
- * 
+ *
  * \```fiddle path/to/fiddle
- * 
+ *
  * \```
- * @param {import("unist").Node} node 
+ * @param {import("unist").Node} node
  * @returns boolean
  */
 function matchNode(node) {
-  return node.type === 'code' && node.lang === 'fiddle' && !!node.meta
+  return node.type === 'code' && node.lang === 'fiddle' && !!node.meta;
 }
 
 const importNode = {
@@ -30,21 +30,20 @@ const importNode = {
 };
 
 /**
- * 
- * @param {import("unist").Parent} tree 
+ *
+ * @param {import("unist").Parent} tree
  */
 function transformer(tree) {
-  visitParents(tree, matchNode, visitor)
+  visitParents(tree, matchNode, visitor);
   tree.children.unshift(importNode);
 
   /**
-   * 
-   * @param {*} node 
-   * @param {*} ancestors 
+   *
+   * @param {*} node
+   * @param {*} ancestors
    * @returns { import("unist-util-visit-parents").ActionTuple }
    */
   function visitor(node, ancestors) {
-
     const parent = ancestors[0];
     const folder = node.meta;
 
@@ -52,18 +51,18 @@ function transformer(tree) {
     // and splice the children array to insert the embedded Fiddle
     const index = parent.children.indexOf(node);
     const newChildren = getFiddleAST(folder);
-    parent.children.splice(index, 1, ...newChildren)
+    parent.children.splice(index, 1, ...newChildren);
 
     // Return an ActionTuple [Action, Index], where
     // Action SKIP means we want to skip visiting these new children
     // Index is the index of the AST we want to continue parsing at.
-    return [visitParents.SKIP, index + newChildren.length]
+    return [visitParents.SKIP, index + newChildren.length];
   }
 }
 /**
  * From a directory in `/docs/fiddles/`, generate the AST needed
  * for the tabbed code MDX structure.
- * @param {string} dir 
+ * @param {string} dir
  */
 function getFiddleAST(dir) {
   const files = {};
@@ -81,7 +80,7 @@ function getFiddleAST(dir) {
   }
 
   const tabValues = fileNames.reduce((acc, val) => {
-    return acc += `{ label: '${val}', value: '${val}', },`;
+    return (acc += `{ label: '${val}', value: '${val}', },`);
   }, '');
 
   let index = 0;
@@ -107,15 +106,13 @@ function getFiddleAST(dir) {
   //     ```
   //   <TabItem>
   // <Tabs>
-  children.push(
-    {
-      type: 'jsx',
-      value:
-        `<Tabs defaultValue="main.js" ` +
-        `values={[${tabValues}]}>
+  children.push({
+    type: 'jsx',
+    value:
+      `<Tabs defaultValue="main.js" ` +
+      `values={[${tabValues}]}>
         <TabItem value="${fileNames[index]}">`,
-    }
-  )
+  });
 
   while (index < fileNames.length) {
     children.push({
@@ -139,12 +136,11 @@ function getFiddleAST(dir) {
         },
         {
           type: 'jsx',
-          value: `<LaunchButton url="https://fiddle.electronjs.org/launch?target=electron/${VERSION}/${dir}"/>`
-        },
+          value: `<LaunchButton url="https://fiddle.electronjs.org/launch?target=electron/${VERSION}/${dir}"/>`,
+        }
       );
     }
   }
-
 
   return children;
 }
