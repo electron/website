@@ -3,6 +3,9 @@ const visitParents = require('unist-util-visit-parents');
 const path = require('path');
 const fs = require('fs-extra');
 
+//TODO: Make this the latest stable version instead of hardcoding
+const VERSION = 'v12.0.4';
+
 module.exports = function attacher() {
   return transformer;
 }
@@ -136,7 +139,7 @@ function getFiddleAST(dir) {
         },
         {
           type: 'jsx',
-          value: `<LaunchButton url="https://fiddle.electronjs.org/launch?target=electron/v12.0.4/${dir}"/>`
+          value: `<LaunchButton url="https://fiddle.electronjs.org/launch?target=electron/${VERSION}/${dir}"/>`
         },
       );
     }
