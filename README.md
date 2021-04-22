@@ -1,6 +1,7 @@
-# Website
+# electronjs.org-new
 
-This website is built using [Docusaurus 2](https://v2.docusaurus.io/), a modern static website generator.
+This repository contains the code for the new electronsjs.org website. It is built using
+[Docusaurus 2](https://v2.docusaurus.io/), a modern static website generator.
 
 ## Installation
 
@@ -10,11 +11,38 @@ yarn install
 
 ## Local Development
 
+If you want to use the contents from [`electron/electron`](https://github.com/electron/electron)
+run the following:
+
 ```console
+yarn prebuid
 yarn start
 ```
 
-This command starts a local development server and open up a browser window. Most changes are reflected live without having to restart the server.
+If you want the website to pick your local documentation, run:
+
+```console
+yarn prebuild ../relative/path/to/local/electron/repo
+yarn start
+```
+
+For example, if you have the following structure:
+
+```
+└── projects
+     ├─ electron
+     ├─ electronjs.org-new
+     ├─ ...
+```
+
+and assuming your prompt is in `/projects/electronjs.org-new/` you will have to run:
+
+```console
+yarn prebuild ../electron
+yarn start
+```
+
+`yarn start` starts a local development server and open up a browser window. Most changes are reflected live without having to restart the server.
 
 ## Build
 
@@ -23,11 +51,3 @@ yarn build
 ```
 
 This command generates static content into the `build` directory and can be served using any static contents hosting service.
-
-## Deployment
-
-```console
-GIT_USER=<Your GitHub username> USE_SSH=true yarn deploy
-```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
