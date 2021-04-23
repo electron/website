@@ -21,7 +21,8 @@ const VERSION = '12-x-y';
 const start = async () => {
   console.log(`Deleting previous content`);
   await del(DOCS_FOLDER);
-  await del(BLOG_FOLDER);
+  // TODO: Uncomment once we have the blog up and running
+  // await del(BLOG_FOLDER);
 
   console.log(`Downloading docs for "v${VERSION}"`);
   await download({
@@ -31,22 +32,23 @@ const start = async () => {
     downloadMatch: 'docs',
   });
 
-  console.log(`Downloading posts`);
-  await download({
-    target: 'master',
-    repository: 'electronjs.org',
-    destination: BLOG_FOLDER,
-    downloadMatch: 'data/blog',
-  });
+  // TODO: Uncomment once we have the blog up and running
+  // console.log(`Downloading posts`);
+  // await download({
+  //   target: 'master',
+  //   repository: 'electronjs.org',
+  //   destination: BLOG_FOLDER,
+  //   downloadMatch: 'data/blog',
+  // });
+
+  console.log('Fixing markdown');
+  await fixContent(DOCS_FOLDER);
 
   console.log('Adding automatic frontmatter');
   await addFrontmatter(DOCS_FOLDER);
 
   console.log('Updating sidebar.js');
   await createSidebar(DOCS_FOLDER, path.join(process.cwd(), 'sidebars.js'));
-
-  console.log('Fixing markdown');
-  await fixContent(DOCS_FOLDER);
 };
 
 start();

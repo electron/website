@@ -1,8 +1,8 @@
 node_modules
 .docusaurus
 .DS_Store
+.vscode/settings.json
 content/
 docs/
 blog/
 package-lock.json
-sidebars.js
