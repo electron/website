@@ -31,7 +31,6 @@ module.exports = {
           docId: 'api/accelerator',
           position: 'left',
         },
-        { to: 'blog', label: 'Blog', position: 'left' },
         {
           href: 'https://github.com/electron/electron',
           label: 'GitHub',
@@ -72,10 +71,6 @@ module.exports = {
           title: 'More',
           items: [
             {
-              label: 'Blog',
-              to: 'blog',
-            },
-            {
               label: 'GitHub',
               href: 'https://github.com/electron/electron',
             },
@@ -94,11 +89,7 @@ module.exports = {
           editUrl: 'https://github.com/electron/electronjs.org-new',
           remarkPlugins: [fiddleEmbedder],
         },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          editUrl: 'https://example.com',
-        },
+        blog: false,
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
