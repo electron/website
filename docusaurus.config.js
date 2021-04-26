@@ -46,7 +46,7 @@ module.exports = {
           items: [
             {
               label: 'Getting Started',
-              to: 'docs/',
+              to: '/docs/get-started/quick-start/',
             },
           ],
         },

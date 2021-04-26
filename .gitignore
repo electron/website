@@ -2,6 +2,7 @@ node_modules
 .docusaurus
 .DS_Store
 .vscode/settings.json
+build/
 content/
 docs/
 blog/
