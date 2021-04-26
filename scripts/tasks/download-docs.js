@@ -5,6 +5,7 @@ const path = require('path');
 const makeDir = require('make-dir');
 const tar = require('tar-stream');
 const got = require('got');
+const globby = require('globby');
 
 const pathRewrites = require('./docs-reorg.json');
 const fixedFolders = ['api', 'images', 'fiddles'];
@@ -12,7 +13,7 @@ const fixedFolders = ['api', 'images', 'fiddles'];
 /**
  * @typedef DownloadOptions
  * @type {object}
- * @property {string} repository - The repository in the electron org to download the contents from
+ * @property {string} [repository] - The repository in the electron org to download the contents from
  * @property {string} destination - The destination absolute path.
  * @property {string} target - The branch, commit, version. (e.g. `v1.0.0`, `master`)
  * @property {string} downloadMatch - The math to use to filter the downloaded contents
@@ -154,9 +155,24 @@ const download = async (userOptions) => {
  * as needed.
  * @param {DownloadOptions} userOptions
  */
-const copy = async (userOptions) => {
-  // Load contents
-  // Save contents
+const copy = async ({ target, destination, downloadMatch = '.' }) => {
+  const filesPaths = await globby(`${downloadMatch}/**/*`, {
+    cwd: target,
+  });
+
+  const contents = [];
+
+  for (const filePath of filesPaths) {
+    const content = {
+      filename: filePath.replace(`${downloadMatch}/`, ''),
+      content: await fs.readFile(path.join(target, filePath)),
+      slug: path.basename(filePath, '.md'),
+    };
+
+    contents.push(content);
+  }
+
+  await saveContents(contents, destination);
 };
 
 module.exports = {
