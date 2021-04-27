@@ -20,9 +20,17 @@ ${description}
     add new ones, etc.
 -->
 
-```fiddle docs/fiddles/${slug}
+<!--
+    Because Electron examples usually require multiple files (HTML, CSS, JS
+    for the main and renderer process, etc.), we use this custom code block
+    for Fiddle (https://www.electronjs.org/fiddle).
+    Please modify any of the files in the referenced folder to fit your
+    example.
+    The content in this codeblock will not be rendered in the website so you
+    can leave it empty.
+-->
 
-Your code here
+```fiddle docs/fiddles/${slug}
 
 ```
 

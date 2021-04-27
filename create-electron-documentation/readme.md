@@ -13,10 +13,15 @@ of the folders under `/docs` (e.g.: [`/docs/tutorial`][tutorials]):
 npm create electron-documentation
 ```
 
-The script will ask you only 2 things that cannot be empty strings:
+The script will prompt you to enter the documentation page title and description:
 
-- Title
-- Description
+```console
+> npm create electron-documentation
+> Title:
+> my-new-doc-page
+> Description:
+> A description for my new doc page
+```
 
 Once executed, the following files will be created:
 
