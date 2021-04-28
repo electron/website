@@ -6,6 +6,7 @@
 
 const fs = require('fs').promises;
 const { existsSync } = require('fs');
+const { stringify } = require('json5');
 const globby = require('globby');
 
 const sidebar = {
@@ -135,7 +136,7 @@ const createSidebar = async (root, destination) => {
     console.log(`Updating ${destination}`);
     await fs.writeFile(
       destination,
-      `module.exports = ${JSON.stringify(sidebars, null, 2)};\n`,
+      `module.exports = ${stringify(sidebars, null, 2)};\n`,
       'utf-8'
     );
   } else {
