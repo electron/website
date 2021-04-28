@@ -1,0 +1,12 @@
+{
+    "root": "build/",
+    "clean_urls": true,
+    "headers":{
+        "/**":{
+            "Cache-Control": "no-cache"
+        },
+        "/assets/**":{
+            "Cache-Control": "max-age=31536000, immutable"
+        }
+    }
+}
