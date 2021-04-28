@@ -28,7 +28,7 @@ module.exports = {
         {
           label: 'API',
           type: 'doc',
-          docId: 'api/accelerator',
+          docId: 'api/app',
           position: 'left',
         },
         {
