@@ -1,7 +1,8 @@
 {
   "name": "create-electron-documentation",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Generator to easily create new documentation pages for Electron with code examples.",
+  "bin": "./index.js",
   "repository": {
     "url": "https://github.com/electron/electronjs.org-new/tree/main/create-electron-documentation"
   },
