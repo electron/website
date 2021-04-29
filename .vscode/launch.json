@@ -7,11 +7,20 @@
     {
       "type": "pwa-node",
       "request": "launch",
-      "name": "Launch Program",
+      "name": "Prebuild",
       "skipFiles": ["<node_internals>/**"],
       "program": "${workspaceFolder}/scripts/pre-build.js",
       "console": "integratedTerminal",
       "cwd": "${workspaceFolder}"
+    },
+    {
+      "type": "pwa-node",
+      "request": "launch",
+      "name": "Create documentation",
+      "skipFiles": ["<node_internals>/**"],
+      "program": "${workspaceFolder}/create-electron-documentation/index.js",
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}/docs/how-to"
     }
   ]
 }
