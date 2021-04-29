@@ -1,18 +1,15 @@
 //@ts-check
 
-/**
- *
- */
-
 const fs = require('fs').promises;
 const { existsSync } = require('fs');
 const { stringify } = require('json5');
 const globby = require('globby');
 
-const sidebar = {
-  docs: [],
-  api: [],
-};
+const IGNORE_LIST = [
+  'api/locales',
+  'api/remote',
+  'api/synopsis',
+];
 
 /**
  * @typedef Entry
@@ -93,6 +90,12 @@ const createSidebar = async (root, destination) => {
 
   /** @type {Map<string, Entry>} */
   const reverseLookup = new Map();
+
+  // For files we explicitly don't want in the sidebar,
+  // add null entries to the reverseLookup Map
+  for (const entry of IGNORE_LIST) {
+    reverseLookup.set(entry, null);
+  }
 
   const topLevels = Object.keys(sidebars);
 
