@@ -79,6 +79,11 @@ module.exports = {
       ],
       copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
     },
+    algolia: {
+      apiKey: 'f9fb1d51a99fc479d5979cfa2aae48b9',
+      indexName: 'beta-electronjs',
+      contextualSearch: true,
+    },
   },
   presets: [
     [
