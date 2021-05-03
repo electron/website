@@ -13,7 +13,8 @@ const fixedFolders = ['api', 'images', 'fiddles'];
 /**
  * @typedef DownloadOptions
  * @type {object}
- * @property {string} [repository] - The repository in the electron org to download the contents from
+ * @property {string} [org] - The organization to download the contents from
+ * @property {string} [repository] - The repository to download the contents from
  * @property {string} destination - The destination absolute path.
  * @property {string} target - The branch, commit, version. (e.g. `v1.0.0`, `master`)
  * @property {string} downloadMatch - The math to use to filter the downloaded contents
@@ -88,9 +89,9 @@ const saveContents = async (files, destination) => {
  * @param {DownloadOptions} options
  */
 const downloadFromGitHub = async (options) => {
-  const { repository, target, downloadMatch = '' } = options;
+  const { org, repository, target, downloadMatch = '' } = options;
 
-  const tarballUrl = `https://github.com/electron/${repository}/archive/${target}.tar.gz`;
+  const tarballUrl = `https://github.com/${org}/${repository}/archive/${target}.tar.gz`;
 
   const contents = [];
 
