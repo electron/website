@@ -2,9 +2,16 @@
 const visitParents = require('unist-util-visit-parents');
 const path = require('path');
 const fs = require('fs-extra');
+const latestVersion = require('latest-version');
 
-//TODO: Make this the latest stable version instead of hardcoding
-const VERSION = 'v12.0.4';
+let _version = '';
+async function getVersion() {
+  if (_version === '') {
+    _version = await latestVersion('electron');
+  }
+
+  return _version;
+}
 
 module.exports = function attacher() {
   return transformer;
@@ -33,7 +40,8 @@ const importNode = {
  *
  * @param {import("unist").Parent} tree
  */
-function transformer(tree) {
+async function transformer(tree) {
+  const version = await getVersion();
   visitParents(tree, matchNode, visitor);
   tree.children.unshift(importNode);
 
@@ -50,7 +58,7 @@ function transformer(tree) {
     // Find where the Fiddle code block is relative to the parent,
     // and splice the children array to insert the embedded Fiddle
     const index = parent.children.indexOf(node);
-    const newChildren = getFiddleAST(folder);
+    const newChildren = getFiddleAST(folder, version);
     parent.children.splice(index, 1, ...newChildren);
 
     // Return an ActionTuple [Action, Index], where
@@ -63,8 +71,9 @@ function transformer(tree) {
  * From a directory in `/docs/fiddles/`, generate the AST needed
  * for the tabbed code MDX structure.
  * @param {string} dir
+ * @param {string} version
  */
-function getFiddleAST(dir) {
+function getFiddleAST(dir, version) {
   const files = {};
   const children = [];
 
@@ -136,7 +145,7 @@ function getFiddleAST(dir) {
         },
         {
           type: 'jsx',
-          value: `<LaunchButton url="https://fiddle.electronjs.org/launch?target=electron/${VERSION}/${dir}"/>`,
+          value: `<LaunchButton url="https://fiddle.electronjs.org/launch?target=electron/${version}/${dir}"/>`,
         }
       );
     }
