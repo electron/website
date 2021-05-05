@@ -5,11 +5,7 @@ const { existsSync } = require('fs');
 const { stringify } = require('json5');
 const globby = require('globby');
 
-const IGNORE_LIST = [
-  'api/locales',
-  'api/remote',
-  'api/synopsis',
-];
+const IGNORE_LIST = ['api/locales', 'api/remote', 'api/synopsis'];
 
 /**
  * @typedef Entry
