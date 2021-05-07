@@ -203,7 +203,6 @@ module.exports = {
       label: 'Chromium and Node.js',
       items: [
         'api/command-line-switches',
-        'api/command-line',
         'api/extensions',
       ].sort(),
     },
@@ -212,6 +211,7 @@ module.exports = {
       label: 'Classes',
       items: [
         'api/client-request',
+        'api/command-line',
         'api/cookies',
         'api/debugger',
         'api/download-item',
