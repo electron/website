@@ -32,6 +32,12 @@ module.exports = {
           position: 'left',
         },
         {
+          label: 'Examples',
+          type: 'doc',
+          docId: 'how-to/examples',
+          position: 'left',
+        },
+        {
           href: 'https://github.com/electron/electron',
           label: 'GitHub',
           position: 'right',

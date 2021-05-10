@@ -15,6 +15,7 @@ const { copy, download } = require('./tasks/download-docs');
 const { addFrontmatter } = require('./tasks/add-frontmatter');
 const { createSidebar } = require('./tasks/create-sidebar');
 const { fixContent } = require('./tasks/md-fixers');
+const { copyNewContent } = require('./tasks/copy-new-content');
 
 const DOCS_FOLDER = 'docs';
 // const BLOG_FOLDER = 'blog';
@@ -62,6 +63,9 @@ const start = async (localElectron) => {
   //   destination: BLOG_FOLDER,
   //   downloadMatch: 'data/blog',
   // });
+
+  console.log('Copying new content');
+  await copyNewContent(DOCS_FOLDER);
 
   console.log('Fixing markdown');
   await fixContent(DOCS_FOLDER);
