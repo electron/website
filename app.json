@@ -1,0 +1,10 @@
+{
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    },
+    {
+      "url": "https://github.com/hone/heroku-buildpack-static"
+    }
+  ]
+}
