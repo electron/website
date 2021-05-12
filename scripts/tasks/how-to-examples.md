@@ -30,9 +30,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
 ## How to...?
 
-The following are all the "How to?" available at the moment (you can access them
-from the sidebar as well). If there is something that you would like to do that
-is not documented, please join our [discord server][] and let us know!
+You can find the full list of "How to?" in the sidebar. If there is
+something that you would like to do that is not documented, please join
+our [discord server][] and let us know!
 
 [discord server]: https://discord.com/invite/electron
 [fiddle]: https://www.electronjs.org/fiddle
