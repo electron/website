@@ -123,7 +123,7 @@ const addFrontMatter = (content, filepath) => {
 title: "${title}"
 description: "${description.replace(/"/g, '\\"')}"
 slug: ${path.basename(filepath, '.md')}
-hide_title: true
+hide_title: false
 ---
 
 ${content}`;
