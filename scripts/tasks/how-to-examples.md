@@ -32,7 +32,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 You can find the full list of "How to?" in the sidebar. If there is
 something that you would like to do that is not documented, please join
-our [discord server][] and let us know!
+our [Discord server][] and let us know!
 
-[discord server]: https://discord.com/invite/electron
+[Discord server]: https://discord.com/invite/electron
 [fiddle]: https://www.electronjs.org/fiddle
