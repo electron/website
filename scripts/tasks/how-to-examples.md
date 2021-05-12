@@ -1,18 +1,18 @@
 ---
 title: 'Examples'
-description: 'Electron examples directly for you to use'
+description: 'A set of examples for common Electron features'
 slug: examples
 hide_title: false
 ---
 
 # Examples
 
-In this section we have documented some of the most popular things developers do
-in their Electron applications. The easiest way to run the examples is using
-[Fiddle][fiddle]. To do this, first you will have to download and install the
-right version for your Operating System from [here][fiddle].
+In this section, we have collected a set of guides for common features
+that you may want to implement in your Electron application. Each guide
+contains a practical example in a minimal, self-contained example app.
+The easiest way to run these examples is by downloading [Electron Fiddle][fiddle].
 
-Once you have done this, you can press on the "Open in Fiddle" button that you
+Once Fiddle is installed, you can press on the "Open in Fiddle" button that you
 will find below code samples like the following one:
 
 ```fiddle docs/fiddles/quick-start
