@@ -84,6 +84,7 @@ module.exports = {
         'how-to/web-embeds',
         'how-to/windows-arm',
         'how-to/windows-taskbar',
+        'how-to/sandbox',
       ],
     },
     {
