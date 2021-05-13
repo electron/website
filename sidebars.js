@@ -302,10 +302,6 @@ module.exports = {
       type: 'category',
       label: 'Miscellaneous',
       items: [
-        'api/accelerator',
-        'api/experimental',
-        'api/frameless-window',
-        'api/sandbox-option',
       ],
     },
   ],

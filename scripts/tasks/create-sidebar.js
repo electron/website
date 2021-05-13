@@ -6,9 +6,16 @@ const { stringify } = require('json5');
 const globby = require('globby');
 
 const IGNORE_LIST = [
+  // these are to be removed
   'api/locales',
   'api/remote',
   'api/synopsis',
+  // these need to be moved to guides
+  'api/sandbox-option',
+  'api/frameless-window',
+  // these don't belong to any category yet
+  'api/accelerator',
+  'api/experimental',
 ];
 
 /**
