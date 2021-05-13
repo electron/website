@@ -6,33 +6,40 @@
  * be used by docusaurus.
  */
 const path = require('path');
+const { existsSync } = require('fs');
+
 const del = require('del');
+const latestVersion = require('latest-version');
 
 const { copy, download } = require('./tasks/download-docs');
 const { addFrontmatter } = require('./tasks/add-frontmatter');
 const { createSidebar } = require('./tasks/create-sidebar');
 const { fixContent } = require('./tasks/md-fixers');
-const { existsSync, fstat } = require('fs');
+const { copyNewContent } = require('./tasks/copy-new-content');
 
 const DOCS_FOLDER = 'docs';
-const BLOG_FOLDER = 'blog';
-// TODO: Figure out the latest release
-const VERSION = '12-x-y';
+// const BLOG_FOLDER = 'blog';
 
 /**
  *
  * @param {string} localElectron
  */
 const start = async (localElectron) => {
+  console.log(`Detecting latest Electron version`);
+  const version = await latestVersion('electron');
+  const stableBranch = version.replace(/\.\d+\.\d+/, '-x-y');
+  console.log(`Latest version: ${version}`);
+  console.log(`Stable branch: ${stableBranch}`);
+
   console.log(`Deleting previous content`);
   await del(DOCS_FOLDER);
   // TODO: Uncomment once we have the blog up and running
   // await del(BLOG_FOLDER);
 
   if (!localElectron) {
-    console.log(`Downloading docs for "v${VERSION}"`);
+    console.log(`Downloading docs from branch "${stableBranch}"`);
     await download({
-      target: VERSION,
+      target: stableBranch,
       repository: 'electron',
       destination: DOCS_FOLDER,
       downloadMatch: 'docs',
@@ -56,6 +63,9 @@ const start = async (localElectron) => {
   //   destination: BLOG_FOLDER,
   //   downloadMatch: 'data/blog',
   // });
+
+  console.log('Copying new content');
+  await copyNewContent(DOCS_FOLDER);
 
   console.log('Fixing markdown');
   await fixContent(DOCS_FOLDER);

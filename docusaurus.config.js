@@ -32,6 +32,12 @@ module.exports = {
           position: 'left',
         },
         {
+          label: 'Examples',
+          type: 'doc',
+          docId: 'how-to/examples',
+          position: 'left',
+        },
+        {
           href: 'https://github.com/electron/electron',
           label: 'GitHub',
           position: 'right',
@@ -78,6 +84,11 @@ module.exports = {
         },
       ],
       copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+    },
+    algolia: {
+      apiKey: 'f9fb1d51a99fc479d5979cfa2aae48b9',
+      indexName: 'beta-electronjs',
+      contextualSearch: true,
     },
   },
   presets: [

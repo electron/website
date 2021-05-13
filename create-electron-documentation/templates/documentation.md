@@ -2,7 +2,7 @@
 title: ${title}
 description: ${description}
 slug: ${slug}
-hide_title: true
+hide_title: false
 ---
 
 # ${title}

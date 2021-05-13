@@ -61,6 +61,7 @@ module.exports = {
       type: 'category',
       label: 'How To',
       items: [
+        'how-to/examples',
         'how-to/dark-mode',
         'how-to/desktop-environment-integration',
         'how-to/fuses',
