@@ -203,6 +203,7 @@ module.exports = {
       label: 'Chromium and Node.js',
       items: [
         'api/command-line-switches',
+        'api/environment-variables',
         'api/extensions',
       ].sort(),
     },
