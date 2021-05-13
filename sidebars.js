@@ -298,11 +298,5 @@ module.exports = {
         'api/structures/web-source',
       ],
     },
-    { // TODO(erickzhao): We should decide what to do with these soon.
-      type: 'category',
-      label: 'Miscellaneous',
-      items: [
-      ],
-    },
   ],
 };
