@@ -16,37 +16,46 @@ const { addFrontmatter } = require('./tasks/add-frontmatter');
 const { createSidebar } = require('./tasks/create-sidebar');
 const { fixContent } = require('./tasks/md-fixers');
 const { copyNewContent } = require('./tasks/copy-new-content');
+const { sha } = require('../package.json');
 
 const DOCS_FOLDER = 'docs';
 // const BLOG_FOLDER = 'blog';
 
 /**
  *
- * @param {string} localElectron
+ * @param {string} source
  */
-const start = async (localElectron) => {
-  console.log(`Detecting latest Electron version`);
-  const version = await latestVersion('electron');
-  const stableBranch = version.replace(/\.\d+\.\d+/, '-x-y');
-  console.log(`Latest version: ${version}`);
-  console.log(`Stable branch: ${stableBranch}`);
-
+const start = async (source) => {
   console.log(`Deleting previous content`);
   await del(DOCS_FOLDER);
+
+  const localElectron =
+    source && (source.includes('/') || source.includes('\\'));
+
   // TODO: Uncomment once we have the blog up and running
   // await del(BLOG_FOLDER);
 
   if (!localElectron) {
-    console.log(`Downloading docs from branch "${stableBranch}"`);
+    console.log(`Detecting latest Electron version`);
+    const version = await latestVersion('electron');
+    const stableBranch = version.replace(/\.\d+\.\d+/, '-x-y');
+    console.log(`Latest version: ${version}`);
+    console.log(`Stable branch:  ${stableBranch}`);
+    console.log(`Specified SHA:  ${sha}`);
+
+    const target = source || sha || stableBranch;
+
+    console.log(`Downloading docs using "${target}"`);
     await download({
-      target: stableBranch,
+      target,
+      org: process.env.ORG || 'electron',
       repository: 'electron',
       destination: DOCS_FOLDER,
       downloadMatch: 'docs',
     });
-  } else if (existsSync(localElectron)) {
+  } else if (existsSync(source)) {
     await copy({
-      target: localElectron,
+      target: source,
       destination: DOCS_FOLDER,
       downloadMatch: 'docs',
     });
