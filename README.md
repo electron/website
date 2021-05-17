@@ -6,16 +6,16 @@ This repository contains the code for the new electronsjs.org website. It is bui
 ## Installation
 
 ```console
-yarn install
+yarn
 ```
 
 ## Local Development
 
-If you want to use the contents from [`electron/electron`](https://github.com/electron/electron)
-run the following:
+If you want to use the live contents from the [`electron/electron`](https://github.com/electron/electron)
+repository, run the following:
 
 ```console
-yarn prebuid
+yarn prebuild
 yarn start
 ```
 
