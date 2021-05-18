@@ -145,7 +145,7 @@ function getFiddleAST(dir, version) {
         },
         {
           type: 'jsx',
-          value: `<LaunchButton url="https://fiddle.electronjs.org/launch?target=electron/${version}/${dir}"/>`,
+          value: `<LaunchButton url="https://fiddle.electronjs.org/launch?target=electron/v${version}/${dir}"/>`,
         }
       );
     }
