@@ -15,7 +15,7 @@ If you want to use the contents from [`electron/electron`](https://github.com/el
 run the following:
 
 ```console
-yarn prebuid
+yarn prebuild
 yarn start
 ```
 
