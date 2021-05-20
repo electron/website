@@ -59,7 +59,7 @@ async function transformer(tree) {
     const options = {};
 
     // If there are optional parameters, parse them out to pass to the getFiddleAST method.
-    if (others.length) {
+    if (others.length > 0) {
       for (const option of others) {
         // Use indexOf to support bizzare combinations like `|key=Myvalue=2` (which will properly 
         // parse to {'key': 'Myvalue=2'})
