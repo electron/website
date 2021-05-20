@@ -100,7 +100,7 @@ function getFiddleAST(dir, version, { focus = "main.js" }) {
   }
 
   if (!fileNames.includes(focus)) {
-    throw new Error(`Provided focus (${focus}) is not an available file in this fiddle (${dir}). Available files are [${fileNames.join(",")}]`);
+    throw new Error(`Provided focus (${focus}) is not an available file in this fiddle (${dir}). Available files are [${fileNames.join(", ")}]`);
   }
 
   for (const file of fileNames) {
