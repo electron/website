@@ -85,6 +85,8 @@ module.exports = {
         'how-to/windows-arm',
         'how-to/windows-taskbar',
         'how-to/sandbox',
+        'how-to/introduction',
+        'how-to/process-model',
       ],
     },
     {
@@ -174,7 +176,7 @@ module.exports = {
         'api/tray',
         'api/web-contents',
         'api/web-frame-main',
-      ].sort(),
+      ],
     },
     {
       type: 'category',
@@ -187,7 +189,7 @@ module.exports = {
         'api/ipc-renderer',
         'api/native-image',
         'api/web-frame',
-      ].sort(),
+      ],
     },
     {
       type: 'category',
@@ -197,7 +199,7 @@ module.exports = {
         'api/file-object',
         'api/webview-tag',
         'api/window-open',
-      ].sort(),
+      ],
     },
     {
       type: 'category',
@@ -206,7 +208,7 @@ module.exports = {
         'api/command-line-switches',
         'api/environment-variables',
         'api/extensions',
-      ].sort(),
+      ],
     },
     {
       type: 'category',
@@ -232,7 +234,7 @@ module.exports = {
         'api/touch-bar-slider',
         'api/touch-bar-spacer',
         'api/web-request',
-      ].sort()
+      ],
     },
     {
       type: 'category',
