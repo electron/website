@@ -16,7 +16,7 @@ const fixedFolders = ['api', 'images', 'fiddles'];
  * @property {string} [org] - The organization to download the contents from
  * @property {string} [repository] - The repository to download the contents from
  * @property {string} destination - The destination absolute path.
- * @property {string} target - The branch, commit, version. (e.g. `v1.0.0`, `master`)
+ * @property {string} target - The branch, commit, version. (e.g. `v1.0.0`, `main`)
  * @property {string} downloadMatch - The math to use to filter the downloaded contents
  */
 
@@ -141,7 +141,7 @@ const downloadFromGitHub = async (options) => {
  */
 const download = async (userOptions) => {
   const options = {
-    ...{ target: 'master' },
+    ...{ target: 'main' },
     ...userOptions,
   };
 

@@ -37,4 +37,4 @@ Thanks for contributing to Electron!
 [electron]: https://www.electronjs.org
 [fiddle]: https://www.electronjs.org/fiddle
 [main repo]: https://github.com/electron/electron
-[tutorials]: https://github.com/electron/electron/tree/master/docs/tutorial
+[tutorials]: https://github.com/electron/electron/tree/main/docs/tutorial
