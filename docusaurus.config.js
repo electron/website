@@ -22,7 +22,7 @@ module.exports = {
         {
           label: 'Docs',
           type: 'doc',
-          docId: 'get-started/quick-start',
+          docId: 'get-started/introduction',
           position: 'left',
         },
         {
