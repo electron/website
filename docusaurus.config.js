@@ -1,4 +1,5 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
+const npm2yarn = require('@docusaurus/remark-plugin-npm2yarn');
 const fiddleEmbedder = require('./src/transformers/fiddle-embedder.js');
 
 module.exports = {
@@ -117,7 +118,7 @@ module.exports = {
           sidebarPath: require.resolve('./sidebars.js'),
           routeBasePath: '/',
           editUrl: 'https://github.com/electron/electronjs.org-new',
-          remarkPlugins: [fiddleEmbedder],
+          remarkPlugins: [fiddleEmbedder, [npm2yarn, { sync: true }]],
         },
         blog: false,
         theme: {
