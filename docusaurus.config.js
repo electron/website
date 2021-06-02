@@ -52,7 +52,7 @@ module.exports = {
           items: [
             {
               label: 'Getting Started',
-              to: '/docs/get-started/quick-start/',
+              to: '/docs/get-started/introduction/',
             },
           ],
         },

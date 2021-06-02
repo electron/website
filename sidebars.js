@@ -4,8 +4,10 @@ module.exports = {
       type: 'category',
       label: 'Get Started',
       items: [
+        'get-started/introduction',
         'get-started/quick-start',
         'get-started/installation',
+        'get-started/process-model',
       ],
     },
     {
