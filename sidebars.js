@@ -87,8 +87,6 @@ module.exports = {
         'how-to/windows-arm',
         'how-to/windows-taskbar',
         'how-to/sandbox',
-        'how-to/introduction',
-        'how-to/process-model',
       ],
     },
     {
@@ -276,7 +274,6 @@ module.exports = {
         'api/structures/notification-response',
         'api/structures/point',
         'api/structures/post-body',
-        'api/structures/post-data',
         'api/structures/printer-info',
         'api/structures/process-memory-info',
         'api/structures/process-metric',
