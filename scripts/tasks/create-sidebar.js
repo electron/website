@@ -7,15 +7,15 @@ const globby = require('globby');
 
 const IGNORE_LIST = [
   // these are to be removed
-  'api/locales',
-  'api/remote',
-  'api/synopsis',
+  'latest/api/locales',
+  'latest/api/remote',
+  'latest/api/synopsis',
   // these need to be moved to guides
-  'api/sandbox-option',
-  'api/frameless-window',
+  'latest/api/sandbox-option',
+  'latest/api/frameless-window',
   // these don't belong to any category yet
-  'api/accelerator',
-  'api/experimental',
+  'latest/api/accelerator',
+  'latest/api/experimental',
 ];
 
 /**
@@ -124,7 +124,8 @@ const createSidebar = async (root, destination) => {
     const segments = document.split('/');
 
     // This matches files like `readme.md` and `styleguide.md` that we do not want
-    if (segments.length === 1) {
+    // We use length === 2 because the first segment is 'latest'
+    if (segments.length === 2) {
       continue;
     }
 

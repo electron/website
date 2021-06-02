@@ -52,14 +52,12 @@ const isFixedFolder = (folder) => {
  * @param {string} filename
  */
 const getFinalPath = (destination, filename) => {
-  const relativePath = path.join(destination, filename);
-
   let finalPath = '';
 
-  if (isFixedFolder(relativePath)) {
-    finalPath = relativePath;
-  } else if (pathRewrites[relativePath]) {
-    finalPath = pathRewrites[relativePath];
+  if (isFixedFolder(filename)) {
+    finalPath = path.join(destination, filename);
+  } else if (pathRewrites[filename]) {
+    finalPath = pathRewrites[filename];
   } else {
     const basename = path.basename(filename);
     finalPath = path.join(destination, 'how-to', basename);

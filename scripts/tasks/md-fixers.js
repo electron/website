@@ -77,26 +77,40 @@ const apiTransformer = (line) => {
  * RegExp use to match the old markdown format for fiddle
  * in `fiddleTransformer`.
  */
-const fiddleRegex = /^```javascript fiddle='(\S+)?'$/;
+const oldFiddleRegex = /^```(?:javascript|html|css) fiddle='docs\/(\S+)?'$/;
+const newFiddleRegex = /^```fiddle docs\/fiddles\/(\S+)?$/;
 
 /**
  * Updates the markdown fiddle format from:
  * ```
- * ```javascript fiddle='docs/fiddles/screen/fit-screen'
+ * ```javascript fiddle='docs/latest/fiddles/example'
+ * ```
+ *
+ * or
+ *
+ * ```
+ * ```fiddle docs/fiddles/example
  * ```
  * To
  * ```
- * ```fiddle docs/fiddles/example
+ * ```fiddle docs/latest/fiddles/example
  * ```
  * @param {string} line
  */
 const fiddleTransformer = (line) => {
-  const matches = fiddleRegex.exec(line);
-  if (!matches) {
-    return line;
+  const oldMatches = oldFiddleRegex.exec(line);
+
+  if (oldMatches) {
+    return `\`\`\`fiddle docs/latest/${oldMatches[1]}`;
   }
 
-  return `\`\`\`fiddle ${matches[1]}`;
+  const newMatches = newFiddleRegex.exec(line);
+
+  if (newMatches) {
+    return `\`\`\`fiddle docs/latest/fiddles/${newMatches[1]}`;
+  }
+
+  return line;
 };
 
 /**

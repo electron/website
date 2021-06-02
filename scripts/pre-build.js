@@ -18,7 +18,8 @@ const { fixContent } = require('./tasks/md-fixers');
 const { copyNewContent } = require('./tasks/copy-new-content');
 const { sha } = require('../package.json');
 
-const DOCS_FOLDER = 'docs';
+const DOCS_BASE_FOLDER = 'docs';
+const DOCS_LATEST_FOLDER = path.join(DOCS_BASE_FOLDER, 'latest');
 // const BLOG_FOLDER = 'blog';
 
 /**
@@ -27,7 +28,7 @@ const DOCS_FOLDER = 'docs';
  */
 const start = async (source) => {
   console.log(`Deleting previous content`);
-  await del(DOCS_FOLDER);
+  await del(DOCS_LATEST_FOLDER);
 
   const localElectron =
     source && (source.includes('/') || source.includes('\\'));
@@ -50,13 +51,13 @@ const start = async (source) => {
       target,
       org: process.env.ORG || 'electron',
       repository: 'electron',
-      destination: DOCS_FOLDER,
+      destination: DOCS_LATEST_FOLDER,
       downloadMatch: 'docs',
     });
   } else if (existsSync(source)) {
     await copy({
       target: source,
-      destination: DOCS_FOLDER,
+      destination: DOCS_LATEST_FOLDER,
       downloadMatch: 'docs',
     });
   } else {
@@ -74,16 +75,16 @@ const start = async (source) => {
   // });
 
   console.log('Copying new content');
-  await copyNewContent(DOCS_FOLDER);
+  await copyNewContent(DOCS_LATEST_FOLDER);
 
   console.log('Fixing markdown');
-  await fixContent(DOCS_FOLDER);
+  await fixContent(DOCS_BASE_FOLDER);
 
   console.log('Adding automatic frontmatter');
-  await addFrontmatter(DOCS_FOLDER);
+  await addFrontmatter(DOCS_LATEST_FOLDER);
 
   console.log('Updating sidebar.js');
-  await createSidebar(DOCS_FOLDER, path.join(process.cwd(), 'sidebars.js'));
+  await createSidebar(DOCS_BASE_FOLDER, path.join(process.cwd(), 'sidebars.js'));
 };
 
 start(process.argv[2]);

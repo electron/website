@@ -15,7 +15,7 @@ The easiest way to run these examples is by downloading [Electron Fiddle][fiddle
 Once Fiddle is installed, you can press on the "Open in Fiddle" button that you
 will find below code samples like the following one:
 
-```fiddle docs/fiddles/quick-start
+```fiddle docs/latest/fiddles/quick-start
 window.addEventListener('DOMContentLoaded', () => {
   const replaceText = (selector, text) => {
     const element = document.getElementById(selector)

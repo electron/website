@@ -22,19 +22,19 @@ module.exports = {
         {
           label: 'Docs',
           type: 'doc',
-          docId: 'get-started/introduction',
+          docId: 'latest/get-started/introduction',
           position: 'left',
         },
         {
           label: 'API',
           type: 'doc',
-          docId: 'api/app',
+          docId: 'latest/api/app',
           position: 'left',
         },
         {
           label: 'Examples',
           type: 'doc',
-          docId: 'how-to/examples',
+          docId: 'latest/how-to/examples',
           position: 'left',
         },
         {
@@ -52,7 +52,7 @@ module.exports = {
           items: [
             {
               label: 'Getting Started',
-              to: '/docs/get-started/introduction/',
+              to: '/docs/latest/get-started/introduction',
             },
           ],
         },
