@@ -72,7 +72,7 @@ export default function Home() {
                 'button button--outline button--secondary button--lg',
                 styles.getStarted
               )}
-              to={useBaseUrl('/docs/get-started/quick-start/')}
+              to={useBaseUrl('/docs/latest/get-started/quick-start/')}
             >
               Get Started
             </Link>
