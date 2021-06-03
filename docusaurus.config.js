@@ -52,7 +52,7 @@ module.exports = {
           items: [
             {
               label: 'Getting Started',
-              to: '/docs/get-started/introduction/',
+              to: '/docs/latest/get-started/introduction/',
             },
           ],
         },
@@ -97,6 +97,7 @@ module.exports = {
       {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
+          routeBasePath: 'docs/latest',
           editUrl: 'https://github.com/electron/electronjs.org-new',
           remarkPlugins: [fiddleEmbedder],
         },
