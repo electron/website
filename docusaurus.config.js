@@ -97,6 +97,7 @@ module.exports = {
       {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
+          routeBasePath: 'docs/latest',
           editUrl: 'https://github.com/electron/electronjs.org-new',
           remarkPlugins: [fiddleEmbedder],
         },
