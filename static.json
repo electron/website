@@ -8,10 +8,5 @@
         "/assets/**":{
             "Cache-Control": "max-age=31536000, immutable"
         }
-    },
-    "routes": {
-        "/docs/latest/assets/css/*": "/assets/css/",
-        "/docs/latest/assets/js/*": "/assets/js/",
-        "/docs/latest/assets/images/*": "/assets/images/"
     }
 }
