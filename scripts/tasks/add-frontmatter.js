@@ -3,7 +3,12 @@
 const globby = require('globby');
 const path = require('path');
 const fs = require('fs-extra');
-const DOCS_PATH = 'docs';
+/*
+  To enabled docs mode only in the website we need to set the
+  slug of a particular page to `/`. `START_PAGE` is how we
+  indicate the right document.
+*/
+const START_PAGE = 'get-started/introduction.md';
 
 /**
  *
@@ -118,11 +123,14 @@ const addFrontMatter = (content, filepath) => {
     : titleFromPath(filepath).trim();
 
   const description = descriptionFromContent(content);
+  const slug = filepath.endsWith(START_PAGE)
+    ? '/'
+    : path.basename(filepath, '.md');
 
   const mdWithFrontmatter = `---
 title: "${title}"
 description: "${description.replace(/"/g, '\\"')}"
-slug: ${path.basename(filepath, '.md')}
+slug: ${slug}
 hide_title: false
 ---
 
