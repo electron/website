@@ -5,7 +5,7 @@ module.exports = {
   title: 'Electron',
   tagline: 'Build cross-platform desktop apps with JavaScript, HTML, and CSS',
   url: 'https://electronjs.org',
-  baseUrl: '/',
+  baseUrl: '/docs/latest/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
@@ -97,7 +97,7 @@ module.exports = {
       {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          routeBasePath: 'docs/latest',
+          routeBasePath: '/',
           editUrl: 'https://github.com/electron/electronjs.org-new',
           remarkPlugins: [fiddleEmbedder],
         },
