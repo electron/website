@@ -12,6 +12,11 @@ module.exports = {
   organizationName: 'electron', // Usually your GitHub org/user name.
   projectName: 'electron', // Usually your repo name.
   themeConfig: {
+    announcementBar: {
+      id: 'to_old_docs', // Any value that will identify this message.
+      content:
+        'Want to go back to the old docs? Click <a target="_blank" rel="noopener noreferrer" href="https://electronjs.org">this link</a>.',
+    },
     navbar: {
       title: 'Electron',
       logo: {
