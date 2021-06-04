@@ -58,6 +58,8 @@ const getFinalPath = (destination, filename) => {
 
   if (isFixedFolder(relativePath)) {
     finalPath = relativePath;
+  } else if (pathRewrites[relativePath] === '') {
+    return '';
   } else if (pathRewrites[relativePath]) {
     finalPath = pathRewrites[relativePath];
   } else {
@@ -77,6 +79,11 @@ const saveContents = async (files, destination) => {
   for (const file of files) {
     const { content, filename } = file;
     const finalPath = getFinalPath(destination, filename);
+
+    // These are files we do not need to copy
+    if (finalPath === '') {
+      continue;
+    }
 
     await makeDir(path.dirname(finalPath));
 
