@@ -15,7 +15,7 @@ module.exports = {
     announcementBar: {
       id: 'to_old_docs', // Any value that will identify this message.
       content:
-        'Want to go back to the old docs? Click <a target="_blank" rel="noopener noreferrer" href="https://electronjs.org">this link</a>.',
+        'Want to go back to the old docs? Click <a target="_blank" rel="noopener noreferrer" href="https://electronjs.org/docs">this link</a>.',
     },
     navbar: {
       title: 'Electron',
