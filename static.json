@@ -1,6 +1,7 @@
 {
     "root": "build/",
     "clean_urls": true,
+    "absolute_redirect": false,
     "headers":{
         "/**":{
             "Cache-Control": "no-cache"

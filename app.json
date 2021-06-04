@@ -4,7 +4,7 @@
       "url": "heroku/nodejs"
     },
     {
-      "url": "https://github.com/hone/heroku-buildpack-static"
+      "url": "https://github.com/molant/heroku-buildpack-static"
     }
   ]
 }
