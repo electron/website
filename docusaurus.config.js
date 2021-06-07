@@ -9,13 +9,20 @@ module.exports = {
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'electron', // Usually your GitHub org/user name.
-  projectName: 'electron', // Usually your repo name.
+  organizationName: 'electron',
+  projectName: 'electron',
   themeConfig: {
+    announcementBar: {
+      id: 'to_old_docs',
+      content:
+        'Want to go back to the <a href="https://www.electronjs.org/docs">old docs</a>?',
+      backgroundColor: '#1a1b23',
+      textColor: '#9feaf9'
+    },
     navbar: {
       title: 'Electron',
       logo: {
-        alt: 'My Site Logo',
+        alt: 'Electron log',
         src: 'img/logo.svg',
       },
       items: [
