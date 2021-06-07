@@ -61,6 +61,14 @@ module.exports = {
               label: 'Getting Started',
               to: '/',
             },
+            {
+              label: 'Performance',
+              to: '/performance/',
+            },
+            {
+              label: 'Security',
+              to: '/security/',
+            },
           ],
         },
         {

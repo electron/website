@@ -123,9 +123,18 @@ const addFrontMatter = (content, filepath) => {
     : titleFromPath(filepath).trim();
 
   const description = descriptionFromContent(content);
-  const slug = filepath.endsWith(START_PAGE)
-    ? '/'
-    : path.basename(filepath, '.md');
+  const defaultSlug = path.basename(filepath, '.md');
+
+  let slug;
+
+  if (filepath.endsWith(START_PAGE)) {
+    slug = '/';
+  } else if (path.dirname(filepath).endsWith(defaultSlug)) {
+    // We want paths like `/security/security/` to be `/security/`
+    slug = `/${defaultSlug}/`;
+  } else {
+    slug = defaultSlug;
+  }
 
   const mdWithFrontmatter = `---
 title: "${title}"
