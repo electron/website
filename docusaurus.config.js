@@ -20,9 +20,9 @@ module.exports = {
       textColor: '#9feaf9'
     },
     navbar: {
-      title: 'Electron',
+      title: '',
       logo: {
-        alt: 'Electron log',
+        alt: 'Electron homepage',
         src: 'img/logo.svg',
       },
       items: [
@@ -96,6 +96,9 @@ module.exports = {
       apiKey: 'f9fb1d51a99fc479d5979cfa2aae48b9',
       indexName: 'beta-electronjs',
       contextualSearch: true,
+    },
+    googleAnalytics: {
+      trackingID: 'UA-160365006-1'
     },
   },
   presets: [
