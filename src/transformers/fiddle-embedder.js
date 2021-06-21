@@ -20,6 +20,9 @@ module.exports = function attacher() {
 /**
  * Tests for AST nodes that match the following:
  *
+ * 1) MDX import
+ * 
+ * 2) Fiddle code block
  * \```fiddle path/to/fiddle
  *
  * \```
@@ -27,7 +30,7 @@ module.exports = function attacher() {
  * @returns boolean
  */
 function matchNode(node) {
-  return node.type === 'code' && node.lang === 'fiddle' && !!node.meta;
+  return node.type === 'import' || (node.type === 'code' && node.lang === 'fiddle' && !!node.meta);
 }
 
 const importNode = {
@@ -41,17 +44,28 @@ const importNode = {
  * @param {import("unist").Parent} tree
  */
 async function transformer(tree) {
+  let hasExistingImport = false;
   const version = await getVersion();
   visitParents(tree, matchNode, visitor);
-  tree.children.unshift(importNode);
+
+  if (!hasExistingImport) {
+    tree.children.unshift(importNode);
+  }
 
   /**
    *
    * @param {*} node
-   * @param {*} ancestors
+   * @param {import("unist").Node[]} ancestors
    * @returns { import("unist-util-visit-parents").ActionTuple }
    */
   function visitor(node, ancestors) {
+    if (node.type === 'import') {
+      if (node.value.includes('@theme/Tabs')) {
+        hasExistingImport = true;
+      }
+      return;
+    }
+
     const parent = ancestors[0];
     // Supported formats are fiddle='<folder>|<option>|option'
     // Options must be of the format key=value with no additional quotes.
@@ -72,14 +86,15 @@ async function transformer(tree) {
 
     // Find where the Fiddle code block is relative to the parent,
     // and splice the children array to insert the embedded Fiddle
-    const index = parent.children.indexOf(node);
-    const newChildren = getFiddleAST(folder, version, options);
-    parent.children.splice(index, 1, ...newChildren);
-
-    // Return an ActionTuple [Action, Index], where
-    // Action SKIP means we want to skip visiting these new children
-    // Index is the index of the AST we want to continue parsing at.
-    return [visitParents.SKIP, index + newChildren.length];
+    if (Array.isArray(parent.children)) {
+      const index = parent.children.indexOf(node);
+      const newChildren = getFiddleAST(folder, version, options);
+      parent.children.splice(index, 1, ...newChildren);
+      // Return an ActionTuple [Action, Index], where
+      // Action SKIP means we want to skip visiting these new children
+      // Index is the index of the AST we want to continue parsing at.
+      return [visitParents.SKIP, index + newChildren.length];
+    }
   }
 }
 /**
