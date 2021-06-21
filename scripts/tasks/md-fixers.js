@@ -67,7 +67,7 @@ const apiTransformer = (line) => {
     matches[0],
     `${matches[1]}\`${matches[2].trim()}\` ${matches[3]
       .trim()
-      .replace(/>/g, '&#62;')} ${matches[4].trim()}`.trim() // matches[4] could be empty and thus end up with a trailing space
+      .replace(/>/g, '&#62;')} ${matches[4].trim()}`.trimEnd() // matches[4] could be empty and thus end up with a trailing space
   );
 
   return newLine;
