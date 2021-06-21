@@ -87,6 +87,7 @@ module.exports = {
         'how-to/windows-arm',
         'how-to/windows-taskbar',
         'how-to/sandbox',
+        'how-to/tray',
       ],
     },
     {
