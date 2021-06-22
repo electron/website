@@ -40,9 +40,9 @@ module.exports = {
         },
         {
           label: 'Examples',
-          type: 'doc',
-          docId: 'how-to/examples',
+          to: 'how-to/examples',
           position: 'left',
+          activeBaseRegex: '^\b$' // never active
         },
         {
           href: 'https://github.com/electron/electron',
