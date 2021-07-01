@@ -21,7 +21,7 @@ module.exports = {
       textColor: '#9feaf9'
     },
     navbar: {
-      title: '',
+      title: 'Electron',
       logo: {
         alt: 'Electron homepage',
         src: 'img/logo.svg',
