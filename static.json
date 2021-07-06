@@ -2,6 +2,7 @@
     "root": "build/",
     "clean_urls": true,
     "absolute_redirect": false,
+    "error_page": "docs/latest/404.html",
     "headers":{
         "/**":{
             "Cache-Control": "no-cache"
