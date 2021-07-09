@@ -40,7 +40,7 @@
     "description": "The label of footer link with label=GitHub linking to https://github.com/electron/electron"
   },
   "copyright": {
-    "message": "Copyright © 2021 My Project, Inc. Built with Docusaurus.",
+    "message": "Copyright © OpenJS Foundation and Electron contributors.",
     "description": "The footer copyright"
   }
 }

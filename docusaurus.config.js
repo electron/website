@@ -12,6 +12,10 @@ module.exports = {
   favicon: 'img/favicon.ico',
   organizationName: 'electron',
   projectName: 'electron',
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'es-ES']
+  },
   themeConfig: {
     announcementBar: {
       id: 'to_old_docs',
@@ -44,6 +48,10 @@ module.exports = {
           to: 'how-to/examples',
           position: 'left',
           activeBaseRegex: '^\b$' // never active
+        },
+        {
+          type: 'localeDropdown',
+          position: 'right',
         },
         {
           href: 'https://github.com/electron/electron',
@@ -99,7 +107,7 @@ module.exports = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © OpenJS Foundation and Electron contributors.`,
     },
     algolia: {
       apiKey: 'f9fb1d51a99fc479d5979cfa2aae48b9',
