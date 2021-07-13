@@ -13,11 +13,13 @@
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
+    "update-l10n-sources": "node scripts/update-l10n-sources.js",
     "lint": "prettier -c ./scripts/**/*.js",
     "test": "yarn lint && jest",
     "prebuild": "node ./scripts/pre-build.js",
     "process-docs-changes": "node ./scripts/process-docs-changes.js",
-    "update-pinned-version": "node ./scripts/update-pinned-version.js"
+    "update-pinned-version": "node ./scripts/update-pinned-version.js",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@docusaurus/core": "^2.0.0-beta.3",
@@ -53,6 +55,7 @@
     "globby": "^11.0.3",
     "got": "^11.8.2",
     "gunzip-maybe": "^1.4.2",
+    "husky": "^7.0.1",
     "jest": "^26.6.3",
     "json5": "^2.2.0",
     "latest-version": "^5.1.0",
