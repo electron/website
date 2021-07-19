@@ -4,11 +4,11 @@ const globby = require('globby');
 const path = require('path');
 const fs = require('fs-extra');
 /*
-  To enabled docs mode only in the website we need to set the
-  slug of a particular page to `/`. `START_PAGE` is how we
+  To make `/docs/latest` have content we need to set the
+  slug of a particular page to `/latest/`. `START_PAGE` is how we
   indicate the right document.
 */
-const START_PAGE = 'get-started/introduction.md';
+const START_PAGE = 'tutorial/introduction.md';
 
 /**
  *
@@ -128,7 +128,7 @@ const addFrontMatter = (content, filepath) => {
   let slug;
 
   if (filepath.endsWith(START_PAGE)) {
-    slug = '/';
+    slug = '/latest/';
   } else if (path.dirname(filepath).endsWith(defaultSlug)) {
     // We want paths like `/security/security/` to be `/security/`
     slug = `/${defaultSlug}/`;

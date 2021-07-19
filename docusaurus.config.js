@@ -6,7 +6,7 @@ module.exports = {
   title: 'Electron',
   tagline: 'Build cross-platform desktop apps with JavaScript, HTML, and CSS',
   url: 'https://electronjs.org',
-  baseUrl: '/docs/latest/',
+  baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
@@ -30,18 +30,18 @@ module.exports = {
         {
           label: 'Docs',
           type: 'doc',
-          docId: 'get-started/introduction',
+          docId: 'latest/tutorial/introduction',
           position: 'left',
         },
         {
           label: 'API',
           type: 'doc',
-          docId: 'api/app',
+          docId: 'latest/api/app',
           position: 'left',
         },
         {
           label: 'Examples',
-          to: 'how-to/examples',
+          to: 'docs/latest/tutorial/examples',
           position: 'left',
           activeBaseRegex: '^\b$' // never active
         },
@@ -61,14 +61,6 @@ module.exports = {
             {
               label: 'Getting Started',
               to: '/',
-            },
-            {
-              label: 'Performance',
-              to: '/performance/',
-            },
-            {
-              label: 'Security',
-              to: '/security/',
             },
           ],
         },
@@ -116,7 +108,7 @@ module.exports = {
       {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          routeBasePath: '/',
+          routeBasePath: '/docs/',
           editUrl: 'https://github.com/electron/electronjs.org-new',
           remarkPlugins: [fiddleEmbedder, [npm2yarn, { sync: true }]],
         },
