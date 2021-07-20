@@ -5,6 +5,15 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Current file",
+      "program": "${file}",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "pwa-node",
+      "console": "integratedTerminal"
+    },
+    {
       "type": "node",
       "name": "vscode-jest-tests",
       "request": "launch",
