@@ -18,7 +18,7 @@ module.exports = {
       content:
         'Want to go back to the <a href="https://www.electronjs.org/docs">old docs</a>?',
       backgroundColor: '#1a1b23',
-      textColor: '#9feaf9'
+      textColor: '#9feaf9',
     },
     navbar: {
       title: 'Electron',
@@ -43,8 +43,9 @@ module.exports = {
           label: 'Examples',
           to: 'docs/latest/tutorial/examples',
           position: 'left',
-          activeBaseRegex: '^\b$' // never active
+          activeBaseRegex: '^\b$', // never active
         },
+        { to: 'blog', label: 'Blog', position: 'left' },
         {
           href: 'https://github.com/electron/electron',
           label: 'GitHub',
@@ -99,7 +100,7 @@ module.exports = {
       contextualSearch: true,
     },
     googleAnalytics: {
-      trackingID: 'UA-160365006-1'
+      trackingID: 'UA-160365006-1',
     },
   },
   presets: [
@@ -112,7 +113,13 @@ module.exports = {
           editUrl: 'https://github.com/electron/electronjs.org-new',
           remarkPlugins: [fiddleEmbedder, [npm2yarn, { sync: true }]],
         },
-        blog: false,
+        blog: {
+          // See `node_modules/@docusaurus/plugin-content-blog/src/pluginOptionSchema.ts` for full undocumented options
+          blogSidebarCount: 50,
+          blogSidebarTitle: 'Latest posts',
+          blogTitle: `Electron's blog`,
+          blogDescription: `Keep up to date with what's going on with the Electron project`,
+        },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
