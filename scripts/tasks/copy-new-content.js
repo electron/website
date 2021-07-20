@@ -1,7 +1,7 @@
 const fs = require('fs').promises;
 const path = require('path');
 
-const newContent = new Map([['how-to-examples.md', 'how-to/examples.md']]);
+const newContent = new Map([['how-to-examples.md', 'tutorial/examples.md']]);
 
 /**
  * Copies the new content files to the destination

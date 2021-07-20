@@ -6,6 +6,8 @@ const { stringify } = require('json5');
 const globby = require('globby');
 
 const IGNORE_LIST = [
+  'README',
+  'styleguide',
   // these are to be removed
   'api/locales',
   'api/remote',
@@ -15,7 +17,7 @@ const IGNORE_LIST = [
   'api/frameless-window',
   // these don't belong to any category yet
   'api/accelerator',
-  'api/experimental',
+  'experimental',
 ];
 
 /**
@@ -98,12 +100,6 @@ const createSidebar = async (root, destination) => {
   /** @type {Map<string, Entry>} */
   const reverseLookup = new Map();
 
-  // For files we explicitly don't want in the sidebar,
-  // add null entries to the reverseLookup Map
-  for (const entry of IGNORE_LIST) {
-    reverseLookup.set(entry, null);
-  }
-
   const topLevels = Object.keys(sidebars);
 
   for (const id of topLevels) {
@@ -121,12 +117,14 @@ const createSidebar = async (root, destination) => {
       continue;
     }
 
-    const segments = document.split('/');
-
-    // This matches files like `readme.md` and `styleguide.md` that we do not want
-    if (segments.length === 1) {
+    const ignore = IGNORE_LIST.some((ignore) => documentId.endsWith(ignore));
+    if (ignore) {
       continue;
     }
+
+    const segments = document.split('/');
+    // Documents are always under /latest/ or similar that are not relevant for the category
+    segments.shift();
 
     console.log(`New document found: ${document}`);
     hasNewDocuments = true;

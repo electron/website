@@ -4,38 +4,6 @@ const fs = require('fs').promises;
 const path = require('path');
 const globby = require('globby');
 
-/** The keywords that need to be escaped so MDX does not complain */
-const keywords = new Set([
-  'any',
-  'Boolean',
-  'Buffer',
-  'Extension',
-  'ExtensionInfo',
-  'Integer',
-  'local',
-  'NativeImage',
-  // TODO: Normalize (nN)umber in the docs
-  'number',
-  'Number',
-  'Object',
-  'port',
-  'Product',
-  'proxyHost',
-  'proxyPort',
-  'proxyScheme',
-  'proxyURL',
-  'proxyURIList',
-  'ServiceWorkerInfo',
-  // TODO: Normalize (sS)tring in the docs
-  'string',
-  'String',
-  'Uint8Array',
-  'unknown',
-  'urlScheme',
-  'void',
-  'webview',
-]);
-
 /**
  * RegExp used to match the details of the arguments of a function
  * in the documention and used in `apiTransformer`. It matches:
@@ -77,7 +45,8 @@ const apiTransformer = (line) => {
  * RegExp use to match the old markdown format for fiddle
  * in `fiddleTransformer`.
  */
-const fiddleRegex = /^```javascript fiddle='(\S+)?'$/;
+const fiddleRegex = /^```javascript fiddle='docs\/(\S+)?'$/;
+const fiddlePathFixRegex = /```fiddle docs\//;
 
 /**
  * Updates the markdown fiddle format from:
@@ -86,17 +55,21 @@ const fiddleRegex = /^```javascript fiddle='(\S+)?'$/;
  * ```
  * To
  * ```
- * ```fiddle docs/fiddles/example
+ * ```fiddle docs/latest/fiddles/example
  * ```
- * @param {string} line
+ * @param {String} line
  */
 const fiddleTransformer = (line) => {
   const matches = fiddleRegex.exec(line);
-  if (!matches) {
+  const hasNewPath = fiddlePathFixRegex.test(line);
+
+  if (matches) {
+    return `\`\`\`fiddle docs/latest/${matches[1]}`;
+  } else if (hasNewPath) {
+    return line.replace(fiddlePathFixRegex, '```fiddle docs/latest/');
+  } else {
     return line;
   }
-
-  return `\`\`\`fiddle ${matches[1]}`;
 };
 
 /**
@@ -190,9 +163,10 @@ const fixLinks = (content, linksMaps) => {
  * found in the given `root` (recursively) and makes sure they are
  * ready to consumed by the website.
  * @param {string} root
+ * @param {string} [version]
  */
-const fixContent = async (root) => {
-  const files = await globby(`**/*.md`, {
+const fixContent = async (root, version = 'latest') => {
+  const files = await globby(`${version}/**/*.md`, {
     cwd: root,
   });
 
@@ -212,7 +186,7 @@ const fixContent = async (root) => {
     let fixedContent = transform(content);
 
     // `fixLinks` analyzes the document globally instead of line by line, thus why
-    // it cannot be part of `trasform`
+    // it cannot be part of `transform`
     fixedContent = fixLinks(fixedContent, linksMaps);
 
     await fs.writeFile(path.join(root, filePath), fixedContent, 'utf-8');
