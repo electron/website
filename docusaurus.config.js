@@ -9,7 +9,7 @@ module.exports = {
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
-  favicon: 'img/favicon.ico',
+  favicon: 'assets/img/favicon.ico',
   organizationName: 'electron',
   projectName: 'electron',
   themeConfig: {
@@ -24,7 +24,7 @@ module.exports = {
       title: 'Electron',
       logo: {
         alt: 'Electron homepage',
-        src: 'img/logo.svg',
+        src: 'assets/img/logo.svg',
       },
       items: [
         {
