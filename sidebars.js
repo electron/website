@@ -88,6 +88,7 @@ module.exports = {
         'latest/tutorial/windows-taskbar',
         'latest/tutorial/sandbox',
         'latest/tutorial/tray',
+        'latest/tutorial/launch-app-from-url-in-another-app',
       ],
     },
     {

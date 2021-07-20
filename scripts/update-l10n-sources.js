@@ -29,12 +29,13 @@ ${files.join('\n')}`);
   await del('i18n/en-US');
   await execute('yarn write-translations --locale en-US');
 
-  const localeModified = (await getChanges()) !== '';
+  const localeModified = (await getChanges()) !== output;
 
-  if(localeModified){
-      const pleaseCommit = 'Contents in "/i18n/en-US/" have been modified. Please add the changes to your commit';
-      console.error('\x1b[31m%s\x1b', pleaseCommit);
-      process.exit(1);
+  if (localeModified) {
+    const pleaseCommit =
+      'Contents in "/i18n/en-US/" have been modified. Please add the changes to your commit';
+    console.error('\x1b[31m%s\x1b', pleaseCommit);
+    process.exit(1);
   }
 };
 
