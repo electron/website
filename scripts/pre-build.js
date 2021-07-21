@@ -5,8 +5,13 @@
  * right places, and transform it to make it ready to
  * be used by docusaurus.
  */
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
+
 const path = require('path');
 const { existsSync } = require('fs');
+const fs = require('fs-extra');
 
 const del = require('del');
 const latestVersion = require('latest-version');
@@ -17,8 +22,10 @@ const { createSidebar } = require('./tasks/create-sidebar');
 const { fixContent } = require('./tasks/md-fixers');
 const { copyNewContent } = require('./tasks/copy-new-content');
 const { sha } = require('../package.json');
+const { downloadTranslations } = require('./tasks/download-translations');
 
 const DOCS_FOLDER = path.join('docs', 'latest');
+const I18N_FOLDER = 'i18n';
 // const BLOG_FOLDER = 'blog';
 
 /**
@@ -64,15 +71,6 @@ const start = async (source) => {
     return process.exit(-1);
   }
 
-  // TODO: Uncoment once we have the blog enabled
-  // console.log(`Downloading posts`);
-  // await download({
-  //   target: 'master',
-  //   repository: 'electronjs.org',
-  //   destination: BLOG_FOLDER,
-  //   downloadMatch: 'data/blog',
-  // });
-
   console.log('Copying new content');
   await copyNewContent(DOCS_FOLDER);
 
@@ -84,6 +82,39 @@ const start = async (source) => {
 
   console.log('Updating sidebar.js');
   await createSidebar('docs', path.join(process.cwd(), 'sidebars.js'));
+
+  console.log('Downloading translations');
+  const locales = await downloadTranslations(I18N_FOLDER);
+
+  for (const locale of locales) {
+    const localeDocs = path.join(
+      I18N_FOLDER,
+      locale,
+      'docusaurus-plugin-content-docs',
+      'current'
+    );
+    const staticResources = ['fiddles', 'images'];
+
+    console.log(`Copying static assets to ${locale}`);
+    for (const staticResource of staticResources) {
+      await fs.copy(
+        path.join(DOCS_FOLDER, staticResource),
+        path.join(localeDocs, 'latest', staticResource)
+      );
+    }
+
+    console.log(`Fixing markdown (${locale})`);
+    await fixContent(localeDocs, 'latest');
+
+    console.log(`Adding automatic frontmatter (${locale})`);
+    await addFrontmatter(path.join(localeDocs, 'latest'));
+  }
 };
+
+process.on('unhandledRejection', (error) => {
+  console.error(error);
+
+  process.exit(1);
+});
 
 start(process.argv[2]);

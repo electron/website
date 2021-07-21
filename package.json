@@ -22,18 +22,21 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@crowdin/crowdin-api-client": "^1.11.2",
     "@docusaurus/core": "^2.0.0-beta.6",
     "@docusaurus/plugin-google-analytics": "^2.0.0-beta.6",
     "@docusaurus/preset-classic": "^2.0.0-beta.6",
     "@docusaurus/remark-plugin-npm2yarn": "^2.0.0-beta.6",
     "@mdx-js/react": "^1.6.21",
+    "D": "^1.0.0",
     "clsx": "^1.1.1",
     "docusaurus-plugin-sass": "^0.2.1",
     "dotenv-safe": "^8.2.0",
     "execa": "^5.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "sass": "^1.37.5"
+    "sass": "^1.37.5",
+    "unzipper": "^0.10.11"
   },
   "browserslist": {
     "production": [
@@ -53,7 +56,9 @@
     "@types/jest": "^26.0.23",
     "@types/unist": "^2.0.3",
     "del": "^6.0.0",
+    "dotenv": "^10.0.0",
     "esbuild-loader": "^2.15.1",
+    "execa": "^5.0.0",
     "fs-extra": "^9.1.0",
     "globby": "^11.0.3",
     "got": "^11.8.2",

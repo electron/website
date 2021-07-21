@@ -6,3 +6,5 @@ node_modules
 build/
 content/
 docs/
+i18n/
+!i18n/en-US/

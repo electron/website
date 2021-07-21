@@ -73,6 +73,19 @@ const fiddleTransformer = (line) => {
 };
 
 /**
+ * Crowdin translations put markdown content right
+ * after HTML comments and thus breaking Docusaurus
+ * parse engine. We need to add a new EOL after `-->`
+ * is found.
+ */
+const newLineOnHTMLComment = (line) => {
+  if (line.includes('-->')) {
+    return line.replace('-->', '-->\n');
+  }
+  return line;
+};
+
+/**
  * Applies any transformation that can be executed line by line on
  * the document to make sure it is ready to be consumed by
  * docusaurus and our md extensions:
@@ -83,7 +96,11 @@ const fiddleTransformer = (line) => {
 const transform = (doc) => {
   const lines = doc.split('\n');
   const newDoc = [];
-  const transformers = [apiTransformer, fiddleTransformer];
+  const transformers = [
+    apiTransformer,
+    fiddleTransformer,
+    newLineOnHTMLComment,
+  ];
 
   for (const line of lines) {
     const newLine = transformers.reduce((newLine, transformer) => {

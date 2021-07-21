@@ -13,6 +13,19 @@ module.exports = {
   favicon: 'assets/img/favicon.ico',
   organizationName: 'electron',
   projectName: 'electron',
+  i18n: {
+    defaultLocale: 'en',
+    locales: [
+      'de-de',
+      'en',
+      'es-es',
+      'fr-fr',
+      'ja-jp',
+      'pt-br',
+      'ru-ru',
+      'zh-cn',
+    ],
+  },
   themeConfig: {
     announcementBar: {
       id: 'to_old_docs',
@@ -50,6 +63,10 @@ module.exports = {
         {
           href: 'https://releases.electronjs.org',
           label: 'Releases',
+          position: 'right'
+        },
+        {
+          type: 'localeDropdown',
           position: 'right',
         },
         {
