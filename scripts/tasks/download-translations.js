@@ -76,10 +76,9 @@ const waitFor = (seconds) => {
  * @returns
  */
 const getBuild = async (buildId) => {
-  const builds = await translationsApi.listProjectBuilds(PROJECT_ID);
-  const build = builds.data.find((item) => item.data.id === buildId);
+  const { data } = await translationsApi.checkBuildStatus(PROJECT_ID, buildId);
 
-  return build.data;
+  return data;
 };
 
 /**
@@ -105,7 +104,7 @@ const buildAndDownloadLink = async (projectId) => {
       break;
     } else {
       console.log(
-        `Crowdin status: Waiting ${interval} seconds (retry ${i}/${counter})`
+        `Crowdin status: Waiting ${interval} seconds (retry ${i}/${counter} - ${build.progress}%)`
       );
       await waitFor(interval);
     }
@@ -129,6 +128,7 @@ const buildAndDownloadLink = async (projectId) => {
 const getLatestBuildLink = async (projectId) => {
   const { data: builds } = await translationsApi.listProjectBuilds(projectId);
 
+  // We use the first item `builds[0]` because for some reason Crowdin only returns the latest build for this project
   const {
     data: { url },
   } = await translationsApi.downloadTranslations(PROJECT_ID, builds[0].data.id);
