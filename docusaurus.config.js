@@ -55,13 +55,35 @@ module.exports = {
     },
     footer: {
       style: 'dark',
+      logo: {
+        alt: 'OpenJS Foundation Logo',
+        src: 'img/openjsf_logo.svg',
+        href: 'https://openjsf.org/',
+      },
       links: [
         {
           title: 'Docs',
           items: [
             {
               label: 'Getting Started',
-              to: '/',
+              to: '/docs/latest/',
+            },
+            {
+              label: 'API Reference',
+              to: '/docs/latest/api/app',
+            },
+          ],
+        },
+        {
+          title: 'Checklists',
+          items: [
+            {
+              label: 'Performance',
+              to: '/docs/latest/tutorial/performance',
+            },
+            {
+              label: 'Security',
+              to: '/docs/latest/tutorial/security',
             },
           ],
         },
@@ -69,16 +91,16 @@ module.exports = {
           title: 'Community',
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/electron',
-            },
-            {
               label: 'Discord',
               href: 'https://discordapp.com/invite/electron',
             },
             {
               label: 'Twitter',
               href: 'https://twitter.com/electronjs',
+            },
+            {
+              label: 'Stack Overflow',
+              href: 'https://stackoverflow.com/questions/tagged/electron',
             },
           ],
         },
@@ -89,10 +111,14 @@ module.exports = {
               label: 'GitHub',
               href: 'https://github.com/electron/electron',
             },
+            {
+              label: 'Open Collective',
+              href: 'https://opencollective.com/electron',
+            },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} OpenJS Foundation and Electron contributors.`,
     },
     algolia: {
       apiKey: 'f9fb1d51a99fc479d5979cfa2aae48b9',
