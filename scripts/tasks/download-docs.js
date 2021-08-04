@@ -43,34 +43,6 @@ const isFixedFolder = (folder) => {
 };
 
 /**
- * Returns the right folder where the given document needs to be place
- * taking into consideration:
- * 1. If it's a "fixed" folder (api, images, fiddles)
- * 1. It has an entry in `docs-reorg.json`
- * 1. Using the default or puts it the default folder ('how-to')
- * @param {string} destination
- * @param {string} filename
- */
-const getFinalPath = (destination, filename) => {
-  const relativePath = path.join(destination, filename);
-
-  let finalPath = '';
-
-  if (isFixedFolder(relativePath)) {
-    finalPath = relativePath;
-  } else if (pathRewrites[relativePath] === '') {
-    return '';
-  } else if (pathRewrites[relativePath]) {
-    finalPath = pathRewrites[relativePath];
-  } else {
-    const basename = path.basename(filename);
-    finalPath = path.join(destination, 'how-to', basename);
-  }
-
-  return path.join(process.cwd(), finalPath);
-};
-
-/**
  * Saves the file on disk creating the necessary folders
  * @param {Entry[]} files
  * @param {string} destination
@@ -78,7 +50,7 @@ const getFinalPath = (destination, filename) => {
 const saveContents = async (files, destination) => {
   for (const file of files) {
     const { content, filename } = file;
-    const finalPath = getFinalPath(destination, filename);
+    const finalPath = path.join(destination, filename);
 
     // These are files we do not need to copy
     if (finalPath === '') {

@@ -9,6 +9,30 @@ This repository contains the code for the new electronsjs.org website. It is bui
 yarn install
 ```
 
+## How to add a new blogpost
+
+To add a new blogpost you need to create a new markdown file under `/blog`. The supported
+frontmatter options are the ones documented in [Docusaurus](https://docusaurus.io/docs/2.0.0-beta.0/blog#adding-posts).
+
+There are a couple of things that are different compared to the previous blog engine:
+
+1. There can only be one author. If there are several people working on a post please sign it at the end.
+1. The frontmatter `date` property with the format `YYYY-MM-DD` is not supported. The options to indicate the date are:
+   * Write the date in the filename: `YYYY-MM-DD-blogpost-slug`
+   * Use the output of `(new Date('YYYY-MM-DD')).toString()` and paste it in the frontmatter section:
+     ```yml
+     date: 2019-05-13T00:00:00.000Z
+     ```
+
+To see your changes (and have hot-reload), run the following commands:
+
+```console
+yarn prebuild
+yarn start
+```
+
+Note: `yarn prebuild` is only necessary the first time to get content under `/docs`.
+
 ## Local Development
 
 If you want to use the contents from [`electron/electron`](https://github.com/electron/electron)

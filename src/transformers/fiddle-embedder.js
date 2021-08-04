@@ -21,7 +21,7 @@ module.exports = function attacher() {
  * Tests for AST nodes that match the following:
  *
  * 1) MDX import
- * 
+ *
  * 2) Fiddle code block
  * \```fiddle path/to/fiddle
  *
@@ -30,7 +30,10 @@ module.exports = function attacher() {
  * @returns boolean
  */
 function matchNode(node) {
-  return node.type === 'import' || (node.type === 'code' && node.lang === 'fiddle' && !!node.meta);
+  return (
+    node.type === 'import' ||
+    (node.type === 'code' && node.lang === 'fiddle' && !!node.meta)
+  );
 }
 
 const importNode = {
@@ -69,15 +72,15 @@ async function transformer(tree) {
     const parent = ancestors[0];
     // Supported formats are fiddle='<folder>|<option>|option'
     // Options must be of the format key=value with no additional quotes.
-    const [folder, ...others] = node.meta.split("|");
+    const [folder, ...others] = node.meta.split('|');
     const options = {};
 
     // If there are optional parameters, parse them out to pass to the getFiddleAST method.
     if (others.length > 0) {
       for (const option of others) {
-        // Use indexOf to support bizzare combinations like `|key=Myvalue=2` (which will properly 
+        // Use indexOf to support bizzare combinations like `|key=Myvalue=2` (which will properly
         // parse to {'key': 'Myvalue=2'})
-        const firstEqual = option.indexOf("=");
+        const firstEqual = option.indexOf('=');
         const key = option.substr(0, firstEqual);
         const value = option.substr(firstEqual + 1);
         options[key] = value;
@@ -103,7 +106,7 @@ async function transformer(tree) {
  * @param {string} dir
  * @param {string} version
  */
-function getFiddleAST(dir, version, { focus = "main.js" }) {
+function getFiddleAST(dir, version, { focus = 'main.js' }) {
   const files = {};
   const children = [];
 
@@ -115,7 +118,11 @@ function getFiddleAST(dir, version, { focus = "main.js" }) {
   }
 
   if (!fileNames.includes(focus)) {
-    throw new Error(`Provided focus (${focus}) is not an available file in this fiddle (${dir}). Available files are [${fileNames.join(", ")}]`);
+    throw new Error(
+      `Provided focus (${focus}) is not an available file in this fiddle (${dir}). Available files are [${fileNames.join(
+        ', '
+      )}]`
+    );
   }
 
   for (const file of fileNames) {
@@ -179,7 +186,10 @@ function getFiddleAST(dir, version, { focus = "main.js" }) {
         },
         {
           type: 'jsx',
-          value: `<LaunchButton url="https://fiddle.electronjs.org/launch?target=electron/v${version}/${dir}"/>`,
+          value: `<LaunchButton url="https://fiddle.electronjs.org/launch?target=electron/v${version}/${dir.replace(
+            'latest/',
+            ''
+          )}"/>`,
         }
       );
     }

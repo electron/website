@@ -18,7 +18,7 @@ const { fixContent } = require('./tasks/md-fixers');
 const { copyNewContent } = require('./tasks/copy-new-content');
 const { sha } = require('../package.json');
 
-const DOCS_FOLDER = 'docs';
+const DOCS_FOLDER = path.join('docs', 'latest');
 // const BLOG_FOLDER = 'blog';
 
 /**
@@ -77,13 +77,13 @@ const start = async (source) => {
   await copyNewContent(DOCS_FOLDER);
 
   console.log('Fixing markdown');
-  await fixContent(DOCS_FOLDER);
+  await fixContent('docs', 'latest');
 
   console.log('Adding automatic frontmatter');
   await addFrontmatter(DOCS_FOLDER);
 
   console.log('Updating sidebar.js');
-  await createSidebar(DOCS_FOLDER, path.join(process.cwd(), 'sidebars.js'));
+  await createSidebar('docs', path.join(process.cwd(), 'sidebars.js'));
 };
 
 start(process.argv[2]);

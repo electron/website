@@ -38,7 +38,7 @@ const processDocsChanges = async () => {
   if (output === '') {
     console.log('Nothing updated, skipping');
     return;
-  } else if (!output.includes('M package.json')) {
+  } else if (!/M\s+package\.json/.test(output)) {
     console.log('package.json is not modified, skipping');
     return;
   } else {

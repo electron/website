@@ -6,10 +6,10 @@ module.exports = {
   title: 'Electron',
   tagline: 'Build cross-platform desktop apps with JavaScript, HTML, and CSS',
   url: 'https://electronjs.org',
-  baseUrl: '/docs/latest/',
+  baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
-  favicon: 'img/favicon.ico',
+  favicon: 'assets/img/favicon.ico',
   organizationName: 'electron',
   projectName: 'electron',
   themeConfig: {
@@ -18,33 +18,34 @@ module.exports = {
       content:
         'Want to go back to the <a href="https://www.electronjs.org/docs">old docs</a>?',
       backgroundColor: '#1a1b23',
-      textColor: '#9feaf9'
+      textColor: '#9feaf9',
     },
     navbar: {
-      title: '',
+      title: 'Electron',
       logo: {
         alt: 'Electron homepage',
-        src: 'img/logo.svg',
+        src: 'assets/img/logo.svg',
       },
       items: [
         {
           label: 'Docs',
           type: 'doc',
-          docId: 'get-started/introduction',
+          docId: 'latest/tutorial/introduction',
           position: 'left',
         },
         {
           label: 'API',
           type: 'doc',
-          docId: 'api/app',
+          docId: 'latest/api/app',
           position: 'left',
         },
         {
           label: 'Examples',
-          type: 'doc',
-          docId: 'how-to/examples',
+          to: 'docs/latest/tutorial/examples',
           position: 'left',
+          activeBaseRegex: '^\b$', // never active
         },
+        { to: 'blog', label: 'Blog', position: 'left' },
         {
           href: 'https://github.com/electron/electron',
           label: 'GitHub',
@@ -67,7 +68,6 @@ module.exports = {
               label: 'Getting Started',
               to: '/',
             },
-            {
               label: 'API Reference',
               to: '/api/app',
             },
@@ -112,7 +112,7 @@ module.exports = {
       contextualSearch: true,
     },
     googleAnalytics: {
-      trackingID: 'UA-160365006-1'
+      trackingID: 'UA-160365006-1',
     },
   },
   presets: [
@@ -121,11 +121,17 @@ module.exports = {
       {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          routeBasePath: '/',
+          routeBasePath: '/docs/',
           editUrl: 'https://github.com/electron/electronjs.org-new',
           remarkPlugins: [fiddleEmbedder, [npm2yarn, { sync: true }]],
         },
-        blog: false,
+        blog: {
+          // See `node_modules/@docusaurus/plugin-content-blog/src/pluginOptionSchema.ts` for full undocumented options
+          blogSidebarCount: 50,
+          blogSidebarTitle: 'Latest posts',
+          blogTitle: `Electron's blog`,
+          blogDescription: `Keep up to date with what's going on with the Electron project`,
+        },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },

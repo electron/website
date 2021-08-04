@@ -6,24 +6,26 @@
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
-    "build": "docusaurus build --out-dir build/docs/latest",
+    "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
+    "update-l10n-sources": "node scripts/update-l10n-sources.js",
     "lint": "prettier -c ./scripts/**/*.js",
     "test": "yarn lint && jest",
     "prebuild": "node ./scripts/pre-build.js",
     "process-docs-changes": "node ./scripts/process-docs-changes.js",
-    "update-pinned-version": "node ./scripts/update-pinned-version.js"
+    "update-pinned-version": "node ./scripts/update-pinned-version.js",
+    "prepare": "husky install"
   },
   "dependencies": {
-    "@docusaurus/core": "^2.0.0-beta.1",
-    "@docusaurus/plugin-google-analytics": "^2.0.0-beta.1",
-    "@docusaurus/preset-classic": "^2.0.0-beta.1",
-    "@docusaurus/remark-plugin-npm2yarn": "^2.0.0-beta.1",
+    "@docusaurus/core": "^2.0.0-beta.3",
+    "@docusaurus/plugin-google-analytics": "^2.0.0-beta.3",
+    "@docusaurus/preset-classic": "^2.0.0-beta.3",
+    "@docusaurus/remark-plugin-npm2yarn": "^2.0.0-beta.3",
     "@mdx-js/react": "^1.6.21",
     "clsx": "^1.1.1",
     "dotenv-safe": "^8.2.0",
@@ -52,7 +54,9 @@
     "fs-extra": "^9.1.0",
     "globby": "^11.0.3",
     "got": "^11.8.2",
+    "gray-matter": "^4.0.3",
     "gunzip-maybe": "^1.4.2",
+    "husky": "^7.0.1",
     "jest": "^26.6.3",
     "json5": "^2.2.0",
     "latest-version": "^5.1.0",
@@ -61,5 +65,5 @@
     "tar-stream": "^2.2.0",
     "unist-util-visit-parents": "^3.1.1"
   },
-  "sha": "df27597c0588aeaef142ee2cd1a364da1003303c"
+  "sha": "2e8f2a2f51661aa333cb83741686423d76115ed8"
 }
