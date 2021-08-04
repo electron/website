@@ -66,11 +66,24 @@ module.exports = {
           items: [
             {
               label: 'Getting Started',
-              to: '/',
+              to: '/docs/latest/',
             },
             {
               label: 'API Reference',
-              to: '/api/app',
+              to: '/docs/latest/api/app',
+            },
+          ],
+        },
+        {
+          title: 'Checklists',
+          items: [
+            {
+              label: 'Performance',
+              to: '/docs/latest/tutorial/performance',
+            },
+            {
+              label: 'Security',
+              to: '/docs/latest/tutorial/security',
             },
           ],
         },
