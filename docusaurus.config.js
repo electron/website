@@ -68,6 +68,7 @@ module.exports = {
               label: 'Getting Started',
               to: '/',
             },
+            {
               label: 'API Reference',
               to: '/api/app',
             },
