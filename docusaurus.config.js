@@ -129,6 +129,7 @@ module.exports = {
       trackingID: 'UA-160365006-1',
     },
   },
+  plugins: ['docusaurus-plugin-sass'],
   presets: [
     [
       '@docusaurus/preset-classic',
@@ -147,7 +148,7 @@ module.exports = {
           blogDescription: `Keep up to date with what's going on with the Electron project`,
         },
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
+          customCss: [require.resolve('./src/css/custom.scss')],
         },
       },
     ],
