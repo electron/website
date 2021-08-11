@@ -48,6 +48,11 @@ module.exports = {
         },
         { to: 'blog', label: 'Blog', position: 'left' },
         {
+          href: 'https://releases.electronjs.org',
+          label: 'Releases',
+          position: 'right',
+        },
+        {
           href: 'https://github.com/electron/electron',
           label: 'GitHub',
           position: 'right',
