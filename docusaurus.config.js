@@ -137,7 +137,12 @@ module.exports = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           routeBasePath: '/docs/',
-          editUrl: 'https://github.com/electron/electronjs.org-new',
+          editUrl: ({docPath}) => {
+            // TODO: remove when `latest/` is no longer hardcoded
+            const fixedPath = docPath.replace('latest/', '');
+            // TODO: versioning?
+            return `https://github.com/electron/electron/edit/main/docs/${fixedPath}`
+          },
           remarkPlugins: [fiddleEmbedder, [npm2yarn, { sync: true }]],
         },
         blog: {
