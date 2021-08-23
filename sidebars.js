@@ -65,7 +65,6 @@ module.exports = {
       items: [
         'latest/tutorial/examples',
         'latest/tutorial/dark-mode',
-        'latest/tutorial/desktop-environment-integration',
         'latest/tutorial/fuses',
         'latest/tutorial/in-app-purchases',
         'latest/tutorial/keyboard-shortcuts',
