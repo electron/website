@@ -3,13 +3,13 @@
     background: var(--electron-color-dark);
 }
 
-@keyframes hero-animation {
+@keyframes heroAnimation {
   0% { opacity: 0; transform: scale(0.96); }
   100% { opacity: 1; transform: scale(1); }
 }
 
 .heroImage {
-  animation: hero-animation 0.5s forwards;
+  animation: heroAnimation 0.5s forwards;
   backface-visibility: hidden;
   margin: 0 auto;
 
@@ -44,7 +44,7 @@ $logo-delay-diff: 0.1s;
 $logo-duration: 1s;
 $logo-all-delay: 9 * $logo-delay-diff + $logo-delay;
 
-@keyframes logo-animation {
+@keyframes logoAnimation {
   100% { stroke-dashoffset: 0; }
 }
 
@@ -53,7 +53,7 @@ $logo-all-delay: 9 * $logo-delay-diff + $logo-delay;
     $_duration: $logo-duration;
     $_delay:   $logo-delay + ($logo-delay-diff * $i);
 
-    animation: logo-animation $_duration $_delay cubic-bezier(0.05, 0.35, 0.2, 1) forwards;
+    animation: logoAnimation $_duration $_delay cubic-bezier(0.05, 0.35, 0.2, 1) forwards;
   }
 }
 
@@ -68,13 +68,13 @@ $app-delay-diff: 0.04s;
 $app-duration: 0.8s;
 $app-opacity: 0.1;
 
-@keyframes app-animate-left {
+@keyframes appAnimateLeft {
   0% { transform: scale(1)   translateX(30px); opacity: $app-opacity; animation-timing-function: cubic-bezier(0.3, 0.1, 0.9, 0.5); }
   20% { transform: scale(1.1) translateX(20px); animation-timing-function: cubic-bezier(0.1, 0.4, 0.2, 1); }
   100% { transform: scale(1)   translateX(0); opacity: 1; }
 }
 
-@keyframes app-animate-right {
+@keyframes allAnimateRight {
   0% { transform: scale(1)   translateX(-30px); opacity: $app-opacity; animation-timing-function: cubic-bezier(0.3, 0.1, 0.9, 0.5); }
   20% { transform: scale(1.1) translateX(-20px); animation-timing-function: cubic-bezier(0.1, 0.4, 0.2, 1); }
   100% { transform: scale(1)   translateX(0); opacity: 1; }
@@ -86,11 +86,11 @@ $app-opacity: 0.1;
     $_delay: $app-delay + ($app-delay-diff * $i);
 
     @if $i % 2 == 0 {
-      animation: app-animate-left $app-duration $_delay both;
+      animation: appAnimateLeft $app-duration $_delay both;
     }
 
     @else {
-      animation: app-animate-right $app-duration $_delay both;
+      animation: allAnimateRight $app-duration $_delay both;
     }
   }
 }
