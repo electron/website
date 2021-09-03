@@ -16,7 +16,6 @@ module.exports = {
       items: [
         'latest/tutorial/examples',
         'latest/tutorial/dark-mode',
-        'latest/tutorial/fuses',
         'latest/tutorial/in-app-purchases',
         'latest/tutorial/keyboard-shortcuts',
         'latest/tutorial/launch-app-from-url-in-another-app',
@@ -36,7 +35,6 @@ module.exports = {
         'latest/tutorial/web-embeds',
         'latest/tutorial/windows-arm',
         'latest/tutorial/windows-taskbar',
-        'latest/tutorial/sandbox',
         'latest/tutorial/tray',
       ],
     },
@@ -54,6 +52,8 @@ module.exports = {
       items: [
         'latest/tutorial/accessibility',
         'latest/tutorial/context-isolation',
+        'latest/tutorial/fuses',
+        'latest/tutorial/sandbox',
         'latest/tutorial/using-native-node-modules',
       ],
     },
@@ -290,6 +290,6 @@ module.exports = {
         'latest/api/structures/user-default-types',
         'latest/api/structures/web-source',
       ],
-    },
+    }
   ],
 };
