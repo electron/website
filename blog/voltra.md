@@ -1,7 +1,16 @@
 ---
 title: 'Project of the Week: Voltra'
-author: Electron
 date: 2017-03-07T00:00:00.000Z
+authors:
+  - name: '0x00A'
+    url: 'https://github.com/0x00A'
+    image_url: 'https://github.com/0x00A.png?size=48'
+  - name: aprileelcich
+    url: 'https://github.com/aprileelcich'
+    image_url: 'https://github.com/aprileelcich.png?size=48'
+  - name: zeke
+    url: 'https://github.com/zeke'
+    image_url: 'https://github.com/zeke.png?size=48'
 slug: voltra
 ---
 This week we met with [Aprile Elcich](https://twitter.com/aprileelcich) and
@@ -91,6 +100,3 @@ We‘re currently developing a mobile app, and working with artists and labels t
 [setImmediate]: https://developer.mozilla.org/en-US/docs/Web/API/Window/setImmediate
 [requestIdleCallback]: https://developer.mozilla.org/en-US/docs/Web/API/Window/requestIdleCallback
 [IPC]: https://electronjs.org/docs/glossary/#ipc
-
-
-Signed @0x00A, @aprileelcich, @zeke

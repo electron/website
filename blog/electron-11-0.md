@@ -1,7 +1,10 @@
 ---
 title: Electron 11.0.0
-author: Electron
 date: 2020-11-17T00:00:00.000Z
+authors:
+  - name: VerteDinde
+    url: 'https://github.com/VerteDinde'
+    image_url: 'https://github.com/VerteDinde.png?size=48'
 slug: electron-11-0
 ---
 Electron 11.0.0 has been released! It includes upgrades to Chromium `87`, V8 `8.7`, and Node.js `12.18.3`. We've added support for Apple silicon, and general improvements. Read below for more details!
@@ -65,5 +68,3 @@ Read and follow [this issue](https://github.com/electron/electron/issues/21408) 
 From Electron 6 onwards, we've been laying the groundwork to require [native Node modules](https://nodejs.org/api/addons.html) loaded in the renderer process to be either [N-API](https://nodejs.org/api/n-api.html) or [Context Aware](https://nodejs.org/api/addons.html#addons_context_aware_addons). Enforcing this change allows for stronger security, faster performance, and reduced maintenance workload. The final step of this plan is to remove the ability to disable render process reuse in Electron 12. 
 
 Read and follow [this issue](https://github.com/electron/electron/issues/18397) for full details, including the proposed timeline.
-
-Signed @VerteDinde

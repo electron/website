@@ -1,7 +1,16 @@
 ---
 title: Search
-author: Electron
 date: 2018-06-21T00:00:00.000Z
+authors:
+  - name: echjordan
+    url: 'https://github.com/echjordan'
+    image_url: 'https://github.com/echjordan.png?size=48'
+  - name: vanessayuenn
+    url: 'https://github.com/vanessayuenn'
+    image_url: 'https://github.com/vanessayuenn.png?size=48'
+  - name: zeke
+    url: 'https://github.com/zeke'
+    image_url: 'https://github.com/zeke.png?size=48'
 slug: search
 ---
 The Electron website has a new search engine that delivers instant results for
@@ -147,4 +156,3 @@ for building these new search capabilities, to [Libraries.io] for providing
 [Libraries.io]: https://libraries.io
 [quick-start]: https://github.com/electron/electron-quick-start
 [SourceRank]: https://docs.libraries.io/overview.html#sourcerank
-Signed @echjordan, @vanessayuenn, @zeke

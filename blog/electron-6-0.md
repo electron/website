@@ -1,7 +1,16 @@
 ---
 title: Electron 6.0.0
-author: Electron
 date: 2019-07-30T00:00:00.000Z
+authors:
+  - name: sofianguy
+    url: 'https://github.com/sofianguy'
+    image_url: 'https://github.com/sofianguy.png?size=48'
+  - name: ckerr
+    url: 'https://github.com/ckerr'
+    image_url: 'https://github.com/ckerr.png?size=48'
+  - name: codebytere
+    url: 'https://github.com/codebytere'
+    image_url: 'https://github.com/codebytere.png?size=48'
 slug: electron-6-0
 ---
 The Electron team is excited to announce the release of Electron 6.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://electronjs.org/releases/stable). The release is packed with upgrades, fixes, and new features. We can't wait to see what you build with them! Continue reading for details about this release, and please share any feedback you have!
@@ -71,7 +80,7 @@ In order to enable the [hardened runtime](https://developer.apple.com/documentat
 writable-executable memory and loading code signed by a different Team
 ID, special code signing entitlements needed to be granted to the Helper.
 
-To keep these entitlements scoped to the process types that require them, Chromium [added](https://chromium-review.googlesource.com/c/chromium/src/+/1627456) 
+To keep these entitlements scoped to the process types that require them, Chromium [added](https://chromium-review.googlesource.com/c/chromium/src/+/1627456)
 three new variants of the Helper app: one for renderers (`Electron Helper (Renderer).app`), one for the GPU process (`Electron Helper (GPU).app`) and one for plugins (`Electron Helper (Plugin).app`).
 
 Folks using `electron-osx-sign` to codesign their Electron app shouldn't have to make any changes to their build logic.
@@ -103,5 +112,3 @@ We continue to use our [App Feedback Program](https://electronjs.org/blog/app-fe
 In the short term, you can expect the team to continue to focus on keeping up with the development of the major components that make up Electron, including Chromium, Node, and V8. Although we are careful not to make promises about release dates, our plan is release new major versions of Electron with new versions of those components approximately quarterly. The [tentative 7.0.0 schedule](https://electronjs.org/docs/tutorial/electron-timelines) maps out key dates in the Electron 7 development life cycle. Also, [see our versioning document](https://electronjs.org/docs/tutorial/electron-versioning) for more detailed information about versioning in Electron.
 
 For information on planned breaking changes in upcoming versions of Electron, [see our Planned Breaking Changes doc](https://github.com/electron/electron/blob/master/docs/api/breaking-changes.md).
-
-Signed @sofianguy, @ckerr, @codebytere

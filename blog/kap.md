@@ -1,7 +1,16 @@
 ---
 title: 'Project of the Week: Kap'
-author: Electron
 date: 2017-01-31T00:00:00.000Z
+authors:
+  - name: skllcrn
+    url: 'https://github.com/skllcrn'
+    image_url: 'https://github.com/skllcrn.png?size=48'
+  - name: sindresorhus
+    url: 'https://github.com/sindresorhus'
+    image_url: 'https://github.com/sindresorhus.png?size=48'
+  - name: zeke
+    url: 'https://github.com/zeke'
+    image_url: 'https://github.com/zeke.png?size=48'
 slug: kap
 ---
 The Electron community is growing quickly, and people are creating powerful
@@ -84,6 +93,3 @@ The next step for us is to review the app in preparation for our 2.0.0 milestone
 ## Any Electron tips that might be useful to other developers?
 
 Take advantage of and get involved in the fantastic [community](https://discuss.atom.io/c/electron), check out [Awesome Electron](https://github.com/sindresorhus/awesome-electron), look at [examples](https://github.com/electron/electron-api-demos) and make use of the great [docs](https://electronjs.org/docs/)!
-
-
-Signed @skllcrn, @sindresorhus, @zeke

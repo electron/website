@@ -1,7 +1,16 @@
 ---
 title: 'Project of the Week: Jasper'
-author: Electron
 date: 2017-03-21T00:00:00.000Z
+authors:
+  - name: h13i32maru
+    url: 'https://github.com/h13i32maru'
+    image_url: 'https://github.com/h13i32maru.png?size=48'
+  - name: watilde
+    url: 'https://github.com/watilde'
+    image_url: 'https://github.com/watilde.png?size=48'
+  - name: zeke
+    url: 'https://github.com/zeke'
+    image_url: 'https://github.com/zeke.png?size=48'
 slug: jasper
 ---
 This week we interviewed the creator of [Jasper], an Electron-based tool for
@@ -147,6 +156,3 @@ Follow [@jasperappio](https://twitter.com/jasperappio) on Twitter for updates.
 [Pull Requests API]: https://developer.github.com/v3/pulls/
 [Issues API]: https://developer.github.com/v3/issues/
 [Search API]: https://developer.github.com/v3/search/
-
-
-Signed @h13i32maru, @watilde, @zeke

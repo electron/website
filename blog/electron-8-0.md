@@ -1,7 +1,13 @@
 ---
 title: Electron 8.0.0
-author: Electron
 date: 2020-02-04T00:00:00.000Z
+authors:
+  - name: jkleinsc
+    url: 'https://github.com/jkleinsc'
+    image_url: 'https://github.com/jkleinsc.png?size=48'
+  - name: sofianguy
+    url: 'https://github.com/sofianguy'
+    image_url: 'https://github.com/sofianguy.png?size=48'
 slug: electron-8-0
 ---
 Electron 8.0.0 has been released! It includes upgrades to Chromium `80`, V8 `8.0`, and Node.js `12.13.0`. We've added Chrome's built-in spellchecker, and much more!
@@ -30,10 +36,10 @@ See the [8.0.0 release notes](https://github.com/electron/electron/releases/tag/
 
 ## Breaking Changes
 
-* Show module name in deprecation warning for context-aware modules. [#21952](https://github.com/electron/electron/pull/21952) 
+* Show module name in deprecation warning for context-aware modules. [#21952](https://github.com/electron/electron/pull/21952)
     * This is continued work for a future requirement that native Node modules loaded in the renderer process be either [N-API](https://nodejs.org/api/n-api.html) or [Context Aware](https://nodejs.org/api/addons.html#addons_context_aware_addons). Full info and proposed timeline is detailed in [this issue](https://github.com/electron/electron/issues/18397).
 * Values sent over IPC are now serialized with Structured Clone Algorithm.  [#20214](https://github.com/electron/electron/pull/20214)
-* Offscreen Rendering is currently disabled due to lack of a maintainer to work on this feature.  It broke during the Chromium upgrade and was subsequently disabled. [#20772](https://github.com/electron/electron/issues/20772) 
+* Offscreen Rendering is currently disabled due to lack of a maintainer to work on this feature.  It broke during the Chromium upgrade and was subsequently disabled. [#20772](https://github.com/electron/electron/issues/20772)
 
 More information about these and future changes can be found on the [Planned Breaking Changes](https://github.com/electron/electron/blob/master/docs/breaking-changes.md) page.
 
@@ -106,5 +112,3 @@ For information on planned breaking changes in upcoming versions of Electron, [s
 
 ### Deprecation of `remote` Module (Starting in Electron 9)
 Due to serious security liabilities, we are beginning plans to deprecate the [`remote` module](https://www.electronjs.org/docs/api/remote) starting in Electron 9. You can read and follow [this issue](https://github.com/electron/electron/issues/21408) that details our reasons for this and includes a proposed timeline for deprecation.
-
-Signed @jkleinsc, @sofianguy

@@ -1,7 +1,16 @@
 ---
 title: 'Project of the Week: WordPress Desktop'
-author: Electron
 date: 2017-02-28T00:00:00.000Z
+authors:
+  - name: mkaz
+    url: 'https://github.com/mkaz'
+    image_url: 'https://github.com/mkaz.png?size=48'
+  - name: johngodley
+    url: 'https://github.com/johngodley'
+    image_url: 'https://github.com/johngodley.png?size=48'
+  - name: zeke
+    url: 'https://github.com/zeke'
+    image_url: 'https://github.com/zeke.png?size=48'
 slug: wordpress
 ---
 This week we caught up with folks at [Automattic](https://automattic.com/) to
@@ -59,6 +68,3 @@ If any of that sounds interesting then we'd [love to hear from you](https://auto
 ## Any Electron tips that might be useful to other developers?
 
 The process of shipping signed desktop software is relatively new to us, especially for Windows. we wrote up an article for [Code Signing a Windows App](https://mkaz.blog/code/code-signing-a-windows-application/) which includes the process and a few of the hurdles we went through to do it right.
-
-
-Signed @mkaz, @johngodley, @zeke

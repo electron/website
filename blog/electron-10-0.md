@@ -1,7 +1,13 @@
 ---
 title: Electron 10.0.0
-author: Electron
 date: 2020-08-25T00:00:00.000Z
+authors:
+  - name: VerteDinde
+    url: 'https://github.com/VerteDinde'
+    image_url: 'https://github.com/VerteDinde.png?size=48'
+  - name: sofianguy
+    url: 'https://github.com/sofianguy'
+    image_url: 'https://github.com/sofianguy.png?size=48'
 slug: electron-10-0
 ---
 Electron 10.0.0 has been released! It includes upgrades to Chromium `85`, V8 `8.5`, and Node.js `12.16`. We've added several new API integrations and improvements. Read below for more details!
@@ -76,5 +82,3 @@ We started work to remove the remote module in [Electron 9](https://www.electron
 _Edit: Originally, this blog post stated that we would disable renderer process reuse in Electron 11. Disabling renderer process reuse has now been pushed to Electron 12._
 
 From Electron 6 onwards, we've been laying the groundwork to require [native Node modules](https://nodejs.org/api/addons.html) loaded in the renderer process to be either [N-API](https://nodejs.org/api/n-api.html) or [Context Aware](https://nodejs.org/api/addons.html#addons_context_aware_addons). Enforcing this change allows for stronger security, faster performance, and reduced maintenance workload. The final step of this plan is to remove the ability to disable render process reuse in Electron 12. Read [this issue](https://github.com/electron/electron/issues/18397) for full details including the proposed timeline.
-
-Signed @VerteDinde, @sofianguy

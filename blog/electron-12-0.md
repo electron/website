@@ -1,7 +1,16 @@
 ---
 title: Electron 12.0.0
-author: Electron
 date: 2021-03-02T00:00:00.000Z
+authors:
+  - name: VerteDinde
+    url: 'https://github.com/VerteDinde'
+    image_url: 'https://github.com/VerteDinde.png?size=48'
+  - name: mlaurencin
+    url: 'https://github.com/mlaurencin'
+    image_url: 'https://github.com/mlaurencin.png?size=48'
+  - name: sofianguy
+    url: 'https://github.com/sofianguy'
+    image_url: 'https://github.com/sofianguy.png?size=48'
 slug: electron-12-0
 ---
 Electron 12.0.0 has been released! It includes upgrades to Chromium `89`, V8 `8.9` and Node.js `14.16`. We've added changes to the remote module, new defaults for contextIsolation, a new webFrameMain API, and general improvements. Read below for more details!
@@ -108,5 +117,3 @@ Electron 9.x.y has reached end-of-support as per the project's [support policy](
 In the short term, you can expect the team to continue to focus on keeping up with the development of the major components that make up Electron, including Chromium, Node, and V8. Although we are careful not to make promises about release dates, our plan is release new major versions of Electron with new versions of those components approximately quarterly. The [tentative 13.0.0 schedule](https://electronjs.org/docs/tutorial/electron-timelines) maps out key dates in the Electron 13.0 development life cycle. Also, [see our versioning document](https://electronjs.org/docs/tutorial/electron-versioning) for more detailed information about versioning in Electron.
 
 For information on planned breaking changes in upcoming versions of Electron, [see our Planned Breaking Changes doc](https://github.com/electron/electron/blob/master/docs/breaking-changes.md).
-
-Signed @VerteDinde, @mlaurencin, @sofianguy

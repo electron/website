@@ -1,7 +1,10 @@
 ---
 title: Electron Podcasts
-author: jlord
 date: 2016-07-26T00:00:00.000Z
+authors:
+  name: jlord
+  url: 'https://github.com/jlord'
+  image_url: 'https://github.com/jlord.png?size=48'
 slug: electron-podcasts
 ---
 Looking for an introduction to Electron? Two new podcasts have just been released that give a great overview of what it is, why it was built, and how it is being used.

@@ -1,7 +1,10 @@
 ---
 title: Internationalization Updates
-author: vanessayuenn
 date: 2018-06-20T00:00:00.000Z
+authors:
+  name: vanessayuenn
+  url: 'https://github.com/vanessayuenn'
+  image_url: 'https://github.com/vanessayuenn.png?size=48'
 slug: i18n-updates
 ---
 Ever since the [launch](https://electronjs.org/blog/new-website) of the new internationalized Electron website, we have been working hard to make the Electron development experience even more accessible to developers outside of the English speaking world.

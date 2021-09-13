@@ -1,7 +1,10 @@
 ---
 title: Electron 1.0
-author: jlord
 date: 2016-05-11T00:00:00.000Z
+authors:
+  name: jlord
+  url: 'https://github.com/jlord'
+  image_url: 'https://github.com/jlord.png?size=48'
 slug: electron-1-0
 ---
 For the last two years, Electron has helped developers build cross platform

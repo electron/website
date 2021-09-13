@@ -1,7 +1,13 @@
 ---
 title: 'Project of the Week: WebTorrent'
-author: Electron
 date: 2017-03-14T00:00:00.000Z
+authors:
+  - name: feross
+    url: 'https://github.com/feross'
+    image_url: 'https://github.com/feross.png?size=48'
+  - name: zeke
+    url: 'https://github.com/zeke'
+    image_url: 'https://github.com/zeke.png?size=48'
 slug: webtorrent
 ---
 This week we caught up with [@feross](https://github.com/feross) and [@dcposch](https://github.com/dcposch) to talk about WebTorrent, the web-powered torrent client that connects users together to form a distributed, decentralized browser-to-browser network.
@@ -135,6 +141,3 @@ If you're interested in getting involved in the project, check out [our GitHub p
 <script async class="speakerdeck-embed" data-id="5aae08bb7c5b4dbd89060cff11bb1300" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
 
 [DC](https://dcpos.ch/), another WebTorrent contributor, wrote [a checklist of things you can do](https://blog.dcpos.ch/how-to-make-your-electron-app-sexy) to make your app feel polished and native. It comes with code examples and covers things like macOS dock integration, drag-and-drop, desktop notifications, and making sure your app loads quickly.
-
-
-Signed @feross, @zeke

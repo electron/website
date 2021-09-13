@@ -1,7 +1,10 @@
 ---
 title: Electron's API Docs as Structured Data
-author: zeke
 date: 2016-09-27T00:00:00.000Z
+authors:
+  name: zeke
+  url: 'https://github.com/zeke'
+  image_url: 'https://github.com/zeke.png?size=48'
 slug: api-docs-json-schema
 ---
 Today we're announcing some improvements to Electron's documentation. Every new

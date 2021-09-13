@@ -1,7 +1,10 @@
 ---
 title: Easier AutoUpdating for Open-Source Apps
-author: zeke
 date: 2018-05-01T00:00:00.000Z
+authors:
+  name: zeke
+  url: 'https://github.com/zeke'
+  image_url: 'https://github.com/zeke.png?size=48'
 slug: autoupdating-electron-apps
 ---
 Today we're releasing a free, open-source, hosted

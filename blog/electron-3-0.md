@@ -1,7 +1,10 @@
 ---
 title: Electron 3.0.0
-author: codebytere
 date: 2018-09-18T00:00:00.000Z
+authors:
+  name: codebytere
+  url: 'https://github.com/codebytere'
+  image_url: 'https://github.com/codebytere.png?size=48'
 slug: electron-3-0
 ---
 The Electron team is excited to announce that the first stable release of Electron 3 is now
@@ -46,7 +49,7 @@ Major bumps to several important parts of Electron's toolchain, including Chrome
 ### macOS
 
 * [[#12093](https://github.com/electron/electron/pull/12093)] feat: workspace notifications support
-* [[#12496](https://github.com/electron/electron/pull/12496)] feat: `tray.setIgnoreDoubleClickEvents(ignore)` to ignore tray double click events. 
+* [[#12496](https://github.com/electron/electron/pull/12496)] feat: `tray.setIgnoreDoubleClickEvents(ignore)` to ignore tray double click events.
 * [[#12281](https://github.com/electron/electron/pull/12281)] feat: mouse forward functionality on macOS
 * [[#12714](https://github.com/electron/electron/pull/12714)] feat: screen lock / unlock events
 
@@ -54,7 +57,7 @@ Major bumps to several important parts of Electron's toolchain, including Chrome
 
 * [[#12879](https://github.com/electron/electron/pull/12879)] feat: added DIP to/from screen coordinate conversions
 
-**Nota Bene:** Switching to an older version of Electron after running this version will require you to clear out your user data directory to avoid older versions crashing. You can get the user data directory by running `console.log(app.getPath("userData"))` or see [docs](https://electronjs.org/docs/api/app#appgetpathname) for more details.
+**Nota Bene:** Switching to an older version of Electron after running this version will require you to clear out your user data directory to avoid older versions crashing. You can get the user data directory by running `console.log(app.getPath("userData"))` or see [docs](https://electronjs.org/docs/latest/api/app#appgetpathname) for more details.
 
 ## Bug Fixes
 
