@@ -1,7 +1,19 @@
 ---
 title: 'Project of the Week: Dat'
-author: Electron
 date: 2017-02-21T00:00:00.000Z
+authors:
+  - name: karissa
+    url: 'https://github.com/karissa'
+    image_url: 'https://github.com/karissa.png?size=48'
+  - name: yoshuawuyts
+    url: 'https://github.com/yoshuawuyts'
+    image_url: 'https://github.com/yoshuawuyts.png?size=48'
+  - name: maxogden
+    url: 'https://github.com/maxogden'
+    image_url: 'https://github.com/maxogden.png?size=48'
+  - name: zeke
+    url: 'https://github.com/zeke'
+    image_url: 'https://github.com/zeke.png?size=48'
 slug: dat
 ---
 This week's featured project is [Dat](https://datproject.org/), a
@@ -92,6 +104,3 @@ If you use native modules, give [prebuild](https://www.npmjs.com/package/prebuil
 
 Follow [@dat_project](https://twitter.com/dat_project) on Twitter, or
 subscribe to our [email newsletter](https://tinyletter.com/datdata).
-
-
-Signed @karissa, @yoshuawuyts, @maxogden, @zeke

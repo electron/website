@@ -1,7 +1,10 @@
 ---
 title: Electron 2.0 and Beyond - Semantic Versioning
-author: groundwater
 date: 2017-12-06T00:00:00.000Z
+authors:
+  name: groundwater
+  url: 'https://github.com/groundwater'
+  image_url: 'https://github.com/groundwater.png?size=48'
 slug: electron-2-semantic-boogaloo
 ---
 A new major version of Electron is in the works, and with it some changes to our versioning strategy. As of version 2.0.0, Electron will strictly adhere to Semantic Versioning.

@@ -1,7 +1,13 @@
 ---
 title: 'Project of the Week: Ghost'
-author: Electron
 date: 2017-02-14T00:00:00.000Z
+authors:
+  - name: felixrieseberg
+    url: 'https://github.com/felixrieseberg'
+    image_url: 'https://github.com/felixrieseberg.png?size=48'
+  - name: zeke
+    url: 'https://github.com/zeke'
+    image_url: 'https://github.com/zeke.png?size=48'
 slug: ghost
 ---
 This week we chatted with [Felix Rieseberg](https://felixrieseberg.com/), desktop engineer at [Slack](https://slack.com/) and maintainer of [Ghost Desktop](https://ghost.org/downloads/), an Electron client for the [Ghost](https://ghost.org/) publishing platform.
@@ -63,6 +69,3 @@ Ghost Desktop is also an ongoing project - we're pretty far from being done. We 
 I'm a big fan of [Kap](https://getkap.co/), [Felony](https://github.com/henryboldi/felony), and [Visual Studio Code](https://code.visualstudio.com).
 
 👻
-
-
-Signed @felixrieseberg, @zeke

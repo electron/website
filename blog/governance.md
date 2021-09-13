@@ -1,7 +1,13 @@
 ---
 title: Electron Governance
-author: Electron
 date: 2019-03-18T00:00:00.000Z
+authors:
+  - name: ckerr
+    url: 'https://github.com/ckerr'
+    image_url: 'https://github.com/ckerr.png?size=48'
+  - name: sofianguy
+    url: 'https://github.com/sofianguy'
+    image_url: 'https://github.com/sofianguy.png?size=48'
 slug: governance
 ---
 As Electron grows in popularity for desktop applications, the team working on it has also grown: we have more fulltime maintainers who work for different companies, live in different timezones, and have different interests. We're introducing a governance structure so we can keep growing smoothly.
@@ -34,5 +40,3 @@ This shouldn't have any direct effect on Electron's direction. If our strategy i
  * The governance [repo](https://github.com/electron/governance/) and [charter](https://github.com/electron/governance/tree/master/charter) have information about the new governance structure.
  * Each working group has its own page: [Community](https://github.com/electron/governance/tree/master/wg-community-safety), [Docs & Tools](https://github.com/electron/governance/tree/master/wg-docs-tools), [Outreach](https://github.com/electron/governance/tree/master/wg-outreach), [Releases](https://github.com/electron/governance/tree/master/wg-releases), [Security](https://github.com/electron/governance/tree/master/wg-security), [Upgrades](https://github.com/electron/governance/tree/master/wg-upgrades), and [Website](https://github.com/electron/governance/tree/master/wg-website).
  * You can contact the maintainers by [opening an issue](https://github.com/electron/governance/issues) or mailing us at [info@electronjs.org](mailto:info@electronjs.org).
-
-Signed @ckerr, @sofianguy

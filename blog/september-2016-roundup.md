@@ -1,7 +1,10 @@
 ---
 title: 'September 2016: New Apps'
-author: haacked
 date: 2016-10-06T00:00:00.000Z
+authors:
+  name: haacked
+  url: 'https://github.com/haacked'
+  image_url: 'https://github.com/haacked.png?size=48'
 slug: september-2016-roundup
 ---
 Here are the new Electron apps and talks that were added to the site in September.

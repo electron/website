@@ -1,7 +1,16 @@
 ---
 title: Electron 5.0.0
-author: Electron
 date: 2019-04-23T00:00:00.000Z
+authors:
+  - name: BinaryMuse
+    url: 'https://github.com/BinaryMuse'
+    image_url: 'https://github.com/BinaryMuse.png?size=48'
+  - name: ckerr
+    url: 'https://github.com/ckerr'
+    image_url: 'https://github.com/ckerr.png?size=48'
+  - name: jkleinsc
+    url: 'https://github.com/jkleinsc'
+    image_url: 'https://github.com/jkleinsc.png?size=48'
 slug: electron-5-0
 ---
 The Electron team is excited to announce the release of Electron 5.0.0! You can install it with npm via `npm install electron@latest` or download the tarballs from [our releases page](https://github.com/electron/electron/releases/tag/v5.0.0). The release is packed with upgrades, fixes, and new features. We can't wait to see what you build with them! Continue reading for details about this release, and please share any feedback you have!
@@ -115,5 +124,3 @@ We continue to use our [App Feedback Program](https://electronjs.org/blog/app-fe
 In the short term, you can expect the team to continue to focus on keeping up with the development of the major components that make up Electron, including Chromium, Node, and V8. Although we are careful not to make promises about release dates, our plan is release new major versions of Electron with new versions of those components approximately quarterly. The [tentative 6.0.0 schedule](https://electronjs.org/docs/tutorial/electron-timelines#600-release-schedule) maps out key dates in the Electron 6 development life cycle. Also, [see our versioning document](https://electronjs.org/docs/tutorial/electron-versioning) for more detailed information about versioning in Electron.
 
 For information on planned breaking changes in upcoming versions of Electron, [see our Planned Breaking Changes doc](https://github.com/electron/electron/blob/master/docs/api/breaking-changes.md).
-
-Signed @BinaryMuse, @ckerr, @jkleinsc

@@ -1,7 +1,10 @@
 ---
 title: New Electron Release Cadence
-author: sofianguy
 date: 2019-05-13T00:00:00.000Z
+authors:
+  name: sofianguy
+  url: 'https://github.com/sofianguy'
+  image_url: 'https://github.com/sofianguy.png?size=48'
 slug: 12-week-cadence
 ---
 🎉 Electron is moving to release a new major stable version every 12 weeks! 🎉

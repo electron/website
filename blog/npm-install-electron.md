@@ -1,7 +1,10 @@
 ---
 title: npm install electron
-author: zeke
 date: 2016-08-16T00:00:00.000Z
+authors:
+  name: zeke
+  url: 'https://github.com/zeke'
+  image_url: 'https://github.com/zeke.png?size=48'
 slug: npm-install-electron
 ---
 As of Electron version 1.3.1, you can `npm install electron --save-dev` to

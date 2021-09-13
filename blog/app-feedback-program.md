@@ -1,7 +1,10 @@
 ---
 title: Electron App Feedback Program
-author: sofianguy
 date: 2018-10-02T00:00:00.000Z
+authors:
+  name: sofianguy
+  url: 'https://github.com/sofianguy'
+  image_url: 'https://github.com/sofianguy.png?size=48'
 slug: app-feedback-program
 ---
 Electron is working on making its release cycles faster and more stable. To make that possible, we've started the App Feedback Program for large-scale Electron apps to test our beta releases and report app-specific issues to us. This helps us to prioritize work that will get applications upgraded to our next stable release sooner.

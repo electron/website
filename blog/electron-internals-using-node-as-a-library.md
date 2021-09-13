@@ -1,7 +1,10 @@
 ---
 title: 'Electron Internals: Using Node as a Library'
-author: zcbenz
 date: 2016-08-08T00:00:00.000Z
+authors:
+  name: zcbenz
+  url: 'https://github.com/zcbenz'
+  image_url: 'https://github.com/zcbenz.png?size=48'
 slug: electron-internals-using-node-as-a-library
 ---
 This is the second post in an ongoing series explaining the internals of

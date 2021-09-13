@@ -1,7 +1,10 @@
 ---
 title: Electron joins the OpenJS Foundation
-author: Electron
 date: 2019-12-11T00:00:00.000Z
+authors:
+  - name: felixrieseberg
+    url: 'https://github.com/felixrieseberg'
+    image_url: 'https://github.com/felixrieseberg.png?size=48'
 slug: electron-joins-openjsf
 ---
 At [Node+JS Interactive](https://events19.linuxfoundation.org/events/nodejs-interactive-2019/) in Montreal, the [OpenJS Foundation](https://openjsf.org/) announced that it accepted Electron into the Foundation's incubation program. The Foundation is committed to supporting the healthy growth of the JavaScript ecosystem and web technologies by providing a neutral organization to host and sustain projects, as well as collaboratively fund activities for the benefit of the community at large.
@@ -23,5 +26,3 @@ Lifting Electron up from being owned by a single corporate entity and moving it 
 You can read up on the foundation, its mission, and its members on the [OpenJSF website](https://www.notion.so/Electron-joins-the-OpenJS-Foundation-d898f12480874e56abe78f29b041fb91#0801fd7e9fa340afbcdce0510ba05f8a). For more information and quotes about the acceptance of Electron into the OpenJSF incubation program, check out the official press release. To learn more about the humans behind Electron and how they work together, take a look at our [Governance page](https://electronjs.org/governance).
 
 To get started with Electron itself, take a peek at [our documentation](https://electronjs.org/docs).
-
-Signed @felixrieseberg

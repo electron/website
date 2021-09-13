@@ -1,7 +1,10 @@
 ---
 title: Community Discord Server and Hacktoberfest
-author: Electron
 date: 2020-10-01T00:00:00.000Z
+authors:
+  - name: erickzhao
+    url: 'https://github.com/erickzhao'
+    image_url: 'https://github.com/erickzhao.png?size=48'
 slug: discord-hacktoberfest-2020
 ---
 Join us for community bonding and a month-long celebration of open-source.
@@ -58,5 +61,3 @@ tags if you're looking for more of a challenge.
 Moreover, it’s also no coincidence that the grand opening of our Discord server coincides with the largest celebration of
 open-source software of the year. Check out the #hacktoberfest channel to ask for help on your Hacktoberfest PR. In case
 you missed it, [here's the invite link again](https://discord.gg/H6uTh7m)!
-
-Signed @erickzhao
