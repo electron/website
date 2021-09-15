@@ -4,7 +4,7 @@ date: 2021-07-14T00:00:00.000Z
 authors:
   name: VerteDinde
   url: 'https://github.com/VerteDinde'
-  image_url: 'https://github.com/VerteDinde.png?size=48'
+  image_url: 'https://github.com/VerteDinde.png?size=96'
 slug: 8-week-cadence
 ---
 Beginning in September 2021, Electron will release a new major stable version every 8 weeks.

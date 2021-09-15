@@ -4,13 +4,13 @@ date: 2017-03-07T00:00:00.000Z
 authors:
   - name: '0x00A'
     url: 'https://github.com/0x00A'
-    image_url: 'https://github.com/0x00A.png?size=48'
+    image_url: 'https://github.com/0x00A.png?size=96'
   - name: aprileelcich
     url: 'https://github.com/aprileelcich'
-    image_url: 'https://github.com/aprileelcich.png?size=48'
+    image_url: 'https://github.com/aprileelcich.png?size=96'
   - name: zeke
     url: 'https://github.com/zeke'
-    image_url: 'https://github.com/zeke.png?size=48'
+    image_url: 'https://github.com/zeke.png?size=96'
 slug: voltra
 ---
 This week we met with [Aprile Elcich](https://twitter.com/aprileelcich) and

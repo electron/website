@@ -4,7 +4,7 @@ date: 2015-10-15T00:00:00.000Z
 authors:
   name: jlord
   url: 'https://github.com/jlord'
-  image_url: 'https://github.com/jlord.png?size=48'
+  image_url: 'https://github.com/jlord.png?size=96'
 slug: 2015-whats-new-in-electron
 ---
 There have been some interesting updates and talks given on Electron recently, here's a roundup.

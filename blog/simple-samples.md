@@ -4,7 +4,7 @@ date: 2017-01-19T00:00:00.000Z
 authors:
   name: zeke
   url: 'https://github.com/zeke'
-  image_url: 'https://github.com/zeke.png?size=48'
+  image_url: 'https://github.com/zeke.png?size=96'
 slug: simple-samples
 ---
 We recently hosted an Electron hackathon at GitHub HQ for members of [Hackbright Academy](https://hackbrightacademy.com), a coding school for women founded in San Francisco. To help attendees get a head start on their projects, our own [Kevin Sawicki](https://github.com/kevinsawicki) created a few sample Electron applications.

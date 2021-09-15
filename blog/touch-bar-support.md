@@ -4,7 +4,7 @@ date: 2017-03-08T00:00:00.000Z
 authors:
   name: kevinsawicki
   url: 'https://github.com/kevinsawicki'
-  image_url: 'https://github.com/kevinsawicki.png?size=48'
+  image_url: 'https://github.com/kevinsawicki.png?size=96'
 slug: touch-bar-support
 ---
 The Electron [1.6.3] beta release contains initial support for the macOS [Touch Bar].

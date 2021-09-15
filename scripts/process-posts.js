@@ -17,7 +17,7 @@ const createAuthor = (author) => {
   return {
     name: author,
     url: `https://github.com/${author}`,
-    image_url: `https://github.com/${author}.png?size=48`,
+    image_url: `https://github.com/${author}.png?size=96`,
   };
 };
 

@@ -4,7 +4,7 @@ date: 2016-07-28T00:00:00.000Z
 authors:
   name: zcbenz
   url: 'https://github.com/zcbenz'
-  image_url: 'https://github.com/zcbenz.png?size=48'
+  image_url: 'https://github.com/zcbenz.png?size=96'
 slug: electron-internals-node-integration
 ---
 This is the first post of a series that explains the internals of Electron. This

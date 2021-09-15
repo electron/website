@@ -4,13 +4,13 @@ date: 2017-02-28T00:00:00.000Z
 authors:
   - name: mkaz
     url: 'https://github.com/mkaz'
-    image_url: 'https://github.com/mkaz.png?size=48'
+    image_url: 'https://github.com/mkaz.png?size=96'
   - name: johngodley
     url: 'https://github.com/johngodley'
-    image_url: 'https://github.com/johngodley.png?size=48'
+    image_url: 'https://github.com/johngodley.png?size=96'
   - name: zeke
     url: 'https://github.com/zeke'
-    image_url: 'https://github.com/zeke.png?size=48'
+    image_url: 'https://github.com/zeke.png?size=96'
 slug: wordpress
 ---
 This week we caught up with folks at [Automattic](https://automattic.com/) to

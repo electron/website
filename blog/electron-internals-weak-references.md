@@ -4,7 +4,7 @@ date: 2016-09-20T00:00:00.000Z
 authors:
   name: zcbenz
   url: 'https://github.com/zcbenz'
-  image_url: 'https://github.com/zcbenz.png?size=48'
+  image_url: 'https://github.com/zcbenz.png?size=96'
 slug: electron-internals-weak-references
 ---
 As a language with garbage collection, JavaScript frees users from managing

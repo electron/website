@@ -4,7 +4,7 @@ date: 2019-03-19T00:00:00.000Z
 authors:
   name: codebytere
   url: 'https://github.com/codebytere'
-  image_url: 'https://github.com/codebytere.png?size=48'
+  image_url: 'https://github.com/codebytere.png?size=96'
 slug: from-native-to-js
 ---
 How do Electron's features written in C++ or Objective-C get to JavaScript so they're available to an end-user?

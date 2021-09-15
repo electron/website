@@ -4,13 +4,13 @@ date: 2021-08-31T00:00:00.000Z
 authors:
   - name: sofianguy
     url: 'https://github.com/sofianguy'
-    image_url: 'https://github.com/sofianguy.png?size=48'
+    image_url: 'https://github.com/sofianguy.png?size=96'
   - name: clavin
     url: 'https://github.com/clavin'
-    image_url: 'https://github.com/clavin.png?size=48'
+    image_url: 'https://github.com/clavin.png?size=96'
   - name: ckerr
     url: 'https://github.com/ckerr'
-    image_url: 'https://github.com/ckerr.png?size=48'
+    image_url: 'https://github.com/ckerr.png?size=96'
 slug: electron-14-0
 ---
 

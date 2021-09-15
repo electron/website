@@ -4,7 +4,7 @@ date: 2021-07-22T00:00:00.000Z
 authors:
   - name: electron
     url: 'https://github.com/electron'
-    image_url: 'https://github.com/electron.png?size=48'
+    image_url: 'https://github.com/electron.png?size=96'
 slug: webview2
 ---
 Over the past weeks, we’ve received several questions about the differences between the new [WebView2](https://docs.microsoft.com/en-us/microsoft-edge/webview2/) and Electron.

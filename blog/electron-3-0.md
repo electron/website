@@ -4,7 +4,7 @@ date: 2018-09-18T00:00:00.000Z
 authors:
   name: codebytere
   url: 'https://github.com/codebytere'
-  image_url: 'https://github.com/codebytere.png?size=48'
+  image_url: 'https://github.com/codebytere.png?size=96'
 slug: electron-3-0
 ---
 The Electron team is excited to announce that the first stable release of Electron 3 is now

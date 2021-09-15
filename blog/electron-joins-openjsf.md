@@ -4,7 +4,7 @@ date: 2019-12-11T00:00:00.000Z
 authors:
   - name: felixrieseberg
     url: 'https://github.com/felixrieseberg'
-    image_url: 'https://github.com/felixrieseberg.png?size=48'
+    image_url: 'https://github.com/felixrieseberg.png?size=96'
 slug: electron-joins-openjsf
 ---
 At [Node+JS Interactive](https://events19.linuxfoundation.org/events/nodejs-interactive-2019/) in Montreal, the [OpenJS Foundation](https://openjsf.org/) announced that it accepted Electron into the Foundation's incubation program. The Foundation is committed to supporting the healthy growth of the JavaScript ecosystem and web technologies by providing a neutral organization to host and sustain projects, as well as collaboratively fund activities for the benefit of the community at large.

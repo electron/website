@@ -4,10 +4,10 @@ date: 2019-03-18T00:00:00.000Z
 authors:
   - name: ckerr
     url: 'https://github.com/ckerr'
-    image_url: 'https://github.com/ckerr.png?size=48'
+    image_url: 'https://github.com/ckerr.png?size=96'
   - name: sofianguy
     url: 'https://github.com/sofianguy'
-    image_url: 'https://github.com/sofianguy.png?size=48'
+    image_url: 'https://github.com/sofianguy.png?size=96'
 slug: governance
 ---
 As Electron grows in popularity for desktop applications, the team working on it has also grown: we have more fulltime maintainers who work for different companies, live in different timezones, and have different interests. We're introducing a governance structure so we can keep growing smoothly.

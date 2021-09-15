@@ -4,7 +4,7 @@ date: 2015-04-23T00:00:00.000Z
 authors:
   name: kevinsawicki
   url: 'https://github.com/kevinsawicki'
-  image_url: 'https://github.com/kevinsawicki.png?size=48'
+  image_url: 'https://github.com/kevinsawicki.png?size=96'
 slug: electron
 ---
 Atom Shell is now called Electron. You can learn more about Electron and what people are building with it at its new home [electronjs.org][electron].

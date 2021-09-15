@@ -4,7 +4,7 @@ date: 2019-02-01T00:00:00.000Z
 authors:
   name: BinaryMuse
   url: 'https://github.com/BinaryMuse'
-  image_url: 'https://github.com/BinaryMuse.png?size=48'
+  image_url: 'https://github.com/BinaryMuse.png?size=96'
 slug: nodejs-native-addons-and-electron-5
 ---
 If you're having trouble using a native Node.js addon with Electron 5.0, there's a chance it needs to be updated to work with the most recent version of V8.
