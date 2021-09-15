@@ -1,6 +1,7 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 const npm2yarn = require('@docusaurus/remark-plugin-npm2yarn');
 const fiddleEmbedder = require('./src/transformers/fiddle-embedder.js');
+const apiLabels = require('./src/transformers/api-labels.js');
 
 module.exports = {
   title: 'Electron',
@@ -143,7 +144,7 @@ module.exports = {
             // TODO: versioning?
             return `https://github.com/electron/electron/edit/main/docs/${fixedPath}`
           },
-          remarkPlugins: [fiddleEmbedder, [npm2yarn, { sync: true }]],
+          remarkPlugins: [fiddleEmbedder, apiLabels, [npm2yarn, { sync: true }]],
         },
         blog: {
           // See `node_modules/@docusaurus/plugin-content-blog/src/pluginOptionSchema.ts` for full undocumented options
