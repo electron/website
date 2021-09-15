@@ -55,7 +55,7 @@ async function transformer(tree) {
       } else if (tag === EXPERIMENTAL) {
         node.data = {hProperties: {className: ["badge badge--warning"]}}
       } else if (tag === READONLY) {
-        node.data = {hProperties: {className: ["badge badge--secondary"]}}
+        node.data = {hProperties: {className: ["badge badge--info"]}}
       }
     }
   }
