@@ -4,7 +4,7 @@ date: 2020-10-15T00:00:00.000Z
 authors:
   name: MarshallOfSound
   url: 'https://github.com/MarshallOfSound'
-  image_url: 'https://github.com/MarshallOfSound.png?size=48'
+  image_url: 'https://github.com/MarshallOfSound.png?size=96'
 slug: apple-silicon
 ---
 With Apple Silicon hardware being released later this year, what does the path look like for you to get your Electron app running on the new hardware?

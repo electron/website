@@ -4,7 +4,7 @@ date: 2018-03-21T00:00:00.000Z
 authors:
   name: ckerr
   url: 'https://github.com/ckerr'
-  image_url: 'https://github.com/ckerr.png?size=48'
+  image_url: 'https://github.com/ckerr.png?size=96'
 slug: webview-fix
 ---
 A vulnerability has been discovered which allows Node.js integration to be re-enabled in some Electron applications that disable it. This vulnerability has been assigned the CVE identifier [CVE-2018-1000136](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-1000136).

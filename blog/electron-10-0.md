@@ -4,10 +4,10 @@ date: 2020-08-25T00:00:00.000Z
 authors:
   - name: VerteDinde
     url: 'https://github.com/VerteDinde'
-    image_url: 'https://github.com/VerteDinde.png?size=48'
+    image_url: 'https://github.com/VerteDinde.png?size=96'
   - name: sofianguy
     url: 'https://github.com/sofianguy'
-    image_url: 'https://github.com/sofianguy.png?size=48'
+    image_url: 'https://github.com/sofianguy.png?size=96'
 slug: electron-10-0
 ---
 Electron 10.0.0 has been released! It includes upgrades to Chromium `85`, V8 `8.5`, and Node.js `12.16`. We've added several new API integrations and improvements. Read below for more details!

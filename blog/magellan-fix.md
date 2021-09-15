@@ -4,7 +4,7 @@ date: 2018-12-18T00:00:00.000Z
 authors:
   name: ckerr
   url: 'https://github.com/ckerr'
-  image_url: 'https://github.com/ckerr.png?size=48'
+  image_url: 'https://github.com/ckerr.png?size=96'
 slug: magellan-fix
 ---
 A remote code execution vulnerability, "[Magellan](https://blade.tencent.com/magellan/index_en.html)," has been discovered affecting software based on SQLite or Chromium, including all versions of Electron.

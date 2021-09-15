@@ -4,10 +4,10 @@ date: 2017-02-14T00:00:00.000Z
 authors:
   - name: felixrieseberg
     url: 'https://github.com/felixrieseberg'
-    image_url: 'https://github.com/felixrieseberg.png?size=48'
+    image_url: 'https://github.com/felixrieseberg.png?size=96'
   - name: zeke
     url: 'https://github.com/zeke'
-    image_url: 'https://github.com/zeke.png?size=48'
+    image_url: 'https://github.com/zeke.png?size=96'
 slug: ghost
 ---
 This week we chatted with [Felix Rieseberg](https://felixrieseberg.com/), desktop engineer at [Slack](https://slack.com/) and maintainer of [Ghost Desktop](https://ghost.org/downloads/), an Electron client for the [Ghost](https://ghost.org/) publishing platform.

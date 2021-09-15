@@ -4,7 +4,7 @@ date: 2016-08-23T00:00:00.000Z
 authors:
   name: jlord
   url: 'https://github.com/jlord'
-  image_url: 'https://github.com/jlord.png?size=48'
+  image_url: 'https://github.com/jlord.png?size=96'
 slug: accessibility-tools
 ---
 Making accessible applications is important and we're happy to introduce new functionality to [Devtron](https://electronjs.org/devtron) and [Spectron](https://electronjs.org/spectron) that gives developers the opportunity to make their apps better for everyone.

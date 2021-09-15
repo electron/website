@@ -4,7 +4,7 @@ date: 2020-05-21T00:00:00.000Z
 authors:
   - name: erickzhao
     url: 'https://github.com/erickzhao'
-    image_url: 'https://github.com/erickzhao.png?size=48'
+    image_url: 'https://github.com/erickzhao.png?size=96'
 slug: 2020-season-of-docs
 ---
 Electron is proud to be participating in the second edition of Google's Season of Docs initiative, which pairs mentors from open source organizations with technical writers to improve project documentation.

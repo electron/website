@@ -4,7 +4,7 @@ date: 2017-11-13T00:00:00.000Z
 authors:
   name: zeke
   url: 'https://github.com/zeke'
-  image_url: 'https://github.com/zeke.png?size=48'
+  image_url: 'https://github.com/zeke.png?size=96'
 slug: new-website
 ---
 Electron has a new website at [electronjs.org]! We've replaced

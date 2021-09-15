@@ -4,13 +4,13 @@ date: 2017-01-31T00:00:00.000Z
 authors:
   - name: skllcrn
     url: 'https://github.com/skllcrn'
-    image_url: 'https://github.com/skllcrn.png?size=48'
+    image_url: 'https://github.com/skllcrn.png?size=96'
   - name: sindresorhus
     url: 'https://github.com/sindresorhus'
-    image_url: 'https://github.com/sindresorhus.png?size=48'
+    image_url: 'https://github.com/sindresorhus.png?size=96'
   - name: zeke
     url: 'https://github.com/zeke'
-    image_url: 'https://github.com/zeke.png?size=48'
+    image_url: 'https://github.com/zeke.png?size=96'
 slug: kap
 ---
 The Electron community is growing quickly, and people are creating powerful

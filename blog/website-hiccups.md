@@ -4,7 +4,7 @@ date: 2018-02-12T00:00:00.000Z
 authors:
   name: zeke
   url: 'https://github.com/zeke'
-  image_url: 'https://github.com/zeke.png?size=48'
+  image_url: 'https://github.com/zeke.png?size=96'
 slug: website-hiccups
 ---
 Last week the [electronjs.org](https://electronjs.org) site had a few minutes

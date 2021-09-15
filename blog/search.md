@@ -4,13 +4,13 @@ date: 2018-06-21T00:00:00.000Z
 authors:
   - name: echjordan
     url: 'https://github.com/echjordan'
-    image_url: 'https://github.com/echjordan.png?size=48'
+    image_url: 'https://github.com/echjordan.png?size=96'
   - name: vanessayuenn
     url: 'https://github.com/vanessayuenn'
-    image_url: 'https://github.com/vanessayuenn.png?size=48'
+    image_url: 'https://github.com/vanessayuenn.png?size=96'
   - name: zeke
     url: 'https://github.com/zeke'
-    image_url: 'https://github.com/zeke.png?size=48'
+    image_url: 'https://github.com/zeke.png?size=96'
 slug: search
 ---
 The Electron website has a new search engine that delivers instant results for

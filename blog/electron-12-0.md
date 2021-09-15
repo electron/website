@@ -4,13 +4,13 @@ date: 2021-03-02T00:00:00.000Z
 authors:
   - name: VerteDinde
     url: 'https://github.com/VerteDinde'
-    image_url: 'https://github.com/VerteDinde.png?size=48'
+    image_url: 'https://github.com/VerteDinde.png?size=96'
   - name: mlaurencin
     url: 'https://github.com/mlaurencin'
-    image_url: 'https://github.com/mlaurencin.png?size=48'
+    image_url: 'https://github.com/mlaurencin.png?size=96'
   - name: sofianguy
     url: 'https://github.com/sofianguy'
-    image_url: 'https://github.com/sofianguy.png?size=48'
+    image_url: 'https://github.com/sofianguy.png?size=96'
 slug: electron-12-0
 ---
 Electron 12.0.0 has been released! It includes upgrades to Chromium `89`, V8 `8.9` and Node.js `14.16`. We've added changes to the remote module, new defaults for contextIsolation, a new webFrameMain API, and general improvements. Read below for more details!

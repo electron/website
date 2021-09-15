@@ -4,7 +4,7 @@ date: 2020-10-01T00:00:00.000Z
 authors:
   - name: erickzhao
     url: 'https://github.com/erickzhao'
-    image_url: 'https://github.com/erickzhao.png?size=48'
+    image_url: 'https://github.com/erickzhao.png?size=96'
 slug: discord-hacktoberfest-2020
 ---
 Join us for community bonding and a month-long celebration of open-source.

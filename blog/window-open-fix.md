@@ -4,7 +4,7 @@ date: 2019-02-03T00:00:00.000Z
 authors:
   name: ckerr
   url: 'https://github.com/ckerr'
-  image_url: 'https://github.com/ckerr.png?size=48'
+  image_url: 'https://github.com/ckerr.png?size=96'
 slug: window-open-fix
 ---
 A code vulnerability has been discovered that allows Node to be re-enabled in child windows.

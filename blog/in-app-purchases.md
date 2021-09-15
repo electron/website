@@ -4,7 +4,7 @@ date: 2018-04-04T00:00:00.000Z
 authors:
   name: zeke
   url: 'https://github.com/zeke'
-  image_url: 'https://github.com/zeke.png?size=48'
+  image_url: 'https://github.com/zeke.png?size=96'
 slug: in-app-purchases
 ---
 The new Electron 2.0 release line is [packed](https://github.com/electron/electron/releases/tag/v2.0.0-beta.1) with new features and fixes. One of the highlights from this new major version is a new

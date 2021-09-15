@@ -4,16 +4,16 @@ date: 2017-02-21T00:00:00.000Z
 authors:
   - name: karissa
     url: 'https://github.com/karissa'
-    image_url: 'https://github.com/karissa.png?size=48'
+    image_url: 'https://github.com/karissa.png?size=96'
   - name: yoshuawuyts
     url: 'https://github.com/yoshuawuyts'
-    image_url: 'https://github.com/yoshuawuyts.png?size=48'
+    image_url: 'https://github.com/yoshuawuyts.png?size=96'
   - name: maxogden
     url: 'https://github.com/maxogden'
-    image_url: 'https://github.com/maxogden.png?size=48'
+    image_url: 'https://github.com/maxogden.png?size=96'
   - name: zeke
     url: 'https://github.com/zeke'
-    image_url: 'https://github.com/zeke.png?size=48'
+    image_url: 'https://github.com/zeke.png?size=96'
 slug: dat
 ---
 This week's featured project is [Dat](https://datproject.org/), a

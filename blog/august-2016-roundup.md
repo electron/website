@@ -4,7 +4,7 @@ date: 2016-09-06T00:00:00.000Z
 authors:
   name: jlord
   url: 'https://github.com/jlord'
-  image_url: 'https://github.com/jlord.png?size=48'
+  image_url: 'https://github.com/jlord.png?size=96'
 slug: august-2016-roundup
 ---
 Here are the new Electron apps that were added to the site in August.

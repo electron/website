@@ -4,7 +4,7 @@ date: 2018-05-01T00:00:00.000Z
 authors:
   name: zeke
   url: 'https://github.com/zeke'
-  image_url: 'https://github.com/zeke.png?size=48'
+  image_url: 'https://github.com/zeke.png?size=96'
 slug: autoupdating-electron-apps
 ---
 Today we're releasing a free, open-source, hosted

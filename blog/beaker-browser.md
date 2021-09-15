@@ -4,10 +4,10 @@ date: 2017-02-07T00:00:00.000Z
 authors:
   - name: pfrazee
     url: 'https://github.com/pfrazee'
-    image_url: 'https://github.com/pfrazee.png?size=48'
+    image_url: 'https://github.com/pfrazee.png?size=96'
   - name: zeke
     url: 'https://github.com/zeke'
-    image_url: 'https://github.com/zeke.png?size=48'
+    image_url: 'https://github.com/zeke.png?size=96'
 slug: beaker-browser
 ---
 This week we caught up with [Paul Frazee](http://pfrazee.github.io/), creator

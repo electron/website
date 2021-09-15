@@ -4,13 +4,13 @@ date: 2017-03-21T00:00:00.000Z
 authors:
   - name: h13i32maru
     url: 'https://github.com/h13i32maru'
-    image_url: 'https://github.com/h13i32maru.png?size=48'
+    image_url: 'https://github.com/h13i32maru.png?size=96'
   - name: watilde
     url: 'https://github.com/watilde'
-    image_url: 'https://github.com/watilde.png?size=48'
+    image_url: 'https://github.com/watilde.png?size=96'
   - name: zeke
     url: 'https://github.com/zeke'
-    image_url: 'https://github.com/zeke.png?size=48'
+    image_url: 'https://github.com/zeke.png?size=96'
 slug: jasper
 ---
 This week we interviewed the creator of [Jasper], an Electron-based tool for
