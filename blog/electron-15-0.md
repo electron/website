@@ -44,12 +44,12 @@ See the [15.0.0 release notes](https://github.com/electron/electron/releases/tag
 
 ## Breaking Changes
 
+Below are breaking changes introduced in Electron 15. More information about these and future changes can be found on the [Planned Breaking Changes](https://www.electronjs.org/docs/breaking-changes) page.
 ### Default Changed: nativeWindowOpen defaults to true
-Prior to Electron 15, window.open was by default shimmed to use BrowserWindowProxy. This meant that window.open('about:blank') did not work to open synchronously scriptable child windows, among other incompatibilities. nativeWindowOpen: true is no longer experimental, and is now the default.
+Prior to Electron 15, `window.open` was by default shimmed to use `BrowserWindowProxy`. This meant that `window.open('about:blank')` did not work to open synchronously scriptable child windows, among other incompatibilities. `nativeWindowOpen: true` is no longer experimental, and is now the default.
 
-See the documentation for window.open in Electron for more details.
+See the documentation for [window.open](https://www.electronjs.org/docs/api/window-open) in Electron for more details.
 
-More information about future changes can be found on the [Planned Breaking Changes](https://www.electronjs.org/docs/breaking-changes) page.
 
 ## API Changes
 
