@@ -38,7 +38,9 @@ Additionally, Electron will be changing supported versions from latest three ver
 
 ### Highlight Features
 
-* 
+* `nativeWindowOpen: true` is no longer experimental, and is now the default.
+* Added 'frame-created' event to `WebContents` which emits when a frame is created in the page. [#30801](https://github.com/electron/electron/pull/30801) 
+* Added resize `edge` info to `BrowserWindow`'s `will-resize` event. [#29199](https://github.com/electron/electron/pull/29199)
 
 See the [15.0.0 release notes](https://github.com/electron/electron/releases/tag/v15.0.0) for a full list of new features and changes.
 
