@@ -11,7 +11,7 @@ authors:
 slug: electron-15-0
 ---
 
-Electron 15.0.0 has been released! It includes upgrades to Chromium `94`, V8 `9.4`, and Node.js `16.5.0`. We've added several API updates, bug fixes, and general improvements. Read below for more details!
+Electron 15.0.0 has been released! It includes upgrades to Chromium `94`, V8 `9.4`, and Node.js `16.5.0`. We've added API updates to window.open, bug fixes, and general improvements. Read below for more details!
 
 ---
 
@@ -45,7 +45,9 @@ See the [15.0.0 release notes](https://github.com/electron/electron/releases/tag
 ## Breaking Changes
 
 Below are breaking changes introduced in Electron 15. More information about these and future changes can be found on the [Planned Breaking Changes](https://www.electronjs.org/docs/breaking-changes) page.
+
 ### Default Changed: nativeWindowOpen defaults to true
+
 Prior to Electron 15, `window.open` was by default shimmed to use `BrowserWindowProxy`. This meant that `window.open('about:blank')` did not work to open synchronously scriptable child windows, among other incompatibilities. `nativeWindowOpen: true` is no longer experimental, and is now the default.
 
 See the documentation for [window.open](https://www.electronjs.org/docs/api/window-open) in Electron for more details.
@@ -53,7 +55,15 @@ See the documentation for [window.open](https://www.electronjs.org/docs/api/wind
 
 ## API Changes
 
-* 
+* Added 'frame-created' event to `WebContents` which emits when a frame is created in the page. [#30801](https://github.com/electron/electron/pull/30801) 
+* Added `safeStorage` string encryption API. [#30430](https://github.com/electron/electron/pull/30430) 
+* Added `signal` option to `dialog.showMessageBox`. [#26102](https://github.com/electron/electron/pull/26102) 
+* Added an [Electron Fuse](https://www.electronjs.org/docs/tutorial/fuses) for enforcing code signatures on the `app.asar` file your application loads.  Requires the latest `asar` module. [#30900](https://github.com/electron/electron/pull/30900) 
+* Added fuses to disable `NODE_OPTIONS` and `--inspect` debug arguments in packaged apps. [#30420](https://github.com/electron/electron/pull/30420)
+* Added new `MenuItem.userAccelerator` property to read user-assigned macOS accelerator overrides. [#26682](https://github.com/electron/electron/pull/26682) 
+* Added new `app.runningUnderARM64Translation` property to detect when running under Rosetta on Apple Silicon, or WOW on Windows for ARM. [#29168](https://github.com/electron/electron/pull/29168) 
+* Added new `imageAnimationPolicy` web preference to control how images are animated. [#29095](https://github.com/electron/electron/pull/29095) 
+* Added support for sending Blobs over the context bridge. [#29247](https://github.com/electron/electron/pull/29247)
 
 
 ### Removed/Deprecated Changes
@@ -65,6 +75,13 @@ No APIs have been removed or deprecated.
 Starting in Electron 15, we will change supported versions from latest three versions to latest four versions until May 2022 with Electron 19. After Electron 19, we will return to supporting the latest three versions. This version support change is part of our new cadence change. Please see [our blog post for full details here](https://www.electronjs.org/blog/8-week-cadence/#-will-electron-extend-the-number-of-supported-versions).
 
 Developers and applications are encouraged to upgrade to a newer version of Electron.
+
+|	E15 (Sep'21) |	E16 (Nov'21) |	E17 (Feb'22) |	E18 (Mar'22) |	E19 (May'22) |
+| ---- | ---- | ---- | ---- | ---- |
+|	15.x.y |	16.x.y |	17.x.y |	18.x.y |	19.x.y |
+|	14.x.y |	15.x.y |	16.x.y |	17.x.y |	18.x.y |
+|	13.x.y |	14.x.y |	15.x.y |	16.x.y |	17.x.y |
+|	12.x.y |	13.x.y |	14.x.y |	15.x.y |	-- |
 
 ## What's Next
 
