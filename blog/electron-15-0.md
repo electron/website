@@ -15,9 +15,9 @@ Electron 15.0.0 has been released! It includes upgrades to Chromium `94`, V8 `9.
 
 ---
 
-The Electron team is excited to announce the release of Electron 15.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://electronjs.org/releases/stable). Continue reading for details about this release and please share any feedback you have!
+The Electron team is excited to announce the release of Electron 15.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://www.electronjs.org/releases/stable). Continue reading for details about this release and please share any feedback you have!
 
-The Electron team is excited to announce the release of Electron 15.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://electronjs.org/releases/stable). Continue reading for details about this release and please share any feedback you have!
+The Electron team is excited to announce the release of Electron 15.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://www.electronjs.org/releases/stable). Continue reading for details about this release and please share any feedback you have!
 
 ## Notable Changes
 
@@ -25,7 +25,7 @@ The Electron team is excited to announce the release of Electron 15.0.0! You can
 
 Starting with Electron 15, Electron will release a new major stable version every 8 weeks. You can read the [full details here](https://www.electronjs.org/blog/8-week-cadence).
 
-Additionally, Electron will be changing supported versions from latest three versions to latest four versions until May 2022. [See our versioning document](https://electronjs.org/docs/tutorial/electron-versioning)for more detailed information about versioning in Electron.
+Additionally, Electron will be changing supported versions from latest three versions to latest four versions until May 2022. [See our versioning document](https://www.electronjs.org/docs/latest/tutorial/electron-versioning)for more detailed information about versioning in Electron.
 
 ### Stack Changes
 
@@ -46,13 +46,13 @@ See the [15.0.0 release notes](https://github.com/electron/electron/releases/tag
 
 ## Breaking Changes
 
-Below are breaking changes introduced in Electron 15. More information about these and future changes can be found on the [Planned Breaking Changes](https://www.electronjs.org/docs/breaking-changes) page.
+Below are breaking changes introduced in Electron 15. More information about these and future changes can be found on the [Planned Breaking Changes](https://www.electronjs.org/docs/latest/breaking-changes) page.
 
 ### Default Changed: nativeWindowOpen defaults to true
 
 Prior to Electron 15, `window.open` was by default shimmed to use `BrowserWindowProxy`. This meant that `window.open('about:blank')` did not work to open synchronously scriptable child windows, among other incompatibilities. `nativeWindowOpen: true` is no longer experimental, and is now the default.
 
-See the documentation for [window.open](https://www.electronjs.org/docs/api/window-open) in Electron for more details.
+See the documentation for [window.open](https://www.electronjs.org/docs/latest/api/window-open) in Electron for more details.
 
 
 ## API Changes
@@ -60,7 +60,7 @@ See the documentation for [window.open](https://www.electronjs.org/docs/api/wind
 * Added 'frame-created' event to `WebContents` which emits when a frame is created in the page. [#30801](https://github.com/electron/electron/pull/30801) 
 * Added `safeStorage` string encryption API. [#30430](https://github.com/electron/electron/pull/30430) 
 * Added `signal` option to `dialog.showMessageBox`. [#26102](https://github.com/electron/electron/pull/26102) 
-* Added an [Electron Fuse](https://www.electronjs.org/docs/tutorial/fuses) for enforcing code signatures on the `app.asar` file your application loads.  Requires the latest `asar` module. [#30900](https://github.com/electron/electron/pull/30900) 
+* Added an [Electron Fuse](https://www.electronjs.org/docs/latest/tutorial/fuses) for enforcing code signatures on the `app.asar` file your application loads.  Requires the latest `asar` module. [#30900](https://github.com/electron/electron/pull/30900) 
 * Added fuses to disable `NODE_OPTIONS` and `--inspect` debug arguments in packaged apps. [#30420](https://github.com/electron/electron/pull/30420)
 * Added new `MenuItem.userAccelerator` property to read user-assigned macOS accelerator overrides. [#26682](https://github.com/electron/electron/pull/26682) 
 * Added new `app.runningUnderARM64Translation` property to detect when running under Rosetta on Apple Silicon, or WOW on Windows for ARM. [#29168](https://github.com/electron/electron/pull/29168) 
@@ -89,6 +89,6 @@ Developers and applications are encouraged to upgrade to a newer version of Elec
 
 In the short term, you can expect the team to continue to focus on keeping up with the development of the major components that make up Electron, including Chromium, Node, and V8. Although we are careful not to make promises about release dates, our plan is release new major versions of Electron with new versions of those components approximately quarterly.
 
-You can find [Electron's public timeline here](https://electronjs.org/docs/tutorial/electron-timelines).
+You can find [Electron's public timeline here](https://www.electronjs.org/docs/latest/tutorial/electron-timelines).
 
 More information about future changes can be found on the [Planned Breaking Changes](https://github.com/electron/electron/blob/main/docs/breaking-changes.md) page.
