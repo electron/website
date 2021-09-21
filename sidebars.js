@@ -154,6 +154,7 @@ module.exports = {
         'latest/api/power-save-blocker',
         'latest/api/process',
         'latest/api/protocol',
+        'latest/api/safe-storage',
         'latest/api/screen',
         'latest/api/session',
         'latest/api/share-menu',
@@ -259,7 +260,6 @@ module.exports = {
         'latest/api/structures/new-window-web-contents-event',
         'latest/api/structures/notification-action',
         'latest/api/structures/notification-response',
-        'latest/api/structures/overlay-options',
         'latest/api/structures/point',
         'latest/api/structures/post-body',
         'latest/api/structures/printer-info',
@@ -288,6 +288,7 @@ module.exports = {
         'latest/api/structures/upload-file',
         'latest/api/structures/upload-raw-data',
         'latest/api/structures/user-default-types',
+        'latest/api/structures/web-request-filter',
         'latest/api/structures/web-source',
       ],
     }
