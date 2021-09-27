@@ -1,11 +1,11 @@
 ---
-title: December 2021 Quiet Month
+title: A Quiet Place (Dec'21)
 date: 2021-09-27T00:00:00.000Z
 authors:
   name: groundwater
   url: 'https://github.com/groundwater'
   image_url: 'https://github.com/groundwater.png?size=96'
-slug: dec-quiet-month-21
+slug: a-quiet-place-21
 ---
 ElectronJS will pause for the month of December 2021, but will return to full speed in January 2022.
 
@@ -26,7 +26,7 @@ ElectronJS will pause for the month of December 2021, but will return to full sp
 
 ## Why is this happening?
 
-In short, while maintainers are happy and engaged with the project, THE WORLD IS TIRED. 
+In short, while maintainers are happy and engaged with the project, _THE WORLD IS TIRED_. 
 December is a quiet month for most companies, so we want to give our maintainers a chance to recharge. We encourage other projects to consider similar measures.
 
 ## Should I be worried about the future of Electron?
