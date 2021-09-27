@@ -7,7 +7,10 @@ authors:
   image_url: 'https://github.com/groundwater.png?size=96'
 slug: a-quiet-place-21
 ---
-ElectronJS will pause for the month of December 2021, but will return to full speed in January 2022.
+
+Electron will pause for the month of December 2021, but will return to full speed in January 2022.
+
+<div style="width:100%;height:0;padding-bottom:42%;position:relative;"><iframe src="https://giphy.com/embed/4QEGwDMDbOYC2G7m9p" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/shh-john-krasinski-a-quiet-place-4QEGwDMDbOYC2G7m9p">via GIPHY</a></p>
 
 ---
 
@@ -18,8 +21,8 @@ ElectronJS will pause for the month of December 2021, but will return to full sp
 
 ## What will be different in December
 
-1. No new Betas or Stable releases in December. No nightly releases for the last two weeks of December.
-1. With few exceptions, no pull-request reviews or merges.
+1. No new Beta or Stable releases in December. No Nightly releases for the last two weeks of December.
+1. With few exceptions, no pull request reviews or merges.
 1. No issue tracker updates on any repositories. Security incidents should report via [SECURITY.md](https://github.com/electron/electron/tree/master/SECURITY.md).
 1. No Discord debugging help from maintainers.
 1. No social media content updates.
