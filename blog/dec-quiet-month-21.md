@@ -10,7 +10,7 @@ slug: a-quiet-place-21
 
 Electron will pause for the month of December 2021, but will return to full speed in January 2022.
 
-<div style="width:100%;height:0;padding-bottom:42%;position:relative;"><iframe src="https://giphy.com/embed/4QEGwDMDbOYC2G7m9p" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/shh-john-krasinski-a-quiet-place-4QEGwDMDbOYC2G7m9p">via GIPHY</a></p>
+<div style={width:"100%",height:0,paddingBottom:"42%",position:"relative"}><iframe src="https://giphy.com/embed/4QEGwDMDbOYC2G7m9p" width="100%" height="100%" style="position:absolute" frameBorder="0" className="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/shh-john-krasinski-a-quiet-place-4QEGwDMDbOYC2G7m9p">via GIPHY</a></p>
 
 ---
 
