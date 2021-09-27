@@ -1,5 +1,5 @@
 ---
-title: December 2021 Will be a Quiet Month
+title: December 2021 Quiet Month
 date: 2021-09-27T00:00:00.000Z
 authors:
   name: groundwater
@@ -20,7 +20,7 @@ ElectronJS will pause for the month of December 2021, but will return to full sp
 
 1. No new Betas or Stable releases in December. No nightly releases for the last two weeks of December.
 1. With few exceptions, no pull-request reviews or merges.
-1. No issue tracker updates on any repositories. (Security incidents should follow the guide at https://github.com/electron/electron/tree/master/SECURITY.md)
+1. No issue tracker updates on any repositories. Security incidents should report via [SECURITY.md](https://github.com/electron/electron/tree/master/SECURITY.md).
 1. No Discord debugging help from maintainers.
 1. No social media content updates.
 
