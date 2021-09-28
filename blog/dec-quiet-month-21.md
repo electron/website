@@ -8,7 +8,7 @@ authors:
 slug: a-quiet-place-21
 ---
 
-Electron will pause for the month of December 2021, but will return to full speed in January 2022.
+The Electron project will pause for the month of December 2021, then return to full speed in January 2022.
 
 <div style={{width:"100%",height:"0",paddingBottom:"42%",position:"relative"}}>
   <iframe src="https://giphy.com/embed/4QEGwDMDbOYC2G7m9p" width="100%" height="100%" style={{position:"absolute"}} frameBorder="0" className="giphy-embed" allowFullScreen></iframe>
@@ -19,7 +19,7 @@ Electron will pause for the month of December 2021, but will return to full spee
 
 ## What will be the same in December
 
-1. Zero-day and other major security-related releases will be published as necessary. Security incidents should report via [SECURITY.md](https://github.com/electron/electron/tree/master/SECURITY.md).
+1. Zero-day and other major security-related releases will be published as necessary. Security incidents should be reported via [SECURITY.md](https://github.com/electron/electron/tree/master/SECURITY.md).
 1. [Code of Conduct](https://github.com/electron/electron/blob/main/CODE_OF_CONDUCT.md) reports and moderation will continue.
 
 ## What will be different in December
