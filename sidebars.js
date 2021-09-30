@@ -16,6 +16,7 @@ module.exports = {
       items: [
         'latest/tutorial/examples',
         'latest/tutorial/dark-mode',
+        'latest/tutorial/devices',
         'latest/tutorial/in-app-purchases',
         'latest/tutorial/keyboard-shortcuts',
         'latest/tutorial/launch-app-from-url-in-another-app',
@@ -243,6 +244,7 @@ module.exports = {
         'latest/api/structures/file-filter',
         'latest/api/structures/file-path-with-headers',
         'latest/api/structures/gpu-feature-status',
+        'latest/api/structures/hid-device',
         'latest/api/structures/input-event',
         'latest/api/structures/io-counters',
         'latest/api/structures/ipc-main-event',

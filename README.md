@@ -9,6 +9,18 @@ This repository contains the code for the new electronsjs.org website. It is bui
 yarn install
 ```
 
+## How to modify the documentation
+
+For English documentation the changes need to happen upstream in `[electron/electron]`. These
+changes are picked automatically as soon as they are done in the stable branch. The exception
+is when there is a new major release.
+
+The translation work happens in [Crowdin] and the changes are picked up periodically every
+15 minutes.
+
+Any documentation changes done manually in this repo will be eventually override by any of these
+updates.
+
 ## How to add a new blogpost
 
 To add a new blogpost you need to create a new markdown file under `/blog`. The supported
@@ -98,3 +110,5 @@ The content of this repository is organized as follows:
 ```
 
 [ced]: https://npmjs.com/package/create-electron-documentation
+[Crowdin]: https://crowdin.com/project/electron
+[electron/electron]: https://github.com/electron/electron/tree/main/docs
