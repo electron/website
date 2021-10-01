@@ -87,7 +87,7 @@ const descriptionFromContent = (content) => {
 
     // The content of structures is often only bullet lists and no general description
     if (trimmedLine.startsWith('#') || trimmedLine.startsWith('*')) {
-      if (subHeader) {
+      if (subHeader && description.length > 0) {
         return cleanUpMarkdown(description.trim());
       } else {
         subHeader = true;

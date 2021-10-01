@@ -16,7 +16,7 @@
     "update-l10n-sources": "node scripts/update-l10n-sources.js",
     "lint": "prettier -c ./scripts/**/*.js",
     "test": "yarn lint && jest",
-    "prebuild": "node ./scripts/pre-build.js",
+    "pre-build": "node ./scripts/pre-build.js",
     "process-docs-changes": "node ./scripts/process-docs-changes.js",
     "update-pinned-version": "node ./scripts/update-pinned-version.js",
     "prepare": "husky install"
@@ -69,6 +69,7 @@
     "json5": "^2.2.0",
     "latest-version": "^5.1.0",
     "make-dir": "^3.1.0",
+    "p-limit": "^3.1.0",
     "prettier": "^2.2.1",
     "tar-stream": "^2.2.0",
     "unist-util-visit-parents": "^3.1.1"

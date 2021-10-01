@@ -83,6 +83,8 @@ const start = async (source) => {
   console.log('Updating sidebar.js');
   await createSidebar('docs', path.join(process.cwd(), 'sidebars.js'));
 
+  // All this should be replaced with the crowdin CLI and just download once
+  // everything this repo is the source of truth
   console.log('Downloading translations');
   const locales = await downloadTranslations(I18N_FOLDER);
 
@@ -117,4 +119,10 @@ process.on('unhandledRejection', (error) => {
   process.exit(1);
 });
 
-start(process.argv[2]);
+if (require.main === module) {
+  start(process.argv[2]);
+}
+
+module.exports = {
+  prebuild: start,
+};
