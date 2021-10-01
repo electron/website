@@ -66,10 +66,31 @@ const fiddleTransformer = (line) => {
   if (matches) {
     return `\`\`\`fiddle docs/latest/${matches[1]}`;
   } else if (hasNewPath) {
-    return line.replace(fiddlePathFixRegex, '```fiddle docs/latest/');
+    return (
+      line
+        .replace(fiddlePathFixRegex, '```fiddle docs/latest/')
+        // we could have a double transformation if the path is already the good one
+        // this happens especially with the i18n content
+        .replace('latest/latest', 'latest')
+    );
   } else {
     return line;
   }
+};
+
+/**
+ * Crowdin translations put markdown content right
+ * after HTML comments and thus breaking Docusaurus
+ * parse engine. We need to add a new EOL after `-->`
+ * is found.
+ * @param {string} line
+ */
+const newLineOnHTMLComment = (line) => {
+  // The `startsWith('*')` part is to prevent messing the document `api/native-theme.md` 😓
+  if (line.includes('-->') && !line.endsWith('-->') && !line.startsWith('*')) {
+    return line.replace('-->', '-->\n');
+  }
+  return line;
 };
 
 /**
@@ -83,7 +104,11 @@ const fiddleTransformer = (line) => {
 const transform = (doc) => {
   const lines = doc.split('\n');
   const newDoc = [];
-  const transformers = [apiTransformer, fiddleTransformer];
+  const transformers = [
+    apiTransformer,
+    fiddleTransformer,
+    newLineOnHTMLComment,
+  ];
 
   for (const line of lines) {
     const newLine = transformers.reduce((newLine, transformer) => {

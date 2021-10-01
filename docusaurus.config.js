@@ -13,6 +13,10 @@ module.exports = {
   favicon: 'assets/img/favicon.ico',
   organizationName: 'electron',
   projectName: 'electron',
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'de', 'es', 'fr', 'ja', 'pt', 'ru', 'zh'],
+  },
   themeConfig: {
     announcementBar: {
       id: 'to_old_docs',
@@ -50,6 +54,10 @@ module.exports = {
         {
           href: 'https://releases.electronjs.org',
           label: 'Releases',
+          position: 'right',
+        },
+        {
+          type: 'localeDropdown',
           position: 'right',
         },
         {
@@ -143,13 +151,17 @@ module.exports = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           routeBasePath: '/docs/',
-          editUrl: ({docPath}) => {
+          editUrl: ({ docPath }) => {
             // TODO: remove when `latest/` is no longer hardcoded
             const fixedPath = docPath.replace('latest/', '');
             // TODO: versioning?
-            return `https://github.com/electron/electron/edit/main/docs/${fixedPath}`
+            return `https://github.com/electron/electron/edit/main/docs/${fixedPath}`;
           },
-          remarkPlugins: [fiddleEmbedder, apiLabels, [npm2yarn, { sync: true }]],
+          remarkPlugins: [
+            fiddleEmbedder,
+            apiLabels,
+            [npm2yarn, { sync: true }],
+          ],
         },
         blog: {
           // See `node_modules/@docusaurus/plugin-content-blog/src/pluginOptionSchema.ts` for full undocumented options

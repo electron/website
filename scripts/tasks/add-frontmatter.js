@@ -87,7 +87,7 @@ const descriptionFromContent = (content) => {
 
     // The content of structures is often only bullet lists and no general description
     if (trimmedLine.startsWith('#') || trimmedLine.startsWith('*')) {
-      if (subHeader) {
+      if (subHeader && description.length > 0) {
         return cleanUpMarkdown(description.trim());
       } else {
         subHeader = true;
@@ -122,7 +122,10 @@ const addFrontMatter = (content, filepath) => {
     ? titleMatches[1].trim()
     : titleFromPath(filepath).trim();
 
-  const description = descriptionFromContent(content);
+  // The description of the files under `api/structures` is not meaningful so we ignore it
+  const description = filepath.includes('structures')
+    ? ''
+    : descriptionFromContent(content);
   const defaultSlug = path.basename(filepath, '.md');
 
   let slug;

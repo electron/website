@@ -1,0 +1,38 @@
+name: 'Update i18n deploy'
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+
+jobs:
+  deploy:
+    name: 'Build and deploy localized site'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js 14
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+
+      - name: Install dependencies
+        uses: bahmutov/npm-install@HEAD
+
+      - name: Download crowdin translation
+        run: yarn i18n:download
+        env:
+          CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
+
+      - name: Download cache
+        run: ./scripts/bin/azcopy copy "https://electronjsorg.blob.core.windows.net/%24web/*?${{ SSA }}" "./build" --recursive
+        env:
+          SSA: ${{ secrets.SSA }}
+
+      - name: Build
+        run: yarn i18n:build
+
+      - name: Deploy
+        run: ./scripts/bin/azcopy copy "./build/*" "https://electronjsorg.blob.core.windows.net/%24web?${{ SSA }}" --recursive
+        env:
+          SAS: ${{ secrets.SSA }}
