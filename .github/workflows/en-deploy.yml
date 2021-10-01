@@ -1,0 +1,39 @@
+name: Deploy EN
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  tests:
+    name: Test and Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js 14
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+
+      - name: Install dependencies
+        uses: bahmutov/npm-install@HEAD
+
+      - name: Test
+        run: yarn test
+        env:
+          CI: true
+
+      - name: Download cache
+        run: ./scripts/bin/azcopy copy "https://electronjsorg.blob.core.windows.net/%24web/*?${{ SSA }}" "./build" --recursive
+        env:
+          SSA: ${{ secrets.SSA }}
+
+      - name: Build EN
+        run: yarn i18n:build en
+
+      - name: Deploy
+        run: ./scripts/bin/azcopy copy "./build/*" "https://electronjsorg.blob.core.windows.net/%24web?${{ SSA }}" --recursive
+        env:
+          SAS: ${{ secrets.SSA }}

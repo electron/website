@@ -14,6 +14,7 @@ if (
   process.exit(1);
 }
 
+const { execute } = require('./utils/execute');
 const { createPR, getChanges, pushChanges } = require('./utils/git-commands');
 
 const HEAD = 'main';
@@ -64,6 +65,9 @@ const processDocsChanges = async () => {
     console.log('package.json is not modified, skipping');
     return;
   } else {
+    console.log(`Uploading changes to Crowdin`);
+    await execute(`yarn crowdin:upload`);
+
     const newFiles = newDocFiles(output);
     if (newFiles.length > 0) {
       console.log(`New documents available:
