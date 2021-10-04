@@ -5,6 +5,5 @@ node_modules
 .vscode/settings.json
 build/
 content/
-docs/
 i18n/
 !i18n/en-US/
