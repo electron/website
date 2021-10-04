@@ -6,7 +6,8 @@
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
-    "build": "docusaurus build",
+    "build": "docusaurus build --locale en",
+    "heroku-postbuild": "node scripts/i18n-build.js",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
@@ -16,7 +17,7 @@
     "update-l10n-sources": "node scripts/update-l10n-sources.js",
     "lint": "prettier -c ./scripts/**/*.js",
     "test": "yarn lint && jest",
-    "pre-build": "node ./scripts/pre-build.js",
+    "prebuild": "node ./scripts/pre-build.js",
     "process-docs-changes": "node ./scripts/process-docs-changes.js",
     "update-pinned-version": "node ./scripts/update-pinned-version.js",
     "prepare": "husky install"

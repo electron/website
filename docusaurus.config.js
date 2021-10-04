@@ -8,7 +8,7 @@ module.exports = {
   tagline: 'Build cross-platform desktop apps with JavaScript, HTML, and CSS',
   url: 'https://electronjs.org',
   baseUrl: '/',
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'assets/img/favicon.ico',
   organizationName: 'electron',
