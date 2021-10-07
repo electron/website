@@ -1,6 +1,6 @@
 ---
 title: "Tray"
-description: ""
+description: "Add icons and context menus to the system's notification area."
 slug: tray
 hide_title: false
 ---

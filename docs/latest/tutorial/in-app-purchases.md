@@ -1,6 +1,6 @@
 ---
 title: "In-App Purchases (macOS)"
-description: ""
+description: "If you haven't already, you’ll need to sign the Paid Applications Agreement and set up your banking and tax information in iTunes Connect."
 slug: in-app-purchases
 hide_title: false
 ---

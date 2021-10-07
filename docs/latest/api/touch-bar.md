@@ -1,6 +1,6 @@
 ---
 title: "TouchBar"
-description: ""
+description: "Create TouchBar layouts for native macOS applications"
 slug: touch-bar
 hide_title: false
 ---

@@ -1,6 +1,6 @@
 ---
 title: "Native File Drag & Drop"
-description: ""
+description: "Certain kinds of applications that manipulate files might want to support the operating system's native file drag & drop feature. Dragging files into web content is common and supported by many websites. Electron additionally supports dragging files and content out from web content into the operating system's world."
 slug: native-file-drag-drop
 hide_title: false
 ---

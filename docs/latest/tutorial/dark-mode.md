@@ -1,6 +1,6 @@
 ---
 title: "Dark Mode"
-description: ""
+description: "\"Native interfaces\" include the file picker, window border, dialogs, context menus, and more - anything where the UI comes from your operating system and not from your app. The default behavior is to opt into this automatic theming from the OS."
 slug: dark-mode
 hide_title: false
 ---

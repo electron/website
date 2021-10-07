@@ -1,6 +1,6 @@
 ---
 title: "Menu"
-description: ""
+description: "Create native application menus and context menus."
 slug: menu
 hide_title: false
 ---

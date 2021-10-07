@@ -1,6 +1,6 @@
 ---
 title: "Taskbar Customization (Windows)"
-description: ""
+description: "Electron has APIs to configure the app's icon in the Windows taskbar. This API supports both Windows-only features like creation of a JumpList, custom thumbnails and toolbars, icon overlays, and the so-called \"Flash Frame\" effect, and cross-platform features like recent documents and application progress."
 slug: windows-taskbar
 hide_title: false
 ---

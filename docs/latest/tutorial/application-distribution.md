@@ -1,6 +1,6 @@
 ---
 title: "Application Distribution"
-description: ""
+description: "To distribute your app with Electron, you need to package and rebrand it. To do this, you can either use specialized tooling or manual approaches."
 slug: application-distribution
 hide_title: false
 ---

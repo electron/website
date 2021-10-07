@@ -1,6 +1,6 @@
 ---
 title: "Pull Requests"
-description: ""
+description: "Fork the project on GitHub and clone your fork locally."
 slug: pull-requests
 hide_title: false
 ---
