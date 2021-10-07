@@ -1,6 +1,6 @@
 ---
 title: "Debugging with XCode"
-description: ""
+description: "Run gn gen with the --ide=xcode argument."
 slug: debugging-instructions-macos-xcode
 hide_title: false
 ---

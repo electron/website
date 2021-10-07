@@ -1,6 +1,6 @@
 ---
 title: "Issues In Electron"
-description: ""
+description: "For any issue, there are fundamentally three ways an individual can contribute:"
 slug: issues
 hide_title: false
 ---

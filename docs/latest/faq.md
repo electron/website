@@ -1,6 +1,6 @@
 ---
 title: "Electron FAQ"
-description: ""
+description: "When running npm install electron, some users occasionally encounter installation errors."
 slug: faq
 hide_title: false
 ---

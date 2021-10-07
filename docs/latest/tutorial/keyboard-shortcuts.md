@@ -1,6 +1,6 @@
 ---
 title: "Keyboard Shortcuts"
-description: ""
+description: "This feature allows you to configure local and global keyboard shortcuts for your Electron application."
 slug: keyboard-shortcuts
 hide_title: false
 ---

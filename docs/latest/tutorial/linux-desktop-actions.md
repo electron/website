@@ -1,6 +1,6 @@
 ---
 title: "Desktop Launcher Actions (Linux)"
-description: ""
+description: "On many Linux environments, you can add custom entries to the system launcher by modifying the .desktop file. For Canonical's Unity documentation, see Adding Shortcuts to a Launcher. For details on a more generic implementation, see the freedesktop.org Specification."
 slug: linux-desktop-actions
 hide_title: false
 ---

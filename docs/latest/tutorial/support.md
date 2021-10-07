@@ -1,6 +1,6 @@
 ---
 title: "Electron Support"
-description: ""
+description: "If you have a security concern, please see the security document."
 slug: support
 hide_title: false
 ---
