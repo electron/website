@@ -2,7 +2,7 @@ name: 'Update i18n deploy'
 
 on:
   schedule:
-    - cron: '*/15 * * * *'
+    - cron: '*/30 * * * *'
 
 jobs:
   deploy:
@@ -25,14 +25,14 @@ jobs:
           CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
 
       - name: Download cache
-        run: ./scripts/bin/azcopy copy "https://electronjsorg.blob.core.windows.net/%24web/*?${{ SSA }}" "./build" --recursive
+        run: ./scripts/bin/azcopy copy "https://electronjsorg.blob.core.windows.net/%24web/*?$SAS" "./build" --recursive
         env:
-          SSA: ${{ secrets.SSA }}
+          SAS: ${{ secrets.SAS }}
 
       - name: Build
         run: yarn i18n:build
 
       - name: Deploy
-        run: ./scripts/bin/azcopy copy "./build/*" "https://electronjsorg.blob.core.windows.net/%24web?${{ SSA }}" --recursive
+        run: ./scripts/bin/azcopy copy "./build/*" "https://electronjsorg.blob.core.windows.net/%24web?$SAS" --recursive
         env:
-          SAS: ${{ secrets.SSA }}
+          SAS: ${{ secrets.SAS }}

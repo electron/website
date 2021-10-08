@@ -18,6 +18,10 @@ jobs:
         run: 'yarn update-pinned-version ${{ github.event.client_payload.sha }}'
       - name: 'Prebuild'
         run: 'yarn prebuild'
+      - name: Upload sources to Crowdin
+        run: yarn i18n:upload
+        env:
+          CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
       - name: 'Create PR'
         run: 'yarn process-docs-changes'
         env:
