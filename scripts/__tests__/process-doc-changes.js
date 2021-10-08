@@ -41,7 +41,9 @@ describe('process-docs-changes', () => {
   });
 
   it('does create a PR if more files than package.json are modified', async () => {
-    gitMock.getChanges.mockResolvedValue('M package.json\nM sidebars.json');
+    gitMock.getChanges.mockResolvedValue(
+      'M package.json\nM sidebars.json\nU randomDoc.md'
+    );
 
     await processDocsChanges();
 

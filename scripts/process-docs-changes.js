@@ -6,7 +6,10 @@
  */
 
 //@ts-check
-if (!(process.env.CI || process.env.NODE_ENV === 'test') && !GITHUB_TOKEN) {
+if (
+  !(process.env.CI || process.env.NODE_ENV === 'development') &&
+  !GITHUB_TOKEN
+) {
   console.error('Missing GITHUB_TOKEN environment variable');
   process.exit(1);
 }
@@ -32,6 +35,25 @@ const changeExitCodeIfException = async (func) => {
   }
 };
 
+/**
+ * Checks if there are new document files by parsing the given
+ * `git status --porcelain` input.
+ * This is done by looking at the status of each file:
+ * - `A` means it is new and has been staged
+ * - `??` means it is a new file and has not been staged yet
+ *
+ * @param {string} gitOutput
+ */
+const newDocFiles = (gitOutput) => {
+  const lines = gitOutput.split('\n');
+  const newFiles = lines.filter((line) => {
+    const trimmedLine = line.trim();
+    return trimmedLine.startsWith('U') || trimmedLine.startsWith('??');
+  });
+
+  return newFiles;
+};
+
 const processDocsChanges = async () => {
   const output = await getChanges();
 
@@ -42,9 +64,10 @@ const processDocsChanges = async () => {
     console.log('package.json is not modified, skipping');
     return;
   } else {
-    const lines = output.split('\n');
-    if (lines.length > 1) {
-      console.log(`New documents available, creating PR.`);
+    const newFiles = newDocFiles(output);
+    if (newFiles.length > 0) {
+      console.log(`New documents available:
+${newFiles.join('\n')}`);
       await createPR(PR_BRANCH, HEAD, EMAIL, NAME, COMMIT_MESSAGE);
     } else {
       console.log(
