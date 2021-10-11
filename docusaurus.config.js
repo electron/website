@@ -56,11 +56,10 @@ module.exports = {
           label: 'Releases',
           position: 'right',
         },
-        // TODO: uncomment once the production site is pointing to Azure Storage
-        // {
-        //   type: 'localeDropdown',
-        //   position: 'right',
-        // },
+        {
+          type: 'localeDropdown',
+          position: 'right',
+        },
         {
           href: 'https://github.com/electron/electron',
           label: 'GitHub',
