@@ -128,8 +128,8 @@ module.exports = {
       copyright: `Copyright © ${new Date().getFullYear()} OpenJS Foundation and Electron contributors.`,
     },
     algolia: {
-      apiKey: 'f9fb1d51a99fc479d5979cfa2aae48b9',
-      indexName: 'beta-electronjs',
+      apiKey: 'c9e8f898b3b32afe40f0a96637e7ea85',
+      indexName: 'electronjs',
       contextualSearch: true,
     },
     googleAnalytics: {
