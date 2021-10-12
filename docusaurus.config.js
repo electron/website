@@ -18,13 +18,6 @@ module.exports = {
     locales: ['en', 'de', 'es', 'fr', 'ja', 'pt', 'ru', 'zh'],
   },
   themeConfig: {
-    announcementBar: {
-      id: 'to_old_docs',
-      content:
-        'Want to go back to the <a href="https://www.electronjs.org/docs">old docs</a>?',
-      backgroundColor: '#1a1b23',
-      textColor: '#9feaf9',
-    },
     navbar: {
       title: 'Electron',
       logo: {
