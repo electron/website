@@ -18,6 +18,10 @@ module.exports = {
     locales: ['en', 'de', 'es', 'fr', 'ja', 'pt', 'ru', 'zh'],
   },
   themeConfig: {
+    colorMode: {
+      //Default to light or dark depending on system theme.
+      respectPrefersColorScheme: true,
+    },
     navbar: {
       title: 'Electron',
       logo: {
