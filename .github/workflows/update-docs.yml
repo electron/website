@@ -17,7 +17,7 @@ jobs:
       - name: Update pinned version
         run: 'yarn update-pinned-version ${{ github.event.client_payload.sha }}'
       - name: 'Prebuild'
-        run: 'yarn prebuild'
+        run: 'yarn pre-build'
       - name: Upload sources to Crowdin
         run: yarn i18n:upload
         env:
