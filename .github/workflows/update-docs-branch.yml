@@ -2,7 +2,7 @@ name: 'Update docs'
 
 on:
   repository_dispatch:
-    types: [doc_changes]
+    types: [doc_changes_branches]
 
 jobs:
   update-docs:
@@ -12,9 +12,12 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '14'
+      - name: 'Switch branches'
+# We switch to the version branch or create a new one if needed
+        run: git checkout v$${{ github.event.client_payload.branch}} || git checkout -b v$${{ github.event.client_payload.branch}}
       - name: Install dependencies
         run: 'yarn'
-      - name: 'Download docs'
+      - name: 'Prebuild'
         run: 'yarn pre-build ${{ github.event.client_payload.sha }}'
       - name: 'Push changes or create PR'
         run: 'yarn process-docs-changes'

@@ -11,14 +11,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-
       - name: Use Node.js 14
         uses: actions/setup-node@v2
         with:
           node-version: 14
-
       - name: Install dependencies
         uses: bahmutov/npm-install@HEAD
+
+      - name: Upload sources to Crowdin
+        run: 'yarn i18n:upload'
+        env:
+          CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
 
       - name: Test
         run: yarn test
