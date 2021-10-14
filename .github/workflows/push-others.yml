@@ -1,0 +1,38 @@
+name: Push on version branch
+
+on:
+  push:
+    branches:
+      - 'v**'
+
+jobs:
+  tests:
+    name: Push updates to previous versions
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set environment variables
+        run: |
+          echo "GIT_BRANCH=${GITHUB_REF##*/}" >> $GITHUB_ENV
+
+      - uses: actions/checkout@v2
+      - name: Use Node.js 14
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+      - name: Install dependencies
+        uses: bahmutov/npm-install@HEAD
+
+      - name: 'Build branch version (EN)'
+        run: |
+          node scripts/build-as-doc-version.js ${GIT_BRANCH}
+          yarn i18n:build en
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: 'Publish Assets to Storage'
+        run: ./scripts/bin/azcopy copy "./build/assets/*" "https://electronjsorg.blob.core.windows.net/%24web/assets?$SAS" --recursive
+        env:
+          SAS: ${{ secrets.SAS }}
+      - name: 'Publish docs to Storage'
+        run: ./scripts/bin/azcopy copy "./build/docs/*" "https://electronjsorg.blob.core.windows.net/%24web/docs?$SAS" --recursive
+        env:
+          SAS: ${{ secrets.SAS }}

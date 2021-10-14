@@ -16,6 +16,7 @@ const { addFrontmatter } = require('./tasks/add-frontmatter');
 const { createSidebar } = require('./tasks/create-sidebar');
 const { fixContent } = require('./tasks/md-fixers');
 const { copyNewContent } = require('./tasks/copy-new-content');
+const { updateVersionsInfo } = require('./tasks/update-versions-info');
 const { sha } = require('../package.json');
 
 const DOCS_FOLDER = path.join('docs', 'latest');
@@ -84,6 +85,9 @@ const start = async (source) => {
 
   console.log('Updating sidebar.js');
   await createSidebar('docs', path.join(process.cwd(), 'sidebars.js'));
+
+  console.log('Updating docs versions');
+  await updateVersionsInfo();
 };
 
 start(process.argv[2]);

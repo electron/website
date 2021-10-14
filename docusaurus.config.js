@@ -2,13 +2,14 @@
 const npm2yarn = require('@docusaurus/remark-plugin-npm2yarn');
 const fiddleEmbedder = require('./src/transformers/fiddle-embedder.js');
 const apiLabels = require('./src/transformers/api-labels.js');
+const docVersions = require('./versions-info.json');
 
 module.exports = {
   title: 'Electron',
   tagline: 'Build cross-platform desktop apps with JavaScript, HTML, and CSS',
   url: 'https://electronjs.org',
   baseUrl: '/',
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'assets/img/favicon.ico',
   organizationName: 'electron',
@@ -72,6 +73,12 @@ module.exports = {
           href: 'https://releases.electronjs.org',
           label: 'Releases',
           position: 'right',
+        },
+        {
+          type: 'dropdown',
+          label: 'View another version',
+          position: 'right',
+          items: docVersions,
         },
         {
           type: 'localeDropdown',

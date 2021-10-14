@@ -1,7 +1,7 @@
 /**
  * Checks if there are any changes in the repo and creates or updates
  * a PR if needed. This is part of the `update-docs.yml` workflow and
- * depends on `update-pinned-version` and `prebuild` being run before
+ * depends on `update-pinned-version` and `pre-build` being run before
  * in order to produce the right result.
  */
 
@@ -14,8 +14,13 @@ if (
   process.exit(1);
 }
 
-const { execute } = require('./utils/execute');
-const { createPR, getChanges, pushChanges } = require('./utils/git-commands');
+const {
+  createPR,
+  getChanges,
+  pushChanges,
+  isCurrentBranchTracked,
+  getCurrentBranchName,
+} = require('./utils/git-commands');
 
 const HEAD = 'main';
 const PR_BRANCH = 'chore/docs-updates';
@@ -24,20 +29,7 @@ const EMAIL = 'electron@github.com';
 const NAME = 'electron-bot';
 
 /**
- * Wraps a function on a try/catch and changes the exit code if it fails.
- * @param {Function} func
- */
-const changeExitCodeIfException = async (func) => {
-  try {
-    await func();
-  } catch (e) {
-    console.error(e);
-    process.exitCode = 1;
-  }
-};
-
-/**
- * Checks if there are new document files by parsing the given
+ * Checks if there are new document files (*.md) by parsing the given
  * `git status --porcelain` input.
  * This is done by looking at the status of each file:
  * - `A` means it is new and has been staged
@@ -49,35 +41,49 @@ const newDocFiles = (gitOutput) => {
   const lines = gitOutput.split('\n');
   const newFiles = lines.filter((line) => {
     const trimmedLine = line.trim();
-    return trimmedLine.startsWith('U') || trimmedLine.startsWith('??');
+    return (
+      trimmedLine.endsWith('.md') &&
+      (trimmedLine.startsWith('U') || trimmedLine.startsWith('??'))
+    );
   });
 
   return newFiles;
 };
 
+/**
+ * Analyzes the current `git status` of the local repo and branch to
+ * see if there are new files or just modifications to existing ones.
+ *
+ * - If there is just modifications it pushes the changes directly to
+ *   the branch upstream.
+ * - If there is new content it creates a new branch and opens a PR for
+ *   review. The format of the pr branch name is `chore/docs-updates` for `main`
+ *   and `chore/docs-updates-vXX-Y-X` for the ones targetting `vXX-Y-X`.
+ * - Creates a new branch and pushes the changes directly if it does
+ *   not exist.
+ */
 const processDocsChanges = async () => {
   const output = await getChanges();
+  const branchIsTracked = await isCurrentBranchTracked();
+  const branchName = await getCurrentBranchName();
 
   if (output === '') {
     console.log('Nothing updated, skipping');
     return;
-  } else if (!/M\s+package\.json/.test(output)) {
-    console.log('package.json is not modified, skipping');
-    return;
   } else {
-    console.log(`Uploading changes to Crowdin`);
-    await execute(`yarn i18n:upload`);
-
     const newFiles = newDocFiles(output);
-    if (newFiles.length > 0) {
+    const prBranchName =
+      branchName === 'main' ? PR_BRANCH : `${PR_BRANCH}-${branchName}`;
+
+    if (newFiles.length > 0 && branchIsTracked) {
       console.log(`New documents available:
 ${newFiles.join('\n')}`);
-      await createPR(PR_BRANCH, HEAD, EMAIL, NAME, COMMIT_MESSAGE);
+      await createPR(prBranchName, branchName, EMAIL, NAME, COMMIT_MESSAGE);
     } else {
       console.log(
         `Only existing content has been modified. Pushing changes directly.`
       );
-      await pushChanges(HEAD, EMAIL, NAME, COMMIT_MESSAGE);
+      await pushChanges(branchName, EMAIL, NAME, COMMIT_MESSAGE);
     }
   }
 };
@@ -87,7 +93,12 @@ ${newFiles.join('\n')}`);
 // by testing `require.main === module`.
 // https://nodejs.org/docs/latest/api/modules.html#modules_accessing_the_main_module
 if (require.main === module) {
-  changeExitCodeIfException(processDocsChanges);
+  process.addListener('unhandledRejection', (e) => {
+    console.error(e);
+    process.exit(1);
+  });
+
+  processDocsChanges();
 }
 
 module.exports = {

@@ -8,15 +8,12 @@ const {
 
 const updateConfig = async (locale) => {
   const baseUrl = locale !== defaultLocale ? `/${locale}/` : '/';
-  // Translations might not be completely in sync and we need to keep publishing
-  const onBrokenLinks = locale !== defaultLocale ? `warn` : `throw`;
   const configPath = join(__dirname, '../docusaurus.config.js');
 
   let docusaurusConfig = await fs.readFile(configPath, 'utf-8');
 
   docusaurusConfig = docusaurusConfig
-    .replace(/baseUrl: '.*?',/, `baseUrl: '${baseUrl}',`)
-    .replace(/onBrokenLinks: '.*?',/, `onBrokenLinks: '${onBrokenLinks}',`);
+    .replace(/baseUrl: '.*?',/, `baseUrl: '${baseUrl}',`);
 
   await fs.writeFile(configPath, docusaurusConfig, 'utf-8');
 };

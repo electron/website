@@ -2,7 +2,7 @@
 const executeMock = jest.createMockFromModule('../execute');
 jest.mock('../execute', () => executeMock);
 const octokitMock = {
-  pulls: { list: jest.fn(), create: jest.fn() },
+  pulls: { list: jest.fn(), create: jest.fn(), requestReviewers: jest.fn() },
 };
 const github = {
   getOctokit: () => {

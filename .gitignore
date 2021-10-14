@@ -3,7 +3,10 @@ node_modules
 .DS_Store
 .env
 .vscode/settings.json
+.tmp/
 build/
 content/
 i18n/
 !i18n/en/
+docs/
+!docs/latest

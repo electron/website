@@ -26,5 +26,13 @@
   "item.label.GitHub": {
     "message": "GitHub",
     "description": "Navbar item with label GitHub"
+  },
+  "item.label.View another version": {
+    "message": "View another version",
+    "description": "Navbar item with label View another version"
+  },
+  "item.label.Current": {
+    "message": "Current",
+    "description": "Navbar item with label Current"
   }
 }
