@@ -9,26 +9,47 @@
 
 /* We maintain separate colours for light and dark mode */
 :root {
-  --ifm-color-primary: #0057C2;
+  // modified base colors
+  --ifm-color-primary: #0057c2;
   --ifm-color-primary-dark: #000885;
   --ifm-color-primary-darker: #000047;
   --ifm-color-primary-darkest: #000000;
   --ifm-color-primary-light: #00aeff;
-  --ifm-color-primary-lighter: #4CC8FF;
-  --ifm-color-primary-lightest: #97E1FF;
+  --ifm-color-primary-lighter: #4cc8ff;
+  --ifm-color-primary-lightest: #97e1ff;
+
+  // modified base vars
   --ifm-code-font-size: 95%;
+  --ifm-navbar-height: 86px;
+
+  // brand-specific colors
   --electron-color-light: #9feaf9;
+  --electron-color-mid: #0d4a59;
   --electron-color-dark: #2b2e3b;
+  --electron-color-secondary: #ff6e6e;
+  --electron-color-white: white;
+
+  // custom vars
+  --electron-heading: var(--electron-color-mid);
+  --electron-inline-code: var(--electron-color-secondary);
 }
 
 :root[data-theme='dark'] {
+  // modified base colors
   --ifm-color-primary: #00aeff;
-  --ifm-color-primary-dark: #0057C2;
+  --ifm-color-primary-dark: #0057c2;
   --ifm-color-primary-darker: #4d4d4f;
   --ifm-color-primary-darkest: #000047;
-  --ifm-color-primary-light: #4CC8FF;
-  --ifm-color-primary-lighter: #97E1FF;
-  --ifm-color-primary-lightest: #E3F7FF;
+  --ifm-color-primary-light: #4cc8ff;
+  --ifm-color-primary-lighter: #97e1ff;
+  --ifm-color-primary-lightest: #e3f7ff;
+
+  // modified base vars
+  --ifm-menu-color: var(--ifm-color-primary-lightest);
+
+  // custom vars
+  --electron-heading: var(--ifm-color-primary-lightest);
+  --electron-inline-code: var(--electron-color-secondary);
 }
 
 .docusaurus-highlight-code-line {
@@ -38,10 +59,78 @@
   padding: 0 var(--ifm-pre-padding);
 }
 
-.footer--dark {
-  --ifm-footer-background-color: black;
+.navbar {
+  &--dark {
+    --ifm-navbar-background-color: var(--electron-color-dark);
+    --ifm-navbar-link-color: var(--electron-color-light);
+  }
+
+  &__brand {
+    &:hover {
+      color: var(--electron-color-white);
+    }
+  }
+
+  &__item {
+    &:hover {
+      color:  var(--electron-color-white);
+    }
+    // use margin instead of padding so that the border-bottom
+    // on active looks better
+    padding: 0;
+    margin: var(--ifm-navbar-item-padding-vertical)
+      var(--ifm-navbar-item-padding-horizontal);
+  }
+
+  &__link {
+    font-weight: var(--ifm-font-weight-normal);
+    border-bottom: 2px solid transparent;
+
+    &--active {
+      color: var(--electron-color-light);
+      border-bottom-color: var(--ifm-color-primary-lightest);
+    }
+  }
 }
 
-.markdown a {
-  font-weight: var(--ifm-font-weight-bold);
+.footer {
+  &--dark {
+    --ifm-footer-background-color: --var(--electron-color-dark);
+  }
+}
+
+.markdown {
+  a {
+    font-weight: var(--ifm-font-weight-bold);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    --ifm-h2-font-size: 1.6rem;
+    --ifm-h3-font-size: 1.2rem;
+    --ifm-h4-font-size: 1rem;
+    --ifm-h5-font-size: 0.8rem;
+    color: var(--electron-heading);
+  }
+
+  :not(pre) > code {
+    padding: 0 4px;
+    color: var(--electron-inline-code);
+  }
+}
+
+.menu {
+  &__link {
+    font-weight: var(--ifm-font-weight-normal);
+    font-size: 0.95rem;
+  }
+
+  &__link--sublist {
+    font-weight: var(--ifm-font-weight-semi-bold);
+    font-size: 1.1rem;
+  }
 }
