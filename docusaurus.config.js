@@ -22,8 +22,13 @@ module.exports = {
       //Default to light or dark depending on system theme.
       respectPrefersColorScheme: true,
     },
+    prism: {
+      theme: require('prism-react-renderer/themes/github'),
+      darkTheme: require('prism-react-renderer/themes/dracula')
+    },
     navbar: {
       title: 'Electron',
+      style: 'dark',
       logo: {
         alt: 'Electron homepage',
         src: 'assets/img/logo.svg',
@@ -68,7 +73,6 @@ module.exports = {
       ],
     },
     footer: {
-      style: 'dark',
       logo: {
         alt: 'OpenJS Foundation Logo',
         src: 'assets/img/openjsf_logo.svg',
