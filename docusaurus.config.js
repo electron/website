@@ -18,6 +18,14 @@ module.exports = {
     locales: ['en', 'de', 'es', 'fr', 'ja', 'pt', 'ru', 'zh'],
   },
   themeConfig: {
+    announcementBar: {
+      id: 'announcementBar',
+      content:
+        `Please help us improve Electron's Developer Experience by filling this <a href="https://www.surveymonkey.com/r/electrondevex">2min survey</a> and get a chance to win an octoplush!`,
+      backgroundColor: 'yellow',
+      textColor: '#091E42',
+      isCloseable: true,
+    },
     colorMode: {
       //Default to light or dark depending on system theme.
       respectPrefersColorScheme: true,
@@ -25,6 +33,10 @@ module.exports = {
     prism: {
       theme: require('prism-react-renderer/themes/github'),
       darkTheme: require('prism-react-renderer/themes/dracula')
+    },
+    tableOfContents: {
+      minHeadingLevel: 2,
+      maxHeadingLevel: 4,
     },
     navbar: {
       title: 'Electron',
