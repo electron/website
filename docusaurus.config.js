@@ -30,6 +30,10 @@ module.exports = {
       //Default to light or dark depending on system theme.
       respectPrefersColorScheme: true,
     },
+    tableOfContents: {
+      minHeadingLevel: 2,
+      maxHeadingLevel: 4,
+    },
     navbar: {
       title: 'Electron',
       logo: {
