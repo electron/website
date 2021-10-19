@@ -1,6 +1,6 @@
 ---
 title: "In-App Purchases (macOS)"
-description: "If you haven't already, you’ll need to sign the Paid Applications Agreement and set up your banking and tax information in iTunes Connect."
+description: "Enable In-App purchases when publishing via the Apple Store and iTunes Connect."
 slug: in-app-purchases
 hide_title: false
 ---
@@ -46,7 +46,7 @@ inAppPurchase.on('transactions-updated', (event, transactions) => {
   }
 
   // Check each transaction.
-  transactions.forEach(function (transaction) {
+  transactions.forEach((transaction) => {
     const payment = transaction.payment
 
     switch (transaction.transactionState) {

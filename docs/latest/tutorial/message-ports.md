@@ -1,6 +1,6 @@
 ---
 title: "MessagePorts in Electron"
-description: "MessagePorts are a web feature that allow passing messages between different contexts. It's like window.postMessage, but on different channels. The goal of this document is to describe how Electron extends the Channel Messaging model, and to give some examples of how you might use MessagePorts in your app."
+description: "This guide provides some examples of how you might use MessagePorts in your app to communicate different processes."
 slug: message-ports
 hide_title: false
 ---
@@ -141,7 +141,7 @@ app.whenReady().then(async () => {
 <script>
 const { ipcRenderer } = require('electron')
 
-function doWork(input) {
+const doWork = (input) => {
   // Something cpu-intensive.
   return input * 2
 }
@@ -192,7 +192,7 @@ stream of data.
 ```js
 // renderer.js ///////////////////////////////////////////////////////////////
 
-function makeStreamingRequest (element, callback) {
+const makeStreamingRequest = (element, callback) => {
   // MessageChannels are lightweight--it's cheap to create a new one for each
   // request.
   const { port1, port2 } = new MessageChannel()

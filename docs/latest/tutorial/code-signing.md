@@ -1,21 +1,33 @@
 ---
-title: "Code Signing"
-description: "Code signing is a security technology that you use to certify that an app was created by you."
+title: 'Code Signing'
+description: 'Code signing is a security technology that you use to certify that an app was created by you.'
 slug: code-signing
 hide_title: false
 ---
 
-# Code Signing
+:::info Tutorial parts
+This is part 6 of the Electron tutorial. The other parts are:
+
+1. [Prerequisites]
+1. [Scaffolding]
+1. [Main and Renderer process communication][main-renderer]
+1. [Adding Features][features]
+1. [Application Distribution]
+1. [Code Signing]
+1. [Updating Your Application][updates]
+
+:::
 
 Code signing is a security technology that you use to certify that an app was
-created by you.
+created by you. You should sign your application so it does not trigger the
+security checks in the Operating Systems.
 
 On macOS the system can detect any change to the app, whether the change is
 introduced accidentally or by malicious code.
 
 On Windows, the system assigns a trust level to your code signing certificate
 which if you don't have, or if your trust level is low, will cause security
-dialogs to appear when users start using your application.  Trust level builds
+dialogs to appear when users start using your application. Trust level builds
 over time so it's better to start code signing as early as possible.
 
 While it is possible to distribute unsigned apps, it is not recommended. Both
@@ -23,7 +35,7 @@ Windows and macOS will, by default, prevent either the download or the execution
 of unsigned applications. Starting with macOS Catalina (version 10.15), users
 have to go through multiple manual steps to open unsigned applications.
 
-macOS Catalina Gatekeeper warning: The app cannot be opened because the developer cannot be verified../images/gatekeeper.png)
+![macOS Catalina Gatekeeper warning: The app cannot be opened because the developer cannot be verified](../images/gatekeeper.png)
 
 As you can see, users get two options: Move the app straight to the trash or
 cancel running it. You don't want your users to see that dialog.
@@ -31,7 +43,7 @@ cancel running it. You don't want your users to see that dialog.
 If you are building an Electron app that you intend to package and distribute,
 it should be code-signed.
 
-# Signing & notarizing macOS builds
+## Signing & notarizing macOS builds
 
 Properly preparing macOS applications for release requires two steps: First, the
 app needs to be code-signed. Then, the app needs to be uploaded to Apple for a
@@ -48,7 +60,7 @@ notarizing your app:
 Electron's ecosystem favors configuration and freedom, so there are multiple
 ways to get your application signed and notarized.
 
-## `electron-forge`
+### `electron-forge`
 
 If you're using Electron's favorite build tool, getting your application signed
 and notarized requires a few additions to your configuration. [Forge](https://electronforge.io) is a
@@ -59,7 +71,7 @@ Let's take a look at an example configuration with all required fields. Not all
 of them are required: the tools will be clever enough to automatically find a
 suitable `identity`, for instance, but we recommend that you are explicit.
 
-```json
+```json title="package.json"
 {
   "name": "my-app",
   "version": "0.0.1",
@@ -75,7 +87,7 @@ suitable `identity`, for instance, but we recommend that you are explicit.
         },
         "osxNotarize": {
           "appleId": "felix@felix.fun",
-          "appleIdPassword": "my-apple-id-password",
+          "appleIdPassword": "my-apple-id-password"
         }
       }
     }
@@ -87,7 +99,7 @@ The `plist` file referenced here needs the following macOS-specific entitlements
 to assure the Apple security mechanisms that your app is doing these things
 without meaning any harm:
 
-```xml
+```xml title="plist"
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -119,20 +131,19 @@ need to add the following entitlements:
 
 If these are not present in your app's entitlements when you invoke, for example:
 
-```js
+```js title="main.js"
 const { systemPreferences } = require('electron')
-
 const microphone = systemPreferences.askForMediaAccess('microphone')
 ```
 
 Your app may crash. See the Resource Access section in [Hardened Runtime](https://developer.apple.com/documentation/security/hardened_runtime) for more information and entitlements you may need.
 
-## `electron-builder`
+### `electron-builder`
 
 Electron Builder comes with a custom solution for signing your application. You
 can find [its documentation here](https://www.electron.build/code-signing).
 
-## `electron-packager`
+### `electron-packager`
 
 If you're not using an integrated build pipeline like Forge or Builder, you
 are likely using [`electron-packager`], which includes [`electron-osx-sign`] and
@@ -165,7 +176,7 @@ The `plist` file referenced here needs the following macOS-specific entitlements
 to assure the Apple security mechanisms that your app is doing these things
 without meaning any harm:
 
-```xml
+```xml title="plist"
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -181,11 +192,11 @@ without meaning any harm:
 Up until Electron 12, the `com.apple.security.cs.allow-unsigned-executable-memory` entitlement was required
 as well. However, it should not be used anymore if it can be avoided.
 
-## Mac App Store
+### Mac App Store
 
 See the [Mac App Store Guide].
 
-# Signing Windows builds
+## Signing Windows builds
 
 Before signing Windows builds, you must do the following:
 
@@ -196,31 +207,41 @@ Before signing Windows builds, you must do the following:
 You can get a code signing certificate from a lot of resellers. Prices vary, so
 it may be worth your time to shop around. Popular resellers include:
 
-* [digicert](https://www.digicert.com/code-signing/microsoft-authenticode.htm)
-* [Sectigo](https://sectigo.com/ssl-certificates-tls/code-signing)
-* Amongst others, please shop around to find one that suits your needs, Google
+- [digicert](https://www.digicert.com/code-signing/microsoft-authenticode.htm)
+- [Sectigo](https://sectigo.com/ssl-certificates-tls/code-signing)
+- Amongst others, please shop around to find one that suits your needs, Google
   is your friend 😄
 
 There are a number of tools for signing your packaged app:
 
-* [`electron-winstaller`] will generate an installer for windows and sign it for
+- [`electron-winstaller`] will generate an installer for windows and sign it for
   you
-* [`electron-forge`] can sign installers it generates through the
+- [`electron-forge`] can sign installers it generates through the
   Squirrel.Windows or MSI targets.
-* [`electron-builder`] can sign some of its windows targets
+- [`electron-builder`] can sign some of its windows targets
 
-## Windows Store
+### Windows Store
 
 See the [Windows Store Guide].
 
-[Apple Developer Program]: https://developer.apple.com/programs/
+[apple developer program]: https://developer.apple.com/programs/
 [`electron-builder`]: https://github.com/electron-userland/electron-builder
 [`electron-forge`]: https://github.com/electron-userland/electron-forge
 [`electron-osx-sign`]: https://github.com/electron-userland/electron-osx-sign
 [`electron-packager`]: https://github.com/electron/electron-packager
 [`electron-notarize`]: https://github.com/electron/electron-notarize
 [`electron-winstaller`]: https://github.com/electron/windows-installer
-[Xcode]: https://developer.apple.com/xcode
+[xcode]: https://developer.apple.com/xcode
 [signing certificates]: https://github.com/electron/electron-osx-sign/wiki/1.-Getting-Started#certificates
-[Mac App Store Guide]: latest/tutorial/mac-app-store-submission-guide.md
-[Windows Store Guide]: latest/tutorial/windows-store-guide.md
+[mac app store guide]: latest/tutorial/mac-app-store-submission-guide.md
+[windows store guide]: latest/tutorial/windows-store-guide.md
+
+<!-- Tutorial links -->
+
+[prerequisites]: tutorial-prerequisites.md
+[scaffolding]: tutorial-scaffolding.md
+[main-renderer]:./tutorial-main-renderer.md
+[features]: ./tutorial-adding-features.md
+[application distribution]: application-distribution.md
+[code signing]: code-signing.md
+[updates]: updates.md

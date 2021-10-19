@@ -1,6 +1,6 @@
 ---
 title: Launching Your Electron App From a URL In Another App
-description: This guide will take you through the process of setting your electron app as the default handler for a specific protocol.
+description: Make your application the default handler for a specific protocol like `mailto:`.
 slug: launch-app-from-url-in-another-app
 hide_title: true
 ---

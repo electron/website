@@ -1,6 +1,6 @@
 ---
 title: "Recent Documents (Windows & macOS)"
-description: "Windows and macOS provide access to a list of recent documents opened by the application via JumpList or dock menu, respectively."
+description: "Provide access to a list of recent documents opened by the application via JumpList or dock menu."
 slug: recent-documents
 hide_title: false
 ---
@@ -29,7 +29,7 @@ const { app, BrowserWindow } = require('electron')
 const fs = require('fs')
 const path = require('path')
 
-function createWindow () {
+const createWindow = () => {
   const win = new BrowserWindow({
     width: 800,
     height: 600

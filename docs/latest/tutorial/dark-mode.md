@@ -1,6 +1,6 @@
 ---
 title: "Dark Mode"
-description: "\"Native interfaces\" include the file picker, window border, dialogs, context menus, and more - anything where the UI comes from your operating system and not from your app. The default behavior is to opt into this automatic theming from the OS."
+description: "Discover how to respect the user's OS preference for a light or dark mode."
 slug: dark-mode
 hide_title: false
 ---
@@ -145,7 +145,7 @@ Finally, the `main.js` file represents the main process and contains the actual 
 const { app, BrowserWindow, ipcMain, nativeTheme } = require('electron')
 const path = require('path')
 
-function createWindow () {
+const createWindow = () => {
   const win = new BrowserWindow({
     width: 800,
     height: 600,

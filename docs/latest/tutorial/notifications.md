@@ -1,6 +1,6 @@
 ---
 title: "Notifications"
-description: "All three operating systems provide means for applications to send notifications to the user. The technique of showing notifications is different for the Main and Renderer processes."
+description: "Show notifications to your users in all supported platforms."
 slug: notifications
 hide_title: false
 ---
@@ -61,7 +61,7 @@ const { Notification } = require('electron')
 const NOTIFICATION_TITLE = 'Basic Notification'
 const NOTIFICATION_BODY = 'Notification from the Main process'
 
-function showNotification () {
+const showNotification = () => {
   new Notification({ title: NOTIFICATION_TITLE, body: NOTIFICATION_BODY }).show()
 }
 
@@ -156,4 +156,4 @@ GNOME, KDE.
 [notification-spec]: https://developer.gnome.org/notification-spec/
 [app-user-model-id]: https://msdn.microsoft.com/en-us/library/windows/desktop/dd378459(v=vs.85).aspx
 [set-app-user-model-id]: latest/api/app.md#appsetappusermodelidid-windows
-[squirrel-events]: latest/development/README.md#handling-squirrel-events
+[squirrel-events]: https://github.com/electron/windows-installer/blob/master/README.md#handling-squirrel-events

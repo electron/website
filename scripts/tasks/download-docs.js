@@ -7,7 +7,6 @@ const tar = require('tar-stream');
 const got = require('got');
 const globby = require('globby');
 
-const pathRewrites = require('./docs-reorg.json');
 const fixedFolders = ['api', 'images', 'fiddles'];
 
 /**

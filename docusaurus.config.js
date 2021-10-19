@@ -57,6 +57,12 @@ module.exports = {
           position: 'left',
         },
         {
+          label: 'Tutorial',
+          to: 'docs/latest/tutorial/prerequisites',
+          position: 'left',
+          activeBaseRegex: '^\b$', // never active
+        },
+        {
           label: 'API',
           type: 'doc',
           docId: 'latest/api/app',

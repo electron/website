@@ -1,6 +1,6 @@
 ---
-title: "Desktop Launcher Actions (Linux)"
-description: "On many Linux environments, you can add custom entries to the system launcher by modifying the .desktop file. For Canonical's Unity documentation, see Adding Shortcuts to a Launcher. For details on a more generic implementation, see the freedesktop.org Specification."
+title: 'Desktop Launcher Actions (Linux)'
+description: "Learn how to add a custom entry on different Linux's system launcher."
 slug: linux-desktop-actions
 hide_title: false
 ---
@@ -16,8 +16,10 @@ implementation, see the [freedesktop.org Specification][spec].
 
 ![audacious][audacious-launcher]
 
-> NOTE: The screenshot above is an example of launcher shortcuts in Audacious
-audio player
+:::tip
+The screenshot above is an example of launcher shortcuts in Audacious
+audio player.
+:::
 
 To create a shortcut, you need to provide `Name` and `Exec` properties for the
 entry you want to add to the shortcut menu. Unity will execute the command

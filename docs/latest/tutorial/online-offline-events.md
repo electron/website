@@ -1,6 +1,6 @@
 ---
 title: "Online/Offline Event Detection"
-description: "Online and offline event detection can be implemented in the Renderer process using the navigator.onLine attribute, part of standard HTML5 API."
+description: "Detect if your application has Internet access and behave accordingly."
 slug: online-offline-events
 hide_title: false
 ---
@@ -48,7 +48,7 @@ Starting with an HTML file `index.html`, this example will demonstrate how the `
 In order to mutate the DOM, create a `renderer.js` file that adds event listeners to the `'online'` and `'offline'` `window` events. The event handler sets the content of the `<strong id='status'>` element depending on the result of `navigator.onLine`.
 
 ```js title='renderer.js'
-function updateOnlineStatus () {
+const updateOnlineStatus = () => {
   document.getElementById('status').innerHTML = navigator.onLine ? 'online' : 'offline'
 }
 
@@ -63,7 +63,7 @@ Finally, create a `main.js` file for main process that creates the window.
 ```js title='main.js'
 const { app, BrowserWindow } = require('electron')
 
-function createWindow () {
+const createWindow = () => {
   const onlineStatusWindow = new BrowserWindow({
     width: 400,
     height: 100

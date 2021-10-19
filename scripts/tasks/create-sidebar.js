@@ -110,8 +110,10 @@ const createSidebar = async (root, destination) => {
 
   for (const id of topLevels) {
     for (const category of sidebars[id]) {
-      for (const item of category.items) {
-        reverseLookup.set(item, category);
+      if (category.items) {
+        for (const item of category.items) {
+          reverseLookup.set(item, category);
+        }
       }
     }
   }

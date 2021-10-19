@@ -1,6 +1,6 @@
 ---
 title: "Taskbar Progress Bar (Windows & macOS)"
-description: "A progress bar enables a window to provide progress information to the user without the need of switching to the window itself."
+description: "Show progress information to your users directly from the taskbar of the OS."
 slug: progress-bar
 hide_title: false
 ---
@@ -55,7 +55,7 @@ const { app, BrowserWindow } = require('electron')
 
 let progressInterval
 
-function createWindow () {
+const createWindow = () => {
   const win = new BrowserWindow({
     width: 800,
     height: 600
