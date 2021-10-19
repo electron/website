@@ -1,6 +1,6 @@
 ---
 title: "Notifications"
-description: "All three operating systems provide means for applications to send notifications to the user. The technique of showing notifications is different for the Main and Renderer processes."
+description: "Show notifications to your users in all supported platforms."
 slug: notifications
 hide_title: false
 ---

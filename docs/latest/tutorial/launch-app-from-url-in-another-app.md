@@ -1,6 +1,6 @@
 ---
 title: Deep Links
-description: Set your Electron app as the default handler for a specific protocol.
+description: Make your application the default handler for a specific protocol like `mailto:`.
 slug: launch-app-from-url-in-another-app
 hide_title: true
 ---

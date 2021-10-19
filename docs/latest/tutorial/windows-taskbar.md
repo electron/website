@@ -1,6 +1,6 @@
 ---
 title: Taskbar Customization
-description: Customize the look and feel of your app's Windows taskbar presence.
+description: "Customize your app's Windows taskbar with Jumplist, thumbnails and toolbars, icon overlays, etc."
 slug: windows-taskbar
 hide_title: true
 ---

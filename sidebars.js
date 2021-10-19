@@ -1,8 +1,9 @@
 module.exports = {
   docs: [
+    'latest/tutorial/introduction',
     {
       type: 'category',
-      label: 'Get Started',
+      label: 'Tutorial',
       items: [
         'latest/tutorial/introduction',
         'latest/tutorial/quick-start',
@@ -89,12 +90,26 @@ module.exports = {
           },
         },
         'latest/tutorial/window-customization',
+        'latest/tutorial/tutorial-prerequisites',
+        'latest/tutorial/tutorial-scaffolding',
+        'latest/tutorial/tutorial-main-renderer',
+        'latest/tutorial/tutorial-adding-features',
+        'latest/tutorial/application-distribution',
+        'latest/tutorial/code-signing',
+        'latest/tutorial/updates',
+        'latest/tutorial/process-model',
       ],
+    },
+    {
+      type: 'category',
+      label: 'Developer Checklists',
+      items: ['latest/tutorial/performance', 'latest/tutorial/security'],
     },
     {
       type: 'category',
       label: 'Development',
       items: [
+        'latest/tutorial/boilerplates-and-clis',
         'latest/tutorial/accessibility',
         'latest/tutorial/boilerplates-and-clis',
         'latest/tutorial/fuses',
@@ -124,19 +139,61 @@ module.exports = {
       type: 'category',
       label: 'Testing And Debugging',
       items: [
+        'latest/tutorial/application-debugging',
         'latest/tutorial/automated-testing',
+        'latest/tutorial/devtools-extension',
         'latest/tutorial/debugging-main-process',
         'latest/tutorial/debugging-vscode',
         'latest/tutorial/repl',
-        'latest/tutorial/devtools-extension',
-        'latest/tutorial/application-debugging',
         'latest/tutorial/testing-on-headless-ci',
         'latest/tutorial/testing-widevine-cdm',
+        'latest/tutorial/using-selenium-and-webdriver',
       ],
     },
     {
       type: 'category',
-      label: 'References',
+      label: 'OS Integration',
+      items: [
+        'latest/tutorial/os-integration',
+        'latest/tutorial/devices',
+        'latest/tutorial/dark-mode',
+        'latest/tutorial/keyboard-shortcuts',
+        'latest/tutorial/in-app-purchases',
+        'latest/tutorial/launch-app-from-url-in-another-app',
+        'latest/tutorial/linux-desktop-actions',
+        'latest/tutorial/macos-dock',
+        'latest/tutorial/native-file-drag-drop',
+        'latest/tutorial/notifications',
+        'latest/tutorial/online-offline-events',
+        'latest/tutorial/progress-bar',
+        'latest/tutorial/recent-documents',
+        'latest/tutorial/represented-file',
+        'latest/tutorial/tray',
+        'latest/tutorial/window-customization',
+        'latest/tutorial/windows-taskbar',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Examples',
+      items: [
+        'latest/tutorial/examples',
+        'latest/tutorial/message-ports',
+        'latest/tutorial/multithreading',
+        'latest/tutorial/offscreen-rendering',
+        'latest/tutorial/spellchecker',
+        'latest/tutorial/web-embeds',
+        'latest/tutorial/windows-arm',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Developer Checklists',
+      items: ['latest/tutorial/performance', 'latest/tutorial/security'],
+    },
+    {
+      type: 'category',
+      label: 'Resources',
       items: [
         'latest/breaking-changes',
         'latest/tutorial/electron-timelines',
@@ -148,7 +205,7 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'Contributing',
+      label: 'Contributing to Electron',
       items: [
         {
           type: 'category',

@@ -1,6 +1,6 @@
 ---
 title: Dock
-description: Configure your application's Dock presence on macOS.
+description: "Configure your Electron app's icon in the macOS Dock and create shortcuts for custom tasks."
 slug: macos-dock
 hide_title: true
 ---

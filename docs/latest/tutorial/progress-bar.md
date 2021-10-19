@@ -1,6 +1,6 @@
 ---
 title: Progress Bars
-description: Provide progress information to users outside of a BrowserWindow.
+description: "Show progress information to your users directly from the taskbar of the OS."
 slug: progress-bar
 hide_title: true
 ---
