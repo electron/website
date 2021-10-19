@@ -66,7 +66,7 @@ const processDocsChanges = async () => {
     return;
   } else {
     console.log(`Uploading changes to Crowdin`);
-    await execute(`yarn crowdin:upload`);
+    await execute(`yarn i18n:upload`);
 
     const newFiles = newDocFiles(output);
     if (newFiles.length > 0) {
