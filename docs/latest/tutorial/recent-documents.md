@@ -1,6 +1,6 @@
 ---
 title: Recent Documents
-description: Provide a list of recent documents via Windows JumpList or macOS Dock
+description: "Provide access to a list of recent documents opened by the application via JumpList or dock menu."
 slug: recent-documents
 hide_title: true
 ---

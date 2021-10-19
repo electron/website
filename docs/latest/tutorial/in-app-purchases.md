@@ -1,6 +1,6 @@
 ---
 title: In-App Purchases
-description: Add in-app purchases to your Mac App Store (MAS) application
+description: "Enable In-App purchases when publishing via the Apple Store and iTunes Connect."
 slug: in-app-purchases
 hide_title: true
 ---

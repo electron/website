@@ -1,7 +1,6 @@
 ---
 title: Tray
-description: This guide will take you through the process of creating
-  a Tray icon with its own context menu to the system's notification area.
+description: Add a try icon to your application with its own context menu.
 slug: tray
 hide_title: true
 ---

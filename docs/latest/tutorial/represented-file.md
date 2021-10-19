@@ -1,6 +1,6 @@
 ---
 title: Representing Files in a BrowserWindow
-description: Set a represented file in the macOS title bar.
+description: "On macOS, you can set a represented file for any window in your application."
 slug: represented-file
 hide_title: true
 ---

@@ -1,11 +1,24 @@
 ---
-title: "Updating Applications"
+title: 'Updating Your Application'
 description: "There are several ways to update an Electron application. The easiest and officially supported one is taking advantage of the built-in Squirrel framework and Electron's autoUpdater module."
 slug: updates
 hide_title: false
 ---
 
-# Updating Applications
+:::info Tutorial parts
+This is part 7 of the Electron tutorial. The other parts are:
+
+1. [Prerequisites][prerequisites]
+1. [Scaffolding][scaffolding]
+1. [Main and Renderer process communication][main-renderer]
+1. [Adding Features][features]
+1. [Application Distribution]
+1. [Code Signing]
+1. [Updating Your Application][updates]
+
+This part will go through the differen strategies to deliver updates to users
+of your application automatically.
+:::
 
 There are several ways to update an Electron application. The easiest and
 officially supported one is taking advantage of the built-in
@@ -28,13 +41,13 @@ a Node.js module preconfigured for use with update.electronjs.org.
 
 Install the module:
 
-```sh
+```sh npm2yarn
 npm install update-electron-app
 ```
 
 Invoke the updater from your app's main process file:
 
-```js
+```js title="main.js"
 require('update-electron-app')()
 ```
 
@@ -56,27 +69,28 @@ update server.
 Depending on your needs, you can choose from one of these:
 
 - [Hazel][hazel] – Update server for private or open-source apps which can be
-deployed for free on [Vercel][vercel]. It pulls from [GitHub Releases][gh-releases]
-and leverages the power of GitHub's CDN.
+  deployed for free on [Vercel][vercel]. It pulls from [GitHub Releases][gh-releases]
+  and leverages the power of GitHub's CDN.
 - [Nuts][nuts] – Also uses [GitHub Releases][gh-releases], but caches app
-updates on disk and supports private repositories.
+  updates on disk and supports private repositories.
 - [electron-release-server][electron-release-server] – Provides a dashboard for
-handling releases and does not require releases to originate on GitHub.
+  handling releases and does not require releases to originate on GitHub.
 - [Nucleus][nucleus] – A complete update server for Electron apps maintained by
-Atlassian. Supports multiple applications and channels; uses a static file store
-to minify server cost.
+  Atlassian. Supports multiple applications and channels; uses a static file store
+  to minify server cost.
 
 ## Implementing Updates in Your App
 
 Once you've deployed your update server, continue with importing the required
 modules in your code. The following code might vary for different server
-software, but it works like described when using
-[Hazel][hazel].
+software, but it works like described when using [Hazel][hazel].
 
-**Important:** Please ensure that the code below will only be executed in
+:::warning Check your execution environment!
+Please ensure that the code below will only be executed in
 your packaged app, and not in development. You can use
 [electron-is-dev](https://github.com/sindresorhus/electron-is-dev) to check for
 the environment.
+:::
 
 ```javascript
 const { app, autoUpdater, dialog } = require('electron')
@@ -112,7 +126,7 @@ need to ensure that the user will get notified when there's an update. This
 can be achieved using the autoUpdater API
 [events](latest/api/auto-updater.md#events):
 
-```javascript
+```javascript title="main.js"
 autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
   const dialogOpts = {
     type: 'info',
@@ -132,7 +146,7 @@ Also make sure that errors are
 [being handled](latest/api/auto-updater.md#event-error). Here's an example
 for logging them to `stderr`:
 
-```javascript
+```javascript title="main.js"
 autoUpdater.on('error', message => {
   console.error('There was a problem updating the application')
   console.error(message)
@@ -151,3 +165,13 @@ Because the requests made by Auto Update aren't under your direct control, you m
 [nucleus]: https://github.com/atlassian/nucleus
 [update.electronjs.org]: https://github.com/electron/update.electronjs.org
 [update-electron-app]: https://github.com/electron/update-electron-app
+
+<!-- Tutorial links -->
+
+[prerequisites]: tutorial-prerequisites.md
+[scaffolding]: tutorial-scaffolding.md
+[main-renderer]:./tutorial-main-renderer.md
+[features]: ./tutorial-adding-features.md
+[application distribution]: application-distribution.md
+[code signing]: code-signing.md
+[updates]: updates.md
