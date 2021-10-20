@@ -53,10 +53,14 @@
 }
 
 .docusaurus-highlight-code-line {
-  background-color: rgb(72, 77, 91);
+  background-color: rgb(217, 220, 222);
   display: block;
   margin: 0 calc(-1 * var(--ifm-pre-padding));
   padding: 0 var(--ifm-pre-padding);
+
+  :root[data-theme='dark'] & {
+    background-color: rgb(13, 15, 28);
+  }
 }
 
 .navbar {
