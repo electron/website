@@ -121,7 +121,9 @@
     color: var(--electron-heading);
   }
 
-  :not(pre) > code {
+  // We want this to only apply to inline code, so don't apply
+  // this color to ``` code blocks nor any headings.
+  :not(pre):not(h2):not(h3):not(h4):not(h5):not(h6) > code {
     padding: 0 4px;
     color: var(--electron-inline-code);
   }
