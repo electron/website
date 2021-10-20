@@ -26,12 +26,13 @@
   --electron-color-light: #9feaf9;
   --electron-color-mid: #0d4a59;
   --electron-color-dark: #2b2e3b;
-  --electron-color-secondary: #ff6e6e;
+  --electron-color-secondary-light: #ff6e6e;
+  --electron-color-secondary-mid: #e3112d;
   --electron-color-white: white;
 
   // custom vars
   --electron-heading: var(--electron-color-mid);
-  --electron-inline-code: var(--electron-color-secondary);
+  --electron-inline-code: var(--electron-color-secondary-mid);
 }
 
 :root[data-theme='dark'] {
@@ -49,7 +50,7 @@
 
   // custom vars
   --electron-heading: var(--ifm-color-primary-lightest);
-  --electron-inline-code: var(--electron-color-secondary);
+  --electron-inline-code: var(--electron-color-secondary-light);
 }
 
 .docusaurus-highlight-code-line {
@@ -77,7 +78,7 @@
 
   &__item {
     &:hover {
-      color:  var(--electron-color-white);
+      color: var(--electron-color-white);
     }
     // use margin instead of padding so that the border-bottom
     // on active looks better
