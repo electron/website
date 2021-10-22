@@ -21,8 +21,7 @@ module.exports = {
   themeConfig: {
     announcementBar: {
       id: 'announcementBar',
-      content:
-        `Please help us improve Electron's Developer Experience by filling this <a href="https://www.surveymonkey.com/r/electrondevex">2min survey</a> and get a chance to win an octoplush!`,
+      content: `Please help us improve Electron's Developer Experience by filling this <a href="https://www.surveymonkey.com/r/electrondevex">2min survey</a> and get a chance to win an octoplush!`,
       backgroundColor: 'yellow',
       textColor: '#091E42',
       isCloseable: true,
@@ -33,7 +32,7 @@ module.exports = {
     },
     prism: {
       theme: require('prism-react-renderer/themes/github'),
-      darkTheme: require('prism-react-renderer/themes/dracula')
+      darkTheme: require('prism-react-renderer/themes/dracula'),
     },
     tableOfContents: {
       minHeadingLevel: 2,
@@ -76,7 +75,7 @@ module.exports = {
         },
         {
           type: 'dropdown',
-          label: 'View another version',
+          label: docVersions[0].label,
           position: 'right',
           items: docVersions,
         },

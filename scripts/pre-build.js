@@ -20,21 +20,19 @@ const { updateVersionsInfo } = require('./tasks/update-versions-info');
 const { sha } = require('../package.json');
 
 const DOCS_FOLDER = path.join('docs', 'latest');
-// const BLOG_FOLDER = 'blog';
 
 /**
  *
- * @param {string} source
+ * @param {string} source The SHA to use to download
+ * @param {string} [targetVersion] The branch where the SHA is comming from.
+ * This value should be passed only when targetting the latest stable.
  */
-const start = async (source) => {
+const start = async (source, targetVersion) => {
   console.log(`Deleting previous content`);
   await del(DOCS_FOLDER);
 
   const localElectron =
     source && (source.includes('/') || source.includes('\\'));
-
-  // TODO: Uncomment once we have the blog up and running
-  // await del(BLOG_FOLDER);
 
   if (!localElectron) {
     console.log(`Detecting latest Electron version`);
@@ -65,15 +63,6 @@ const start = async (source) => {
     return process.exit(-1);
   }
 
-  // TODO: Uncoment once we have the blog enabled
-  // console.log(`Downloading posts`);
-  // await download({
-  //   target: 'master',
-  //   repository: 'electronjs.org',
-  //   destination: BLOG_FOLDER,
-  //   downloadMatch: 'data/blog',
-  // });
-
   console.log('Copying new content');
   await copyNewContent(DOCS_FOLDER);
 
@@ -87,7 +76,7 @@ const start = async (source) => {
   await createSidebar('docs', path.join(process.cwd(), 'sidebars.js'));
 
   console.log('Updating docs versions');
-  await updateVersionsInfo();
+  await updateVersionsInfo(targetVersion || 'Latest');
 };
 
-start(process.argv[2]);
+start(process.argv[2], process.argv[3]);
