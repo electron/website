@@ -8,5 +8,4 @@ build/
 content/
 i18n/
 !i18n/en/
-docs/
-!docs/latest
+docs/v**

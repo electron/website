@@ -21,7 +21,7 @@ const { createPR } = require('../git-commands.js');
 
 describe('git-commands', () => {
   it('creates a new PR if there are no PRs opened', async () => {
-    executeMock.execute.mockResolvedValue();
+    executeMock.execute.mockResolvedValue({ stdout: '' });
     octokitMock.pulls.list.mockResolvedValue({ data: [] });
     octokitMock.pulls.create.mockResolvedValue({ data: { id: 42 } });
 
@@ -38,7 +38,7 @@ describe('git-commands', () => {
   });
 
   it('force pushes to the branch if there is already a PR', async () => {
-    executeMock.execute.mockResolvedValue();
+    executeMock.execute.mockResolvedValue({ stdout: '' });
     octokitMock.pulls.list.mockResolvedValue({
       data: [{ head: { ref: 'mock-branch' } }],
     });

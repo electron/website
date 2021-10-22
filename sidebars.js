@@ -35,6 +35,7 @@ module.exports = {
         'latest/tutorial/updates',
         'latest/tutorial/web-embeds',
         'latest/tutorial/windows-arm',
+        'latest/tutorial/window-customization',
         'latest/tutorial/windows-taskbar',
         'latest/tutorial/tray',
       ],
@@ -124,13 +125,6 @@ module.exports = {
         'latest/development/source-code-directory-structure',
         'latest/development/testing',
         'latest/development/v8-development',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Tutorial',
-      items: [
-        'latest/tutorial/window-customization',
       ],
     },
   ],

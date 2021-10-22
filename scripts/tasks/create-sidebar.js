@@ -19,6 +19,8 @@ const IGNORE_LIST = [
   'api/synopsis',
 ];
 
+const categoryAliases = new Map([['Tutorial', 'How To']]);
+
 /**
  * @typedef Entry
  * @property {string} type
@@ -50,11 +52,13 @@ const capitalize = (title) => {
 const findCategoryForDocument = (categoryName, sidebars, defaultTopLevel) => {
   const topLevelIds = Object.keys(sidebars);
 
+  const categoryAlias = categoryAliases.get(categoryName) || categoryName;
+
   for (const topLevelId of topLevelIds) {
     const entries = sidebars[topLevelId];
 
     for (const category of entries) {
-      if (category.type === 'category' && category.label === categoryName) {
+      if (category.type === 'category' && category.label === categoryAlias) {
         return category;
       }
     }

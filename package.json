@@ -10,7 +10,7 @@
     "i18n:build": "node scripts/i18n-build.js",
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
-    "build": "yarn pre-build && docusaurus build --locale en",
+    "build": "docusaurus build --locale en",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
