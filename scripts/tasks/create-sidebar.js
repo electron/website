@@ -58,7 +58,10 @@ const findCategoryForDocument = (categoryName, sidebars, defaultTopLevel) => {
     const entries = sidebars[topLevelId];
 
     for (const category of entries) {
-      if (category.type === 'category' && category.label === categoryAlias) {
+      if (
+        category.type === 'category' &&
+        category.label.toLowerCase() === categoryAlias.toLowerCase()
+      ) {
         return category;
       }
     }
@@ -128,11 +131,15 @@ const createSidebar = async (root, destination) => {
     const segments = document.split('/');
     // Documents are always under /latest/ or similar that are not relevant for the category
     segments.shift();
+    // The last segment is the name of the file
+    segments.pop();
 
     console.log(`New document found: ${document}`);
     hasNewDocuments = true;
 
-    const categoryId = capitalize(segments[0].replace(/-/g, ' '));
+    const categoryId = segments
+      .map((segment) => capitalize(segment.replace(/-/g, ' ')))
+      .join(' ');
     const defaultTopLevel = segments[0] === 'api' ? 'api' : 'docs';
     const category = findCategoryForDocument(
       categoryId,
