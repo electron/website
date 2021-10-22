@@ -3,5 +3,10 @@
     "label": "Current",
     "href": "/docs/latest",
     "target": "_self"
+  },
+  {
+    "label": "main",
+    "href": "https://electronjs.org/docs/main",
+    "target": "_blank"
   }
 ]

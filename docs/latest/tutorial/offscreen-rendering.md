@@ -24,7 +24,7 @@ the dirty area is passed to the `paint` event to be more efficient.
 losses with no benefits.
 * When nothing is happening on a webpage, no frames are generated.
 * An offscreen window is always created as a
-[Frameless Window](latest/api/frameless-window.md).
+[Frameless Window](latest/tutorial/window-customization.md)..
 
 ### Rendering Modes
 

@@ -24,10 +24,11 @@ win.loadURL('https://github.com')
 win.loadFile('index.html')
 ```
 
-## Frameless window
+## Window customization
 
-To create a window without chrome, or a transparent window in arbitrary shape,
-you can use the [Frameless Window](latest/api/frameless-window.md) API.
+The `BrowserWindow` class exposes various ways to modify the look and behavior of
+your app's windows. For more details, see the [Window Customization](latest/tutorial/window-customization.md)
+tutorial.
 
 ## Showing the window gracefully
 
@@ -191,7 +192,7 @@ It creates a new `BrowserWindow` with native properties as set by the `options`.
     `true`.
   * `paintWhenInitiallyHidden` Boolean (optional) - Whether the renderer should be active when `show` is `false` and it has just been created.  In order for `document.visibilityState` to work correctly on first load with `show: false` you should set this to `false`.  Setting this to `false` will cause the `ready-to-show` event to not fire.  Default is `true`.
   * `frame` Boolean (optional) - Specify `false` to create a
-    [Frameless Window](latest/api/frameless-window.md). Default is `true`.
+    [frameless window](latest/tutorial/window-customization.md#create-frameless-windows). Default is `true`.
   * `parent` BrowserWindow (optional) - Specify parent window. Default is `null`.
   * `modal` Boolean (optional) - Whether this is a modal window. This only works when the
     window is a child window. Default is `false`.
@@ -213,7 +214,7 @@ It creates a new `BrowserWindow` with native properties as set by the `options`.
     transparent) and 1.0 (fully opaque). This is only implemented on Windows and macOS.
   * `darkTheme` Boolean (optional) - Forces using dark theme for the window, only works on
     some GTK+3 desktop environments. Default is `false`.
-  * `transparent` Boolean (optional) - Makes the window [transparent](latest/api/frameless-window.md#transparent-window).
+  * `transparent` Boolean (optional) - Makes the window [transparent](latest/tutorial/window-customization.md#create-transparent-windows).
     Default is `false`. On Windows, does not work unless the window is frameless.
   * `type` String (optional) - The type of window, default is normal window. See more about
     this below.

@@ -56,6 +56,7 @@ module.exports = {
         'latest/tutorial/fuses',
         'latest/tutorial/sandbox',
         'latest/tutorial/using-native-node-modules',
+        'latest/development/creating-api',
       ],
     },
     {
@@ -123,6 +124,13 @@ module.exports = {
         'latest/development/source-code-directory-structure',
         'latest/development/testing',
         'latest/development/v8-development',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Tutorial',
+      items: [
+        'latest/tutorial/window-customization',
       ],
     },
   ],
@@ -293,6 +301,6 @@ module.exports = {
         'latest/api/structures/web-request-filter',
         'latest/api/structures/web-source',
       ],
-    }
+    },
   ],
 };
