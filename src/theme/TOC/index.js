@@ -14,10 +14,8 @@
 import React from 'react';
 
 //@ts-expect-error
-import OriginalTOC, { TOCHeadings } from '@theme-original/TOC';
+import OriginalTOC from '@theme-original/TOC';
 import { cleanTOC } from '../../util/cleanHeadings';
-
-export { TOCHeadings };
 
 function TOC(props) {
   const cleanedTOC = cleanTOC(props.toc);
