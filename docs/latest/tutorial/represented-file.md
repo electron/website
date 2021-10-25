@@ -31,7 +31,7 @@ To set the represented file of window, you can use the
 const { app, BrowserWindow } = require('electron')
 const os = require('os');
 
-const createWindow = () => {
+function createWindow () {
   const win = new BrowserWindow({
     width: 800,
     height: 600
