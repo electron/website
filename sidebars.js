@@ -35,9 +35,9 @@ module.exports = {
         'latest/tutorial/updates',
         'latest/tutorial/web-embeds',
         'latest/tutorial/windows-arm',
-        'latest/tutorial/window-customization',
         'latest/tutorial/windows-taskbar',
         'latest/tutorial/tray',
+        'latest/tutorial/window-customization',
       ],
     },
     {
@@ -57,7 +57,6 @@ module.exports = {
         'latest/tutorial/fuses',
         'latest/tutorial/sandbox',
         'latest/tutorial/using-native-node-modules',
-        'latest/development/creating-api',
       ],
     },
     {
