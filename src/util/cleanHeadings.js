@@ -26,7 +26,7 @@ function cleanHeading(str) {
   // For events: `Event: 'close'` becomes `close`
   const eventsMatch = str.match(/Event: &#39;([a-z]*(?:-[a-z]+)*)&#39;/)
   // For properties / methods: `win.previewFile(path[, displayName]) macOS` becomes `previewFile`
-  const propsMethodsMatch = str.match(/^<code>[a-zA-Z]+\.((?:[a-zA-Z]+[\.]?)+)/)
+  const propsMethodsMatch = str.match(/^<code>[a-zA-Z]+\.((?:[a-zA-Z0-9]+[\.]?)+)/)
   if (eventsMatch) {
     return `<code>'${eventsMatch[1]}'</code>`
   } else if (propsMethodsMatch) {
