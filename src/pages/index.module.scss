@@ -94,3 +94,19 @@ $app-opacity: 0.1;
     }
   }
 }
+
+.subtron {
+  position: relative;
+  text-align: center;
+  border: 1px solid darken(hsl(190, 12%, 97%), 8%);
+  background-color: hsl(190, 12%, 97%);
+  padding: 12px;
+
+  h1, p {
+    margin: 0 0 0.3em 0;
+    color: black;
+    &:only-child {
+      margin-bottom: 0;
+    }
+  }
+}
