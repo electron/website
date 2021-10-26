@@ -75,14 +75,7 @@ or `undefined` if there is no WebFrameMain associated with the given IDs.
 
 ## Class: WebFrameMain
 
-Process: [Main](latest/glossary.md#main-process)<br />
-_This class is not exported from the `'electron'` module. It is only available as a return value of other methods in the Electron API._
-
-### Instance Events
-
-#### Event: 'dom-ready'
-
-Emitted when the document is loaded.
+Process: [Main](latest/glossary.md#main-process)
 
 ### Instance Methods
 

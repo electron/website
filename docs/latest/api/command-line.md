@@ -9,8 +9,7 @@ hide_title: false
 
 > Manipulate the command line arguments for your app that Chromium reads
 
-Process: [Main](latest/glossary.md#main-process)<br />
-_This class is not exported from the `'electron'` module. It is only available as a return value of other methods in the Electron API._
+Process: [Main](latest/glossary.md#main-process)
 
 The following example shows how to check if the `--disable-gpu` flag is set.
 
@@ -60,12 +59,3 @@ Returns `Boolean` - Whether the command-line switch is present.
 Returns `String` - The command-line switch value.
 
 **Note:** When the switch is not present or has no value, it returns empty string.
-
-#### `commandLine.removeSwitch(switch)`
-
-* `switch` String - A command-line switch
-
-Removes the specified switch from Chromium's command line.
-
-**Note:** This will not affect `process.argv`. The intended usage of this function is to
-control Chromium's behavior.

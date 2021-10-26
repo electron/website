@@ -24,11 +24,10 @@ win.loadURL('https://github.com')
 win.loadFile('index.html')
 ```
 
-## Window customization
+## Frameless window
 
-The `BrowserWindow` class exposes various ways to modify the look and behavior of
-your app's windows. For more details, see the [Window Customization](latest/tutorial/window-customization.md)
-tutorial.
+To create a window without chrome, or a transparent window in arbitrary shape,
+you can use the [Frameless Window](latest/api/frameless-window.md) API.
 
 ## Showing the window gracefully
 
@@ -192,7 +191,7 @@ It creates a new `BrowserWindow` with native properties as set by the `options`.
     `true`.
   * `paintWhenInitiallyHidden` Boolean (optional) - Whether the renderer should be active when `show` is `false` and it has just been created.  In order for `document.visibilityState` to work correctly on first load with `show: false` you should set this to `false`.  Setting this to `false` will cause the `ready-to-show` event to not fire.  Default is `true`.
   * `frame` Boolean (optional) - Specify `false` to create a
-    [frameless window](latest/tutorial/window-customization.md#create-frameless-windows). Default is `true`.
+    [Frameless Window](latest/api/frameless-window.md). Default is `true`.
   * `parent` BrowserWindow (optional) - Specify parent window. Default is `null`.
   * `modal` Boolean (optional) - Whether this is a modal window. This only works when the
     window is a child window. Default is `false`.
@@ -214,7 +213,7 @@ It creates a new `BrowserWindow` with native properties as set by the `options`.
     transparent) and 1.0 (fully opaque). This is only implemented on Windows and macOS.
   * `darkTheme` Boolean (optional) - Forces using dark theme for the window, only works on
     some GTK+3 desktop environments. Default is `false`.
-  * `transparent` Boolean (optional) - Makes the window [transparent](latest/tutorial/window-customization.md#create-transparent-windows).
+  * `transparent` Boolean (optional) - Makes the window [transparent](latest/api/frameless-window.md#transparent-window).
     Default is `false`. On Windows, does not work unless the window is frameless.
   * `type` String (optional) - The type of window, default is normal window. See more about
     this below.
@@ -300,7 +299,6 @@ It creates a new `BrowserWindow` with native properties as set by the `options`.
     * `allowRunningInsecureContent` Boolean (optional) - Allow an https page to run
       JavaScript, CSS or plugins from http URLs. Default is `false`.
     * `images` Boolean (optional) - Enables image support. Default is `true`.
-    * `imageAnimationPolicy` String (optional) - Specifies how to run image animations (E.g. GIFs).  Can be `animate`, `animateOnce` or `noAnimation`.  Default is `animate`.
     * `textAreasAreResizable` Boolean (optional) - Make TextArea elements resizable. Default
       is `true`.
     * `webgl` Boolean (optional) - Enables WebGL support. Default is `true`.
@@ -349,8 +347,9 @@ It creates a new `BrowserWindow` with native properties as set by the `options`.
       context in the dev tools by selecting the 'Electron Isolated Context'
       entry in the combo box at the top of the Console tab.
     * `nativeWindowOpen` Boolean (optional) - Whether to use native
-      `window.open()`. Defaults to `true`. Child windows will always have node
-      integration disabled unless `nodeIntegrationInSubFrames` is true.
+      `window.open()`. Defaults to `false`. Child windows will always have node
+      integration disabled unless `nodeIntegrationInSubFrames` is true. **Note:** The default
+      value will be changing to `true` in Electron 15.
     * `webviewTag` Boolean (optional) - Whether to enable the [`<webview>` tag](latest/api/webview-tag.md).
       Defaults to `false`. **Note:** The
       `preload` script configured for the `<webview>` will have node integration
@@ -398,9 +397,7 @@ It creates a new `BrowserWindow` with native properties as set by the `options`.
       contain the layout of the document—without requiring scrolling. Enabling
       this will cause the `preferred-size-changed` event to be emitted on the
       `WebContents` when the preferred size changes. Default is `false`.
-  * `titleBarOverlay` Object | Boolean (optional) -  When using a frameless window in conjuction with `win.setWindowButtonVisibility(true)` on macOS or using a `titleBarStyle` so that the standard window controls ("traffic lights" on macOS) are visible, this property enables the Window Controls Overlay [JavaScript APIs][overlay-javascript-apis] and [CSS Environment Variables][overlay-css-env-vars]. Specifying `true` will result in an overlay with default system colors. Default is `false`.
-    * `color` String (optional) _Windows_ - The CSS color of the Window Controls Overlay when enabled. Default is the system color.
-    * `symbolColor` String (optional) _Windows_ - The CSS color of the symbols on the Window Controls Overlay when enabled. Default is the system color.
+  * `titleBarOverlay` [OverlayOptions](latest/api/structures/overlay-options.md) | Boolean (optional) -  When using a frameless window in conjuction with `win.setWindowButtonVisibility(true)` on macOS or using a `titleBarStyle` so that the standard window controls ("traffic lights" on macOS) are visible, this property enables the Window Controls Overlay [JavaScript APIs][overlay-javascript-apis] and [CSS Environment Variables][overlay-css-env-vars]. Specifying `true` will result in an overlay with default system colors. Default is `false`.  On Windows, the [OverlayOptions](latest/api/structures/overlay-options.md) can be used instead of a boolean to specify colors for the overlay.
 
 When setting minimum or maximum window size with `minWidth`/`maxWidth`/
 `minHeight`/`maxHeight`, it only constrains the users. It won't prevent you from
@@ -533,19 +530,10 @@ Returns:
 
 * `event` Event
 * `newBounds` [Rectangle](latest/api/structures/rectangle.md) - Size the window is being resized to.
-* `details` Object
-  * `edge` (String) - The edge of the window being dragged for resizing. Can be `bottom`, `left`, `right`, `top-left`, `top-right`, `bottom-left` or `bottom-right`.
 
 Emitted before the window is resized. Calling `event.preventDefault()` will prevent the window from being resized.
 
 Note that this is only emitted when the window is being resized manually. Resizing the window with `setBounds`/`setSize` will not emit this event.
-
-The possible values and behaviors of the `edge` option are platform dependent. Possible values are:
-
-* On Windows, possible values are `bottom`, `top`, `left`, `right`, `top-left`, `top-right`, `bottom-left`, `bottom-right`.
-* On macOS, possible values are `bottom` and `right`.
-  * The value `bottom` is used to denote vertical resizing.
-  * The value `right` is used to denote horizontal resizing.
 
 #### Event: 'resize'
 
@@ -1704,7 +1692,7 @@ current window into a top-level window.
 
 #### `win.getParentWindow()`
 
-Returns `BrowserWindow` - The parent window.
+Returns `BrowserWindow | null` - The parent window or `null` if there is no parent.
 
 #### `win.getChildWindows()`
 

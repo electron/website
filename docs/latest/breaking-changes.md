@@ -26,7 +26,7 @@ This document uses the following convention to categorize breaking changes:
 Prior to Electron 15, `window.open` was by default shimmed to use
 `BrowserWindowProxy`. This meant that `window.open('about:blank')` did not work
 to open synchronously scriptable child windows, among other incompatibilities.
-`nativeWindowOpen` is no longer experimental, and is now the default.
+`nativeWindowOpen: true` is no longer experimental, and is now the default.
 
 See the documentation for [window.open in Electron](latest/api/window-open.md)
 for more details.
@@ -71,12 +71,12 @@ For more detailed information see [#18397](https://github.com/electron/electron/
 
 The optional parameter `frameName` will no longer set the title of the window. This now follows the specification described by the [native documentation](https://developer.mozilla.org/en-US/docs/Web/API/Window/open#parameters) under the corresponding parameter `windowName`.
 
-If you were using this parameter to set the title of a window, you can instead use [win.setTitle(title)](latest/api/browser-window.md#winsettitletitle).
+If you were using this parameter to set the title of a window, you can instead use [win.setTitle(title)](https://www.electronjs.org/docs/api/browser-window#winsettitletitle).
 
 ### Removed: `worldSafeExecuteJavaScript`
 
-In Electron 14, `worldSafeExecuteJavaScript` will be removed.  There is no alternative, please
-ensure your code works with this property enabled.  It has been enabled by default since Electron
+In Electron 14, `worldSafeExecuteJavaScript` will be removed. There is no alternative, please
+ensure your code works with this property enabled. It has been enabled by default since Electron
 12.
 
 You will be affected by this change if you use either `webFrame.executeJavaScript` or `webFrame.executeJavaScriptInIsolatedWorld`. You will need to ensure that values returned by either of those methods are supported by the [Context Bridge API](latest/api/context-bridge.md#parameter--error--return-type-support) as these methods use the same value passing semantics.
@@ -584,7 +584,7 @@ error.
 ### API Changed: `shell.openItem` is now `shell.openPath`
 
 The `shell.openItem` API has been replaced with an asynchronous `shell.openPath` API.
-You can see the original API proposal and reasoning [here](https://github.com/electron/governance/blob/main/wg-api/spec-documents/shell-openitem.md).
+You can see the original API proposal and reasoning [here](https://github.com/electron/governance/blob/master/wg-api/spec-documents/shell-openitem.md).
 
 ## Planned Breaking API Changes (8.0)
 

@@ -9,8 +9,7 @@ hide_title: false
 
 > Query and modify a session's cookies.
 
-Process: [Main](latest/glossary.md#main-process)<br />
-_This class is not exported from the `'electron'` module. It is only available as a return value of other methods in the Electron API._
+Process: [Main](latest/glossary.md#main-process)
 
 Instances of the `Cookies` class are accessed by using `cookies` property of
 a `Session`.
@@ -100,7 +99,7 @@ the response.
   * `domain` String (optional) - The domain of the cookie; this will be normalized with a preceding dot so that it's also valid for subdomains. Empty by default if omitted.
   * `path` String (optional) - The path of the cookie. Empty by default if omitted.
   * `secure` Boolean (optional) - Whether the cookie should be marked as Secure. Defaults to
-    false unless [Same Site=None](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite#samesitenone_requires_secure) attribute is used.
+    false.
   * `httpOnly` Boolean (optional) - Whether the cookie should be marked as HTTP only.
     Defaults to false.
   * `expirationDate` Double (optional) - The expiration date of the cookie as the number of

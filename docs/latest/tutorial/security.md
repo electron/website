@@ -30,7 +30,7 @@ your responsibility to ensure that the code is not malicious.
 ## Reporting Security Issues
 
 For information on how to properly disclose an Electron vulnerability,
-see [SECURITY.md](https://github.com/electron/electron/tree/main/SECURITY.md)
+see [SECURITY.md](https://github.com/electron/electron/tree/master/SECURITY.md)
 
 ## Chromium Security Issues and Upgrades
 

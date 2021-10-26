@@ -9,8 +9,7 @@ hide_title: false
 
 > Create a spacer between two items in the touch bar for native macOS applications
 
-Process: [Main](latest/glossary.md#main-process)<br />
-_This class is not exported from the `'electron'` module. It is only available as a return value of other methods in the Electron API._
+Process: [Main](latest/glossary.md#main-process)
 
 ### `new TouchBarSpacer(options)`
 

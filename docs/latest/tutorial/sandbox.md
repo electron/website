@@ -86,7 +86,7 @@ or [Parcel][parcel].
 Note that because the environment presented to the `preload` script is substantially
 more privileged than that of a sandboxed renderer, it is still possible to leak
 privileged APIs to untrusted code running in the renderer process unless
-[`contextIsolation`][context-isolation] is enabled.
+[`contextIsolation`][contextIsolation] is enabled.
 
 ## Configuring the sandbox
 

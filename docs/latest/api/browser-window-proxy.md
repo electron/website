@@ -9,8 +9,7 @@ hide_title: false
 
 > Manipulate the child browser window
 
-Process: [Renderer](latest/glossary.md#renderer-process)<br />
-_This class is not exported from the `'electron'` module. It is only available as a return value of other methods in the Electron API._
+Process: [Renderer](latest/glossary.md#renderer-process)
 
 The `BrowserWindowProxy` object is returned from `window.open` and provides
 limited functionality with the child window.

@@ -293,6 +293,7 @@ module.exports = {
         'latest/api/structures/user-default-types',
         'latest/api/structures/web-request-filter',
         'latest/api/structures/web-source',
+        'latest/api/structures/overlay-options',
       ],
     },
   ],

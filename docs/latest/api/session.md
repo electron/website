@@ -61,8 +61,7 @@ A `Session` object, the default session object of the app.
 
 > Get and set properties of a session.
 
-Process: [Main](latest/glossary.md#main-process)<br />
-_This class is not exported from the `'electron'` module. It is only available as a return value of other methods in the Electron API._
+Process: [Main](latest/glossary.md#main-process)
 
 You can create a `Session` object in the `session` module:
 
@@ -93,8 +92,8 @@ available from next tick of the process.
 const { session } = require('electron')
 session.defaultSession.on('will-download', (event, item, webContents) => {
   event.preventDefault()
-  require('got')(item.getURL()).then((response) => {
-    require('fs').writeFileSync('/somewhere', response.body)
+  require('request')(item.getURL(), (data) => {
+    require('fs').writeFileSync('/somewhere', data)
   })
 })
 ```
