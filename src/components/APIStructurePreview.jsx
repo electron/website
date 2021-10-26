@@ -1,8 +1,7 @@
 import clsx from 'clsx';
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import ReactMarkdown from 'react-markdown';
 import usePortal from 'react-useportal';
-import useIsBrowser from '@docusaurus/useIsBrowser';
 
 import styles from './APIStructurePreview.module.scss';
 
@@ -17,39 +16,55 @@ function APIStructurePreview(props) {
   // to even render the element. Ideally, we would have a solution that only creates
   // portals on demand and cleans them up.
   const { Portal } = usePortal();
+  const linkRef = useRef(null);
   const cardRef = useRef(null);
   const [show, setShow] = useState(false);
-  const [coords, setCoords] = useState({ pageX: 0, pageY: 0, clientX: 0, clientY: 0 });
-  const isBrowser = useIsBrowser();
+  const [position, setPosition] = useState(undefined);
 
-  // * Our Card will always have `position: absolute`.
-  // * It will by default have a `top` property equal to the `pageY`
-  //   of cursor position.
-  // * We offset this by the card height when we're on
-  //   the bottom half of the viewport to make the card more
-  //   visible!
+  // Do some math: calculate the tooltip position 💯
+  useEffect(() => {
+    if (show) {
+      // small negative offset helps retain focus so
+      // we don't hit the onMouseLeave event if we
+      // need to interact with the tooltip.
+      const VERTICAL_OFFSET = -2; 
+      const offset = {x: 0, y: 0};
 
-  let offset = 0;
-  if (isBrowser) {
-    const isBottomHalfOfPage = window.innerHeight / 2 < coords.clientY;
-    if (isBottomHalfOfPage && cardRef && cardRef.current) {
-      offset = cardRef.current.clientHeight;
+      const linkRect = linkRef.current.getBoundingClientRect();
+      const isBottomHalfOfPage = window.innerHeight / 2 < linkRect.y;
+      const isRightHalfOfPage = window.innerWidth / 2 < linkRect.x;
+
+      // display different offsets depending on
+      // link element position on viewport
+      if (isBottomHalfOfPage) {
+        offset.y = cardRef.current.clientHeight + VERTICAL_OFFSET;
+      } else {
+        offset.y = -linkRect.height - VERTICAL_OFFSET;
+      }
+      if (isRightHalfOfPage) {
+        offset.x = cardRef.current.clientWidth;
+      } else {
+        offset.x = 0;
+      }
+
+      setPosition({
+        top: linkRef.current.offsetTop - offset.y,
+        left: linkRef.current.offsetLeft - offset.x
+      });
     }
-  }
-
-  const position = {top: coords.pageY - offset, left: coords.pageX}
+  }, [show]);
 
   return (
     <a
       aria-describedby="structures-tooltip" // for accessibility purposes
       href={props.url}
-      onMouseMove={(ev) => setCoords({pageX: ev.pageX, pageY: ev.pageY, clientX: ev.clientX, clientY: ev.clientY})}
-      className={styles.structureLink}
-      onMouseEnter={() => { setShow(true)}}
-      onMouseLeave={() => { setShow(false)}}
+      ref={linkRef}
+      className={styles.link}
+      onMouseEnter={(ev) => { setShow(true); }}
+      onMouseLeave={() => { setShow(false);}}
     >
       {props.title}
-      {show &&
+      {!!show &&
         <Portal>
           <Card 
             innerRef={cardRef}
@@ -65,11 +80,13 @@ const Card = (props) => (
     ref={props.innerRef}
     id="structures-tooltip"
     role="tooltip"
-    className={clsx('alert', 'alert--info', 'shadow--md', styles.structurePreviewCard)}
+    className={clsx('alert', 'alert--info', 'shadow--md', styles.card)}
     style={props.position}
   >
     <div className="card__body">
-      <ReactMarkdown allowedElements={['h1', 'ul', 'li', 'code', 'a']}>{props.content}</ReactMarkdown>
+      <ReactMarkdown allowedElements={['h1', 'ul', 'li', 'code', 'a']}>
+        {props.content}
+      </ReactMarkdown>
     </div>
   </article>
 )

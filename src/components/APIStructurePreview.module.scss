@@ -1,4 +1,4 @@
-.structureLink {
+.link {
   display: inline-block;
   text-decoration-color: var(--electron-inline-code);
   text-decoration-line: underline;
@@ -27,9 +27,16 @@
 }
 
 // we set the top and left values dynamically with CSS
-.structurePreviewCard {
-  max-width: 800px;
-  overflow: visible;
+.card {
+  max-width: 600px;
+  max-height: 50vh;
+  overflow: scroll;
   padding: 16px;
   position: absolute;
+
+  // react-markdown stuff
+  h1 {
+    font-size: var(--ifm-h3-font-size);
+  }
+  font-size: 80%;
 }
