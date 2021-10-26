@@ -1,4 +1,5 @@
 /* stylelint-disable docusaurus/copyright-header */
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
 /**
  * Any CSS included here will be global. The classic template
  * bundles Infima by default. Infima is a CSS framework designed to
@@ -31,6 +32,7 @@
   --electron-color-white: white;
 
   // custom vars
+  --electron-font: 'Varela Round', sans-serif;
   --electron-heading: var(--electron-color-mid);
   --electron-inline-code: var(--electron-color-secondary-mid);
 }
@@ -71,6 +73,9 @@
   }
 
   &__brand {
+    font-family: var(--electron-font);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
     &:hover {
       color: var(--electron-color-white);
     }
