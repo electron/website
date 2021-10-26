@@ -98,13 +98,14 @@ $app-opacity: 0.1;
 .subtron {
   position: relative;
   text-align: center;
-  border: 1px solid darken(hsl(190, 12%, 97%), 8%);
-  background-color: hsl(190, 12%, 97%);
+  background-color: --background;
   padding: 12px;
+  border-bottom: 1px solid grey;
+  
 
-  h1, p {
+  h1 {
     margin: 0 0 0.3em 0;
-    color: black;
+    size: 24px;
     &:only-child {
       margin-bottom: 0;
     }
