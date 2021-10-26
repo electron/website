@@ -2,6 +2,7 @@
 const npm2yarn = require('@docusaurus/remark-plugin-npm2yarn');
 const fiddleEmbedder = require('./src/transformers/fiddle-embedder.js');
 const apiLabels = require('./src/transformers/api-labels.js');
+const apiStructurePreviews = require('./src/transformers/api-structure-previews.js');
 const docVersions = require('./versions-info.json');
 
 module.exports = {
@@ -180,8 +181,9 @@ module.exports = {
             return `https://github.com/electron/electron/edit/main/docs/${fixedPath}`;
           },
           remarkPlugins: [
-            fiddleEmbedder,
             apiLabels,
+            apiStructurePreviews,
+            fiddleEmbedder,
             [npm2yarn, { sync: true }],
           ],
         },
