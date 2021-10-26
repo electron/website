@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import React, {useRef, useState} from 'react';
 import ReactMarkdown from 'react-markdown';
 import usePortal from 'react-useportal';
+import useIsBrowser from '@docusaurus/useIsBrowser';
 
 import styles from './APIStructurePreview.module.scss';
 
@@ -19,6 +20,7 @@ function APIStructurePreview(props) {
   const cardRef = useRef(null);
   const [show, setShow] = useState(false);
   const [coords, setCoords] = useState({ pageX: 0, pageY: 0, clientX: 0, clientY: 0 });
+  const isBrowser = useIsBrowser();
 
   // * Our Card will always have `position: absolute`.
   // * It will by default have a `top` property equal to the `pageY`
@@ -28,9 +30,11 @@ function APIStructurePreview(props) {
   //   visible!
 
   let offset = 0;
-  const isBottomHalfOfPage = window.innerHeight / 2 < coords.clientY;
-  if (isBottomHalfOfPage && cardRef && cardRef.current) {
-    offset = cardRef.current.clientHeight;
+  if (isBrowser) {
+    const isBottomHalfOfPage = window.innerHeight / 2 < coords.clientY;
+    if (isBottomHalfOfPage && cardRef && cardRef.current) {
+      offset = cardRef.current.clientHeight;
+    }
   }
 
   const position = {top: coords.pageY - offset, left: coords.pageX}
