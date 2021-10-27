@@ -12,7 +12,7 @@ function Community() {
         <h1>Electron Community</h1>
         <p>Resources for connecting with people working on Electron.</p>
       </div>
-      <div className={clsx('community', styles.community)}>
+      <div className={clsx('community_section', styles.community_section)}>
         <p>
           🐎 <Link to="/docs/latest/tutorial/introduction">Get started</Link>{' '}
           building an app by reading the{' '}
@@ -77,6 +77,23 @@ function Community() {
         <p>
           ❓ For all other inquiries, email{' '}
           <a href="mailto:info@electronjs.org">info@electronjs.org</a>.
+        </p>
+      </div>
+      <div className={clsx('community_section', styles.community_section)}>
+        <h2>Language Communities</h2>
+        <p>
+          The Electron community spans the globe, and English is not everyone's
+          first language. Find <Link to="/languages">documentation in your language</Link>, or join one of
+          the language communities below:
+          <ul>
+              <li><a href="https://telegram.me/electron_ru">electron-ru</a> <i>(Russian)</i></li>
+              <li><a href="https://electron-br.slack.com/">electron-br</a> <i>(Brazillian Portugese)</i></li>
+              <li><a href="https://electron-kr.github.io/electron-kr">electron-kr</a> <i>(Korean)</i></li>
+              <li><a href="https://electron-jp.slack.com/">electron-jp</a> <i>(Japanese)</i></li>
+              <li><a href="https://electron-tr.herokuapp.com/">electron-tr</a> <i>(Turkish)</i></li>
+              <li><a href="https://electron-id.slack.com/">electron-id</a> <i>(Indonesia)</i></li>
+              <li><a href="https://electronpl.github.io/">electron-pl</a> <i>(Poland)</i></li>
+          </ul>
         </p>
       </div>
     </Layout>
