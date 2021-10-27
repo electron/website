@@ -1,4 +1,4 @@
-name: 'Update docs'
+name: 'Update docs branch'
 
 on:
   repository_dispatch:
@@ -7,19 +7,35 @@ on:
 jobs:
   update-docs:
     runs-on: ubuntu-latest
+    outputs:
+      branch: ${{ steps.branch.outputs.branch }}
     steps:
       - uses: actions/checkout@v2
+      - name: 'Switch branches'
+        # We switch to the version branch or create a new one if needed
+        run: git fetch origin && git checkout -t origin/v${{ github.event.client_payload.branch}} || git checkout -b v${{ github.event.client_payload.branch}}
       - uses: actions/setup-node@v2
         with:
           node-version: '14'
-      - name: 'Switch branches'
-# We switch to the version branch or create a new one if needed
-        run: git fetch origin && git checkout -t origin/v${{ github.event.client_payload.branch}} || git checkout -b v${{ github.event.client_payload.branch}}
       - name: Install dependencies
-        run: 'yarn'
+        uses: bahmutov/npm-install@HEAD
       - name: 'Prebuild'
         run: 'yarn pre-build ${{ github.event.client_payload.sha }}'
       - name: 'Push changes or create PR'
         run: 'yarn process-docs-changes'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: branch
+        run: echo "::set-output name=branch::`git branch --show-current'
+  # GitHub will not kick the "push-XXX" workflow so we have to publish from here
+  build-and-deploy:
+    needs: [update-docs]
+    # If we are in a version branch, it means we have pushed the changed directly and should deploy
+    if: ${{ needs.branch.outputs.branch =~ ^v[0-9]+-x-y$ }}
+    uses: electron/electronjs.org-new/.github/workflows/build-and-deploy.yml@main
+    with:
+      locale: en
+      branch: version
+    secrets:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      SAS: ${{ secrets.SAS }}

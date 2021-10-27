@@ -1,0 +1,92 @@
+# Reusable workflow for building and deploying the website
+# https://docs.github.com/en/actions/learn-github-actions/reusing-workflows
+name: Build And Deploy
+
+on:
+  workflow_call:
+    inputs:
+      locale:
+        description: 'Identifier for the locale to build'
+        default: ''
+        required: false
+        type: string
+      branch:
+        description: 'If we are in "main" or a "version" docs branch'
+        required: true
+        type: string
+    secrets:
+      GITHUB_TOKEN:
+        required: true
+      SAS:
+        required: true
+
+jobs:
+  build_and_deploy:
+    name: Build and deploy the website
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set GIT_BRANCH
+        run: |
+          echo "GIT_BRANCH=${GITHUB_REF##*/}" >> $GITHUB_ENV
+      - name: Print branch if version
+        if: ${{ inputs.branch == 'version' }}
+        run: echo ${{ inputs.branch }}
+      - name: Print branch if main
+        if: ${{ inputs.branch == 'main' }}
+        run: echo ${{ inputs.branch }}
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14
+      - name: Install dependencies
+        uses: bahmutov/npm-install@HEAD
+      - name: Test
+        run: yarn test
+        env:
+          CI: true
+      - name: Download cache
+        uses: nick-invision/retry@v2
+        with:
+          timeout_seconds: 60
+          max_attempts: 3
+          retry_on: error
+          command: ./scripts/bin/azcopy copy "https://electronjsorg.blob.core.windows.net/%24web/*?$SAS" "./build" --recursive
+        env:
+          SAS: ${{ secrets.SAS }}
+      - name: Rewrite docs paths if version branch
+        if: ${{ inputs.branch == 'version' }}
+        run: node scripts/build-as-doc-version.js ${GIT_BRANCH}
+      - name: Build site for locale
+        run: yarn i18n:build ${{ inputs.locale }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Publish "/assets" to Storage if version branch
+        if: ${{ inputs.branch == 'version' }}
+        uses: nick-invision/retry@v2
+        with:
+          timeout_seconds: 60
+          max_attempts: 3
+          retry_on: error
+          command: ./scripts/bin/azcopy copy "./build/assets/*" "https://electronjsorg.blob.core.windows.net/%24web/assets?$SAS" --recursive
+        env:
+          SAS: ${{ secrets.SAS }}
+      - name: Publish "/docs" to Storage if version branch
+        if: ${{ inputs.branch == 'version' }}
+        uses: nick-invision/retry@v2
+        with:
+          timeout_seconds: 60
+          max_attempts: 3
+          retry_on: error
+          command: ./scripts/bin/azcopy copy "./build/docs/*" "https://electronjsorg.blob.core.windows.net/%24web/docs?$SAS" --recursive
+        env:
+          SAS: ${{ secrets.SAS }}
+      - name: Publish everything to Storage if main branch
+        if: ${{ inputs.branch == 'main' }}
+        uses: nick-invision/retry@v2
+        with:
+          timeout_seconds: 60
+          max_attempts: 3
+          retry_on: error
+          command: ./scripts/bin/azcopy copy "./build/*" "https://electronjsorg.blob.core.windows.net/%24web/?$SAS" --recursive
+        env:
+          SAS: ${{ secrets.SAS }}
