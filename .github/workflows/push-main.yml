@@ -1,4 +1,4 @@
-name: Push main
+name: Push and publish main
 
 on:
   push:
@@ -6,8 +6,9 @@ on:
       - main
 
 jobs:
-  tests:
-    name: Test and Deploy
+# Make a reusable workflow
+  crowdin-upload:
+    name: Upload to Crowdin
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -17,26 +18,16 @@ jobs:
           node-version: 14
       - name: Install dependencies
         uses: bahmutov/npm-install@HEAD
-
       - name: Upload sources to Crowdin
         run: 'yarn i18n:upload'
         env:
           CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
 
-      - name: Test
-        run: yarn test
-        env:
-          CI: true
-
-      - name: Download cache
-        run: ./scripts/bin/azcopy copy "https://electronjsorg.blob.core.windows.net/%24web/*?$SAS" "./build" --recursive
-        env:
-          SAS: ${{ secrets.SAS }}
-
-      - name: Build EN
-        run: yarn i18n:build en
-
-      - name: Deploy
-        run: ./scripts/bin/azcopy copy "./build/*" "https://electronjsorg.blob.core.windows.net/%24web?$SAS" --recursive
-        env:
-          SAS: ${{ secrets.SAS }}
+  build-and-deploy:
+    uses: electron/electronjs.org-new/.github/workflows/build-and-deploy.yml@main
+    with:
+      locale: en
+      branch: main
+    secrets:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      SAS: ${{ secrets.SAS }}

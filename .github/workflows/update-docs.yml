@@ -7,16 +7,32 @@ on:
 jobs:
   update-docs:
     runs-on: ubuntu-latest
+    outputs:
+      branch: ${{ steps.branch.outputs.branch }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
           node-version: '14'
       - name: Install dependencies
-        run: 'yarn'
-      - name: 'Download docs'
+        uses: bahmutov/npm-install@HEAD
+      - name: 'Prebuild'
         run: 'yarn pre-build ${{ github.event.client_payload.sha }} ${{ github.event.client_payload.branch}}'
       - name: 'Push changes or create PR'
         run: 'yarn process-docs-changes'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: branch
+        run: echo "::set-output name=branch::`git branch --show-current'
+  # GitHub will not kick the "push-XXX" workflow so we have to publish from here
+  build-and-deploy:
+    needs: [update-docs]
+    # If we are in the "main" branch, it means we have pushed the changed directly and should deploy
+    if: ${{ needs.branch.outputs.branch == 'main' }}
+    uses: electron/electronjs.org-new/.github/workflows/build-and-deploy.yml@main
+    with:
+      locale: en
+      branch: main
+    secrets:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      SAS: ${{ secrets.SAS }}
