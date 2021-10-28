@@ -69,7 +69,9 @@
     "json5": "^2.2.0",
     "latest-version": "^5.1.0",
     "make-dir": "^3.1.0",
+    "mdast-util-to-string": "^2.0.0",
     "prettier": "^2.2.1",
+    "remark": "^12.0.0",
     "tar-stream": "^2.2.0",
     "unist-util-visit-parents": "^3.1.1"
   },

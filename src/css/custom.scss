@@ -17,6 +17,7 @@
   --ifm-color-primary-light: #00aeff;
   --ifm-color-primary-lighter: #4cc8ff;
   --ifm-color-primary-lightest: #97e1ff;
+  --ifm-color-secondary-darkest: #808080;
 
   // modified base vars
   --ifm-code-font-size: 95%;
@@ -139,5 +140,15 @@
   &__link--sublist {
     font-weight: var(--ifm-font-weight-semi-bold);
     font-size: 1.1rem;
+  }
+}
+
+.button {
+  &--outline {
+    color: var(--ifm-color-primary);
+
+    &:hover {
+      color: var(--ifm-color-primary-dark);
+    }
   }
 }
