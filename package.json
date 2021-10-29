@@ -21,6 +21,7 @@
     "lint": "prettier -c ./scripts/**/*.js",
     "test": "yarn lint && jest",
     "pre-build": "node ./scripts/pre-build.js",
+    "governance": "node ./scripts/governance.js",
     "process-docs-changes": "node ./scripts/process-docs-changes.js",
     "update-pinned-version": "node ./scripts/update-pinned-version.js"
   },

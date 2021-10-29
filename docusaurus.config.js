@@ -166,7 +166,7 @@ module.exports = {
       trackingID: 'UA-160365006-1',
     },
   },
-  plugins: ['./plugins/governance', 'docusaurus-plugin-sass'],
+  plugins: ['docusaurus-plugin-sass'],
   presets: [
     [
       '@docusaurus/preset-classic',

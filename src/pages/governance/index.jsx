@@ -2,9 +2,14 @@ import Layout from '@theme/Layout';
 import clsx from 'clsx';
 import React, { useState } from 'react';
 
-import styles from './_governance.module.scss';
+import styles from './governance.module.scss';
 
-export default function GovernancePage({governance}) {
+/**
+ * See "governance" script for _data.json generation
+ */
+import data from './_data.json';
+
+export default function GovernancePage() {
   return (
     <Layout title="Governance">
       <div className="container margin-vert--xl">
@@ -17,7 +22,7 @@ export default function GovernancePage({governance}) {
           </p>
         </header>
         <div className="row">
-          {governance.map((group) => 
+          {data.map((group) => 
           <div key={group.name} className={clsx('col', 'col--4', styles.cardWrapper)}>
             <GroupCard group={group}/>
           </div>)}
