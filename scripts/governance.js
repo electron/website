@@ -16,21 +16,22 @@ const NAME = 'electron-bot';
  * output array to `_data.json`.
  */
 async function main() {
+  console.log('Fetching governance data...')
   const data = JSON.stringify(await fetchGovernanceData());
-  fs.writeFileSync(
-    path.join(__dirname, '..', 'src', 'pages', 'governance', '_data.json'),
-    data
-  );
+  const targetPath = path.join(__dirname, '..', 'src', 'pages', 'governance', '_data.json');
+  console.log('Writing to disk...');
+  fs.writeFileSync(targetPath, data);
+  console.log('✅');
 
   const output = await getChanges();
 
-  if (output === '') {
-    console.log('Nothing updated, skipping');
-    return;
-  } else {
+  if (output.includes('src/pages/governance/_data.json')) {
     console.log('Changes in governance members detected, pushing...');
     const branchName = await getCurrentBranchName();
     await pushChanges(branchName, EMAIL, NAME, COMMIT_MESSAGE);
+  } else {
+    console.log('Nothing updated, skipping');
+    return;
   }
 }
 
