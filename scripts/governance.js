@@ -1,6 +1,7 @@
 //@ts-check
 const got = require('got');
 const remark = require('remark');
+const gfm = require('remark-gfm');
 const toString = require('mdast-util-to-string');
 const fs = require('fs-extra');
 const path = require('path');
@@ -65,8 +66,10 @@ async function fetchGovernanceData() {
  */
 async function getWGInfo(workingGroup) {
   const readme = await getGitHubREADME(workingGroup);
-  const rootNode = remark().parse(readme);
-
+  const rootNode = remark()
+    //@ts-expect-error: import
+    .use(gfm)
+    .parse(readme);
 
   if (!Array.isArray(rootNode.children)) {
     throw new Error('Incorrect README file?');
