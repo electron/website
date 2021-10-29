@@ -14,8 +14,8 @@ jobs:
       with:
         node-version: '14'
     - name: Install dependencies
-        run: 'yarn'
+      run: 'yarn'
     - name: Update governance data and push
-        run: 'yarn governance'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: 'yarn governance'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
