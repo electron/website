@@ -28,6 +28,7 @@ async function main() {
     console.log('Nothing updated, skipping');
     return;
   } else {
+    console.log('Changes in governance members detected, pushing...');
     const branchName = await getCurrentBranchName();
     await pushChanges(branchName, EMAIL, NAME, COMMIT_MESSAGE);
   }
