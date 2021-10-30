@@ -41,6 +41,7 @@ async function main() {
  * @typedef {Object} WorkingGroup
  * @property {string} name - Name of the WG.
  * @property {string} description - Short description of the WG's responsibilities.
+ * @property {string} link - Link to WG README on GitHub.
  * @property {string} chair - GitHub handle for the WG chair.
  * @property {string[]} members - List of members-at-large of the WG.
  */
@@ -65,6 +66,7 @@ async function fetchGovernanceData() {
  * @returns {Promise<WorkingGroup>}
  */
 async function getWGInfo(workingGroup) {
+  const link = `https://github.com/electron/governance/blob/main/wg-${workingGroup}/README.md`
   const readme = await getGitHubREADME(workingGroup);
   const rootNode = remark()
     //@ts-expect-error: import
@@ -100,7 +102,7 @@ async function getWGInfo(workingGroup) {
     return acc;
   }, {chair: '', members: []});
 
-  return { name, description, ...wgMembers };
+  return { name, link, description, ...wgMembers };
 }
 
 /**

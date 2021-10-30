@@ -55,7 +55,7 @@ const GroupCard = ({ group }) => {
         <p className={styles.cardSubtitle}>Members</p>
         <div className={clsx(styles.cardList, hasExpand && (expanded ? styles.expanded : styles.unexpanded))}>
           <Member user={group.chair} isChair/>
-          { group.members.map(user => (<Member user={user}/>)) }
+          { group.members.map(user => (<Member key={user} user={user}/>)) }
         </div>
       </div>
       {/** Only show this button if needed. Apply visibility:hidden so it takes up the same height. */}
@@ -66,7 +66,7 @@ const GroupCard = ({ group }) => {
         {expanded ? '▲' : '▼'}
       </button>
       <div className="card__footer">
-        <button className="button button--outline button--block" type="button">GitHub</button>
+        <a href={group.link} className="button button--outline button--block">GitHub</a>
       </div>
     </div>
   )
