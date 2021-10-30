@@ -145,8 +145,8 @@
 
 .button {
   &--outline {
+    border: 1px solid;
     color: var(--ifm-color-primary);
-
     &:hover {
       color: var(--ifm-color-primary-dark);
     }
