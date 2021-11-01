@@ -29,7 +29,6 @@
   --electron-color-dark: #2b2e3b;
   --electron-color-secondary-light: #ff6e6e;
   --electron-color-secondary-mid: #e3112d;
-  --electron-color-white: white;
 
   // custom vars
   --electron-heading: var(--electron-color-mid);
@@ -73,13 +72,13 @@
 
   &__brand {
     &:hover {
-      color: var(--electron-color-white);
+      color: var(--ifm-color-white);
     }
   }
 
   &__item {
     &:hover {
-      color: var(--electron-color-white);
+      color: var(--ifm-color-white);
     }
     // use margin instead of padding so that the border-bottom
     // on active looks better
