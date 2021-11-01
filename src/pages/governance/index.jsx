@@ -12,7 +12,7 @@ import data from './_data.json';
 export default function GovernancePage() {
   return (
     <Layout title="Governance">
-      <div className="container margin-vert--xl">
+      <main className="container margin-vert--xl">
         <header className={styles.header}>
           <h1>Electron Governance</h1>
           <p>
@@ -27,7 +27,7 @@ export default function GovernancePage() {
             <GroupCard group={group}/>
           </div>)}
         </div>
-      </div>
+      </main>
     </Layout>
   );
 }
