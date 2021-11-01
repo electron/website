@@ -117,10 +117,14 @@ async function getGitHubREADME(workingGroup) {
     headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`
   }
   // @ts-ignore: export error?
-  const res = await got(`https://api.github.com/repos/electron/governance/contents/wg-${workingGroup}/README.md`,
+  const data = await got(
+    `https://api.github.com/repos/electron/governance/contents/wg-${workingGroup}/README.md`,
     { headers }
-  );
-  const { content } = JSON.parse(res.body);
+  ).json();
+  // the `content` property is a base64-encoded string
+  // containing the file contents.
+  const { content } = data;
+  // use a buffer to extract the README string.
   return Buffer.from(content, 'base64').toString();
 }
 
