@@ -3,6 +3,12 @@
   letter-spacing: 0.01em;
 }
 
+@mixin dark-mode-invert {
+  [data-theme='dark'] & {
+    filter: invert(1);
+  }
+}
+
 .header {
   margin: 0 auto;
   max-width: 40rem;
@@ -35,6 +41,20 @@
   margin-bottom: 0.1rem;
 }
 
+.cardLink {
+  display: inline-block;
+  vertical-align: middle;
+  opacity: 1;
+  &:hover {
+    opacity: 0.5;
+  }
+  img {
+    height: 1em;
+    margin-left: 0.2em;
+    @include dark-mode-invert;
+  }
+}
+
 .cardIcon {
   text-align: center;
   color: var(--ifm-color-white);
@@ -46,12 +66,12 @@
 .cardDescription {
   display: block;
   font-size: 0.9em;
-  min-height: 5em;
+  min-height: 8em;
   @include description-text;
 }
 
 .cardList {
-  $num-items: 5;
+  $num-items: 4;
   $height-item: 50px;
   $height-very-very-big: 9999px;
 
@@ -94,9 +114,10 @@
   font-size: 1.2em;
   color: var(--ifm-color-primary);
   &:hover {
-    color: var(--ifm-color-primary-dark);;
+    color: var(--ifm-color-primary-dark);
   }
-  &.hidden {
-    visibility: hidden;
-  }
+}
+
+.hidden {
+  visibility: hidden;
 }

@@ -1,4 +1,5 @@
 import Layout from '@theme/Layout';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 import clsx from 'clsx';
 import React, { useState } from 'react';
 
@@ -44,9 +45,16 @@ const GroupCard = ({ group }) => {
         <div className="avatar">
           <div
             className={clsx("avatar__photo", "avatar__photo--sm", styles.cardIcon)}
-          >{group.name.slice(0, 1)}</div>
+          >
+            {group.name.slice(0, 1)}
+          </div>
           <div className="avatar__intro">
-            <div className={clsx('avatar__name', styles.cardTitle)}>{group.name}</div>
+            <div className={clsx('avatar__name', styles.cardTitle)}>
+              {group.name}
+              <a className={styles.cardLink} href={group.link}>
+                <img src={useBaseUrl('assets/img/icon-external.svg')} alt={`External link to ${group.name} README`}/>
+              </a>
+            </div>
             <p className={clsx('avatar_description', styles.cardDescription)}>{group.description}</p>
           </div>
         </div>
@@ -58,15 +66,13 @@ const GroupCard = ({ group }) => {
           { group.members.map(user => (<Member key={user} user={user}/>)) }
         </div>
       </div>
-      {/** Only show this button if needed. Apply visibility:hidden so it takes up the same height. */}
-      <button className={clsx("button", styles.buttonSubtle, !hasExpand && styles.hidden)}
-        type="button"
-        onClick={() => setExpanded(!expanded)}
-      >
-        {expanded ? '▲' : '▼'}
-      </button>
       <div className="card__footer">
-        <a href={group.link} className="button button--outline button--block">GitHub</a>
+        <button
+          className={clsx("button button--outline button--block", !hasExpand && styles.hidden)}
+          onClick={() => setExpanded(!expanded)}
+        >
+          See {expanded ? 'less' : 'more'}
+        </button>
       </div>
     </div>
   )
