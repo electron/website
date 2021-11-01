@@ -21,7 +21,7 @@ async function main() {
   const data = JSON.stringify(await fetchGovernanceData());
   const targetPath = path.join(__dirname, '..', 'src', 'pages', 'governance', '_data.json');
   console.log('Writing to disk...');
-  fs.writeFileSync(targetPath, data);
+  await fs.writeFile(targetPath, data);
   console.log('✅');
 
   const output = await getChanges();
