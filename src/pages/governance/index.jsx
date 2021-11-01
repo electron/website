@@ -84,7 +84,7 @@ const Member = ({ user, isChair }) => {
       <img
         className="avatar__photo avatar__photo--sm"
         src={`https://github.com/${user}.png`}
-      />
+     alt="" />
       <div className="avatar__intro" style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
         <a href={`https://github.com/${user}`} className={clsx('avatar__name', styles.memberName)}>@{user}</a>
         {isChair && <span className="badge badge--secondary" style={{textTransform: 'uppercase'}}>Chair</span>}
