@@ -2,6 +2,7 @@ import Layout from '@theme/Layout';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import clsx from 'clsx';
 import React, { useState } from 'react';
+import Translate from '@docusaurus/Translate';
 
 import styles from './governance.module.scss';
 
@@ -17,13 +18,13 @@ export default function GovernancePage() {
         <header className={styles.header}>
           <h1>Electron Governance</h1>
           <p>
-            The Electron governance system is comprised of <strong>Working Groups</strong> that
+            <Translate id="governance.subheading" description="The subheading of the governance page">The Electron governance system is comprised of Working Groups that
             oversee different aspects of the Electron ecosystem, and an Administrative working group
-            that functions to resolve conflicts between them.
+            that functions to resolve conflicts between them.</Translate>
           </p>
         </header>
         <div className="row">
-          {data.map((group) => 
+          {data.map((group) =>
           <div key={group.name} className={clsx('col', 'col--4', styles.cardWrapper)}>
             <GroupCard group={group}/>
           </div>)}
@@ -60,7 +61,7 @@ const GroupCard = ({ group }) => {
         </div>
       </div>
       <div className="card__body">
-        <p className={styles.cardSubtitle}>Members</p>
+        <p className={styles.cardSubtitle}><Translate id="governance.members" description="The people that are part of a working group">Members</Translate></p>
         <div className={clsx(styles.cardList, hasExpand && (expanded ? styles.expanded : styles.unexpanded))}>
           <Member user={group.chair} isChair/>
           { group.members.map(user => (<Member key={user} user={user}/>)) }
@@ -71,7 +72,7 @@ const GroupCard = ({ group }) => {
           className={clsx("button button--outline button--block", !hasExpand && styles.hidden)}
           onClick={() => setExpanded(!expanded)}
         >
-          See {expanded ? 'less' : 'more'}
+          {expanded ? <Translate id="governance.less" description="Label used to collapse the list of members of a working group">See less</Translate> : <Translate id="governance.more" description="Label used to expand the list of members of a working group">See more</Translate>}
         </button>
       </div>
     </div>
@@ -87,7 +88,7 @@ const Member = ({ user, isChair }) => {
      alt="" />
       <div className="avatar__intro" style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
         <a href={`https://github.com/${user}`} className={clsx('avatar__name', styles.memberName)}>@{user}</a>
-        {isChair && <span className="badge badge--secondary" style={{textTransform: 'uppercase'}}>Chair</span>}
+        {isChair && <span className="badge badge--secondary" style={{textTransform: 'uppercase'}}><Translate id="governance.chair" description="The current chair of a working group">Chair</Translate></span>}
       </div>
     </div>
   )
