@@ -27,6 +27,7 @@
   max-width: 30rem;
   padding: 1rem;
   margin: 0 auto;
+  height: 100%;
 }
 
 .cardTitle {
@@ -66,7 +67,7 @@
 .cardDescription {
   display: block;
   font-size: 0.9em;
-  min-height: 8em;
+  min-height: 2em;
   @include description-text;
 }
 
