@@ -26,7 +26,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: branch
-        run: echo "::set-output name=branch::`git branch --show-current'
+        run: echo "::set-output name=branch::`git branch --show-current`"
   # GitHub will not kick the "push-XXX" workflow so we have to publish from here
   build-and-deploy:
     needs: [update-docs]
