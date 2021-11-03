@@ -21,6 +21,7 @@
     "lint": "prettier -c ./scripts/**/*.js",
     "test": "yarn lint && jest",
     "pre-build": "node ./scripts/pre-build.js",
+    "governance": "node ./scripts/governance.js",
     "process-docs-changes": "node ./scripts/process-docs-changes.js",
     "update-pinned-version": "node ./scripts/update-pinned-version.js"
   },
@@ -69,7 +70,10 @@
     "json5": "^2.2.0",
     "latest-version": "^5.1.0",
     "make-dir": "^3.1.0",
+    "mdast-util-to-string": "^2.0.0",
     "prettier": "^2.2.1",
+    "remark": "^13.0.0",
+    "remark-gfm": "^1.0.0",
     "tar-stream": "^2.2.0",
     "unist-util-visit-parents": "^3.1.1"
   },

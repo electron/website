@@ -28,7 +28,6 @@
   --electron-color-dark: #2b2e3b;
   --electron-color-secondary-light: #ff6e6e;
   --electron-color-secondary-mid: #e3112d;
-  --electron-color-white: white;
 
   // custom vars
   --electron-heading: var(--electron-color-mid);
@@ -72,13 +71,13 @@
 
   &__brand {
     &:hover {
-      color: var(--electron-color-white);
+      color: var(--ifm-color-white);
     }
   }
 
   &__item {
     &:hover {
-      color: var(--electron-color-white);
+      color: var(--ifm-color-white);
     }
     // use margin instead of padding so that the border-bottom
     // on active looks better
@@ -139,5 +138,15 @@
   &__link--sublist {
     font-weight: var(--ifm-font-weight-semi-bold);
     font-size: 1.1rem;
+  }
+}
+
+.button {
+  &--outline {
+    border: 1px solid;
+    color: var(--ifm-color-primary);
+    &:hover {
+      color: var(--ifm-color-primary-dark);
+    }
   }
 }

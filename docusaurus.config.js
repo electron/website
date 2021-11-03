@@ -127,6 +127,7 @@ module.exports = {
         {
           title: 'Community',
           items: [
+            { label: 'Governance', to: '/governance' },
             {
               label: 'Discord',
               href: 'https://discordapp.com/invite/electron',
