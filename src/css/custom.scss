@@ -127,6 +127,14 @@
     padding: 0 4px;
     color: var(--electron-inline-code);
   }
+
+  // don't apply --electron-inline-code colors to admonitions
+  // as well
+  .admonition {
+    code {
+      color: inherit;
+    }
+  }
 }
 
 .menu {
