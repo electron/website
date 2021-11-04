@@ -14,8 +14,8 @@ This week we chatted with [Felix Rieseberg](https://felixrieseberg.com/), deskto
 
 ---
 
-<div class="pt-5">
-  <img src="https://cloud.githubusercontent.com/assets/2289/22913898/7396b0de-f222-11e6-8e5d-147a7ced37a9.png" alt="Ghost Desktop Screenshot"/> 
+<div className="pt-5">
+  <img src="https://cloud.githubusercontent.com/assets/2289/22913898/7396b0de-f222-11e6-8e5d-147a7ced37a9.png" alt="Ghost Desktop Screenshot"/>
 </div>
 
 ## What is Ghost?

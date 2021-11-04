@@ -33,9 +33,9 @@ than 1.4.0 are not affected.
 Below is a table of each Electron 1.4 version and the date when
 requests to sites using these affected certificates will start to fail.
 
-<table class="table table-ruled table-full-width">
+<table className="table table-ruled table-full-width">
     <thead>
-        <tr class="text-left">
+        <tr className="text-left">
             <th>Electron Version</th>
             <th>Impact Date</th>
         </tr>
