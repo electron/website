@@ -24,17 +24,20 @@ const createVersionEntry = (options) => {
  */
 const updateVersionsInfo = async (latest) => {
   const current = await getCurrentBranchName();
-  const versions = [createVersionEntry({ label: latest, version: 'latest' })];
+  const versions = [];
 
   if (!/v\d+-x-y/.test(current)) {
     const branches = await getRemoteBranches();
     const tracked = branches
       .map((branch) => branch.split('/').pop())
+      .reverse()
       .filter((branch) => /v\d+-x-y/.test(branch))
       .map((version) => createVersionEntry({ version }));
 
     versions.push(...tracked);
   }
+
+  versions.unshift(createVersionEntry({ label: latest, version: 'latest' }));
 
   await fs.writeFile(VERSIONS_INFO, JSON.stringify(versions, null, 2), 'utf-8');
 };

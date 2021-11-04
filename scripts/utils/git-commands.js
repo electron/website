@@ -127,7 +127,7 @@ const getRemoteBranches = async () => {
   const branches = stdout
     .split('\n')
     .map((line) => line.trim())
-    .filter((line) => !line.includes('->'));
+    .filter((line) => !line.includes('->') && line.startsWith('origin'));
 
   return branches;
 };

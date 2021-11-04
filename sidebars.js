@@ -37,8 +37,7 @@ module.exports = {
         'latest/tutorial/windows-arm',
         'latest/tutorial/windows-taskbar',
         'latest/tutorial/tray',
-        'latest/tutorial/window-customization',
-        'latest/tutorial/automated-testing',
+        'latest/tutorial/window-customization'
       ],
     },
     {
