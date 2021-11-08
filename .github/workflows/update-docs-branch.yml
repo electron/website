@@ -25,13 +25,17 @@ jobs:
         run: 'yarn process-docs-changes'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: branch
-        run: echo "::set-output name=branch::`git branch --show-current`"
+      - id: branch
+        name: Calculate branch
+        run: |
+          [[ $(git branch --show-current) =~ ^v[0-9]+-x-y$ ]] && echo "::set-output name=branch::version" || echo "::set-output name=branch::other"
+      - name: Show branch
+        run: echo ${{ steps.branch.outputs.branch }}
   # GitHub will not kick the "push-XXX" workflow so we have to publish from here
   build-and-deploy:
     needs: [update-docs]
     # If we are in a version branch, it means we have pushed the changed directly and should deploy
-    if: ${{ needs.branch.outputs.branch =~ ^v[0-9]+-x-y$ }}
+    if: ${{ needs.update-docs.outputs.branch == 'version' }}
     uses: electron/electronjs.org-new/.github/workflows/build-and-deploy.yml@main
     with:
       locale: en

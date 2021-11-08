@@ -26,15 +26,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set GIT_BRANCH
-        run: |
-          echo "GIT_BRANCH=${GITHUB_REF##*/}" >> $GITHUB_ENV
+        run: echo "GIT_BRANCH=${GITHUB_REF##*/}" >> $GITHUB_ENV
+      - name: Print GIT_BRANCH
+        run: echo $GIT_BRANCH
+      - name: Print content
+        run: ls -ln
       - name: Print branch if version
         if: ${{ inputs.branch == 'version' }}
         run: echo ${{ inputs.branch }}
       - name: Print branch if main
         if: ${{ inputs.branch == 'main' }}
         run: echo ${{ inputs.branch }}
-      - uses: actions/checkout@v2
+      # This should be set up from earlier
+      # - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
           node-version: 14
@@ -55,7 +59,7 @@ jobs:
           SAS: ${{ secrets.SAS }}
       - name: Rewrite docs paths if version branch
         if: ${{ inputs.branch == 'version' }}
-        run: node scripts/build-as-doc-version.js ${GIT_BRANCH}
+        run: node scripts/build-as-doc-version.js $(GIT_BRANCH)
       - name: Build site for locale
         run: yarn i18n:build ${{ inputs.locale }}
         env:
