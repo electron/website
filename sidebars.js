@@ -18,6 +18,7 @@ module.exports = {
         'latest/tutorial/dark-mode',
         'latest/tutorial/devices',
         'latest/tutorial/in-app-purchases',
+        'latest/tutorial/ipc',
         'latest/tutorial/keyboard-shortcuts',
         'latest/tutorial/launch-app-from-url-in-another-app',
         'latest/tutorial/linux-desktop-actions',
