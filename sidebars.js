@@ -37,7 +37,7 @@ module.exports = {
         'latest/tutorial/windows-arm',
         'latest/tutorial/windows-taskbar',
         'latest/tutorial/tray',
-        'latest/tutorial/window-customization'
+        'latest/tutorial/window-customization',
       ],
     },
     {
@@ -74,13 +74,12 @@ module.exports = {
       type: 'category',
       label: 'Testing And Debugging',
       items: [
-        'latest/tutorial/using-selenium-and-webdriver',
+        'latest/tutorial/automated-testing',
         'latest/tutorial/debugging-main-process',
         'latest/tutorial/debugging-vscode',
         'latest/tutorial/repl',
         'latest/tutorial/devtools-extension',
         'latest/tutorial/application-debugging',
-        'latest/tutorial/automated-testing-with-a-custom-driver',
         'latest/tutorial/testing-on-headless-ci',
         'latest/tutorial/testing-widevine-cdm',
       ],
