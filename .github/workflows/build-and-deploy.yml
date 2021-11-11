@@ -38,7 +38,7 @@ jobs:
         if: ${{ inputs.branch == 'main' }}
         run: echo ${{ inputs.branch }}
       # This should be set up from earlier
-      # - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
           node-version: 14
