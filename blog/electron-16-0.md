@@ -66,11 +66,11 @@ There were no API changes in Electron 16.
 
 * Usage of the `desktopCapturer.getSources` API in the renderer has been deprecated and will be removed. This change improves the default security of Electron apps. See [here](https://raw.githubusercontent.com/electron/electron/main/docs/breaking-changes.md#removed-desktopcapturergetsources-in-the-renderer) for details on how to replace this API in your app.
 
-## Supported Versions
+## End of Support for 12.x.y
+
+Electron 12.x.y has reached end-of-support as per the project's [support policy](https://www.electronjs.org/docs/latest/tutorial/support#supported-versions). Developers and applications are encouraged to upgrade to a newer version of Electron.
 
 Starting in Electron 15, we will change supported versions from latest three versions to latest four versions until May 2022 with Electron 19. After Electron 19, we will return to supporting the latest three versions. This version support change is part of our new cadence change. Please see [our blog post for full details here](https://www.electronjs.org/blog/8-week-cadence/#-will-electron-extend-the-number-of-supported-versions).
-
-Developers and applications are encouraged to upgrade to a newer version of Electron.
 
 |	E15 (Sep'21) |	E16 (Nov'21) |	E17 (Feb'22) |	E18 (Mar'22) |	E19 (May'22) |
 | ---- | ---- | ---- | ---- | ---- |
