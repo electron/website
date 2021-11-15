@@ -37,7 +37,7 @@ Additionally, Electron will be changing supported versions from latest three ver
 
 ### Highlight Features
 
-* Now supports WebHID. [#30213](https://github.com/electron/electron/pull/30213)
+* Now supports the [WebHID](https://developer.mozilla.org/en-US/docs/Web/API/WebHID_API) API. [#30213](https://github.com/electron/electron/pull/30213)
 * Add data parameter to `app.requestSingleInstanceLock` to share data between instances. [#30891](https://github.com/electron/electron/pull/30891)
 * Pass securityOrigin to media permissions request handler. [#31357](https://github.com/electron/electron/pull/31357)
 * Add `commandLine.removeSwitch`. [#30933](https://github.com/electron/electron/pull/30933)
