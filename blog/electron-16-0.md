@@ -35,7 +35,7 @@ Additionally, Electron has changed supported versions from latest three versions
 * V8 `9.6`
     * [V8 9.6 blog post](https://v8.dev/blog/v8-release-96)
 
-### Highlight Features
+### Highlighted Features
 
 * Now supports the [WebHID](https://developer.mozilla.org/en-US/docs/Web/API/WebHID_API) API. [#30213](https://github.com/electron/electron/pull/30213)
 * Add data parameter to `app.requestSingleInstanceLock` to share data between instances. [#30891](https://github.com/electron/electron/pull/30891)
