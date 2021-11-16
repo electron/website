@@ -22,9 +22,9 @@ The Electron team is excited to announce the release of Electron 16.0.0! You can
 
 ### Electron Release Cadence Change
 
-Starting with Electron 15, Electron will release a new major stable version every 8 weeks. You can read the [full details here](https://www.electronjs.org/blog/8-week-cadence).
+As of Electron 15, Electron will release a new major stable version every 8 weeks. You can read the [full details here](https://www.electronjs.org/blog/8-week-cadence).
 
-Additionally, Electron will be changing supported versions from latest three versions to latest four versions until May 2022. [See our versioning document](https://www.electronjs.org/docs/latest/tutorial/electron-versioning) for more detailed information about versioning in Electron.
+Additionally, Electron has changed supported versions from latest three versions to latest four versions until May 2022. [See our versioning document](https://www.electronjs.org/docs/latest/tutorial/electron-versioning) for more detailed information about versioning in Electron. After May 2022, we will return to supporting latest three versions.
 
 ### Stack Changes
 
@@ -70,7 +70,7 @@ There were no API changes in Electron 16.
 
 Electron 12.x.y has reached end-of-support as per the project's [support policy](https://www.electronjs.org/docs/latest/tutorial/support#supported-versions). Developers and applications are encouraged to upgrade to a newer version of Electron.
 
-Starting in Electron 15, we will change supported versions from latest three versions to latest four versions until May 2022 with Electron 19. After Electron 19, we will return to supporting the latest three versions. This version support change is part of our new cadence change. Please see [our blog post for full details here](https://www.electronjs.org/blog/8-week-cadence/#-will-electron-extend-the-number-of-supported-versions).
+As of Electron 15, we have changed supported versions from latest three versions to latest four versions until May 2022 with Electron 19. After Electron 19, we will return to supporting the latest three versions. This version support change is part of our new cadence change. Please see [our blog post for full details here](https://www.electronjs.org/blog/8-week-cadence/#-will-electron-extend-the-number-of-supported-versions).
 
 |	E15 (Sep'21) |	E16 (Nov'21) |	E17 (Feb'22) |	E18 (Mar'22) |	E19 (May'22) |
 | ---- | ---- | ---- | ---- | ---- |
