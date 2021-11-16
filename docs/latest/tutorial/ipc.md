@@ -168,7 +168,7 @@ to your BrowserWindow title!
 ## Pattern 2: Renderer to main (two-way)
 
 A common application for two-way IPC is calling a main process module from your renderer process
-code and waiting for a result. This can be done easily by using [`ipcRenderer.invoke`] paired with
+code and waiting for a result. This can be done by using [`ipcRenderer.invoke`] paired with
 [`ipcMain.handle`].
 
 In the following example, we'll be opening a native file dialog from the renderer process and
