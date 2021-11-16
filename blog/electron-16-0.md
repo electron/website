@@ -50,7 +50,7 @@ Below are breaking changes introduced in Electron 16. More information about the
 
 ### Building Native Modules
 
-Building native modules for old versions of Electron (<=13, < 14.2.0, < 15.3.0) will require passing `--force-process-config` to node-gyp. You are likely to encounter this issue if your project is using custom scripts to build native modules. You can use [#2497](https://github.com/nodejs/node-gyp/pull/2497) to automatically pass `--force-process-config`.
+If your project uses node-gyp to build native modules, you may need to call it with `--force-process-config` depending on your project's setup and your Electron version. More information about this change can be found at [#2497](https://github.com/nodejs/node-gyp/pull/2497).
 
 ### Behavior Changed: `crashReporter` implementation switched to Crashpad on Linux
 
