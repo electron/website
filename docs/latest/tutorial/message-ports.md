@@ -141,7 +141,7 @@ app.whenReady().then(async () => {
 <script>
 const { ipcRenderer } = require('electron')
 
-function doWork(input) {
+const doWork = (input) => {
   // Something cpu-intensive.
   return input * 2
 }
@@ -192,7 +192,7 @@ stream of data.
 ```js
 // renderer.js ///////////////////////////////////////////////////////////////
 
-function makeStreamingRequest (element, callback) {
+const makeStreamingRequest = (element, callback) => {
   // MessageChannels are lightweight--it's cheap to create a new one for each
   // request.
   const { port1, port2 } = new MessageChannel()

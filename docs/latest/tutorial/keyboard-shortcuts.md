@@ -89,7 +89,7 @@ listen for the `keyup` and `keydown` [DOM events][dom-events] inside the
 renderer process using the [addEventListener() API][addEventListener-api].
 
 ```fiddle docs/latest/fiddles/features/keyboard-shortcuts/web-apis|focus=renderer.js
-function handleKeyPress(event) {
+const handleKeyPress = (event) => {
   // You can put code here to handle the keypress.
   document.getElementById("last-keypress").innerText = event.key;
   console.log(`You pressed ${event.key}`);

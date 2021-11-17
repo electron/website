@@ -112,6 +112,7 @@ module.exports = {
         'latest/development/clang-format',
         'latest/development/clang-tidy',
         'latest/development/coding-style',
+        'latest/development/creating-api',
         'latest/development/debug-instructions-windows',
         'latest/development/debugging-instructions-macos',
         'latest/development/debugging-instructions-macos-xcode',
