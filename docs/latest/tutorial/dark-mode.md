@@ -145,7 +145,7 @@ Finally, the `main.js` file represents the main process and contains the actual 
 const { app, BrowserWindow, ipcMain, nativeTheme } = require('electron')
 const path = require('path')
 
-const createWindow = () => {
+function createWindow () {
   const win = new BrowserWindow({
     width: 800,
     height: 600,

@@ -223,7 +223,7 @@ access to a `window.readConfig()` method, but no Node.js features.
 ```js
 const { readFileSync } = require('fs')
 
-window.readConfig = () => {
+window.readConfig = function () {
   const data = readFileSync('./config.json')
   return data
 }

@@ -138,15 +138,15 @@ Returns `Object`:
 
 Returns an Object containing `title` and `url` keys representing the bookmark in
 the clipboard. The `title` and `url` values will be empty strings when the
-bookmark is unavailable.  The `title` value will always be empty on Windows.
+bookmark is unavailable.
 
 ### `clipboard.writeBookmark(title, url[, type])` _macOS_ _Windows_
 
-* `title` String - Unused on Windows
+* `title` String
 * `url` String
 * `type` String (optional) - Can be `selection` or `clipboard`; default is 'clipboard'. `selection` is only available on Linux.
 
-Writes the `title` (macOS only) and `url` into the clipboard as a bookmark.
+Writes the `title` and `url` into the clipboard as a bookmark.
 
 **Note:** Most apps on Windows don't support pasting bookmarks into them so
 you can use `clipboard.write` to write both a bookmark and fallback text to the

@@ -46,7 +46,7 @@ inAppPurchase.on('transactions-updated', (event, transactions) => {
   }
 
   // Check each transaction.
-  transactions.forEach((transaction) => {
+  transactions.forEach(function (transaction) {
     const payment = transaction.payment
 
     switch (transaction.transactionState) {
