@@ -1,12 +1,7 @@
 [
   {
-    "label": "Latest",
+    "label": "16-x-y",
     "href": "https://electronjs.org/docs/latest",
-    "target": "_blank"
-  },
-  {
-    "label": "v14-x-y",
-    "href": "https://electronjs.org/docs/v14-x-y",
     "target": "_blank"
   }
 ]
