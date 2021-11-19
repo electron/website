@@ -15,15 +15,12 @@ native API from your UI or triggering changes in your web contents from native m
 ## IPC channels
 
 In Electron, processes communicate by passing messages through developer-defined "channels"
-with the [`ipcMain`][ipc-main] and [`ipcRenderer`][ipc-renderer] modules. These channels are
+with the [`ipcMain`] and [`ipcRenderer`] modules. These channels are
 **arbitrary** (you can name them anything you want) and **bidirectional** (you can use the
 same channel name for both modules).
 
 In this guide, we'll be going over some fundamental IPC patterns with concrete examples that
 you can use as a reference for your app code.
-
-[ipc-main]: ../api/ipc-main.md
-[ipc-renderer]: ../api/ipc-renderer.md
 
 ## Understanding context-isolated processes
 
@@ -33,11 +30,6 @@ Before proceeding to implementation details, you should be familiar with the ide
 * For a full overview of Electron's process model, you can read the [process model docs].
 * For a primer into exposing APIs from your preload script using the `contextBridge` module, check
 out the [context isolation tutorial].
-
-[preload script]: process-model.md#preload-scripts
-[process model docs]: process-model.md
-[context isolation tutorial]: context-isolation.md
-
 
 ## Pattern 1: Renderer to main (one-way)
 
@@ -53,9 +45,6 @@ sections.
 
 ```fiddle docs/latest/fiddles/ipc/pattern-1
 ```
-[`ipcRenderer.send`]: ../api/ipc-renderer.md
-[`ipcMain.on`]: ../api/ipc-main.md
-
 
 ### 1. Listen for events with `ipcMain.on`
 
@@ -97,8 +86,6 @@ API on it.
 :::info
 Make sure you're loading the `index.html` and `preload.js` entry points for the following steps!
 :::
-
-[IpcMainEvent]: ../api/structures/ipc-main-event.md
 
 ### 2. Expose `ipcRenderer.send` via preload
 
@@ -180,9 +167,6 @@ sections.
 
 ```fiddle docs/latest/fiddles/ipc/pattern-2
 ```
-
-[`ipcRenderer.invoke`]: ../api/ipc-renderer.md#ipcrendererinvokechannel-args
-[`ipcMain.handle`]: ../api/ipc-main.md#ipcmainhandlechannel-listener
 
 ### 1. Listen for events with `ipcMain.handle`
 
@@ -373,7 +357,7 @@ renderer process until a reply is received.
 
 When sending a message from the main process to a renderer process, you need to specify which
 renderer is receiving the message. Messages need to be sent to a renderer process
-via its [WebContents] instance. This WebContents instance contains a [`send`][webcontents-send] method
+via its [`WebContents`] instance. This WebContents instance contains a [`send`][webcontents-send] method
 that can be used in the same way as `ipcRenderer.send`.
 
 To demonstrate this pattern, we'll be building a number counter controlled by the native operating
@@ -385,9 +369,6 @@ sections.
 
 ```fiddle docs/latest/fiddles/ipc/pattern-3
 ```
-
-[WebContents]: ../api/web-contents.md
-[webcontents-send]: ../api/web-contents#contentssendchannel-args
 
 ### 1. Send messages with the `webContents` module
 
@@ -555,6 +536,17 @@ backed by C++ classes (e.g. `process.env`, some members of `Stream`), and Electr
 backed by C++ classes (e.g. `WebContents`, `BrowserWindow` and `WebFrame`) are not serializable
 with Structured Clone.
 
-[sca]: https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm
-[breaking changes]: ../breaking-changes.md
+[context isolation tutorial]: context-isolation.md
+[`ipcMain`]: ../api/ipc-main.md
+[`ipcMain.handle`]: ../api/ipc-main.md#ipcmainhandlechannel-listener
+[`ipcMain.on`]: ../api/ipc-main.md
+[IpcMainEvent]: ../api/structures/ipc-main-event.md
+[`ipcRenderer`]: ../api/ipc-renderer.md
+[`ipcRenderer.invoke`]: ../api/ipc-renderer.md#ipcrendererinvokechannel-args
+[`ipcRenderer.send`]: ../api/ipc-renderer.md
 [MessagePort]: ./message-ports.md
+[preload script]: process-model.md#preload-scripts
+[process model docs]: process-model.md
+[sca]: https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm
+[`WebContents`]: ../api/web-contents.md
+[webcontents-send]: ../api/web-contents#contentssendchannel-args
