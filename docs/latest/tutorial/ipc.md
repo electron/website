@@ -230,6 +230,11 @@ app.whenReady(() => {
 //...
 ```
 
+:::tip on channel names
+The `dialog:` prefix on the IPC channel name has no effect on the code. It only serves
+as a namespace that helps with code readability.
+:::
+
 :::info
 Make sure you're loading the `index.html` and `preload.js` entry points for the following steps!
 :::
@@ -292,11 +297,16 @@ In the above snippet, we listen for clicks on the `#btn` button, and call our
 `window.electronAPI.openFile()` API to activate the native Open File dialog. We then display the
 selected file path in the `#filePath` element.
 
-### Note: alternative approaches
+### Note: legacy approaches
 
 The `ipcRenderer.invoke` API was added in Electron 7 as a developer-friendly way to tackle two-way
 IPC from the renderer process. However, there exist a couple alternative approaches to this IPC
 pattern.
+
+:::warning Avoid legacy approaches if possible
+We recommend using `ipcRenderer.invoke` whenever possible. The following two-way renderer-to-main
+patterns are documented for historical purposes.
+:::
 
 :::info
 For the following examples, we're calling `ipcRenderer` directly from the preload script to keep
@@ -361,12 +371,12 @@ renderer process until a reply is received.
 
 ## Pattern 3: Main to renderer
 
-When sending messages from the main process to the renderer process, there is no direct equivalent
-to `ipcRenderer.send` in the `ipcMain` module. Messages need to be sent to individual [WebContents]
-instances because you can have more than one renderer in your Electron app and you might have web
-embeds running in any given renderer.
+When sending a message from the main process to a renderer process, you need to specify which
+renderer is receiving the message. Messages need to be sent to a renderer process
+via its [WebContents] instance. This WebContents instance contains a [`send`][webcontents-send] method
+that can be used in the same way as `ipcRenderer.send`.
 
-To demonstrate this pattern, we'll be writing a Counter controlled by the native operating
+To demonstrate this pattern, we'll be building a number counter controlled by the native operating
 system menu.
 
 For this demo, you'll need to add code to your main process, your renderer process, and a preload
@@ -377,6 +387,7 @@ sections.
 ```
 
 [WebContents]: ../api/web-contents.md
+[webcontents-send]: ../api/web-contents#contentssendchannel-args
 
 ### 1. Send messages with the `webContents` module
 
@@ -523,32 +534,27 @@ ipcMain.on('counter-value', (_event, value) => {
 })
 //...
 ```
-
-## Limitations of IPC
-
-### Object serialization
-
-For performance reasons, Electron's IPC implementation uses the HTML standard
-[Structured Clone Algorithm][sca] to serialize objects passed between processes, meaning that
-only certain types of files can be passed through IPC channels.
-
-This was a breaking change introduced in Electron 8. From our [Breaking Changes] doc:
-
-> In particular, DOM objects (e.g. `Element`, `Location` and `DOMMatrix`), Node.js objects
-> backed by C++ classes (e.g. `process.env`, some members of `Stream`), and Electron objects
-> backed by C++ classes (e.g. `WebContents`, `BrowserWindow` and `WebFrame`) are not serializable
-> with Structured Clone.
-
-[sca]: https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm
-[breaking changes]: ../breaking-changes.md
-
-### Renderer-to-renderer communication
+## Pattern 4: Renderer to renderer
 
 There's no direct way to send messages between renderer processes in Electron using the `ipcMain`
 and `ipcRenderer` modules. To achieve this, you have two options:
 
 * Use the main process as a message broker between renderers. This would involve sending a message
 from one renderer to the main process, which would forward the message to the other renderer.
-* Pass a [MessagePort] from the main process to both renderers.
+* Pass a [MessagePort] from the main process to both renderers. This will allow direct communication
+between renderers after the initial setup.
 
+## Object serialization
+
+For performance reasons, Electron's IPC implementation uses the HTML standard
+[Structured Clone Algorithm][sca] to serialize objects passed between processes, meaning that
+only certain types of files can be passed through IPC channels.
+
+In particular, DOM objects (e.g. `Element`, `Location` and `DOMMatrix`), Node.js objects
+backed by C++ classes (e.g. `process.env`, some members of `Stream`), and Electron objects
+backed by C++ classes (e.g. `WebContents`, `BrowserWindow` and `WebFrame`) are not serializable
+with Structured Clone.
+
+[sca]: https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm
+[breaking changes]: ../breaking-changes.md
 [MessagePort]: ./message-ports.md
