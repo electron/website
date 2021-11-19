@@ -84,7 +84,6 @@ out/
 
 There are also other tools you can use to distribute your application:
 
-- [electron-forge](https://github.com/electron-userland/electron-forge)
 - [electron-builder](https://github.com/electron-userland/electron-builder)
 - [electron-packager](https://github.com/electron/electron-packager)
 
@@ -92,7 +91,7 @@ There are also other tools you can use to distribute your application:
 It is recommended to read their documentation to know how to rebrand and sign the
 executable, change the icons, etc.
 
-You should also read all the documents under the "Distribution" category in the sidebar.
+You can also refer to the documents under the "Distribution" category in the sidebar.
 :::
 
 ## Manual distribution

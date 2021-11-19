@@ -19,8 +19,8 @@ This is part 6 of the Electron tutorial. The other parts are:
 :::
 
 Code signing is a security technology that you use to certify that an app was
-created by you. You should sign your application so it does not trigger the
-security checks in the Operating Systems.
+created by you. You should sign your application so it does not trigger any
+operating system security checks.
 
 On macOS the system can detect any change to the app, whether the change is
 introduced accidentally or by malicious code.
