@@ -130,7 +130,7 @@ module.exports = {
             { label: 'Governance', to: '/governance' },
             {
               label: 'Discord',
-              href: 'https://discordapp.com/invite/electron',
+              href: 'https://discordapp.com/invite/APGC3k5yaH',
             },
             {
               label: 'Twitter',
