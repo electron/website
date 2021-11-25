@@ -5,94 +5,15 @@ slug: application-distribution
 hide_title: false
 ---
 
-:::info Tutorial parts
-This is part 6 of the Electron tutorial. The other parts are:
-
-1. [Prerequisites]
-1. [Scaffolding]
-1. [Main and Renderer process communication][main-renderer]
-1. [Adding Features][features]
-1. [Application Distribution]
-1. [Code Signing]
-1. [Updating Your Application][updates]
-
-:::
-
-To distribute your app with Electron, you need to package and rebrand it.
-To do this, you can either use specialized tooling or manual approaches. At the end of this part you will know how to prepare your application to distribute it to your users.
+To distribute your app with Electron, you need to package and rebrand it. To do this, you
+can either use specialized tooling or manual approaches.
 
 ## With tooling
 
-The fastest way to distribute your newly created app is using
-[Electron Forge](https://www.electronforge.io).
-
-First, add Electron Forge as a development dependency of your app, and use its `import` command to set up.
-
-Forge's scaffolding:
-
-```sh npm2yarn
-npm install --save-dev @electron-forge/cli
-npx electron-forge import
-```
-
-The output of this command should be similar to the following:
-
-```plain
-✔ Checking your system
-✔ Initializing Git Repository
-✔ Writing modified package.json file
-✔ Installing dependencies
-✔ Writing modified package.json file
-✔ Fixing .gitignore
-
-We have ATTEMPTED to convert your app to be in a format that electron-forge understands.
-
-Thanks for using "electron-forge"!!!
-```
-
-Then create a distributable using Forge's `make` command:
-
-```sh npm2yarn
-npm run make
-```
-
-And the output should look like:
-
-```plain
-> my-electron-app@1.0.0 make /my-electron-app
-> electron-forge make
-
-✔ Checking your system
-✔ Resolving Forge Config
-We need to package your application before we can make it
-✔ Preparing to Package Application for arch: x64
-✔ Preparing native dependencies
-✔ Packaging Application
-Making for the following targets: zip
-✔ Making for target: zip - On platform: darwin - For arch: x64
-```
-
-Electron Forge creates the `out` folder where your package will be located:
-
-```plain
-// Example for macOS
-out/
-├── out/make/zip/darwin/x64/my-electron-app-darwin-x64-1.0.0.zip
-├── ...
-└── out/my-electron-app-darwin-x64/my-electron-app.app/Contents/MacOS/my-electron-app
-```
-
-There are also other tools you can use to distribute your application:
-
-- [electron-builder](https://github.com/electron-userland/electron-builder)
-- [electron-packager](https://github.com/electron/electron-packager)
-
-:::tip Further reading 📚
-It is recommended to read their documentation to know how to rebrand and sign the
-executable, change the icons, etc.
-
-You can also refer to the documents under the "Distribution" category in the sidebar.
-:::
+There are a couple tools out there that exist to package and distribute your Electron app.
+We recommend using [Electron Forge](https://www.electronforge.io). You can check out
+its documentation directly, or refer to the [Packaging and Distribution] part of the
+Electron tutorial.
 
 ## Manual distribution
 
@@ -113,18 +34,14 @@ The location of Electron's prebuilt binaries is indicated
 with `electron/` in the examples below.
 :::
 
-_On macOS:_
-
-```plain
+```plain title='macOS'
 electron/Electron.app/Contents/Resources/app/
 ├── package.json
 ├── main.js
 └── index.html
 ```
 
-_On Windows and Linux:_
-
-```plain
+```plain title='Windows and Linux'
 electron/resources/app
 ├── package.json
 ├── main.js
@@ -146,16 +63,12 @@ To use an `asar` archive to replace the `app` folder, you need to rename the
 archive to `app.asar`, and put it under Electron's resources directory like
 below, and Electron will then try to read the archive and start from it.
 
-_On macOS:_
-
-```plaintext
+```plain title='macOS'
 electron/Electron.app/Contents/Resources/
 └── app.asar
 ```
 
-_On Windows and Linux:_
-
-```plaintext
+```plain title='Windows'
 electron/resources/
 └── app.asar
 ```
@@ -222,13 +135,3 @@ information in the following links:
 [mac app store submission guide]: mac-app-store-submission-guide.md
 [snapcraft guide (linux)]: snapcraft.md
 [windows store guide]: windows-store-guide.md
-
-<!-- Tutorial links -->
-
-[prerequisites]: tutorial-prerequisites.md
-[scaffolding]: tutorial-scaffolding.md
-[main-renderer]: ./tutorial-main-renderer.md
-[features]: ./tutorial-adding-features.md
-[application distribution]: application-distribution.md
-[code signing]: code-signing.md
-[updates]: updates.md

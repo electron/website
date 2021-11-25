@@ -5,24 +5,11 @@ slug: code-signing
 hide_title: false
 ---
 
-:::info Tutorial parts
-This is part 6 of the Electron tutorial. The other parts are:
-
-1. [Prerequisites]
-1. [Scaffolding]
-1. [Main and Renderer process communication][main-renderer]
-1. [Adding Features][features]
-1. [Application Distribution]
-1. [Code Signing]
-1. [Updating Your Application][updates]
-
-:::
-
 Code signing is a security technology that you use to certify that an app was
 created by you. You should sign your application so it does not trigger any
 operating system security checks.
 
-On macOS the system can detect any change to the app, whether the change is
+On macOS, the system can detect any change to the app, whether the change is
 introduced accidentally or by malicious code.
 
 On Windows, the system assigns a trust level to your code signing certificate
@@ -60,16 +47,16 @@ notarizing your app:
 Electron's ecosystem favors configuration and freedom, so there are multiple
 ways to get your application signed and notarized.
 
-### `electron-forge`
+### Using Electron Forge
 
 If you're using Electron's favorite build tool, getting your application signed
 and notarized requires a few additions to your configuration. [Forge](https://electronforge.io) is a
 collection of the official Electron tools, using [`electron-packager`],
 [`electron-osx-sign`], and [`electron-notarize`] under the hood.
 
-Let's take a look at an example configuration with all required fields. Not all
-of them are required: the tools will be clever enough to automatically find a
-suitable `identity`, for instance, but we recommend that you are explicit.
+Let's take a look at an example `package.json` configuration with all required fields. Not all of them are required: the tools will be clever enough to
+automatically find a suitable `identity`, for instance, but we recommend
+that you are explicit.
 
 ```json title="package.json"
 {
@@ -95,11 +82,11 @@ suitable `identity`, for instance, but we recommend that you are explicit.
 }
 ```
 
-The `plist` file referenced here needs the following macOS-specific entitlements
+The `entitlements.plist` file referenced here needs the following macOS-specific entitlements
 to assure the Apple security mechanisms that your app is doing these things
 without meaning any harm:
 
-```xml title="plist"
+```xml title="entitlements.plist"
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -122,7 +109,7 @@ file](https://github.com/electron/fiddle/blob/master/forge.config.js).
 If you plan to access the microphone or camera within your app using Electron's APIs, you'll also
 need to add the following entitlements:
 
-```xml
+```xml title="entitlements.plist"
 <key>com.apple.security.device.audio-input</key>
 <true/>
 <key>com.apple.security.device.camera</key>
@@ -132,18 +119,18 @@ need to add the following entitlements:
 If these are not present in your app's entitlements when you invoke, for example:
 
 ```js title="main.js"
-const { systemPreferences } = require('electron')
-const microphone = systemPreferences.askForMediaAccess('microphone')
+const { systemPreferences } = require('electron');
+const microphone = systemPreferences.askForMediaAccess('microphone');
 ```
 
 Your app may crash. See the Resource Access section in [Hardened Runtime](https://developer.apple.com/documentation/security/hardened_runtime) for more information and entitlements you may need.
 
-### `electron-builder`
+### Using Electron Builder
 
 Electron Builder comes with a custom solution for signing your application. You
 can find [its documentation here](https://www.electron.build/code-signing).
 
-### `electron-packager`
+### Using `electron-packager`
 
 If you're not using an integrated build pipeline like Forge or Builder, you
 are likely using [`electron-packager`], which includes [`electron-osx-sign`] and
@@ -154,7 +141,7 @@ and notarizes your
 application](https://electron.github.io/electron-packager/main/interfaces/electronpackager.options.html).
 
 ```js
-const packager = require('electron-packager')
+const packager = require('electron-packager');
 
 packager({
   dir: '/path/to/my/app',
@@ -163,13 +150,13 @@ packager({
     'hardened-runtime': true,
     entitlements: 'entitlements.plist',
     'entitlements-inherit': 'entitlements.plist',
-    'signature-flags': 'library'
+    'signature-flags': 'library',
   },
   osxNotarize: {
     appleId: 'felix@felix.fun',
-    appleIdPassword: 'my-apple-id-password'
-  }
-})
+    appleIdPassword: 'my-apple-id-password',
+  },
+});
 ```
 
 The `plist` file referenced here needs the following macOS-specific entitlements
@@ -212,13 +199,118 @@ it may be worth your time to shop around. Popular resellers include:
 - Amongst others, please shop around to find one that suits your needs, Google
   is your friend 😄
 
-There are a number of tools for signing your packaged app:
+### Using Electron Forge
 
-- [`electron-winstaller`] will generate an installer for windows and sign it for
-  you
-- [`electron-forge`] can sign installers it generates through the
-  Squirrel.Windows or MSI targets.
-- [`electron-builder`] can sign some of its windows targets
+Once you have a code signing certificate file (`.pfx`), you can sign
+[Squirrel.Windows][maker-squirrel] and [MSI][maker-msi] installers in Electron Forge
+with the `certificateFile` and `certificatePassword` fields in their respective
+configuration objects.
+
+For example, if you keep your Forge config in your `package.json` file and are
+creating a Squirrel.Windows installer:
+
+```json {9-15} title='package.json'
+{
+  "name": "my-app",
+  "version": "0.0.1",
+  //...
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "certificateFile": "./cert.pfx",
+            "certificatePassword": "this-is-a-secret"
+          }
+        }
+      ]
+    }
+  }
+  //...
+}
+```
+
+:::caution Keep your certificate password private
+Your certificate password should be a **secret**. Do not share it publicly or
+commit it to your source code.
+:::
+
+### Using `electron-winstaller` (Squirrel.Windows installers)
+
+[`electron-winstaller`] is a package that can generate Squirrel.Windows installers for your
+Electron app. This is the tool used under the hood by Electron Forge's Squirrel.Windows Maker.
+If you're not using Electron Forge and want to use `electron-winstaller` directly, use the
+`certificateFile` and `certificatePassword` configuration options when creating your installer.
+
+```js {10-11}
+const electronInstaller = require('electron-winstaller');
+// NB: Use this syntax within an async function, Node does not have support for
+//     top-level await as of Node 12.
+try {
+  await electronInstaller.createWindowsInstaller({
+    appDirectory: '/tmp/build/my-app-64',
+    outputDirectory: '/tmp/build/installer64',
+    authors: 'My App Inc.',
+    exe: 'myapp.exe',
+    certificateFile: "./cert.pfx",
+    certificatePassword: "this-is-a-secret"
+  });
+  console.log('It worked!');
+} catch (e) {
+  console.log(`No dice: ${e.message}`);
+}
+```
+
+For full configuration options, check out the [`electron-winstaller`] repository!
+
+### Using `electron-wix-msi` (WiX MSI installers)
+
+[`electron-wix-msi`] is a package that can generate MSI installers for your
+Electron app. This is the tool used under the hood by Electron Forge's MSI Maker.
+
+If you're not using Electron Forge and want to use `electron-wix-msi` directly, use the
+`certificateFile` and `certificatePassword` configuration options
+or pass in parameters directly to [SignTool.exe] with the `signWithParams` option.
+
+```js {12-13}
+import { MSICreator } from 'electron-wix-msi';
+
+// Step 1: Instantiate the MSICreator
+const msiCreator = new MSICreator({
+  appDirectory: '/path/to/built/app',
+  description: 'My amazing Kitten simulator',
+  exe: 'kittens',
+  name: 'Kittens',
+  manufacturer: 'Kitten Technologies',
+  version: '1.1.2',
+  outputDirectory: '/path/to/output/folder',
+  certificateFile: './cert.pfx',
+  certificatePassword: 'this-is-a-secret'
+});
+
+// Step 2: Create a .wxs template file
+const supportBinaries = await msiCreator.create();
+
+// 🆕 Step 2a: optionally sign support binaries if you
+// sign you binaries as part of of your packaging script
+supportBinaries.forEach(async (binary) => {
+  // Binaries are the new stub executable and optionally
+  // the Squirrel auto updater.
+  await signFile(binary);
+});
+
+// Step 3: Compile the template to a .msi file
+await msiCreator.compile();
+```
+
+For full configuration options, check out the [`electron-wix-msi`] repository!
+
+### Using `electron-builder`
+
+Electron Builder comes with a custom solution for signing your application. You
+can find [its documentation here](https://www.electron.build/code-signing).
 
 ### Windows Store
 
@@ -231,17 +323,10 @@ See the [Windows Store Guide].
 [`electron-packager`]: https://github.com/electron/electron-packager
 [`electron-notarize`]: https://github.com/electron/electron-notarize
 [`electron-winstaller`]: https://github.com/electron/windows-installer
+[`electron-wix-msi`]: https://github.com/felixrieseberg/electron-wix-msi
 [xcode]: https://developer.apple.com/xcode
 [signing certificates]: https://github.com/electron/electron-osx-sign/wiki/1.-Getting-Started#certificates
 [mac app store guide]: latest/tutorial/mac-app-store-submission-guide.md
 [windows store guide]: latest/tutorial/windows-store-guide.md
 
-<!-- Tutorial links -->
-
-[prerequisites]: tutorial-prerequisites.md
-[scaffolding]: tutorial-scaffolding.md
-[main-renderer]:./tutorial-main-renderer.md
-[features]: ./tutorial-adding-features.md
-[application distribution]: application-distribution.md
-[code signing]: code-signing.md
-[updates]: updates.md
+[SignTool.exe]: https://docs.microsoft.com/en-us/dotnet/framework/tools/signtool-exe
