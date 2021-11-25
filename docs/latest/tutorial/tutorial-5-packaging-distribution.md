@@ -1,0 +1,112 @@
+---
+title: 'Packaging and Distribution'
+description: 'To distribute your app with Electron, you need to package and rebrand it. To do this, you can either use specialized tooling or manual approaches.'
+slug: packaging-distribution
+hide_title: false
+---
+
+:::info Tutorial parts
+This is part 5 of the Electron tutorial. The other parts are:
+
+1. [Prerequisites][prerequisites]
+1. [Scaffolding][scaffolding]
+1. [Communicating Between Processes][main-renderer]
+1. [Adding Features][features]
+1. [Packaging and Distribution][packaging-distribution]
+1. [Updating Your Application][updates]
+
+:::
+
+Electron does not have any tooling for packaging and distribution bundled into its core
+package. Once you have a working Electron app in development mode, you need to use
+additional tooling to get an executable file you can distribute to your users (also known
+as a **distributable**). Distributables can be either installers (e.g. MSI on Windows) or
+portable executable files (e.g. `.zip` on macOS).
+
+In this section, we'll be going over the basics of packaging your app with
+[Electron Forge].
+
+## Importing your project into Electron Forge
+
+First, add Electron Forge as a development dependency of your app and use its `import`
+command to scaffold your existing app into a Forge project:
+
+```sh npm2yarn
+npm install --save-dev @electron-forge/cli
+npx electron-forge import
+```
+
+Once the conversion script is done, Forge should have added a few scripts
+to your `package.json` file.
+
+```json title='package.json' {5}
+  //...
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
+  },
+  //...
+```
+
+:::info CLI documentation
+For more information on `make` and other Forge commands, check out
+the [Electron Forge CLI documentation].
+:::
+
+## Creating a distributable
+
+To create a distributable, use Forge's Make script:
+
+```sh npm2yarn
+npm run make
+```
+
+After the script runs, you should see `out` folder containing both the packaged
+application in folder format and the distributable:
+
+```plain title='macOS output example'
+out/
+├── out/make/zip/darwin/x64/my-electron-app-darwin-x64-1.0.0.zip
+├── ...
+└── out/my-electron-app-darwin-x64/my-electron-app.app/Contents/MacOS/my-electron-app
+```
+
+The distributable in the `out/make` folder should be ready to launch! You have now
+created your first full-fledged Electron application.
+
+:::tip Distributable formats
+Electron Forge can be configured to create distributables in different OS-specific formats
+(e.g. DMG, deb, MSI, etc.). See Forge's [Makers] documentation for all configuration options.
+:::
+
+:::info Packaging without Electron Forge
+If you want to manually package your code, or if you're just interested understanding the
+mechanics behind packaging an Electron app, check out the full [Application Distribution]
+guide.
+:::
+
+## Important: signing your code
+
+In order to distribute desktop applications to end users, we _highly recommended_ for you
+to **code sign** your Electron app.
+
+Code signing is a security technology that you use to certify that a desktop app was
+created by a known source. Windows and macOS have their own OS-specific code signing
+systems that will make it difficult for users to download or launch unsigned applications.
+
+A full 
+
+[Application Distribution]: application-distribution.md
+[Electron Forge]: https://www.electronforge.io
+[Electron Forge CLI documentation]: https://www.electronforge.io/cli#commands
+[Makers]: https://www.electronforge.io/config/makers
+
+<!-- Tutorial links -->
+
+[prerequisites]: tutorial-1-prerequisites.md
+[scaffolding]: tutorial-2-scaffolding.md
+[main-renderer]: tutorial-3-main-renderer.md
+[features]: tutorial-4-adding-features.md
+[packaging-distribution]: tutorial-5-packaging-distribution.md
+[updates]: tutorial-6-updates.md
