@@ -1,5 +1,5 @@
 ---
-title: 'Adding features to your application'
+title: 'Adding Application Features'
 description: 'In this step of the tutorial we will share some resources you should read to add features to your application'
 slug: adding-features
 hide_title: false
@@ -8,12 +8,11 @@ hide_title: false
 :::info Tutorial parts
 This is part 4 of the Electron tutorial. The other parts are:
 
-1. [Prerequisites]
-1. [Scaffolding]
-1. [Main and Renderer process communication][main-renderer]
+1. [Prerequisites][prerequisites]
+1. [Scaffolding][scaffolding]
+1. [Communicating Between Processes][main-renderer]
 1. [Adding Features][features]
-1. [Application Distribution]
-1. [Code Signing]
+1. [Packaging and Distribution][packaging-distribution]
 1. [Updating Your Application][updates]
 
 :::
@@ -39,8 +38,8 @@ event, and call [`app.quit()`][app-quit] if the user is not on macOS (`darwin`).
 
 ```js
 app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') app.quit()
-})
+  if (process.platform !== 'darwin') app.quit();
+});
 ```
 
 ### Open a window if none are open (macOS)
@@ -58,12 +57,12 @@ from within your existing `whenReady()` callback.
 
 ```js
 app.whenReady().then(() => {
-  createWindow()
+  createWindow();
 
   app.on('activate', () => {
-    if (BrowserWindow.getAllWindows().length === 0) createWindow()
-  })
-})
+    if (BrowserWindow.getAllWindows().length === 0) createWindow();
+  });
+});
 ```
 
 All your code should be similar to this:
@@ -96,10 +95,9 @@ our [Discord server][discord]!
 
 <!-- Tutorial links -->
 
-[prerequisites]: tutorial-prerequisites.md
-[scaffolding]: tutorial-scaffolding.md
-[main-renderer]: ./tutorial-main-renderer.md
-[features]: ./tutorial-adding-features.md
-[application distribution]: application-distribution.md
-[code signing]: code-signing.md
-[updates]: updates.md
+[prerequisites]: tutorial-1-prerequisites.md
+[scaffolding]: tutorial-2-scaffolding.md
+[main-renderer]: tutorial-3-main-renderer.md
+[features]: tutorial-4-adding-features.md
+[packaging-distribution]: tutorial-5-packaging-distribution.md
+[updates]: tutorial-6-updates.md

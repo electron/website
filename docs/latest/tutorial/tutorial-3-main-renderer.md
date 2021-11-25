@@ -1,26 +1,25 @@
 ---
-title: 'Main and Renderer Process Communication'
+title: 'Communicating Between Processes'
 description: 'This guide will step you through the process of creating a barebones Hello World app in Electron, similar to electron/electron-quick-start.'
-slug: node-access
+slug: main-renderer
 hide_title: false
 ---
 
 :::info Tutorial parts
 This is part 3 of the Electron tutorial. The other parts are:
 
-1. [Prerequisites]
-1. [Scaffolding]
-1. [Main and Renderer process communication][main-renderer]
+1. [Prerequisites][prerequisites]
+1. [Scaffolding][scaffolding]
+1. [Communicating Between Processes][main-renderer]
 1. [Adding Features][features]
-1. [Application Distribution]
-1. [Code Signing]
+1. [Packaging and Distribution][packaging-distribution]
 1. [Updating Your Application][updates]
 
 :::
 
 At the end of this part you will have an Electron application that uses
 a preload script to safely expose features from the main process
-into the renderer one.
+into the renderer.
 
 Electron's main process is a Node.js process that has full OS access.
 On top of [Electron's modules][modules], you can also access [Node.js ones][node-api],
@@ -46,22 +45,22 @@ when creating our renderer process.
 The [sandbox] limits the harm that malicious code can cause by limiting access to
 most system resources. With sandbox enabled, your web content is completely isolated.
 To add features to your renderer process that require "privileged access", you have
-to use a [`preload` script][preload-script] in conjunction with the
+to use a [preload script][preload-script] in conjunction with the
 [`contextBridge` API][contextbridge].
 
-We are going to create a `preload` script that exposes the versions of Chrome, Node, and
-Electron into the renderer. To do this, add a new file `preload.js` with the
+We are going to create a preload script that exposes the versions of Chrome, Node, and
+Electron into the renderer. To do this, add a new `preload.js` file with the
 following:
 
 ```js title="preload.js"
-const { contextBridge } = require('electron')
+const { contextBridge } = require('electron');
 
 contextBridge.exposeInMainWorld('versions', {
   node: () => process.versions.node,
   chrome: () => process.versions.chrome,
-  electron: () => process.versions.electron
+  electron: () => process.versions.electron,
   // we can also expose variables, not just functions
-})
+});
 ```
 
 :::tip Further reading 📚
@@ -76,8 +75,8 @@ To attach this script to your renderer process, pass in the path to your preload
 to the `webPreferences.preload` option in the `BrowserWindow` constructor:
 
 ```js {9} title="main.js"
-const { app, BrowserWindow } = require('electron')
-const path = require('path')
+const { app, BrowserWindow } = require('electron');
+const path = require('path');
 
 const createWindow = () => {
   const win = new BrowserWindow({
@@ -85,16 +84,16 @@ const createWindow = () => {
     height: 600,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
-      sandbox: true
-    }
-  })
+      sandbox: true,
+    },
+  });
 
   win.loadFile('index.html');
-}
+};
 
 app.whenReady().then(() => {
-  createWindow()
-})
+  createWindow();
+});
 ```
 
 :::tip
@@ -112,8 +111,8 @@ At this point, the renderer context has access to `versions`, so let's make that
 available to the user. Create a new file `renderer.js` that contains the following code:
 
 ```js title="renderer.js"
-const information = document.getElementById('info')
-information.innerText = `This app is using Chrome (v${versions.chrome()}), Node.js (v${versions.node()}), and Electron (v${versions.electron()})`
+const information = document.getElementById('info');
+information.innerText = `This app is using Chrome (v${versions.chrome()}), Node.js (v${versions.node()}), and Electron (v${versions.electron()})`;
 ```
 
 And modify `index.html` to match the following:
@@ -192,10 +191,9 @@ And the code should be similar to this:
 
 <!-- Tutorial links -->
 
-[prerequisites]: ./tutorial-prerequisites.md
-[scaffolding]: ./tutorial-scaffolding.md
-[main-renderer]: ./tutorial-main-renderer.md
-[features]: ./tutorial-adding-features.md
-[application distribution]: ./application-distribution.md
-[code signing]: ./code-signing.md
-[updates]: ./updates.md
+[prerequisites]: tutorial-1-prerequisites.md
+[scaffolding]: tutorial-2-scaffolding.md
+[main-renderer]: tutorial-3-main-renderer.md
+[features]: tutorial-4-adding-features.md
+[packaging-distribution]: tutorial-5-packaging-distribution.md
+[updates]: tutorial-6-updates.md

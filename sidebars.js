@@ -5,9 +5,12 @@ module.exports = {
       type: 'category',
       label: 'Tutorial',
       items: [
-        'latest/tutorial/introduction',
-        'latest/tutorial/quick-start',
-        'latest/tutorial/installation',
+        'latest/tutorial/tutorial-1-prerequisites',
+        'latest/tutorial/tutorial-2-scaffolding',
+        'latest/tutorial/tutorial-3-main-renderer',
+        'latest/tutorial/tutorial-4-adding-features',
+        'latest/tutorial/tutorial-5-packaging-distribution',
+        'latest/tutorial/tutorial-6-updates',
       ],
     },
     {

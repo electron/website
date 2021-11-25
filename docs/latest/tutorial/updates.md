@@ -10,7 +10,7 @@ This is part 7 of the Electron tutorial. The other parts are:
 
 1. [Prerequisites][prerequisites]
 1. [Scaffolding][scaffolding]
-1. [Main and Renderer process communication][main-renderer]
+1. [Communicating Between Processes][main-renderer]
 1. [Adding Features][features]
 1. [Application Distribution]
 1. [Code Signing]
@@ -48,7 +48,7 @@ npm install update-electron-app
 Invoke the updater from your app's main process file:
 
 ```js title="main.js"
-require('update-electron-app')()
+require('update-electron-app')();
 ```
 
 By default, this module will check for updates at app startup, then every ten
@@ -93,25 +93,25 @@ the environment.
 :::
 
 ```javascript
-const { app, autoUpdater, dialog } = require('electron')
+const { app, autoUpdater, dialog } = require('electron');
 ```
 
 Next, construct the URL of the update server and tell
 [autoUpdater](latest/api/auto-updater.md) about it:
 
 ```javascript
-const server = 'https://your-deployment-url.com'
-const url = `${server}/update/${process.platform}/${app.getVersion()}`
+const server = 'https://your-deployment-url.com';
+const url = `${server}/update/${process.platform}/${app.getVersion()}`;
 
-autoUpdater.setFeedURL({ url })
+autoUpdater.setFeedURL({ url });
 ```
 
 As the final step, check for updates. The example below will check every minute:
 
 ```javascript
 setInterval(() => {
-  autoUpdater.checkForUpdates()
-}, 60000)
+  autoUpdater.checkForUpdates();
+}, 60000);
 ```
 
 Once your application is [packaged](latest/tutorial/application-distribution.md),
@@ -133,13 +133,14 @@ autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
     buttons: ['Restart', 'Later'],
     title: 'Application Update',
     message: process.platform === 'win32' ? releaseNotes : releaseName,
-    detail: 'A new version has been downloaded. Restart the application to apply the updates.'
-  }
+    detail:
+      'A new version has been downloaded. Restart the application to apply the updates.',
+  };
 
   dialog.showMessageBox(dialogOpts).then((returnValue) => {
-    if (returnValue.response === 0) autoUpdater.quitAndInstall()
-  })
-})
+    if (returnValue.response === 0) autoUpdater.quitAndInstall();
+  });
+});
 ```
 
 Also make sure that errors are
@@ -147,10 +148,10 @@ Also make sure that errors are
 for logging them to `stderr`:
 
 ```javascript title="main.js"
-autoUpdater.on('error', message => {
-  console.error('There was a problem updating the application')
-  console.error(message)
-})
+autoUpdater.on('error', (message) => {
+  console.error('There was a problem updating the application');
+  console.error(message);
+});
 ```
 
 ## Handling Updates Manually
@@ -170,7 +171,7 @@ Because the requests made by Auto Update aren't under your direct control, you m
 
 [prerequisites]: tutorial-prerequisites.md
 [scaffolding]: tutorial-scaffolding.md
-[main-renderer]:./tutorial-main-renderer.md
+[main-renderer]: ./tutorial-main-renderer.md
 [features]: ./tutorial-adding-features.md
 [application distribution]: application-distribution.md
 [code signing]: code-signing.md
