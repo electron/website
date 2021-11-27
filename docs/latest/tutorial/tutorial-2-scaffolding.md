@@ -1,7 +1,7 @@
 ---
 title: 'Scaffolding'
 description: 'This guide will step you through the process of creating a barebones Hello World app in Electron, similar to electron/electron-quick-start.'
-slug: scaffolding
+slug: tutorial-scaffolding
 hide_title: false
 ---
 
@@ -366,5 +366,5 @@ If you want to dig deeper in the debugging area, the following guides provide mo
 [scaffolding]: tutorial-2-scaffolding.md
 [main-renderer]: tutorial-3-main-renderer.md
 [features]: tutorial-4-adding-features.md
-[packaging-distribution]: tutorial-5-packaging-distribution.md
+[packaging]: tutorial-5-packaging.md
 [updates]: tutorial-6-updates.md

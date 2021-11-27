@@ -1,7 +1,7 @@
 ---
-title: 'Application Distribution'
+title: 'Application Packaging'
 description: 'To distribute your app with Electron, you need to package and rebrand it. To do this, you can either use specialized tooling or manual approaches.'
-slug: application-distribution
+slug: application-packaging
 hide_title: false
 ---
 
@@ -15,7 +15,7 @@ We recommend using [Electron Forge](https://www.electronforge.io). You can check
 its documentation directly, or refer to the [Packaging and Distribution] part of the
 Electron tutorial.
 
-## Manual distribution
+## Manual packaging
 
 If you prefer the manual approach, there are 2 ways to distribute your application:
 
@@ -52,7 +52,7 @@ Then execute `Electron.app` on macOS, `electron` on Linux, or `electron.exe`
 on Windows, and Electron will start as your app. The `electron` directory
 will then be your distribution to deliver to users.
 
-### With an app source code archive
+### With an app source code archive (asar)
 
 Instead of shipping your app by copying all of its source files, you can
 package your app into an [asar] archive to improve the performance of reading
@@ -119,19 +119,4 @@ Keep in mind this is not recommended as setting up the environment to compile
 from source is not trivial and takes significant time.
 :::
 
-## Distributing via the OS stores
-
-Once you have your packed application, you can put the file on a place accessible
-to your users (for example, a web server), or you can use the platform's store.
-
-There are some considerations and steops when doing the later. You can find more
-information in the following links:
-
-- [Mac App Store Submission Guide]
-- [Windows Store Guide]
-- [Snapcraft Guide (Linux)]
-
 [asar]: https://github.com/electron/asar
-[mac app store submission guide]: mac-app-store-submission-guide.md
-[snapcraft guide (linux)]: snapcraft.md
-[windows store guide]: windows-store-guide.md
