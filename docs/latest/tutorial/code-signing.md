@@ -28,13 +28,13 @@ As you can see, users get two options: Move the app straight to the trash or
 cancel running it. You don't want your users to see that dialog.
 
 If you are building an Electron app that you intend to package and distribute,
-it should be code-signed.
+it should be code signed.
 
 ## Signing & notarizing macOS builds
 
-Properly preparing macOS applications for release requires two steps: First, the
-app needs to be code-signed. Then, the app needs to be uploaded to Apple for a
-process called "notarization", where automated systems will further verify that
+Properly preparing macOS applications for release requires two steps. First, the
+app needs to be code signed. Then, the app needs to be uploaded to Apple for a
+process called **notarization**, where automated systems will further verify that
 your app isn't doing anything to endanger its users.
 
 To start the process, ensure that you fulfill the requirements for signing and
@@ -54,11 +54,11 @@ and notarized requires a few additions to your configuration. [Forge](https://el
 collection of the official Electron tools, using [`electron-packager`],
 [`electron-osx-sign`], and [`electron-notarize`] under the hood.
 
-Let's take a look at an example `package.json` configuration with all required fields. Not all of them are required: the tools will be clever enough to
-automatically find a suitable `identity`, for instance, but we recommend
-that you are explicit.
+Let's take a look at an example `package.json` configuration with all required fields. Not all of them are
+required: the tools will be clever enough to automatically find a suitable `identity`, for instance,
+but we recommend that you are explicit.
 
-```json title="package.json"
+```json title="package.json" {7}
 {
   "name": "my-app",
   "version": "0.0.1",
@@ -130,15 +130,14 @@ Your app may crash. See the Resource Access section in [Hardened Runtime](https:
 Electron Builder comes with a custom solution for signing your application. You
 can find [its documentation here](https://www.electron.build/code-signing).
 
-### Using `electron-packager`
+### Using Electron Packager
 
 If you're not using an integrated build pipeline like Forge or Builder, you
 are likely using [`electron-packager`], which includes [`electron-osx-sign`] and
 [`electron-notarize`].
 
 If you're using Packager's API, you can pass [in configuration that both signs
-and notarizes your
-application](https://electron.github.io/electron-packager/main/interfaces/electronpackager.options.html).
+and notarizes your application](https://electron.github.io/electron-packager/main/interfaces/electronpackager.options.html).
 
 ```js
 const packager = require('electron-packager');
@@ -159,11 +158,11 @@ packager({
 });
 ```
 
-The `plist` file referenced here needs the following macOS-specific entitlements
+The `entitlements.plist` file referenced here needs the following macOS-specific entitlements
 to assure the Apple security mechanisms that your app is doing these things
 without meaning any harm:
 
-```xml title="plist"
+```xml title="entitlements.plist"
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -179,7 +178,7 @@ without meaning any harm:
 Up until Electron 12, the `com.apple.security.cs.allow-unsigned-executable-memory` entitlement was required
 as well. However, it should not be used anymore if it can be avoided.
 
-### Mac App Store
+### Signing Mac App Store applications
 
 See the [Mac App Store Guide].
 
@@ -196,8 +195,12 @@ it may be worth your time to shop around. Popular resellers include:
 
 - [digicert](https://www.digicert.com/code-signing/microsoft-authenticode.htm)
 - [Sectigo](https://sectigo.com/ssl-certificates-tls/code-signing)
-- Amongst others, please shop around to find one that suits your needs, Google
-  is your friend 😄
+- Amongst others, please shop around to find one that suits your needs! 😄
+
+:::caution Keep your certificate password private
+Your certificate password should be a **secret**. Do not share it publicly or
+commit it to your source code.
+:::
 
 ### Using Electron Forge
 
@@ -232,17 +235,13 @@ creating a Squirrel.Windows installer:
 }
 ```
 
-:::caution Keep your certificate password private
-Your certificate password should be a **secret**. Do not share it publicly or
-commit it to your source code.
-:::
-
-### Using `electron-winstaller` (Squirrel.Windows installers)
+### Using electron-winstaller (Squirrel.Windows)
 
 [`electron-winstaller`] is a package that can generate Squirrel.Windows installers for your
-Electron app. This is the tool used under the hood by Electron Forge's Squirrel.Windows Maker.
-If you're not using Electron Forge and want to use `electron-winstaller` directly, use the
-`certificateFile` and `certificatePassword` configuration options when creating your installer.
+Electron app. This is the tool used under the hood by Electron Forge's
+[Squirrel.Windows Maker][maker-squirrel]. If you're not using Electron Forge and want to use
+`electron-winstaller` directly, use the `certificateFile` and `certificatePassword` configuration
+options when creating your installer.
 
 ```js {10-11}
 const electronInstaller = require('electron-winstaller');
@@ -265,10 +264,10 @@ try {
 
 For full configuration options, check out the [`electron-winstaller`] repository!
 
-### Using `electron-wix-msi` (WiX MSI installers)
+### Using electron-wix-msi (WiX MSI)
 
 [`electron-wix-msi`] is a package that can generate MSI installers for your
-Electron app. This is the tool used under the hood by Electron Forge's MSI Maker.
+Electron app. This is the tool used under the hood by Electron Forge's [MSI Maker][maker-msi].
 
 If you're not using Electron Forge and want to use `electron-wix-msi` directly, use the
 `certificateFile` and `certificatePassword` configuration options
@@ -307,12 +306,12 @@ await msiCreator.compile();
 
 For full configuration options, check out the [`electron-wix-msi`] repository!
 
-### Using `electron-builder`
+### Using Electron Builder
 
 Electron Builder comes with a custom solution for signing your application. You
 can find [its documentation here](https://www.electron.build/code-signing).
 
-### Windows Store
+### Signing Windows Store applications
 
 See the [Windows Store Guide].
 
@@ -328,5 +327,8 @@ See the [Windows Store Guide].
 [signing certificates]: https://github.com/electron/electron-osx-sign/wiki/1.-Getting-Started#certificates
 [mac app store guide]: latest/tutorial/mac-app-store-submission-guide.md
 [windows store guide]: latest/tutorial/windows-store-guide.md
+
+[maker-squirrel]: https://www.electronforge.io/config/makers/squirrel.windows
+[maker-msi]: https://www.electronforge.io/config/makers/wix-msi
 
 [SignTool.exe]: https://docs.microsoft.com/en-us/dotnet/framework/tools/signtool-exe

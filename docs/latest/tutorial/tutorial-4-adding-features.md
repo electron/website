@@ -1,7 +1,7 @@
 ---
-title: 'Adding Application Features'
+title: 'Application Features'
 description: 'In this step of the tutorial we will share some resources you should read to add features to your application'
-slug: adding-features
+slug: tutorial-adding-features
 hide_title: false
 ---
 
@@ -19,7 +19,7 @@ This is part 4 of the Electron tutorial. The other parts are:
 
 If you have been following the tutorial, you should have a basic Electron application
 with some basic user interface. Now is the moment to work on your application and
-make it more integrated with the Operating System as well as adding some more advanced
+make it more integrated with the operating system as well as adding some more advanced
 features.
 
 ## Managing your application's window lifecycle
@@ -79,7 +79,7 @@ You can access them by clicking the links below:
 - [OS Integration]: How to make your application feel more integrated with the Operating
   System where it is running.
 - [How to]: A list of more advanced topics that are general to Electron development and
-  not for a particular Operating System.
+  not for a particular operating system.
 
 :::tip Let us know if something is missing!
 If you can't find what you are looking for, please let us know on our [GitHub repo] or in
@@ -92,12 +92,11 @@ our [Discord server][discord]!
 [github repo]: https://github.com/electron/electronjs.org-new/issues/new
 [os integration]: ./os-integration.md
 [how to]: ./examples.md
-
 <!-- Tutorial links -->
 
 [prerequisites]: tutorial-1-prerequisites.md
 [scaffolding]: tutorial-2-scaffolding.md
 [main-renderer]: tutorial-3-main-renderer.md
 [features]: tutorial-4-adding-features.md
-[packaging-distribution]: tutorial-5-packaging-distribution.md
+[packaging]: tutorial-5-packaging.md
 [updates]: tutorial-6-updates.md

@@ -138,12 +138,12 @@
 }
 
 .menu {
-  &__link {
+  .theme-doc-sidebar-item-link, .theme-doc-sidebar-item-category {
     font-weight: var(--ifm-font-weight-normal);
     font-size: 0.95rem;
   }
 
-  &__link--sublist {
+  .theme-doc-sidebar-item-link-level-1, .theme-doc-sidebar-item-category-level-1  {
     font-weight: var(--ifm-font-weight-semi-bold);
     font-size: 1.1rem;
   }
