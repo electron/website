@@ -9,7 +9,7 @@ module.exports = {
         'latest/tutorial/tutorial-2-scaffolding',
         'latest/tutorial/tutorial-3-main-renderer',
         'latest/tutorial/tutorial-4-adding-features',
-        'latest/tutorial/tutorial-5-packaging-distribution',
+        'latest/tutorial/tutorial-5-packaging',
         'latest/tutorial/tutorial-6-updates',
       ],
     },
@@ -124,7 +124,8 @@ module.exports = {
       type: 'category',
       label: 'Distribution',
       items: [
-        'latest/tutorial/application-distribution',
+        'latest/tutorial/distribution-overview',
+        'latest/tutorial/application-packaging',
         'latest/tutorial/code-signing',
         'latest/tutorial/updates',
         {

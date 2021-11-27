@@ -1,7 +1,7 @@
 ---
-title: 'Packaging and Distribution'
+title: 'Packaging Your Application'
 description: 'To distribute your app with Electron, you need to package and rebrand it. To do this, you can either use specialized tooling or manual approaches.'
-slug: packaging-distribution
+slug: tutorial-packaging
 hide_title: false
 ---
 
@@ -12,14 +12,14 @@ This is part 5 of the Electron tutorial. The other parts are:
 1. [Scaffolding][scaffolding]
 1. [Communicating Between Processes][main-renderer]
 1. [Adding Features][features]
-1. [Packaging and Distribution][packaging-distribution]
-1. [Updating Your Application][updates]
+1. [Packaging Your Application][packaging]
+1. [Publishing and Updates][updates]
 
 :::
 
 Electron does not have any tooling for packaging and distribution bundled into its core
-package. Once you have a working Electron app in development mode, you need to use
-additional tooling to get an executable file you can distribute to your users (also known
+modules. Once you have a working Electron app in development mode, you need to use
+additional tooling to create a packaged app you can distribute to your users (also known
 as a **distributable**). Distributables can be either installers (e.g. MSI on Windows) or
 portable executable files (e.g. `.zip` on macOS).
 
@@ -54,9 +54,14 @@ For more information on `make` and other Forge commands, check out
 the [Electron Forge CLI documentation].
 :::
 
+You should also notice that your `package.json` now has a few more packages installed
+under your dev dependencies, and contains an added `config.forge` field with an array
+of `makers` configured. **Makers** are Forge plugins that create distributables from
+your source code. You should see multiple Makers in the default
+
 ## Creating a distributable
 
-To create a distributable, use Forge's Make script:
+To create a distributable, use Forge's `make` script:
 
 ```sh npm2yarn
 npm run make
@@ -82,7 +87,7 @@ Electron Forge can be configured to create distributables in different OS-specif
 
 :::info Packaging without Electron Forge
 If you want to manually package your code, or if you're just interested understanding the
-mechanics behind packaging an Electron app, check out the full [Application Distribution]
+mechanics behind packaging an Electron app, check out the full [Application Packaging]
 guide.
 :::
 
@@ -95,9 +100,10 @@ Code signing is a security technology that you use to certify that a desktop app
 created by a known source. Windows and macOS have their own OS-specific code signing
 systems that will make it difficult for users to download or launch unsigned applications.
 
-A full 
+Please see the full [Code Signing] guide for more information.
 
-[Application Distribution]: application-distribution.md
+[Application Packaging]: application-packaging.md
+[Code Signing]: code-signing.md
 [Electron Forge]: https://www.electronforge.io
 [Electron Forge CLI documentation]: https://www.electronforge.io/cli#commands
 [Makers]: https://www.electronforge.io/config/makers
@@ -108,5 +114,5 @@ A full
 [scaffolding]: tutorial-2-scaffolding.md
 [main-renderer]: tutorial-3-main-renderer.md
 [features]: tutorial-4-adding-features.md
-[packaging-distribution]: tutorial-5-packaging-distribution.md
+[packaging]: tutorial-5-packaging.md
 [updates]: tutorial-6-updates.md

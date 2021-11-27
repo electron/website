@@ -1,7 +1,7 @@
 ---
 title: 'Communicating Between Processes'
 description: 'This guide will step you through the process of creating a barebones Hello World app in Electron, similar to electron/electron-quick-start.'
-slug: main-renderer
+slug: tutorial-main-renderer
 hide_title: false
 ---
 
@@ -157,7 +157,6 @@ has a message similar to the following one (probably with different versions):
 And the code should be similar to this:
 
 ```fiddle docs/latest/fiddles/tutorial-main-renderer
-
 ```
 
 <!-- TODO (@erickzhao): Write the IPC part -->
@@ -195,5 +194,5 @@ And the code should be similar to this:
 [scaffolding]: tutorial-2-scaffolding.md
 [main-renderer]: tutorial-3-main-renderer.md
 [features]: tutorial-4-adding-features.md
-[packaging-distribution]: tutorial-5-packaging-distribution.md
+[packaging]: tutorial-5-packaging.md
 [updates]: tutorial-6-updates.md
