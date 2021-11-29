@@ -16,8 +16,8 @@ To distribute your app with Electron, you need to package all your resources
 and assets into an executable, and rebrand it.
 To do this, you can either use specialized tooling or manual approaches.
 
-The [Application Distribution][application-distribution] section of the tutorial
-goes in detail about the different techniques.
+The [Application Packagin][application-packaging] section goes in detail about
+the different techniques.
 
 ## Code signing
 
@@ -26,7 +26,7 @@ created by you. You should sign your application so it does not trigger the
 security checks of your user's Operating System.
 
 To know more about what to do for each Operating System, please read the
-[Code Signing][code-signing] section of the tutorial.
+[Code Signing][code-signing] section.
 
 ## Publishing
 
@@ -44,11 +44,11 @@ has its own caveats which are discussed in the following sections:
 If your plan on updating your application, you need a way to deliver those updates
 without forcing the user to manually find and download the installer for the new
 version. There are several ways to achieve this and the [Updating Applications][updates]
-section of the tutorial explains them.
+section explains them.
 
 <!-- Link labels -->
 
-[application-distribution]: ./application-distribution.md
+[application-packaging]: ./application-packaging.md
 [code-signing]: ./code-signing.md
 [mac-app]: ./mac-app-store-submission-guide.md
 [windows-store]: ./windows-store-guide.md

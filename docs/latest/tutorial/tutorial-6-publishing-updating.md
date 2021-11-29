@@ -26,7 +26,7 @@ Note that there are you need to meet certain criteria to use this service:
 - App runs on macOS or Windows
 - App has a public GitHub repository
 - Builds are published to [GitHub Releases]
-- Builds are [code-signed]
+- Builds are [Code Signed][code-signed]
 
 At this point, we'll assume that you've already committed and pushed all your
 code to a public GitHub repository.
@@ -129,6 +129,7 @@ release is associated with a labeled point in your code history.
 :::
 
 #### Bonus: Publishing in GitHub Actions
+
 Publishing locally can be painful, especially because you can only create distributables
 for your host operating system (i.e. you can't publish a Window `.exe` file from macOS).
 
@@ -162,26 +163,26 @@ npm install update-electron-app
 Then, import the module and call it immediately in the main process.
 
 ```js title='main.js'
-require('update-electron-app')()
+require('update-electron-app')();
 ```
 
 And that's all it takes! Once your application is packaged, it will update itself for each new
 GitHub Release that you publish.
 
-
-[autoUpdater]: ../api/auto-updater.md
-[update-server]: ./updates.md#step-1-deploying-an-update-server
-[GitHub Releases]: https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository
+[autoupdater]: ../api/auto-updater.md
 [code-signed]: ./code-signing.md
-[new-pat]: https://github.com/settings/tokens/new
-[GitHub Publisher]: https://www.electronforge.io/config/publishers/github
-[`PublisherGitHubConfig`]: https://js.electronforge.io/publisher/github/interfaces/publishergithubconfig
-[GitHub Actions]: https://github.com/features/actions
-[Electron Fiddle]: https://electronjs.org/fiddle
+[electron fiddle]: https://electronjs.org/fiddle
 [fiddle-build]: https://github.com/electron/fiddle/blob/master/.github/workflows/build.yaml
 [fiddle-forge-config]: https://github.com/electron/fiddle/blob/master/forge.config.js
+[github actions]: https://github.com/features/actions
+[github publisher]: https://www.electronforge.io/config/publishers/github
+[github releases]: https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository
+[new-pat]: https://github.com/settings/tokens/new
+[publish command]: https://www.electronforge.io/cli#publish
+[publisher]: https://www.electronforge.io/config/publishers
+[`publishergithubconfig`]: https://js.electronforge.io/publisher/github/interfaces/publishergithubconfig
 [update-electron-app]: https://github.com/electron/update-electron-app
-
+[update-server]: ./updates.md#step-1-deploying-an-update-server
 
 <!-- Tutorial links -->
 
