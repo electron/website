@@ -88,10 +88,14 @@ our [Discord server][discord]!
 
 <!-- Link labels -->
 
+[activate]: latest/api/app.md#event-activate-macos
+[app-quit]: latest/api/app.md#appquit
 [discord]: https://discord.com/invite/electron
 [github repo]: https://github.com/electron/electronjs.org-new/issues/new
-[os integration]: ./os-integration.md
 [how to]: ./examples.md
+[node-platform]: https://nodejs.org/api/process.html#process_process_platform
+[os integration]: ./os-integration.md
+[window-all-closed]: latest/api/app.md#event-window-all-closed
 
 <!-- Tutorial links -->
 

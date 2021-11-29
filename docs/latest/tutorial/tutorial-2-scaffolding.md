@@ -44,7 +44,7 @@ There are a few rules to follow for the purposes of this tutorial:
 
 - `entry point` should be `main.js`.
 - `author`, `license`, and `description` can be any value, but will be necessary for
-  [app packaging][packaging-distribution] later on.
+  [app packaging][packaging] later on.
 
 Your `package.json` file should look something like this:
 
