@@ -6,14 +6,14 @@ hide_title: false
 ---
 
 :::info Tutorial parts
-This is part 4 of the Electron tutorial. The other parts are:
+This is **part 4** of the Electron tutorial. The other parts are:
 
 1. [Prerequisites][prerequisites]
 1. [Scaffolding][scaffolding]
 1. [Communicating Between Processes][main-renderer]
 1. [Adding Features][features]
-1. [Packaging and Distribution][packaging-distribution]
-1. [Updating Your Application][updates]
+1. [Packaging Your Application][packaging]
+1. [Publishing and Updating][updates]
 
 :::
 
@@ -92,6 +92,7 @@ our [Discord server][discord]!
 [github repo]: https://github.com/electron/electronjs.org-new/issues/new
 [os integration]: ./os-integration.md
 [how to]: ./examples.md
+
 <!-- Tutorial links -->
 
 [prerequisites]: tutorial-1-prerequisites.md
@@ -99,4 +100,4 @@ our [Discord server][discord]!
 [main-renderer]: tutorial-3-main-renderer.md
 [features]: tutorial-4-adding-features.md
 [packaging]: tutorial-5-packaging.md
-[updates]: tutorial-6-updates.md
+[updates]: tutorial-6-publishing-updating.md

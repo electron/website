@@ -10,7 +10,7 @@ module.exports = {
         'latest/tutorial/tutorial-3-main-renderer',
         'latest/tutorial/tutorial-4-adding-features',
         'latest/tutorial/tutorial-5-packaging',
-        'latest/tutorial/tutorial-6-updates',
+        'latest/tutorial/tutorial-6-publishing-updating',
       ],
     },
     {
