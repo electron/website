@@ -58,7 +58,7 @@ module.exports = {
         },
         {
           label: 'Tutorial',
-          to: 'docs/latest/tutorial/prerequisites',
+          to: 'docs/latest/tutorial/tutorial-prerequisites',
           position: 'left',
           activeBaseRegex: '^\b$', // never active
         },

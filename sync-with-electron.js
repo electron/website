@@ -41,7 +41,7 @@ const mdFiles = [
   'windows-taskbar.md',
 ];
 
-const imgFiles = ['vscode-debugger.png'];
+const imgFiles = [];
 
 const fiddles = ['tutorial-main-renderer', 'windows-lifecycle'];
 
