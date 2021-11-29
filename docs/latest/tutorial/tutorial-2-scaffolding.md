@@ -6,21 +6,21 @@ hide_title: false
 ---
 
 :::info Tutorial parts
-This is part 2 of the Electron tutorial. The other parts are:
+This is **part 2** of the Electron tutorial. The other parts are:
 
 1. [Prerequisites][prerequisites]
 1. [Scaffolding][scaffolding]
 1. [Communicating Between Processes][main-renderer]
 1. [Adding Features][features]
-1. [Packaging and Distribution][packaging-distribution]
-1. [Updating Your Application][updates]
+1. [Packaging Your Application][packaging]
+1. [Publishing and Updating][updates]
 
 :::
 
 At the end of this part you will have an Electron application with some basic
 UI and you will know how to debug it.
 
-## Creating your application
+## Setting up your NPM project
 
 Electron apps follow the same general structure as other Node.js projects.
 Start by creating a folder and initializing an npm package.
@@ -43,7 +43,7 @@ The interactive `init` command will prompt you to set some fields in your config
 There are a few rules to follow for the purposes of this tutorial:
 
 - `entry point` should be `main.js`.
-- `author` and `description` can be any value, but will be necessary for
+- `author`, `license`, and `description` can be any value, but will be necessary for
   [app packaging][packaging-distribution] later on.
 
 Your `package.json` file should look something like this:
@@ -59,7 +59,7 @@ Your `package.json` file should look something like this:
 }
 ```
 
-Then, install the `electron` package into your app's `devDependencies`.
+Then, install Electron into your app's dev dependencies.
 
 ```sh npm2yarn
 npm install --save-dev electron
@@ -85,17 +85,16 @@ field of your `package.json` config, add a `start` command like so:
 This `start` command will let you open your app in development mode.
 
 ```sh npm2yarn
-npm start
+npm run start
 ```
 
 :::note
-
 This script tells Electron to run on your project's root folder. At this stage,
 your app will immediately throw a native error dialog. This is expected as we
 have not written any code yet.
 :::
 
-## Adding the entry point
+## Creating your main process
 
 The entry point of any Electron application is its main script. This script controls the
 **main process**, which runs in a full Node.js environment and is responsible for
@@ -153,14 +152,14 @@ folder of your project:
 </html>
 ```
 
-### Loading the web page into a BrowserWindow
+## Loading the web page into a BrowserWindow
 
 Now that you have a web page, load it into an application window. To do so, replace
 the `console.log` statement in the `main.js` file from the previous step with the
 following snippet:
 
 ```js title='main.js'
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow } = require('electron')
 
 const createWindow = () => {
   const win = new BrowserWindow({
@@ -187,7 +186,7 @@ In the first line, we are importing 2 Electron modules with the CommonJS
   windows.
 
 ```js
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow } = require('electron')
 ```
 
 :::warning ESM and Electron
@@ -196,7 +195,7 @@ are currently not directly supported in Electron. You can find more information 
 state of ESM in Electron in [this GitHub issue](https://github.com/electron/electron/issues/21457).
 :::
 
-Then, the `createWindow()` function loads `index.html` into a new `BrowserWindow`
+Then, the `createWindow()` function loads `index.html` into a new BrowserWindow
 instance with a series of options:
 
 ```js
@@ -204,9 +203,6 @@ const createWindow = () => {
   const win = new BrowserWindow({
     width: 800,
     height: 600,
-    webPreferences: {
-      sandbox: true,
-    },
   });
 
   win.loadFile('index.html');
@@ -217,43 +213,33 @@ const createWindow = () => {
 You can find all the constructor options available in the [BrowserWindow API docs][browser-window].
 :::
 
-In Electron, browser windows can only be created after the app module's
+In Electron, BrowserWindows can only be created after the app module's
 [`ready`][app-ready] event is fired. You can wait for this event by using the
 [`app.whenReady()`][app-when-ready] API. Call `createWindow()` after `whenReady()`
 resolves its Promise. This is done in the last 3 lines of the code:
 
 ```js
 app.whenReady().then(() => {
-  createWindow();
-});
+  createWindow()
+})
 ```
 
 At this point, your Electron application should successfully open a window that displays your
 web page! Each window created by your app will run in a separate process called a
-**renderer**.
+**renderer** process (or simply _renderer_ for short).
 
-:::tip sandboxing
+Renderer processes behave very similarly to regular websites. This means you can use the same
+JavaScript APIs and tooling you use for typical front-end development, such as using [webpack]
+to bundle and minify your code or [React][react] to manage your user interfaces.
+
+<!-- :::tip sandboxing
 One important thing from the code above is `sandbox: true`. The sandbox limits the harm that malicious
 code can cause by limiting access to most system resources. While the sandbox used to be disabled by
 default, that changes in Electron 18 where `sandbox: true` will be the default.
 
 The sandbox will appear again in the tutorial, and you can read now more about it in the
 [Process Sandboxing guide][sandbox].
-:::
-
-You have now code being executed in the main and renderer process.
-The easiest way to debug the code in your renderer process is by using the built-in developer
-tools. You can invoke them with a shortcut (`Ctrl/Command+Shift+I`) or programmatically
-via `win.webContents.openDevTools()` in the main process. If you want to use VS Code,
-keep reading!
-
-The renderer has access to the web APIs. That means you can use the same JavaScript APIs and
-tooling you use for typical front-end development, such as using [`webpack`][webpack] to bundle
-and minify your code or [React][react] to manage your user interfaces.
-
-:::tip Further reading
-You can find more information about this subject in the [Boilerplates and CLIs].
-:::
+::: -->
 
 ## Optional: Debugging from VS Code
 
@@ -330,9 +316,8 @@ in development mode.
 :::tip Further reading
 If you want to dig deeper in the debugging area, the following guides provide more information:
 
-- [Application debugging]
-- [Using a devtools extension][devtools extension]
-- The "Testing and Debugging" section in the sidebar
+- [Application Debugging]
+- [DevTools Extensions][devtools extension]
 
 :::
 
@@ -345,7 +330,6 @@ If you want to dig deeper in the debugging area, the following guides provide mo
 [app-ready]: latest/api/app.md#event-ready
 [app-when-ready]: latest/api/app.md#appwhenready
 [application debugging]: ./application-debugging.md
-[boilerplates and clis]: boilerplates-and-clis.md
 [browser-window]: latest/api/browser-window.md
 [commonjs]: https://nodejs.org/docs/latest/api/modules.html#modules_modules_commonjs_modules
 [compound task]: https://code.visualstudio.com/Docs/editor/tasks#_compound-tasks
@@ -367,4 +351,4 @@ If you want to dig deeper in the debugging area, the following guides provide mo
 [main-renderer]: tutorial-3-main-renderer.md
 [features]: tutorial-4-adding-features.md
 [packaging]: tutorial-5-packaging.md
-[updates]: tutorial-6-updates.md
+[updates]: tutorial-6-publishing-updating.md
