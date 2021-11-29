@@ -317,6 +317,8 @@ ipcRenderer.send('asynchronous-message', 'ping')
 ```javascript title='main.js (Main Process)'
 ipcMain.on('asynchronous-message', (event, arg) => {
   console.log(arg) // prints "ping" in the Node console
+  // works like `send`, but returning a message back
+  // to the renderer that sent the original message
   event.reply('asynchronous-reply', 'pong')
 })
 ```
