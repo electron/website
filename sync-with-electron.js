@@ -4,11 +4,11 @@ const fs = require('fs-extra');
 const path = require('path');
 
 const mdFiles = [
-  'application-distribution.md',
+  'application-packaging.md',
   'code-signing.md',
   'dark-mode.md',
   'devices.md',
-  'distribution.md',
+  'distribution-overview.md',
   'examples.md',
   'in-app-purchases.md',
   'introduction.md',
@@ -29,10 +29,12 @@ const mdFiles = [
   'represented-file.md',
   'spellchecker.md',
   'tray.md',
-  'tutorial-adding-features.md',
-  'tutorial-main-renderer.md',
-  'tutorial-prerequisites.md',
-  'tutorial-scaffolding.md',
+  'tutorial-1-prerequisites.md',
+  'tutorial-2-scaffolding.md',
+  'tutorial-3-main-renderer.md',
+  'tutorial-4-adding-features.md',
+  'tutorial-5-packaging.md',
+  'tutorial-6-publishing-updating.md',
   'updates.md',
   'web-embeds.md',
   'window-customization.md',
@@ -40,6 +42,8 @@ const mdFiles = [
   'windows-store-guide.md',
   'windows-taskbar.md',
 ];
+
+const toDelete = ['how-to-examples.md', 'application-distribution.md'];
 
 const imgFiles = [];
 
@@ -86,4 +90,28 @@ const copy = async () => {
   }
 };
 
-copy();
+const del = async () => {
+  for (const file of toDelete) {
+    const outPath = path.join(
+      __dirname,
+      '..',
+      'electron',
+      'docs',
+      'tutorial',
+      file
+    );
+
+    try {
+      await fs.remove(outPath);
+    } catch (e) {
+      console.log(`FIle ${outPath} does not exist in destination`);
+    }
+  }
+};
+
+const process = async () => {
+  await copy();
+  await del();
+};
+
+process();
