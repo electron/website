@@ -93,6 +93,6 @@ guide!).
 [prerequisites]: tutorial-prerequisites.md
 [scaffolding]: tutorial-scaffolding.md
 [main-renderer]: ./tutorial-main-renderer.md
-[application distribution]: application-distribution.md
+[application distribution]: distribution-overview.md
 [code signing]: code-signing.md
 [updates]: updates.md
