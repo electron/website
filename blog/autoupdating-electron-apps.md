@@ -88,7 +88,7 @@ service.
 [Hazel]: https://github.com/zeit/hazel
 [Julian Gruber]: http://juliangruber.com/
 [main process]: https://electronjs.org/docs/glossary#main-process
-[Deploying an Update Server]: https://electronjs.org/docs/tutorial/updates#deploying-an-update-server
+[Deploying an Update Server]: https://electronjs.org/docs/tutorial/updates#step-1-deploying-an-update-server
 [Nucleus]: https://github.com/atlassian/nucleus
 [Samuel Attard]: https://www.samuelattard.com/
 [update-electron-app]: https://github.com/electron/update-electron-app

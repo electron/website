@@ -90,7 +90,7 @@ our [Discord server][discord]!
 
 [activate]: latest/api/app.md#event-activate-macos
 [app-quit]: latest/api/app.md#appquit
-[discord]: https://discord.com/invite/electron
+[discord]: https://discord.com/invite/APGC3k5yaH
 [github repo]: https://github.com/electron/electronjs.org-new/issues/new
 [how to]: ./examples.md
 [node-platform]: https://nodejs.org/api/process.html#process_process_platform

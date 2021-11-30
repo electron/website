@@ -68,8 +68,8 @@ Are you getting stuck anywhere? Here are a few links to places to look:
 [contributing to electron]: ../development/README.md
 [development]: boilerplates-and-clis.md
 [developer checklists]: performance.md
-[discord]: https://discord.gg/electron
-[distribution]: application-distribution.md
+[discord]: https://discord.com/invite/APGC3k5yaH
+[distribution]: distribution-overview.md
 [examples]: examples.md
 [fiddle]: https://electronjs.org/fiddle
 [issue-tracker]: https://github.com/electron/electron/issues
