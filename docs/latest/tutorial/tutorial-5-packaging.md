@@ -5,6 +5,9 @@ slug: tutorial-packaging
 hide_title: false
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 :::info Tutorial parts
 This is **part 5** of the Electron tutorial. The other parts are:
 
@@ -100,7 +103,68 @@ Code signing is a security technology that you use to certify that a desktop app
 created by a known source. Windows and macOS have their own OS-specific code signing
 systems that will make it difficult for users to download or launch unsigned applications.
 
-Please see the full [Code Signing] guide for more information.
+If you already have code signing certificates for Windows and macOS, you can set your
+credentials in your Forge configuration:
+
+<Tabs>
+  <TabItem value="macos" label="macOS" default>
+
+```json title='package.json' {6-18}
+{
+  //...
+  "config": {
+    "forge": {
+      //...
+      "packagerConfig": {
+        "osxSign": {
+          "identity": "Developer ID Application: Felix Rieseberg (LT94ZKYDCJ)",
+          "hardened-runtime": true,
+          "entitlements": "entitlements.plist",
+          "entitlements-inherit": "entitlements.plist",
+          "signature-flags": "library"
+        },
+        "osxNotarize": {
+          "appleId": "felix@felix.fun",
+          "appleIdPassword": "my-apple-id-password"
+        }
+      }
+      //...
+    }
+  }
+  //...
+}
+```
+
+  </TabItem>
+  <TabItem value="windows" label="Windows">
+
+```json title='package.json'  {6-14}
+{
+  //...
+  "config": {
+    "forge": {
+      //...
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "certificateFile": "./cert.pfx",
+            "certificatePassword": "this-is-a-secret"
+          }
+        }
+      ]
+      //...
+    }
+  }
+  //...
+}
+```
+
+  </TabItem>
+</Tabs>
+
+If you're unfamiliar with the desktop application code signing process, please refer
+to the full [Code Signing] guide for more information.
 
 [Application Packaging]: application-packaging.md
 [Code Signing]: code-signing.md
