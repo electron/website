@@ -167,7 +167,7 @@ const createWindow = () => {
     height: 600,
     webPreferences: {
       sandbox: true,
-    },
+    }
   })
 
   win.loadFile('index.html')
@@ -202,11 +202,11 @@ instance with a series of options:
 const createWindow = () => {
   const win = new BrowserWindow({
     width: 800,
-    height: 600,
-  });
+    height: 600
+  })
 
-  win.loadFile('index.html');
-};
+  win.loadFile('index.html')
+}
 ```
 
 :::tip Further reading

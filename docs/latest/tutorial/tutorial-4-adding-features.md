@@ -38,8 +38,8 @@ event, and call [`app.quit()`][app-quit] if the user is not on macOS (`darwin`).
 
 ```js
 app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') app.quit();
-});
+  if (process.platform !== 'darwin') app.quit()
+})
 ```
 
 ### Open a window if none are open (macOS)
@@ -57,12 +57,12 @@ from within your existing `whenReady()` callback.
 
 ```js
 app.whenReady().then(() => {
-  createWindow();
+  createWindow()
 
   app.on('activate', () => {
-    if (BrowserWindow.getAllWindows().length === 0) createWindow();
-  });
-});
+    if (BrowserWindow.getAllWindows().length === 0) createWindow()
+  })
+})
 ```
 
 All your code should be similar to this:

@@ -71,7 +71,7 @@ an issue:
   * [DevTools Extension](latest/tutorial/devtools-extension.md)
   * [Automated Testing with a Custom Driver](latest/tutorial/automated-testing-with-a-custom-driver.md)
   * [REPL](latest/tutorial/repl.md)
-* [Distribution](latest/tutorial/application-distribution.md)
+* [Distribution](latest/tutorial/distribution-overview.md)
   * [Supported Platforms](latest/tutorial/support.md#supported-platforms)
   * [Code Signing](latest/tutorial/code-signing.md)
   * [Mac App Store](latest/tutorial/mac-app-store-submission-guide.md)

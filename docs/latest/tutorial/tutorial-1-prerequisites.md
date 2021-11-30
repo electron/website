@@ -58,7 +58,7 @@ GitHub Desktop will install the latest version of Git on your system if you don'
 it installed.
 :::
 
-We recommend that you create a local Git repository and publish it to GitHub before starting the tutorial, 
+We recommend that you create a local Git repository and publish it to GitHub before starting the tutorial,
 and commit your code after every step.
 
 ### Node.js and NPM
