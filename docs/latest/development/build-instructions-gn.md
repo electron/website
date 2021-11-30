@@ -9,7 +9,7 @@ hide_title: false
 
 Follow the guidelines below for building **Electron itself**, for the purposes of creating custom Electron binaries. For bundling and distributing your app code with the prebuilt Electron binaries, see the [application distribution][application-distribution] guide.
 
-[application-distribution]: latest/tutorial/application-distribution.md
+[application-distribution]: latest/tutorial/distribution-overview.md
 
 ## Platform prerequisites
 

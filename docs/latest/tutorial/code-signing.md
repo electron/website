@@ -119,8 +119,8 @@ need to add the following entitlements:
 If these are not present in your app's entitlements when you invoke, for example:
 
 ```js title="main.js"
-const { systemPreferences } = require('electron');
-const microphone = systemPreferences.askForMediaAccess('microphone');
+const { systemPreferences } = require('electron')
+const microphone = systemPreferences.askForMediaAccess('microphone')
 ```
 
 Your app may crash. See the Resource Access section in [Hardened Runtime](https://developer.apple.com/documentation/security/hardened_runtime) for more information and entitlements you may need.
@@ -140,7 +140,7 @@ If you're using Packager's API, you can pass [in configuration that both signs
 and notarizes your application](https://electron.github.io/electron-packager/main/interfaces/electronpackager.options.html).
 
 ```js
-const packager = require('electron-packager');
+const packager = require('electron-packager')
 
 packager({
   dir: '/path/to/my/app',
@@ -149,13 +149,13 @@ packager({
     'hardened-runtime': true,
     entitlements: 'entitlements.plist',
     'entitlements-inherit': 'entitlements.plist',
-    'signature-flags': 'library',
+    'signature-flags': 'library'
   },
   osxNotarize: {
     appleId: 'felix@felix.fun',
-    appleIdPassword: 'my-apple-id-password',
-  },
-});
+    appleIdPassword: 'my-apple-id-password'
+  }
+})
 ```
 
 The `entitlements.plist` file referenced here needs the following macOS-specific entitlements

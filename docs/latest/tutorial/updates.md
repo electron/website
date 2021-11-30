@@ -140,6 +140,7 @@ autoUpdater.on('error', (message) => {
   console.error(message);
 });
 ```
+
 :::info Handling updates manually
 Because the requests made by autoUpdate aren't under your direct control, you may find situations
 that are difficult to handle (such as if the update server is behind authentication). The `url`
