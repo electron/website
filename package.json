@@ -76,6 +76,5 @@
     "remark-gfm": "^1.0.0",
     "tar-stream": "^2.2.0",
     "unist-util-visit-parents": "^3.1.1"
-  },
-  "sha": "15038974ad1a10b1c3d74d350c545723b0ed639c"
+  }
 }
