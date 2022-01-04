@@ -163,9 +163,6 @@ module.exports = {
       indexName: 'electronjs',
       contextualSearch: true,
     },
-    googleAnalytics: {
-      trackingID: 'UA-160365006-1',
-    },
   },
   plugins: ['docusaurus-plugin-sass'],
   presets: [
@@ -197,6 +194,9 @@ module.exports = {
         },
         theme: {
           customCss: [require.resolve('./src/css/custom.scss')],
+        },
+        googleAnalytics: {
+          trackingID: 'UA-160365006-1',
         },
       },
     ],
