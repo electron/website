@@ -29,5 +29,4 @@ jobs:
       locale: en
       branch: main
     secrets:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       SAS: ${{ secrets.SAS }}
