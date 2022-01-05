@@ -74,12 +74,13 @@ module.exports = {
           label: 'Releases',
           position: 'right',
         },
-        {
-          type: 'dropdown',
-          label: docVersions[0].label,
-          position: 'right',
-          items: docVersions,
-        },
+        // FIXME: Enable when versioned docs work
+        // {
+        //   type: 'dropdown',
+        //   label: docVersions[0].label,
+        //   position: 'right',
+        //   items: docVersions,
+        // },
         {
           type: 'localeDropdown',
           position: 'right',
