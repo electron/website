@@ -148,10 +148,20 @@ const fixLinks = (content, linksMaps) => {
 
   while ((val = mdLinkRegex.exec(content)) !== null) {
     const link = val[2];
-    const basename = path.basename(link);
+
+    // Don't map links from outside the electron docs
+    if (
+      link.startsWith('https://') &&
+      !link.includes('github.com/electron/electron/')
+    ) {
+      continue;
+    }
+
     // Link could be `glossary.md#main-process` and we just need `glossary.md`
+    const basename = path.basename(link);
     const parts = basename.split('#');
     const key = parts.shift();
+
     if (linksMaps.has(key)) {
       const newLink = [linksMaps.get(key), ...parts];
       const replacement = val[0].replace(val[2], newLink.join('#'));
