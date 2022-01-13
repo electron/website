@@ -201,8 +201,8 @@ If you need to force a re-download of the asset and the SHASUM file set the
 [versioning]: latest/tutorial/electron-versioning.md
 [npx]: https://docs.npmjs.com/cli/v7/commands/npx
 [releases]: https://github.com/electron/electron/releases
-[proxy-env-10]: latest/development/README.md#environment-variables
-[proxy-env]: latest/development/README.md#auto-config
+[proxy-env-10]: https://github.com/gajus/global-agent/blob/v2.1.5/README.md#environment-variables
+[proxy-env]: https://github.com/np-maintain/global-tunnel/blob/v2.7.1/README.md#auto-config
 [electron-get]: https://github.com/electron/get
 [npm-permissions]: https://docs.npmjs.com/getting-started/fixing-npm-permissions
 [unsafe-perm]: https://docs.npmjs.com/misc/config#unsafe-perm
