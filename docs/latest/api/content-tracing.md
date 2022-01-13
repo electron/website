@@ -90,4 +90,4 @@ Returns `Promise<Object>` - Resolves with an object containing the `value` and `
 Get the maximum usage across processes of trace buffer as a percentage of the
 full state.
 
-[trace viewer]: latest/development/README.md
+[trace viewer]: https://chromium.googlesource.com/catapult/+/HEAD/tracing/README.md

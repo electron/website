@@ -55,4 +55,4 @@ An example TraceConfig that roughly matches what Chrome DevTools records:
 [tracing categories]: https://chromium.googlesource.com/chromium/src/+/master/base/trace_event/builtin_categories.h
 [memory-infra docs]: https://chromium.googlesource.com/chromium/src/+/master/docs/memory-infra/memory_infra_startup_tracing.md#the-advanced-way
 [trace_event_args_whitelist.cc]: https://chromium.googlesource.com/chromium/src/+/master/services/tracing/public/cpp/trace_event_args_whitelist.cc
-[histogram]: latest/development/README.md
+[histogram]: https://chromium.googlesource.com/chromium/src.git/+/HEAD/tools/metrics/histograms/README.md

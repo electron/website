@@ -40,7 +40,7 @@ underneath the app's user data directory, called 'Crashpad'. You can override
 this directory by calling `app.setPath('crashDumps', '/path/to/crashes')`
 before starting the crash reporter.
 
-Electron uses [crashpad](latest/development/README.md)
+Electron uses [crashpad](https://chromium.googlesource.com/crashpad/crashpad/+/refs/heads/main/README.md)
 to monitor and report crashes.
 
 ## Methods
