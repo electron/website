@@ -160,7 +160,7 @@ module.exports = {
       copyright: `Copyright © ${new Date().getFullYear()} OpenJS Foundation and Electron contributors.`,
     },
     algolia: {
-      apiKey: 'c9e8f898b3b32afe40f0a96637e7ea85',
+      apiKey: 'fdc2cf6080e499639d7e6b0278851ed4',
       indexName: 'electronjs',
       contextualSearch: true,
     },
