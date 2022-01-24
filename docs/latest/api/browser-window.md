@@ -1006,7 +1006,7 @@ APIs like `win.setSize`.
   is `true`). Default is `#FFF` (white).
 
 Sets the background color of the window. See [Setting
-`backgroundColor`](#setting-backgroundcolor).
+`backgroundColor`](#setting-the-backgroundcolor-property).
 
 #### `win.previewFile(path[, displayName])` _macOS_
 
@@ -1051,7 +1051,7 @@ Returns [`Rectangle`](latest/api/structures/rectangle.md) - The `bounds` of the 
 #### `win.getBackgroundColor()`
 
 Returns `String` - Gets the background color of the window. See [Setting
-`backgroundColor`](#setting-backgroundcolor).
+`backgroundColor`](#setting-the-backgroundcolor-property).
 
 #### `win.setContentBounds(bounds[, animate])`
 
