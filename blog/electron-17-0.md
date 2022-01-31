@@ -33,7 +33,6 @@ Additionally, Electron has changed supported versions from latest three versions
 * Node.js `16.13.0`
     * [Node 16.13.0 blog post](https://nodejs.org/en/blog/release/v16.13.0/)
 * V8 `9.8`
-    * [V8 9.8 blog post](https://v8.dev/blog/v8-release-98)
 
 ### Highlighted Features
 
