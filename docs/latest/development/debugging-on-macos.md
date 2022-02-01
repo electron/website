@@ -1,7 +1,7 @@
 ---
 title: "Debugging on macOS"
-description: "If you experience crashes or issues in Electron that you believe are not caused by your JavaScript application, but instead by Electron itself, debugging can be a little bit tricky, especially for developers not used to native/C++ debugging. However, using lldb, and the Electron source code, you can enable step-through debugging with breakpoints inside Electron's source code. You can also use XCode for debugging if you prefer a graphical interface."
-slug: debugging-instructions-macos
+description: "If you experience crashes or issues in Electron that you believe are not caused by your JavaScript application, but instead by Electron itself, debugging can be a little bit tricky especially for developers not used to native/C++ debugging. However, using lldb and the Electron source code, you can enable step-through debugging with breakpoints inside Electron's source code. You can also use XCode for debugging if you prefer a graphical interface."
+slug: debugging-on-macos
 hide_title: false
 ---
 
@@ -9,25 +9,22 @@ hide_title: false
 
 If you experience crashes or issues in Electron that you believe are not caused
 by your JavaScript application, but instead by Electron itself, debugging can
-be a little bit tricky, especially for developers not used to native/C++
-debugging. However, using lldb, and the Electron source code, you can enable
+be a little bit tricky especially for developers not used to native/C++
+debugging. However, using `lldb` and the Electron source code, you can enable
 step-through debugging with breakpoints inside Electron's source code.
-You can also use [XCode for debugging](latest/development/debugging-instructions-macos-xcode.md) if
-you prefer a graphical interface.
+You can also use [XCode for debugging](latest/development/debugging-with-xcode.md) if you prefer a graphical interface.
 
 ## Requirements
 
-* **A debug build of Electron**: The easiest way is usually building it
-  yourself, using the tools and prerequisites listed in the
-  [build instructions for macOS](latest/development/build-instructions-macos.md). While you can
-  attach to and debug Electron as you can download it directly, you will
-  find that it is heavily optimized, making debugging substantially more
-  difficult: The debugger will not be able to show you the content of all
+* **A testing build of Electron**: The easiest way is usually to build it from source,
+  which you can do by following the instructions in the [build instructions](latest/development/build-instructions-macos.md). While you can attach to and debug Electron as you can download it directly, you will
+  find that it is heavily optimized, making debugging substantially more difficult.
+  In this case the debugger will not be able to show you the content of all
   variables and the execution path can seem strange because of inlining,
   tail calls, and other compiler optimizations.
 
-* **Xcode**: In addition to Xcode, also install the Xcode command line tools.
-  They include LLDB, the default debugger in Xcode on macOS. It supports
+* **Xcode**: In addition to Xcode, you should also install the Xcode command line tools.
+  They include [LLDB](https://lldb.llvm.org/), the default debugger in Xcode on macOS. It supports
   debugging C, Objective-C and C++ on the desktop and iOS devices and simulator.
 
 * **.lldbinit**: Create or edit `~/.lldbinit` to allow Chromium code to be properly source-mapped.

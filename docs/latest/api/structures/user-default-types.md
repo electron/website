@@ -7,12 +7,12 @@ hide_title: false
 
 # UserDefaultTypes Object
 
-* `string` String
-* `boolean` Boolean
-* `integer` Number
-* `float` Number
-* `double` Number
-* `url` String
+* `string` string
+* `boolean` boolean
+* `integer` number
+* `float` number
+* `double` number
+* `url` string
 * `array` Array\<unknown&#62;
 * `dictionary` Record\<string, unknown&#62;
 

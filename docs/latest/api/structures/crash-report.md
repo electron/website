@@ -8,4 +8,4 @@ hide_title: false
 # CrashReport Object
 
 * `date` Date
-* `id` String
+* `id` string
