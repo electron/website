@@ -56,7 +56,7 @@ There were no API changes in Electron 17.
 
 ### Removed/Deprecated Changes
 
-* Usage of the `desktopCapturer.getSources` API in the renderer has been deprecated and will be removed. This change improves the default security of Electron apps. See [here](https://raw.githubusercontent.com/electron/electron/main/docs/breaking-changes.md#removed-desktopcapturergetsources-in-the-renderer) for details on how to replace this API in your app.
+* Usage of the `desktopCapturer.getSources` API in the renderer has been removed. See [here](https://raw.githubusercontent.com/electron/electron/main/docs/breaking-changes.md#removed-desktopcapturergetsources-in-the-renderer) for details on how to replace this API in your app.
 
 ## End of Support for 13.x.y
 
