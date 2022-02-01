@@ -7,5 +7,5 @@ hide_title: false
 
 # FileFilter Object
 
-* `name` String
-* `extensions` String[]
+* `name` string
+* `extensions` string[]

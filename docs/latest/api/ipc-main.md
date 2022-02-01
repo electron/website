@@ -64,7 +64,7 @@ The `ipcMain` module has the following method to listen for events:
 
 ### `ipcMain.on(channel, listener)`
 
-* `channel` String
+* `channel` string
 * `listener` Function
   * `event` IpcMainEvent
   * `...args` any[]
@@ -74,7 +74,7 @@ Listens to `channel`, when a new message arrives `listener` would be called with
 
 ### `ipcMain.once(channel, listener)`
 
-* `channel` String
+* `channel` string
 * `listener` Function
   * `event` IpcMainEvent
   * `...args` any[]
@@ -84,7 +84,7 @@ only the next time a message is sent to `channel`, after which it is removed.
 
 ### `ipcMain.removeListener(channel, listener)`
 
-* `channel` String
+* `channel` string
 * `listener` Function
   * `...args` any[]
 
@@ -93,13 +93,13 @@ Removes the specified `listener` from the listener array for the specified
 
 ### `ipcMain.removeAllListeners([channel])`
 
-* `channel` String (optional)
+* `channel` string (optional)
 
 Removes listeners of the specified `channel`.
 
 ### `ipcMain.handle(channel, listener)`
 
-* `channel` String
+* `channel` string
 * `listener` Function<Promise\<void&#62; | any&#62;
   * `event` IpcMainInvokeEvent
   * `...args` any[]
@@ -136,7 +136,7 @@ provided to the renderer process. Please refer to
 
 ### `ipcMain.handleOnce(channel, listener)`
 
-* `channel` String
+* `channel` string
 * `listener` Function<Promise\<void&#62; | any&#62;
   * `event` IpcMainInvokeEvent
   * `...args` any[]
@@ -146,7 +146,7 @@ Handles a single `invoke`able IPC message, then removes the listener. See
 
 ### `ipcMain.removeHandler(channel)`
 
-* `channel` String
+* `channel` string
 
 Removes any handler for `channel`, if present.
 

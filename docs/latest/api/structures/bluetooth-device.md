@@ -7,5 +7,5 @@ hide_title: false
 
 # BluetoothDevice Object
 
-* `deviceName` String
-* `deviceId` String
+* `deviceName` string
+* `deviceId` string

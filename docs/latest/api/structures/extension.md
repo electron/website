@@ -7,9 +7,9 @@ hide_title: false
 
 # Extension Object
 
-* `id` String
+* `id` string
 * `manifest` any - Copy of the [extension's manifest data](https://developer.chrome.com/extensions/manifest).
-* `name` String
-* `path` String - The extension's file path.
-* `version` String
-* `url` String - The extension's `chrome-extension://` URL.
+* `name` string
+* `path` string - The extension's file path.
+* `version` string
+* `url` string - The extension's `chrome-extension://` URL.

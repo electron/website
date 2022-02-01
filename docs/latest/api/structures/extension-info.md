@@ -7,5 +7,5 @@ hide_title: false
 
 # ExtensionInfo Object
 
-* `name` String
-* `version` String
+* `name` string
+* `version` string

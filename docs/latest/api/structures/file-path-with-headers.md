@@ -7,5 +7,5 @@ hide_title: false
 
 # FilePathWithHeaders Object
 
-* `path` String - The path to the file to send.
+* `path` string - The path to the file to send.
 * `headers` Record<string, string&#62; (optional) - Additional headers to be sent.
