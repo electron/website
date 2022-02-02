@@ -83,7 +83,7 @@ Writes `markup` to the clipboard.
 ```js
 const { clipboard } = require('electron')
 
-clipboard.writeHTML('<b>Hi</b')
+clipboard.writeHTML('<b>Hi</b>')
 ```
 
 ### `clipboard.readImage([type])`
