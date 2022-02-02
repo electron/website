@@ -57,6 +57,7 @@ module.exports = {
         'latest/tutorial/fuses',
         'latest/tutorial/sandbox',
         'latest/tutorial/using-native-node-modules',
+        'latest/development/debugging',
       ],
     },
     {
