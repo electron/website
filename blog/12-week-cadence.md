@@ -7,6 +7,15 @@ authors:
   image_url: 'https://github.com/sofianguy.png?size=96'
 slug: 12-week-cadence
 ---
+
+:::info ⚡️ Update (2021-07-14): We're going even faster!
+
+In Q3 2021, the Chrome team [increased their release cadence](https://blog.chromium.org/2021/03/speeding-up-release-cycle.html)
+from every 6 weeks to every 4 weeks. Electron's releases have followed suit.
+Please read the updated [8 week cadence](./8-week-cadence.md) blog post
+for more up-to-date information!
+:::
+
 🎉 Electron is moving to release a new major stable version every 12 weeks! 🎉
 
 ---
