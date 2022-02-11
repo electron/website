@@ -103,7 +103,7 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'Resources',
+      label: 'References',
       items: [
         'latest/breaking-changes',
         'latest/tutorial/electron-timelines',
