@@ -166,18 +166,6 @@
   }
 }
 
-.menu {
-  &__link {
-    font-weight: var(--ifm-font-weight-normal);
-    font-size: 0.95rem;
-  }
-
-  &__link--sublist {
-    font-weight: var(--ifm-font-weight-semi-bold);
-    font-size: 1.1rem;
-  }
-}
-
 .button {
   &--outline {
     border: 1px solid;

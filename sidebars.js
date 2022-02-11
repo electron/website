@@ -7,14 +7,35 @@ module.exports = {
         'latest/tutorial/introduction',
         'latest/tutorial/quick-start',
         'latest/tutorial/installation',
-        'latest/tutorial/process-model',
       ],
     },
     {
       type: 'category',
-      label: 'How To',
+      label: 'Processes in Electron',
       items: [
-        'latest/tutorial/examples',
+        'latest/tutorial/process-model',
+        'latest/tutorial/context-isolation',
+        'latest/tutorial/ipc',
+        'latest/tutorial/sandbox',
+        'latest/tutorial/message-ports',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Best Practices',
+      items: [
+        'latest/tutorial/performance',
+        'latest/tutorial/security',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Examples',
+      link: {
+        type: 'doc',
+        id: 'latest/tutorial/examples',
+      },
+      items: [
         'latest/tutorial/dark-mode',
         'latest/tutorial/devices',
         'latest/tutorial/in-app-purchases',
@@ -22,7 +43,6 @@ module.exports = {
         'latest/tutorial/launch-app-from-url-in-another-app',
         'latest/tutorial/linux-desktop-actions',
         'latest/tutorial/macos-dock',
-        'latest/tutorial/message-ports',
         'latest/tutorial/multithreading',
         'latest/tutorial/native-file-drag-drop',
         'latest/tutorial/notifications',
@@ -32,21 +52,10 @@ module.exports = {
         'latest/tutorial/recent-documents',
         'latest/tutorial/represented-file',
         'latest/tutorial/spellchecker',
-        'latest/tutorial/updates',
-        'latest/tutorial/web-embeds',
-        'latest/tutorial/windows-arm',
-        'latest/tutorial/windows-taskbar',
         'latest/tutorial/tray',
+        'latest/tutorial/web-embeds',
+        'latest/tutorial/windows-taskbar',
         'latest/tutorial/window-customization',
-        'latest/tutorial/ipc',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Developer Checklists',
-      items: [
-        'latest/tutorial/performance',
-        'latest/tutorial/security',
       ],
     },
     {
@@ -54,11 +63,10 @@ module.exports = {
       label: 'Development',
       items: [
         'latest/tutorial/accessibility',
-        'latest/tutorial/context-isolation',
+        'latest/tutorial/boilerplates-and-clis',
         'latest/tutorial/fuses',
-        'latest/tutorial/sandbox',
         'latest/tutorial/using-native-node-modules',
-        'latest/development/debugging',
+        'latest/tutorial/windows-arm',
       ],
     },
     {
@@ -67,9 +75,16 @@ module.exports = {
       items: [
         'latest/tutorial/application-distribution',
         'latest/tutorial/code-signing',
-        'latest/tutorial/mac-app-store-submission-guide',
-        'latest/tutorial/windows-store-guide',
-        'latest/tutorial/snapcraft',
+        'latest/tutorial/updates',
+        {
+          type: 'category',
+          label: 'App Store Guides',
+          items: [
+            'latest/tutorial/mac-app-store-submission-guide',
+            'latest/tutorial/windows-store-guide',
+            'latest/tutorial/snapcraft',
+          ]
+        },
       ],
     },
     {
@@ -88,42 +103,77 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'Resources',
+      label: 'References',
       items: [
-        'latest/tutorial/boilerplates-and-clis',
         'latest/breaking-changes',
         'latest/tutorial/electron-timelines',
         'latest/tutorial/electron-versioning',
         'latest/faq',
-        'latest/glossary',
         'latest/tutorial/support',
+        'latest/glossary',
       ],
     },
     {
       type: 'category',
       label: 'Contributing',
       items: [
-        'latest/development/README',
-        'latest/development/azure-vm-setup',
-        'latest/development/build-instructions-gn',
-        'latest/development/build-instructions-linux',
-        'latest/development/build-instructions-macos',
-        'latest/development/build-instructions-windows',
-        'latest/development/chromium-development',
-        'latest/development/clang-tidy',
-        'latest/development/coding-style',
-        'latest/development/creating-api',
-        'latest/development/debugging-on-macos',
-        'latest/development/debugging-on-windows',
-        'latest/development/debugging-with-xcode',
-        'latest/development/debugging-with-symbol-server',
-        'latest/development/goma',
-        'latest/development/issues',
-        'latest/development/patches',
-        'latest/development/pull-requests',
-        'latest/development/source-code-directory-structure',
-        'latest/development/testing',
-        'latest/development/v8-development',
+        {
+          type: 'category',
+          label: 'Build Instructions',
+          link: {
+            type: 'doc',
+            id: 'latest/development/build-instructions-gn'
+          },
+          items: [
+            'latest/development/build-instructions-linux',
+            'latest/development/build-instructions-macos',
+            'latest/development/build-instructions-windows',
+            'latest/development/goma',
+          ]
+        },
+        {
+          type: 'category',
+          label: 'Debugging',
+          link: {
+            type: 'doc',
+            id: 'latest/development/debugging',
+          },
+          items: [
+            'latest/development/debugging-on-macos',
+            'latest/development/debugging-on-windows',
+            'latest/development/debugging-with-xcode',
+            'latest/development/debugging-with-symbol-server',
+          ]
+        },
+        {
+          type: 'category',
+          label: 'Development Guides',
+          items: [
+            'latest/development/azure-vm-setup',
+            'latest/development/clang-tidy',
+            'latest/development/coding-style',
+            'latest/development/creating-api',
+            'latest/development/patches',
+            'latest/development/source-code-directory-structure',
+            'latest/development/testing',
+          ]
+        },
+        {
+          type: 'category',
+          label: 'GitHub',
+          items: [
+            'latest/development/issues',
+            'latest/development/pull-requests',
+          ]
+        },
+        {
+          type: 'category',
+          label: 'Upstream Development',
+          items: [
+            'latest/development/chromium-development',
+            'latest/development/v8-development',
+          ]
+        },
       ],
     },
   ],

@@ -1,11 +1,11 @@
 ---
-title: 'Examples overview'
+title: 'Examples Overview'
 description: 'A set of examples for common Electron features'
 slug: examples
 hide_title: false
 ---
 
-# Examples overview
+# Examples Overview
 
 In this section, we have collected a set of guides for common features
 that you may want to implement in your Electron application. Each guide
