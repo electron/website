@@ -38,7 +38,13 @@ module.exports = {
       items: [
         'latest/tutorial/dark-mode',
         'latest/tutorial/devices',
-        'latest/tutorial/in-app-purchases',
+        {
+          type: 'doc',
+          id: 'latest/tutorial/in-app-purchases',
+          customProps: {
+            platform: ['mac']
+          }
+        },
         'latest/tutorial/keyboard-shortcuts',
         'latest/tutorial/launch-app-from-url-in-another-app',
         'latest/tutorial/linux-desktop-actions',
