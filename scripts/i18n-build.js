@@ -39,7 +39,7 @@ const processLocale = async (locale) => {
  *
  * @param {string} [locale]
  */
-async function buildLocale(locale) {
+const buildLocale = async (locale) => {
   try {
     await updateConfig(locale);
     await processLocale(locale);
@@ -49,7 +49,7 @@ async function buildLocale(locale) {
 
     throw e;
   }
-}
+};
 
 /**
  *
