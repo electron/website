@@ -33,6 +33,11 @@
   --electron-heading: var(--electron-color-mid);
   --electron-inline-code: var(--electron-color-secondary-mid);
 
+  // docusaurus variables
+  // these require !important because of some weirdness in CSS ordering
+  // see: https://github.com/facebook/docusaurus/issues/3678
+  --doc-sidebar-width: 350px !important;
+
   // infima shadow levels
   // generated from https://www.joshwcomeau.com/shadow-palette/
   --shadow-color: 0deg 0% 0%;
@@ -172,6 +177,32 @@
     color: var(--ifm-color-primary);
     &:hover {
       color: var(--ifm-color-primary-dark);
+    }
+  }
+}
+
+// sidebar
+.menu {
+  &__link {
+    font-size: 0.9rem;
+    font-weight: var(--ifm-font-weight-normal);
+
+    &--active {
+      font-weight: var(--ifm-font-weight-bold);
+    }
+
+    // Note: this CSS class is added via the
+    // swizzled src/theme/DocSidebarItem/index.jsx
+    // component.
+    &--collapsible {
+      font-weight: var(--ifm-font-weight-semibold);
+    
+      .theme-doc-sidebar-item-category-level-1 & {
+        font-size: 1rem;
+      }
+      .theme-doc-sidebar-item-category-level-2 & {
+        font-size: 0.95rem;
+      }
     }
   }
 }

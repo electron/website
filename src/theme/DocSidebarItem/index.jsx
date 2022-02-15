@@ -23,6 +23,8 @@ import IconExternalLink from '@theme/IconExternalLink';
 import DocSidebarItems from '@theme/DocSidebarItems';
 import styles from './styles.module.css';
 import useIsBrowser from '@docusaurus/useIsBrowser';
+import TagContent from './TagContent';
+
 export default function DocSidebarItem({item, ...props}) {
   switch (item.type) {
     case 'category':
@@ -134,6 +136,7 @@ function DocSidebarItemCategory({
       <div className="menu__list-item-collapsible">
         <Link
           className={clsx('menu__link', {
+            'menu__link--collapsible': collapsible, // SWIZZLED
             'menu__link--sublist': collapsible && !href,
             'menu__link--active': isActive,
             [styles.menuLinkText]: !collapsible,
@@ -205,9 +208,8 @@ function DocSidebarItemLink({
   ...props
 }) {
   const { href, label, className, customProps } = item;
-  const platform = customProps?.platform;
-  console.log(platform);
   const isActive = isActiveSidebarItem(item, activePath);
+  const hasTags = customProps && Array.isArray(customProps.tags) && customProps.tags.length > 0; // SWIZZLED
   return (
     <li
       className={clsx(
@@ -227,16 +229,29 @@ function DocSidebarItemLink({
           onClick: onItemClick ? () => onItemClick(item) : undefined,
         })}
         {...props}>
-        {isInternalUrl(href) ? (
-          label
-        ) : (
-          <span>
-            {label}
-            <IconExternalLink />
-          </span>
-        )}
-        {Array.isArray(platform) && <span class="badge badge--info">{platform[0]}</span>}
-      </Link>
+          {isInternalUrl(href) ? (
+            label
+          ) : (
+            <span>
+              {label}
+              <IconExternalLink />
+            </span>
+          )}
+          {
+            // BEGIN SWIZZLED CODE
+            hasTags &&
+              <div className={styles.tagContainer}>
+              {
+                customProps.tags.map((tag) =>
+                  <span className={clsx('badge', styles.badge, styles[tag])} key={tag}>
+                    <TagContent platform={tag}/>
+                  </span>
+                )
+              }
+              </div>
+            // END SWIZZLED CODE
+          }
+        </Link>
     </li>
   );
 }
