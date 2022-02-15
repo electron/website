@@ -94,6 +94,18 @@ const newLineOnHTMLComment = (line) => {
 };
 
 /**
+ * Crowdin translations also happen to break
+ * Docusaurus' MDX admonition syntax.
+ * @param {string} line
+ */
+const newLineOnAdmonition = (line) => {
+  if (line.endsWith(':::') && !line.startsWith(':::')) {
+    return line.replace(':::', ':::\n');
+  }
+  return line;
+};
+
+/**
  * Applies any transformation that can be executed line by line on
  * the document to make sure it is ready to be consumed by
  * docusaurus and our md extensions:
@@ -108,6 +120,7 @@ const transform = (doc) => {
     apiTransformer,
     fiddleTransformer,
     newLineOnHTMLComment,
+    newLineOnAdmonition,
   ];
 
   for (const line of lines) {
