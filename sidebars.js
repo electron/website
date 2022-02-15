@@ -67,6 +67,27 @@ module.exports = {
         'latest/tutorial/fuses',
         'latest/tutorial/using-native-node-modules',
         'latest/tutorial/windows-arm',
+        'latest/development/azure-vm-setup',
+        'latest/development/build-instructions-gn',
+        'latest/development/build-instructions-linux',
+        'latest/development/build-instructions-macos',
+        'latest/development/build-instructions-windows',
+        'latest/development/chromium-development',
+        'latest/development/clang-tidy',
+        'latest/development/coding-style',
+        'latest/development/creating-api',
+        'latest/development/debugging-on-macos',
+        'latest/development/debugging-on-windows',
+        'latest/development/debugging-with-symbol-server',
+        'latest/development/debugging-with-xcode',
+        'latest/development/debugging',
+        'latest/development/goma',
+        'latest/development/issues',
+        'latest/development/patches',
+        'latest/development/pull-requests',
+        'latest/development/source-code-directory-structure',
+        'latest/development/testing',
+        'latest/development/v8-development',
       ],
     },
     {
@@ -83,7 +104,7 @@ module.exports = {
             'latest/tutorial/mac-app-store-submission-guide',
             'latest/tutorial/windows-store-guide',
             'latest/tutorial/snapcraft',
-          ]
+          ],
         },
       ],
     },
@@ -122,14 +143,14 @@ module.exports = {
           label: 'Build Instructions',
           link: {
             type: 'doc',
-            id: 'latest/development/build-instructions-gn'
+            id: 'latest/development/build-instructions-gn',
           },
           items: [
             'latest/development/build-instructions-linux',
             'latest/development/build-instructions-macos',
             'latest/development/build-instructions-windows',
             'latest/development/goma',
-          ]
+          ],
         },
         {
           type: 'category',
@@ -143,7 +164,7 @@ module.exports = {
             'latest/development/debugging-on-windows',
             'latest/development/debugging-with-xcode',
             'latest/development/debugging-with-symbol-server',
-          ]
+          ],
         },
         {
           type: 'category',
@@ -156,7 +177,7 @@ module.exports = {
             'latest/development/patches',
             'latest/development/source-code-directory-structure',
             'latest/development/testing',
-          ]
+          ],
         },
         {
           type: 'category',
@@ -164,7 +185,7 @@ module.exports = {
           items: [
             'latest/development/issues',
             'latest/development/pull-requests',
-          ]
+          ],
         },
         {
           type: 'category',
@@ -172,8 +193,36 @@ module.exports = {
           items: [
             'latest/development/chromium-development',
             'latest/development/v8-development',
-          ]
+          ],
         },
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Tutorial',
+      items: [
+        'latest/tutorial/examples',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Tutorial',
+      items: [
+        'latest/tutorial/mac-app-store-submission-guide',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Tutorial',
+      items: [
+        'latest/tutorial/snapcraft',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Tutorial',
+      items: [
+        'latest/tutorial/windows-store-guide',
       ],
     },
   ],
