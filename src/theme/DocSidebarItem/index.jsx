@@ -240,15 +240,15 @@ function DocSidebarItemLink({
           {
             // BEGIN SWIZZLED CODE
             hasTags &&
-              <div className={styles.tagContainer}>
+              <ul className={styles.tagContainer}>
               {
                 customProps.tags.map((tag) =>
-                  <span className={clsx('badge', styles.badge, styles[tag])} key={tag}>
+                  <li className={clsx('badge', styles.badge, styles[tag])} key={tag}>
                     <TagContent platform={tag}/>
-                  </span>
+                  </li>
                 )
               }
-              </div>
+              </ul>
             // END SWIZZLED CODE
           }
         </Link>
