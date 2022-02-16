@@ -38,23 +38,52 @@ module.exports = {
       items: [
         'latest/tutorial/dark-mode',
         'latest/tutorial/devices',
-        'latest/tutorial/in-app-purchases',
+        {
+          type: 'doc',
+          id: 'latest/tutorial/in-app-purchases',
+          customProps: {
+            tags: ['mac']
+          }
+        },
         'latest/tutorial/keyboard-shortcuts',
         'latest/tutorial/launch-app-from-url-in-another-app',
-        'latest/tutorial/linux-desktop-actions',
-        'latest/tutorial/macos-dock',
+        {
+          type: 'doc',
+          id: 'latest/tutorial/linux-desktop-actions',
+          customProps: {
+            tags: ['linux']
+          }
+        },
+        {
+          type: 'doc',
+          id: 'latest/tutorial/macos-dock',
+          customProps: {
+            tags: ['mac']
+          }
+        },
         'latest/tutorial/multithreading',
         'latest/tutorial/native-file-drag-drop',
         'latest/tutorial/notifications',
         'latest/tutorial/offscreen-rendering',
         'latest/tutorial/online-offline-events',
         'latest/tutorial/progress-bar',
-        'latest/tutorial/recent-documents',
-        'latest/tutorial/represented-file',
+        {
+          type: 'doc',
+          id: 'latest/tutorial/represented-file',
+          customProps: {
+            tags: ['mac']
+          }
+        },
         'latest/tutorial/spellchecker',
         'latest/tutorial/tray',
         'latest/tutorial/web-embeds',
-        'latest/tutorial/windows-taskbar',
+        {
+          type: 'doc',
+          id: 'latest/tutorial/windows-taskbar',
+          customProps: {
+            tags: ['windows']
+          }
+        },
         'latest/tutorial/window-customization',
       ],
     },
