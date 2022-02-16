@@ -226,34 +226,6 @@ module.exports = {
         },
       ],
     },
-    {
-      type: 'category',
-      label: 'Tutorial',
-      items: [
-        'latest/tutorial/examples',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Tutorial',
-      items: [
-        'latest/tutorial/mac-app-store-submission-guide',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Tutorial',
-      items: [
-        'latest/tutorial/snapcraft',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Tutorial',
-      items: [
-        'latest/tutorial/windows-store-guide',
-      ],
-    },
   ],
   api: [
     {
