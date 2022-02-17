@@ -107,13 +107,30 @@ const createSidebar = async (root, destination) => {
   /** @type {Map<string, Entry>} */
   const reverseLookup = new Map();
 
-  const topLevels = Object.keys(sidebars);
+  const setRecursive = (category) => {
+    // Categories can also have a doc attached to them
+    if (category?.link?.type === 'doc' && category.link.id) {
+      reverseLookup.set(category.link.id, category);
+    }
 
-  for (const id of topLevels) {
-    for (const category of sidebars[id]) {
-      for (const item of category.items) {
+    // Go through all items in category
+    for (const item of category.items) {
+      // if doc is string shorthand
+      if (typeof item === 'string') {
         reverseLookup.set(item, category);
+        // if doc is added as object syntax
+      } else if (item?.type === 'doc' && !!item.id) {
+        reverseLookup.set(item.id, category);
+        // if item is nested category, recurse
+      } else if (item?.type === 'category') {
+        setRecursive(item);
       }
+    }
+  };
+
+  for (const id of Object.keys(sidebars)) {
+    for (const category of sidebars[id]) {
+      setRecursive(category);
     }
   }
 

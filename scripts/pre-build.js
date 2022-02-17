@@ -72,7 +72,7 @@ const start = async (source, targetVersion) => {
   console.log('Adding automatic frontmatter');
   await addFrontmatter(DOCS_FOLDER);
 
-  console.log('Updating sidebar.js');
+  console.log('Updating sidebars.js');
   await createSidebar('docs', path.join(process.cwd(), 'sidebars.js'));
 
   console.log('Updating docs versions');

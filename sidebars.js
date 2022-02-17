@@ -42,8 +42,10 @@ module.exports = {
           type: 'doc',
           id: 'latest/tutorial/in-app-purchases',
           customProps: {
-            tags: ['mac']
-          }
+            tags: [
+              'mac',
+            ],
+          },
         },
         'latest/tutorial/keyboard-shortcuts',
         'latest/tutorial/launch-app-from-url-in-another-app',
@@ -51,15 +53,19 @@ module.exports = {
           type: 'doc',
           id: 'latest/tutorial/linux-desktop-actions',
           customProps: {
-            tags: ['linux']
-          }
+            tags: [
+              'linux',
+            ],
+          },
         },
         {
           type: 'doc',
           id: 'latest/tutorial/macos-dock',
           customProps: {
-            tags: ['mac']
-          }
+            tags: [
+              'mac',
+            ],
+          },
         },
         'latest/tutorial/multithreading',
         'latest/tutorial/native-file-drag-drop',
@@ -69,10 +75,22 @@ module.exports = {
         'latest/tutorial/progress-bar',
         {
           type: 'doc',
+          id: 'latest/tutorial/recent-documents',
+          customProps: {
+            tags: [
+              'mac',
+              'windows',
+            ],
+          },
+        },
+        {
+          type: 'doc',
           id: 'latest/tutorial/represented-file',
           customProps: {
-            tags: ['mac']
-          }
+            tags: [
+              'mac',
+            ],
+          },
         },
         'latest/tutorial/spellchecker',
         'latest/tutorial/tray',
@@ -81,8 +99,10 @@ module.exports = {
           type: 'doc',
           id: 'latest/tutorial/windows-taskbar',
           customProps: {
-            tags: ['windows']
-          }
+            tags: [
+              'windows',
+            ],
+          },
         },
         'latest/tutorial/window-customization',
       ],
@@ -96,27 +116,6 @@ module.exports = {
         'latest/tutorial/fuses',
         'latest/tutorial/using-native-node-modules',
         'latest/tutorial/windows-arm',
-        'latest/development/azure-vm-setup',
-        'latest/development/build-instructions-gn',
-        'latest/development/build-instructions-linux',
-        'latest/development/build-instructions-macos',
-        'latest/development/build-instructions-windows',
-        'latest/development/chromium-development',
-        'latest/development/clang-tidy',
-        'latest/development/coding-style',
-        'latest/development/creating-api',
-        'latest/development/debugging-on-macos',
-        'latest/development/debugging-on-windows',
-        'latest/development/debugging-with-symbol-server',
-        'latest/development/debugging-with-xcode',
-        'latest/development/debugging',
-        'latest/development/goma',
-        'latest/development/issues',
-        'latest/development/patches',
-        'latest/development/pull-requests',
-        'latest/development/source-code-directory-structure',
-        'latest/development/testing',
-        'latest/development/v8-development',
       ],
     },
     {
@@ -224,34 +223,6 @@ module.exports = {
             'latest/development/v8-development',
           ],
         },
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Tutorial',
-      items: [
-        'latest/tutorial/examples',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Tutorial',
-      items: [
-        'latest/tutorial/mac-app-store-submission-guide',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Tutorial',
-      items: [
-        'latest/tutorial/snapcraft',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Tutorial',
-      items: [
-        'latest/tutorial/windows-store-guide',
       ],
     },
   ],
