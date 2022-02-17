@@ -118,19 +118,19 @@ const createSidebar = async (root, destination) => {
       // if doc is string shorthand
       if (typeof item === 'string') {
         reverseLookup.set(item, category);
-      // if doc is added as object syntax
+        // if doc is added as object syntax
       } else if (item?.type === 'doc' && !!item.id) {
         reverseLookup.set(item.id, category);
-      // if item is nested category, recurse
+        // if item is nested category, recurse
       } else if (item?.type === 'category') {
         setRecursive(item);
       }
     }
-  }
+  };
 
   for (const id of Object.keys(sidebars)) {
     for (const category of sidebars[id]) {
-      setRecursive(category)
+      setRecursive(category);
     }
   }
 
