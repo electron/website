@@ -42,8 +42,10 @@ module.exports = {
           type: 'doc',
           id: 'latest/tutorial/in-app-purchases',
           customProps: {
-            tags: ['mac']
-          }
+            tags: [
+              'mac',
+            ],
+          },
         },
         'latest/tutorial/keyboard-shortcuts',
         'latest/tutorial/launch-app-from-url-in-another-app',
@@ -51,15 +53,19 @@ module.exports = {
           type: 'doc',
           id: 'latest/tutorial/linux-desktop-actions',
           customProps: {
-            tags: ['linux']
-          }
+            tags: [
+              'linux',
+            ],
+          },
         },
         {
           type: 'doc',
           id: 'latest/tutorial/macos-dock',
           customProps: {
-            tags: ['mac']
-          }
+            tags: [
+              'mac',
+            ],
+          },
         },
         'latest/tutorial/multithreading',
         'latest/tutorial/native-file-drag-drop',
@@ -69,10 +75,22 @@ module.exports = {
         'latest/tutorial/progress-bar',
         {
           type: 'doc',
+          id: 'latest/tutorial/recent-documents',
+          customProps: {
+            tags: [
+              'mac',
+              'windows',
+            ],
+          },
+        },
+        {
+          type: 'doc',
           id: 'latest/tutorial/represented-file',
           customProps: {
-            tags: ['mac']
-          }
+            tags: [
+              'mac',
+            ],
+          },
         },
         'latest/tutorial/spellchecker',
         'latest/tutorial/tray',
@@ -81,8 +99,10 @@ module.exports = {
           type: 'doc',
           id: 'latest/tutorial/windows-taskbar',
           customProps: {
-            tags: ['windows']
-          }
+            tags: [
+              'windows',
+            ],
+          },
         },
         'latest/tutorial/window-customization',
       ],
