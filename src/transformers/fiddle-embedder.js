@@ -38,8 +38,7 @@ function matchNode(node) {
 
 const importNode = {
   type: 'import',
-  value:
-    "import FiddleEmbed from '@site/src/components/FiddleEmbed';",
+  value: "import FiddleEmbed from '@site/src/components/FiddleEmbed';",
 };
 
 /**
@@ -129,8 +128,9 @@ function getFiddleAST(dir, version, { focus = 'main.js' }) {
 
   children.push({
     type: 'jsx',
-    value:
-      `<FiddleEmbed files={${JSON.stringify(files)}} dir="${dir}" version="${version}" focus="${focus}" />`
+    value: `<FiddleEmbed files={${JSON.stringify(
+      files
+    )}} dir="${dir}" version="${version}" focus="${focus}" />`,
   });
 
   return children;

@@ -17,7 +17,6 @@ const { createSidebar } = require('./tasks/create-sidebar');
 const { fixContent } = require('./tasks/md-fixers');
 const { copyNewContent } = require('./tasks/copy-new-content');
 const { updateVersionsInfo } = require('./tasks/update-versions-info');
-const { sha } = require('../package.json');
 
 const DOCS_FOLDER = path.join('docs', 'latest');
 
@@ -40,9 +39,8 @@ const start = async (source, targetVersion) => {
     const stableBranch = version.replace(/\.\d+\.\d+/, '-x-y');
     console.log(`Latest version: ${version}`);
     console.log(`Stable branch:  ${stableBranch}`);
-    console.log(`Specified SHA:  ${sha}`);
 
-    const target = source || sha || stableBranch;
+    const target = source || stableBranch;
 
     console.log(`Downloading docs using "${target}"`);
     await download({

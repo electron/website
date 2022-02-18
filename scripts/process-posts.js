@@ -25,7 +25,6 @@ const start = async () => {
   const postsPaths = await globby(['blog/*.md']);
 
   const imgRegex = /<img\s((.|\n)*?)>/gm;
-  const descriptionRegex = /((.|\n)*)\n---\n/gm;
 
   for (const postPath of postsPaths) {
     const post = await fs.readFile(postPath, 'utf-8');

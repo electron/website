@@ -7,9 +7,6 @@ const tar = require('tar-stream');
 const got = require('got');
 const globby = require('globby');
 
-const pathRewrites = require('./docs-reorg.json');
-const fixedFolders = ['api', 'images', 'fiddles'];
-
 /**
  * @typedef DownloadOptions
  * @type {object}
@@ -26,21 +23,6 @@ const fixedFolders = ['api', 'images', 'fiddles'];
  * @property {string} slug
  * @property {Buffer} content
  */
-
-/**
- * Checks if the given folder is one of those that do not have to be
- * modified
- * @param {string} folder
- * @returns
- */
-const isFixedFolder = (folder) => {
-  for (const fixedFolder of fixedFolders) {
-    if (folder.includes(`/${fixedFolder}`)) {
-      return true;
-    }
-  }
-  return false;
-};
 
 /**
  * Saves the file on disk creating the necessary folders
@@ -76,6 +58,7 @@ const downloadFromGitHub = async (options) => {
 
   return new Promise((resolve) => {
     got
+      // @ts-expect-error
       .stream(tarballUrl)
       .pipe(require('gunzip-maybe')())
       .pipe(
