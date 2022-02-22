@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import React, {useEffect, useMemo} from 'react';
+import React, { useEffect, useMemo } from 'react';
 import clsx from 'clsx';
 import {
   isActiveSidebarItem,
@@ -18,14 +18,14 @@ import {
 } from '@docusaurus/theme-common';
 import Link from '@docusaurus/Link';
 import isInternalUrl from '@docusaurus/isInternalUrl';
-import {translate} from '@docusaurus/Translate';
+import { translate } from '@docusaurus/Translate';
 import IconExternalLink from '@theme/IconExternalLink';
 import DocSidebarItems from '@theme/DocSidebarItems';
 import styles from './styles.module.css';
 import useIsBrowser from '@docusaurus/useIsBrowser';
 import TagContent from './TagContent';
 
-export default function DocSidebarItem({item, ...props}) {
+export default function DocSidebarItem({ item, ...props }) {
   switch (item.type) {
     case 'category':
       if (item.items.length === 0) {
@@ -40,7 +40,7 @@ export default function DocSidebarItem({item, ...props}) {
   }
 } // If we navigate to a category and it becomes active, it should automatically expand itself
 
-function useAutoExpandActiveCategory({isActive, collapsed, setCollapsed}) {
+function useAutoExpandActiveCategory({ isActive, collapsed, setCollapsed }) {
   const wasActive = usePrevious(isActive);
   useEffect(() => {
     const justBecameActive = isActive && !wasActive;
@@ -79,10 +79,10 @@ function DocSidebarItemCategory({
   index,
   ...props
 }) {
-  const {items, label, collapsible, className, href} = item;
+  const { items, label, collapsible, className, href } = item;
   const hrefWithSSRFallback = useCategoryHrefWithSSRFallback(item);
   const isActive = isActiveSidebarItem(item, activePath);
-  const {collapsed, setCollapsed} = useCollapsible({
+  const { collapsed, setCollapsed } = useCollapsible({
     // active categories are always initialized as expanded
     // the default (item.collapsed) is only used for non-active categories
     initialState: () => {
@@ -98,14 +98,14 @@ function DocSidebarItemCategory({
     collapsed,
     setCollapsed,
   });
-  const {expandedItem, setExpandedItem} = useDocSidebarItemsExpandedState();
+  const { expandedItem, setExpandedItem } = useDocSidebarItemsExpandedState();
 
   function updateCollapsed(toCollapsed = !collapsed) {
     setExpandedItem(toCollapsed ? null : index);
     setCollapsed(toCollapsed);
   }
 
-  const {autoCollapseSidebarCategories} = useThemeConfig();
+  const { autoCollapseSidebarCategories } = useThemeConfig();
   useEffect(() => {
     if (
       collapsible &&
@@ -131,8 +131,9 @@ function DocSidebarItemCategory({
         {
           'menu__list-item--collapsed': collapsed,
         },
-        className,
-      )}>
+        className
+      )}
+    >
       <div className="menu__list-item-collapsible">
         <Link
           className={clsx('menu__link', {
@@ -160,7 +161,8 @@ function DocSidebarItemCategory({
           }
           aria-current={isActive ? 'page' : undefined}
           href={collapsible ? hrefWithSSRFallback ?? '#' : hrefWithSSRFallback}
-          {...props}>
+          {...props}
+        >
           {label}
         </Link>
         {href && collapsible && (
@@ -174,7 +176,7 @@ function DocSidebarItemCategory({
               },
               {
                 label,
-              },
+              }
             )}
             type="button"
             className="clean-btn menu__caret"
@@ -204,21 +206,25 @@ function DocSidebarItemLink({
   onItemClick,
   activePath,
   level,
-  index,
+  _index,
   ...props
 }) {
   const { href, label, className, customProps } = item;
   const isActive = isActiveSidebarItem(item, activePath);
-  const hasTags = customProps && Array.isArray(customProps.tags) && customProps.tags.length > 0; // SWIZZLED
+  const hasTags =
+    customProps &&
+    Array.isArray(customProps.tags) &&
+    customProps.tags.length > 0; // SWIZZLED
   return (
     <li
       className={clsx(
         ThemeClassNames.docs.docSidebarItemLink,
         ThemeClassNames.docs.docSidebarItemLinkLevel(level),
         'menu__list-item',
-        className,
+        className
       )}
-      key={label}>
+      key={label}
+    >
       <Link
         className={clsx('menu__link', {
           'menu__link--active': isActive,
@@ -228,30 +234,33 @@ function DocSidebarItemLink({
         {...(isInternalUrl(href) && {
           onClick: onItemClick ? () => onItemClick(item) : undefined,
         })}
-        {...props}>
-          {isInternalUrl(href) ? (
-            label
-          ) : (
-            <span>
-              {label}
-              <IconExternalLink />
-            </span>
-          )}
-          {
-            // BEGIN SWIZZLED CODE
-            hasTags &&
-              <ul className={styles.tagContainer}>
-              {
-                customProps.tags.map((tag) =>
-                  <li className={clsx('badge', styles.badge, styles[tag])} key={tag}>
-                    <TagContent platform={tag}/>
-                  </li>
-                )
-              }
-              </ul>
-            // END SWIZZLED CODE
-          }
-        </Link>
+        {...props}
+      >
+        {isInternalUrl(href) ? (
+          label
+        ) : (
+          <span>
+            {label}
+            <IconExternalLink />
+          </span>
+        )}
+        {
+          // BEGIN SWIZZLED CODE
+          hasTags && (
+            <ul className={styles.tagContainer}>
+              {customProps.tags.map((tag) => (
+                <li
+                  className={clsx('badge', styles.badge, styles[tag])}
+                  key={tag}
+                >
+                  <TagContent platform={tag} />
+                </li>
+              ))}
+            </ul>
+          )
+          // END SWIZZLED CODE
+        }
+      </Link>
     </li>
   );
 }

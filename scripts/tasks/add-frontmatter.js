@@ -80,7 +80,6 @@ const descriptionFromContent = (content) => {
 
   let description = '';
   let subHeader = false;
-  let wasPreviousLineEmpty = false;
 
   for (const line of lines) {
     const trimmedLine = line.trim();
@@ -98,7 +97,6 @@ const descriptionFromContent = (content) => {
       }
     } else {
       description += `${trimmedLine.replace(/^>/, '')} `;
-      wasPreviousLineEmpty = false;
     }
   }
 
@@ -164,38 +162,6 @@ const addFrontmatterToAllDocs = async (startPath) => {
     const newContent = addFrontMatter(content, filepath);
 
     await fs.writeFile(filepath, newContent, 'utf-8');
-  }
-};
-
-/**
- * Checks that all markdown files under `startPath` contain
- * a valid frontmatter.
- * @param {string} startPath
- */
-const checkFrontmatterInAllDocs = async (startPath) => {
-  // This is the regex used by [markdownlint](https://www.npmjs.com/package/markdownlint#user-content-optionsfrontmatter)
-  // which is used to validate the md files of this project
-  const frontmatterRegex = /((^---\s*$[^]*?^---\s*$)|(^\+\+\+\s*$[^]*?^(\+\+\+|\.\.\.)\s*$)|(^\{\s*$[^]*?^\}\s*$))(\r\n|\r|\n|$)/m;
-  const files = await getMarkdownFiles(startPath);
-  const errors = new Set();
-
-  for (const [filepath, content] of files) {
-    if (!frontmatterRegex.test(content)) {
-      errors.add(filepath);
-    }
-  }
-
-  if (errors.size > 0) {
-    console.error(
-      'The following markdown files do not have a frontmatter section:'
-    );
-    for (const file of errors) {
-      console.error(file);
-    }
-
-    process.exitCode = 1;
-  } else {
-    console.log('All markdown files have a frontmatter section 🙌');
   }
 };
 

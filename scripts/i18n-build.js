@@ -12,8 +12,10 @@ const updateConfig = async (locale) => {
 
   let docusaurusConfig = await fs.readFile(configPath, 'utf-8');
 
-  docusaurusConfig = docusaurusConfig
-    .replace(/baseUrl: '.*?',/, `baseUrl: '${baseUrl}',`);
+  docusaurusConfig = docusaurusConfig.replace(
+    /baseUrl: '.*?',/,
+    `baseUrl: '${baseUrl}',`
+  );
 
   await fs.writeFile(configPath, docusaurusConfig, 'utf-8');
 };
@@ -45,7 +47,7 @@ const start = async (locale) => {
       // We catch instead of just stopping the process because we want to restore docusaurus.config.js
       console.error(e);
       // TODO: It will be nice to do some clean up and point to the right file and line
-      console.error(`Locale ${locale} failed. Please check the logs above.`)
+      console.error(`Locale ${locale} failed. Please check the logs above.`);
     }
   }
 

@@ -7,7 +7,6 @@
  */
 
 const { getChanges } = require('./utils/git-commands');
-const del = require('del');
 const { execute } = require('./utils/execute');
 
 const files = ['docusaurus.config.js', 'sidebars.js'];

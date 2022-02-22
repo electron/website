@@ -1,4 +1,3 @@
-const fs = require('fs');
 const mock = {
   promises: {
     readFile: jest.fn(),

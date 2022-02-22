@@ -5,7 +5,11 @@ const gfm = require('remark-gfm');
 const toString = require('mdast-util-to-string');
 const fs = require('fs-extra');
 const path = require('path');
-const { getChanges, getCurrentBranchName, pushChanges } = require('./utils/git-commands');
+const {
+  getChanges,
+  getCurrentBranchName,
+  pushChanges,
+} = require('./utils/git-commands');
 
 const COMMIT_MESSAGE = '"chore: update governance member data (🤖)"';
 const EMAIL = 'electron@github.com';
@@ -17,9 +21,16 @@ const NAME = 'electron-bot';
  * output array to `_data.json`.
  */
 async function main() {
-  console.log('Fetching governance data...')
+  console.log('Fetching governance data...');
   const data = JSON.stringify(await fetchGovernanceData());
-  const targetPath = path.join(__dirname, '..', 'src', 'pages', 'governance', '_data.json');
+  const targetPath = path.join(
+    __dirname,
+    '..',
+    'src',
+    'pages',
+    'governance',
+    '_data.json'
+  );
   console.log('Writing to disk...');
   await fs.writeFile(targetPath, data);
   console.log('✅');
@@ -62,11 +73,11 @@ async function fetchGovernanceData() {
 }
 
 /**
- * @param {string} workingGroup 
+ * @param {string} workingGroup
  * @returns {Promise<WorkingGroup>}
  */
 async function getWGInfo(workingGroup) {
-  const link = `https://github.com/electron/governance/blob/main/wg-${workingGroup}/README.md`
+  const link = `https://github.com/electron/governance/blob/main/wg-${workingGroup}/README.md`;
   const readme = await getGitHubREADME(workingGroup);
   const rootNode = remark()
     //@ts-expect-error: import
@@ -84,23 +95,28 @@ async function getWGInfo(workingGroup) {
     .replace(' WG', '')
     .replace(' Working Group', '');
   const description = toString(rootNode.children[1]);
-  const table = rootNode.children
-    .find(child => child.type === 'table');
-  
+  const table = rootNode.children.find((child) => child.type === 'table');
+
   const rows = table.children.slice(1); // get rid of first header row
-  const wgMembers = rows.reduce((acc, row) => {
-    // skip rows that have empty table cells
-    if (row.children.some(cell => !toString(cell))) return acc;
-    const member = row.children[1].children[1].url.replace('https://github.com/', '');
-    const status = toString(row.children[2].children[0]);
-  
-    if (status === 'Chair') {
-      acc.chair = member;
-    } else {
-      acc.members.push(member);
-    }
-    return acc;
-  }, {chair: '', members: []});
+  const wgMembers = rows.reduce(
+    (acc, row) => {
+      // skip rows that have empty table cells
+      if (row.children.some((cell) => !toString(cell))) return acc;
+      const member = row.children[1].children[1].url.replace(
+        'https://github.com/',
+        ''
+      );
+      const status = toString(row.children[2].children[0]);
+
+      if (status === 'Chair') {
+        acc.chair = member;
+      } else {
+        acc.members.push(member);
+      }
+      return acc;
+    },
+    { chair: '', members: [] }
+  );
 
   return { name, link, description, ...wgMembers };
 }
@@ -114,7 +130,7 @@ async function getWGInfo(workingGroup) {
 async function getGitHubREADME(workingGroup) {
   const headers = {};
   if (process.env.GITHUB_TOKEN) {
-    headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`
+    headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
   }
   // @ts-ignore: export error?
   const data = await got(

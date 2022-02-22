@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React, {useEffect, useRef, useState} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import usePortal from 'react-useportal';
 
@@ -27,8 +27,8 @@ function APIStructurePreview(props) {
       // small negative offset helps retain focus so
       // we don't hit the onMouseLeave event if we
       // need to interact with the tooltip.
-      const VERTICAL_OFFSET = -2; 
-      const offset = {x: 0, y: 0};
+      const VERTICAL_OFFSET = -2;
+      const offset = { x: 0, y: 0 };
 
       const linkRect = linkRef.current.getBoundingClientRect();
       const isBottomHalfOfPage = window.innerHeight / 2 < linkRect.y;
@@ -49,7 +49,7 @@ function APIStructurePreview(props) {
 
       setPosition({
         top: linkRef.current.offsetTop - offset.y,
-        left: linkRef.current.offsetLeft - offset.x
+        left: linkRef.current.offsetLeft - offset.x,
       });
     }
   }, [show]);
@@ -60,17 +60,19 @@ function APIStructurePreview(props) {
       href={props.url}
       ref={linkRef}
       className={styles.link}
-      onMouseEnter={(ev) => { setShow(true); }}
-      onMouseLeave={() => { setShow(false);}}
+      onMouseEnter={(_ev) => {
+        setShow(true);
+      }}
+      onMouseLeave={() => {
+        setShow(false);
+      }}
     >
       {props.title}
-      {!!show &&
+      {!!show && (
         <Portal>
-          <Card 
-            innerRef={cardRef}
-            position={position}
-            {...props} />
-        </Portal>}
+          <Card innerRef={cardRef} position={position} {...props} />
+        </Portal>
+      )}
     </a>
   );
 }
@@ -89,6 +91,6 @@ const Card = (props) => (
       </ReactMarkdown>
     </div>
   </article>
-)
+);
 
 export default APIStructurePreview;
