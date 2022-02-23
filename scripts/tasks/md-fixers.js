@@ -210,8 +210,7 @@ const fixLinks = (content, linksMaps) => {
  * Crowdin sometimes breaks the admonitions closing tags (`:::`)
  * and puts them in the same line instead of a new one. This breaks
  * the build process and times out our i18n deployment.
- * @param {string} line 
- * @returns 
+ * @param {string} line
  */
 const fixAdmonitions = (line) => {
   if (!line.startsWith(':::') && line.endsWith(':::')) {
