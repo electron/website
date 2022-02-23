@@ -121,6 +121,7 @@ const transform = (doc) => {
     fiddleTransformer,
     newLineOnHTMLComment,
     newLineOnAdmonition,
+    fixAdmonitions,
   ];
 
   for (const line of lines) {
@@ -203,6 +204,20 @@ const fixLinks = (content, linksMaps) => {
   }
 
   return updatedContent;
+};
+
+/**
+ * Crowdin sometimes breaks the admonitions closing tags (`:::`)
+ * and puts them in the same line instead of a new one. This breaks
+ * the build process and times out our i18n deployment.
+ * @param {string} content 
+ * @returns 
+ */
+const fixAdmonitions = (content) => {
+  if (!line.startsWith(':::') && line.endsWith(':::')) {
+    return line.replace(':::', '\n:::');
+  }
+  return line;
 };
 
 /**
