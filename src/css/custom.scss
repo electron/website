@@ -183,6 +183,14 @@
       color: var(--ifm-color-primary-dark);
     }
   }
+
+  &--electron {
+    color: var(--electron-color-dark);
+    background: var(--electron-color-light);
+    &:hover {
+      background: var(--electron-color-dark);
+    }
+  }
 }
 
 // sidebar

@@ -4,7 +4,7 @@ const fiddleEmbedder = require('./src/transformers/fiddle-embedder.js');
 const apiLabels = require('./src/transformers/api-labels.js');
 const apiOptionsClass = require('./src/transformers/api-options-class.js');
 const apiStructurePreviews = require('./src/transformers/api-structure-previews.js');
-const docVersions = require('./versions-info.json');
+// const docVersions = require('./versions-info.json');
 
 module.exports = {
   title: 'Electron',

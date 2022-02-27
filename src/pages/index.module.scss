@@ -1,13 +1,102 @@
+.section {
+  h2 {
+    font-size: 2rem;
+    font-weight: 900;
+  }
+
+  h3 {
+    font-weight: 700;
+  }
+
+  @media (max-width: 1000px) {
+    padding: 3rem 2rem;
+  }
+
+  padding: 3rem 6rem;
+}
+
+.techContainer {
+  display: flex;
+  flex-wrap: wrap;
+
+  @media (max-width: 1000px) {
+    margin: 4rem 0;
+  }
+
+  margin: 4rem 12rem;
+}
+
+.techImageWrapper {
+  flex: 25%;
+  margin-bottom: 20px;
+}
+
+.techImage {
+  border-radius: 0;
+}
+
+.featureRow {
+  display: flex;
+  align-items: center;
+  &:nth-of-type(2n) {
+    flex-direction: row-reverse;
+  }
+  margin-bottom: 4rem;
+}
+
+.featureImageContainer {
+  position: relative;
+  max-width: 400px;
+  max-height: 300px;
+  margin: 0 auto;
+  &:before {
+    content: '';
+    background: var(--electron-color-dark);
+    background: linear-gradient(
+      90deg,
+      var(--electron-color-dark),
+      var(--electron-color-light)
+    );
+    border-radius: 1rem;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    transform: rotate3d(1, 1, 1, 7.5deg);
+    transform-origin: 40% 80%;
+  }
+}
+
+.featureImage {
+  border-radius: 1rem;
+  box-shadow: var(--ifm-global-shadow-tl);
+  display: block;
+  position: relative;
+}
+
+.heroElectron {
+  color: var(--electron-color-light);
+  background: var(--electron-color-dark);
+  padding: 0 2rem 4rem;
+  border-bottom: 5px solid var(--electron-color-light);
+}
+
 @keyframes heroAnimation {
-  0% { opacity: 0; transform: scale(0.96); }
-  100% { opacity: 1; transform: scale(1); }
+  0% {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .heroImage {
   animation: heroAnimation 0.5s forwards;
   backface-visibility: hidden;
   margin: 0 auto;
-
 }
 
 .logo {
@@ -40,15 +129,21 @@ $logo-duration: 1s;
 $logo-all-delay: 9 * $logo-delay-diff + $logo-delay;
 
 @keyframes logoAnimation {
-  100% { stroke-dashoffset: 0; }
+  100% {
+    stroke-dashoffset: 0;
+  }
 }
 
 @for $i from 1 through 9 {
   .logo:nth-child(#{$i}) {
     $_duration: $logo-duration;
-    $_delay:   $logo-delay + ($logo-delay-diff * $i);
+    $_delay: $logo-delay + ($logo-delay-diff * $i);
 
-    animation: logoAnimation $_duration $_delay cubic-bezier(0.05, 0.35, 0.2, 1) forwards;
+    animation: logoAnimation
+      $_duration
+      $_delay
+      cubic-bezier(0.05, 0.35, 0.2, 1)
+      forwards;
   }
 }
 
@@ -64,15 +159,35 @@ $app-duration: 0.8s;
 $app-opacity: 0.1;
 
 @keyframes appAnimateLeft {
-  0% { transform: scale(1)   translateX(30px); opacity: $app-opacity; animation-timing-function: cubic-bezier(0.3, 0.1, 0.9, 0.5); }
-  20% { transform: scale(1.1) translateX(20px); animation-timing-function: cubic-bezier(0.1, 0.4, 0.2, 1); }
-  100% { transform: scale(1)   translateX(0); opacity: 1; }
+  0% {
+    transform: scale(1) translateX(30px);
+    opacity: $app-opacity;
+    animation-timing-function: cubic-bezier(0.3, 0.1, 0.9, 0.5);
+  }
+  20% {
+    transform: scale(1.1) translateX(20px);
+    animation-timing-function: cubic-bezier(0.1, 0.4, 0.2, 1);
+  }
+  100% {
+    transform: scale(1) translateX(0);
+    opacity: 0.4;
+  }
 }
 
 @keyframes allAnimateRight {
-  0% { transform: scale(1)   translateX(-30px); opacity: $app-opacity; animation-timing-function: cubic-bezier(0.3, 0.1, 0.9, 0.5); }
-  20% { transform: scale(1.1) translateX(-20px); animation-timing-function: cubic-bezier(0.1, 0.4, 0.2, 1); }
-  100% { transform: scale(1)   translateX(0); opacity: 1; }
+  0% {
+    transform: scale(1) translateX(-30px);
+    opacity: $app-opacity;
+    animation-timing-function: cubic-bezier(0.3, 0.1, 0.9, 0.5);
+  }
+  20% {
+    transform: scale(1.1) translateX(-20px);
+    animation-timing-function: cubic-bezier(0.1, 0.4, 0.2, 1);
+  }
+  100% {
+    transform: scale(1) translateX(0);
+    opacity: 0.4;
+  }
 }
 
 // Colorize and animate
@@ -82,9 +197,7 @@ $app-opacity: 0.1;
 
     @if $i % 2 == 0 {
       animation: appAnimateLeft $app-duration $_delay both;
-    }
-
-    @else {
+    } @else {
       animation: allAnimateRight $app-duration $_delay both;
     }
   }
