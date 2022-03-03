@@ -1,11 +1,11 @@
 ---
-title: "Taskbar Progress Bar (Windows & macOS)"
-description: "A progress bar enables a window to provide progress information to the user without the need of switching to the window itself."
+title: Progress Bars
+description: Provide progress information to users outside of a BrowserWindow.
 slug: progress-bar
-hide_title: false
+hide_title: true
 ---
 
-# Taskbar Progress Bar (Windows & macOS)
+# Progress Bars
 
 ## Overview
 

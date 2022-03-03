@@ -1,11 +1,11 @@
 ---
-title: "In-App Purchases (macOS)"
-description: "If you haven't already, you’ll need to sign the Paid Applications Agreement and set up your banking and tax information in iTunes Connect."
+title: In-App Purchases
+description: Add in-app purchases to your Mac App Store (MAS) application
 slug: in-app-purchases
-hide_title: false
+hide_title: true
 ---
 
-# In-App Purchases (macOS)
+# In-App Purchases
 
 ## Preparing
 

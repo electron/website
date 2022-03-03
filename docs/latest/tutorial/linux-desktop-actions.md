@@ -1,11 +1,11 @@
 ---
-title: "Desktop Launcher Actions (Linux)"
-description: "On many Linux environments, you can add custom entries to the system launcher by modifying the .desktop file. For Canonical's Unity documentation, see Adding Shortcuts to a Launcher. For details on a more generic implementation, see the freedesktop.org Specification."
+title: Desktop Launcher Actions
+description: Add actions to the system launcher on Linux environments.
 slug: linux-desktop-actions
-hide_title: false
+hide_title: true
 ---
 
-# Desktop Launcher Actions (Linux)
+# Desktop Launcher Actions
 
 ## Overview
 
@@ -49,4 +49,4 @@ parameters. You can find them in your application in the global variable
 
 [unity-launcher]: https://help.ubuntu.com/community/UnityLaunchersAndDesktopFiles#Adding_shortcuts_to_a_launcher
 [audacious-launcher]: https://help.ubuntu.com/community/UnityLaunchersAndDesktopFiles?action=AttachFile&do=get&target=shortcuts.png
-[spec]: https://specifications.freedesktop.org/desktop-entry-spec/1.1/ar01s11.html
+[spec]: https://specifications.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html
