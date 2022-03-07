@@ -37,8 +37,7 @@ Want to apply? First, check out the [five project idea drafts](https://docs.goog
 
 Your application should include:
 * Your proposal, which is a written document that describes in detail what you plan to achieve over the course of the summer.
-* A copy of your resume/cover letter.
-* Any additional technical samples or information you’d like to share.
+* Your background as a developer. If you have a resume, please include a copy, otherwise tell us about your past experience with an emphasis on relevant technical experience.
 
 [A detailed guide of what to submit as part of your Electron application is here.](https://docs.google.com/document/d/17vDEvxq7bEwFXO-hJX7bsnyDCx8aRK3yo-rerrxYaOk/edit?usp=sharing)
 
