@@ -94,14 +94,15 @@ const newLineOnHTMLComment = (line) => {
 };
 
 /**
- * Crowdin translations also happen to break
- * Docusaurus' MDX admonition syntax.
+ * Crowdin needs extra blank lines surrounding the admonition characters so it doesn't
+ * break Docusaurus with the translated content.
  * @param {string} line
  */
 const newLineOnAdmonition = (line) => {
-  if (line.endsWith(':::') && !line.startsWith(':::')) {
-    return line.replace(':::', ':::\n');
+  if (line.trim().startsWith(':::') || line.trim().endsWith(':::')) {
+    return `\n${line.trim()}\n`;
   }
+
   return line;
 };
 
@@ -206,6 +207,14 @@ const fixLinks = (content, linksMaps) => {
 };
 
 /**
+ * Removes unnecesary extra blank lines
+ * @param {string} content
+ */
+const fixReturnLines = (content) => {
+  return content.replace(/\n\n(\n)+/g, '\n\n');
+};
+
+/**
  * The current doc's format on `electron/electron` cannot be used
  * directly by docusaurus. This function trasform all the md files
  * found in the given `root` (recursively) and makes sure they are
@@ -233,9 +242,9 @@ const fixContent = async (root, version = 'latest') => {
 
     let fixedContent = transform(content);
 
-    // `fixLinks` analyzes the document globally instead of line by line, thus why
-    // it cannot be part of `transform`
-    fixedContent = fixLinks(fixedContent, linksMaps);
+    // `fixLinks` and `fixReturnLines` analyze the document globally instead
+    // of line by line, thus why it cannot be part of `transform`
+    fixedContent = fixReturnLines(fixLinks(fixedContent, linksMaps));
 
     await fs.writeFile(path.join(root, filePath), fixedContent, 'utf-8');
   }

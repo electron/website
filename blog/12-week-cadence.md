@@ -14,6 +14,7 @@ In Q3 2021, the Chrome team [increased their release cadence](https://blog.chrom
 from every 6 weeks to every 4 weeks. Electron's releases have followed suit.
 Please read the updated [8 week cadence](./8-week-cadence.md) blog post
 for more up-to-date information!
+
 :::
 
 🎉 Electron is moving to release a new major stable version every 12 weeks! 🎉

@@ -84,7 +84,9 @@ find the BrowserWindow instance attached to the message sender and use the `win.
 API on it.
 
 :::info
+
 Make sure you're loading the `index.html` and `preload.js` entry points for the following steps!
+
 :::
 
 ### 2. Expose `ipcRenderer.send` via preload
@@ -108,8 +110,10 @@ At this point, you'll be able to use the `window.electronAPI.setTitle()` functio
 process.
 
 :::caution Security warning
+
 We don't directly expose the whole `ipcRenderer.send` API for [security reasons]. Make sure to
 limit the renderer's access to Electron APIs as much as possible.
+
 :::
 
 ### 3. Build the renderer process UI
@@ -175,10 +179,12 @@ channel from the renderer process. The return value is then returned as a Promis
 `invoke` call.
 
 :::caution A word on error handling
+
 Errors thrown through `handle` in the main process are not transparent as they
 are serialized and only the `message` property from the original error is
 provided to the renderer process. Please refer to
 [#24427](https://github.com/electron/electron/issues/24427) for details.
+
 :::
 
 ```javascript {6-13,25} title='main.js (Main Process)'
@@ -213,12 +219,16 @@ app.whenReady(() => {
 ```
 
 :::tip on channel names
+
 The `dialog:` prefix on the IPC channel name has no effect on the code. It only serves
 as a namespace that helps with code readability.
+
 :::
 
 :::info
+
 Make sure you're loading the `index.html` and `preload.js` entry points for the following steps!
+
 :::
 
 ### 2. Expose `ipcRenderer.invoke` via preload
@@ -236,8 +246,10 @@ contextBridge.exposeInMainWorld('electronAPI', {
 ```
 
 :::caution Security warning
+
 We don't directly expose the whole `ipcRenderer.invoke` API for [security reasons]. Make sure to
 limit the renderer's access to Electron APIs as much as possible.
+
 :::
 
 ### 3. Build the renderer process UI
@@ -286,13 +298,17 @@ IPC from the renderer process. However, there exist a couple alternative approac
 pattern.
 
 :::warning Avoid legacy approaches if possible
+
 We recommend using `ipcRenderer.invoke` whenever possible. The following two-way renderer-to-main
 patterns are documented for historical purposes.
+
 :::
 
 :::info
+
 For the following examples, we're calling `ipcRenderer` directly from the preload script to keep
 the code samples small.
+
 :::
 
 #### Using `ipcRenderer.send`
@@ -420,7 +436,9 @@ click: () => mainWindow.webContents.send('update-counter', -1)
 ```
 
 :::info
+
 Make sure you're loading the `index.html` and `preload.js` entry points for the following steps!
+
 :::
 
 ### 2. Expose `ipcRenderer.on` via preload
@@ -440,11 +458,14 @@ After loading the preload script, your renderer process should have access to th
 `window.electronAPI.onUpdateCounter()` listener function.
 
 :::caution Security warning
+
 We don't directly expose the whole `ipcRenderer.on` API for [security reasons]. Make sure to
 limit the renderer's access to Electron APIs as much as possible.
+
 :::
 
 :::info
+
 In the case of this minimal example, you can call `ipcRenderer.on` directly in the preload script
 rather than exposing it over the context bridge.
 
@@ -463,6 +484,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 However, this approach has limited flexibility compared to exposing your preload APIs
 over the context bridge, since your listener can't directly interact with your renderer code.
+
 :::
 
 ### 3. Build the renderer process UI
