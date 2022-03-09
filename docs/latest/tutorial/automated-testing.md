@@ -146,14 +146,18 @@ npm install --save-dev @playwright/test
 ```
 
 :::caution Dependencies
+
 This tutorial was written `playwright@1.16.3` and `@playwright/test@1.16.3`. Check out
 [Playwright's releases][playwright-releases] page to learn about
 changes that might affect the code below.
+
 :::
 
 :::info Using third-party test runners
+
 If you're interested in using an alternative test runner (e.g. Jest or Mocha), check out
 Playwright's [Third-Party Test Runner][playwright-test-runners] guide.
+
 :::
 
 ### Write your tests
@@ -248,13 +252,17 @@ Running 1 test using 1 worker
 ```
 
 :::info
+
 Playwright Test will automatically run any files matching the `.*(test|spec)\.(js|ts|mjs)` regex.
 You can customize this match in the [Playwright Test configuration options][playwright-test-config].
+
 :::
 
 :::tip Further reading
+
 Check out Playwright's documentation for the full [Electron][playwright-electron]
 and [ElectronApplication][playwright-electronapplication] class APIs.
+
 :::
 
 ## Using a custom test driver

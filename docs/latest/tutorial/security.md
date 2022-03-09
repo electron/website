@@ -8,12 +8,14 @@ toc_max_heading_level: 3
 # Security
 
 :::info Reporting security issues
+
 For information on how to properly disclose an Electron vulnerability,
 see [SECURITY.md](https://github.com/electron/electron/tree/main/SECURITY.md).
 
 For upstream Chromium vulnerabilities: Electron keeps up to date with alternating
 Chromium releases. For more information, see the
 [Electron Release Timelines](latest/tutorial/electron-timelines.md) document.
+
 :::
 
 ## Preface
@@ -76,14 +78,17 @@ source directly, or by sitting between your app and the actual destination), the
 will be able to execute native code on the user's machine.
 
 :::warning
+
 Under no circumstances should you load and execute remote code with
 Node.js integration enabled. Instead, use only local files (packaged together
 with your application) to execute Node.js code. To display remote content, use
 the [`<webview>`][webview-tag] tag or [`BrowserView`][browser-view], make sure
 to disable the `nodeIntegration` and enable `contextIsolation`.
+
 :::
 
 :::info Electron security warnings
+
 Security warnings and recommendations are printed to the developer console.
 They only show up when the binary's name is Electron, indicating that a developer
 is currently looking at the console.
@@ -91,6 +96,7 @@ is currently looking at the console.
 You can force-enable or force-disable these warnings by setting
 `ELECTRON_ENABLE_SECURITY_WARNINGS` or `ELECTRON_DISABLE_SECURITY_WARNINGS` on
 either `process.env` or the `window` object.
+
 :::
 
 ## Checklist: Security recommendations
@@ -163,7 +169,9 @@ browserWindow.loadURL('https://example.com')
 ### 2. Do not enable Node.js integration for remote content
 
 :::info
+
 This recommendation is the default behavior in Electron since 5.0.0.
+
 :::
 
 It is paramount that you do not enable Node.js integration in any renderer
@@ -228,7 +236,9 @@ API to remotely loaded content via the [contextBridge API](latest/api/context-br
 ### 3. Enable Context Isolation for remote content
 
 :::info
+
 This recommendation is the default behavior in Electron since 12.0.0.
+
 :::
 
 Context isolation is an Electron feature that allows developers to run code
@@ -243,8 +253,10 @@ Even when `nodeIntegration: false` is used, to truly enforce strong isolation
 and prevent the use of Node primitives `contextIsolation` **must** also be used.
 
 :::info
+
 For more information on what `contextIsolation` is and how to enable it please
 see our dedicated [Context Isolation](latest/tutorial/context-isolation.md) document.
+
 :::info
 
 ### 4. Enable process sandboxing
@@ -256,8 +268,10 @@ the sandbox in all renderers. Loading, reading or processing any untrusted
 content in an unsandboxed process, including the main process, is not advised.
 
 :::info
+
 For more information on what `contextIsolation` is and how to enable it please
 see our dedicated [Process Sandboxing](latest/tutorial/sandbox.md) document.
+
 :::info
 
 ### 5. Handle session permission requests from remote content
@@ -301,7 +315,9 @@ session
 ### 6. Do not disable `webSecurity`
 
 :::info
+
 This recommendation is Electron's default.
+
 :::
 
 You may have already guessed that disabling the `webSecurity` property on a
@@ -402,7 +418,9 @@ be useful in some cases to set a policy on a page directly in the markup using a
 ### 8. Do not enable `allowRunningInsecureContent`
 
 :::info
+
 This recommendation is Electron's default.
+
 :::
 
 By default, Electron will not allow websites loaded over `HTTPS` to load and
@@ -437,7 +455,9 @@ const mainWindow = new BrowserWindow({})
 ### 9. Do not enable experimental features
 
 :::info
+
 This recommendation is Electron's default.
+
 :::
 
 Advanced users of Electron can enable experimental Chromium features using the
@@ -471,7 +491,9 @@ const mainWindow = new BrowserWindow({})
 ### 10. Do not use `enableBlinkFeatures`
 
 :::info
+
 This recommendation is Electron's default.
+
 :::
 
 Blink is the name of the rendering engine behind Chromium. As with
@@ -505,7 +527,9 @@ const mainWindow = new BrowserWindow()
 ### 11. Do not use `allowpopups` for WebViews
 
 :::info
+
 This recommendation is Electron's default.
+
 :::
 
 If you are using [`<webview>`][webview-tag], you might need the pages and scripts
