@@ -173,6 +173,8 @@ module.exports = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           routeBasePath: '/docs/',
+          showLastUpdateAuthor: true,
+          showLastUpdateTime: true,
           editUrl: ({ docPath }) => {
             // TODO: remove when `latest/` is no longer hardcoded
             const fixedPath = docPath.replace('latest/', '');
