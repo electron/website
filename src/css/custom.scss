@@ -185,10 +185,14 @@
   }
 
   &--electron {
-    color: var(--electron-color-dark);
-    background: var(--electron-color-light);
+    background: var(--electron-color-dark);
     &:hover {
-      background: var(--electron-color-dark);
+      filter: brightness(0.9);
+      box-shadow: var(--ifm-global-shadow-md);
+      transition: 0.1s linear all;
+    }
+    :root[data-theme='dark'] & {
+      background: var(--electron-color-light);
     }
   }
 }
@@ -217,4 +221,13 @@
       }
     }
   }
+}
+
+// utility
+.no-select {
+  user-select: none;
+}
+
+.card {
+  border: 1px solid rgba(200, 200, 200, 0.3);
 }
