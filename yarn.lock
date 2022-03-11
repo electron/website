@@ -4567,6 +4567,11 @@ electron-to-chromium@^1.4.84:
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.85.tgz#a3666ba42147026b9f34d4d8d4caf0740e80f751"
   integrity sha512-K9AsQ41WS2bjZUFpRWfvaS4RjEcRCamEkBJN1Z1TQILBfP1H8QnJ9ti0wiLiMv0sRjX3EHKzgs9jDnmGFx2jXg==
 
+electron-releases@^3.958.0:
+  version "3.958.0"
+  resolved "https://registry.yarnpkg.com/electron-releases/-/electron-releases-3.958.0.tgz#2d51b1a3922dedf8248d917f3c68eb68e2ea511d"
+  integrity sha512-8TgFsjSga0e1NX+tcLcqTdOvrijNIkJCvCwX1KBxddWeaI1Cu/JYCsYGrxYV5Ou1L3P1o6xkuqM9GBDtM550VQ==
+
 emittery@^0.7.1:
   version "0.7.2"
   resolved "https://registry.yarnpkg.com/emittery/-/emittery-0.7.2.tgz#25595908e13af0f5674ab419396e2fb394cdfa82"

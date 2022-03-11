@@ -1,4 +1,5 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
+const path = require('path');
 const npm2yarn = require('@docusaurus/remark-plugin-npm2yarn');
 const fiddleEmbedder = require('./src/transformers/fiddle-embedder.js');
 const apiLabels = require('./src/transformers/api-labels.js');
@@ -168,7 +169,10 @@ module.exports = {
       contextualSearch: true,
     },
   },
-  plugins: ['docusaurus-plugin-sass'],
+  plugins: [
+    'docusaurus-plugin-sass',
+    path.resolve(__dirname, './src/plugins/releases'),
+  ],
   presets: [
     [
       '@docusaurus/preset-classic',
