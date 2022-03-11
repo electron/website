@@ -1,0 +1,68 @@
+.section {
+  &:first-of-type {
+    padding-top: 8rem;
+  }
+
+  &:last-of-type {
+    padding-bottom: 8rem;
+  }
+
+  h2 {
+    font-size: 2.5em;
+    font-weight: 900;
+  }
+
+  h3 {
+    font-size: 1.6em;
+    font-weight: 700;
+  }
+
+  @media (max-width: 1000px) {
+    padding: 3rem 2rem;
+  }
+
+  padding: 4rem;
+}
+
+.accentBackground {
+  background: var(--ifm-code-background);
+}
+
+.blurb {
+  h3 {
+    font-size: 1.2rem;
+  }
+}
+
+.explore {
+  display: flex;
+  align-items: center;
+  margin-top: 6rem;
+  margin-bottom: 12rem;
+
+  img {
+    box-shadow: var(--ifm-global-shadow-tl);
+    border-radius: 5px;
+  }
+}
+
+.exploreSubtext {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+.heroElectron {
+  color: var(--electron-color-light);
+  background: var(--electron-color-dark);
+  padding: 0 2rem 4rem;
+  border-bottom: 5px solid var(--electron-color-light);
+}
+
+.heroHeadline {
+  h1 {
+    font-size: 3rem;
+    font-weight: 200;
+  }
+
+  text-align: center;
+}

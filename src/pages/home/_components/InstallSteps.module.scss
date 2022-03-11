@@ -1,0 +1,26 @@
+.codeBlock {
+  background: var(--electron-color-dark);
+  color: var(--electron-color-light);
+  padding: 3rem 2rem 2rem;
+  margin-bottom: 0;
+  box-shadow: var(--ifm-global-shadow-tl);
+}
+
+.codeComment {
+  color: #719fad;
+}
+
+.buttons {
+  margin-left: 10px;
+  margin-bottom: -30px;
+}
+
+.dot {
+  margin-right: 6px;
+  margin-top: 4px;
+  height: 12px;
+  width: 12px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+}
