@@ -205,7 +205,7 @@ export default function Home() {
             >
               Send out software updates to your macOS and Windows users whenever
               you release a new version with Electron&apos;s{' '}
-              <Link to="/docs/latest/api/autoupdater">autoUpdater module</Link>,
+              <Link to="/docs/latest/api/auto-updater">autoUpdater module</Link>,
               powered by <Link to="https://github.com/Squirrel">Squirrel</Link>.
             </Feature>
             <Feature
