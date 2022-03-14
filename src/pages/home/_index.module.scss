@@ -39,6 +39,10 @@
   align-items: center;
   margin-top: 6rem;
   margin-bottom: 12rem;
+  
+  .button {
+    margin-bottom: 1rem;
+  }
 
   img {
     box-shadow: var(--ifm-global-shadow-tl);
