@@ -11,14 +11,14 @@
 
 //@ts-check
 import React from 'react';
-
-//@ts-expect-error
-import OriginalTOC from '@theme-original/TOC';
+import TOC from '@theme-original/TOC';
 import { cleanTOC } from '../../util/cleanHeadings';
 
-function TOC(props) {
+export default function TOCWrapper(props) {
   const cleanedTOC = cleanTOC(props.toc);
-  return <OriginalTOC {...props} toc={cleanedTOC} />;
+  return (
+    <>
+      <TOC {...props} toc={cleanedTOC} />
+    </>
+  );
 }
-
-export default TOC;

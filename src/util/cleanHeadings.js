@@ -8,10 +8,9 @@ export function cleanTOC(toc) {
   if (toc.length === 0) {
     return toc;
   }
-  return toc.map(({ id, value, children, level }) => ({
+  return toc.map(({ id, value, level }) => ({
     id,
     value: cleanHeading(value),
-    children: cleanTOC(children),
     level,
   }));
 }

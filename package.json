@@ -26,10 +26,10 @@
     "update-pinned-version": "node ./scripts/update-pinned-version.js"
   },
   "dependencies": {
-    "@docusaurus/core": "^2.0.0-beta.15",
-    "@docusaurus/plugin-google-analytics": "^2.0.0-beta.15",
-    "@docusaurus/preset-classic": "^2.0.0-beta.15",
-    "@docusaurus/remark-plugin-npm2yarn": "^2.0.0-beta.15",
+    "@docusaurus/core": "^2.0.0-beta.17",
+    "@docusaurus/plugin-google-analytics": "^2.0.0-beta.17",
+    "@docusaurus/preset-classic": "^2.0.0-beta.17",
+    "@docusaurus/remark-plugin-npm2yarn": "^2.0.0-beta.17",
     "@mdx-js/react": "^1.6.21",
     "clsx": "^1.1.1",
     "docusaurus-plugin-sass": "^0.2.1",
@@ -57,7 +57,7 @@
     "@actions/core": "^1.2.7",
     "@actions/github": "^4.0.0",
     "@crowdin/cli": "3",
-    "@docusaurus/types": "^2.0.0-beta.15",
+    "@docusaurus/types": "^2.0.0-beta.17",
     "@types/jest": "^26.0.23",
     "@types/unist": "^2.0.3",
     "del": "^6.0.0",

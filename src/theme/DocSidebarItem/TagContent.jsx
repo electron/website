@@ -13,6 +13,6 @@ export default function TagContent({ platform }) {
     case 'linux':
       return <LinuxIcon role="img" title="Available on Linux" />;
     default:
-      return;
+      return <span />;
   }
 }
