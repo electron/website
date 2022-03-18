@@ -186,13 +186,18 @@
 
   &--electron {
     background: var(--electron-color-dark);
+    border-color: var(--electron-color-dark);
     &:hover {
       filter: brightness(0.9);
       box-shadow: var(--ifm-global-shadow-md);
       transition: 0.1s linear all;
     }
+
+    &.button--dark,
     :root[data-theme='dark'] & {
       background: var(--electron-color-light);
+      border-color: var(--electron-color-light);
+      color: black;
     }
   }
 }

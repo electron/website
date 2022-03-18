@@ -4562,15 +4562,15 @@ ee-first@1.1.1:
   resolved "https://registry.yarnpkg.com/ee-first/-/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"
   integrity sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=
 
+electron-releases@^3.966.0:
+  version "3.966.0"
+  resolved "https://registry.yarnpkg.com/electron-releases/-/electron-releases-3.966.0.tgz#48413fe6496fbfc75b8dffd1023dc1cd481ad357"
+  integrity sha512-vtHpC2nzsJ8+P+HnGLQ6WkFyCXeKbUpzH6dJndyz+LDTeQqw1n+xirqn2PaReD7FdZfIc49bILcz5/m/3acZDg==
+
 electron-to-chromium@^1.4.84:
   version "1.4.85"
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.85.tgz#a3666ba42147026b9f34d4d8d4caf0740e80f751"
   integrity sha512-K9AsQ41WS2bjZUFpRWfvaS4RjEcRCamEkBJN1Z1TQILBfP1H8QnJ9ti0wiLiMv0sRjX3EHKzgs9jDnmGFx2jXg==
-
-electron-releases@^3.958.0:
-  version "3.958.0"
-  resolved "https://registry.yarnpkg.com/electron-releases/-/electron-releases-3.958.0.tgz#2d51b1a3922dedf8248d917f3c68eb68e2ea511d"
-  integrity sha512-8TgFsjSga0e1NX+tcLcqTdOvrijNIkJCvCwX1KBxddWeaI1Cu/JYCsYGrxYV5Ou1L3P1o6xkuqM9GBDtM550VQ==
 
 emittery@^0.7.1:
   version "0.7.2"

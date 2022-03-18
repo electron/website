@@ -28,10 +28,10 @@ export default function Home() {
             <div className={clsx('col col--12', styles.heroHeadline)}>
               <h1>{siteConfig.tagline}</h1>
               <Link
-                className="button button--electron button--lg"
+                className="button button--electron button--dark button--lg"
                 to="/docs/latest/"
               >
-                Get Started
+                Docs
               </Link>
             </div>
           </div>
@@ -184,18 +184,6 @@ export default function Home() {
               .
             </Feature>
             <Feature
-              title="Crash reporting"
-              src="/assets/marketing/crash-reporting.png"
-              alt="Screenshot of Sentry crash reporting (https://sentry.io). Shows the error message
-              ('BrowserWindow Unresponsive'), user breadcrumbs, and user information."
-            >
-              Automatically collect JavaScript and native crash data from your
-              users with the{' '}
-              <Link to="/docs/latest/api/crash-reporter">crashReporter</Link>{' '}
-              module. Use a third-party service to collect this data or set up
-              your own on-premise Crashpad server.
-            </Feature>
-            <Feature
               title="Automatic software updates"
               src="/assets/marketing/auto-updater.png"
               alt="Dialog for Electron Fiddle's auto-update. The user is prompted to update to v0.27.3.
@@ -241,30 +229,62 @@ export default function Home() {
               (Windows), or the{' '}
               <Link to="https://snapcraft.io/store">Snap Store</Link> (Linux).
             </Feature>
+            <Feature
+              title="Crash reporting"
+              src="/assets/marketing/crash-reporting.png"
+              alt="Screenshot of Sentry crash reporting (https://sentry.io). Shows the error message
+              ('BrowserWindow Unresponsive'), user breadcrumbs, and user information."
+            >
+              Automatically collect JavaScript and native crash data from your
+              users with the{' '}
+              <Link to="/docs/latest/api/crash-reporter">crashReporter</Link>{' '}
+              module. Use a third-party service to collect this data or set up
+              your own on-premise Crashpad server.
+            </Feature>
           </div>
         </div>
         <div className={styles.accentBackground}>
           <div className="container">
             <div className={clsx(styles.section)}>
               <h2>Try Electron out</h2>
-              <p>
-                To get started with Electron, check out the resources below. Not
-                everyone learns in the same way, so feel free to approach any of
-                these as you wish!
-              </p>
               <div className={clsx(styles.explore, 'row')}>
-                <div className="col col--6">
-                  <span className={styles.exploreSubtext}>Jump right in</span>
-                  <h3>Installation</h3>
+                <div className="col col--4">
+                  <span className={styles.exploreSubtext}>
+                    Experiment with the API
+                  </span>
+                  <h3>Electron Fiddle</h3>
                   <p>
-                    We recommend you install Electron locally in your
-                    devDependencies. For a production-ready experience, install
-                    the latest stable version. If you want something a bit more
-                    experimental, try the beta or nightly channels.
+                    Electron Fiddle lets you create and play with small Electron
+                    experiments. It greets you with a quick-start template after
+                    opening — change a few things, choose the version of
+                    Electron you want to run it with, and play around.
                   </p>
+                  <p>
+                    Save your Fiddle either as a GitHub Gist or to a local
+                    folder. Once pushed to GitHub, anyone can quickly try your
+                    Fiddle out by just entering it in the address bar.
+                  </p>
+                  <div className="button-group">
+                    <Link
+                      to="https://electronjs.org/fiddle"
+                      className="button button--electron"
+                    >
+                      Download
+                    </Link>
+                    <Link
+                      to="https://github.com/electron/fiddle"
+                      className="button button--info"
+                    >
+                      Source code
+                    </Link>
+                  </div>
                 </div>
-                <div className="col col--6">
-                  <InstallSteps />
+                <div className="col col--8">
+                  <img
+                    className="shadow--tl"
+                    src="/assets/marketing/fiddle.png"
+                    alt="Screenshot of Electron Fiddle's main window"
+                  />
                 </div>
               </div>
               <div className={clsx(styles.explore, 'row')}>
@@ -295,35 +315,18 @@ export default function Home() {
                 </div>
               </div>
               <div className={clsx(styles.explore, 'row')}>
-                <div className="col col--4">
-                  <span className={styles.exploreSubtext}>
-                    Experiment deeper
-                  </span>
-                  <h3>Electron Fiddle</h3>
+                <div className="col col--6">
+                  <span className={styles.exploreSubtext}>Jump right in</span>
+                  <h3>Installation</h3>
                   <p>
-                    Electron Fiddle lets you create and play with small Electron
-                    experiments. It greets you with a quick-start template after
-                    opening — change a few things, choose the version of
-                    Electron you want to run it with, and play around.
+                    We recommend you install Electron locally in your
+                    devDependencies. For a production-ready experience, install
+                    the latest stable version. If you want something a bit more
+                    experimental, try the beta or nightly channels.
                   </p>
-                  <p>
-                    Save your Fiddle either as a GitHub Gist or to a local
-                    folder. Once pushed to GitHub, anyone can quickly try your
-                    Fiddle out by just entering it in the address bar.
-                  </p>
-                  <Link
-                    to="https://github.com/electron/fiddle"
-                    className="button button--electron"
-                  >
-                    Learn more
-                  </Link>
                 </div>
-                <div className="col col--8">
-                  <img
-                    className="shadow--tl"
-                    src="/assets/marketing/fiddle.png"
-                    alt="Screenshot of Electron Fiddle's main window"
-                  />
+                <div className="col col--6">
+                  <InstallSteps />
                 </div>
               </div>
             </div>
@@ -432,8 +435,7 @@ export default function Home() {
                 {
                   name: 'Microsoft Teams',
                   image: '/assets/apps/teams.svg',
-                  href:
-                    'https://microsoft.com/en-ca/microsoft-teams/group-chat-software/',
+                  href: 'https://microsoft.com/en-ca/microsoft-teams/group-chat-software/',
                 },
                 {
                   name: 'Tidal',
