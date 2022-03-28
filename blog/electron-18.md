@@ -57,7 +57,7 @@ See the [documentation for window.open](https://www.electronjs.org/docs/latest/a
 
 ## End of Support for 14.x.y
 
-Electron 14.x.y has reached end-of-support as per the project's [support policy](https://www.electronjs.org/docs/latest/tutorial/support#supported-versions). Developers and applications are encouraged to upgrade to a newer version of Electron.
+Electron 14.x.y has reached end-of-support as per the project's [support policy](https://www.electronjs.org/docs/latest/tutorial/electron-timelines#version-support-policy). Developers and applications are encouraged to upgrade to a newer version of Electron.
 
 As of Electron 15, we have changed supported versions from latest three versions to latest four versions until May 2022 with Electron 19. After Electron 19, we will return to supporting the latest three versions. This version support change is part of our new cadence change. Please see [our blog post for full details here](https://www.electronjs.org/blog/8-week-cadence/#-will-electron-extend-the-number-of-supported-versions).
 
