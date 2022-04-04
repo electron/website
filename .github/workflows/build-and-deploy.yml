@@ -52,7 +52,7 @@ jobs:
           timeout_seconds: 60
           max_attempts: 3
           retry_on: error
-          command: ./scripts/bin/azcopy copy "https://electronjsorg.blob.core.windows.net/%24web/*?$SAS" "./build" --recursive
+          command: ./scripts/bin/azcopy copy "https://electronwebsite.blob.core.windows.net/%24web/*?$SAS" "./build" --recursive
         env:
           SAS: ${{ secrets.SAS }}
       - name: Rewrite docs paths if version branch
@@ -69,7 +69,7 @@ jobs:
           timeout_seconds: 60
           max_attempts: 3
           retry_on: error
-          command: ./scripts/bin/azcopy copy "./build/assets/*" "https://electronjsorg.blob.core.windows.net/%24web/assets?$SAS" --recursive
+          command: ./scripts/bin/azcopy copy "./build/assets/*" "https://electronwebsite.blob.core.windows.net/%24web/assets?$SAS" --recursive
         env:
           SAS: ${{ secrets.SAS }}
       - name: Publish "/docs" to Storage if version branch
@@ -79,7 +79,7 @@ jobs:
           timeout_seconds: 60
           max_attempts: 3
           retry_on: error
-          command: ./scripts/bin/azcopy copy "./build/docs/*" "https://electronjsorg.blob.core.windows.net/%24web/docs?$SAS" --recursive
+          command: ./scripts/bin/azcopy copy "./build/docs/*" "https://electronwebsite.blob.core.windows.net/%24web/docs?$SAS" --recursive
         env:
           SAS: ${{ secrets.SAS }}
       - name: Publish everything to Storage if main branch
@@ -89,6 +89,6 @@ jobs:
           timeout_seconds: 60
           max_attempts: 3
           retry_on: error
-          command: ./scripts/bin/azcopy copy "./build/*" "https://electronjsorg.blob.core.windows.net/%24web/?$SAS" --recursive
+          command: ./scripts/bin/azcopy copy "./build/*" "https://electronwebsite.blob.core.windows.net/%24web/?$SAS" --recursive
         env:
           SAS: ${{ secrets.SAS }}
