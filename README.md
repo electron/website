@@ -24,7 +24,7 @@ updates.
 ## How to add a new blogpost
 
 To add a new blogpost you need to create a new markdown file under `/blog`. The supported
-frontmatter options are the ones documented in [Docusaurus](https://docusaurus.io/docs/2.0.0-beta.0/blog#adding-posts).
+frontmatter options are the ones documented in [Docusaurus](https://docusaurus.io/docs/blog#adding-posts).
 
 There are a couple of things that are different compared to the previous blog engine:
 
