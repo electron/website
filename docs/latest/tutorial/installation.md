@@ -80,22 +80,22 @@ url = ELECTRON_MIRROR + ELECTRON_CUSTOM_DIR + '/' + ELECTRON_CUSTOM_FILENAME
 For instance, to use the China CDN mirror:
 
 ```shell
-ELECTRON_MIRROR="https://cdn.npm.taobao.org/dist/electron/"
+ELECTRON_MIRROR="https://cdn.npmmirror.com/binaries/electron/"
 ```
 
 By default, `ELECTRON_CUSTOM_DIR` is set to `v$VERSION`. To change the format,
 use the `{{ version }}` placeholder. For example, `version-{{ version }}`
-resolves to `version-5.0.0`, `{{ version }}` resolves to `5.0.0`, and
+resolves to `version-18.0.0`, `{{ version }}` resolves to `18.0.0`, and
 `v{{ version }}` is equivalent to the default. As a more concrete example, to
 use the China non-CDN mirror:
 
 ```shell
-ELECTRON_MIRROR="https://npm.taobao.org/mirrors/electron/"
+ELECTRON_MIRROR="https://cdn.npmmirror.com/binaries/electron/"
 ELECTRON_CUSTOM_DIR="{{ version }}"
 ```
 
 The above configuration will download from URLs such as
-`https://npm.taobao.org/mirrors/electron/8.0.0/electron-v8.0.0-linux-x64.zip`.
+`https://cdn.npmmirror.com/binaries/electron/18.0.0/electron-v18.0.0-linux-x64.zip`.
 
 If your mirror serves artifacts with different checksums to the official
 Electron release you may have to set `electron_use_remote_checksums=1` to
