@@ -98,6 +98,7 @@ module.exports = {
       logo: {
         alt: 'OpenJS Foundation Logo',
         src: 'assets/img/openjsf_logo.svg',
+        src: 'assets/img/openjsf_logo-dark.svg',
         href: 'https://openjsf.org/',
       },
       links: [
