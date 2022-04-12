@@ -113,7 +113,6 @@ These individual tutorials expand on topics discussed in the guide above.
 * [`File` Object](latest/api/file-object.md)
 * [`<webview>` Tag](latest/api/webview-tag.md)
 * [`window.open` Function](latest/api/window-open.md)
-* [`BrowserWindowProxy` Object](latest/api/browser-window-proxy.md)
 
 ### Modules for the Main Process:
 

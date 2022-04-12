@@ -138,7 +138,7 @@ $ gn gen out/Release --args="import(\"//electron/build/args/release.gn\")"
 Also you shouldn't have to run `gn gen` again—if you want to change the build arguments, you can run `gn args out/Testing` to bring up an editor. To see the list of available build configuration options, run `gn args out/Testing --list`.
 
 **To build, run `ninja` with the `electron` target:**
-Nota Bene: This will also take a while and probably heat up your lap.
+Note: This will also take a while and probably heat up your lap.
 
 For the testing configuration:
 
