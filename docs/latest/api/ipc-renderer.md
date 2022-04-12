@@ -16,7 +16,7 @@ methods so you can send synchronous and asynchronous messages from the render
 process (web page) to the main process. You can also receive replies from the
 main process.
 
-See [IPC tutorial](latest/tutorial/ipc.md) for code examples.
+See [ipcMain](latest/api/ipc-main.md) for code examples.
 
 ## Methods
 
@@ -135,7 +135,7 @@ Returns `any` - The value sent back by the [`ipcMain`](latest/api/ipc-main.md) h
 
 Send a message to the main process via `channel` and expect a result
 synchronously. Arguments will be serialized with the [Structured Clone
-Algorithm][SCA], just like [`window.postMessage`], so prototype chains will not be
+Algorithm][SCA], just like [`window.postMessage`][], so prototype chains will not be
 included. Sending Functions, Promises, Symbols, WeakMaps, or WeakSets will
 throw an exception.
 
