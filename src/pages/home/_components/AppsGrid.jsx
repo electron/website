@@ -23,7 +23,7 @@ export default function AppsGrid({ list }) {
                   isDarkTheme && item.isMonochrome && styles.darkModeInvert
                 )}
                 src={item.image}
-                alt={item.name}
+                alt={''}
               />
               <div className="avatar__intro">
                 <small className="avatar__name">{item.name}</small>
