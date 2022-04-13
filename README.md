@@ -1,6 +1,6 @@
 # electronjs.org-new
 
-This repository contains the code for the new electronsjs.org website. It is built using
+This repository contains the code for the new [Electron](https://www.electronjs.org/) website. It is built using
 [Docusaurus 2](https://v2.docusaurus.io/), a modern static website generator.
 
 ## Installation
