@@ -23,7 +23,7 @@ Windows and macOS will, by default, prevent either the download or the execution
 of unsigned applications. Starting with macOS Catalina (version 10.15), users
 have to go through multiple manual steps to open unsigned applications.
 
-macOS Catalina Gatekeeper warning: The app cannot be opened because the developer cannot be verified../images/gatekeeper.png)
+![macOS Catalina Gatekeeper warning: The app cannot be opened because the developer cannot be verified](../images/gatekeeper.png)
 
 As you can see, users get two options: Move the app straight to the trash or
 cancel running it. You don't want your users to see that dialog.

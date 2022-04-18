@@ -200,7 +200,7 @@ const fixLinks = (content, linksMaps) => {
       continue;
     }
     const fixedTitle = title.replace(/\n/g, ' ');
-    updatedContent = updatedContent.replace(val[0], fixedTitle);
+    updatedContent = updatedContent.replace(val[1], fixedTitle);
   }
 
   return updatedContent;
