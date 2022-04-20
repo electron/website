@@ -6,7 +6,7 @@
   "scripts": {
     "crowdin": "crowdin",
     "i18n:upload": "crowdin upload sources",
-    "i18n:download": "crowdin download && node scripts/prepare-i18n-content.js",
+    "i18n:download": "crowdin download --verbose && node scripts/prepare-i18n-content.js",
     "i18n:build": "node scripts/i18n-build.js",
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
