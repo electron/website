@@ -1,0 +1,23 @@
+.darkModeInvert {
+  filter: invert(1);
+}
+
+.techContainer {
+  display: flex;
+  flex-wrap: wrap;
+
+  @media (max-width: 1000px) {
+    margin: 4rem 0;
+  }
+
+  margin: 4rem 12rem;
+}
+
+.techImageWrapper {
+  flex: 25%;
+  margin-bottom: 20px;
+}
+
+.techImage {
+  border-radius: 0;
+}

@@ -1,43 +1,14 @@
 import React from 'react';
-import Layout from '@theme/Layout';
-import Link from '@docusaurus/Link';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import clsx from 'clsx';
+import styles from './Header.module.scss';
 
-import styles from './index.module.scss';
-
-function HomepageHeader() {
-  const { siteConfig } = useDocusaurusContext();
-  return (
-    <header className={clsx('hero', 'hero--primary', styles.heroElectron)}>
-      <div className="container">
-        <div className="row" style={{ alignItems: 'center' }}>
-          <div className="col col--6">
-            <HeroAnimation />
-          </div>
-          <div className="col col--6">
-            <h1>{siteConfig.tagline}</h1>
-            <Link
-              className="button button--primary button--lg"
-              to="/docs/latest/"
-            >
-              Get Started
-            </Link>
-          </div>
-        </div>
-      </div>
-    </header>
-  );
-}
-
-function HeroAnimation() {
+export function HeroAnimation() {
   return (
     <svg
-      className={styles.image}
-      viewBox="0 0 900 300"
+      className={styles.heroImage}
+      viewBox="0 0 1800 300"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g fill="none" fillRule="evenodd">
+      <g fill="none" fillRule="evenodd" transform="translate(451.5)">
         <g>
           <path
             className={styles.app}
@@ -146,15 +117,5 @@ function HeroAnimation() {
         </g>
       </g>
     </svg>
-  );
-}
-
-export default function Home() {
-  const { siteConfig } = useDocusaurusContext();
-  return (
-    <Layout title={siteConfig.title} description={siteConfig.tagline}>
-      <HomepageHeader />
-      <main></main>
-    </Layout>
   );
 }

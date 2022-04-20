@@ -4562,6 +4562,11 @@ ee-first@1.1.1:
   resolved "https://registry.yarnpkg.com/ee-first/-/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"
   integrity sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=
 
+electron-releases@^3.970.0:
+  version "3.970.0"
+  resolved "https://registry.yarnpkg.com/electron-releases/-/electron-releases-3.970.0.tgz#96188babc4c5a1237927d90c8b82ee5e231168b2"
+  integrity sha512-9Sw3u7aIRUM2uziXZ8QbL0M4L0B+c9kvRv4hdVmRUADWzq5ZMw/kuPrfrk4uZ2a3vtRMUA7bjoFzIZHtaDecQA==
+
 electron-to-chromium@^1.4.84:
   version "1.4.85"
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.85.tgz#a3666ba42147026b9f34d4d8d4caf0740e80f751"

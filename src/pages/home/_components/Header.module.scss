@@ -1,13 +1,18 @@
 @keyframes heroAnimation {
-  0% { opacity: 0; transform: scale(0.96); }
-  100% { opacity: 1; transform: scale(1); }
+  0% {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .heroImage {
   animation: heroAnimation 0.5s forwards;
   backface-visibility: hidden;
   margin: 0 auto;
-
 }
 
 .logo {
@@ -40,15 +45,21 @@ $logo-duration: 1s;
 $logo-all-delay: 9 * $logo-delay-diff + $logo-delay;
 
 @keyframes logoAnimation {
-  100% { stroke-dashoffset: 0; }
+  100% {
+    stroke-dashoffset: 0;
+  }
 }
 
 @for $i from 1 through 9 {
   .logo:nth-child(#{$i}) {
     $_duration: $logo-duration;
-    $_delay:   $logo-delay + ($logo-delay-diff * $i);
+    $_delay: $logo-delay + ($logo-delay-diff * $i);
 
-    animation: logoAnimation $_duration $_delay cubic-bezier(0.05, 0.35, 0.2, 1) forwards;
+    animation: logoAnimation
+      $_duration
+      $_delay
+      cubic-bezier(0.05, 0.35, 0.2, 1)
+      forwards;
   }
 }
 
@@ -64,15 +75,35 @@ $app-duration: 0.8s;
 $app-opacity: 0.1;
 
 @keyframes appAnimateLeft {
-  0% { transform: scale(1)   translateX(30px); opacity: $app-opacity; animation-timing-function: cubic-bezier(0.3, 0.1, 0.9, 0.5); }
-  20% { transform: scale(1.1) translateX(20px); animation-timing-function: cubic-bezier(0.1, 0.4, 0.2, 1); }
-  100% { transform: scale(1)   translateX(0); opacity: 1; }
+  0% {
+    transform: scale(1) translateX(30px);
+    opacity: $app-opacity;
+    animation-timing-function: cubic-bezier(0.3, 0.1, 0.9, 0.5);
+  }
+  20% {
+    transform: scale(1.1) translateX(20px);
+    animation-timing-function: cubic-bezier(0.1, 0.4, 0.2, 1);
+  }
+  100% {
+    transform: scale(1) translateX(0);
+    opacity: 0.4;
+  }
 }
 
 @keyframes allAnimateRight {
-  0% { transform: scale(1)   translateX(-30px); opacity: $app-opacity; animation-timing-function: cubic-bezier(0.3, 0.1, 0.9, 0.5); }
-  20% { transform: scale(1.1) translateX(-20px); animation-timing-function: cubic-bezier(0.1, 0.4, 0.2, 1); }
-  100% { transform: scale(1)   translateX(0); opacity: 1; }
+  0% {
+    transform: scale(1) translateX(-30px);
+    opacity: $app-opacity;
+    animation-timing-function: cubic-bezier(0.3, 0.1, 0.9, 0.5);
+  }
+  20% {
+    transform: scale(1.1) translateX(-20px);
+    animation-timing-function: cubic-bezier(0.1, 0.4, 0.2, 1);
+  }
+  100% {
+    transform: scale(1) translateX(0);
+    opacity: 0.4;
+  }
 }
 
 // Colorize and animate
@@ -82,9 +113,7 @@ $app-opacity: 0.1;
 
     @if $i % 2 == 0 {
       animation: appAnimateLeft $app-duration $_delay both;
-    }
-
-    @else {
+    } @else {
       animation: allAnimateRight $app-duration $_delay both;
     }
   }

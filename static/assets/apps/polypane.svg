@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="d" x1="871.65173" x2="260.36386" y1="-241.26968" y2="-808.61469" gradientUnits="userSpaceOnUse" xlink:href="#a"/>
+    <linearGradient id="a">
+      <stop offset="0" stop-color="#208dc5"/>
+      <stop offset="1" stop-color="#16c58d"/>
+    </linearGradient>
+    <linearGradient id="e" x1="578.1192" x2="624.06677" y1="-523.32385" y2="-157.75516" gradientUnits="userSpaceOnUse" xlink:href="#b"/>
+    <linearGradient id="b">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="1" stop-color="#fff" stop-opacity=".85096157"/>
+    </linearGradient>
+    <linearGradient id="g" x1="44.832058" x2="970.72162" y1="562.58807" y2="558.77563" gradientTransform="translate(0 .97271359)" gradientUnits="userSpaceOnUse" xlink:href="#c"/>
+    <linearGradient id="c">
+      <stop offset="0" stop-color="#208dc5"/>
+      <stop offset=".30653772" stop-color="#208dc5"/>
+      <stop offset=".31746966" stop-color="#1baaa8"/>
+      <stop offset=".64985865" stop-color="#1baaa8"/>
+      <stop offset=".66322571" stop-color="#16c58d"/>
+      <stop offset="1" stop-color="#16c58d"/>
+    </linearGradient>
+    <filter id="f" color-interpolation-filters="sRGB">
+      <feFlood flood-color="#306985" flood-opacity=".384314" result="flood"/>
+      <feComposite in="flood" in2="SourceGraphic" operator="in" result="composite1"/>
+      <feGaussianBlur in="composite1" result="blur" stdDeviation="10"/>
+      <feOffset dy="6" result="offset"/>
+      <feComposite in="SourceGraphic" in2="offset" result="fbSourceGraphic"/>
+      <feColorMatrix in="fbSourceGraphic" result="fbSourceGraphicAlpha" values="0 0 0 -1 0 0 0 0 -1 0 0 0 0 -1 0 0 0 0 1 0"/>
+      <feFlood flood-color="#306985" flood-opacity=".384314" result="flood"/>
+      <feComposite in="flood" in2="fbSourceGraphic" operator="out" result="composite1"/>
+      <feGaussianBlur in="composite1" result="blur" stdDeviation="3.2"/>
+      <feOffset dy=".802139" result="offset"/>
+      <feComposite in="offset" in2="fbSourceGraphic" operator="atop" result="composite2"/>
+    </filter>
+    <filter id="i" color-interpolation-filters="sRGB">
+      <feFlood flood-color="#306985" flood-opacity=".384314" result="flood"/>
+      <feComposite in="flood" in2="SourceGraphic" operator="out" result="composite1"/>
+      <feGaussianBlur in="composite1" result="blur" stdDeviation="6.4"/>
+      <feOffset dy="7.21925" result="offset"/>
+      <feComposite in="offset" in2="SourceGraphic" operator="atop" result="composite2"/>
+    </filter>
+    <clipPath id="h" clipPathUnits="userSpaceOnUse">
+      <circle cx="512" cy="540.36218" r="425.37531" stroke="#fff" stroke-width="20.67796516"/>
+    </clipPath>
+  </defs>
+  <circle cx="518.12701" cy="-507.76779" r="373.47855" fill="url(#d)" transform="translate(-185.47958 1195.5343) scale(1.34616)"/>
+  <circle cx="518.12701" cy="-507.76779" r="373.47855" fill="url(#e)" filter="url(#f)" transform="translate(-133.22301 1144.3225) scale(1.2453)"/>
+  <path fill="url(#g)" d="M684.57157 59.272892h279.62182V1021.4514H684.57157zm-314.2222 0h262.87751V777.39677H370.34937zm-320.257092 0H319.00458V613.34214H50.092278z" clip-path="url(#h)" filter="url(#i)" transform="matrix(-.99217 0 0 .99217 1019.9896 -25.094943)"/>
+</svg>

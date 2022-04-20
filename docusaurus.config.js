@@ -1,10 +1,11 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
+const path = require('path');
 const npm2yarn = require('@docusaurus/remark-plugin-npm2yarn');
 const fiddleEmbedder = require('./src/transformers/fiddle-embedder.js');
 const apiLabels = require('./src/transformers/api-labels.js');
 const apiOptionsClass = require('./src/transformers/api-options-class.js');
 const apiStructurePreviews = require('./src/transformers/api-structure-previews.js');
-const docVersions = require('./versions-info.json');
+// const docVersions = require('./versions-info.json');
 
 module.exports = {
   title: 'Electron',
@@ -169,7 +170,10 @@ module.exports = {
       contextualSearch: true,
     },
   },
-  plugins: ['docusaurus-plugin-sass'],
+  plugins: [
+    'docusaurus-plugin-sass',
+    path.resolve(__dirname, './src/plugins/releases'),
+  ],
   presets: [
     [
       '@docusaurus/preset-classic',

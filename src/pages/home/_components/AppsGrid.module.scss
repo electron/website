@@ -1,0 +1,29 @@
+.appsContainer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.appCard {
+  overflow: visible;
+  box-shadow: var(--ifm-global-shadow-lw);
+  position: relative;
+  background: --var(--ifm-background-surface-color);
+  backdrop-filter: blur(40px);
+  &:hover {
+    transform: translateY(-4px);
+    transition: 0.1s all ease-in;
+    text-decoration: none;
+    box-shadow: var(--ifm-global-shadow-md);
+    filter: brightness(1.1);
+  }
+}
+
+.appLogo {
+  border-radius: 0;
+}
+
+.darkModeInvert {
+  filter: invert(1);
+}
