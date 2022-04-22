@@ -3,6 +3,9 @@ import Link from '@docusaurus/Link';
 import { useColorMode } from '@docusaurus/theme-common';
 import clsx from 'clsx';
 import styles from './AppsGrid.module.scss';
+import { addUTM } from '../../../util/addUTM';
+
+const utm = addUTM('home_page');
 
 export default function AppsGrid({ list }) {
   const { isDarkTheme } = useColorMode();
@@ -11,7 +14,7 @@ export default function AppsGrid({ list }) {
       <div className={styles.appsContainer}>
         {list.map((item) => (
           <a
-            href={item.href}
+            href={utm(item.href)}
             key={item.image}
             className={clsx(styles.appCard, 'card')}
           >
