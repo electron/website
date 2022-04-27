@@ -54,6 +54,8 @@ function visitor(node, _ancestors) {
 
   // replace the raw link file with our JSX component.
   // See src/components/APIStructurePreview.jsx for implementation.
-  node.type = 'jsx';
-  node.value = `<APIStructurePreview url="${node.url}" title="${node.children[0].value}" content="${str}"/>`;
+  if (Array.isArray(node.children) && node.children.length > 0) {
+    node.type = 'jsx';
+    node.value = `<APIStructurePreview url="${node.url}" title="${node.children[0].value}" content="${str}"/>`;
+  }
 }
