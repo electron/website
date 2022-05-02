@@ -868,6 +868,8 @@ Returns `Object`:
 
 * `categories` [JumpListCategory[]](latest/api/structures/jump-list-category.md) | `null` - Array of `JumpListCategory` objects.
 
+Returns `string`
+
 Sets or removes a custom Jump List for the application, and returns one of the
 following strings:
 
