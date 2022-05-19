@@ -251,7 +251,7 @@ function DocSidebarItemLink({
       key={label}
     >
       <Link
-        className={clsx('menu__link', styles.menuLink, {
+        className={clsx('menu__link', {
           'menu__link--active': isActive,
         })}
         aria-current={isActive ? 'page' : undefined}
