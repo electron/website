@@ -92,15 +92,6 @@ module.exports = {
             tags: ['windows'],
           },
         },
-        'latest/tutorial/window-customization',
-        'latest/tutorial/tutorial-prerequisites',
-        'latest/tutorial/tutorial-scaffolding',
-        'latest/tutorial/tutorial-main-renderer',
-        'latest/tutorial/tutorial-adding-features',
-        'latest/tutorial/application-distribution',
-        'latest/tutorial/code-signing',
-        'latest/tutorial/updates',
-        'latest/tutorial/process-model',
       ],
     },
     {
@@ -151,7 +142,6 @@ module.exports = {
         'latest/tutorial/repl',
         'latest/tutorial/testing-on-headless-ci',
         'latest/tutorial/testing-widevine-cdm',
-        'latest/tutorial/using-selenium-and-webdriver',
       ],
     },
     {
@@ -175,19 +165,6 @@ module.exports = {
         'latest/tutorial/tray',
         'latest/tutorial/window-customization',
         'latest/tutorial/windows-taskbar',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Examples',
-      items: [
-        'latest/tutorial/examples',
-        'latest/tutorial/message-ports',
-        'latest/tutorial/multithreading',
-        'latest/tutorial/offscreen-rendering',
-        'latest/tutorial/spellchecker',
-        'latest/tutorial/web-embeds',
-        'latest/tutorial/windows-arm',
       ],
     },
     {
