@@ -17,6 +17,10 @@
   justify-content: flex-end;
 }
 
+.menuLink {
+  justify-content: space-between;
+}
+
 .badge {
   background-color: var(--ifm-color-primary-lighter);
   margin-left: 2px;
