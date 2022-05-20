@@ -1,3 +1,7 @@
+.menuExternalLink {
+  align-items: center;
+}
+
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
@@ -15,6 +19,10 @@
 .tagContainer {
   display: flex;
   justify-content: flex-end;
+}
+
+.menuLink {
+  justify-content: space-between;
 }
 
 .badge {
