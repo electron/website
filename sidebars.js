@@ -96,14 +96,8 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'Developer Checklists',
-      items: ['latest/tutorial/performance', 'latest/tutorial/security'],
-    },
-    {
-      type: 'category',
       label: 'Development',
       items: [
-        'latest/tutorial/boilerplates-and-clis',
         'latest/tutorial/accessibility',
         'latest/tutorial/boilerplates-and-clis',
         'latest/tutorial/fuses',
@@ -114,8 +108,11 @@ module.exports = {
     {
       type: 'category',
       label: 'Distribution',
+      link: {
+        type: 'doc',
+        id: 'latest/tutorial/distribution-overview',
+      },
       items: [
-        'latest/tutorial/distribution-overview',
         'latest/tutorial/application-packaging',
         'latest/tutorial/code-signing',
         'latest/tutorial/updates',
@@ -143,34 +140,6 @@ module.exports = {
         'latest/tutorial/testing-on-headless-ci',
         'latest/tutorial/testing-widevine-cdm',
       ],
-    },
-    {
-      type: 'category',
-      label: 'OS Integration',
-      items: [
-        'latest/tutorial/os-integration',
-        'latest/tutorial/devices',
-        'latest/tutorial/dark-mode',
-        'latest/tutorial/keyboard-shortcuts',
-        'latest/tutorial/in-app-purchases',
-        'latest/tutorial/launch-app-from-url-in-another-app',
-        'latest/tutorial/linux-desktop-actions',
-        'latest/tutorial/macos-dock',
-        'latest/tutorial/native-file-drag-drop',
-        'latest/tutorial/notifications',
-        'latest/tutorial/online-offline-events',
-        'latest/tutorial/progress-bar',
-        'latest/tutorial/recent-documents',
-        'latest/tutorial/represented-file',
-        'latest/tutorial/tray',
-        'latest/tutorial/window-customization',
-        'latest/tutorial/windows-taskbar',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Developer Checklists',
-      items: ['latest/tutorial/performance', 'latest/tutorial/security'],
     },
     {
       type: 'category',

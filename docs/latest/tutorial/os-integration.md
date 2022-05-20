@@ -87,12 +87,3 @@ guide!).
 [url handler]: ./launch-app-from-url-in-another-app.md
 [window customization]: ./window-customization.md
 [windows taskbar]: ./windows-taskbar.md
-
-<!-- Tutorial links -->
-
-[prerequisites]: tutorial-prerequisites.md
-[scaffolding]: tutorial-scaffolding.md
-[main-renderer]: ./tutorial-main-renderer.md
-[application distribution]: distribution-overview.md
-[code signing]: code-signing.md
-[updates]: updates.md

@@ -12,8 +12,8 @@ can either use specialized tooling or manual approaches.
 
 There are a couple tools out there that exist to package and distribute your Electron app.
 We recommend using [Electron Forge](https://www.electronforge.io). You can check out
-its documentation directly, or refer to the [Packaging and Distribution] part of the
-Electron tutorial.
+its documentation directly, or refer to the [Packaging and Distribution](./tutorial-5-packaging.md)
+part of the Electron tutorial.
 
 ## Manual packaging
 
