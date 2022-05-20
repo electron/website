@@ -79,4 +79,4 @@ Are you getting stuck anywhere? Here are a few links to places to look:
 [process-model]: process-model.md
 [resources]: ../breaking-changes.md
 [testing and debugging]: application-debugging.md
-[tutorial]: tutorial-prerequisites.md
+[tutorial]: tutorial-1-prerequisites.md

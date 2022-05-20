@@ -213,4 +213,4 @@ This feature is incredibly useful for two main purposes:
 [context-isolation]: ./context-isolation.md
 [context-bridge]: latest/api/context-bridge.md
 [ipcRenderer]: latest/api/ipc-renderer.md
-[tutorial]: ./tutorial-prerequisites.md
+[tutorial]: ./tutorial-1-prerequisites.md
