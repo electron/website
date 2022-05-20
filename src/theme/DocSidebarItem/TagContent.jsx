@@ -5,7 +5,6 @@ import MacIcon from '@site/static/assets/img/platform-mac.svg';
 import WindowsIcon from '@site/static/assets/img/platform-windows.svg';
 
 export default function TagContent({ platform }) {
-  console.log(platform);
   switch (platform) {
     case 'windows':
       return <WindowsIcon role="img" title="Available on Windows" />;
