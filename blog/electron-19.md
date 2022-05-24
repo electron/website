@@ -49,6 +49,12 @@ The semi-documented `preloadURL` property has been removed from WebPreferences. 
 
 Electron 14.x.y and 15.x.y have both reached end-of-support. This [returns](https://www.electronjs.org/blog/8-week-cadence/#-will-electron-extend-the-number-of-supported-versions) Electron to its [existing policy](https://www.electronjs.org/docs/latest/tutorial/electron-timelines#version-support-policy) of supporting the latest three major versions. Developers and applications are encouraged to upgrade to a newer version of Electron.
 
+|	E15 (Sep'21) |	E16 (Nov'21) |	E17 (Feb'22) |	E18 (Mar'22) |	E19 (May'22) |
+| ---- | ---- | ---- | ---- | ---- |
+|	15.x.y |	16.x.y |	17.x.y |	18.x.y |	19.x.y |
+|	14.x.y |	15.x.y |	16.x.y |	17.x.y |	18.x.y |
+|	13.x.y |	14.x.y |	15.x.y |	16.x.y |	17.x.y |
+|	12.x.y |	13.x.y |	14.x.y |	15.x.y |	-- |
 ## What's Next
 
 In the short term, you can expect the team to continue to focus on keeping up with the development of the major components that make up Electron, including Chromium, Node, and V8. Although we are careful not to make promises about release dates, our plan is to release new major versions of Electron with new versions of those components approximately every 2 months.
