@@ -1,6 +1,6 @@
 ---
 title: Electron 19.0.0
-date: 2022-05-xxT00:00:00.000Z
+date: 2022-05-24T00:00:00.000Z
 authors:
     - name: VerteDinde
       url: 'https://github.com/VerteDinde'
