@@ -8,7 +8,7 @@ authors:
     - name: ckerr
       url: 'https://github.com/ckerr'
       image_url: 'https://github.com/ckerr.png?size=96'
-slug: electron-18-0
+slug: electron-19-0
 
 ---
 
