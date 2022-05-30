@@ -37,6 +37,7 @@
   // these require !important because of some weirdness in CSS ordering
   // see: https://github.com/facebook/docusaurus/issues/3678
   --doc-sidebar-width: 350px !important;
+  --docusaurus-highlighted-code-line-bg: rgb(217, 220, 222);
 
   // infima shadow levels
   // generated from https://www.joshwcomeau.com/shadow-palette/
@@ -75,23 +76,16 @@
   --ifm-color-primary-lighter: #97e1ff;
   --ifm-color-primary-lightest: #e3f7ff;
 
+  // docusaurus
+  --docusaurus-highlighted-code-line-bg: rgb(13, 15, 28);
+  
+
   // modified base vars
   --ifm-menu-color: var(--ifm-color-primary-lightest);
 
   // custom vars
   --electron-heading: var(--ifm-color-primary-lightest);
   --electron-inline-code: var(--electron-color-secondary-light);
-}
-
-.docusaurus-highlight-code-line {
-  background-color: rgb(217, 220, 222);
-  display: block;
-  margin: 0 calc(-1 * var(--ifm-pre-padding));
-  padding: 0 var(--ifm-pre-padding);
-
-  :root[data-theme='dark'] & {
-    background-color: rgb(13, 15, 28);
-  }
 }
 
 .hero {
