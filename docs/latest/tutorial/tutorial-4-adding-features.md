@@ -6,6 +6,7 @@ hide_title: false
 ---
 
 :::info Follow along the tutorial
+
 This is **part 4** of the Electron tutorial.
 
 1. [Prerequisites][prerequisites]
@@ -17,15 +18,14 @@ This is **part 4** of the Electron tutorial.
 
 :::
 
-If you have been following the tutorial, you should have a basic Electron application
-with some basic user interface. Now is the moment to work on your application and
-make it more integrated with the operating system as well as adding some more advanced
-features.
+If you have been following the tutorial, you should have an Electron application
+with a basic user interface. In this step, you will be using Electron APIs
+to give a more native feel to your app and extend its functionality.
 
 ## Managing your application's window lifecycle
 
-Application windows behave differently on each OS, and Electron puts the responsibility on
-developers to implement these conventions in their app.
+Application windows behave differently on each operating system. Electron puts the
+responsibility on developers to implement these conventions in their app.
 
 In general, you can use the `process` global's [`platform`][node-platform] attribute
 to run code specifically for certain operating systems.
@@ -46,7 +46,7 @@ app.on('window-all-closed', () => {
 ### Open a window if none are open (macOS)
 
 Whereas Linux and Windows apps quit when they have no windows open, macOS apps generally
-continue running even without any windows open, and activating the app when no windows
+continue running even without any windows open. Activating the app when no windows
 are available should open a new one.
 
 To implement this feature, listen for the `app` module's [`activate`][activate]
@@ -74,7 +74,7 @@ All your code should be similar to this:
 
 ## Other integrations and How to's
 
-To help you with more advance topics and deeper OS integration, we have created some tutorials.
+To help you with more advanced topics and deeper OS integration, we have created some tutorials.
 You can access them by clicking the links below:
 
 - [OS Integration]: How to make your application feel more integrated with the Operating
@@ -83,8 +83,10 @@ You can access them by clicking the links below:
   not for a particular operating system.
 
 :::tip Let us know if something is missing!
+
 If you can't find what you are looking for, please let us know on our [GitHub repo] or in
 our [Discord server][discord]!
+
 :::
 
 <!-- Link labels -->
