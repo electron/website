@@ -1,29 +1,30 @@
 ---
-title: 'Communicating Between Processes'
+title: 'Using Preload Scripts'
 description: 'This guide will step you through the process of creating a barebones Hello World app in Electron, similar to electron/electron-quick-start.'
 slug: tutorial-main-renderer
 hide_title: false
 ---
 
-:::info Tutorial parts
-This is **part 3** of the Electron tutorial. The other parts are:
+:::info Follow along the tutorial
+
+This is **part 3** of the Electron tutorial.
 
 1. [Prerequisites][prerequisites]
-1. [Scaffolding][scaffolding]
-1. [Communicating Between Processes][main-renderer]
+1. [Building your First App][building your first app]
+1. [Using Preload Scripts][main-renderer]
 1. [Adding Features][features]
 1. [Packaging Your Application][packaging]
 1. [Publishing and Updating][updates]
 
 :::
 
-At the end of this part you will have an Electron application that uses
+At the end of this part, you will have an Electron application that uses
 a preload script to safely expose features from the main process
 into the renderer.
 
 Electron's main process is a Node.js process that has full OS access.
-On top of [Electron's modules][modules], you can also access [Node.js ones][node-api],
-as well as any compatible code downloaded via `npm`.
+On top of [Electron's built-in modules][modules], you can also access
+[Node.js built-ins][node-api], as well as any packages downloaded via `npm`.
 
 If you are not familiar with Node.js, we recommend you to first
 read [this guide][node-guide] before continuing.
@@ -31,26 +32,24 @@ read [this guide][node-guide] before continuing.
 ## Using `contextBridge` and a preload script
 
 :::tip Further reading 📚
-This is your last reminder to look at [Electron's Process Model][process-model] to
-better understand all of this!
+
+For a more detailed look at preload scripts, please refer to
+[Electron's Process Model][process-model] doc.
+
 :::
 
-In Electron, the main process is the one that has access to Node.js, and the
-renderer process to the web APIs. This means it is not possible to access the
-Node.js APIs directly from the renderer process, nor the DOM from the main process.
+In Electron, only the main process has access to Node.js, and only the renderer process
+has access to web APIs. This means it is not possible to access the Node.js APIs directly
+from the renderer process, nor the HTML Document Object Model (DOM) from the main process.
 They're in entirely different processes with different APIs!
 
-On top of that, we are using `sandbox: true` (the default starting on Electron 18)
-when creating our renderer process.
-The [sandbox] limits the harm that malicious code can cause by limiting access to
-most system resources. With sandbox enabled, your web content is completely isolated.
-To add features to your renderer process that require "privileged access", you have
+To add features to your renderer process that require privileged access, you have
 to use a [preload script][preload-script] in conjunction with the
 [`contextBridge` API][contextbridge].
 
-We are going to create a preload script that exposes the versions of Chrome, Node, and
-Electron into the renderer. To do this, add a new `preload.js` file with the
-following:
+First, we are going to create a trivial preload script that exposes the versions of
+Chrome, Node, and Electron into the renderer. To do this, add a new `preload.js` file
+with the following:
 
 ```js title="preload.js"
 const { contextBridge } = require('electron');
@@ -64,17 +63,20 @@ contextBridge.exposeInMainWorld('versions', {
 ```
 
 :::tip Further reading 📚
-To know more about this security feature, we recommend you to read the
+
+To understand more about context isolation, we recommend you to read the
 [Context Isolation guide][context-isolation].
+
 :::
 
-The above code accesses the Node.js `process.versions` object and exposes some of them in
-the renderer process in a [global](https://developer.mozilla.org/en-US/docs/Glossary/Global_object) object called `versions`.
+The above code accesses Electron's `process.versions` object and exposes some of them in
+the renderer process in a [global](https://developer.mozilla.org/en-US/docs/Glossary/Global_object)
+object called `versions`.
 
-To attach this script to your renderer process, pass in the path to your preload script
+To attach this script to your renderer process, pass the path to your preload script
 to the `webPreferences.preload` option in the `BrowserWindow` constructor:
 
-```js {9} title="main.js"
+```js {8-10} title="main.js"
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
 
@@ -84,7 +86,6 @@ const createWindow = () => {
     height: 600,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
-      sandbox: true,
     },
   });
 
@@ -97,6 +98,7 @@ app.whenReady().then(() => {
 ```
 
 :::tip
+
 There are two Node.js concepts that are used here:
 
 - The [`__dirname`][dirname] string points to the path of the currently executing script
@@ -104,18 +106,20 @@ There are two Node.js concepts that are used here:
 - The [`path.join`][path-join] API joins multiple path segments together, creating a
   combined path string that works across all platforms.
 
-If you are not familiar with Node.js, we recommend you to read [this guide][node-guide].
+If you are unfamiliar with Node.js, we recommend you to read [this guide][node-guide].
+
 :::
 
-At this point, the renderer context has access to `versions`, so let's make that information
-available to the user. Create a new file `renderer.js` that contains the following code:
+At this point, the renderer has access to the `versions` global, so let's display that
+information in the window. Create a `renderer.js` script that contains the following code:
 
 ```js title="renderer.js"
 const information = document.getElementById('info');
 information.innerText = `This app is using Chrome (v${versions.chrome()}), Node.js (v${versions.node()}), and Electron (v${versions.electron()})`;
 ```
 
-And modify `index.html` to match the following:
+Then, modify your `index.html` by adding a `<p>` element with `info` as its id,
+and attach your `renderer.js` script:
 
 ```html {18,20} title="index.html"
 <!DOCTYPE html>
@@ -141,25 +145,86 @@ And modify `index.html` to match the following:
 </html>
 ```
 
-We have created a paragraph with `info` as its id, and included `renderer.js`.
-
 :::warning
+
 The reason why we do not write the JavaScript directly in the HTML between `<script></script>`
 is because we have a Content Security Policy (CSP) that will prevent its execution.
 To know more you can visit [MDN's CSP documentation][mdn-csp].
+
 :::
 
-After following the above steps, you should have a fully functional Electron application that
-has a message similar to the following one (probably with different versions):
+After following the above steps, you should have an Electron application that
+displays a message similar to the following one (probably with different versions):
 
 > This app is using Chrome (v94.0.4606.81), Node.js (v16.5.0), and Electron (v15.2.0)
 
-And the code should be similar to this:
+And the code should look like this:
 
 ```fiddle docs/latest/fiddles/tutorial-main-renderer
+
 ```
 
-<!-- TODO (@erickzhao): Write the IPC part -->
+### Sending messages from renderer to main
+
+You can also set up handlers for inter-process commmunication (IPC) with Electron's
+`ipcMain` and `ipcRenderer` modules. To send a message from your web page
+to the main process, you can set up a main process handler with `ipcMain.handle` and
+set up a preload function that calls `ipcRenderer.invoke` to trigger it.
+In general, you never want to directly expose the `ipcRenderer` module via preload,
+since allowing the renderer process to send arbitrary messages is a security risk.
+
+In the following example, we will add a global function to the renderer called `ping()`
+that will return a string from the main process.
+
+First, set up the `invoke` call in your preload script:
+
+```js {1,7} title="preload.js"
+const { contextBridge, ipcRenderer } = require('electron');
+
+contextBridge.exposeInMainWorld('versions', {
+  node: () => process.versions.node,
+  chrome: () => process.versions.chrome,
+  electron: () => process.versions.electron,
+  ping: () => ipcRenderer.invoke('ping'),
+  // we can also expose variables, not just functions
+});
+```
+
+Then, set up your `handle` listener in the main process:
+
+```js {1,8} title="main.js"
+const { ipcMain } = require('electron');
+
+const createWindow = () => {
+  const win = new BrowserWindow({
+    width: 800,
+    height: 600,
+    webPreferences: {
+      preload: path.join(__dirname, 'preload.js'),
+    },
+  });
+  ipcMain.handle('ping', () => 'pong');
+  win.loadFile('index.html');
+};
+```
+Once you have these two pieces set up, you can now send messages from the renderer
+to the main process through the `'ping'` channel you just defined.
+
+```js title='renderer.js'
+const func = async () => {
+  const response = await window.versions.ping();
+  console.log(response); // prints out 'pong'
+};
+
+func();
+```
+
+::: info
+
+For more in-depth explanations on using the `ipcRenderer` and `ipcMain` modules,
+check out the full [Inter-Process Communication][ipc] guide.
+
+:::
 
 <!-- Links -->
 
@@ -175,6 +240,7 @@ And the code should be similar to this:
 [context-isolation]: ./context-isolation.md
 [devtools-extension]: ./devtools-extension.md
 [dirname]: https://nodejs.org/api/modules.html#modules_dirname
+[ipc]: ./ipc.md
 [mdn-csp]: https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP
 [modules]: ../api/app.md
 [node-api]: https://nodejs.org/dist/latest/docs/api/
@@ -191,7 +257,7 @@ And the code should be similar to this:
 <!-- Tutorial links -->
 
 [prerequisites]: tutorial-1-prerequisites.md
-[scaffolding]: tutorial-2-scaffolding.md
+[building your first app]: tutorial-2-scaffolding.md
 [main-renderer]: tutorial-3-main-renderer.md
 [features]: tutorial-4-adding-features.md
 [packaging]: tutorial-5-packaging.md

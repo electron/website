@@ -1,26 +1,27 @@
 ---
-title: 'Scaffolding'
+title: 'Building your First App'
 description: 'This guide will step you through the process of creating a barebones Hello World app in Electron, similar to electron/electron-quick-start.'
 slug: tutorial-scaffolding
 hide_title: false
 ---
 
-:::info Tutorial parts
-This is **part 2** of the Electron tutorial. The other parts are:
+:::info Follow along the tutorial
+
+This is **part 2** of the Electron tutorial.
 
 1. [Prerequisites][prerequisites]
-1. [Scaffolding][scaffolding]
-1. [Communicating Between Processes][main-renderer]
+1. [Building your First App][building your first app]
+1. [Using Preload Scripts][main-renderer]
 1. [Adding Features][features]
 1. [Packaging Your Application][packaging]
 1. [Publishing and Updating][updates]
 
 :::
 
-At the end of this part you will have an Electron application with some basic
-UI and you will know how to debug it.
+After this part of the tutorial, you will have an Electron application
+running in development mode with a basic user interface.
 
-## Setting up your NPM project
+## Setting up your npm project
 
 Electron apps follow the same general structure as other Node.js projects.
 Start by creating a folder and initializing an npm package.
@@ -31,6 +32,7 @@ npm init
 ```
 
 :::warning Avoid WSL
+
 If you are on a Windows machine, please do not use [Windows Subsystem for Linux][wsl] (WSL)
 when following this tutorial as you will run into issues when trying to execute the
 application.
@@ -65,10 +67,35 @@ Then, install Electron into your app's dev dependencies.
 npm install --save-dev electron
 ```
 
-Finally, you want to be able to execute Electron. In the [`scripts`][package-scripts]
-field of your `package.json` config, add a `start` command like so:
+## Starting the main process
 
-```json {8-10} title='package.json'
+The entry point of any Electron application is its main script. This script controls the
+**main process**, which runs in a Node.js environment and is responsible for
+controlling your app's lifecycle, displaying native interfaces, performing privileged
+operations, and managing renderer processes (more on that later).
+
+:::tip Further reading
+
+If you haven't yet, please read [Electron's process model][process-model] to better
+understand how Electron's multiple process types work together.
+
+:::
+
+During execution, Electron will look for this script in the [`main`][package-json-main]
+field of the app's `package.json` config. In the previous step, you set that field to
+a file called `main.js`, which we have not created yet.
+
+To initialize the main script, create a file named `main.js` in the root folder
+of your project with a single line of code:
+
+```js title='main.js'
+console.log(`Hello from Electron 👋`);
+```
+
+To execute this script, add `electron .` to the `start` command in the
+[`scripts`][package-scripts] field of your `package.json`.
+
+```json {7-9} title='package.json'
 {
   "name": "my-electron-app",
   "version": "1.0.0",
@@ -82,52 +109,23 @@ field of your `package.json` config, add a `start` command like so:
 }
 ```
 
-This `start` command will let you open your app in development mode.
+This `start` command will tell the Electron executable to look for the `main.js`
+entry point in the current directory and run it in development mode.
 
 ```sh npm2yarn
 npm run start
 ```
 
-:::note
-This script tells Electron to run on your project's root folder. At this stage,
-your app will immediately throw a native error dialog. This is expected as we
-have not written any code yet.
-:::
+Your terminal's console should print out `Hello from Electron 👋`. Congratulations,
+you have executed your first line of code in Electron! Next, we'll learn how to
+create a browser window.
 
-## Creating your main process
+## Creating a web page and loading it into a BrowserWindow
 
-The entry point of any Electron application is its main script. This script controls the
-**main process**, which runs in a full Node.js environment and is responsible for
-controlling your app's lifecycle, displaying native interfaces, performing privileged
-operations, and managing renderer processes (more on that later).
+In Electron, each window displays a website that can be loaded either from a local HTML
+file or a remote URL. For this tutorial, we'll be using a local file.
 
-During execution, Electron will look for this script in the [`main`][package-json-main]
-field of the app's `package.json` config, which you should have configured in the previous
-step.
-
-To initialize the main script, create a file named `main.js` in the root folder
-of your project with the following contents and run your `start` command again:
-
-```js title='main.js'
-console.log(`Hello from Electron 👋`);
-```
-
-Your terminal's console should print out `Hello from Electron 👋` after running the script.
-Congratulations, you have executed your first line of code in Electron!
-
-:::tip Further reading
-If you haven't yet, please read [Electron's process model][process-model] to better understand
-how all the pieces work together.
-:::
-
-## Creating a web page
-
-In Electron, each window displays a website that can be loaded from either from a local HTML
-file or a remote URL. Before we can create a window for our application, we need to create the
-content that will be loaded into it.
-
-For this tutorial, we'll be using a local file. Create an `index.html` file in the root
-folder of your project:
+Start by creating an `index.html` file in the root folder of your project:
 
 ```html title='index.html'
 <!DOCTYPE html>
@@ -152,41 +150,35 @@ folder of your project:
 </html>
 ```
 
-## Loading the web page into a BrowserWindow
-
-Now that you have a web page, load it into an application window. To do so, replace
-the `console.log` statement in the `main.js` file from the previous step with the
+Now that you have a web page, you can display it within a [BrowserWindow][browser-window].
+To do so, replace the contents of your `main.js` file from the previous step with the
 following snippet:
 
 ```js title='main.js'
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow } = require('electron');
 
 const createWindow = () => {
   const win = new BrowserWindow({
     width: 800,
     height: 600,
-    webPreferences: {
-      sandbox: true,
-    }
-  })
+  });
 
-  win.loadFile('index.html')
-}
+  win.loadFile('index.html');
+};
 
 app.whenReady().then(() => {
-  createWindow()
-})
+  createWindow();
+});
 ```
 
 In the first line, we are importing 2 Electron modules with the CommonJS
 `require` syntax:
 
-- The [`app`][app] module, which controls your application's event lifecycle.
-- The [`BrowserWindow`][browser-window] module, which creates and manages application
-  windows.
+- [`app`][app], which controls your application's event lifecycle.
+- [`BrowserWindow`][browser-window], which creates and manages app windows.
 
 ```js
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow } = require('electron');
 ```
 
 :::warning ESM and Electron
@@ -196,17 +188,17 @@ state of ESM in Electron in [this GitHub issue](https://github.com/electron/elec
 :::
 
 Then, the `createWindow()` function loads `index.html` into a new BrowserWindow
-instance with a series of options:
+instance:
 
 ```js
 const createWindow = () => {
   const win = new BrowserWindow({
     width: 800,
-    height: 600
-  })
+    height: 600,
+  });
 
-  win.loadFile('index.html')
-}
+  win.loadFile('index.html');
+};
 ```
 
 :::tip Further reading
@@ -216,12 +208,12 @@ You can find all the constructor options available in the [BrowserWindow API doc
 In Electron, BrowserWindows can only be created after the app module's
 [`ready`][app-ready] event is fired. You can wait for this event by using the
 [`app.whenReady()`][app-when-ready] API. Call `createWindow()` after `whenReady()`
-resolves its Promise. This is done in the last 3 lines of the code:
+resolves its promise. This is done in the last 3 lines of the code:
 
 ```js
 app.whenReady().then(() => {
-  createWindow()
-})
+  createWindow();
+});
 ```
 
 At this point, your Electron application should successfully open a window that displays your
@@ -230,7 +222,7 @@ web page! Each window created by your app will run in a separate process called 
 
 Renderer processes behave very similarly to regular websites. This means you can use the same
 JavaScript APIs and tooling you use for typical front-end development, such as using [webpack]
-to bundle and minify your code or [React][react] to manage your user interfaces.
+to bundle and minify your code or [React][react] to build your user interfaces.
 
 <!-- :::tip sandboxing
 One important thing from the code above is `sandbox: true`. The sandbox limits the harm that malicious
@@ -243,8 +235,8 @@ The sandbox will appear again in the tutorial, and you can read now more about i
 
 ## Optional: Debugging from VS Code
 
-If you want to debug your application using VS Code instead of using the terminal you have to
-keep in mind there are 2 processes to attach at this moment: the main and renderer processes.
+If you want to debug your application using VS Code instead of using the terminal, you have to
+remember to attach VS Code to both the main and renderer processes.
 
 We are going to create a configuration file that allow us to debug both at the same time:
 
@@ -306,14 +298,17 @@ What we have done in the `launch.json` file is to create 3 configurations:
 - `Main + renderer` is a [compound task] that executes the previous ones simulatenously.
 
 :::caution
-Because in `Renderer` we are attaching to a process, it might be possible that the first lines of
+
+Because we are attaching to a process in `Renderer`, it is possible that the first lines of
 your code will be skipped as the debugger will not have had enough time to connect before they are
 being executed.
 You can work around this by refreshing the page or setting a timeout before executing the code
 in development mode.
+
 :::
 
 :::tip Further reading
+
 If you want to dig deeper in the debugging area, the following guides provide more information:
 
 - [Application Debugging]
@@ -347,7 +342,7 @@ If you want to dig deeper in the debugging area, the following guides provide mo
 <!-- Tutorial links -->
 
 [prerequisites]: tutorial-1-prerequisites.md
-[scaffolding]: tutorial-2-scaffolding.md
+[building your first app]: tutorial-2-scaffolding.md
 [main-renderer]: tutorial-3-main-renderer.md
 [features]: tutorial-4-adding-features.md
 [packaging]: tutorial-5-packaging.md

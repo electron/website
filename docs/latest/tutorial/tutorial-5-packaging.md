@@ -8,12 +8,12 @@ hide_title: false
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-:::info Tutorial parts
-This is **part 5** of the Electron tutorial. The other parts are:
+:::info Follow along the tutorial
+This is **part 5** of the Electron tutorial.
 
 1. [Prerequisites][prerequisites]
-1. [Scaffolding][scaffolding]
-1. [Communicating Between Processes][main-renderer]
+1. [Building your First App][building your first app]
+1. [Using Preload Scripts][main-renderer]
 1. [Adding Features][features]
 1. [Packaging Your Application][packaging]
 1. [Publishing and Updating][updates]
@@ -166,16 +166,16 @@ credentials in your Forge configuration:
 If you're unfamiliar with the desktop application code signing process, please refer
 to the full [Code Signing] guide for more information.
 
-[Application Packaging]: application-packaging.md
-[Code Signing]: code-signing.md
-[Electron Forge]: https://www.electronforge.io
-[Electron Forge CLI documentation]: https://www.electronforge.io/cli#commands
-[Makers]: https://www.electronforge.io/config/makers
+[application packaging]: application-packaging.md
+[code signing]: code-signing.md
+[electron forge]: https://www.electronforge.io
+[electron forge cli documentation]: https://www.electronforge.io/cli#commands
+[makers]: https://www.electronforge.io/config/makers
 
 <!-- Tutorial links -->
 
 [prerequisites]: tutorial-1-prerequisites.md
-[scaffolding]: tutorial-2-scaffolding.md
+[building your first app]: tutorial-2-scaffolding.md
 [main-renderer]: tutorial-3-main-renderer.md
 [features]: tutorial-4-adding-features.md
 [packaging]: tutorial-5-packaging.md

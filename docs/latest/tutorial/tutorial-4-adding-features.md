@@ -5,12 +5,12 @@ slug: tutorial-adding-features
 hide_title: false
 ---
 
-:::info Tutorial parts
-This is **part 4** of the Electron tutorial. The other parts are:
+:::info Follow along the tutorial
+This is **part 4** of the Electron tutorial.
 
 1. [Prerequisites][prerequisites]
-1. [Scaffolding][scaffolding]
-1. [Communicating Between Processes][main-renderer]
+1. [Building your First App][building your first app]
+1. [Using Preload Scripts][main-renderer]
 1. [Adding Features][features]
 1. [Packaging Your Application][packaging]
 1. [Publishing and Updating][updates]
@@ -24,7 +24,8 @@ features.
 
 ## Managing your application's window lifecycle
 
-Application windows behave differently on each OS, and Electron puts the responsibility on developers to implement these conventions in their app.
+Application windows behave differently on each OS, and Electron puts the responsibility on
+developers to implement these conventions in their app.
 
 In general, you can use the `process` global's [`platform`][node-platform] attribute
 to run code specifically for certain operating systems.
@@ -38,8 +39,8 @@ event, and call [`app.quit()`][app-quit] if the user is not on macOS (`darwin`).
 
 ```js
 app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') app.quit()
-})
+  if (process.platform !== 'darwin') app.quit();
+});
 ```
 
 ### Open a window if none are open (macOS)
@@ -57,12 +58,12 @@ from within your existing `whenReady()` callback.
 
 ```js
 app.whenReady().then(() => {
-  createWindow()
+  createWindow();
 
   app.on('activate', () => {
-    if (BrowserWindow.getAllWindows().length === 0) createWindow()
-  })
-})
+    if (BrowserWindow.getAllWindows().length === 0) createWindow();
+  });
+});
 ```
 
 All your code should be similar to this:
@@ -100,7 +101,7 @@ our [Discord server][discord]!
 <!-- Tutorial links -->
 
 [prerequisites]: tutorial-1-prerequisites.md
-[scaffolding]: tutorial-2-scaffolding.md
+[building your first app]: tutorial-2-scaffolding.md
 [main-renderer]: tutorial-3-main-renderer.md
 [features]: tutorial-4-adding-features.md
 [packaging]: tutorial-5-packaging.md
