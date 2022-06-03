@@ -22,10 +22,6 @@ At the end of this part, you will have an Electron application that uses
 a preload script to safely expose features from the main process
 into the renderer.
 
-Electron's main process is a Node.js process that has full OS access.
-On top of [Electron's built-in modules][modules], you can also access
-[Node.js built-ins][node-api], as well as any packages downloaded via `npm`.
-
 If you are not familiar with Node.js, we recommend you to first
 read [this guide][node-guide] before continuing.
 
@@ -38,17 +34,21 @@ For a more detailed look at preload scripts, please refer to
 
 :::
 
-In Electron, only the main process has access to Node.js, and only the renderer process
-has access to web APIs. This means it is not possible to access the Node.js APIs directly
-from the renderer process, nor the HTML Document Object Model (DOM) from the main process.
-They're in entirely different processes with different APIs!
+Electron's main process is a Node.js process that has full operating system access.
+On top of [Electron's built-in modules][modules], you can also access
+[Node.js built-ins][node-api], as well as any packages downloaded via `npm`.
 
-To add features to your renderer process that require privileged access, you have
-to use a [preload script][preload-script] in conjunction with the
-[`contextBridge` API][contextbridge].
+On the other hand, renderer processes are more locked down and do not run a Node.js
+environment for security reasons. To add features to your renderer process that require
+privileged access, you have to use a [preload script][preload-script] in conjunction with the
+[`contextBridge` API][contextbridge]. Electron's preload scripts are injected before a web page
+loads in the renderer, similar to a Chrome extension's [content scripts][content-script].
+By exposing APIs through the context bridge, you are giving your renderer access
+to developer-defined [global](https://developer.mozilla.org/en-US/docs/Glossary/Global_object)
+objects.
 
-First, we are going to create a trivial preload script that exposes the versions of
-Chrome, Node, and Electron into the renderer. To do this, add a new `preload.js` file
+To demonstrate this concept, we are going to create a trivial preload script that exposes your app's
+versions of Chrome, Node, and Electron into the renderer. To do this, add a new `preload.js` file
 with the following:
 
 ```js title="preload.js"
@@ -70,8 +70,7 @@ To understand more about context isolation, we recommend you to read the
 :::
 
 The above code accesses Electron's `process.versions` object and exposes some of them in
-the renderer process in a [global](https://developer.mozilla.org/en-US/docs/Glossary/Global_object)
-object called `versions`.
+the renderer process in a global object called `versions`.
 
 To attach this script to your renderer process, pass the path to your preload script
 to the `webPreferences.preload` option in the `BrowserWindow` constructor:
@@ -166,7 +165,12 @@ And the code should look like this:
 
 ### Sending messages from renderer to main
 
-You can also set up handlers for inter-process commmunication (IPC) with Electron's
+In Electron, only the main process has access to Node.js, and only the renderer process
+has access to web APIs. This means it is not possible to access the Node.js APIs directly
+from the renderer process, nor the HTML Document Object Model (DOM) from the main process.
+**They are entirely different processes with different APIs**.
+
+You can set up handlers for inter-process commmunication (IPC) with Electron's
 `ipcMain` and `ipcRenderer` modules. To send a message from your web page
 to the main process, you can set up a main process handler with `ipcMain.handle` and
 set up a preload function that calls `ipcRenderer.invoke` to trigger it.
