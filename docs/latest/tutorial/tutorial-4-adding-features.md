@@ -1,5 +1,5 @@
 ---
-title: 'Application Features'
+title: 'Adding Native Application Features'
 description: 'In this step of the tutorial we will share some resources you should read to add features to your application'
 slug: tutorial-adding-features
 hide_title: false
@@ -18,24 +18,35 @@ This is **part 4** of the Electron tutorial.
 
 :::
 
-If you have been following the tutorial, you should have an Electron application
-with a basic user interface. In this step, you will be using Electron APIs
-to give a more native feel to your app and extend its functionality.
+If you have been following along, you should have an Electron application
+with a basic user interface. In this part of the tutorial, you will be
+using Electron APIs to give a more native feel to your app and extend
+its functionality.
 
-## Managing your application's window lifecycle
+## Managing your app's window lifecycle
 
-Application windows behave differently on each operating system. Electron puts the
-responsibility on developers to implement these conventions in their app.
+Application windows behave differently on each operating system. Rather than
+prescribe these behaviours by default, Electron puts the responsibility on developers
+to implement these conventions in their app. In this tutorial, we will be going over
+a few of the standard windowing behaviours required by the major desktop operating
+systems.
 
-In general, you can use the `process` global's [`platform`][node-platform] attribute
-to run code specifically for certain operating systems.
+:::note
+
+We will be using Node's [`process.platform`][node-platform] variable
+to conditionally run applications on certain platforms. There are only three
+possible platforms that Electron can run in: `win32` (Windows), `linux` (Linux),
+and `darwin` (macOS).
+
+:::
 
 ### Quit the app when all windows are closed (Windows & Linux)
 
 On Windows and Linux, exiting all windows generally quits an application entirely.
 
-To implement this, listen for the `app` module's [`'window-all-closed'`][window-all-closed]
-event, and call [`app.quit()`][app-quit] if the user is not on macOS (`darwin`).
+To implement this pattern in your Electron app, listen for the `app` module's
+[`'window-all-closed'`][window-all-closed] event, and call [`app.quit()`][app-quit]
+if the user is not on macOS (`darwin`).
 
 ```js
 app.on('window-all-closed', () => {
@@ -54,7 +65,7 @@ event, and call your existing `createWindow()` method if no browser windows are 
 
 Because windows cannot be created before the `ready` event, you should only listen for
 `activate` events after your app is initialized. Do this by attaching your event listener
-from within your existing `whenReady()` callback.
+inside the `whenReady()` callback.
 
 ```js
 app.whenReady().then(() => {
@@ -66,16 +77,16 @@ app.whenReady().then(() => {
 });
 ```
 
-All your code should be similar to this:
+After integrating these patterns, your code should look like this:
 
 ```fiddle docs/latest/fiddles/windows-lifecycle
 
 ```
 
-## Other integrations and How to's
+## Other integrations and examples
 
-To help you with more advanced topics and deeper OS integration, we have created some tutorials.
-You can access them by clicking the links below:
+Electron's documentation has many tutorials to help you with more advanced topics
+and deeper operating system integrations.
 
 - [OS Integration]: How to make your application feel more integrated with the Operating
   System where it is running.

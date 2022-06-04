@@ -18,9 +18,12 @@ This is **part 3** of the Electron tutorial.
 
 :::
 
-At the end of this part, you will have an Electron application that uses
-a preload script to safely expose features from the main process
-into the renderer.
+## Learning goals
+
+In this section, you will learn what a preload script is and how to use one to safely
+expose privileged features into the renderer process. You will also learn how to safely
+communicate between main and renderer processes with Electron's built-in
+inter-process communication (IPC) modules.
 
 If you are not familiar with Node.js, we recommend you to first
 read [this guide][node-guide] before continuing.
@@ -36,10 +39,10 @@ For a more detailed look at preload scripts, please refer to
 
 Electron's main process is a Node.js process that has full operating system access.
 On top of [Electron's built-in modules][modules], you can also access
-[Node.js built-ins][node-api], as well as any packages downloaded via `npm`.
+[Node.js built-ins][node-api], as well as any packages downloaded via npm.
 
 On the other hand, renderer processes are more locked down and do not run a Node.js
-environment for security reasons. To add features to your renderer process that require
+environment for security reasons. To add features to your renderer that require
 privileged access, you have to use a [preload script][preload-script] in conjunction with the
 [`contextBridge` API][contextbridge]. Electron's preload scripts are injected before a web page
 loads in the renderer, similar to a Chrome extension's [content scripts][content-script].
@@ -163,7 +166,7 @@ And the code should look like this:
 
 ```
 
-### Sending messages from renderer to main
+## Communicating between processes
 
 In Electron, only the main process has access to Node.js, and only the renderer process
 has access to web APIs. This means it is not possible to access the Node.js APIs directly
@@ -194,9 +197,11 @@ contextBridge.exposeInMainWorld('versions', {
 });
 ```
 
-Then, set up your `handle` listener in the main process:
+Then, set up your `handle` listener in the main process. We do this before
+loading the HTML file so that the handler is guaranteed to be ready before
+you send out the `invoke` call from the renderer.
 
-```js {1,8} title="main.js"
+```js {1,11} title="main.js"
 const { ipcMain } = require('electron');
 
 const createWindow = () => {
@@ -223,12 +228,25 @@ const func = async () => {
 func();
 ```
 
-::: info
+:::info
 
 For more in-depth explanations on using the `ipcRenderer` and `ipcMain` modules,
 check out the full [Inter-Process Communication][ipc] guide.
 
 :::
+
+## Summary
+
+A preload script contains code that runs before your web page is loaded into the browser
+window. It has access to both DOM APIs and Node.js environment, and is often used to
+expose privileged APIs to the renderer via the `contextBridge` API.
+
+Because the main and renderer processes have very different responsibilities, Electron
+apps often use the preload script to set up inter-process communication (IPC) interfaces
+to pass arbitrary messages between the two kinds of processes.
+
+In the next part of the tutorial, we will be learning how to use Electron's APIs to
+provide a more native feel to your application.
 
 <!-- Links -->
 
@@ -240,6 +258,7 @@ check out the full [Inter-Process Communication][ipc] guide.
 [browser-window]: ../api/browser-window.md
 [commonjs]: https://nodejs.org/docs/latest/api/modules.html#modules_modules_commonjs_modules
 [compound task]: https://code.visualstudio.com/Docs/editor/tasks#_compound-tasks
+[content-script]: https://developer.chrome.com/docs/extensions/mv3/content_scripts/
 [contextbridge]: ../api/context-bridge.md
 [context-isolation]: ./context-isolation.md
 [devtools-extension]: ./devtools-extension.md

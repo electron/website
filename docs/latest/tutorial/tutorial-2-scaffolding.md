@@ -18,18 +18,14 @@ This is **part 2** of the Electron tutorial.
 
 :::
 
-After this part of the tutorial, you will have an Electron application
-running in development mode with a basic user interface.
+## Learning goals
+
+In this part of the tutorial, you will learn how to scaffold an npm package, install
+Electron, and write a basic application. By the end of this section, you should be
+able to run your app in development and display a web page containing static text
+in a native window.
 
 ## Setting up your npm project
-
-Electron apps follow the same general structure as other Node.js projects.
-Start by creating a folder and initializing an npm package.
-
-```sh npm2yarn
-mkdir my-electron-app && cd my-electron-app
-npm init
-```
 
 :::warning Avoid WSL
 
@@ -41,14 +37,29 @@ application.
 
 :::
 
+Electron apps follow the same general structure as other Node.js projects.
+Start by creating a folder and initializing an npm package.
+
+```sh npm2yarn
+mkdir my-electron-app && cd my-electron-app
+npm init
+```
+
 The interactive `init` command will prompt you to set some fields in your config.
 There are a few rules to follow for the purposes of this tutorial:
 
 - `entry point` should be `main.js`.
 - `author`, `license`, and `description` can be any value, but will be necessary for
-  [app packaging][packaging] later on.
+  [packaging][packaging] later on.
 
-Your `package.json` file should look something like this:
+Then, install Electron into your app's dev dependencies:
+
+```sh npm2yarn
+npm install --save-dev electron
+```
+
+Your package.json file should look something like this after initializing your package
+and installing Electron:
 
 ```json title='package.json'
 {
@@ -57,35 +68,29 @@ Your `package.json` file should look something like this:
   "description": "Hello World!",
   "main": "main.js",
   "author": "Jane Doe",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^19.0.0"
+  }
 }
 ```
 
-Then, install Electron into your app's dev dependencies.
+## Running the app
 
-```sh npm2yarn
-npm install --save-dev electron
-```
-
-## Starting the main process
-
-The entry point of any Electron application is its main script. This script controls the
-**main process**, which runs in a Node.js environment and is responsible for
-controlling your app's lifecycle, displaying native interfaces, performing privileged
-operations, and managing renderer processes (more on that later).
+The [`main`][package-json-main] script you defined in package.json is the entry point of any
+Electron application. This script controls the **main process**, which runs in a Node.js
+environment and is responsible for controlling your app's lifecycle, displaying native
+interfaces, performing privileged operations, and managing renderer processes
+(more on that later).
 
 :::tip Further reading
 
-If you haven't yet, please read [Electron's process model][process-model] to better
+Read [Electron's process model][process-model] to better
 understand how Electron's multiple process types work together.
 
 :::
 
-During execution, Electron will look for this script in the [`main`][package-json-main]
-field of the app's `package.json` config. In the previous step, you set that field to
-a file called `main.js`, which we have not created yet.
-
-To initialize the main script, create a file named `main.js` in the root folder
+To initialize the main script, create a `main.js` file in the root folder
 of your project with a single line of code:
 
 ```js title='main.js'
@@ -93,9 +98,11 @@ console.log(`Hello from Electron 👋`);
 ```
 
 To execute this script, add `electron .` to the `start` command in the
-[`scripts`][package-scripts] field of your `package.json`.
+[`scripts`][package-scripts] field of your package.json. This command
+will tell the Electron executable to look for the main script in the
+current directory and run it in development mode.
 
-```json {7-9} title='package.json'
+```json {8-10} title='package.json'
 {
   "name": "my-electron-app",
   "version": "1.0.0",
@@ -105,27 +112,27 @@ To execute this script, add `electron .` to the `start` command in the
   "license": "MIT",
   "scripts": {
     "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^19.0.0"
   }
 }
 ```
-
-This `start` command will tell the Electron executable to look for the `main.js`
-entry point in the current directory and run it in development mode.
 
 ```sh npm2yarn
 npm run start
 ```
 
-Your terminal's console should print out `Hello from Electron 👋`. Congratulations,
-you have executed your first line of code in Electron! Next, we'll learn how to
-create a browser window.
+Your terminal should print out `Hello from Electron 👋`. Congratulations,
+you have executed your first line of code in Electron! Of course, this is a
+very trivial app example, since we have not even built any GUIs yet!
+Next, we'll learn how to open a web page in a browser window.
 
 ## Creating a web page and loading it into a BrowserWindow
 
 In Electron, each window displays a website that can be loaded either from a local HTML
-file or a remote URL. For this tutorial, we'll be using a local file.
-
-Start by creating an `index.html` file in the root folder of your project:
+file or a remote web address. For this example, we'll be loading in a local file. Start
+by creating a barebones web page an `index.html` file in the root folder of your project:
 
 ```html title='index.html'
 <!DOCTYPE html>
@@ -150,9 +157,9 @@ Start by creating an `index.html` file in the root folder of your project:
 </html>
 ```
 
-Now that you have a web page, you can display it within a [BrowserWindow][browser-window].
-To do so, replace the contents of your `main.js` file from the previous step with the
-following snippet:
+Now that you have a web page, you can display it within an Electron
+[BrowserWindow][browser-window]. To do so, your `main.js` file needs to contain
+the following lines of code:
 
 ```js title='main.js'
 const { app, BrowserWindow } = require('electron');
@@ -171,11 +178,11 @@ app.whenReady().then(() => {
 });
 ```
 
-In the first line, we are importing 2 Electron modules with the CommonJS
-`require` syntax:
+Let's dissect this snippet piece by piece. In the first line, we are importing two Electron modules
+with CommonJS syntax:
 
-- [`app`][app], which controls your application's event lifecycle.
-- [`BrowserWindow`][browser-window], which creates and manages app windows.
+- [app][app], which controls your application's event lifecycle.
+- [BrowserWindow][browser-window], which creates and manages app windows.
 
 ```js
 const { app, BrowserWindow } = require('electron');
@@ -187,7 +194,7 @@ are currently not directly supported in Electron. You can find more information 
 state of ESM in Electron in [this GitHub issue](https://github.com/electron/electron/issues/21457).
 :::
 
-Then, the `createWindow()` function loads `index.html` into a new BrowserWindow
+Then, the `createWindow()` function loads your web page into a new BrowserWindow
 instance:
 
 ```js
@@ -201,10 +208,6 @@ const createWindow = () => {
 };
 ```
 
-:::tip Further reading
-You can find all the constructor options available in the [BrowserWindow API docs][browser-window].
-:::
-
 In Electron, BrowserWindows can only be created after the app module's
 [`ready`][app-ready] event is fired. You can wait for this event by using the
 [`app.whenReady()`][app-when-ready] API. Call `createWindow()` after `whenReady()`
@@ -216,10 +219,9 @@ app.whenReady().then(() => {
 });
 ```
 
-At this point, your Electron application should successfully open a window that displays your
-web page! Each window created by your app will run in a separate process called a
-**renderer** process (or simply _renderer_ for short).
-
+At this point, running your Electron application's start command should successfully
+open a window that displays your web page! Each window created by your app will run
+in a separate process called a **renderer** process (or simply _renderer_ for short).
 Renderer processes behave very similarly to regular websites. This means you can use the same
 JavaScript APIs and tooling you use for typical front-end development, such as using [webpack]
 to bundle and minify your code or [React][react] to build your user interfaces.
@@ -315,6 +317,24 @@ If you want to dig deeper in the debugging area, the following guides provide mo
 - [DevTools Extensions][devtools extension]
 
 :::
+
+## Summary
+
+Electron applications are set up using npm packages. The Electron executable should be installed
+in your project's devDependencies and can be run in development mode using an npm script in your
+package.json file.
+
+The executable runs the JavaScript entry point found in the `main` property of your package.json.
+This file controls Electron's **main process**, which runs an instance of Node.js and is
+responsible for your app's lifecycle, displaying native interfaces, performing privileged operations,
+and managing renderer processes.
+
+**Renderer processes** (or renderers for short) are responsible for display web content. You can
+load a web page into a renderer by pointing it to either a web address or a local HTML file.
+Renderers behave very similarly to regular web pages and have access to the same web APIs.
+
+In the next section of the tutorial, we will be learning how to augment the renderer process with
+privileged APIs and how to communicate between processes.
 
 <!-- Links -->
 
