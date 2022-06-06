@@ -9,6 +9,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 :::info Follow along the tutorial
+
 This is **part 5** of the Electron tutorial.
 
 1. [Prerequisites][prerequisites]
@@ -20,18 +21,22 @@ This is **part 5** of the Electron tutorial.
 
 :::
 
+## Learning goals
+
+In this part of the tutorial, we'll be going over the basics of packaging and distributing
+your app with [Electron Forge].
+
+## Using Electron Forge
+
 Electron does not have any tooling for packaging and distribution bundled into its core
 modules. Once you have a working Electron app in development mode, you need to use
 additional tooling to create a packaged app you can distribute to your users (also known
 as a **distributable**). Distributables can be either installers (e.g. MSI on Windows) or
 portable executable files (e.g. `.zip` on macOS).
 
-In this section, we'll be going over the basics of packaging your app with
-[Electron Forge].
+### Importing your project into Forge
 
-## Importing your project into Electron Forge
-
-First, add Electron Forge as a development dependency of your app and use its `import`
+We recommend using Electron Forge as your  Electron Forge as a devDependency of your app and use its `import`
 command to scaffold your existing app into a Forge project:
 
 ```sh npm2yarn
@@ -42,7 +47,7 @@ npx electron-forge import
 Once the conversion script is done, Forge should have added a few scripts
 to your `package.json` file.
 
-```json title='package.json' {5}
+```json title='package.json'
   //...
   "scripts": {
     "start": "electron-forge start",
@@ -53,16 +58,19 @@ to your `package.json` file.
 ```
 
 :::info CLI documentation
+
 For more information on `make` and other Forge commands, check out
 the [Electron Forge CLI documentation].
+
 :::
 
-You should also notice that your `package.json` now has a few more packages installed
-under your dev dependencies, and contains an added `config.forge` field with an array
-of `makers` configured. **Makers** are Forge plugins that create distributables from
-your source code. You should see multiple Makers in the default
+You should also notice that your package.json now has a few more packages installed
+under your devDependencies, and contains an added `config.forge` field with an array
+of makers configured. **Makers** are Forge plugins that create distributables from
+your source code. You should see multiple Makers in the pre-populated configuration,
+one for each target platform.
 
-## Creating a distributable
+### Creating a distributable
 
 To create a distributable, use Forge's `make` script:
 
@@ -84,14 +92,18 @@ The distributable in the `out/make` folder should be ready to launch! You have n
 created your first full-fledged Electron application.
 
 :::tip Distributable formats
+
 Electron Forge can be configured to create distributables in different OS-specific formats
 (e.g. DMG, deb, MSI, etc.). See Forge's [Makers] documentation for all configuration options.
+
 :::
 
 :::info Packaging without Electron Forge
+
 If you want to manually package your code, or if you're just interested understanding the
 mechanics behind packaging an Electron app, check out the full [Application Packaging]
-guide.
+documentation.
+
 :::
 
 ## Important: signing your code
@@ -104,7 +116,9 @@ created by a known source. Windows and macOS have their own OS-specific code sig
 systems that will make it difficult for users to download or launch unsigned applications.
 
 If you already have code signing certificates for Windows and macOS, you can set your
-credentials in your Forge configuration:
+credentials in your Forge configuration. Otherwise, please refer to the full
+[Code Signing] documentation to learn how to purchase a certificate and for more information
+on the desktop app code signing process.
 
 <Tabs>
   <TabItem value="macos" label="macOS" default>
@@ -125,7 +139,7 @@ credentials in your Forge configuration:
         },
         "osxNotarize": {
           "appleId": "felix@felix.fun",
-          "appleIdPassword": "my-apple-id-password"
+          "appleIdPassword": "this-is-a-secret"
         }
       }
       //...
@@ -163,8 +177,14 @@ credentials in your Forge configuration:
   </TabItem>
 </Tabs>
 
-If you're unfamiliar with the desktop application code signing process, please refer
-to the full [Code Signing] guide for more information.
+## Summary
+
+Electron applications need to be packaged to be distributed to users. In this tutorial,
+you imported your app into Electron Forge and configured it to package your app and
+generate installers.
+
+In order for your application to be trusted by the user's system, need to digitally
+certify that the distributable was created by you via code signing.
 
 [application packaging]: application-packaging.md
 [code signing]: code-signing.md
