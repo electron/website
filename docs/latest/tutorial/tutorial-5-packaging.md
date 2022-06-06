@@ -1,6 +1,6 @@
 ---
 title: 'Packaging Your Application'
-description: 'To distribute your app with Electron, you need to package and rebrand it. To do this, you can either use specialized tooling or manual approaches.'
+description: 'To distribute your app with Electron, you need to package it and create installers.'
 slug: tutorial-packaging
 hide_title: false
 ---
@@ -32,12 +32,12 @@ Electron does not have any tooling for packaging and distribution bundled into i
 modules. Once you have a working Electron app in development mode, you need to use
 additional tooling to create a packaged app you can distribute to your users (also known
 as a **distributable**). Distributables can be either installers (e.g. MSI on Windows) or
-portable executable files (e.g. `.zip` on macOS).
+portable executable files (e.g. `.app` on macOS).
 
 ### Importing your project into Forge
 
-We recommend using Electron Forge as your  Electron Forge as a devDependency of your app and use its `import`
-command to scaffold your existing app into a Forge project:
+We recommend using Electron Forge as your  Electron Forge as a devDependency of your app
+and use its `import` command to scaffold your existing app into a Forge project:
 
 ```sh npm2yarn
 npm install --save-dev @electron-forge/cli
@@ -183,8 +183,10 @@ Electron applications need to be packaged to be distributed to users. In this tu
 you imported your app into Electron Forge and configured it to package your app and
 generate installers.
 
-In order for your application to be trusted by the user's system, need to digitally
-certify that the distributable was created by you via code signing.
+In order for your application to be trusted by the user's system, you need to digitally
+certify that the distributable is authentic and untampered by code signing it. Your app
+can be signed through Forge once you configure it to use your code signing certificate
+information.
 
 [application packaging]: application-packaging.md
 [code signing]: code-signing.md
