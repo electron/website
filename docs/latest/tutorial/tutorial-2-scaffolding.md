@@ -132,7 +132,7 @@ Next, we'll learn how to open a web page in a browser window.
 
 In Electron, each window displays a website that can be loaded either from a local HTML
 file or a remote web address. For this example, we'll be loading in a local file. Start
-by creating a barebones web page an `index.html` file in the root folder of your project:
+by creating a barebones web page in an `index.html` file in the root folder of your project:
 
 ```html title='index.html'
 <!DOCTYPE html>
