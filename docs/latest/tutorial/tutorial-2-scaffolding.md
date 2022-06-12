@@ -20,14 +20,13 @@ This is **part 2** of the Electron tutorial.
 
 ## Learning goals
 
-In this part of the tutorial, you will learn how to scaffold an npm package, install
-Electron, and write a basic application. By the end of this section, you should be
-able to run your app in development and display a web page containing static text
-in a native window.
+In this part of the tutorial, you will learn how to set up your Electron project
+and write a minimal starter application. By the end of this section,
+you should be able to run a working Electron app in development mode.
 
-## Setting up your npm project
+## Setting up your project
 
-:::warning Avoid WSL
+:::caution Avoid WSL
 
 If you are on a Windows machine, please do not use [Windows Subsystem for Linux][wsl] (WSL)
 when following this tutorial as you will run into issues when trying to execute the
@@ -37,29 +36,38 @@ application.
 
 :::
 
-Electron apps follow the same general structure as other Node.js projects.
-Start by creating a folder and initializing an npm package.
+### Initializing your npm project
+
+Electron apps follow the same general structure a typical Node.js project,
+which starts from the package.json file. Start by creating a folder and
+initializing an npm package within it with npm's interactive init command.
 
 ```sh npm2yarn
 mkdir my-electron-app && cd my-electron-app
 npm init
 ```
 
-The interactive `init` command will prompt you to set some fields in your config.
+This command will prompt you to configure some fields in your package.json.
 There are a few rules to follow for the purposes of this tutorial:
 
-- `entry point` should be `main.js`.
-- `author`, `license`, and `description` can be any value, but will be necessary for
+- *entry point* should be `main.js` (you will be creating that file soon).
+- *author*, *license*, and *description* can be any value, but will be necessary for
   [packaging][packaging] later on.
 
-Then, install Electron into your app's dev dependencies:
+Then, install Electron into your app's *devDependencies*, which is the list of  external
+development-only package dependencies not required in production. This may seem
+counter-intuitive since your production code is running Electron APIs,
+but packaged apps will come bundled with the Electron binary, eliminating the need to specify
+it as a production dependency.
 
 ```sh npm2yarn
-npm install --save-dev electron
+npm install electron --save-dev
 ```
 
 Your package.json file should look something like this after initializing your package
-and installing Electron:
+and installing Electron. You should also now have a `node_modules` folder containing
+the Electron executable, as well as a `package-lock.json` lockfile that specifies
+the exact dependency versions to install.
 
 ```json title='package.json'
 {
@@ -70,12 +78,32 @@ and installing Electron:
   "author": "Jane Doe",
   "license": "MIT",
   "devDependencies": {
-    "electron": "^19.0.0"
+    "electron": "19.0.0"
   }
 }
 ```
 
-## Running the app
+:::info Advanced Electron installation steps
+
+If installing Electron directly fails, please refer to our [Advanced Installation][installation]
+documentation for instructions on download mirrors, proxies, and troubleshooting steps.
+
+:::
+
+### Adding a .gitignore
+
+The [`.gitignore`][gitignore] file specifies which files and directories to avoid tracking
+with Git. We recommend placing a copy of [GitHub's Node.js gitignore template][gitignore-template]
+into your project's root folder to avoid committing your `node_modules` folder.
+
+## Running an Electron app
+
+:::tip Further reading
+
+Read [Electron's process model][process-model] documentation to better
+understand how Electron's multiple processes work together.
+
+:::
 
 The [`main`][package-json-main] script you defined in package.json is the entry point of any
 Electron application. This script controls the **main process**, which runs in a Node.js
@@ -83,15 +111,10 @@ environment and is responsible for controlling your app's lifecycle, displaying 
 interfaces, performing privileged operations, and managing renderer processes
 (more on that later).
 
-:::tip Further reading
-
-Read [Electron's process model][process-model] to better
-understand how Electron's multiple process types work together.
-
-:::
-
-To initialize the main script, create a `main.js` file in the root folder
-of your project with a single line of code:
+Before running a full Electron app, you will first set up a trivial
+script in the main process to demonstrate how to set up your entry point.
+Create a `main.js` file in the root folder of your project with a
+single line of code:
 
 ```js title='main.js'
 console.log(`Hello from Electron 👋`);
@@ -100,7 +123,7 @@ console.log(`Hello from Electron 👋`);
 To execute this script, add `electron .` to the `start` command in the
 [`scripts`][package-scripts] field of your package.json. This command
 will tell the Electron executable to look for the main script in the
-current directory and run it in development mode.
+current directory and run it in dev mode.
 
 ```json {8-10} title='package.json'
 {
@@ -124,14 +147,13 @@ npm run start
 ```
 
 Your terminal should print out `Hello from Electron 👋`. Congratulations,
-you have executed your first line of code in Electron! Of course, this is a
-very trivial app example, since we have not even built any GUIs yet!
-Next, we'll learn how to open a web page in a browser window.
+you have executed your first line of code in Electron! Next, you will learn
+how to create user interfaces with HTML and load that into a native window.
 
-## Creating a web page and loading it into a BrowserWindow
+## Loading a web page into a BrowserWindow
 
-In Electron, each window displays a website that can be loaded either from a local HTML
-file or a remote web address. For this example, we'll be loading in a local file. Start
+In Electron, each window displays a web page that can be loaded either from a local HTML
+file or a remote web address. For this example, you will be loading in a local file. Start
 by creating a barebones web page in an `index.html` file in the root folder of your project:
 
 ```html title='index.html'
@@ -158,8 +180,8 @@ by creating a barebones web page in an `index.html` file in the root folder of y
 ```
 
 Now that you have a web page, you can display it within an Electron
-[BrowserWindow][browser-window]. To do so, your `main.js` file needs to contain
-the following lines of code:
+[BrowserWindow][browser-window]. To do so, your `main.js` file should look
+something like this:
 
 ```js title='main.js'
 const { app, BrowserWindow } = require('electron');
@@ -179,7 +201,7 @@ app.whenReady().then(() => {
 ```
 
 Let's dissect this snippet piece by piece. In the first line, we are importing two Electron modules
-with CommonJS syntax:
+with CommonJS module syntax:
 
 - [app][app], which controls your application's event lifecycle.
 - [BrowserWindow][browser-window], which creates and manages app windows.
@@ -188,10 +210,12 @@ with CommonJS syntax:
 const { app, BrowserWindow } = require('electron');
 ```
 
-:::warning ESM and Electron
+:::warning ES Modules in Electron
+
 [ECMAScript modules](https://nodejs.org/api/esm.html) (i.e. using `import` to load a module)
 are currently not directly supported in Electron. You can find more information about the
-state of ESM in Electron in [this GitHub issue](https://github.com/electron/electron/issues/21457).
+state of ESM in Electron in [electron/electron#21457](https://github.com/electron/electron/issues/21457).
+
 :::
 
 Then, the `createWindow()` function loads your web page into a new BrowserWindow
@@ -210,8 +234,8 @@ const createWindow = () => {
 
 In Electron, BrowserWindows can only be created after the app module's
 [`ready`][app-ready] event is fired. You can wait for this event by using the
-[`app.whenReady()`][app-when-ready] API. Call `createWindow()` after `whenReady()`
-resolves its promise. This is done in the last 3 lines of the code:
+[`app.whenReady()`][app-when-ready] API and calling `createWindow()` once its
+promise resolves. This is done in the last 3 lines of the code:
 
 ```js
 app.whenReady().then(() => {
@@ -220,11 +244,13 @@ app.whenReady().then(() => {
 ```
 
 At this point, running your Electron application's start command should successfully
-open a window that displays your web page! Each window created by your app will run
-in a separate process called a **renderer** process (or simply _renderer_ for short).
-Renderer processes behave very similarly to regular websites. This means you can use the same
-JavaScript APIs and tooling you use for typical front-end development, such as using [webpack]
-to bundle and minify your code or [React][react] to build your user interfaces.
+open a window that displays your web page!
+
+Each web page your app displays in a window will run in a separate process called a
+**renderer** process (or simply _renderer_ for short). Importantly, renderer processes 
+have access to the same JavaScript APIs and tooling you use for typical front-end web
+development, such as using [webpack] to bundle and minify your code or [React][react]
+to build your user interfaces.
 
 <!-- :::tip sandboxing
 One important thing from the code above is `sandbox: true`. The sandbox limits the harm that malicious
@@ -235,15 +261,71 @@ The sandbox will appear again in the tutorial, and you can read now more about i
 [Process Sandboxing guide][sandbox].
 ::: -->
 
+## Managing your app's window lifecycle
+
+Application windows behave differently on each operating system. Rather than
+prescribe these behaviours by default, Electron gives you the choice to implement
+these conventions in your app code if you wish to follow them.
+
+You can implement basic window conventions by listening for events emitted by
+the app and BrowserWindow modules.
+
+:::tip Process-specific control flow
+
+Checking against Node's [`process.platform`][node-platform] variable can help you 
+to run code conditionally on certain platforms. Note that there are only three
+possible platforms that Electron can run in: `win32` (Windows), `linux` (Linux),
+and `darwin` (macOS).
+
+:::
+
+### Quit the app when all windows are closed (Windows & Linux)
+
+On Windows and Linux, closing all windows will generally quit an application entirely.
+
+To implement this pattern in your Electron app, listen for the app module's
+[`window-all-closed`][window-all-closed] event, and call [`app.quit()`][app-quit]
+to exit your app if the user is not on macOS.
+
+```js
+app.on('window-all-closed', () => {
+  if (process.platform !== 'darwin') app.quit();
+});
+```
+
+### Open a window if none are open (macOS)
+
+In contrast, macOS apps generally continue running even without any windows open.
+Activating the app when no windows are available should open a new one.
+
+To implement this feature, listen for the app module's [`activate`][activate]
+event, and call your existing `createWindow()` method if no BrowserWindows are open.
+
+Because windows cannot be created before the `ready` event, you should only listen for
+`activate` events after your app is initialized. Do this by only listening for activate
+events inside your existing `whenReady()` callback.
+
+```js
+app.whenReady().then(() => {
+  createWindow();
+
+  app.on('activate', () => {
+    if (BrowserWindow.getAllWindows().length === 0) createWindow();
+  });
+});
+```
+
+## Final starter code
+
+```fiddle docs/latest/fiddles/tutorial-first-app
+
+```
+
 ## Optional: Debugging from VS Code
 
-If you want to debug your application using VS Code instead of using the terminal, you have to
-remember to attach VS Code to both the main and renderer processes.
-
-We are going to create a configuration file that allow us to debug both at the same time:
-
-1. Create a new folder `.vscode` in the root of your project.
-1. Create a new file `launch.json` with the following content:
+If you want to debug your application using VS Code, you have need attach VS Code to
+both the main and renderer processes. Here is a sample configuration for you to
+run. Create a launch.json configuration in a new `.vscode` folder in your project:
 
 ```json title='.vscode/launch.json'
 {
@@ -280,12 +362,9 @@ We are going to create a configuration file that allow us to debug both at the s
 }
 ```
 
-<!-- markdownlint-disable MD029 -->
-
-3. The option `Main + renderer` will appear when you select `Run and Debug`
+The "Main + renderer" option will appear when you select "Run and Debug"
 from the sidebar, allowing you to set breakpoints and inspect all the variables among
 other things in both the main and renderer processes.
-<!-- markdownlint-enable MD029 -->
 
 What we have done in the `launch.json` file is to create 3 configurations:
 
@@ -297,7 +376,7 @@ What we have done in the `launch.json` file is to create 3 configurations:
   that creates the process, we have to "attach" to it (`"request": "attach"`) instead of
   creating a new one.
   The renderer process is a web one, so the debugger we have to use is `pwa-chrome`.
-- `Main + renderer` is a [compound task] that executes the previous ones simulatenously.
+- `Main + renderer` is a [compound task] that executes the previous ones simultaneously.
 
 :::caution
 
@@ -309,7 +388,7 @@ in development mode.
 
 :::
 
-:::tip Further reading
+:::info Further reading
 
 If you want to dig deeper in the debugging area, the following guides provide more information:
 
@@ -321,7 +400,7 @@ If you want to dig deeper in the debugging area, the following guides provide mo
 ## Summary
 
 Electron applications are set up using npm packages. The Electron executable should be installed
-in your project's devDependencies and can be run in development mode using an npm script in your
+in your project's devDependencies and can be run in development mode using a script in your
 package.json file.
 
 The executable runs the JavaScript entry point found in the `main` property of your package.json.
@@ -329,7 +408,7 @@ This file controls Electron's **main process**, which runs an instance of Node.j
 responsible for your app's lifecycle, displaying native interfaces, performing privileged operations,
 and managing renderer processes.
 
-**Renderer processes** (or renderers for short) are responsible for display web content. You can
+**Renderer processes** (or renderers for short) are responsible for display graphical content. You can
 load a web page into a renderer by pointing it to either a web address or a local HTML file.
 Renderers behave very similarly to regular web pages and have access to the same web APIs.
 
@@ -349,6 +428,9 @@ privileged APIs and how to communicate between processes.
 [commonjs]: https://nodejs.org/docs/latest/api/modules.html#modules_modules_commonjs_modules
 [compound task]: https://code.visualstudio.com/Docs/editor/tasks#_compound-tasks
 [devtools extension]: ./devtools-extension.md
+[gitignore]: https://git-scm.com/docs/gitignore
+[gitignore-template]: https://github.com/github/gitignore/blob/main/Node.gitignore
+[installation]: ./installation.md
 [node-platform]: https://nodejs.org/api/process.html#process_process_platform
 [package-json-main]: https://docs.npmjs.com/cli/v7/configuring-npm/package-json#main
 [package-scripts]: https://docs.npmjs.com/cli/v7/using-npm/scripts

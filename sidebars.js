@@ -31,7 +31,7 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'Examples',
+      label: 'How-To Examples',
       link: {
         type: 'doc',
         id: 'latest/tutorial/examples',
@@ -92,6 +92,7 @@ module.exports = {
             tags: ['windows'],
           },
         },
+        'latest/tutorial/window-customization',
       ],
     },
     {

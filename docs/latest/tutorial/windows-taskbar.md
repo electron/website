@@ -109,9 +109,8 @@ As quoted from [MSDN][msdn-thumbnail]:
 > For example, Windows Media Player might offer standard media transport controls
 > such as play, pause, mute, and stop.
 
-![player](https://i-msdn.sec.s-msft.com/dynimg/IC420540.png)
+![example of thumbnail toolbar of Windows](https://docs.microsoft.com/en-us/windows/win32/shell/images/taskbar/thumbbar.png)
 
-> NOTE: The screenshot above is an example of thumbnail toolbar of Windows
 Media Player
 
 To set thumbnail toolbar in your application, you need to use

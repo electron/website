@@ -22,37 +22,45 @@ This is **part 3** of the Electron tutorial.
 
 In this section, you will learn what a preload script is and how to use one to safely
 expose privileged features into the renderer process. You will also learn how to safely
-communicate between main and renderer processes with Electron's built-in
-inter-process communication (IPC) modules.
+communicate between main and renderer processes with Electron's inter-process
+communication (IPC) modules.
 
 If you are not familiar with Node.js, we recommend you to first
-read [this guide][node-guide] before continuing.
+read [their intro docs][node-guide] before continuing.
 
-## Using `contextBridge` and a preload script
+## Main and renderer processes
 
-:::tip Further reading 📚
+:::info Further reading
 
 For a more detailed look at preload scripts, please refer to
-[Electron's Process Model][process-model] doc.
+[Electron's Process Model][process-model] doc. If you want to learn more about
+the contextBridge in particular, check out the [Context Isolation guide][context-isolation].
 
 :::
 
 Electron's main process is a Node.js process that has full operating system access.
 On top of [Electron's built-in modules][modules], you can also access
-[Node.js built-ins][node-api], as well as any packages downloaded via npm.
+[Node.js built-ins][node-api], as well as any packages downloaded via npm. On the other hand,
+renderer processes run web pages and do not contain a Node.js environment by default for
+security reasons. To bridge Electron's different process types together, we will need to
+use a special script called a **preload**.
 
-On the other hand, renderer processes are more locked down and do not run a Node.js
-environment for security reasons. To add features to your renderer that require
-privileged access, you have to use a [preload script][preload-script] in conjunction with the
-[`contextBridge` API][contextbridge]. Electron's preload scripts are injected before a web page
-loads in the renderer, similar to a Chrome extension's [content scripts][content-script].
+## Augmenting the renderer with a preload script
+
+To add features to your renderer that require privileged access, you have to use a
+preload script in conjunction with the [contextBridge][contextbridge] API.
+Electron's preload scripts are injected before a web page loads in the renderer, similar to
+a Chrome extension's [content scripts][content-script].
 By exposing APIs through the context bridge, you are giving your renderer access
 to developer-defined [global](https://developer.mozilla.org/en-US/docs/Glossary/Global_object)
 objects.
 
-To demonstrate this concept, we are going to create a trivial preload script that exposes your app's
-versions of Chrome, Node, and Electron into the renderer. To do this, add a new `preload.js` file
-with the following:
+To demonstrate this concept, you will create a preload script that exposes your app's
+versions of Chrome, Node, and Electron into the renderer.
+
+To do this, add a new `preload.js` script that accesses Electron's `process.versions`
+object and exposes some of its keys to the renderer process in a global object that
+can be accessed via `window.versions`.
 
 ```js title="preload.js"
 const { contextBridge } = require('electron');
@@ -65,18 +73,8 @@ contextBridge.exposeInMainWorld('versions', {
 });
 ```
 
-:::tip Further reading 📚
-
-To understand more about context isolation, we recommend you to read the
-[Context Isolation guide][context-isolation].
-
-:::
-
-The above code accesses Electron's `process.versions` object and exposes some of them in
-the renderer process in a global object called `versions`.
-
-To attach this script to your renderer process, pass the path to your preload script
-to the `webPreferences.preload` option in the `BrowserWindow` constructor:
+To attach this script to your renderer process, pass its path to the
+`webPreferences.preload` option in the BrowserWindow constructor:
 
 ```js {8-10} title="main.js"
 const { app, BrowserWindow } = require('electron');
@@ -107,8 +105,6 @@ There are two Node.js concepts that are used here:
   (in this case, your project's root folder).
 - The [`path.join`][path-join] API joins multiple path segments together, creating a
   combined path string that works across all platforms.
-
-If you are unfamiliar with Node.js, we recommend you to read [this guide][node-guide].
 
 :::
 
@@ -147,22 +143,13 @@ and attach your `renderer.js` script:
 </html>
 ```
 
-:::warning
+After following the above steps, your app should look something like this:
 
-The reason why we do not write the JavaScript directly in the HTML between `<script></script>`
-is because we have a Content Security Policy (CSP) that will prevent its execution.
-To know more you can visit [MDN's CSP documentation][mdn-csp].
-
-:::
-
-After following the above steps, you should have an Electron application that
-displays a message similar to the following one (probably with different versions):
-
-> This app is using Chrome (v94.0.4606.81), Node.js (v16.5.0), and Electron (v15.2.0)
+![Electron app showing This app is using Chrome (v102.0.5005.63), Node.js (v16.14.2), and Electron (v19.0.3)](../images/preload-example.png)
 
 And the code should look like this:
 
-```fiddle docs/latest/fiddles/tutorial-main-renderer
+```fiddle docs/latest/fiddles/tutorial-preload
 
 ```
 
@@ -177,8 +164,6 @@ You can set up handlers for inter-process commmunication (IPC) with Electron's
 `ipcMain` and `ipcRenderer` modules. To send a message from your web page
 to the main process, you can set up a main process handler with `ipcMain.handle` and
 set up a preload function that calls `ipcRenderer.invoke` to trigger it.
-In general, you never want to directly expose the `ipcRenderer` module via preload,
-since allowing the renderer process to send arbitrary messages is a security risk.
 
 In the following example, we will add a global function to the renderer called `ping()`
 that will return a string from the main process.
@@ -197,7 +182,17 @@ contextBridge.exposeInMainWorld('versions', {
 });
 ```
 
-Then, set up your `handle` listener in the main process. We do this before
+:::caution IPC security
+
+Notice how we wrap the `ipcRenderer.invoke('ping')` call in a helper function rather
+than expose the `ipcRenderer` module directly via context bridge. You **never** want to
+directly expose the entire `ipcRenderer` module via preload. This would give your renderer
+the ability to send arbitrary IPC messages to the main process, which becomes a powerful
+attack vector for malicious code.
+
+:::
+
+Then, set up your `handle` listener in the main process. We do this _before_
 loading the HTML file so that the handler is guaranteed to be ready before
 you send out the `invoke` call from the renderer.
 
@@ -216,7 +211,8 @@ const createWindow = () => {
   win.loadFile('index.html');
 };
 ```
-Once you have these two pieces set up, you can now send messages from the renderer
+
+Once you have the sender and receiver set up, you can now send messages from the renderer
 to the main process through the `'ping'` channel you just defined.
 
 ```js title='renderer.js'
@@ -245,8 +241,8 @@ Because the main and renderer processes have very different responsibilities, El
 apps often use the preload script to set up inter-process communication (IPC) interfaces
 to pass arbitrary messages between the two kinds of processes.
 
-In the next part of the tutorial, we will be learning how to use Electron's APIs to
-provide a more native feel to your application.
+In the next part of the tutorial, we will be showing you resources on adding more
+functionality to your app, then teaching you distributing your app to users.
 
 <!-- Links -->
 
@@ -271,7 +267,6 @@ provide a more native feel to your application.
 [package-json-main]: https://docs.npmjs.com/cli/v7/configuring-npm/package-json#main
 [package-scripts]: https://docs.npmjs.com/cli/v7/using-npm/scripts
 [path-join]: https://nodejs.org/api/path.html#path_path_join_paths
-[preload-script]: ./sandbox.md#preload-scripts
 [process-model]: ./process-model.md
 [react]: https://reactjs.org
 [sandbox]: ./sandbox.md
