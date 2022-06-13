@@ -13,29 +13,28 @@ binary, Electron allows you to maintain one JavaScript codebase and create
 cross-platform apps that work on Windows, macOS, and Linux — no native development
 experience required.
 
-We recommend you to start with the [Tutorial], even if you have previous
-experience as you might find information you didn't know.
+We recommend you to start with the [tutorial], which guides you through the
+process of developing an Electron app and distributing it to users.
 The [examples] and [API documentation] are also good places to browse around
 and discover new things.
 
 ## What is in the docs?
 
-All the official documentation is available from the sidebar navigation. These
+All the official documentation is available from the sidebar. These
 are the different categories and what you can expect on each one:
 
-- **[Tutorial]**: An end-to-end guide on how to create and publish your first Electron
-  application. You will also find tips and links to more in-depth guides.
-- **[Development]**: In depth guides related to developing Electron aplications.
-- **[Distribution]**: Learn how to distribute and update your Electron application in all
-  supported platforms.
-- **[Testing and debugging]**: How to debug JavaScript, write tests, and other tools used
+- **Tutorial**: An end-to-end guide on how to create and publish your first Electron
+  application.
+- **Processes in Electron**: In-depth reference on Electron processes and how to work with them.
+- **Best Practices**: Important checklists to keep in mind when developing an Electron app.
+- **How-To Examples**: Quick references to add features to your Electron app.
+- **Development**: Miscellaneous development guides.
+- **Distribution**: Learn how to distribute your app to end users.
+- **Testing and debugging**: How to debug JavaScript, write tests, and other tools used
   to create quality Electron applications.
-- **[Examples]**: How to integrate more deeply with the Operating System and also how to
-  accomplish more complex scenarios.
-- **[Developer Checklists]**: The Do's and Don'ts to keep in mind when developing your app.
-- **[Resources]**: Useful links to better understand how the Electron project and team works
+- **Resources**: Useful links to better understand how the Electron project works
   and is organized.
-- **[Contributing to Electron]**: Compiling Electron and making contributions can be daunting.
+- **Contributing to Electron**: Compiling Electron and making contributions can be daunting.
   We try to make it easier in this section.
 
 ## Running examples with Electron Fiddle
