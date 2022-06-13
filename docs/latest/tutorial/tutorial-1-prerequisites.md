@@ -9,9 +9,9 @@ hide_title: false
 
 This is **part 1** of the Electron tutorial.
 
-1. [Prerequisites][prerequisites]
+1. **[Prerequisites][prerequisites]**
 1. [Building your First App][building your first app]
-1. [Using Preload Scripts][main-renderer]
+1. [Using Preload Scripts][preload]
 1. [Adding Features][features]
 1. [Packaging Your Application][packaging]
 1. [Publishing and Updating][updates]
@@ -28,10 +28,10 @@ application with Electron and distributing it to end users.
 
 ## Assumptions
 
-At its core, Electron is a wrapper layer for web app and Node.js code.
-Therefore, this tutorial assumes you are generally familiar with Node.js and
-front-end web development basics (JavaScript, HTML, CSS). If you need to do
-some background reading before continuing, we recommend the following resources:
+Electron is a native wrapper layer for web apps and is run in a Node.js environment.
+Therefore, this tutorial assumes you are generally familiar with Node and
+front-end web development basics. If you need to do some background reading before
+continuing, we recommend the following resources:
 
 - [Getting started with the Web (MDN Web Docs)][mdn-guide]
 - [Introduction to Node.js][node-guide]
@@ -56,7 +56,7 @@ Most code editors also come with an integrated terminal, which you can also use.
 
 ### Git and GitHub
 
-Git is a commonly-used **version control system** for source code, and GitHub is a collaborative
+Git is a commonly-used version control system for source code, and GitHub is a collaborative
 development platform built on top of it. Although neither is strictly necessary to building
 an Electron application, we will use GitHub releases to set up automatic updates later
 on in the tutorial. Therefore, we'll require you to:
@@ -77,10 +77,11 @@ it installed.
 
 :::
 
-### Node.js and NPM
+### Node.js and npm
 
-To begin developing an Electron app, you need to install [Node.js][node-download].
-We recommend that you use the latest long-term support (LTS) version.
+To begin developing an Electron app, you need to install the [Node.js][node-download]
+runtime and its bundled npm package manager onto your system. We recommend that you
+use the latest long-term support (LTS) version.
 
 :::tip
 
@@ -96,8 +97,10 @@ running the `node` and `npm` commands. These should print out the installed
 versions.
 
 ```sh
-node -v
-npm -v
+$ node -v
+v16.14.2
+$ npm -v
+8.7.0
 ```
 
 :::caution
@@ -134,7 +137,7 @@ the list of versions in the [electron/releases] repository.
 
 [prerequisites]: tutorial-1-prerequisites.md
 [building your first app]: tutorial-2-first-app.md
-[main-renderer]: tutorial-3-preload.md
+[preload]: tutorial-3-preload.md
 [features]: tutorial-4-adding-features.md
 [packaging]: tutorial-5-packaging.md
 [updates]: tutorial-6-publishing-updating.md

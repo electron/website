@@ -78,7 +78,6 @@
 
   // docusaurus
   --docusaurus-highlighted-code-line-bg: rgb(13, 15, 28);
-  
 
   // modified base vars
   --ifm-menu-color: var(--ifm-color-primary-lightest);
@@ -138,6 +137,10 @@
 .markdown {
   a {
     font-weight: var(--ifm-font-weight-semibold);
+  }
+
+  strong a {
+    font-weight: var(--ifm-font-weight-bold);
   }
 
   h1,

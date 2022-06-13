@@ -14,9 +14,9 @@ This is **part 5** of the Electron tutorial.
 
 1. [Prerequisites][prerequisites]
 1. [Building your First App][building your first app]
-1. [Using Preload Scripts][main-renderer]
+1. [Using Preload Scripts][preload]
 1. [Adding Features][features]
-1. [Packaging Your Application][packaging]
+1. **[Packaging Your Application][packaging]**
 1. [Publishing and Updating][updates]
 
 :::
@@ -198,7 +198,7 @@ information.
 
 [prerequisites]: tutorial-1-prerequisites.md
 [building your first app]: tutorial-2-first-app.md
-[main-renderer]: tutorial-3-preload.md
+[preload]: tutorial-3-preload.md
 [features]: tutorial-4-adding-features.md
 [packaging]: tutorial-5-packaging.md
 [updates]: tutorial-6-publishing-updating.md

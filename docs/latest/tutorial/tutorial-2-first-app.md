@@ -10,8 +10,8 @@ hide_title: false
 This is **part 2** of the Electron tutorial.
 
 1. [Prerequisites][prerequisites]
-1. [Building your First App][building your first app]
-1. [Using Preload Scripts][main-renderer]
+1. **[Building your First App][building your first app]**
+1. [Using Preload Scripts][preload]
 1. [Adding Features][features]
 1. [Packaging Your Application][packaging]
 1. [Publishing and Updating][updates]
@@ -186,7 +186,8 @@ by creating a barebones web page in an `index.html` file in the root folder of y
 ```
 
 Now that you have a web page, you can load it into an Electron [BrowserWindow][browser-window].
-Replace your `main.js` file with the following code:
+Replace the contents your `main.js` file with the following code. We will explain each
+highlighted block separately.
 
 ```js {1,3-10,12-14} title='main.js' showLineNumbers
 const { app, BrowserWindow } = require('electron');
@@ -477,7 +478,7 @@ privileged APIs and how to communicate between processes.
 
 [prerequisites]: tutorial-1-prerequisites.md
 [building your first app]: tutorial-2-first-app.md
-[main-renderer]: tutorial-3-preload.md
+[preload]: tutorial-3-preload.md
 [features]: tutorial-4-adding-features.md
 [packaging]: tutorial-5-packaging.md
 [updates]: tutorial-6-publishing-updating.md
