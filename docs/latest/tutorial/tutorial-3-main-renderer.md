@@ -34,33 +34,30 @@ read [their intro docs][node-guide] before continuing.
 
 For a more detailed look at preload scripts, please refer to
 [Electron's Process Model][process-model] doc. If you want to learn more about
-the contextBridge in particular, check out the [Context Isolation guide][context-isolation].
+the context bridge in particular, check out the [Context Isolation guide][context-isolation].
 
 :::
 
-Electron's main process is a Node.js process that has full operating system access.
+Electron's main process is a Node.js environment that has full operating system access.
 On top of [Electron's built-in modules][modules], you can also access
-[Node.js built-ins][node-api], as well as any packages downloaded via npm. On the other hand,
-renderer processes run web pages and do not contain a Node.js environment by default for
-security reasons. To bridge Electron's different process types together, we will need to
-use a special script called a **preload**.
+[Node.js built-ins][node-api], as well as any packages installed via npm. On the other hand,
+renderer processes run web pages and do not run Node.js by default for security reasons.
+To bridge Electron's different process types together, we will need to use a special script
+called a **preload**.
 
 ## Augmenting the renderer with a preload script
 
-To add features to your renderer that require privileged access, you have to use a
-preload script in conjunction with the [contextBridge][contextbridge] API.
-Electron's preload scripts are injected before a web page loads in the renderer, similar to
-a Chrome extension's [content scripts][content-script].
-By exposing APIs through the context bridge, you are giving your renderer access
-to developer-defined [global](https://developer.mozilla.org/en-US/docs/Glossary/Global_object)
-objects.
+A BrowserWindow's preload script runs in a special context that has access to both the HTML DOM
+and a Node.js environment. Preload scripts are injected before a web page loads in the renderer,
+similar to a Chrome extension's [content scripts][content-script]. To add features to your renderer
+that require privileged access, you can expose developer-defined [global] objects through the
+[contextBridge][contextbridge] API.
 
 To demonstrate this concept, you will create a preload script that exposes your app's
 versions of Chrome, Node, and Electron into the renderer.
 
 To do this, add a new `preload.js` script that accesses Electron's `process.versions`
-object and exposes some of its keys to the renderer process in a global object that
-can be accessed via `window.versions`.
+object and exposes some of its keys to the renderer process in a global object.
 
 ```js title="preload.js"
 const { contextBridge } = require('electron');
@@ -97,7 +94,7 @@ app.whenReady().then(() => {
 });
 ```
 
-:::tip
+:::info
 
 There are two Node.js concepts that are used here:
 
@@ -109,14 +106,16 @@ There are two Node.js concepts that are used here:
 :::
 
 At this point, the renderer has access to the `versions` global, so let's display that
-information in the window. Create a `renderer.js` script that contains the following code:
+information in the window. This variable can be accessed via `window.versions` or simply
+`versions`. Create a `renderer.js` script that uses the [`document.getElementById`]
+DOM API to replace the displayed text for the HTML element with `info` as its `id` property.
 
 ```js title="renderer.js"
 const information = document.getElementById('info');
 information.innerText = `This app is using Chrome (v${versions.chrome()}), Node.js (v${versions.node()}), and Electron (v${versions.electron()})`;
 ```
 
-Then, modify your `index.html` by adding a `<p>` element with `info` as its id,
+Then, modify your `index.html` by adding a new element with `info` as its `id` property,
 and attach your `renderer.js` script:
 
 ```html {18,20} title="index.html"
@@ -257,8 +256,10 @@ functionality to your app, then teaching you distributing your app to users.
 [content-script]: https://developer.chrome.com/docs/extensions/mv3/content_scripts/
 [contextbridge]: ../api/context-bridge.md
 [context-isolation]: ./context-isolation.md
+[`document.getElementById`]: https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById
 [devtools-extension]: ./devtools-extension.md
 [dirname]: https://nodejs.org/api/modules.html#modules_dirname
+[global]: https://developer.mozilla.org/en-US/docs/Glossary/Global_object
 [ipc]: ./ipc.md
 [mdn-csp]: https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP
 [modules]: ../api/app.md

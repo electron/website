@@ -431,7 +431,7 @@ If you want to dig deeper in the debugging area, the following guides provide mo
 ## Summary
 
 Electron applications are set up using npm packages. The Electron executable should be installed
-in your project's devDependencies and can be run in development mode using a script in your
+in your project's `devDependencies` and can be run in development mode using a script in your
 package.json file.
 
 The executable runs the JavaScript entry point found in the `main` property of your package.json.
