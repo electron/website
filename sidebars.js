@@ -7,7 +7,7 @@ module.exports = {
       items: [
         'latest/tutorial/tutorial-1-prerequisites',
         'latest/tutorial/tutorial-2-first-app',
-        'latest/tutorial/tutorial-3-main-renderer',
+        'latest/tutorial/tutorial-3-preload',
         'latest/tutorial/tutorial-4-adding-features',
         'latest/tutorial/tutorial-5-packaging',
         'latest/tutorial/tutorial-6-publishing-updating',

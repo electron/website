@@ -477,7 +477,7 @@ privileged APIs and how to communicate between processes.
 
 [prerequisites]: tutorial-1-prerequisites.md
 [building your first app]: tutorial-2-first-app.md
-[main-renderer]: tutorial-3-main-renderer.md
+[main-renderer]: tutorial-3-preload.md
 [features]: tutorial-4-adding-features.md
 [packaging]: tutorial-5-packaging.md
 [updates]: tutorial-6-publishing-updating.md

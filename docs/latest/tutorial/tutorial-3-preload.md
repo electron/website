@@ -1,7 +1,7 @@
 ---
 title: 'Using Preload Scripts'
 description: 'This guide will step you through the process of creating a barebones Hello World app in Electron, similar to electron/electron-quick-start.'
-slug: tutorial-main-renderer
+slug: tutorial-preload
 hide_title: false
 ---
 
@@ -277,7 +277,7 @@ functionality to your app, then teaching you distributing your app to users.
 
 [prerequisites]: tutorial-1-prerequisites.md
 [building your first app]: tutorial-2-first-app.md
-[main-renderer]: tutorial-3-main-renderer.md
+[main-renderer]: tutorial-3-preload.md
 [features]: tutorial-4-adding-features.md
 [packaging]: tutorial-5-packaging.md
 [updates]: tutorial-6-publishing-updating.md

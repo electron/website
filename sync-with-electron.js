@@ -31,7 +31,7 @@ const mdFiles = [
   'tray.md',
   'tutorial-1-prerequisites.md',
   'tutorial-2-first-app.md',
-  'tutorial-3-main-renderer.md',
+  'tutorial-3-preload.md',
   'tutorial-4-adding-features.md',
   'tutorial-5-packaging.md',
   'tutorial-6-publishing-updating.md',
@@ -47,7 +47,7 @@ const toDelete = ['how-to-examples.md', 'application-distribution.md'];
 
 const imgFiles = [];
 
-const fiddles = ['tutorial-main-renderer', 'windows-lifecycle'];
+const fiddles = ['tutorial-preload', 'windows-lifecycle'];
 
 const copy = async () => {
   for (const file of mdFiles) {
