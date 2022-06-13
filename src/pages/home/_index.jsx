@@ -205,7 +205,7 @@ export default function Home() {
               drag the WhatsApp app icon into the Applications folder."
             >
               Use{' '}
-              <Link to="/docs/latest/tutorial/application-distribution">
+              <Link to="/docs/latest/tutorial/distribution-overview">
                 community-supported tooling
               </Link>{' '}
               to generate platform-specific tooling like Apple Disk Image (.dmg)
