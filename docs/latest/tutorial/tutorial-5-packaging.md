@@ -36,7 +36,7 @@ portable executable files (e.g. `.app` on macOS).
 
 ### Importing your project into Forge
 
-We recommend using Electron Forge as your  Electron Forge as a devDependency of your app
+We recommend using Electron Forge as your Electron Forge as a devDependency of your app
 and use its `import` command to scaffold your existing app into a Forge project:
 
 ```sh npm2yarn
@@ -197,7 +197,7 @@ information.
 <!-- Tutorial links -->
 
 [prerequisites]: tutorial-1-prerequisites.md
-[building your first app]: tutorial-2-scaffolding.md
+[building your first app]: tutorial-2-first-app.md
 [main-renderer]: tutorial-3-main-renderer.md
 [features]: tutorial-4-adding-features.md
 [packaging]: tutorial-5-packaging.md

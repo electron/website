@@ -59,6 +59,7 @@ and giving you a look at how you can get your app from your developer machine
 into end users' hands.
 
 <!-- Link labels -->
+
 [discord]: https://discord.com/invite/APGC3k5yaH
 [github]: https://github.com/electron/electronjs.org-new/issues/new
 [how to]: ./examples.md
@@ -67,7 +68,7 @@ into end users' hands.
 <!-- Tutorial links -->
 
 [prerequisites]: tutorial-1-prerequisites.md
-[building your first app]: tutorial-2-scaffolding.md
+[building your first app]: tutorial-2-first-app.md
 [main-renderer]: tutorial-3-main-renderer.md
 [features]: tutorial-4-adding-features.md
 [packaging]: tutorial-5-packaging.md

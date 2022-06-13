@@ -256,7 +256,7 @@ functionality to your app, then teaching you distributing your app to users.
 [content-script]: https://developer.chrome.com/docs/extensions/mv3/content_scripts/
 [contextbridge]: ../api/context-bridge.md
 [context-isolation]: ./context-isolation.md
-[`document.getElementById`]: https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById
+[`document.getelementbyid`]: https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById
 [devtools-extension]: ./devtools-extension.md
 [dirname]: https://nodejs.org/api/modules.html#modules_dirname
 [global]: https://developer.mozilla.org/en-US/docs/Glossary/Global_object
@@ -276,7 +276,7 @@ functionality to your app, then teaching you distributing your app to users.
 <!-- Tutorial links -->
 
 [prerequisites]: tutorial-1-prerequisites.md
-[building your first app]: tutorial-2-scaffolding.md
+[building your first app]: tutorial-2-first-app.md
 [main-renderer]: tutorial-3-main-renderer.md
 [features]: tutorial-4-adding-features.md
 [packaging]: tutorial-5-packaging.md

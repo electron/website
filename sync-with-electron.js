@@ -30,7 +30,7 @@ const mdFiles = [
   'spellchecker.md',
   'tray.md',
   'tutorial-1-prerequisites.md',
-  'tutorial-2-scaffolding.md',
+  'tutorial-2-first-app.md',
   'tutorial-3-main-renderer.md',
   'tutorial-4-adding-features.md',
   'tutorial-5-packaging.md',

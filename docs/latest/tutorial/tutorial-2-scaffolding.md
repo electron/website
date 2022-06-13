@@ -1,7 +1,7 @@
 ---
 title: 'Building your First App'
 description: 'This guide will step you through the process of creating a barebones Hello World app in Electron, similar to electron/electron-quick-start.'
-slug: tutorial-scaffolding
+slug: tutorial-first-app
 hide_title: false
 ---
 
@@ -51,11 +51,11 @@ npm init
 This command will prompt you to configure some fields in your package.json.
 There are a few rules to follow for the purposes of this tutorial:
 
-- *entry point* should be `main.js` (you will be creating that file soon).
-- *author*, *license*, and *description* can be any value, but will be necessary for
+- _entry point_ should be `main.js` (you will be creating that file soon).
+- _author_, _license_, and _description_ can be any value, but will be necessary for
   [packaging][packaging] later on.
 
-Then, install Electron into your app's **devDependencies**, which is the list of  external
+Then, install Electron into your app's **devDependencies**, which is the list of external
 development-only package dependencies not required in production.
 
 :::info Why is Electron a devDependency?
@@ -217,7 +217,6 @@ with CommonJS module syntax:
 - [app][app], which controls your application's event lifecycle.
 - [BrowserWindow][browser-window], which creates and manages app windows.
 
-
 :::warning ES Modules in Electron
 
 [ECMAScript modules](https://nodejs.org/api/esm.html) (i.e. using `import` to load a module)
@@ -278,7 +277,7 @@ At this point, running your Electron application's `start` command should succes
 open a window that displays your web page!
 
 Each web page your app displays in a window will run in a separate process called a
-**renderer** process (or simply _renderer_ for short). Importantly, renderer processes 
+**renderer** process (or simply _renderer_ for short). Importantly, renderer processes
 have access to the same JavaScript APIs and tooling you use for typical front-end web
 development, such as using [webpack] to bundle and minify your code or [React][react]
 to build your user interfaces.
@@ -303,7 +302,7 @@ the app and BrowserWindow modules.
 
 :::tip Process-specific control flow
 
-Checking against Node's [`process.platform`][node-platform] variable can help you 
+Checking against Node's [`process.platform`][node-platform] variable can help you
 to run code conditionally on certain platforms. Note that there are only three
 possible platforms that Electron can run in: `win32` (Windows), `linux` (Linux),
 and `darwin` (macOS).
@@ -468,7 +467,7 @@ privileged APIs and how to communicate between processes.
 [package-scripts]: https://docs.npmjs.com/cli/v7/using-npm/scripts
 [process-model]: process-model.md
 [react]: https://reactjs.org
-[REPL]: ./repl.md
+[repl]: ./repl.md
 [sandbox]: ./sandbox.md
 [webpack]: https://webpack.js.org
 [window-all-closed]: latest/api/app.md#event-window-all-closed
@@ -477,7 +476,7 @@ privileged APIs and how to communicate between processes.
 <!-- Tutorial links -->
 
 [prerequisites]: tutorial-1-prerequisites.md
-[building your first app]: tutorial-2-scaffolding.md
+[building your first app]: tutorial-2-first-app.md
 [main-renderer]: tutorial-3-main-renderer.md
 [features]: tutorial-4-adding-features.md
 [packaging]: tutorial-5-packaging.md

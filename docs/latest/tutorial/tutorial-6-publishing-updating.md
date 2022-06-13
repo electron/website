@@ -229,7 +229,7 @@ rest of our docs and happy developing! If you have questions, please stop by our
 <!-- Tutorial links -->
 
 [prerequisites]: tutorial-1-prerequisites.md
-[building your first app]: tutorial-2-scaffolding.md
+[building your first app]: tutorial-2-first-app.md
 [main-renderer]: tutorial-3-main-renderer.md
 [features]: tutorial-4-adding-features.md
 [packaging]: tutorial-5-packaging.md

@@ -6,7 +6,7 @@ module.exports = {
       label: 'Tutorial',
       items: [
         'latest/tutorial/tutorial-1-prerequisites',
-        'latest/tutorial/tutorial-2-scaffolding',
+        'latest/tutorial/tutorial-2-first-app',
         'latest/tutorial/tutorial-3-main-renderer',
         'latest/tutorial/tutorial-4-adding-features',
         'latest/tutorial/tutorial-5-packaging',
