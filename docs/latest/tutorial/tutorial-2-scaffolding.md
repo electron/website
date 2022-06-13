@@ -22,7 +22,8 @@ This is **part 2** of the Electron tutorial.
 
 In this part of the tutorial, you will learn how to set up your Electron project
 and write a minimal starter application. By the end of this section,
-you should be able to run a working Electron app in development mode.
+you should be able to run a working Electron app in development mode from
+your terminal.
 
 ## Setting up your project
 
@@ -38,9 +39,9 @@ application.
 
 ### Initializing your npm project
 
-Electron apps follow the same general structure a typical Node.js project,
-which starts from the package.json file. Start by creating a folder and
-initializing an npm package within it with npm's interactive init command.
+Electron apps are scaffolded using npm, with the package.json file
+as an entry point. Start by creating a folder and initializing an npm package
+within it with `npm init`.
 
 ```sh npm2yarn
 mkdir my-electron-app && cd my-electron-app
@@ -54,11 +55,16 @@ There are a few rules to follow for the purposes of this tutorial:
 - *author*, *license*, and *description* can be any value, but will be necessary for
   [packaging][packaging] later on.
 
-Then, install Electron into your app's *devDependencies*, which is the list of  external
-development-only package dependencies not required in production. This may seem
-counter-intuitive since your production code is running Electron APIs,
-but packaged apps will come bundled with the Electron binary, eliminating the need to specify
+Then, install Electron into your app's **devDependencies**, which is the list of  external
+development-only package dependencies not required in production.
+
+:::info Why is Electron a devDependency?
+
+This may seem counter-intuitive since your production code is running Electron APIs.
+However, packaged apps will come bundled with the Electron binary, eliminating the need to specify
 it as a production dependency.
+
+:::
 
 ```sh npm2yarn
 npm install electron --save-dev
@@ -93,8 +99,8 @@ documentation for instructions on download mirrors, proxies, and troubleshooting
 ### Adding a .gitignore
 
 The [`.gitignore`][gitignore] file specifies which files and directories to avoid tracking
-with Git. We recommend placing a copy of [GitHub's Node.js gitignore template][gitignore-template]
-into your project's root folder to avoid committing your `node_modules` folder.
+with Git. You should place a copy of [GitHub's Node.js gitignore template][gitignore-template]
+into your project's root folder to avoid committing your project's `node_modules` folder.
 
 ## Running an Electron app
 
@@ -111,19 +117,19 @@ environment and is responsible for controlling your app's lifecycle, displaying 
 interfaces, performing privileged operations, and managing renderer processes
 (more on that later).
 
-Before running a full Electron app, you will first set up a trivial
-script in the main process to demonstrate how to set up your entry point.
-Create a `main.js` file in the root folder of your project with a
-single line of code:
+Before creating your first Electron app, you will first use a trivial script to ensure your
+main process entry point is configured correctly. Create a `main.js` file in the root folder
+of your project with a single line of code:
 
 ```js title='main.js'
 console.log(`Hello from Electron 👋`);
 ```
 
-To execute this script, add `electron .` to the `start` command in the
-[`scripts`][package-scripts] field of your package.json. This command
-will tell the Electron executable to look for the main script in the
-current directory and run it in dev mode.
+Because Electron's main process is a Node.js runtime, you can execute arbitrary Node.js code
+with the `electron` command (you can even use it as a [REPL]). To execute this script,
+add `electron .` to the `start` command in the [`scripts`][package-scripts]
+field of your package.json. This command will tell the Electron executable to look for the main
+script in the current directory and run it in dev mode.
 
 ```json {8-10} title='package.json'
 {
@@ -179,11 +185,10 @@ by creating a barebones web page in an `index.html` file in the root folder of y
 </html>
 ```
 
-Now that you have a web page, you can display it within an Electron
-[BrowserWindow][browser-window]. To do so, your `main.js` file should look
-something like this:
+Now that you have a web page, you can load it into an Electron [BrowserWindow][browser-window].
+Replace your `main.js` file with the following code:
 
-```js title='main.js'
+```js {1,3-10,12-14} title='main.js' showLineNumbers
 const { app, BrowserWindow } = require('electron');
 
 const createWindow = () => {
@@ -200,15 +205,18 @@ app.whenReady().then(() => {
 });
 ```
 
-Let's dissect this snippet piece by piece. In the first line, we are importing two Electron modules
+### Importing modules
+
+```js
+const { app, BrowserWindow } = require('electron');
+```
+
+In the first line, we are importing two Electron modules
 with CommonJS module syntax:
 
 - [app][app], which controls your application's event lifecycle.
 - [BrowserWindow][browser-window], which creates and manages app windows.
 
-```js
-const { app, BrowserWindow } = require('electron');
-```
 
 :::warning ES Modules in Electron
 
@@ -217,6 +225,8 @@ are currently not directly supported in Electron. You can find more information 
 state of ESM in Electron in [electron/electron#21457](https://github.com/electron/electron/issues/21457).
 
 :::
+
+### Writing a reusable function to instantiate windows
 
 Then, the `createWindow()` function loads your web page into a new BrowserWindow
 instance:
@@ -232,10 +242,7 @@ const createWindow = () => {
 };
 ```
 
-In Electron, BrowserWindows can only be created after the app module's
-[`ready`][app-ready] event is fired. You can wait for this event by using the
-[`app.whenReady()`][app-when-ready] API and calling `createWindow()` once its
-promise resolves. This is done in the last 3 lines of the code:
+### Calling your function when the app is ready
 
 ```js
 app.whenReady().then(() => {
@@ -243,7 +250,31 @@ app.whenReady().then(() => {
 });
 ```
 
-At this point, running your Electron application's start command should successfully
+Many of Electron's core modules are Node.js [event emitters] that adhere to Node's asynchronous
+event-driven architecture. The `app` module is one of these emitters.
+
+In Electron, BrowserWindows can only be created after the app module's [`ready`][app-ready] event
+is fired. You can wait for this event by using the [`app.whenReady()`][app-when-ready] API and
+calling `createWindow()` once its promise resolves.
+
+:::note
+
+You typically listen to Node events by using the emitter's `.on` function.
+
+```diff
++ app.on('ready').then(() => {
+- app.whenReady().then(() => {
+  createWindow();
+});
+```
+
+However, Electron exposes `app.whenReady()` as a helper specifically for the `ready` event to
+avoid minor pitfalls with directly listening to that event in particular.
+See [electron/electron#21972](https://github.com/electron/electron/pull/21972) for details.
+
+:::
+
+At this point, running your Electron application's `start` command should successfully
 open a window that displays your web page!
 
 Each web page your app displays in a window will run in a separate process called a
@@ -428,6 +459,7 @@ privileged APIs and how to communicate between processes.
 [commonjs]: https://nodejs.org/docs/latest/api/modules.html#modules_modules_commonjs_modules
 [compound task]: https://code.visualstudio.com/Docs/editor/tasks#_compound-tasks
 [devtools extension]: ./devtools-extension.md
+[event emitters]: https://nodejs.org/api/events.html#events
 [gitignore]: https://git-scm.com/docs/gitignore
 [gitignore-template]: https://github.com/github/gitignore/blob/main/Node.gitignore
 [installation]: ./installation.md
@@ -436,6 +468,7 @@ privileged APIs and how to communicate between processes.
 [package-scripts]: https://docs.npmjs.com/cli/v7/using-npm/scripts
 [process-model]: process-model.md
 [react]: https://reactjs.org
+[REPL]: ./repl.md
 [sandbox]: ./sandbox.md
 [webpack]: https://webpack.js.org
 [window-all-closed]: latest/api/app.md#event-window-all-closed

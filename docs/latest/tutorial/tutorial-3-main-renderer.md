@@ -20,8 +20,8 @@ This is **part 3** of the Electron tutorial.
 
 ## Learning goals
 
-In this section, you will learn what a preload script is and how to use one to safely
-expose privileged features into the renderer process. You will also learn how to safely
+In this part of the tutorial, you will learn what a preload script is and how to use one
+to safely expose privileged features into the renderer process. You will also learn how to safely
 communicate between main and renderer processes with Electron's inter-process
 communication (IPC) modules.
 
