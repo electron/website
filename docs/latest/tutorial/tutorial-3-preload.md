@@ -25,9 +25,6 @@ to safely expose privileged features into the renderer process. You will also le
 communicate between main and renderer processes with Electron's inter-process
 communication (IPC) modules.
 
-If you are not familiar with Node.js, we recommend you to first
-read [their intro docs][node-guide] before continuing.
-
 ## Main and renderer processes
 
 :::info Further reading
@@ -264,7 +261,6 @@ functionality to your app, then teaching you distributing your app to users.
 [mdn-csp]: https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP
 [modules]: ../api/app.md
 [node-api]: https://nodejs.org/dist/latest/docs/api/
-[node-guide]: https://nodejs.dev/learn
 [package-json-main]: https://docs.npmjs.com/cli/v7/configuring-npm/package-json#main
 [package-scripts]: https://docs.npmjs.com/cli/v7/using-npm/scripts
 [path-join]: https://nodejs.org/api/path.html#path_path_join_paths
