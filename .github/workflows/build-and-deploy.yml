@@ -49,7 +49,7 @@ jobs:
       - name: Download cache
         uses: nick-invision/retry@v2
         with:
-          timeout_seconds: 60
+          timeout_seconds: 300
           max_attempts: 3
           retry_on: error
           command: ./scripts/bin/azcopy copy "https://electronwebsite.blob.core.windows.net/%24web/*?$SAS" "./build" --recursive
@@ -66,7 +66,7 @@ jobs:
         if: ${{ inputs.branch == 'version' }}
         uses: nick-invision/retry@v2
         with:
-          timeout_seconds: 60
+          timeout_seconds: 300
           max_attempts: 3
           retry_on: error
           command: ./scripts/bin/azcopy copy "./build/assets/*" "https://electronwebsite.blob.core.windows.net/%24web/assets?$SAS" --recursive
@@ -76,7 +76,7 @@ jobs:
         if: ${{ inputs.branch == 'version' }}
         uses: nick-invision/retry@v2
         with:
-          timeout_seconds: 60
+          timeout_seconds: 300
           max_attempts: 3
           retry_on: error
           command: ./scripts/bin/azcopy copy "./build/docs/*" "https://electronwebsite.blob.core.windows.net/%24web/docs?$SAS" --recursive
@@ -86,7 +86,7 @@ jobs:
         if: ${{ inputs.branch == 'main' }}
         uses: nick-invision/retry@v2
         with:
-          timeout_seconds: 60
+          timeout_seconds: 300
           max_attempts: 3
           retry_on: error
           command: ./scripts/bin/azcopy copy "./build/*" "https://electronwebsite.blob.core.windows.net/%24web/?$SAS" --recursive
