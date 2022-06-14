@@ -21,40 +21,33 @@ This is **part 3** of the Electron tutorial.
 ## Learning goals
 
 In this part of the tutorial, you will learn what a preload script is and how to use one
-to safely expose privileged features into the renderer process. You will also learn how to safely
+to securely expose privileged APIs into the renderer process. You will also learn how to
 communicate between main and renderer processes with Electron's inter-process
 communication (IPC) modules.
 
-## Main and renderer processes
-
-:::info Further reading
-
-For a more detailed look at preload scripts, please refer to
-[Electron's Process Model][process-model] doc. If you want to learn more about
-the context bridge in particular, check out the [Context Isolation guide][context-isolation].
-
-:::
+## What is a preload script?
 
 Electron's main process is a Node.js environment that has full operating system access.
-On top of [Electron's built-in modules][modules], you can also access
-[Node.js built-ins][node-api], as well as any packages installed via npm. On the other hand,
-renderer processes run web pages and do not run Node.js by default for security reasons.
+On top of [Electron modules][modules], you can also access [Node.js built-ins][node-api],
+as well as any packages installed via npm. On the other hand, renderer processes run web
+pages and do not run Node.js by default for security reasons.
+
 To bridge Electron's different process types together, we will need to use a special script
 called a **preload**.
 
 ## Augmenting the renderer with a preload script
 
-A BrowserWindow's preload script runs in a special context that has access to both the HTML DOM
+A BrowserWindow's preload script runs in a context that has access to both the HTML DOM
 and a Node.js environment. Preload scripts are injected before a web page loads in the renderer,
 similar to a Chrome extension's [content scripts][content-script]. To add features to your renderer
-that require privileged access, you can expose developer-defined [global] objects through the
+that require privileged access, you can define [global] objects through the
 [contextBridge][contextbridge] API.
 
 To demonstrate this concept, you will create a preload script that exposes your app's
 versions of Chrome, Node, and Electron into the renderer.
 
-To do this, add a new `preload.js` script that accesses Electron's `process.versions`
-object and exposes some of its keys to the renderer process in a global object.
+Add a new `preload.js` script that exposes selected properties of Electron's `process.versions`
+object to the renderer process in a `versions` global variable.
 
 ```js title="preload.js"
 const { contextBridge } = require('electron');
@@ -151,17 +144,16 @@ And the code should look like this:
 
 ## Communicating between processes
 
-In Electron, only the main process has access to Node.js, and only the renderer process
-has access to web APIs. This means it is not possible to access the Node.js APIs directly
+As we have mentioned above, Electron's main and renderer process have distinct responsibilities
+and are not interchangeable. This means it is not possible to access the Node.js APIs directly
 from the renderer process, nor the HTML Document Object Model (DOM) from the main process.
-**They are entirely different processes with different APIs**.
 
-You can set up handlers for inter-process commmunication (IPC) with Electron's
-`ipcMain` and `ipcRenderer` modules. To send a message from your web page
-to the main process, you can set up a main process handler with `ipcMain.handle` and
-set up a preload function that calls `ipcRenderer.invoke` to trigger it.
+The solution for this problem is to use Electron's `ipcMain` and `ipcRenderer` modules for
+inter-process communication (IPC). To send a message from your web page to the main process,
+you can set up a main process handler with `ipcMain.handle` and
+then expose a function that calls `ipcRenderer.invoke` to trigger the handler in your preload script.
 
-In the following example, we will add a global function to the renderer called `ping()`
+To illustrate, we will add a global function to the renderer called `ping()`
 that will return a string from the main process.
 
 First, set up the `invoke` call in your preload script:
