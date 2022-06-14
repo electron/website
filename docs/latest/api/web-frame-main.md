@@ -23,7 +23,7 @@ win.loadURL('https://twitter.com')
 
 win.webContents.on(
   'did-frame-navigate',
-  (event, url, isMainFrame, frameProcessId, frameRoutingId) => {
+  (event, url, httpResponseCode, httpStatusText, isMainFrame, frameProcessId, frameRoutingId) => {
     const frame = webFrameMain.fromId(frameProcessId, frameRoutingId)
     if (frame) {
       const code = 'document.body.innerHTML = document.body.innerHTML.replaceAll("heck", "h*ck")'
@@ -202,3 +202,6 @@ have the same `routingId`.
 A `string` representing the [visibility state](https://developer.mozilla.org/en-US/docs/Web/API/Document/visibilityState) of the frame.
 
 See also how the [Page Visibility API](latest/api/browser-window.md#page-visibility) is affected by other Electron APIs.
+
+[SCA]: https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm
+[`postMessage`]: https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage

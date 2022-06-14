@@ -43,7 +43,7 @@ requires unsafe mode), so Electron is unable to support this feature on Linux.
 
 ## Planned Breaking API Changes (19.0)
 
-*None (yet)*
+None
 
 ## Planned Breaking API Changes (18.0)
 

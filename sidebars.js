@@ -142,7 +142,6 @@ module.exports = {
         'latest/tutorial/electron-timelines',
         'latest/tutorial/electron-versioning',
         'latest/faq',
-        'latest/tutorial/support',
         'latest/glossary',
       ],
     },

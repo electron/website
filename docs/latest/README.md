@@ -71,7 +71,6 @@ an issue:
   * [Automated Testing](latest/tutorial/automated-testing.md)
   * [REPL](latest/tutorial/repl.md)
 * [Distribution](latest/tutorial/application-distribution.md)
-  * [Supported Platforms](latest/tutorial/support.md#supported-platforms)
   * [Code Signing](latest/tutorial/code-signing.md)
   * [Mac App Store](latest/tutorial/mac-app-store-submission-guide.md)
   * [Windows Store](latest/tutorial/windows-store-guide.md)

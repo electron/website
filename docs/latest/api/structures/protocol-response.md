@@ -38,4 +38,4 @@ hide_title: false
 * `uploadData` [ProtocolResponseUploadData](latest/api/structures/protocol-response-upload-data.md) (optional) - The data used as upload data. This is only
   used for URL responses when `method` is `"POST"`.
 
-[net-error]: https://source.chromium.org/chromium/chromium/src/+/master:net/base/net_error_list.h
+[net-error]: https://source.chromium.org/chromium/chromium/src/+/main:net/base/net_error_list.h
