@@ -27,12 +27,12 @@ into your app code.
 ## Using update.electronjs.org
 
 The Electron maintainers provide a free auto-updating service for open-source apps
-at https://update.electronjs.org.
+at https://update.electronjs.org. Its requirements are:
 
-- App runs on macOS or Windows
-- App has a public GitHub repository
+- Your app runs on macOS or Windows
+- Your app has a public GitHub repository
 - Builds are published to [GitHub releases]
-- Builds are [Code Signed][code-signed]
+- Builds are [code signed][code-signed]
 
 At this point, we'll assume that you have already pushed all your
 code to a public GitHub repository.
@@ -40,9 +40,8 @@ code to a public GitHub repository.
 :::info Alternative update services
 
 If you're using an alternate repository host (e.g. GitLab or Bitbucket) or if
-you need to keep your code repository private, a [step-by-step guide][update-server] on
-implementing your own Electron update server with Electron's [autoUpdater] API is
-available.
+you need to keep your code repository private, please refer to our
+[step-by-step guide][update-server] on hosting your own Electron update server.
 
 :::
 
@@ -64,12 +63,17 @@ with the `public_repo` scope, which gives write access to your public repositori
 
 ### Setting up the GitHub Publisher
 
+
+#### Installing the module
+
 Forge's [GitHub Publisher] is a plugin that
-needs to be installed as a separate devDependency:
+needs to be installed in your project's `devDependencies`:
 
 ```sh npm2yarn
 npm install --save-dev @electron-forge/publisher-github
 ```
+
+#### Configuring the publisher in Forge
 
 Once you have it installed, you need to set it up in your Forge
 configuration. A full list of options is documented in the Forge's
@@ -101,7 +105,7 @@ configuration. A full list of options is documented in the Forge's
 
 :::tip Drafting releases before publishing
 
-Notice that we're creating a draft of our release in this step.
+Notice that you have configured Forge to publish your release as a draft.
 This will allow you to see the release with its generated artifacts
 without actually publishing it to your end users. You can manually
 publish your releases via GitHub after writing release notes and
@@ -109,27 +113,39 @@ double-checking that your distributables work.
 
 :::
 
+#### Setting up your authentication token
+
 You also need to make the Publisher aware of your authentication token.
 By default, it will use the value stored in the `GITHUB_TOKEN` environment
 variable.
 
 ### Running the publish command
 
-At this point, you should be able to run Electron Forge's [Publish command],
-which will run your Maker and publish the output distributables to a new
+Add Forge's [publish command] to your npm scripts.
+
+```json {6} title='package.json'
+  //...
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish"
+  },
+  //...
+```
+
+This command will run your configured makers and publish the output distributables to a new
 GitHub release.
 
 ```sh npm2yarn
 npm run publish
 ```
 
-By default, this will only publish a single distributable
-for your host operating system and architecture. You can publish for
-different architectures by passing in the `--arch` flag to your
+By default, this will only publish a single distributable for your host operating system and
+architecture. You can publish for different architectures by passing in the `--arch` flag to your
 Forge commands.
 
-The name of this release will correspond to the `version` field
-in your project's package.json file.
+The name of this release will correspond to the `version` field in your project's package.json file.
 
 :::tip Tagging releases
 

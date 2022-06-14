@@ -27,17 +27,19 @@ in developing your app in two broad directions:
 1. Adding complexity to your renderer process' web app code
 1. Deeper integrations with the operating system and Node.js
 
-It is important to understand the distinction between the two concepts here. For the
+It is important to understand the distinction between these two broad concepts. For the
 first point, Electron-specific resources are not necessary. Building a pretty to-do
 list in Electron is just pointing your Electron BrowserWindow to a pretty
-to-do list web app. Within your renderer process, you are using the same tools
-(HTML, CSS, JavaScript) that you would on the web.
+to-do list web app. Ultimately, you are building your renderer's UI using the same tools
+(HTML, CSS, JavaScript) that you would on the web. Therefore, Electron's docs will
+not go in-depth on how to use standard web tools.
 
 On the other hand, Electron also provides a rich set of tools that allow
 you to integrate with the desktop environment, from creating tray icons to adding
 global shortcuts to displaying native menus. It also gives you all the power of a
 Node.js environment in the main process. This set of capabilities separates
-Electron applications from running a website in a browser tab.
+Electron applications from running a website in a browser tab, and are the
+focus of Electron's documentation.
 
 ## How-to examples
 
