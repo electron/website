@@ -208,7 +208,7 @@ app.whenReady().then(() => {
 
 ### Importing modules
 
-```js
+```js title='main.js (Line 1)'
 const { app, BrowserWindow } = require('electron');
 ```
 
@@ -217,6 +217,15 @@ with CommonJS module syntax:
 
 - [app][app], which controls your application's event lifecycle.
 - [BrowserWindow][browser-window], which creates and manages app windows.
+
+:::info Capitalization conventions
+
+You might have noticed the capitalization difference between the **a**pp
+and **B**rowser**W**indow modules. Electron follows typical JavaScript conventions here,
+where PascalCase modules are instantiable class constructors (e.g. BrowserWindow, Tray,
+Notification) whereas camelCase modules are not instantiable (e.g. app, ipcRenderer, webContents).
+
+:::
 
 :::warning ES Modules in Electron
 
@@ -228,10 +237,9 @@ state of ESM in Electron in [electron/electron#21457](https://github.com/electro
 
 ### Writing a reusable function to instantiate windows
 
-Then, the `createWindow()` function loads your web page into a new BrowserWindow
-instance:
+The `createWindow()` function loads your web page into a new BrowserWindow instance:
 
-```js
+```js title='main.js (Lines 3-10)'
 const createWindow = () => {
   const win = new BrowserWindow({
     width: 800,
@@ -244,22 +252,22 @@ const createWindow = () => {
 
 ### Calling your function when the app is ready
 
-```js
+```js title='main.js (Lines 12-14)'
 app.whenReady().then(() => {
   createWindow();
 });
 ```
 
 Many of Electron's core modules are Node.js [event emitters] that adhere to Node's asynchronous
-event-driven architecture. The `app` module is one of these emitters.
+event-driven architecture. The app module is one of these emitters.
 
 In Electron, BrowserWindows can only be created after the app module's [`ready`][app-ready] event
 is fired. You can wait for this event by using the [`app.whenReady()`][app-when-ready] API and
-calling `createWindow()` once its promise resolves.
+calling `createWindow()` once its promise is fulfilled.
 
-:::note
+:::info
 
-You typically listen to Node events by using the emitter's `.on` function.
+You typically listen to Node.js events by using an emitter's `.on` function.
 
 ```diff
 + app.on('ready').then(() => {
@@ -269,7 +277,7 @@ You typically listen to Node events by using the emitter's `.on` function.
 ```
 
 However, Electron exposes `app.whenReady()` as a helper specifically for the `ready` event to
-avoid minor pitfalls with directly listening to that event in particular.
+avoid subtle pitfalls with directly listening to that event in particular.
 See [electron/electron#21972](https://github.com/electron/electron/pull/21972) for details.
 
 :::
@@ -278,28 +286,17 @@ At this point, running your Electron application's `start` command should succes
 open a window that displays your web page!
 
 Each web page your app displays in a window will run in a separate process called a
-**renderer** process (or simply _renderer_ for short). Importantly, renderer processes
-have access to the same JavaScript APIs and tooling you use for typical front-end web
+**renderer** process (or simply _renderer_ for short). Renderer processes have access
+to the same JavaScript APIs and tooling you use for typical front-end web
 development, such as using [webpack] to bundle and minify your code or [React][react]
 to build your user interfaces.
-
-<!-- :::tip sandboxing
-One important thing from the code above is `sandbox: true`. The sandbox limits the harm that malicious
-code can cause by limiting access to most system resources. While the sandbox used to be disabled by
-default, that changes in Electron 18 where `sandbox: true` will be the default.
-
-The sandbox will appear again in the tutorial, and you can read now more about it in the
-[Process Sandboxing guide][sandbox].
-::: -->
 
 ## Managing your app's window lifecycle
 
 Application windows behave differently on each operating system. Rather than
-prescribe these behaviours by default, Electron gives you the choice to implement
-these conventions in your app code if you wish to follow them.
-
-You can implement basic window conventions by listening for events emitted by
-the app and BrowserWindow modules.
+enforce these conventions by default, Electron gives you the choice to implement
+them in your app code if you wish to follow them. You can implement basic window
+conventions by listening for events emitted by the app and BrowserWindow modules.
 
 :::tip Process-specific control flow
 
@@ -313,7 +310,6 @@ and `darwin` (macOS).
 ### Quit the app when all windows are closed (Windows & Linux)
 
 On Windows and Linux, closing all windows will generally quit an application entirely.
-
 To implement this pattern in your Electron app, listen for the app module's
 [`window-all-closed`][window-all-closed] event, and call [`app.quit()`][app-quit]
 to exit your app if the user is not on macOS.
