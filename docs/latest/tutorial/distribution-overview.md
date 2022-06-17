@@ -6,34 +6,33 @@ hide_title: false
 ---
 
 
-In order to share your application with your users, there are a few steps and
-things you need to consider first. In this section we will see what are those
-and provide links to other parts of the documentation to know more about them.
+Once your app is ready for production, there are a couple steps you need to take before
+you can deliver it to your users.
 
 ## Packaging
 
-To distribute your app with Electron, you need to package all your resources
-and assets into an executable, and rebrand it.
-To do this, you can either use specialized tooling or manual approaches.
-
-The [Application Packagin][application-packaging] section goes in detail about
-the different techniques.
+To distribute your app with Electron, you need to package all your resources and assets
+into an executable and rebrand it. To do this, you can either use specialized tooling
+or do it manually. See the [Application Packaging][application-packaging] tutorial
+for more information.
 
 ## Code signing
 
 Code signing is a security technology that you use to certify that an app was
 created by you. You should sign your application so it does not trigger the
-security checks of your user's Operating System.
+security checks of your user's operating system.
 
-To know more about what to do for each Operating System, please read the
-[Code Signing][code-signing] section.
+To get started with each operating system's code signing process, please read the
+[Code Signing][code-signing] docs.
 
 ## Publishing
 
-Once you have the executable of your application signed, you can share it on
-a file server and link to it from a website so your for your users can download
-it (for example), or you can use the Operating System's store. Each platform
-has its own caveats which are discussed in the following sections:
+Once your app is packaged and signed, you can freely distribute your app directly
+to users by uploading your installers online.
+
+To reach more users, you can also choose to upload your app to each operating system's
+digital distribution platform (i.e. app store). These require another build step aside
+from your direct download app. For more information, check out each individual app store guide:
 
 - [Mac App Store][mac-app]
 - [Windows Store][windows-store]
@@ -41,10 +40,11 @@ has its own caveats which are discussed in the following sections:
 
 ## Updating
 
-If your plan on updating your application, you need a way to deliver those updates
-without forcing the user to manually find and download the installer for the new
-version. There are several ways to achieve this and the [Updating Applications][updates]
-section explains them.
+Electron's auto-updater allows you to deliver application updates to users
+without forcing them to manually download new versions of your application.
+Check out the [Updating Applications][updates] guide for details on implementing automatic updates
+with Electron.
+
 
 <!-- Link labels -->
 
