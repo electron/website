@@ -18,7 +18,7 @@ for Electron apps that meet the following criteria:
 
 - App runs on macOS or Windows
 - App has a public GitHub repository
-- Builds are published to [GitHub Releases](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository)
+- Builds are published to [GitHub Releases][gh-releases]
 - Builds are [code-signed](./code-signing.md)
 
 The easiest way to use this service is by installing [update-electron-app],
@@ -75,9 +75,10 @@ First, import the required modules in your main process code. The following code
 vary for different server software, but it works like described when using [Hazel][hazel].
 
 :::warning Check your execution environment!
-Please ensure that the code below will only be executed in
-your packaged app, and not in development. You can use the app.isPackaged API
-to check the environment.
+
+Please ensure that the code below will only be executed in your packaged app, and not in development.
+You can use the [app.isPackaged](../api/app.md#appispackaged-readonly) API to check the environment.
+
 :::
 
 ```javascript title='main.js'
@@ -121,8 +122,8 @@ autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
     title: 'Application Update',
     message: process.platform === 'win32' ? releaseNotes : releaseName,
     detail:
-      'A new version has been downloaded. Restart the application to apply the updates.'
-  }
+      'A new version has been downloaded. Restart the application to apply the updates.',
+  };
 
   dialog.showMessageBox(dialogOpts).then((returnValue) => {
     if (returnValue.response === 0) autoUpdater.quitAndInstall();
@@ -142,11 +143,13 @@ autoUpdater.on('error', (message) => {
 ```
 
 :::info Handling updates manually
+
 Because the requests made by autoUpdate aren't under your direct control, you may find situations
 that are difficult to handle (such as if the update server is behind authentication). The `url`
 field supports the `file://` protocol, which means that with some effort, you can sidestep the
 server-communication aspect of the process by loading your update from a local directory.
 [Here's an example of how this could work](https://github.com/electron/electron/issues/5020#issuecomment-477636990).
+
 :::
 
 [vercel]: https://vercel.com

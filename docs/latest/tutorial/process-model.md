@@ -1,6 +1,6 @@
 ---
-title: "Process Model"
-description: "Electron inherits its multi-process architecture from Chromium, which makes the framework architecturally very similar to a modern web browser. In this guide, we'll expound on the conceptual knowledge of Electron that we applied in the minimal quick start app."
+title: 'Process Model'
+description: 'Electron inherits its multi-process architecture from Chromium, which makes the framework architecturally very similar to a modern web browser. This guide will expand on the concepts applied in the tutorial.'
 slug: process-model
 hide_title: false
 ---
@@ -8,8 +8,8 @@ hide_title: false
 # Process Model
 
 Electron inherits its multi-process architecture from Chromium, which makes the framework
-architecturally very similar to a modern web browser. In this guide, we'll expound on
-the conceptual knowledge of Electron that we applied in the [tutorial][tutorial].
+architecturally very similar to a modern web browser. This guide will expand on the
+concepts applied in the [Tutorial][tutorial].
 
 ## Why not a single process?
 
@@ -35,7 +35,7 @@ Electron applications are structured very similarly. As an app developer, you co
 two types of processes: [main](#the-main-process) and [renderer](#the-renderer-process).
 These are analogous to Chrome's own browser and renderer processes outlined above.
 
-[Chrome Comic]: https://www.google.com/googlebooks/chrome/
+[chrome comic]: https://www.google.com/googlebooks/chrome/
 
 ## The main process
 
@@ -53,13 +53,13 @@ a web page in a separate renderer process. You can interact with this web conten
 from the main process using the window's [`webContents`][web-contents] object.
 
 ```js title='main.js'
-const { BrowserWindow } = require('electron')
+const { BrowserWindow } = require('electron');
 
-const win = new BrowserWindow({ width: 800, height: 1500 })
-win.loadURL('https://github.com')
+const win = new BrowserWindow({ width: 800, height: 1500 });
+win.loadURL('https://github.com');
 
-const contents = win.webContents
-console.log(contents)
+const contents = win.webContents;
+console.log(contents);
 ```
 
 > Note: A renderer process is also created for [web embeds][web-embed] such as the
@@ -90,8 +90,8 @@ uses `app` APIs to create a more native application window experience.
 ```js title='main.js'
 // quitting the app when no windows are open on non-macOS platforms
 app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') app.quit()
-})
+  if (process.platform !== 'darwin') app.quit();
+});
 ```
 
 [app]: latest/api/app.md
@@ -110,7 +110,7 @@ For a full list of Electron's main process modules, check out our API documentat
 
 Each Electron app spawns a separate renderer process for each open `BrowserWindow`
 (and each web embed). As its name implies, a renderer is responsible for
-*rendering* web content. For all intents and purposes, code ran in renderer processes
+_rendering_ web content. For all intents and purposes, code ran in renderer processes
 should behave according to web standards (insofar as Chromium does, at least).
 
 Therefore, all user interfaces and app functionality within a single browser
@@ -120,9 +120,9 @@ web.
 Although explaining every web spec is out of scope for this guide, the bare minimum
 to understand is:
 
-* An HTML file is your entry point for the renderer process.
-* UI styling is added through Cascading Style Sheets (CSS).
-* Executable JavaScript code can be added through `<script>` elements.
+- An HTML file is your entry point for the renderer process.
+- UI styling is added through Cascading Style Sheets (CSS).
+- Executable JavaScript code can be added through `<script>` elements.
 
 Moreover, this also means that the renderer has no direct access to `require`
 or other Node.js APIs. In order to directly include NPM modules in the renderer,
@@ -130,9 +130,11 @@ you must use the same bundler toolchains (for example, `webpack` or `parcel`) th
 use on the web.
 
 :::warning
+
 Renderer processes can be spawned with a full Node.js environment for ease of
 development. Historically, this used to be the default, but this feature was disabled
 for security reasons.
+
 :::
 
 At this point, you might be wondering how your renderer process user interfaces
@@ -144,6 +146,7 @@ way to import Electron's content scripts.
 
 <!-- Note: This guide doesn't take sandboxing into account, which might fundamentally
 change the statements here. -->
+
 Preload scripts contain code that executes in a renderer process before its web content
 begins loading. These scripts run within the renderer context, but are granted more
 privileges by having access to Node.js APIs.
@@ -152,13 +155,13 @@ A preload script can be attached to the main process in the `BrowserWindow` cons
 `webPreferences` option.
 
 ```js title='main.js'
-const { BrowserWindow } = require('electron')
+const { BrowserWindow } = require('electron');
 //...
 const win = new BrowserWindow({
   webPreferences: {
-    preload: 'path/to/preload.js'
-  }
-})
+    preload: 'path/to/preload.js',
+  },
+});
 //...
 ```
 
@@ -172,12 +175,12 @@ the [`contextIsolation`][context-isolation] default.
 
 ```js title='preload.js'
 window.myAPI = {
-  desktop: true
-}
+  desktop: true,
+};
 ```
 
 ```js title='renderer.js'
-console.log(window.myAPI)
+console.log(window.myAPI);
 // => undefined
 ```
 
@@ -188,29 +191,29 @@ Instead, use the [`contextBridge`][context-bridge] module to accomplish this
 securely:
 
 ```js title='preload.js'
-const { contextBridge } = require('electron')
+const { contextBridge } = require('electron');
 
 contextBridge.exposeInMainWorld('myAPI', {
-  desktop: true
-})
+  desktop: true,
+});
 ```
 
 ```js title='renderer.js'
-console.log(window.myAPI)
+console.log(window.myAPI);
 // => { desktop: true }
 ```
 
 This feature is incredibly useful for two main purposes:
 
-* By exposing [`ipcRenderer`][ipcRenderer] helpers to the renderer, you can use
+- By exposing [`ipcRenderer`][ipcrenderer] helpers to the renderer, you can use
   inter-process communication (IPC) to trigger main process tasks from the
   renderer (and vice-versa).
-* If you're developing an Electron wrapper for an existing web app hosted on a remote
+- If you're developing an Electron wrapper for an existing web app hosted on a remote
   URL, you can add custom properties onto the renderer's `window` global that can
   be used for desktop-only logic on the web client's side.
 
 [window-mdn]: https://developer.mozilla.org/en-US/docs/Web/API/Window
 [context-isolation]: ./context-isolation.md
 [context-bridge]: latest/api/context-bridge.md
-[ipcRenderer]: latest/api/ipc-renderer.md
+[ipcrenderer]: latest/api/ipc-renderer.md
 [tutorial]: ./tutorial-1-prerequisites.md
