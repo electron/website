@@ -23,7 +23,10 @@ module.exports = {
     {
       type: 'category',
       label: 'Best Practices',
-      items: ['latest/tutorial/performance', 'latest/tutorial/security'],
+      items: [
+        'latest/tutorial/performance',
+        'latest/tutorial/security',
+      ],
     },
     {
       type: 'category',
@@ -39,7 +42,9 @@ module.exports = {
           type: 'doc',
           id: 'latest/tutorial/in-app-purchases',
           customProps: {
-            tags: ['mac'],
+            tags: [
+              'mac',
+            ],
           },
         },
         'latest/tutorial/keyboard-shortcuts',
@@ -48,14 +53,18 @@ module.exports = {
           type: 'doc',
           id: 'latest/tutorial/linux-desktop-actions',
           customProps: {
-            tags: ['linux'],
+            tags: [
+              'linux',
+            ],
           },
         },
         {
           type: 'doc',
           id: 'latest/tutorial/macos-dock',
           customProps: {
-            tags: ['mac'],
+            tags: [
+              'mac',
+            ],
           },
         },
         'latest/tutorial/multithreading',
@@ -68,14 +77,19 @@ module.exports = {
           type: 'doc',
           id: 'latest/tutorial/recent-documents',
           customProps: {
-            tags: ['mac', 'windows'],
+            tags: [
+              'mac',
+              'windows',
+            ],
           },
         },
         {
           type: 'doc',
           id: 'latest/tutorial/represented-file',
           customProps: {
-            tags: ['mac'],
+            tags: [
+              'mac',
+            ],
           },
         },
         'latest/tutorial/spellchecker',
@@ -85,7 +99,9 @@ module.exports = {
           type: 'doc',
           id: 'latest/tutorial/windows-taskbar',
           customProps: {
-            tags: ['windows'],
+            tags: [
+              'windows',
+            ],
           },
         },
         'latest/tutorial/window-customization',
@@ -206,6 +222,13 @@ module.exports = {
             'latest/development/v8-development',
           ],
         },
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Tutorial',
+      items: [
+        'latest/tutorial/support',
       ],
     },
   ],
