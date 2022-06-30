@@ -76,9 +76,6 @@ an issue:
   * [Windows Store](latest/tutorial/windows-store-guide.md)
   * [Snapcraft](latest/tutorial/snapcraft.md)
 * [Updates](latest/tutorial/updates.md)
-  * [Deploying an Update Server](latest/tutorial/updates.md#deploying-an-update-server)
-  * [Implementing Updates in Your App](latest/tutorial/updates.md#implementing-updates-in-your-app)
-  * [Applying Updates](latest/tutorial/updates.md#applying-updates)
 * [Getting Support](latest/tutorial/support.md)
 
 ## Detailed Tutorials

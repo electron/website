@@ -231,6 +231,55 @@ module.exports = {
         'latest/tutorial/support',
       ],
     },
+    {
+      type: 'category',
+      label: 'Tutorial',
+      items: [
+        'latest/tutorial/distribution-overview',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Tutorial',
+      items: [
+        'latest/tutorial/tutorial-1-prerequisites',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Tutorial',
+      items: [
+        'latest/tutorial/tutorial-2-first-app',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Tutorial',
+      items: [
+        'latest/tutorial/tutorial-3-preload',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Tutorial',
+      items: [
+        'latest/tutorial/tutorial-4-adding-features',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Tutorial',
+      items: [
+        'latest/tutorial/tutorial-5-packaging',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Tutorial',
+      items: [
+        'latest/tutorial/tutorial-6-publishing-updating',
+      ],
+    },
   ],
   api: [
     {
