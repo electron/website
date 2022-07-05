@@ -11,6 +11,18 @@ module.exports = {
     },
     {
       type: 'category',
+      label: 'Tutorial',
+      items: [
+        'latest/tutorial/tutorial-1-prerequisites',
+        'latest/tutorial/tutorial-2-first-app',
+        'latest/tutorial/tutorial-3-preload',
+        'latest/tutorial/tutorial-4-adding-features',
+        'latest/tutorial/tutorial-5-packaging',
+        'latest/tutorial/tutorial-6-publishing-updating',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Processes in Electron',
       items: [
         'latest/tutorial/process-model',
@@ -223,18 +235,6 @@ module.exports = {
             'latest/development/v8-development',
           ],
         },
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Tutorial',
-      items: [
-        'latest/tutorial/tutorial-1-prerequisites',
-        'latest/tutorial/tutorial-2-first-app',
-        'latest/tutorial/tutorial-3-preload',
-        'latest/tutorial/tutorial-4-adding-features',
-        'latest/tutorial/tutorial-5-packaging',
-        'latest/tutorial/tutorial-6-publishing-updating',
       ],
     },
   ],
