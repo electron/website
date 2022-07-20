@@ -22,7 +22,6 @@ export default function DocSidebarItemLink({
     customProps &&
     Array.isArray(customProps.tags) &&
     customProps.tags.length > 0; // SWIZZLED
-  console.log({ hasTags, customProps });
   return (
     <li
       className={clsx(
