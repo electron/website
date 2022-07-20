@@ -1,0 +1,28 @@
+.menuExternalLink {
+  align-items: center;
+}
+
+.menuLink {
+  justify-content: space-between;
+}
+
+.badge {
+  background-color: var(--ifm-color-primary-lighter);
+  margin-left: 2px;
+  padding: 4px;
+  border-radius: 4px;
+  height: 20px;
+  width: 20px;
+}
+
+.linux {
+  background: tomato;
+}
+
+.mac {
+  background: grey;
+}
+
+.windows {
+  background: dodgerblue;
+}
