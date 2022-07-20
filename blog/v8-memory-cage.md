@@ -18,7 +18,7 @@ These two technologies, when enabled, are significantly beneficial for security,
 
 The main downside of enabling sandboxed pointers is that **ArrayBuffers which point to external ("off-heap") memory are no longer allowed**. This means that native modules which rely on this functionality in V8 will need to be refactored to continue working in Electron 20 and later.
 
-The main downside of enabling pointer compression is that **the V8 heap is limited to a maximum size of 4GB**. The exact details of this are a little complicated-for example, ArrayBuffers are counted separately from the rest of the V8 heap, but have their [own limits](https://bugs.chromium.org/p/chromium/issues/detail?id=1243314).
+The main downside of enabling pointer compression is that **the V8 heap is limited to a maximum size of 4GB**. The exact details of this are a little complicated—for example, ArrayBuffers are counted separately from the rest of the V8 heap, but have their [own limits](https://bugs.chromium.org/p/chromium/issues/detail?id=1243314).
 
 The [Electron Upgrades Working Group](https://github.com/electron/governance/tree/main/wg-upgrades) believes that the benefits of pointer compression and the V8 memory cage outweigh the downsides. There are three main reasons for doing so:
 
@@ -35,7 +35,7 @@ Lastly, there are workarounds for apps that really need a larger heap size. For 
 ### How will I know if my app is impacted by this change?
 Attempting to wrap external memory with an ArrayBuffer will crash at runtime in Electron 20+.
 
-If you don't use any native Node modules in your app, you're safe-there's no way to trigger this crash from pure JS. This change only affects native Node modules which allocate memory outside of the V8 heap (e.g. using `malloc` or `new`) and then wrap the external memory with an ArrayBuffer. This is a fairly rare use case, but some modules do use this technique, and such modules will need to be refactored in order to be compatible with Electron 20+.
+If you don't use any native Node modules in your app, you're safe—there's no way to trigger this crash from pure JS. This change only affects native Node modules which allocate memory outside of the V8 heap (e.g. using `malloc` or `new`) and then wrap the external memory with an ArrayBuffer. This is a fairly rare use case, but some modules do use this technique, and such modules will need to be refactored in order to be compatible with Electron 20+.
 
 ### How can I measure how much V8 heap memory my app is using to know if I'm close to the 4GB limit?
 In the renderer process, you can use [`performance.memory.usedJSHeapSize`](https://developer.mozilla.org/en-US/docs/Web/API/Performance/memory), which will return the V8 heap usage in bytes. In the main process, you can use [`process.memoryUsage().heapUsed`](https://nodejs.org/api/process.html#processmemoryusage), which is comparable.
@@ -45,12 +45,12 @@ Some documents refer to it as the "V8 sandbox", but that term is easily confusab
 
 There's a fairly common kind of V8 exploit that goes something like this:
 
-1. Find a bug in V8's JIT engine. JIT engines analyze code in order to be able to omit slow runtime type checks and produce fast machine code. Sometimes logic errors mean it gets this analysis wrong, and omits a type check that it actually needed-say, it thinks x is a string, but in fact it's an object.
+1. Find a bug in V8's JIT engine. JIT engines analyze code in order to be able to omit slow runtime type checks and produce fast machine code. Sometimes logic errors mean it gets this analysis wrong, and omits a type check that it actually needed—say, it thinks x is a string, but in fact it's an object.
 2. Abuse this confusion to overwrite some bit of memory inside the V8 heap, for instance, the pointer to the beginning of an ArrayBuffer.
 3. Now you have an ArrayBuffer that points wherever you like, so you can read and write **any** memory in the process, even memory that V8 normally doesn't have access to.
 
 The V8 memory cage is a technique designed to categorically prevent this kind of attack. The way this is accomplished is by _not storing any pointers in the V8 heap_. Instead, all references to other memory inside the V8 heap are stored as offsets from the beginning of some reserved region. Then, even if an attacker manages to corrupt the base address of an ArrayBuffer, for instance by exploiting a type confusion error in V8, the worst they can do is read and write memory inside the cage, which they could likely already do anyway.
-There's a lot more available to read on how the V8 memory cage works, so I won't go into further detail here-the best place to start reading is probably the [high-level design doc](https://docs.google.com/document/d/1FM4fQmIhEqPG8uGp5o9A-mnPB5BOeScZYpkHjo0KKA8/edit) from the Chromium team.
+There's a lot more available to read on how the V8 memory cage works, so I won't go into further detail here—the best place to start reading is probably the [high-level design doc](https://docs.google.com/document/d/1FM4fQmIhEqPG8uGp5o9A-mnPB5BOeScZYpkHjo0KKA8/edit) from the Chromium team.
 
 ### I want to refactor a Node native module to support Electron 20+. How do I do that?
 There are two ways to go about refactoring a native module to be compatible with the V8 memory cage. The first is to **copy** externally-created buffers into the V8 memory cage before passing them to JavaScript. This is generally a simple refactor, but it can be slow when the buffers are large. The other approach is to **use V8's memory allocator** to allocate memory which you intend to eventually pass to JavaScript. This is a bit more involved, but will allow you to avoid the copy, meaning better performance for large buffers.
