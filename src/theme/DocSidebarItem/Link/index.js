@@ -1,17 +1,18 @@
 import React from 'react';
 import clsx from 'clsx';
-import { isActiveSidebarItem, ThemeClassNames } from '@docusaurus/theme-common';
+import { ThemeClassNames } from '@docusaurus/theme-common';
+import { isActiveSidebarItem } from '@docusaurus/theme-common/internal';
 import Link from '@docusaurus/Link';
 import isInternalUrl from '@docusaurus/isInternalUrl';
-import IconExternalLink from '@theme/IconExternalLink';
-import styles from './Link.module.css';
+import IconExternalLink from '@theme/Icon/ExternalLink';
 import TagContent from './TagContent';
+import styles from './styles.module.css';
+
 export default function DocSidebarItemLink({
   item,
   onItemClick,
   activePath,
   level,
-  _index,
   ...props
 }) {
   const { href, label, className, customProps } = item;
@@ -21,6 +22,7 @@ export default function DocSidebarItemLink({
     customProps &&
     Array.isArray(customProps.tags) &&
     customProps.tags.length > 0; // SWIZZLED
+  console.log({ hasTags, customProps });
   return (
     <li
       className={clsx(
