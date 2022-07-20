@@ -20,7 +20,7 @@ The main downside of enabling sandboxed pointers is that **ArrayBuffers which po
 
 The main downside of enabling pointer compression is that **the V8 heap is limited to a maximum size of 4GB**. The exact details of this are a little complicated-for example, ArrayBuffers are counted separately from the rest of the V8 heap, but have their [own limits](https://bugs.chromium.org/p/chromium/issues/detail?id=1243314).
 
-The Electron Upgrades Working Group believes that the benefits of pointer compression and the V8 memory cage outweigh the downsides. There are three main reasons for doing so:
+The [Electron Upgrades Working Group](https://github.com/electron/governance/tree/main/wg-upgrades) believes that the benefits of pointer compression and the V8 memory cage outweigh the downsides. There are three main reasons for doing so:
 
 1. It keeps Electron closer to Chromium. The less Electron diverges from Chromium in complex internal details such as V8 configuration, the less likely we are to accidentally introduce bugs or security vulnerabilities. Chromium's security team is formidable, and we want to make sure we are taking advantage of their work. Further, if a bug only affects configurations that aren't used in Chromium, fixing it is not likely to be a priority for the Chromium team.
 2. It performs better. [Pointer compression reduces V8 heap size by up to 40% and improves CPU and GC performance by 5%–10%](https://v8.dev/blog/pointer-compression#results). For the vast majority of Electron applications which won't bump into the 4GB heap size limit and don't use native modules that require external buffers, these are significant performance wins.
