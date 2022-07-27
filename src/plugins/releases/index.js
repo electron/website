@@ -19,7 +19,6 @@ module.exports = async function releasesPlugin() {
       const nightly = releases.find((release) =>
         release.version.includes('nightly')
       );
-      console.log({ stable, prerelease, nightly });
       return { stable, prerelease, nightly };
     },
     async contentLoaded({ content, actions }) {
