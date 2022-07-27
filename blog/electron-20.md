@@ -20,6 +20,12 @@ The Electron team is excited to announce the release of Electron 20.0.0! You can
 
 ## Notable Changes
 
+### New Features
+
+* Added immersive dark mode on Windows. [#34549](https://github.com/electron/electron/pull/34549)
+* Added support for panel-like behavior. Window can float over full-screened apps. [#34665](https://github.com/electron/electron/pull/34665)
+* Updated Windows Control Overlay buttons to look and feel more native on Windows 11. [#34888](https://github.com/electron/electron/pull/34888)
+
 ### Stack Changes
 
 * Chromium `104`
