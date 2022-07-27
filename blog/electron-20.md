@@ -32,15 +32,17 @@ The Electron team is excited to announce the release of Electron 20.0.0! You can
 
 ## Breaking & API Changes
 
-Below are breaking changes introduced in Electron 19. More information about these and future changes can be found on the [Planned Breaking Changes](https://www.electronjs.org/docs/latest/breaking-changes) page.
+Below are breaking changes introduced in Electron 20. More information about these and future changes can be found on the [Planned Breaking Changes](https://www.electronjs.org/docs/latest/breaking-changes) page.
 
-### Unsupported on Linux: `.skipTaskbar`
+### Default Changed: renderers without `nodeIntegration: true` are sandboxed by default
 
-The BrowserWindow constructor option `skipTaskbar` is no longer supported on Linux. Changed in [#33226](https://github.com/electron/electron/pull/33226)
+Previously, renderers that specified a preload script defaulted to being unsandboxed. This meant that by default, preload scripts had access to Node.js. In Electron 20, this default has changed. Beginning in Electron 20, renderers will be sandboxed by default, unless `nodeIntegration: true` or `sandbox: false` is specified.
 
-### Removed WebPreferences.preloadURL
+If your preload scripts do not depend on Node, no action is needed. If your preload scripts do depend on Node, either refactor them to remove Node usage from the renderer, or explicitly specify `sandbox: false` for the relevant renderers.
 
-The semi-documented `preloadURL` property has been removed from WebPreferences. [#33228](https://github.com/electron/electron/pull/33228). `WebPreferences.preload` should be used instead.
+### Removed: `.skipTaskbar` on Linux
+
+On X11, `skipTaskbar` sends a `_NET_WM_STATE_SKIP_TASKBAR` message to the X11 window manager. There is not a direct equivalent for Wayland, and the known workarounds have unacceptable tradeoffs (e.g. Window.is_skip_taskbar in GNOME requires unsafe mode), so Electron is unable to support this feature on Linux.
 
 ## End of Support for 17.x.y
 
