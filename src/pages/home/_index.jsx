@@ -322,7 +322,8 @@ export default function Home() {
                     We recommend you install Electron locally in your
                     devDependencies. For a production-ready experience, install
                     the latest stable version. If you want something a bit more
-                    experimental, try the beta or nightly channels.
+                    experimental, try the prerelease (beta or alpha) or nightly
+                    channels.
                   </p>
                 </div>
                 <div className="col col--6">

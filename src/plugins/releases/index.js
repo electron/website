@@ -1,31 +1,28 @@
-const releases = require('electron-releases/lite.json');
+const fetch = require('node-fetch');
+const semver = require('semver');
 
 module.exports = async function releasesPlugin() {
-  // ...
   return {
     name: 'releases-plugin',
     async loadContent() {
-      const stable = releases.find(
-        (release) =>
-          release.npm_dist_tags.length > 0 &&
-          release.npm_dist_tags.includes('latest')
+      const req = await fetch.default(
+        'https://electronjs.org/headers/index.json'
       );
-      const beta = releases.find(
-        (release) =>
-          release.npm_dist_tags.length > 0 &&
-          release.npm_dist_tags.includes('beta')
+      // sort all versions by semver (descending)
+      const releases = (await req.json()).sort((a, b) =>
+        semver.compare(b.version, a.version)
       );
-      const alpha = releases.find(
+      // stable releases won't have a prerelease tag
+      const stable = releases.find((release) => !release.version.includes('-'));
+      // the highest semver prerelease will be the latest alpha or beta
+      const prerelease = releases.find(
         (release) =>
-          release.npm_dist_tags.length > 0 &&
-          release.npm_dist_tags.includes('alpha')
+          release.version.includes('beta') || release.version.includes('alpha')
       );
-      const nightly = releases.find(
-        (release) =>
-          release.npm_dist_tags.length > 0 &&
-          release.npm_dist_tags.includes('nightly')
+      const nightly = releases.find((release) =>
+        release.version.includes('nightly')
       );
-      return { stable, alpha, beta, nightly };
+      return { stable, prerelease, nightly };
     },
     async contentLoaded({ content, actions }) {
       const { setGlobalData } = actions;

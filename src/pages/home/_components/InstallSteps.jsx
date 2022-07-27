@@ -2,35 +2,34 @@ import React, { useState } from 'react';
 import { usePluginData } from '@docusaurus/useGlobalData';
 import clsx from 'clsx';
 import styles from './InstallSteps.module.scss';
+import semver from 'semver';
 
 export default function InstallSteps() {
   const [channel, setChannel] = useState('stable');
-  const { stable, alpha, beta, nightly } = usePluginData('releases-plugin');
-  const isAlpha = alpha.tag_name.localeCompare(beta.tag_name) > 0;
-  const prerelease = isAlpha ? alpha : beta;
+  const { stable, prerelease, nightly } = usePluginData('releases-plugin');
   const releaseInfo = {
     stable: {
       invocation: 'electron@latest',
       deps: {
-        electron: stable.tag_name,
-        node: stable.deps.node,
-        chromium: stable.deps.chrome,
+        electron: stable.version,
+        node: stable.node,
+        chromium: stable.chrome,
       },
     },
     prerelease: {
-      invocation: `electron@${prerelease.npm_dist_tags[0]}`,
+      invocation: `electron@${semver.prerelease(prerelease.version)[0]}`,
       deps: {
-        electron: prerelease.tag_name,
-        node: prerelease.deps.node,
-        chromium: prerelease.deps.chrome,
+        electron: prerelease.version,
+        node: prerelease.node,
+        chromium: prerelease.chrome,
       },
     },
     nightly: {
       invocation: 'electron-nightly',
       deps: {
-        electron: nightly.tag_name,
-        node: nightly.deps.node,
-        chromium: nightly.deps.chrome,
+        electron: nightly.version,
+        node: nightly.node,
+        chromium: nightly.chrome,
       },
     },
   };
