@@ -26,12 +26,13 @@ The project is returning to its earlier policy of supporting the latest three ma
 
 ### Stack Changes
 
-* Chromium `102`
-    * [New in Chrome 102](https://developer.chrome.com/blog/new-in-chrome-102/)
-    * [New in Chrome 101](https://developer.chrome.com/blog/new-in-chrome-101/)
-* Node.js `16.14.2`
-    * [Node 16.14.2 blog post](https://nodejs.org/en/blog/release/v16.14.2/)
-* V8 `10.2`
+* Chromium `104`
+    * [New in Chrome 104](https://developer.chrome.com/blog/new-in-chrome-104/)
+    * [New in Chrome 103](https://developer.chrome.com/blog/new-in-chrome-103/)
+    * [New in DevTools](https://developer.chrome.com/blog/new-in-devtools-104/)
+* Node.js `16.15.0`
+    * [Node 16.15.0 blog post](https://nodejs.org/en/blog/release/v16.15.0/)
+* V8 `10.4`
 
 ## Breaking & API Changes
 
