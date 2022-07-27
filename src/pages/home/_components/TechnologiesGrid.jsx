@@ -4,7 +4,8 @@ import clsx from 'clsx';
 import styles from './TechnologiesGrid.module.scss';
 
 export default function TechnologiesGrid({ list }) {
-  const { isDarkTheme } = useColorMode();
+  const { colorMode } = useColorMode();
+  const isDarkTheme = colorMode === 'dark';
   return (
     <div className={styles.techContainer}>
       {list.map((item) => (

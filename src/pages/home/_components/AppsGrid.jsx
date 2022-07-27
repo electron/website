@@ -5,7 +5,8 @@ import clsx from 'clsx';
 import styles from './AppsGrid.module.scss';
 
 export default function AppsGrid({ list }) {
-  const { isDarkTheme } = useColorMode();
+  const { colorMode } = useColorMode();
+  const isDarkTheme = colorMode === 'dark';
   return (
     <div>
       <div className={styles.appsContainer}>
