@@ -1,6 +1,6 @@
 ---
-title: Electron 19.0.0
-date: 2022-05-24T00:00:00.000Z
+title: Electron 20.0.0
+date: 2022-08-02:00:00.000Z
 authors:
     - name: VerteDinde
       url: 'https://github.com/VerteDinde'
@@ -45,16 +45,17 @@ The BrowserWindow constructor option `skipTaskbar` is no longer supported on Lin
 
 The semi-documented `preloadURL` property has been removed from WebPreferences. [#33228](https://github.com/electron/electron/pull/33228). `WebPreferences.preload` should be used instead.
 
-## End of Support for 15.x.y and 16.x.y
+## End of Support for 17.x.y
 
-Electron 14.x.y and 15.x.y have both reached end-of-support. This [returns](https://www.electronjs.org/blog/8-week-cadence/#-will-electron-extend-the-number-of-supported-versions) Electron to its [existing policy](https://www.electronjs.org/docs/latest/tutorial/electron-timelines#version-support-policy) of supporting the latest three major versions. Developers and applications are encouraged to upgrade to a newer version of Electron.
+Electron 17.x.y has reached end-of-support as per the project's [support policy](https://www.electronjs.org/docs/latest/tutorial/electron-timelines#version-support-policy). Developers and applications are encouraged to upgrade to a newer version of Electron.
 
-|	E15 (Sep'21) |	E16 (Nov'21) |	E17 (Feb'22) |	E18 (Mar'22) |	E19 (May'22) |
-| ---- | ---- | ---- | ---- | ---- |
-|	15.x.y |	16.x.y |	17.x.y |	18.x.y |	19.x.y |
-|	14.x.y |	15.x.y |	16.x.y |	17.x.y |	18.x.y |
-|	13.x.y |	14.x.y |	15.x.y |	16.x.y |	17.x.y |
-|	12.x.y |	13.x.y |	14.x.y |	15.x.y |	-- |
+| E18 (Mar'22) | E19 (May'22) | E20 (Aug'22) | E21 (Sep'22) | E22 (Dec'22) |
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+| 18.x.y       | 19.x.y       | 20.x.y       | 21.x.y       | 22.x.y       |
+| 17.x.y       | 18.x.y       | 19.x.y       | 20.x.y       | 21.x.y       |
+| 16.x.y       | 17.x.y       | 18.x.y       | 19.x.y       | 20.x.y       |
+| 15.x.y       | --           | --           | --           | --           |
+
 ## What's Next
 
 In the short term, you can expect the team to continue to focus on keeping up with the development of the major components that make up Electron, including Chromium, Node, and V8. Although we are careful not to make promises about release dates, our plan is to release new major versions of Electron with new versions of those components approximately every 2 months.
