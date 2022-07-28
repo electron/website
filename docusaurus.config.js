@@ -70,6 +70,7 @@ module.exports = {
           position: 'left',
           activeBaseRegex: '^\b$', // never active
         },
+        { to: 'fiddle', label: 'Fiddle', position: 'left' },
         { to: 'blog', label: 'Blog', position: 'left' },
         { to: 'community', label: 'Community', position: 'left' },
         {
