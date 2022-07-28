@@ -1,5 +1,5 @@
 import Layout from '@theme/Layout';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './fiddle.module.scss';
 import featureStyles from '../home/_components/Feature.module.scss';
 import FiddleLogo from '@site/static/assets/fiddle/logo.svg';
@@ -8,7 +8,102 @@ import MacLogo from '@site/static/assets/img/platform-mac.svg';
 import LinuxLogo from '@site/static/assets/img/platform-linux.svg';
 import clsx from 'clsx';
 
+import { usePluginData } from '@docusaurus/useGlobalData';
+
 export default function FiddlePage() {
+  const [OS, setOS] = useState('win32');
+  const version = usePluginData('fiddle-versions-plugin');
+  console.log(version);
+  useEffect(() => {
+    if (navigator.userAgent.indexOf('Windows') != -1) return setOS('win32');
+    if (navigator.userAgent.indexOf('Mac') != -1) return setOS('darwin');
+    if (navigator.userAgent.indexOf('Linux') != -1) return setOS('linux');
+  }, []);
+
+  const renderDownloadButtons = () => {
+    switch (OS) {
+      case 'win32':
+        return (
+          <div className="button-group">
+            <a
+              href={`https://github.com/electron/fiddle/releases/download/${version.raw}/electron-fiddle-${version.version}-win32-ia32-setup.exe`}
+              className={clsx('button', styles.buttonFiddle)}
+            >
+              Download (Windows, 32-bit)
+            </a>
+            <a
+              href={`https://github.com/electron/fiddle/releases/download/${version.raw}/electron-fiddle-${version.version}-win32-x64-setup.exe`}
+              className={clsx('button', styles.buttonFiddle)}
+            >
+              Download (Windows, 64-bit)
+            </a>
+          </div>
+        );
+      case 'darwin':
+        return (
+          <div className="button-group">
+            <a
+              href={`https://github.com/electron/fiddle/releases/download/${version.raw}/Electron.Fiddle-darwin-x64-${version.version}.zip`}
+              className={clsx('button', styles.buttonFiddle)}
+            >
+              Download (macOS, Intel x64)
+            </a>
+            <a
+              href={`https://github.com/electron/fiddle/releases/download/${version.raw}/Electron.Fiddle-darwin-arm64-${version.version}.zip`}
+              className={clsx('button', styles.buttonFiddle)}
+            >
+              Download (macOS, Apple Silicon)
+            </a>
+          </div>
+        );
+      case 'linux':
+        return (
+          <React.Fragment>
+            <div className="button-group margin-bottom--md">
+              <a
+                href={`https://github.com/electron/fiddle/releases/download/${version.raw}/electron-fiddle_${version.version}_amd64.deb`}
+                className={clsx('button', styles.buttonFiddle)}
+              >
+                Download (.deb, x64)
+              </a>
+              <a
+                href={`https://github.com/electron/fiddle/releases/download/${version.raw}/electron-fiddle_${version.version}_arm64.deb`}
+                className={clsx('button', styles.buttonFiddle)}
+              >
+                Download (.deb, arm64)
+              </a>
+              <a
+                href={`https://github.com/electron/fiddle/releases/download/${version.raw}/electron-fiddle_${version.version}_armhf.deb`}
+                className={clsx('button', styles.buttonFiddle)}
+              >
+                Download (.deb, arm7l)
+              </a>
+            </div>
+            <div className="button-group">
+              <a
+                href={`https://github.com/electron/fiddle/releases/download/${version.raw}/electron-fiddle-${version.version}-1.x86_64.rpm`}
+                className={clsx('button', styles.buttonFiddle)}
+              >
+                Download (.rpm, x64)
+              </a>
+              <a
+                href={`https://github.com/electron/fiddle/releases/download/${version.raw}/electron-fiddle-${version.version}-1.arm64.rpm`}
+                className={clsx('button', styles.buttonFiddle)}
+              >
+                Download (.rpm, arm64)
+              </a>
+              <a
+                href={`https://github.com/electron/fiddle/releases/download/${version.raw}/electron-fiddle-${version.version}-1.armv7hl.rpm`}
+                className={clsx('button', styles.buttonFiddle)}
+              >
+                Download (.rpm, arm7l)
+              </a>
+            </div>
+          </React.Fragment>
+        );
+    }
+  };
+
   return (
     <Layout title="Electron Fiddle">
       <header className={styles.header}>
@@ -17,14 +112,7 @@ export default function FiddlePage() {
           The <em className={styles.heroEmphasis}>easiest</em> way to get
           started with Electron
         </h1>
-        <div className="button-group">
-          <button className={clsx('button', styles.buttonFiddle)}>
-            Download (macOS, Intel x64)
-          </button>
-          <button className={clsx('button', styles.buttonFiddle)}>
-            Download (macOS, Apple Silicon)
-          </button>
-        </div>
+        {renderDownloadButtons()}
         <sub className={styles.otherDownloadsLink}>
           Wrong operating system? See <a href="#downloads">other downloads</a>.
         </sub>

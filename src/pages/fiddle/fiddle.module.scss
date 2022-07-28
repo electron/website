@@ -19,6 +19,7 @@
 }
 
 .header {
+  --ifm-button-size-multiplier: 0.8;
   background: var(--electron-color-dark);
   display: flex;
   flex-direction: column;

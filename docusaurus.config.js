@@ -174,6 +174,7 @@ module.exports = {
   plugins: [
     'docusaurus-plugin-sass',
     path.resolve(__dirname, './src/plugins/releases'),
+    path.resolve(__dirname, './src/plugins/fiddle'),
   ],
   presets: [
     [
