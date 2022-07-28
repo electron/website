@@ -1,0 +1,41 @@
+.tagline {
+  font-size: 3rem;
+  text-align: center;
+  max-width: 40rem;
+  margin: 0 auto;
+  color: var(--ifm-color-white);
+  font-weight: bolder;
+  margin-bottom: 2rem;
+}
+
+.header {
+  background: var(--electron-color-dark);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  padding: 2rem;
+  margin-bottom: 10rem;
+}
+
+.fiddleHeroScreenshot {
+  margin-top: 2rem;
+  margin-bottom: -10rem;
+  max-width: min(800px, 95vw);
+}
+
+.heroEmphasis {
+  background: linear-gradient(
+    45deg,
+    #ffb662 10.42%,
+    #ff7a00 70.83%,
+    #ff7a00 90.1%,
+    #ff7a00 90.11%
+  );
+  font-style: normal;
+  font-weight: bold;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
