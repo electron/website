@@ -13,12 +13,30 @@ import { usePluginData } from '@docusaurus/useGlobalData';
 export default function FiddlePage() {
   const [OS, setOS] = useState('win32');
   const version = usePluginData('fiddle-versions-plugin');
-  console.log(version);
   useEffect(() => {
     if (navigator.userAgent.indexOf('Windows') != -1) return setOS('win32');
     if (navigator.userAgent.indexOf('Mac') != -1) return setOS('darwin');
     if (navigator.userAgent.indexOf('Linux') != -1) return setOS('linux');
   }, []);
+
+  const downloadLinks = {
+    win32: {
+      ia32: `https://github.com/electron/fiddle/releases/download/${version.raw}/electron-fiddle-${version.version}-win32-ia32-setup.exe`,
+      x64: `https://github.com/electron/fiddle/releases/download/${version.raw}/electron-fiddle-${version.version}-win32-x64-setup.exe`,
+    },
+    darwin: {
+      x64: `https://github.com/electron/fiddle/releases/download/${version.raw}/Electron.Fiddle-darwin-x64-${version.version}.zip`,
+      arm64: `https://github.com/electron/fiddle/releases/download/${version.raw}/Electron.Fiddle-darwin-arm64-${version.version}.zip`,
+    },
+    linux: {
+      debx64: `https://github.com/electron/fiddle/releases/download/${version.raw}/electron-fiddle_${version.version}_amd64.deb`,
+      debarm64: `https://github.com/electron/fiddle/releases/download/${version.raw}/electron-fiddle_${version.version}_arm64.deb`,
+      debarm7l: `https://github.com/electron/fiddle/releases/download/${version.raw}/electron-fiddle_${version.version}_armhf.deb`,
+      rpmx64: `https://github.com/electron/fiddle/releases/download/${version.raw}/electron-fiddle-${version.version}-1.x86_64.rpm`,
+      rpmarm64: `https://github.com/electron/fiddle/releases/download/${version.raw}/electron-fiddle-${version.version}-1.arm64.rpm`,
+      rpmarm7l: `https://github.com/electron/fiddle/releases/download/${version.raw}/electron-fiddle-${version.version}-1.armv7hl.rpm`,
+    },
+  };
 
   const renderDownloadButtons = () => {
     switch (OS) {
@@ -26,13 +44,13 @@ export default function FiddlePage() {
         return (
           <div className="button-group">
             <a
-              href={`https://github.com/electron/fiddle/releases/download/${version.raw}/electron-fiddle-${version.version}-win32-ia32-setup.exe`}
+              href={downloadLinks.win32.ia32}
               className={clsx('button', styles.buttonFiddle)}
             >
               Download (Windows, 32-bit)
             </a>
             <a
-              href={`https://github.com/electron/fiddle/releases/download/${version.raw}/electron-fiddle-${version.version}-win32-x64-setup.exe`}
+              href={downloadLinks.win32.x64}
               className={clsx('button', styles.buttonFiddle)}
             >
               Download (Windows, 64-bit)
@@ -43,13 +61,13 @@ export default function FiddlePage() {
         return (
           <div className="button-group">
             <a
-              href={`https://github.com/electron/fiddle/releases/download/${version.raw}/Electron.Fiddle-darwin-x64-${version.version}.zip`}
+              href={downloadLinks.darwin.x64}
               className={clsx('button', styles.buttonFiddle)}
             >
               Download (macOS, Intel x64)
             </a>
             <a
-              href={`https://github.com/electron/fiddle/releases/download/${version.raw}/Electron.Fiddle-darwin-arm64-${version.version}.zip`}
+              href={downloadLinks.darwin.arm64}
               className={clsx('button', styles.buttonFiddle)}
             >
               Download (macOS, Apple Silicon)
@@ -59,41 +77,41 @@ export default function FiddlePage() {
       case 'linux':
         return (
           <React.Fragment>
-            <div className="button-group margin-bottom--md">
+            <div className="button-group button--sm margin-bottom--md">
               <a
-                href={`https://github.com/electron/fiddle/releases/download/${version.raw}/electron-fiddle_${version.version}_amd64.deb`}
+                href={downloadLinks.linux.debx64}
                 className={clsx('button', styles.buttonFiddle)}
               >
                 Download (.deb, x64)
               </a>
               <a
-                href={`https://github.com/electron/fiddle/releases/download/${version.raw}/electron-fiddle_${version.version}_arm64.deb`}
+                href={downloadLinks.linux.debarm64}
                 className={clsx('button', styles.buttonFiddle)}
               >
                 Download (.deb, arm64)
               </a>
               <a
-                href={`https://github.com/electron/fiddle/releases/download/${version.raw}/electron-fiddle_${version.version}_armhf.deb`}
+                href={downloadLinks.linux.debarm7l}
                 className={clsx('button', styles.buttonFiddle)}
               >
                 Download (.deb, arm7l)
               </a>
             </div>
-            <div className="button-group">
+            <div className="button-group button--sm">
               <a
-                href={`https://github.com/electron/fiddle/releases/download/${version.raw}/electron-fiddle-${version.version}-1.x86_64.rpm`}
+                href={downloadLinks.linux.rpmx64}
                 className={clsx('button', styles.buttonFiddle)}
               >
                 Download (.rpm, x64)
               </a>
               <a
-                href={`https://github.com/electron/fiddle/releases/download/${version.raw}/electron-fiddle-${version.version}-1.arm64.rpm`}
+                href={downloadLinks.linux.rpmarm64}
                 className={clsx('button', styles.buttonFiddle)}
               >
                 Download (.rpm, arm64)
               </a>
               <a
-                href={`https://github.com/electron/fiddle/releases/download/${version.raw}/electron-fiddle-${version.version}-1.armv7hl.rpm`}
+                href={downloadLinks.linux.rpmarm7l}
                 className={clsx('button', styles.buttonFiddle)}
               >
                 Download (.rpm, arm7l)
@@ -251,12 +269,18 @@ export default function FiddlePage() {
                 <div>
                   Installer{' '}
                   <div className="button-group">
-                    <button className={clsx('button', styles.buttonFiddle)}>
+                    <a
+                      href={downloadLinks.win32.x64}
+                      className={clsx('button', styles.buttonFiddle)}
+                    >
                       x64
-                    </button>
-                    <button className={clsx('button', styles.buttonFiddle)}>
+                    </a>
+                    <a
+                      href={downloadLinks.win32.ia32}
+                      className={clsx('button', styles.buttonFiddle)}
+                    >
                       ia32
-                    </button>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -278,12 +302,18 @@ export default function FiddlePage() {
                 <div>
                   <code>.zip</code>{' '}
                   <div className="button-group">
-                    <button className={clsx('button', styles.buttonFiddle)}>
+                    <a
+                      href={downloadLinks.darwin.x64}
+                      className={clsx('button', styles.buttonFiddle)}
+                    >
                       Intel x64
-                    </button>
-                    <button className={clsx('button', styles.buttonFiddle)}>
+                    </a>
+                    <a
+                      href={downloadLinks.darwin.arm64}
+                      className={clsx('button', styles.buttonFiddle)}
+                    >
                       Apple Silicon
-                    </button>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -305,29 +335,47 @@ export default function FiddlePage() {
                 <div>
                   <code>.rpm</code>{' '}
                   <div className="button-group">
-                    <button className={clsx('button', styles.buttonFiddle)}>
+                    <a
+                      href={downloadLinks.linux.rpmx64}
+                      className={clsx('button', styles.buttonFiddle)}
+                    >
                       x64
-                    </button>
-                    <button className={clsx('button', styles.buttonFiddle)}>
+                    </a>
+                    <a
+                      href={downloadLinks.linux.rpmarm64}
+                      className={clsx('button', styles.buttonFiddle)}
+                    >
                       arm64
-                    </button>
-                    <button className={clsx('button', styles.buttonFiddle)}>
+                    </a>
+                    <a
+                      href={downloadLinks.linux.rpmarm7l}
+                      className={clsx('button', styles.buttonFiddle)}
+                    >
                       armv7
-                    </button>
+                    </a>
                   </div>
                 </div>
                 <div>
                   <code>.deb</code>{' '}
                   <div className="button-group">
-                    <button className={clsx('button', styles.buttonFiddle)}>
+                    <a
+                      href={downloadLinks.linux.debx64}
+                      className={clsx('button', styles.buttonFiddle)}
+                    >
                       x64
-                    </button>
-                    <button className={clsx('button', styles.buttonFiddle)}>
+                    </a>
+                    <a
+                      href={downloadLinks.linux.debarm64}
+                      className={clsx('button', styles.buttonFiddle)}
+                    >
                       arm64
-                    </button>
-                    <button className={clsx('button', styles.buttonFiddle)}>
+                    </a>
+                    <a
+                      href={downloadLinks.linux.debarm7l}
+                      className={clsx('button', styles.buttonFiddle)}
+                    >
                       armv7
-                    </button>
+                    </a>
                   </div>
                 </div>
               </div>
