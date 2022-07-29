@@ -252,7 +252,7 @@ export default function FiddlePage() {
         <section id="downloads" className={styles.downloadsContainer}>
           <h2>Downloads</h2>
           <div className={styles.downloadsCardsContainer}>
-            <div className={clsx('card', styles.downloadsCard)}>
+            <div className={clsx('card', 'shadow--md', styles.downloadsCard)}>
               <div className="card__header">
                 <h3>Windows</h3>
               </div>
@@ -285,7 +285,7 @@ export default function FiddlePage() {
                 </div>
               </div>
             </div>
-            <div className={clsx('card', styles.downloadsCard)}>
+            <div className={clsx('card', 'shadow--md', styles.downloadsCard)}>
               <div className="card__header">
                 <h3>macOS</h3>
               </div>
@@ -318,7 +318,7 @@ export default function FiddlePage() {
                 </div>
               </div>
             </div>
-            <div className={clsx('card', styles.downloadsCard)}>
+            <div className={clsx('card', 'shadow--md', styles.downloadsCard)}>
               <div className="card__header">
                 <h3>Linux</h3>
               </div>
