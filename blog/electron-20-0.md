@@ -1,6 +1,6 @@
 ---
 title: Electron 20.0.0
-date: 2022-08-02:00:00.000Z
+date: 2022-08-02T00:00:00.000Z
 authors:
     - name: ckerr
       url: 'https://github.com/ckerr'
