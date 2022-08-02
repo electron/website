@@ -49,6 +49,14 @@ Previously, renderers that specified a preload script defaulted to being unsandb
 
 If your preload scripts do not depend on Node, no action is needed. If your preload scripts do depend on Node, either refactor them to remove Node usage from the renderer, or explicitly specify `sandbox: false` for the relevant renderers.
 
+### Fixed: spontaneous crashing in nan native modules
+
+In Electron 20, we changed two items related to native modules:
+1. V8 headers now use `c++17` by default. This flag was added to electron-rebuild.
+1. We fixed an issue where a missing include would cause spontaneous crashing in native modules that depended on nan.
+
+For the most stability, we recommend using node-gyp >=8.4.0 and electron-rebuild >=3.2.9 when rebuilding native modules, particularly modules that depend on nan. See electron [#35160](https://github.com/electron/electron/pull/35160) and node-gyp [#2497](https://github.com/nodejs/node-gyp/pull/2497) for more information.
+
 ### Removed: `.skipTaskbar` on Linux
 
 On X11, `skipTaskbar` sends a `_NET_WM_STATE_SKIP_TASKBAR` message to the X11 window manager. There is not a direct equivalent for Wayland, and the known workarounds have unacceptable tradeoffs (e.g. Window.is_skip_taskbar in GNOME requires unsafe mode), so Electron is unable to support this feature on Linux.
