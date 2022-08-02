@@ -110,7 +110,7 @@
   background-position: 100% 0;
   font-weight: bold;
 
-  transition: 0.2s all ease-in;
+  transition: 0.2s background-position ease-in;
 
   &:hover {
     background-position: 0 0;
@@ -123,5 +123,29 @@
 
   a {
     color: var(--electron-color-light);
+  }
+}
+
+// Like infima's default .button-group class,
+// but instead removes the grouping for super narrow viewports.
+.responsiveButtonGroup {
+  display: flex;
+
+  @media (min-width: 501px) {
+    gap: var(--ifm-button-group-spacing);
+    & > :global(.button):not(:last-child) {
+      border-bottom-right-radius: 0;
+      border-top-right-radius: 0;
+    }
+
+    & > :global(.button):not(:first-child) {
+      border-bottom-left-radius: 0;
+      border-top-left-radius: 0;
+    }
+  }
+
+  @media (max-width: 500px) {
+    flex-direction: column;
+    gap: 1rem;
   }
 }

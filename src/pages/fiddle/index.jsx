@@ -42,7 +42,7 @@ export default function FiddlePage() {
     switch (OS) {
       case 'win32':
         return (
-          <div className="button-group">
+          <div className={styles.responsiveButtonGroup}>
             <a
               href={downloadLinks.win32.ia32}
               className={clsx('button', styles.buttonFiddle)}
@@ -59,16 +59,16 @@ export default function FiddlePage() {
         );
       case 'darwin':
         return (
-          <div className="button-group">
+          <div className={styles.responsiveButtonGroup}>
             <a
               href={downloadLinks.darwin.x64}
-              className={clsx('button', styles.buttonFiddle)}
+              className={clsx('button button--block', styles.buttonFiddle)}
             >
               Download (macOS, Intel x64)
             </a>
             <a
               href={downloadLinks.darwin.arm64}
-              className={clsx('button', styles.buttonFiddle)}
+              className={clsx('button button--block', styles.buttonFiddle)}
             >
               Download (macOS, Apple Silicon)
             </a>
@@ -77,7 +77,12 @@ export default function FiddlePage() {
       case 'linux':
         return (
           <React.Fragment>
-            <div className="button-group button--sm margin-bottom--md">
+            <div
+              className={clsx(
+                styles.responsiveButtonGroup,
+                'button--sm margin-bottom--md'
+              )}
+            >
               <a
                 href={downloadLinks.linux.debx64}
                 className={clsx('button', styles.buttonFiddle)}
@@ -97,7 +102,12 @@ export default function FiddlePage() {
                 Download (.deb, arm7l)
               </a>
             </div>
-            <div className="button-group button--sm">
+            <div
+              className={clsx(
+                styles.responsiveButtonGroup,
+                'button--sm margin-bottom--md'
+              )}
+            >
               <a
                 href={downloadLinks.linux.rpmx64}
                 className={clsx('button', styles.buttonFiddle)}
