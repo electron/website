@@ -159,7 +159,7 @@ export default function FiddlePage() {
           fiddle out by just entering the Gist URL in the address bar.
         </p>
         <div className={clsx('row', featureStyles.featureRow)}>
-          <div className="col col--6">
+          <div className="col col--6 margin-bottom--md">
             <h2>Explore Electron</h2>
             <p>
               Try Electron without installing any dependencies: Fiddle includes
@@ -169,7 +169,7 @@ export default function FiddlePage() {
               <code>desktopCapturer</code> works, Fiddle has got you covered.
             </p>
           </div>
-          <div className="col col--6">
+          <div className="col col--6 margin-bottom--md">
             <div className={featureStyles.featureImageContainer}>
               <img
                 className={featureStyles.featureImage}
@@ -179,7 +179,7 @@ export default function FiddlePage() {
           </div>
         </div>
         <div className={clsx('row', featureStyles.featureRow)}>
-          <div className="col col--6">
+          <div className="col col--6 margin-bottom--md">
             <h2>Use npm packages</h2>
             <p>
               If your experiment depends on third-party modules, you can search
@@ -188,7 +188,7 @@ export default function FiddlePage() {
               <a href="https://www.algolia.com/">Algolia</a>.
             </p>
           </div>
-          <div className="col col--6">
+          <div className="col col--6 margin-bottom--md">
             <div className={featureStyles.featureImageContainer}>
               <img
                 className={featureStyles.featureImage}
@@ -198,7 +198,7 @@ export default function FiddlePage() {
           </div>
         </div>
         <div className={clsx('row', featureStyles.featureRow)}>
-          <div className="col col--6">
+          <div className="col col--6 margin-bottom--md">
             <h2>Code with types</h2>
             <p>
               Fiddle is built on Microsoft&apos;s excellent{' '}
@@ -211,7 +211,7 @@ export default function FiddlePage() {
               only a few keystrokes away.
             </p>
           </div>
-          <div className="col col--6">
+          <div className="col col--6 margin-bottom--md">
             <div className={featureStyles.featureImageContainer}>
               <img
                 className={featureStyles.featureImage}
@@ -221,7 +221,7 @@ export default function FiddlePage() {
           </div>
         </div>
         <div className={clsx('row', featureStyles.featureRow)}>
-          <div className="col col--6">
+          <div className="col col--6 margin-bottom--md">
             <h2>Compile and package</h2>
             <p>
               Fiddle can automatically turn your experiment into binaries you
@@ -231,7 +231,7 @@ export default function FiddlePage() {
               or Linux.
             </p>
           </div>
-          <div className="col col--6">
+          <div className="col col--6 margin-bottom--md">
             <div className={featureStyles.featureImageContainer}>
               <img
                 className={featureStyles.featureImage}
@@ -241,7 +241,7 @@ export default function FiddlePage() {
           </div>
         </div>
         <div className={clsx('row', featureStyles.featureRow)}>
-          <div className="col col--6">
+          <div className="col col--6 margin-bottom--md">
             <h2>Start with Fiddle, continue wherever</h2>
             <p>
               Fiddle is not an IDE. However, it is an excellent starting point.
@@ -250,7 +250,7 @@ export default function FiddlePage() {
               the world!
             </p>
           </div>
-          <div className="col col--6">
+          <div className="col col--6 margin-bottom--md">
             <div className={featureStyles.featureImageContainer}>
               <img
                 className={featureStyles.featureImage}

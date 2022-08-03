@@ -58,15 +58,6 @@
   }
 }
 
-.feature {
-  display: flex;
-  align-items: center;
-  &:nth-of-type(2n) {
-    flex-direction: row-reverse;
-  }
-  margin-bottom: 2rem;
-}
-
 .downloadsContainer {
   padding-top: 10rem;
   display: flex;
@@ -105,7 +96,14 @@
 
 .downloadOS {
   path {
-    fill: var(--electron-color-light);
+    fill: var(--electron-color-dark);
+  }
+}
+:root[data-theme=dark] {
+  .downloadOS {
+    path {
+      fill: var(--electron-color-light);
+    }
   }
 }
 
