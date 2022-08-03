@@ -260,9 +260,11 @@ Returns:
   * `device` [HIDDevice[]](latest/api/structures/hid-device.md)
   * `frame` [WebFrameMain](latest/api/web-frame-main.md)
 
-Emitted when a new HID device becomes available. For example, when a new USB device is plugged in.
-
-This event will only be emitted after `navigator.hid.requestDevice` has been called and `select-hid-device` has fired.
+Emitted after `navigator.hid.requestDevice` has been called and
+`select-hid-device` has fired if a new device becomes available before
+the callback from `select-hid-device` is called.  This event is intended for
+use when using a UI to ask users to pick a device so that the UI can be updated
+with the newly added device.
 
 #### Event: 'hid-device-removed'
 
@@ -273,9 +275,24 @@ Returns:
   * `device` [HIDDevice[]](latest/api/structures/hid-device.md)
   * `frame` [WebFrameMain](latest/api/web-frame-main.md)
 
-Emitted when a HID device has been removed.  For example, this event will fire when a USB device is unplugged.
+Emitted after `navigator.hid.requestDevice` has been called and
+`select-hid-device` has fired if a device has been removed before the callback
+from `select-hid-device` is called.  This event is intended for use when using
+a UI to ask users to pick a device so that the UI can be updated to remove the
+specified device.
 
-This event will only be emitted after `navigator.hid.requestDevice` has been called and `select-hid-device` has fired.
+#### Event: 'hid-device-revoked'
+
+Returns:
+
+* `event` Event
+* `details` Object
+  * `device` [HIDDevice[]](latest/api/structures/hid-device.md)
+  * `origin` string (optional) - The origin that the device has been revoked from.
+
+Emitted after `HIDDevice.forget()` has been called.  This event can be used
+to help maintain persistent storage of permissions when
+`setDevicePermissionHandler` is used.
 
 #### Event: 'select-serial-port'
 
@@ -355,7 +372,11 @@ Returns:
 * `port` [SerialPort](latest/api/structures/serial-port.md)
 * `webContents` [WebContents](latest/api/web-contents.md)
 
-Emitted after `navigator.serial.requestPort` has been called and `select-serial-port` has fired if a new serial port becomes available.  For example, this event will fire when a new USB device is plugged in.
+Emitted after `navigator.serial.requestPort` has been called and
+`select-serial-port` has fired if a new serial port becomes available before
+the callback from `select-serial-port` is called.  This event is intended for
+use when using a UI to ask users to pick a port so that the UI can be updated
+with the newly added port.
 
 #### Event: 'serial-port-removed'
 
@@ -365,7 +386,11 @@ Returns:
 * `port` [SerialPort](latest/api/structures/serial-port.md)
 * `webContents` [WebContents](latest/api/web-contents.md)
 
-Emitted after `navigator.serial.requestPort` has been called and `select-serial-port` has fired if a serial port has been removed.  For example, this event will fire when a USB device is unplugged.
+Emitted after `navigator.serial.requestPort` has been called and
+`select-serial-port` has fired if a serial port has been removed before the
+callback from `select-serial-port` is called.  This event is intended for use
+when using a UI to ask users to pick a port so that the UI can be updated
+to remove the specified port.
 
 ### Instance Methods
 
@@ -687,7 +712,6 @@ session.fromPartition('some-partition').setPermissionCheckHandler((webContents, 
     * `deviceType` string - The type of device that permission is being requested on, can be `hid` or `serial`.
     * `origin` string - The origin URL of the device permission check.
     * `device` [HIDDevice](latest/api/structures/hid-device.md) | [SerialPort](latest/api/structures/serial-port.md)- the device that permission is being requested for.
-    * `frame` [WebFrameMain](latest/api/web-frame-main.md) - WebFrameMain checking the device permission.
 
 Sets the handler which can be used to respond to device permission checks for the `session`.
 Returning `true` will allow the device to be permitted and `false` will reject it.
@@ -695,8 +719,8 @@ To clear the handler, call `setDevicePermissionHandler(null)`.
 This handler can be used to provide default permissioning to devices without first calling for permission
 to devices (eg via `navigator.hid.requestDevice`).  If this handler is not defined, the default device
 permissions as granted through device selection (eg via `navigator.hid.requestDevice`) will be used.
-Additionally, the default behavior of Electron is to store granted device permision through the lifetime
-of the corresponding WebContents.  If longer term storage is needed, a developer can store granted device
+Additionally, the default behavior of Electron is to store granted device permision in memory.
+If longer term storage is needed, a developer can store granted device
 permissions (eg when handling the `select-hid-device` event) and then read from that storage with `setDevicePermissionHandler`.
 
 ```javascript
