@@ -41,6 +41,13 @@ window manager. There is not a direct equivalent for Wayland, and the known
 workarounds have unacceptable tradeoffs (e.g. Window.is_skip_taskbar in GNOME
 requires unsafe mode), so Electron is unable to support this feature on Linux.
 
+### API Changed: `session.setDevicePermissionHandler(handler)`
+
+The handler invoked when `session.setDevicePermissionHandler(handler)` is used
+has a change to its arguments.  This handler no longer is passed a frame
+`[WebFrameMain](latest/api/web-frame-main.md)`, but instead is passed the `origin`, which
+is the origin that is checking for device permission.
+
 ## Planned Breaking API Changes (19.0)
 
 ### Removed: IA32 Linux binaries
@@ -382,7 +389,7 @@ value.
 In Electron 12, `contextIsolation` will be enabled by default.  To restore
 the previous behavior, `contextIsolation: false` must be specified in WebPreferences.
 
-We [recommend having contextIsolation enabled](latest/tutorial/security.md#3-enable-context-isolation-for-remote-content) for the security of your application.
+We [recommend having contextIsolation enabled](latest/tutorial/security.md#3-enable-context-isolation) for the security of your application.
 
 Another implication is that `require()` cannot be used in the renderer process unless
 `nodeIntegration` is `true` and `contextIsolation` is `false`.

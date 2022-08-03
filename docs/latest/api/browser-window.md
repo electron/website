@@ -11,6 +11,9 @@ hide_title: false
 
 Process: [Main](latest/glossary.md#main-process)
 
+This module cannot be used until the `ready` event of the `app`
+module is emitted.
+
 ```javascript
 // In the main process.
 const { BrowserWindow } = require('electron')
@@ -429,13 +432,17 @@ Possible values are:
 
 * On Linux, possible types are `desktop`, `dock`, `toolbar`, `splash`,
   `notification`.
-* On macOS, possible types are `desktop`, `textured`.
+* On macOS, possible types are `desktop`, `textured`, `panel`.
   * The `textured` type adds metal gradient appearance
-    (`NSTexturedBackgroundWindowMask`).
+    (`NSWindowStyleMaskTexturedBackground`).
   * The `desktop` type places the window at the desktop background window level
     (`kCGDesktopWindowLevel - 1`). Note that desktop window will not receive
     focus, keyboard or mouse events, but you can use `globalShortcut` to receive
     input sparingly.
+  * The `panel` type enables the window to float on top of full-screened apps
+    by adding the `NSWindowStyleMaskNonactivatingPanel` style mask,normally
+    reserved for NSPanel, at runtime. Also, the window will appear on all
+    spaces (desktops).
 * On Windows, possible type is `toolbar`.
 
 ### Instance Events
@@ -1323,7 +1330,7 @@ win.setSheetOffset(toolbarRect.height)
 
 Starts or stops flashing the window to attract user's attention.
 
-#### `win.setSkipTaskbar(skip)`
+#### `win.setSkipTaskbar(skip)` _macOS_ _Windows_
 
 * `skip` boolean
 
