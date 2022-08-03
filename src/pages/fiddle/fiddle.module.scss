@@ -51,6 +51,11 @@
   max-width: 60rem;
   padding: 0 4rem 4rem;
   margin: 0 auto;
+
+  @media (max-width: 768px) {
+    padding: 0 0 4rem;
+    text-align: left;
+  }
 }
 
 .feature {
@@ -100,7 +105,7 @@
 
 .downloadOS {
   path {
-    fill: var(--ifm-color-primary);
+    fill: var(--electron-color-light);
   }
 }
 
