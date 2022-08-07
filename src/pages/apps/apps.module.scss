@@ -1,0 +1,33 @@
+.title {
+  text-align: center;
+  font-size: 4rem;
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 1rem;
+}
+
+.filters {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.appCardContainer {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  column-gap: 2rem;
+  row-gap: 2rem;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.favsContainer {
+  background: var(--electron-color-light);
+}

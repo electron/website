@@ -172,7 +172,9 @@ module.exports = {
   },
   plugins: [
     'docusaurus-plugin-sass',
+    path.resolve(__dirname, './src/plugins/apps'),
     path.resolve(__dirname, './src/plugins/releases'),
+    ['@docusaurus/plugin-ideal-image', {}],
   ],
   presets: [
     [

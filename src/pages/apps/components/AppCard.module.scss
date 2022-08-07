@@ -1,0 +1,54 @@
+.appDescription {
+  font-size: 0.8rem;
+  white-space: pre-wrap;
+}
+
+.appCategory {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  font-family: 'Monaco', 'Consolas', monospace;
+  margin-bottom: 0;
+  color: grey;
+}
+
+.appName {
+  font-weight: 700;
+  font-size: 1.1rem;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.appLogoContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 0;
+  border-top-left-radius: var(--ifm-card-border-radius);
+  border-top-right-radius: var(--ifm-card-border-radius);
+}
+
+.appLogo {
+  width: auto;
+  height: 96px;
+}
+
+.appCard {
+  position: relative;
+  overflow: visible;
+  &.appCardFav::before {
+    content: '❤️';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(5px);
+    border-radius: 100%;
+    position: absolute;
+    top: -0.5rem;
+    left: -0.5rem;
+    border: 1px whitesmoke solid;
+    box-shadow: var(--shadow-elevation-high);
+  }
+}
