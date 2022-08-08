@@ -27,7 +27,11 @@ export default function AppsPage() {
       <li
         className={clsx(
           'pills__item',
-          activeFilter === category && 'pills__item--active'
+          styles.filter,
+          activeFilter === category && [
+            'pills__item--active',
+            styles.filterActive,
+          ]
         )}
         onClick={() => setActiveFilter(category)}
       >
@@ -41,15 +45,19 @@ export default function AppsPage() {
       <main className="container margin-vert--xl">
         <h1 className={styles.title}>Showcase</h1>
         <p className={styles.subtitle}>
-          Discover <strong>hundreds</strong> of production applications built
+          Discover <strong>hundreds of production applications</strong> built
           with Electron.
         </p>
         <div className={styles.filters}>
-          <ul className="pills">
+          <ul className={clsx('pills', styles.filtersList)}>
             <li
               className={clsx(
                 'pills__item',
-                activeFilter === null && 'pills__item--active'
+                styles.filter,
+                activeFilter === null && [
+                  'pills__item--active',
+                  styles.filterActive,
+                ]
               )}
               onClick={() => setActiveFilter(null)}
             >
@@ -58,27 +66,30 @@ export default function AppsPage() {
             {filters.map((cat) => renderFilter(cat))}
           </ul>
         </div>
-        <h2>Favorites ❤️</h2>
-        <div className={clsx(styles.appCardContainer, 'margin-bottom--xl')}>
-          {favs
-            .filter((app) => !activeFilter || app.category === activeFilter)
-            .map((app) => {
-              return (
-                <AppCard
-                  key={app.slug}
-                  name={app.name}
-                  description={app.description}
-                  category={app.category}
-                  highlightColor={app.goodColorOnWhite}
-                  logo={`https://raw.githubusercontent.com/electron/apps/master/apps/${app.slug}/${app.slug}-icon.png`}
-                  isFavorite={true}
-                  website={app.website}
-                  repository={app.repository}
-                />
-              );
-            })}
+        <div className={clsx(styles.favsContainer, 'margin-bottom--xl')}>
+          <h2 className={styles.sectionHeader}>Favorites ❤️</h2>
+          <div className={clsx(styles.appCardContainer)}>
+            {favs
+              .filter((app) => !activeFilter || app.category === activeFilter)
+              .map((app) => {
+                return (
+                  <AppCard
+                    key={app.slug}
+                    name={app.name}
+                    description={app.description}
+                    category={app.category}
+                    highlightColor={app.goodColorOnWhite}
+                    logo={`https://raw.githubusercontent.com/electron/apps/master/apps/${app.slug}/${app.slug}-icon.png`}
+                    isFavorite={true}
+                    website={app.website}
+                    repository={app.repository}
+                  />
+                );
+              })}
+          </div>
         </div>
-        <h2>All apps</h2>
+
+        <h2 className={styles.sectionHeader}>All apps</h2>
         <div className={clsx(styles.appCardContainer, 'margin-bottom--xl')}>
           {apps
             .filter((app) => !activeFilter || app.category === activeFilter)

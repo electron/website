@@ -14,9 +14,22 @@
   justify-content: center;
 }
 
+.filtersList {
+  flex-wrap: wrap;
+}
+
+.filter {
+  font-weight: 400;
+  font-size: small;
+}
+
+.filterActive {
+  font-weight: 700;
+}
+
 .appCardContainer {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   column-gap: 2rem;
   row-gap: 2rem;
 
@@ -29,5 +42,7 @@
   }
 }
 .favsContainer {
-  background: var(--electron-color-light);
+  border: 1px solid grey;
+  border-radius: 20px;
+  padding: 40px;
 }
