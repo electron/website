@@ -66,7 +66,13 @@ export default function AppsPage() {
             {filters.map((cat) => renderFilter(cat))}
           </ul>
         </div>
-        <div className={clsx(styles.favsContainer, 'margin-bottom--xl')}>
+        <div
+          className={clsx(
+            styles.favsContainer,
+            'shadow--tl',
+            'margin-bottom--xl'
+          )}
+        >
           <h2 className={styles.sectionHeader}>Favorites ❤️</h2>
           <div className={clsx(styles.appCardContainer)}>
             {favs
