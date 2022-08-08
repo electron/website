@@ -265,10 +265,7 @@ export default function Home() {
                     Fiddle out by just entering it in the address bar.
                   </p>
                   <div className="button-group">
-                    <Link
-                      to="https://electronjs.org/fiddle"
-                      className="button button--electron"
-                    >
+                    <Link to="/fiddle" className="button button--electron">
                       Download
                     </Link>
                     <Link
