@@ -38,19 +38,21 @@ export default function AppCard({
             <a
               style={{ background: highlightColor, color: 'white' }}
               className="button button--secondary button--sm"
+              href={website}
             >
               Website
             </a>
           )}
           {repository && (
-            <button
+            <a
               style={
                 !website ? { background: highlightColor, color: 'white' } : {}
               }
               className="button button--secondary button--sm"
+              href={repository}
             >
               Repo
-            </button>
+            </a>
           )}
         </div>
       </div>
