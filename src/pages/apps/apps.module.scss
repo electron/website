@@ -42,7 +42,8 @@
   }
 }
 .favsContainer {
-  border: 1px solid grey;
-  border-radius: 20px;
   padding: 40px;
+  margin: 0 -40px;
+  border: 1px solid rgba(200, 200, 200, 0.3);
+  border-radius: var(--ifm-card-border-radius);
 }

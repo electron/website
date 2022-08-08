@@ -42,6 +42,7 @@
     justify-content: center;
     width: 2rem;
     height: 2rem;
+    background: white;
     background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(5px);
     border-radius: 100%;
@@ -50,5 +51,11 @@
     left: -0.5rem;
     border: 1px whitesmoke solid;
     box-shadow: var(--shadow-elevation-high);
+
+    [data-theme='dark'] & {
+      background: black;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(200, 200, 200, 0.3)
+    }
   }
 }
