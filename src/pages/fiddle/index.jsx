@@ -226,7 +226,8 @@ export default function FiddlePage() {
             <p>
               Fiddle can automatically turn your experiment into binaries you
               can share with your friends, coworkers, or grandparents. It does
-              so thanks to <a href="electronforge.io">Electron Forge</a>,
+              so thanks to{' '}
+              <a href="https://www.electronforge.io/">Electron Forge</a>,
               allowing you to package your fiddle as an app for Windows, macOS,
               or Linux.
             </p>
