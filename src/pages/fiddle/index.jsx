@@ -365,7 +365,7 @@ export default function FiddlePage() {
                     </a>
                   </div>
                 </div>
-                <div>
+                <div className="margin-top--xs">
                   <code>.deb</code>{' '}
                   <div className="button-group">
                     <a
