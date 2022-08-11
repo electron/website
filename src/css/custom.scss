@@ -133,6 +133,10 @@
   &--dark {
     --ifm-footer-background-color: --var(--electron-color-dark);
   }
+
+  .footer__logo {
+    max-width: 200px;
+  }
 }
 
 .markdown {
