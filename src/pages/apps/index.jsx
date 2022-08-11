@@ -31,6 +31,7 @@ export default function AppsPage() {
   const renderFilter = (category) => {
     return (
       <li
+        key={category}
         className={clsx(
           'pills__item',
           styles.filter,
@@ -94,7 +95,7 @@ export default function AppsPage() {
                     description={app.description}
                     category={app.category}
                     highlightColor={app.goodColorOnWhite}
-                    logo={`https://raw.githubusercontent.com/electron/apps/master/apps/${app.slug}/${app.slug}-icon.png`}
+                    logo={`https://raw.githubusercontent.com/erickzhao/apps/master/apps/${app.slug}/${app.slug}-icon.png`}
                     isFavorite={true}
                     website={app.website}
                     repository={app.repository}
@@ -117,7 +118,7 @@ export default function AppsPage() {
                   description={app.description}
                   category={app.category}
                   highlightColor={app.goodColorOnWhite}
-                  logo={`https://raw.githubusercontent.com/electron/apps/master/apps/${app.slug}/${app.slug}-icon.png`}
+                  logo={`https://raw.githubusercontent.com/erickzhao/apps/master/apps/${app.slug}/${app.slug}-icon.png`}
                   isFavorite={app.isFavorite}
                   website={app.website}
                   repository={app.repository}
