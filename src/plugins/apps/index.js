@@ -1,7 +1,9 @@
 const fetch = require('node-fetch');
 
 module.exports = async function appsPlugin() {
-  const response = await fetch('https://raw.githubusercontent.com/erickzhao/apps/master/index.json');
+  const response = await fetch(
+    'https://raw.githubusercontent.com/erickzhao/apps/master/index.json'
+  );
   const apps = await response.json();
   return {
     name: 'apps-plugin',
