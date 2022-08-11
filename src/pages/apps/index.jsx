@@ -8,14 +8,20 @@ import { usePluginData } from '@docusaurus/useGlobalData';
 import { useState } from 'react';
 
 const filters = [
-  'Developer Tools',
-  'Productivity',
-  'Social Networking',
+  'Books',
   'Business',
-  'Music',
+  'Developer Tools',
+  'Entertainment',
+  'Finance',
   'Games',
-  'Education',
   'Graphics & Design',
+  'Music',
+  'News',
+  'Photo & Video',
+  'Productivity',
+  'Science & Medicine',
+  'Social Networking',
+  'Utilities',
 ];
 
 export default function AppsPage() {
@@ -39,6 +45,10 @@ export default function AppsPage() {
       </li>
     );
   };
+
+  const currentFavs = favs.filter(
+    (app) => !activeFilter || app.category === activeFilter
+  );
 
   return (
     <Layout title="App Showcase">
@@ -66,18 +76,17 @@ export default function AppsPage() {
             {filters.map((cat) => renderFilter(cat))}
           </ul>
         </div>
-        <div
-          className={clsx(
-            styles.favsContainer,
-            'shadow--tl',
-            'margin-bottom--xl'
-          )}
-        >
-          <h2 className={styles.sectionHeader}>Favorites ❤️</h2>
-          <div className={clsx(styles.appCardContainer)}>
-            {favs
-              .filter((app) => !activeFilter || app.category === activeFilter)
-              .map((app) => {
+        {currentFavs.length > 0 && (
+          <div
+            className={clsx(
+              styles.favsContainer,
+              'shadow--tl',
+              'margin-bottom--xl'
+            )}
+          >
+            <h2 className={styles.sectionHeader}>Favorites ❤️</h2>
+            <div className={clsx(styles.appCardContainer)}>
+              {currentFavs.map((app) => {
                 return (
                   <AppCard
                     key={app.slug}
@@ -92,8 +101,9 @@ export default function AppsPage() {
                   />
                 );
               })}
+            </div>
           </div>
-        </div>
+        )}
 
         <h2 className={styles.sectionHeader}>All apps</h2>
         <div className={clsx(styles.appCardContainer, 'margin-bottom--xl')}>
