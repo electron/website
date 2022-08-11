@@ -35,11 +35,7 @@ export default function AppCard({
       <div className="card__footer">
         <div className="button-group button-group--block">
           {website && (
-            <a
-              style={{ background: highlightColor, color: 'white' }}
-              className="button button--secondary button--sm"
-              href={website}
-            >
+            <a className="button button--secondary button--sm" href={website}>
               Website
             </a>
           )}
