@@ -1,6 +1,7 @@
 const fetch = require('node-fetch');
 
 module.exports = async function appsPlugin() {
+  // TODO: actually use the electron/apps repo as a data source
   const response = await fetch(
     'https://raw.githubusercontent.com/erickzhao/apps/master/index.json'
   );
