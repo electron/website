@@ -177,6 +177,7 @@ module.exports = {
     path.resolve(__dirname, './src/plugins/apps'),
     path.resolve(__dirname, './src/plugins/releases'),
     path.resolve(__dirname, './src/plugins/fiddle'),
+    ['@docusaurus/plugin-ideal-image', {}],
   ],
   presets: [
     [
