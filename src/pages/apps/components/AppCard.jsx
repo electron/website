@@ -21,11 +21,13 @@ export default function AppCard({
         isFavorite && styles.appCardFav
       )}
     >
-      <div
-        className={styles.appLogoContainer}
-        style={{ background: highlightColor }}
-      >
-        <img className={styles.appLogo} src={logo} alt="" />
+      <div className={styles.forceLight}>
+        <div
+          className={styles.appLogoContainer}
+          style={{ background: highlightColor }}
+        >
+          <img className={styles.appLogo} src={logo} alt="" />
+        </div>
       </div>
       <div className="card__body">
         <p className={styles.appCategory}>{category}</p>
@@ -41,9 +43,6 @@ export default function AppCard({
           )}
           {repository && (
             <a
-              style={
-                !website ? { background: highlightColor, color: 'white' } : {}
-              }
               className="button button--secondary button--sm"
               href={repository}
             >

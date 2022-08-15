@@ -55,7 +55,14 @@
     [data-theme='dark'] & {
       background: black;
       background: rgba(0, 0, 0, 0.3);
-      border: 1px solid rgba(200, 200, 200, 0.3)
+      border: 1px solid rgba(200, 200, 200, 0.3);
     }
   }
+}
+
+.forceLight {
+  background: rgba(255, 255, 255, 0.5);
+  border-top-left-radius: var(--ifm-card-border-radius);
+  border-top-right-radius: var(--ifm-card-border-radius);
+
 }

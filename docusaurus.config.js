@@ -72,7 +72,7 @@ module.exports = {
         },
         { to: 'blog', label: 'Blog', position: 'left' },
         { to: 'fiddle', label: 'Fiddle', position: 'left' },
-        { to: 'apps', label: 'Apps', position: 'left' },
+        { to: 'apps', label: 'Showcase', position: 'left' },
         { to: 'community', label: 'Community', position: 'left' },
         {
           href: 'https://releases.electronjs.org',
