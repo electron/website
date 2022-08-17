@@ -1,4 +1,5 @@
-const fetch = require('node-fetch');
+//@ts-check
+const { default: fetch } = require('node-fetch');
 
 module.exports = async function appsPlugin() {
   // TODO: actually use the electron/apps repo as a data source
@@ -35,17 +36,28 @@ module.exports = async function appsPlugin() {
         'wordpress',
       ]);
 
+      const appsWithExtraMetadata = apps.map((app) => ({
+        ...app,
+        isFavorite: FAVS.has(app.slug),
+      }));
+
       return {
-        apps: apps.map((app) => ({
-          ...app,
-          isFavorite: FAVS.has(app.slug),
-        })),
-        favs: apps.filter((app) => FAVS.has(app.slug)),
+        apps: appsWithExtraMetadata,
+        categories: Object.fromEntries(
+          appsWithExtraMetadata.reduce((map, app) => {
+            if (map.has(app.category)) {
+              const list = map.get(app.category);
+              list.push(app);
+            } else {
+              map.set(app.category, [app]);
+            }
+            return map;
+          }, new Map())
+        ),
       };
     },
     async contentLoaded({ content, actions }) {
       const { setGlobalData } = actions;
-      // Create friends global data
       setGlobalData(content);
     },
   };

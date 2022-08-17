@@ -21,6 +21,15 @@
 .filter {
   font-weight: 400;
   font-size: small;
+  display: flex;
+  align-items: center;
+  user-select: none;
+}
+
+.filterBadge {
+  margin-left: 0.2rem;
+  padding: 0.2rem 0.4rem;
+  font-size: 25%;
 }
 
 .filterActive {

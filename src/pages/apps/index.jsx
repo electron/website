@@ -7,49 +7,39 @@ import AppCard from './components/AppCard';
 import { usePluginData } from '@docusaurus/useGlobalData';
 import { useState } from 'react';
 
-const filters = [
-  'Books',
-  'Business',
-  'Developer Tools',
-  'Entertainment',
-  'Finance',
-  'Games',
-  'Graphics & Design',
-  'Music',
-  'News',
-  'Photo & Video',
-  'Productivity',
-  'Science & Medicine',
-  'Social Networking',
-  'Utilities',
-];
-
 export default function AppsPage() {
-  const [activeFilter, setActiveFilter] = useState(null);
-  const { apps, favs } = usePluginData('apps-plugin');
+  const [activeCategory, setActiveCategory] = useState(null);
+  const { apps, categories } = usePluginData('apps-plugin');
 
-  const renderFilter = (category) => {
+  const filters = Object.entries(categories);
+
+  const renderFilter = (filter) => {
+    const [name, entries] = filter;
     return (
       <li
-        key={category}
+        key={name}
         className={clsx(
           'pills__item',
           styles.filter,
-          activeFilter === category && [
-            'pills__item--active',
-            styles.filterActive,
-          ]
+          activeCategory &&
+            activeCategory[0] === name && [
+              'pills__item--active',
+              styles.filterActive,
+            ]
         )}
-        onClick={() => setActiveFilter(category)}
+        onClick={() => setActiveCategory(filter)}
       >
-        {category}
+        <span>{name}</span>
+        <span className={clsx('badge badge--secondary', styles.filterBadge)}>
+          {entries.length}
+        </span>
       </li>
     );
   };
 
-  const currentFavs = favs.filter(
-    (app) => !activeFilter || app.category === activeFilter
-  );
+  const currentFavs = activeCategory
+    ? activeCategory[1].filter((app) => app.isFavorite)
+    : apps.filter((app) => app.isFavorite);
 
   return (
     <Layout title="App Showcase">
@@ -59,22 +49,24 @@ export default function AppsPage() {
           Discover <strong>hundreds of production applications</strong> built
           with Electron.
         </p>
-        <div className={styles.filters}>
+        <div className={clsx('margin-vert--md', styles.filters)}>
           <ul className={clsx('pills', styles.filtersList)}>
             <li
               className={clsx(
                 'pills__item',
                 styles.filter,
-                activeFilter === null && [
+                activeCategory === null && [
                   'pills__item--active',
                   styles.filterActive,
                 ]
               )}
-              onClick={() => setActiveFilter(null)}
+              onClick={() => setActiveCategory(null)}
             >
               All
             </li>
-            {filters.map((cat) => renderFilter(cat))}
+            {filters
+              .sort((a, b) => b[1].length - a[1].length)
+              .map((cat) => renderFilter(cat))}
           </ul>
         </div>
         {currentFavs.length > 0 && (
@@ -105,11 +97,11 @@ export default function AppsPage() {
             </div>
           </div>
         )}
-
-        <h2 className={styles.sectionHeader}>All apps</h2>
         <div className={clsx(styles.appCardContainer, 'margin-bottom--xl')}>
           {apps
-            .filter((app) => !activeFilter || app.category === activeFilter)
+            .filter(
+              (app) => !activeCategory || app.category === activeCategory[0]
+            )
             .map((app) => {
               return (
                 <AppCard
