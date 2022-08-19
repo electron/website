@@ -20,12 +20,8 @@ export default function AppsPage() {
         key={name}
         className={clsx(
           'pills__item',
-          styles.filter,
-          activeCategory &&
-            activeCategory[0] === name && [
-              'pills__item--active',
-              styles.filterActive,
-            ]
+          styles.pillFilter,
+          activeCategory && activeCategory[0] === name && 'pills__item--active'
         )}
         onClick={() => setActiveCategory(filter)}
       >
@@ -46,10 +42,8 @@ export default function AppsPage() {
           'dropdown__link',
           styles.dropdownFilterItem,
           Array.isArray(activeCategory) &&
-            activeCategory[0] === name && [
-              'dropdown__link--active',
-              styles.filterActive,
-            ]
+            activeCategory[0] === name &&
+            'dropdown__link--active'
         )}
         style={{ display: 'flex', justifyContent: 'space-between' }}
         onClick={() => setActiveCategory(filter)}
@@ -74,16 +68,13 @@ export default function AppsPage() {
           Discover <strong>hundreds of production applications</strong> built
           with Electron.
         </p>
-        <div className={clsx('margin-vert--md', styles.filters)}>
-          <ul className={clsx('pills', styles.filtersList)}>
+        <div className={clsx('margin-vert--md', styles.pillFiltersContainer)}>
+          <ul className={clsx('pills', styles.pillFiltersList)}>
             <li
               className={clsx(
                 'pills__item',
-                styles.filter,
-                activeCategory === null && [
-                  'pills__item--active',
-                  styles.filterActive,
-                ]
+                styles.pillFilter,
+                activeCategory === null && 'pills__item--active'
               )}
               onClick={() => setActiveCategory(null)}
             >

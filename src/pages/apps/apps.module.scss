@@ -12,13 +12,13 @@
   font-size: 1rem;
 }
 
-.filters {
+.pillFiltersContainer {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.filtersList {
+.pillFiltersList {
   flex-wrap: wrap;
 
   @media (max-width: 769px) {
@@ -26,7 +26,7 @@
   }
 }
 
-.filter {
+.pillFilter {
   display: flex;
   align-items: center;
   user-select: none;
@@ -38,8 +38,21 @@
   font-size: 80%;
 }
 
-.filterActive {
-  font-weight: 700;
+.dropdownFilter {
+  width: 100%;
+  padding: 0;
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
+
+.dropdownFilterItem {
+  width: 100%;
+  cursor: pointer;
+}
+
+.dropdownMenu {
+  width: 100%;
 }
 
 .appCardContainer {
@@ -76,21 +89,4 @@
   @media (max-width: 1200px) {
     padding: 40px;
   }
-}
-
-.dropdownFilter {
-  width: 100%;
-  padding: 0;
-  @media (min-width: 768px) {
-    display: none;
-  }
-}
-
-.dropdownFilterItem {
-  width: 100%;
-  cursor: pointer;
-}
-
-.dropdownMenu {
-  width: 100%;
 }
