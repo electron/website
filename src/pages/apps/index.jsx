@@ -68,7 +68,7 @@ export default function AppsPage() {
           Discover <strong>hundreds of production applications</strong> built
           with Electron.
         </p>
-        <div className={clsx('margin-bottom--xl', styles.filtersContainer)}>
+        <div className={clsx('margin-bottom--md', styles.filtersContainer)}>
           <ul className={clsx('pills', 'container', styles.pillFiltersList)}>
             <li
               className={clsx(
@@ -115,7 +115,7 @@ export default function AppsPage() {
             className={clsx(
               styles.favsContainer,
               'container',
-              'shadow--md',
+              'shadow--tl',
               'margin-bottom--xl'
             )}
           >

@@ -17,7 +17,7 @@ export default function AppCard({
     <div
       className={clsx(
         styles.appCard,
-        'card shadow--lw',
+        'card shadow--md',
         isFavorite && styles.appCardFav
       )}
     >
