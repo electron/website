@@ -120,7 +120,7 @@ export default function AppsPage() {
           <div
             className={clsx(
               styles.favsContainer,
-              'shadow--tl',
+              'shadow--md',
               'margin-bottom--xl'
             )}
           >
