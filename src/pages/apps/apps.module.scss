@@ -22,7 +22,7 @@
   border: 1px solid rgba(200, 200, 200, 0.3);
   border-radius: var(--ifm-card-border-radius);
   backdrop-filter: blur(10px);
-  background: rgba(255, 255, 255, 0.90);
+  background: rgba(255, 255, 255, 0.9);
   padding: 1rem;
 
   [data-theme='dark'] & {
@@ -54,8 +54,24 @@
   width: 100%;
   margin-bottom: 0;
   padding: 0;
+  position: relative;
   @media (min-width: 768px) {
     display: none;
+  }
+
+  &::after {
+    color: var(--ifm-button-color);
+    content: '▼';
+    cursor: pointer;
+    height: 100%;
+
+    position: absolute;
+    right: 10px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
   }
 }
 
