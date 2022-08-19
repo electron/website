@@ -1,6 +1,6 @@
 .title {
   text-align: center;
-  font-size: 4rem;
+  font-size: 5rem;
 
   @media (max-width: 768px) {
     font-size: 3rem;
@@ -16,6 +16,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: sticky;
+  top: 96px;
+  z-index: 100;
+  border: 1px solid rgba(200, 200, 200, 0.3);
+  border-radius: var(--ifm-card-border-radius);
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.95);
+  padding: 1rem;
+
+  [data-theme='dark'] & {
+    background: rgba(36, 37, 38, 0.9);
+  }
 }
 
 .pillFiltersList {
@@ -40,6 +52,7 @@
 
 .dropdownFilter {
   width: 100%;
+  margin-bottom: 0;
   padding: 0;
   @media (min-width: 768px) {
     display: none;
