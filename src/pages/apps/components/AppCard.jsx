@@ -26,7 +26,7 @@ export default function AppCard({
           className={styles.appLogoContainer}
           style={{ background: highlightColor }}
         >
-          <img className={styles.appLogo} src={logo} alt="" />
+          <img className={styles.appLogo} src={logo} alt="" loading="lazy" />
         </div>
       </div>
       <div className="card__body">

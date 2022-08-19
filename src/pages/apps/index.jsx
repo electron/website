@@ -13,7 +13,7 @@ export default function AppsPage() {
 
   const filters = Object.entries(categories);
 
-  const renderFilter = (filter) => {
+  const renderPillFilter = (filter) => {
     const [name, entries] = filter;
     return (
       <li
@@ -27,6 +27,31 @@ export default function AppsPage() {
               styles.filterActive,
             ]
         )}
+        onClick={() => setActiveCategory(filter)}
+      >
+        <span>{name}</span>
+        <span className={clsx('badge badge--secondary', styles.filterBadge)}>
+          {entries.length}
+        </span>
+      </li>
+    );
+  };
+
+  const renderDropdownFilter = (filter) => {
+    const [name, entries] = filter;
+    return (
+      <li
+        key={name}
+        className={clsx(
+          'dropdown__link',
+          styles.dropdownFilterItem,
+          Array.isArray(activeCategory) &&
+            activeCategory[0] === name && [
+              'dropdown__link--active',
+              styles.filterActive,
+            ]
+        )}
+        style={{ display: 'flex', justifyContent: 'space-between' }}
         onClick={() => setActiveCategory(filter)}
       >
         <span>{name}</span>
@@ -66,7 +91,32 @@ export default function AppsPage() {
             </li>
             {filters
               .sort((a, b) => b[1].length - a[1].length)
-              .map((cat) => renderFilter(cat))}
+              .map((cat) => renderPillFilter(cat))}
+          </ul>
+          <ul
+            className={clsx(
+              'dropdown dropdown--hoverable',
+              styles.dropdownFilter
+            )}
+          >
+            <button className="button button--electron button--block">
+              {Array.isArray(activeCategory) ? activeCategory[0] : 'All'}
+            </button>
+            <ul className={clsx('dropdown__menu', styles.dropdownMenu)}>
+              <li
+                className={clsx(
+                  'dropdown__link',
+                  styles.dropdownFilterItem,
+                  activeCategory === null && 'dropdown__link--active'
+                )}
+                onClick={() => setActiveCategory(null)}
+              >
+                All
+              </li>
+              {filters
+                .sort((a, b) => b[1].length - a[1].length)
+                .map((cat) => renderDropdownFilter(cat))}
+            </ul>
           </ul>
         </div>
         {currentFavs.length > 0 && (
@@ -97,7 +147,13 @@ export default function AppsPage() {
             </div>
           </div>
         )}
-        <div className={clsx(styles.appCardContainer, 'margin-bottom--xl')}>
+        <div
+          className={clsx(
+            styles.appCardContainer,
+            styles.allContainer,
+            'margin-bottom--xl'
+          )}
+        >
           {apps
             .filter(
               (app) => !activeCategory || app.category === activeCategory[0]

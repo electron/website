@@ -32,6 +32,7 @@ module.exports = async function appsPlugin() {
         'tidal',
         'trello',
         'twitch',
+        'visual-studio-code',
         'whatsapp',
         'wordpress',
       ]);

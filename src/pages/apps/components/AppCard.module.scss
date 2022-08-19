@@ -37,20 +37,20 @@
   overflow: visible;
   &.appCardFav::before {
     content: '❤️';
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 2rem;
-    height: 2rem;
-    background: white;
-    background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(5px);
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgb(245, 245, 245);
     border-radius: 100%;
-    position: absolute;
-    top: -0.5rem;
-    left: -0.5rem;
-    border: 1px whitesmoke solid;
     box-shadow: var(--shadow-elevation-high);
+    display: grid;
+    height: 1.75rem;
+    left: -0.5rem;
+    line-height: inherit;
+    padding-top: 0.25rem;
+    position: absolute;
+    place-items: center;
+    top: -0.5rem;
+    width: 2rem;
 
     [data-theme='dark'] & {
       background: black;
@@ -64,5 +64,4 @@
   background: rgba(255, 255, 255, 0.5);
   border-top-left-radius: var(--ifm-card-border-radius);
   border-top-right-radius: var(--ifm-card-border-radius);
-
 }

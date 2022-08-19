@@ -1,6 +1,10 @@
 .title {
   text-align: center;
   font-size: 4rem;
+
+  @media (max-width: 768px) {
+    font-size: 3rem;
+  }
 }
 
 .subtitle {
@@ -16,11 +20,13 @@
 
 .filtersList {
   flex-wrap: wrap;
+
+  @media (max-width: 769px) {
+    display: none;
+  }
 }
 
 .filter {
-  font-weight: 400;
-  font-size: small;
   display: flex;
   align-items: center;
   user-select: none;
@@ -29,7 +35,7 @@
 .filterBadge {
   margin-left: 0.2rem;
   padding: 0.2rem 0.4rem;
-  font-size: 25%;
+  font-size: 80%;
 }
 
 .filterActive {
@@ -42,12 +48,16 @@
   column-gap: 2rem;
   row-gap: 2rem;
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1200px) {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 512px) {
+    grid-template-columns: repeat(1, 1fr);
   }
 }
 
@@ -56,4 +66,31 @@
   margin: 0 -40px;
   border: 1px solid rgba(200, 200, 200, 0.3);
   border-radius: var(--ifm-card-border-radius);
+
+  @media (max-width: 1200px) {
+    margin: 0;
+  }
+}
+
+.allContainer {
+  @media (max-width: 1200px) {
+    padding: 40px;
+  }
+}
+
+.dropdownFilter {
+  width: 100%;
+  padding: 0;
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
+
+.dropdownFilterItem {
+  width: 100%;
+  cursor: pointer;
+}
+
+.dropdownMenu {
+  width: 100%;
 }
