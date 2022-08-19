@@ -12,21 +12,19 @@
   font-size: 1rem;
 }
 
-.pillFiltersContainer {
+.filtersContainer {
   display: flex;
   align-items: center;
   justify-content: center;
   position: sticky;
-  top: 96px;
+  top: var(--ifm-navbar-height);
   z-index: 100;
-  border: 1px solid rgba(200, 200, 200, 0.3);
-  border-radius: var(--ifm-card-border-radius);
   backdrop-filter: blur(10px);
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.85);
   padding: 1rem;
 
   [data-theme='dark'] & {
-    background: rgba(36, 37, 38, 0.9);
+    background: rgba(36, 37, 38, 0.85);
   }
 }
 
@@ -105,7 +103,7 @@
 
 .favsContainer {
   padding: 40px;
-  margin: 0 -40px;
+  max-width: calc(var(--ifm-container-width-xl) + 40px);
   border: 1px solid rgba(200, 200, 200, 0.3);
   border-radius: var(--ifm-card-border-radius);
 

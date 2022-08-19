@@ -62,20 +62,14 @@ export default function AppsPage() {
 
   return (
     <Layout title="App Showcase">
-      <main className="container margin-vert--xl">
+      <main className="margin-vert--xl">
         <h1 className={styles.title}>Showcase</h1>
         <p className={styles.subtitle}>
           Discover <strong>hundreds of production applications</strong> built
           with Electron.
         </p>
-        <div
-          className={clsx(
-            'margin-bottom--xl',
-            'shadow--tl',
-            styles.pillFiltersContainer
-          )}
-        >
-          <ul className={clsx('pills', styles.pillFiltersList)}>
+        <div className={clsx('margin-bottom--xl', styles.filtersContainer)}>
+          <ul className={clsx('pills', 'container', styles.pillFiltersList)}>
             <li
               className={clsx(
                 'pills__item',
@@ -120,6 +114,7 @@ export default function AppsPage() {
           <div
             className={clsx(
               styles.favsContainer,
+              'container',
               'shadow--md',
               'margin-bottom--xl'
             )}
@@ -148,6 +143,7 @@ export default function AppsPage() {
           className={clsx(
             styles.appCardContainer,
             styles.allContainer,
+            'container',
             'margin-bottom--xl'
           )}
         >
