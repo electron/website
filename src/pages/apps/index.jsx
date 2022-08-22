@@ -7,11 +7,51 @@ import AppCard from './components/AppCard';
 import { usePluginData } from '@docusaurus/useGlobalData';
 import { useState } from 'react';
 
+const SORTS = {
+  ALPHABETICAL: 'Alphabetical',
+  RECENT: 'Most Recent',
+};
+
 export default function AppsPage() {
   const [activeCategory, setActiveCategory] = useState(null);
+  const [activeSort, setActiveSort] = useState(SORTS.ALPHABETICAL);
+  const [activeQuery, setActiveQuery] = useState('');
   const { apps, categories } = usePluginData('apps-plugin');
 
+  const sortedApps = apps
+    .sort((a, b) => {
+      if (activeSort === SORTS.ALPHABETICAL) {
+        return a.name.localeCompare(b.name);
+      } else if (activeSort === SORTS.RECENT) {
+        return new Date(a.date) > new Date(b.date) ? -1 : 1;
+      }
+    })
+    .filter((app) => {
+      if (activeQuery && activeQuery !== '') {
+        console.log(activeQuery, app.name.toLowerCase());
+        return app.name.toLowerCase().includes(activeQuery);
+      } else {
+        return true;
+      }
+    });
+
   const filters = Object.entries(categories);
+
+  const renderSort = (sort) => {
+    return (
+      <li
+        key={sort}
+        className={clsx(
+          'dropdown__link',
+          activeSort === sort && 'dropdown__link--active',
+          styles.sortDropdownItem
+        )}
+        onClick={() => setActiveSort(sort)}
+      >
+        <span>{sort}</span>
+      </li>
+    );
+  };
 
   const renderPillFilter = (filter) => {
     const [name, entries] = filter;
@@ -45,7 +85,6 @@ export default function AppsPage() {
             activeCategory[0] === name &&
             'dropdown__link--active'
         )}
-        style={{ display: 'flex', justifyContent: 'space-between' }}
         onClick={() => setActiveCategory(filter)}
       >
         <span>{name}</span>
@@ -58,7 +97,7 @@ export default function AppsPage() {
 
   const currentFavs = activeCategory
     ? activeCategory[1].filter((app) => app.isFavorite)
-    : apps.filter((app) => app.isFavorite);
+    : sortedApps.filter((app) => app.isFavorite);
 
   return (
     <Layout title="App Showcase">
@@ -69,6 +108,32 @@ export default function AppsPage() {
           with Electron.
         </p>
         <div className={clsx('margin-bottom--md', styles.filtersContainer)}>
+          <div
+            className={clsx(
+              'container',
+              'margin-bottom--sm',
+              styles.sortAndSearchContainer
+            )}
+          >
+            <div className="dropdown dropdown--hoverable">
+              <button className="button button--secondary">
+                Sort: {activeSort}
+              </button>
+              <ul className="dropdown__menu">
+                {Object.values(SORTS).map((s) => renderSort(s))}
+              </ul>
+            </div>
+            <div className="navbar__search">
+              <input
+                className="navbar__search-input"
+                placeholder="Search"
+                value={activeQuery}
+                onChange={(e) => {
+                  setActiveQuery(e.target.value);
+                }}
+              />
+            </div>
+          </div>
           <ul className={clsx('pills', 'container', styles.pillFiltersList)}>
             <li
               className={clsx(
@@ -147,7 +212,7 @@ export default function AppsPage() {
             'margin-bottom--xl'
           )}
         >
-          {apps
+          {sortedApps
             .filter(
               (app) => !activeCategory || app.category === activeCategory[0]
             )

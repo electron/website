@@ -16,6 +16,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   position: sticky;
   top: var(--ifm-navbar-height);
   z-index: 100;
@@ -76,6 +77,8 @@
 .dropdownFilterItem {
   width: 100%;
   cursor: pointer;
+  display: flex;
+  justify-content: space-between;
 }
 
 .dropdownMenu {
@@ -116,4 +119,17 @@
   @media (max-width: 1200px) {
     padding: 40px;
   }
+}
+
+.sortAndSearchContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: end;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.sortDropdownItem {
+  cursor: pointer;
 }
