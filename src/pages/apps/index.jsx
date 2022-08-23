@@ -28,7 +28,6 @@ export default function AppsPage() {
     })
     .filter((app) => {
       if (activeQuery && activeQuery !== '') {
-        console.log(activeQuery, app.name.toLowerCase());
         return app.name.toLowerCase().includes(activeQuery);
       } else {
         return true;
