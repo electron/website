@@ -116,10 +116,10 @@ export default function AppsPage() {
             )}
           >
             <div className="dropdown dropdown--hoverable">
-              <button className="button button--secondary">
+              <button className={clsx('button', styles.sortDropdownButton)}>
                 Sort: {activeSort}
               </button>
-              <ul className="dropdown__menu">
+              <ul className={clsx('dropdown__menu', styles.sortDropdownMenu)}>
                 {Object.values(SORTS).map((s) => renderSort(s))}
               </ul>
             </div>

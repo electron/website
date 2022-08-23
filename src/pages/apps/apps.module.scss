@@ -25,7 +25,7 @@
   padding: 1rem;
 
   [data-theme='dark'] & {
-    background: rgba(36, 37, 38, 0.85);
+    background: rgba(27, 27, 29, 0.85);
   }
 }
 
@@ -132,4 +132,14 @@
 
 .sortDropdownItem {
   cursor: pointer;
+}
+
+.sortDropdownButton {
+  color: var(--ifm-color-content);
+  background-color: var(--ifm-color-emphasis-200);
+  border-color: var(--ifm-color-emphasis-200);
+}
+
+.sortDropdownMenu {
+  min-width: 100%;
 }
