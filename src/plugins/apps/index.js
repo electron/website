@@ -12,10 +12,10 @@ module.exports = async function appsPlugin() {
     async loadContent() {
       const FAVS = new Set([
         '1password',
+        'agora-flat',
         'asana',
         'discord',
         'figma',
-        'flat',
         'github-desktop',
         'hyper',
         'itchio',
