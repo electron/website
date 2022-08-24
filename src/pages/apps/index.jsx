@@ -94,7 +94,11 @@ export default function AppsPage() {
     );
   };
 
-  const currentFavs = sortedApps.filter((app) => app.isFavorite);
+  const currentFavs = sortedApps.filter(
+    (app) =>
+      app.isFavorite &&
+      (!Array.isArray(activeCategory) || app.category === activeCategory[0])
+  );
 
   return (
     <Layout title="App Showcase">
