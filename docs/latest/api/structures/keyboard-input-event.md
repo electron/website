@@ -1,10 +1,3 @@
----
-title: "KeyboardInputEvent Object extends `InputEvent`"
-description: ""
-slug: keyboard-input-event
-hide_title: false
----
-
 # KeyboardInputEvent Object extends `InputEvent`
 
 * `type` string - The type of the event, can be `keyDown`, `keyUp` or `char`.

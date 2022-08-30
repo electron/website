@@ -1,10 +1,3 @@
----
-title: "session"
-description: "Manage browser sessions, cookies, cache, proxy settings, etc."
-slug: session
-hide_title: false
----
-
 # session
 
 > Manage browser sessions, cookies, cache, proxy settings, etc.

@@ -1,10 +1,3 @@
----
-title: "IpcRendererEvent Object extends `Event`"
-description: ""
-slug: ipc-renderer-event
-hide_title: false
----
-
 # IpcRendererEvent Object extends `Event`
 
 * `sender` IpcRenderer - The `IpcRenderer` instance that emitted the event originally

@@ -1,10 +1,3 @@
----
-title: "Class: TouchBarScrubber"
-description: "Create a scrubber (a scrollable selector)"
-slug: touch-bar-scrubber
-hide_title: false
----
-
 ## Class: TouchBarScrubber
 
 > Create a scrubber (a scrollable selector)

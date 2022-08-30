@@ -1,10 +1,3 @@
----
-title: "Menu"
-description: "Create native application menus and context menus."
-slug: menu
-hide_title: false
----
-
 # Menu
 
 ## Class: Menu

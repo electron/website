@@ -1,10 +1,3 @@
----
-title: "dialog"
-description: "Display native system dialogs for opening and saving files, alerting, etc."
-slug: dialog
-hide_title: false
----
-
 # dialog
 
 > Display native system dialogs for opening and saving files, alerting, etc.

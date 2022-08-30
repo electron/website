@@ -1,10 +1,3 @@
----
-title: "Testing Widevine CDM"
-description: "In Electron you can use the Widevine CDM library shipped with Chrome browser."
-slug: testing-widevine-cdm
-hide_title: false
----
-
 # Testing Widevine CDM
 
 In Electron you can use the Widevine CDM library shipped with Chrome browser.

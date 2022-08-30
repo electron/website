@@ -1,10 +1,3 @@
----
-title: "Accessibility"
-description: "Accessibility concerns in Electron applications are similar to those of websites because they're both ultimately HTML."
-slug: accessibility
-hide_title: false
----
-
 # Accessibility
 
 Accessibility concerns in Electron applications are similar to those of

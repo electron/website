@@ -1,10 +1,3 @@
----
-title: "Class: TouchBarLabel"
-description: "Create a label in the touch bar for native macOS applications"
-slug: touch-bar-label
-hide_title: false
----
-
 ## Class: TouchBarLabel
 
 > Create a label in the touch bar for native macOS applications

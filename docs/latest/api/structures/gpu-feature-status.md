@@ -1,10 +1,3 @@
----
-title: "GPUFeatureStatus Object"
-description: ""
-slug: gpu-feature-status
-hide_title: false
----
-
 # GPUFeatureStatus Object
 
 * `2d_canvas` string - Canvas.

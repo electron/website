@@ -1,10 +1,3 @@
----
-title: "Build Instructions"
-description: "Follow the guidelines below for building **Electron itself**, for the purposes of creating custom Electron binaries. For bundling and distributing your app code with the prebuilt Electron binaries, see the application distribution guide."
-slug: build-instructions-gn
-hide_title: false
----
-
 # Build Instructions
 
 Follow the guidelines below for building **Electron itself**, for the purposes of creating custom Electron binaries. For bundling and distributing your app code with the prebuilt Electron binaries, see the [application distribution][application-distribution] guide.

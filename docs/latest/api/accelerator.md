@@ -1,10 +1,3 @@
----
-title: "Accelerator"
-description: "Define keyboard shortcuts."
-slug: accelerator
-hide_title: false
----
-
 # Accelerator
 
 > Define keyboard shortcuts.

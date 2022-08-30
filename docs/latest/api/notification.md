@@ -1,10 +1,3 @@
----
-title: "Notification"
-description: "Create OS desktop notifications"
-slug: notification
-hide_title: false
----
-
 # Notification
 
 > Create OS desktop notifications

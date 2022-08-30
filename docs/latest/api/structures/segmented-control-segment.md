@@ -1,10 +1,3 @@
----
-title: "SegmentedControlSegment Object"
-description: ""
-slug: segmented-control-segment
-hide_title: false
----
-
 # SegmentedControlSegment Object
 
 * `label` string (optional) - The text to appear in this segment.

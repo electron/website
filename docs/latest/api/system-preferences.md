@@ -1,10 +1,3 @@
----
-title: "systemPreferences"
-description: "Get system preferences."
-slug: system-preferences
-hide_title: false
----
-
 # systemPreferences
 
 > Get system preferences.

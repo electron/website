@@ -1,10 +1,3 @@
----
-title: "ProductDiscount Object"
-description: ""
-slug: product-discount
-hide_title: false
----
-
 # ProductDiscount Object
 
 * `identifier` string - A string used to uniquely identify a discount offer for a product.

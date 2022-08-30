@@ -1,10 +1,3 @@
----
-title: "Transaction Object"
-description: ""
-slug: transaction
-hide_title: false
----
-
 # Transaction Object
 
 * `transactionIdentifier` string - A string that uniquely identifies a successful payment transaction.

@@ -1,10 +1,3 @@
----
-title: "Official Guides"
-description: "Please make sure that you use the documents that match your Electron version. The version number should be a part of the page URL. If it's not, you are probably using the documentation of a development branch which may contain API changes that are not compatible with your Electron version. To view older versions of the documentation, you can browse by tag on GitHub by opening the \"Switch branches/tags\" dropdown and selecting the tag that matches your version."
-slug: README
-hide_title: false
----
-
 # Official Guides
 
 Please make sure that you use the documents that match your Electron version.

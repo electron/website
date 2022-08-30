@@ -1,10 +1,3 @@
----
-title: "Build Instructions (macOS)"
-description: "Follow the guidelines below for building **Electron itself** on macOS, for the purposes of creating custom Electron binaries. For bundling and distributing your app code with the prebuilt Electron binaries, see the application distribution guide."
-slug: build-instructions-macos
-hide_title: false
----
-
 # Build Instructions (macOS)
 
 Follow the guidelines below for building **Electron itself** on macOS, for the purposes of creating custom Electron binaries. For bundling and distributing your app code with the prebuilt Electron binaries, see the [application distribution][application-distribution] guide.

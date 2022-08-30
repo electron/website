@@ -1,10 +1,3 @@
----
-title: "Class: Cookies"
-description: "Query and modify a session's cookies."
-slug: cookies
-hide_title: false
----
-
 ## Class: Cookies
 
 > Query and modify a session's cookies.

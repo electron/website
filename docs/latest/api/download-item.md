@@ -1,10 +1,3 @@
----
-title: "Class: DownloadItem"
-description: "Control file downloads from remote sources."
-slug: download-item
-hide_title: false
----
-
 ## Class: DownloadItem
 
 > Control file downloads from remote sources.

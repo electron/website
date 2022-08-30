@@ -1,10 +1,3 @@
----
-title: "ShareMenu"
-description: "The ShareMenu class creates Share Menu on macOS, which can be used to share information from the current context to apps, social media accounts, and other services."
-slug: share-menu
-hide_title: false
----
-
 # ShareMenu
 
 The `ShareMenu` class creates [Share Menu][share-menu] on macOS, which can be

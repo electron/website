@@ -1,10 +1,3 @@
----
-title: "safeStorage"
-description: "Allows access to simple encryption and decryption of strings for storage on the local machine."
-slug: safe-storage
-hide_title: false
----
-
 # safeStorage
 
 > Allows access to simple encryption and decryption of strings for storage on the local machine.

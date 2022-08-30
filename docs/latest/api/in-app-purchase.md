@@ -1,10 +1,3 @@
----
-title: "inAppPurchase"
-description: "In-app purchases on Mac App Store."
-slug: in-app-purchase
-hide_title: false
----
-
 # inAppPurchase
 
 > In-app purchases on Mac App Store.

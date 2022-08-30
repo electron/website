@@ -1,10 +1,3 @@
----
-title: "Class: MenuItem"
-description: "Add items to native application menus and context menus."
-slug: menu-item
-hide_title: false
----
-
 ## Class: MenuItem
 
 > Add items to native application menus and context menus.

@@ -1,10 +1,3 @@
----
-title: "Issues In Electron"
-description: "For any issue, there are fundamentally three ways an individual can contribute:"
-slug: issues
-hide_title: false
----
-
 # Issues In Electron
 
 * [How to Contribute to Issues](#how-to-contribute-to-issues)

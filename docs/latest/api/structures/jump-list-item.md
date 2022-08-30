@@ -1,10 +1,3 @@
----
-title: "JumpListItem Object"
-description: ""
-slug: jump-list-item
-hide_title: false
----
-
 # JumpListItem Object
 
 * `type` string (optional) - One of the following:

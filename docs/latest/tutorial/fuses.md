@@ -1,10 +1,3 @@
----
-title: "Electron Fuses"
-description: "Package time feature toggles"
-slug: fuses
-hide_title: false
----
-
 # Electron Fuses
 
 > Package time feature toggles

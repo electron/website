@@ -1,10 +1,3 @@
----
-title: "NotificationResponse Object"
-description: ""
-slug: notification-response
-hide_title: false
----
-
 # NotificationResponse Object
 
 * `actionIdentifier` string - The identifier string of the action that the user selected.

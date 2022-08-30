@@ -1,10 +1,3 @@
----
-title: "Class: TouchBarColorPicker"
-description: "Create a color picker in the touch bar for native macOS applications"
-slug: touch-bar-color-picker
-hide_title: false
----
-
 ## Class: TouchBarColorPicker
 
 > Create a color picker in the touch bar for native macOS applications

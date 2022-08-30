@@ -1,10 +1,3 @@
----
-title: "PrinterInfo Object"
-description: ""
-slug: printer-info
-hide_title: false
----
-
 # PrinterInfo Object
 
 * `name` string - the name of the printer as understood by the OS.

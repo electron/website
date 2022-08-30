@@ -1,10 +1,3 @@
----
-title: "Certificate Object"
-description: ""
-slug: certificate
-hide_title: false
----
-
 # Certificate Object
 
 * `data` string - PEM encoded data

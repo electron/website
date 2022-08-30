@@ -1,10 +1,3 @@
----
-title: "screen"
-description: "Retrieve information about screen size, displays, cursor position, etc."
-slug: screen
-hide_title: false
----
-
 # screen
 
 > Retrieve information about screen size, displays, cursor position, etc.

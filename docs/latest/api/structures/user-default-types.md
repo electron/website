@@ -1,10 +1,3 @@
----
-title: "UserDefaultTypes Object"
-description: ""
-slug: user-default-types
-hide_title: false
----
-
 # UserDefaultTypes Object
 
 * `string` string

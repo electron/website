@@ -1,10 +1,3 @@
----
-title: "process"
-description: "Extensions to process object."
-slug: process
-hide_title: false
----
-
 # process
 
 > Extensions to process object.

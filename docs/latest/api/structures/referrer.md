@@ -1,10 +1,3 @@
----
-title: "Referrer Object"
-description: ""
-slug: referrer
-hide_title: false
----
-
 # Referrer Object
 
 * `url` string - HTTP Referrer URL.

@@ -1,10 +1,3 @@
----
-title: "Pull Requests"
-description: "Fork the project on GitHub and clone your fork locally."
-slug: pull-requests
-hide_title: false
----
-
 # Pull Requests
 
 * [Setting up your local environment](#setting-up-your-local-environment)

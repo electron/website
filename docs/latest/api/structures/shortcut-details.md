@@ -1,10 +1,3 @@
----
-title: "ShortcutDetails Object"
-description: ""
-slug: shortcut-details
-hide_title: false
----
-
 # ShortcutDetails Object
 
 * `target` string - The target to launch from this shortcut.

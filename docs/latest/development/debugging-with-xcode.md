@@ -1,10 +1,3 @@
----
-title: "Debugging with XCode"
-description: "Run gn gen with the --ide=xcode argument."
-slug: debugging-with-xcode
-hide_title: false
----
-
 ## Debugging with XCode
 
 ### Generate xcode project for debugging sources (cannot build code from xcode)

@@ -1,10 +1,3 @@
----
-title: "Cookie Object"
-description: ""
-slug: cookie
-hide_title: false
----
-
 # Cookie Object
 
 * `name` string - The name of the cookie.

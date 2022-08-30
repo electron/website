@@ -1,10 +1,3 @@
----
-title: "clipboard"
-description: "Perform copy and paste operations on the system clipboard."
-slug: clipboard
-hide_title: false
----
-
 # clipboard
 
 > Perform copy and paste operations on the system clipboard.

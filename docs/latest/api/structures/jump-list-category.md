@@ -1,10 +1,3 @@
----
-title: "JumpListCategory Object"
-description: ""
-slug: jump-list-category
-hide_title: false
----
-
 # JumpListCategory Object
 
 * `type` string (optional) - One of the following:

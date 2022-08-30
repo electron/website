@@ -1,10 +1,3 @@
----
-title: "ServiceWorkerInfo Object"
-description: ""
-slug: service-worker-info
-hide_title: false
----
-
 # ServiceWorkerInfo Object
 
 * `scriptUrl` string - The full URL to the script that this service worker runs

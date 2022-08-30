@@ -1,10 +1,3 @@
----
-title: "globalShortcut"
-description: "Detect keyboard events when the application does not have keyboard focus."
-slug: global-shortcut
-hide_title: false
----
-
 # globalShortcut
 
 > Detect keyboard events when the application does not have keyboard focus.

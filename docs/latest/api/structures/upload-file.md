@@ -1,10 +1,3 @@
----
-title: "UploadFile Object"
-description: ""
-slug: upload-file
-hide_title: false
----
-
 # UploadFile Object
 
 * `type` 'file' - `file`.

@@ -1,10 +1,3 @@
----
-title: "net"
-description: "Issue HTTP/HTTPS requests using Chromium's native networking library"
-slug: net
-hide_title: false
----
-
 # net
 
 > Issue HTTP/HTTPS requests using Chromium's native networking library

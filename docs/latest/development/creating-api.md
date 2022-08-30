@@ -1,10 +1,3 @@
----
-title: "Creating a New Electron Browser Module"
-description: "Welcome to the Electron API guide! If you are unfamiliar with creating a new Electron API module within the browser directory, this guide serves as a checklist for some of the necessary steps that you will need to implement."
-slug: creating-api
-hide_title: false
----
-
 # Creating a New Electron Browser Module
 
 Welcome to the Electron API guide! If you are unfamiliar with creating a new Electron API module within the [`browser`](https://github.com/electron/electron/tree/main/shell/browser) directory, this guide serves as a checklist for some of the necessary steps that you will need to implement.

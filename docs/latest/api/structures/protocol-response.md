@@ -1,10 +1,3 @@
----
-title: "ProtocolResponse Object"
-description: ""
-slug: protocol-response
-hide_title: false
----
-
 # ProtocolResponse Object
 
 * `error` Integer (optional) - When assigned, the `request` will fail with the

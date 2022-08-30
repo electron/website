@@ -1,10 +1,3 @@
----
-title: "Build Instructions (Windows)"
-description: "Follow the guidelines below for building **Electron itself** on Windows, for the purposes of creating custom Electron binaries. For bundling and distributing your app code with the prebuilt Electron binaries, see the application distribution guide."
-slug: build-instructions-windows
-hide_title: false
----
-
 # Build Instructions (Windows)
 
 Follow the guidelines below for building **Electron itself** on Windows, for the purposes of creating custom Electron binaries. For bundling and distributing your app code with the prebuilt Electron binaries, see the [application distribution][application-distribution] guide.

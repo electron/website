@@ -1,10 +1,3 @@
----
-title: "protocol"
-description: "Register a custom protocol and intercept existing protocol requests."
-slug: protocol
-hide_title: false
----
-
 # protocol
 
 > Register a custom protocol and intercept existing protocol requests.

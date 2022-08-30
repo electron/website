@@ -1,10 +1,3 @@
----
-title: "nativeTheme"
-description: "Read and respond to changes in Chromium's native color theme."
-slug: native-theme
-hide_title: false
----
-
 # nativeTheme
 
 > Read and respond to changes in Chromium's native color theme.

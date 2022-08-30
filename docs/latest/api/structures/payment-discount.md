@@ -1,10 +1,3 @@
----
-title: "PaymentDiscount Object"
-description: ""
-slug: payment-discount
-hide_title: false
----
-
 # PaymentDiscount Object
 
 * `identifier` string - A string used to uniquely identify a discount offer for a product.

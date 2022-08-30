@@ -1,10 +1,3 @@
----
-title: "Online/Offline Event Detection"
-description: "Online and offline event detection can be implemented in the Renderer process using the navigator.onLine attribute, part of standard HTML5 API."
-slug: online-offline-events
-hide_title: false
----
-
 # Online/Offline Event Detection
 
 ## Overview

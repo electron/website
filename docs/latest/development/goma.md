@@ -1,10 +1,3 @@
----
-title: "Goma"
-description: "Goma is a distributed compiler service for open-source projects such as  Chromium and Android."
-slug: goma
-hide_title: false
----
-
 # Goma
 
 > Goma is a distributed compiler service for open-source projects such as

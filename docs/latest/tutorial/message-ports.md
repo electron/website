@@ -1,10 +1,3 @@
----
-title: "MessagePorts in Electron"
-description: "MessagePorts are a web feature that allow passing messages between different contexts. It's like window.postMessage, but on different channels. The goal of this document is to describe how Electron extends the Channel Messaging model, and to give some examples of how you might use MessagePorts in your app."
-slug: message-ports
-hide_title: false
----
-
 # MessagePorts in Electron
 
 [`MessagePort`][]s are a web feature that allow passing messages between

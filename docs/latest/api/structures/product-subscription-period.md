@@ -1,10 +1,3 @@
----
-title: "ProductSubscriptionPeriod Object"
-description: ""
-slug: product-subscription-period
-hide_title: false
----
-
 # ProductSubscriptionPeriod Object
 
 * `numberOfUnits` number - The number of units per subscription period.

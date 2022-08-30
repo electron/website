@@ -1,10 +1,3 @@
----
-title: "Class: WebRequest"
-description: "Intercept and modify the contents of a request at various stages of its lifetime."
-slug: web-request
-hide_title: false
----
-
 ## Class: WebRequest
 
 > Intercept and modify the contents of a request at various stages of its lifetime.

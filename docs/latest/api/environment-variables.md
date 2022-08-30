@@ -1,10 +1,3 @@
----
-title: "Environment Variables"
-description: "Control application configuration and behavior without changing code."
-slug: environment-variables
-hide_title: false
----
-
 # Environment Variables
 
 > Control application configuration and behavior without changing code.

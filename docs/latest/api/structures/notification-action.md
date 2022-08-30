@@ -1,10 +1,3 @@
----
-title: "NotificationAction Object"
-description: ""
-slug: notification-action
-hide_title: false
----
-
 # NotificationAction Object
 
 * `type` string - The type of action, can be `button`.

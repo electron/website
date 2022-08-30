@@ -1,10 +1,3 @@
----
-title: "ProcessMetric Object"
-description: ""
-slug: process-metric
-hide_title: false
----
-
 # ProcessMetric Object
 
 * `pid` Integer - Process id of the process.

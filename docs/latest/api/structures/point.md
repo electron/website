@@ -1,10 +1,3 @@
----
-title: "Point Object"
-description: ""
-slug: point
-hide_title: false
----
-
 # Point Object
 
 * `x` number

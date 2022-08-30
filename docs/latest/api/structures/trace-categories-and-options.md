@@ -1,10 +1,3 @@
----
-title: "TraceCategoriesAndOptions Object"
-description: ""
-slug: trace-categories-and-options
-hide_title: false
----
-
 # TraceCategoriesAndOptions Object
 
 * `categoryFilter` string - A filter to control what category groups

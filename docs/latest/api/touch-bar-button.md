@@ -1,10 +1,3 @@
----
-title: "Class: TouchBarButton"
-description: "Create a button in the touch bar for native macOS applications"
-slug: touch-bar-button
-hide_title: false
----
-
 ## Class: TouchBarButton
 
 > Create a button in the touch bar for native macOS applications

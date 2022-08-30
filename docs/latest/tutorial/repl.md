@@ -1,10 +1,3 @@
----
-title: "REPL"
-description: "Read-Eval-Print-Loop (REPL) is a simple, interactive computer programming environment that takes single user inputs (i.e. single expressions), evaluates them, and returns the result to the user."
-slug: repl
-hide_title: false
----
-
 # REPL
 
 [Read-Eval-Print-Loop](https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop) (REPL)

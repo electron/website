@@ -1,10 +1,3 @@
----
-title: "ProcessMemoryInfo Object"
-description: ""
-slug: process-memory-info
-hide_title: false
----
-
 # ProcessMemoryInfo Object
 
 * `residentSet` Integer _Linux_ _Windows_ - The amount of memory

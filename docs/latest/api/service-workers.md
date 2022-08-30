@@ -1,10 +1,3 @@
----
-title: "Class: ServiceWorkers"
-description: "Query and receive events from a sessions active service workers."
-slug: service-workers
-hide_title: false
----
-
 ## Class: ServiceWorkers
 
 > Query and receive events from a sessions active service workers.

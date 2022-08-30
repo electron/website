@@ -1,10 +1,3 @@
----
-title: "BrowserWindow"
-description: "Create and control browser windows."
-slug: browser-window
-hide_title: false
----
-
 # BrowserWindow
 
 > Create and control browser windows.

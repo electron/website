@@ -1,10 +1,3 @@
----
-title: "Breaking Changes"
-description: "Breaking changes will be documented here, and deprecation warnings added to JS code where possible, at least one major version before the change is made."
-slug: breaking-changes
-hide_title: false
----
-
 # Breaking Changes
 
 Breaking changes will be documented here, and deprecation warnings added to JS code where possible, at least [one major version](latest/tutorial/electron-versioning.md#semver) before the change is made.

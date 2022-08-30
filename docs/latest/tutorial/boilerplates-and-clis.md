@@ -1,10 +1,3 @@
----
-title: "Boilerplates and CLIs"
-description: "Electron development is unopinionated - there is no \"one true way\" to develop, build, package, or release an Electron application. Additional features for Electron, both for build- and run-time, can usually be found on npm in individual packages, allowing developers to build both the app and build pipeline they need."
-slug: boilerplates-and-clis
-hide_title: false
----
-
 # Boilerplates and CLIs
 
 Electron development is unopinionated - there is no "one true way" to develop,

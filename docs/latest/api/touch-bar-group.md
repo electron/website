@@ -1,10 +1,3 @@
----
-title: "Class: TouchBarGroup"
-description: "Create a group in the touch bar for native macOS applications"
-slug: touch-bar-group
-hide_title: false
----
-
 ## Class: TouchBarGroup
 
 > Create a group in the touch bar for native macOS applications

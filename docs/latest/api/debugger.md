@@ -1,10 +1,3 @@
----
-title: "Class: Debugger"
-description: "An alternate transport for Chrome's remote debugging protocol."
-slug: debugger
-hide_title: false
----
-
 ## Class: Debugger
 
 > An alternate transport for Chrome's remote debugging protocol.

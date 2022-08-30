@@ -1,10 +1,3 @@
----
-title: "Electron Debugging"
-description: "There are many different approaches to debugging issues and bugs in Electron, many of which are platform specific."
-slug: debugging
-hide_title: false
----
-
 # Electron Debugging
 
 There are many different approaches to debugging issues and bugs in Electron, many of which

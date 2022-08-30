@@ -1,10 +1,3 @@
----
-title: "Task Object"
-description: ""
-slug: task
-hide_title: false
----
-
 # Task Object
 
 * `program` string - Path of the program to execute, usually you should

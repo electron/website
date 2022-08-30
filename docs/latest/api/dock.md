@@ -1,10 +1,3 @@
----
-title: "Class: Dock"
-description: "Control your app in the macOS dock"
-slug: dock
-hide_title: false
----
-
 ## Class: Dock
 
 > Control your app in the macOS dock

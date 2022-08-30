@@ -1,10 +1,3 @@
----
-title: "Class: CommandLine"
-description: "Manipulate the command line arguments for your app that Chromium reads"
-slug: command-line
-hide_title: false
----
-
 ## Class: CommandLine
 
 > Manipulate the command line arguments for your app that Chromium reads

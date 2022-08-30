@@ -1,10 +1,3 @@
----
-title: "DesktopCapturerSource Object"
-description: ""
-slug: desktop-capturer-source
-hide_title: false
----
-
 # DesktopCapturerSource Object
 
 * `id` string - The identifier of a window or screen that can be used as a

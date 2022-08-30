@@ -1,10 +1,3 @@
----
-title: "Notifications"
-description: "All three operating systems provide means for applications to send notifications to the user. The technique of showing notifications is different for the Main and Renderer processes."
-slug: notifications
-hide_title: false
----
-
 # Notifications
 
 ## Overview

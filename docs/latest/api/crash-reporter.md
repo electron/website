@@ -1,10 +1,3 @@
----
-title: "crashReporter"
-description: "Submit crash reports to a remote server."
-slug: crash-reporter
-hide_title: false
----
-
 # crashReporter
 
 > Submit crash reports to a remote server.

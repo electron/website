@@ -1,10 +1,3 @@
----
-title: "Supported Command Line Switches"
-description: "Command line switches supported by Electron."
-slug: command-line-switches
-hide_title: false
----
-
 # Supported Command Line Switches
 
 > Command line switches supported by Electron.

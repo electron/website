@@ -1,10 +1,3 @@
----
-title: "TouchBar"
-description: "Create TouchBar layouts for native macOS applications"
-slug: touch-bar
-hide_title: false
----
-
 # TouchBar
 
 ## Class: TouchBar

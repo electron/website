@@ -1,10 +1,3 @@
----
-title: "Synopsis"
-description: "How to use Node.js and Electron APIs."
-slug: synopsis
-hide_title: false
----
-
 # Synopsis
 
 > How to use Node.js and Electron APIs.

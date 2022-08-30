@@ -1,10 +1,3 @@
----
-title: "IpcMainInvokeEvent Object extends `Event`"
-description: ""
-slug: ipc-main-invoke-event
-hide_title: false
----
-
 # IpcMainInvokeEvent Object extends `Event`
 
 * `processId` Integer - The internal ID of the renderer process that sent this message

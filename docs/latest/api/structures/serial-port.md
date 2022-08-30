@@ -1,10 +1,3 @@
----
-title: "SerialPort Object"
-description: ""
-slug: serial-port
-hide_title: false
----
-
 # SerialPort Object
 
 * `portId` string - Unique identifier for the port.

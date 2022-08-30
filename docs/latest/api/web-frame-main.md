@@ -1,10 +1,3 @@
----
-title: "webFrameMain"
-description: "Control web pages and iframes."
-slug: web-frame-main
-hide_title: false
----
-
 # webFrameMain
 
 > Control web pages and iframes.

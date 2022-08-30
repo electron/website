@@ -1,10 +1,3 @@
----
-title: "SharingItem Object"
-description: ""
-slug: sharing-item
-hide_title: false
----
-
 # SharingItem Object
 
 * `texts` string[] (optional) - An array of text to share.

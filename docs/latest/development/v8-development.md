@@ -1,10 +1,3 @@
----
-title: "V8 Development"
-description: "A collection of resources for learning and using V8"
-slug: v8-development
-hide_title: false
----
-
 # V8 Development
 
 > A collection of resources for learning and using V8

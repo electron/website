@@ -1,10 +1,3 @@
----
-title: "Quick Start"
-description: "This guide will step you through the process of creating a barebones Hello World app in Electron, similar to electron/electron-quick-start."
-slug: quick-start
-hide_title: false
----
-
 # Quick Start
 
 This guide will step you through the process of creating a barebones Hello World app in

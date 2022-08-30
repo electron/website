@@ -1,10 +1,3 @@
----
-title: "Native Node Modules"
-description: "Native Node.js modules are supported by Electron, but since Electron has a different application binary interface (ABI) from a given Node.js binary (due to differences such as using Chromium's BoringSSL instead of OpenSSL), the native modules you use will need to be recompiled for Electron. Otherwise, you will get the following class of error when you try to run your app:"
-slug: using-native-node-modules
-hide_title: false
----
-
 # Native Node Modules
 
 Native Node.js modules are supported by Electron, but since Electron has a different

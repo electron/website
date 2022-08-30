@@ -1,10 +1,3 @@
----
-title: "Window Customization"
-description: "The BrowserWindow module is the foundation of your Electron application, and it exposes many APIs that can change the look and behavior of your browser windows. In this tutorial, we will be going over the various use-cases for window customization on macOS, Windows, and Linux."
-slug: window-customization
-hide_title: false
----
-
 # Window Customization
 
 The `BrowserWindow` module is the foundation of your Electron application, and it exposes

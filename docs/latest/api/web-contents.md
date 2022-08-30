@@ -1,10 +1,3 @@
----
-title: "webContents"
-description: "Render and control web pages."
-slug: web-contents
-hide_title: false
----
-
 # webContents
 
 > Render and control web pages.

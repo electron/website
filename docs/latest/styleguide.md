@@ -1,10 +1,3 @@
----
-title: "Electron Documentation Style Guide"
-description: "These are the guidelines for writing Electron documentation."
-slug: styleguide
-hide_title: false
----
-
 # Electron Documentation Style Guide
 
 These are the guidelines for writing Electron documentation.

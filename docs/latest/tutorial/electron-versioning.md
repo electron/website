@@ -1,10 +1,3 @@
----
-title: "Electron Versioning"
-description: "A detailed look at our versioning policy and implementation."
-slug: electron-versioning
-hide_title: false
----
-
 # Electron Versioning
 
 > A detailed look at our versioning policy and implementation.

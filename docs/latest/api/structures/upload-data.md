@@ -1,10 +1,3 @@
----
-title: "UploadData Object"
-description: ""
-slug: upload-data
-hide_title: false
----
-
 # UploadData Object
 
 * `bytes` Buffer - Content being sent.

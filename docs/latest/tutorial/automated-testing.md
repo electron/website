@@ -1,10 +1,3 @@
----
-title: "Automated Testing"
-description: "Test automation is an efficient way of validating that your application code works as intended. While Electron doesn't actively maintain its own testing solution, this guide will go over a couple ways you can run end-to-end automated tests on your Electron app."
-slug: automated-testing
-hide_title: false
----
-
 # Automated Testing
 
 Test automation is an efficient way of validating that your application code works as intended.

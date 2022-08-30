@@ -1,10 +1,3 @@
----
-title: "Class: ClientRequest"
-description: "Make HTTP/HTTPS requests."
-slug: client-request
-hide_title: false
----
-
 ## Class: ClientRequest
 
 > Make HTTP/HTTPS requests.

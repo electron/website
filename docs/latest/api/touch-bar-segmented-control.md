@@ -1,10 +1,3 @@
----
-title: "Class: TouchBarSegmentedControl"
-description: "Create a segmented control (a button group) where one button has a selected state"
-slug: touch-bar-segmented-control
-hide_title: false
----
-
 ## Class: TouchBarSegmentedControl
 
 > Create a segmented control (a button group) where one button has a selected state

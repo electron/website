@@ -1,10 +1,3 @@
----
-title: "contentTracing"
-description: "Collect tracing data from Chromium to find performance bottlenecks and slow operations."
-slug: content-tracing
-hide_title: false
----
-
 # contentTracing
 
 > Collect tracing data from Chromium to find performance bottlenecks and slow operations.

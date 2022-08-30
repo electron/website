@@ -1,10 +1,3 @@
----
-title: "IOCounters Object"
-description: ""
-slug: io-counters
-hide_title: false
----
-
 # IOCounters Object
 
 * `readOperationCount` number - The number of I/O read operations.

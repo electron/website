@@ -1,10 +1,3 @@
----
-title: "Electron FAQ"
-description: "When running npm install electron, some users occasionally encounter installation errors."
-slug: faq
-hide_title: false
----
-
 # Electron FAQ
 
 ## Why am I having trouble installing Electron?

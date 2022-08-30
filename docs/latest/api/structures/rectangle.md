@@ -1,10 +1,3 @@
----
-title: "Rectangle Object"
-description: ""
-slug: rectangle
-hide_title: false
----
-
 # Rectangle Object
 
 * `x` number - The x coordinate of the origin of the rectangle (must be an integer).

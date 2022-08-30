@@ -1,10 +1,3 @@
----
-title: "Offscreen Rendering"
-description: "Offscreen rendering lets you obtain the content of a BrowserWindow in a bitmap, so it can be rendered anywhere, for example, on texture in a 3D scene. The offscreen rendering in Electron uses a similar approach to that of the Chromium Embedded Framework project."
-slug: offscreen-rendering
-hide_title: false
----
-
 # Offscreen Rendering
 
 ## Overview

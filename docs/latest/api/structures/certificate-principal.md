@@ -1,10 +1,3 @@
----
-title: "CertificatePrincipal Object"
-description: ""
-slug: certificate-principal
-hide_title: false
----
-
 # CertificatePrincipal Object
 
 * `commonName` string - Common Name.

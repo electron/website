@@ -1,10 +1,3 @@
----
-title: "KeyboardEvent Object"
-description: ""
-slug: keyboard-event
-hide_title: false
----
-
 # KeyboardEvent Object
 
 * `ctrlKey` boolean (optional) - whether the Control key was used in an accelerator to trigger the Event

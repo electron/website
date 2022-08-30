@@ -1,10 +1,3 @@
----
-title: "Testing"
-description: "We aim to keep the code coverage of Electron high. We ask that all pull request not only pass all existing tests, but ideally also add new tests to cover changed code and new scenarios. Ensuring that we capture as many code paths and use cases of Electron as possible ensures that we all ship apps with fewer bugs."
-slug: testing
-hide_title: false
----
-
 # Testing
 
 We aim to keep the code coverage of Electron high. We ask that all pull

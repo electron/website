@@ -1,10 +1,3 @@
----
-title: "webFrame"
-description: "Customize the rendering of the current web page."
-slug: web-frame
-hide_title: false
----
-
 # webFrame
 
 > Customize the rendering of the current web page.

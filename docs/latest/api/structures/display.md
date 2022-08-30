@@ -1,10 +1,3 @@
----
-title: "Display Object"
-description: ""
-slug: display
-hide_title: false
----
-
 # Display Object
 
 * `id` number - Unique identifier associated with the display.

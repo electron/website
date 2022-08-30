@@ -1,10 +1,3 @@
----
-title: "Windows on ARM"
-description: "If your app runs with Electron 6.0.8 or later, you can now build it for Windows 10 on Arm. This considerably improves performance, but requires recompilation of any native modules used in your app. It may also require small fixups to your build and packaging scripts."
-slug: windows-arm
-hide_title: false
----
-
 # Windows on ARM
 
 If your app runs with Electron 6.0.8 or later, you can now build it for Windows 10 on Arm. This considerably improves performance, but requires recompilation of any native modules used in your app. It may also require small fixups to your build and packaging scripts.

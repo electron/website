@@ -1,10 +1,3 @@
----
-title: "MouseWheelInputEvent Object extends `MouseInputEvent`"
-description: ""
-slug: mouse-wheel-input-event
-hide_title: false
----
-
 # MouseWheelInputEvent Object extends `MouseInputEvent`
 
 * `type` string - The type of the event, can be `mouseWheel`.

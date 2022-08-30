@@ -1,10 +1,3 @@
----
-title: "MessageChannelMain"
-description: "MessageChannelMain is the main-process-side equivalent of the DOM MessageChannel object. Its singular function is to create a pair of connected MessagePortMain objects."
-slug: message-channel-main
-hide_title: false
----
-
 # MessageChannelMain
 
 `MessageChannelMain` is the main-process-side equivalent of the DOM

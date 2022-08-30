@@ -1,10 +1,3 @@
----
-title: "HIDDevice Object"
-description: ""
-slug: hid-device
-hide_title: false
----
-
 # HIDDevice Object
 
 * `deviceId` string - Unique identifier for the device.

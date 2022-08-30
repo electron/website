@@ -1,10 +1,3 @@
----
-title: "MouseInputEvent Object extends `InputEvent`"
-description: ""
-slug: mouse-input-event
-hide_title: false
----
-
 # MouseInputEvent Object extends `InputEvent`
 
 * `type` string - The type of the event, can be `mouseDown`,

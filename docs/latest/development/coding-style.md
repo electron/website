@@ -1,10 +1,3 @@
----
-title: "Coding Style"
-description: "These are the style guidelines for coding in Electron."
-slug: coding-style
-hide_title: false
----
-
 # Coding Style
 
 These are the style guidelines for coding in Electron.

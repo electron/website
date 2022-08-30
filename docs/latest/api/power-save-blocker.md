@@ -1,10 +1,3 @@
----
-title: "powerSaveBlocker"
-description: "Block the system from entering low-power (sleep) mode."
-slug: power-save-blocker
-hide_title: false
----
-
 # powerSaveBlocker
 
 > Block the system from entering low-power (sleep) mode.

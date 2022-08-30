@@ -1,10 +1,3 @@
----
-title: "Mac App Store Submission Guide"
-description: "This guide provides information on:"
-slug: mac-app-store-submission-guide
-hide_title: false
----
-
 # Mac App Store Submission Guide
 
 This guide provides information on:

@@ -1,10 +1,3 @@
----
-title: "Class: IncomingMessage"
-description: "Handle responses to HTTP/HTTPS requests."
-slug: incoming-message
-hide_title: false
----
-
 ## Class: IncomingMessage
 
 > Handle responses to HTTP/HTTPS requests.

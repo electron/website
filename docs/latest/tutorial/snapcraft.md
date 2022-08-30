@@ -1,10 +1,3 @@
----
-title: "Snapcraft Guide (Linux)"
-description: "This guide provides information on how to package your Electron application for any Snapcraft environment, including the Ubuntu Software Center."
-slug: snapcraft
-hide_title: false
----
-
 # Snapcraft Guide (Linux)
 
 This guide provides information on how to package your Electron application

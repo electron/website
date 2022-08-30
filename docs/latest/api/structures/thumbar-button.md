@@ -1,10 +1,3 @@
----
-title: "ThumbarButton Object"
-description: ""
-slug: thumbar-button
-hide_title: false
----
-
 # ThumbarButton Object
 
 * `icon` [NativeImage](latest/api/native-image.md) - The icon showing in thumbnail

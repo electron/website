@@ -1,10 +1,3 @@
----
-title: "CustomScheme Object"
-description: ""
-slug: custom-scheme
-hide_title: false
----
-
 # CustomScheme Object
 
 * `scheme` string - Custom schemes to be registered with options.

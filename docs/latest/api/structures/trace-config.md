@@ -1,10 +1,3 @@
----
-title: "TraceConfig Object"
-description: ""
-slug: trace-config
-hide_title: false
----
-
 # TraceConfig Object
 
 * `recording_mode` string (optional) - Can be `record-until-full`, `record-continuously`, `record-as-much-as-possible` or `trace-to-console`. Defaults to `record-until-full`.

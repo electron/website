@@ -1,10 +1,3 @@
----
-title: "powerMonitor"
-description: "Monitor power state changes."
-slug: power-monitor
-hide_title: false
----
-
 # powerMonitor
 
 > Monitor power state changes.

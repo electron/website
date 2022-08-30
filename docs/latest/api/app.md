@@ -1,10 +1,3 @@
----
-title: "app"
-description: "Control your application's event lifecycle."
-slug: app
-hide_title: false
----
-
 # app
 
 > Control your application's event lifecycle.

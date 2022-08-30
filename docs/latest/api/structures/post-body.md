@@ -1,10 +1,3 @@
----
-title: "PostBody Object"
-description: ""
-slug: post-body
-hide_title: false
----
-
 # PostBody Object
 
 * `data` ([UploadRawData](latest/api/structures/upload-raw-data.md) | [UploadFile](latest/api/structures/upload-file.md))[] - The post data to be sent to the

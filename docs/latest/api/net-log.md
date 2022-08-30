@@ -1,10 +1,3 @@
----
-title: "netLog"
-description: "Logging network events for a session."
-slug: net-log
-hide_title: false
----
-
 # netLog
 
 > Logging network events for a session.

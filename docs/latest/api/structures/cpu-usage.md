@@ -1,10 +1,3 @@
----
-title: "CPUUsage Object"
-description: ""
-slug: cpu-usage
-hide_title: false
----
-
 # CPUUsage Object
 
 * `percentCPUUsage` number - Percentage of CPU used since the last call to getCPUUsage.

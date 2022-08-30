@@ -1,10 +1,3 @@
----
-title: "shell"
-description: "Manage files and URLs using their default applications."
-slug: shell
-hide_title: false
----
-
 # shell
 
 > Manage files and URLs using their default applications.

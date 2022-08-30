@@ -1,10 +1,3 @@
----
-title: "contextBridge"
-description: "Create a safe, bi-directional, synchronous bridge across isolated contexts"
-slug: context-bridge
-hide_title: false
----
-
 # contextBridge
 
 > Create a safe, bi-directional, synchronous bridge across isolated contexts

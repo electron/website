@@ -1,10 +1,3 @@
----
-title: "MemoryInfo Object"
-description: ""
-slug: memory-info
-hide_title: false
----
-
 # MemoryInfo Object
 
 * `workingSetSize` Integer - The amount of memory currently pinned to actual physical RAM.

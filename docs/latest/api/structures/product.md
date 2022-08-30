@@ -1,10 +1,3 @@
----
-title: "Product Object"
-description: ""
-slug: product
-hide_title: false
----
-
 # Product Object
 
 * `productIdentifier` string - The string that identifies the product to the Apple App Store.

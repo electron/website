@@ -1,10 +1,3 @@
----
-title: "autoUpdater"
-description: "Enable apps to automatically update themselves."
-slug: auto-updater
-hide_title: false
----
-
 # autoUpdater
 
 > Enable apps to automatically update themselves.
