@@ -33,10 +33,7 @@ export default function AppsGrid({ list }) {
           </a>
         ))}
       </div>
-      <Link
-        to="https://electronjs.org/apps"
-        className="button button--electron margin-top--lg"
-      >
+      <Link to="/apps" className="button button--electron margin-top--lg">
         See more
       </Link>
     </div>
