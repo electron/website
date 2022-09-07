@@ -124,6 +124,7 @@ module.exports = {
       label: 'Development',
       items: [
         'latest/tutorial/accessibility',
+        'latest/tutorial/asar-integrity',
         'latest/tutorial/boilerplates-and-clis',
         'latest/tutorial/fuses',
         'latest/tutorial/using-native-node-modules',
@@ -235,13 +236,6 @@ module.exports = {
             'latest/development/v8-development',
           ],
         },
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Tutorial',
-      items: [
-        'latest/tutorial/asar-integrity',
       ],
     },
   ],
