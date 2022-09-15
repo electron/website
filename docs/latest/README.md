@@ -75,6 +75,7 @@ an issue:
   * [Mac App Store](latest/tutorial/mac-app-store-submission-guide.md)
   * [Windows Store](latest/tutorial/windows-store-guide.md)
   * [Snapcraft](latest/tutorial/snapcraft.md)
+  * [ASAR Archives](latest/tutorial/asar-archives.md)
 * [Updates](latest/tutorial/updates.md)
 * [Getting Support](latest/tutorial/support.md)
 
