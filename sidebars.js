@@ -244,6 +244,13 @@ module.exports = {
         'latest/tutorial/asar-integrity',
       ],
     },
+    {
+      type: 'category',
+      label: 'Tutorial',
+      items: [
+        'latest/tutorial/asar-archives',
+      ],
+    },
   ],
   api: [
     {
