@@ -137,7 +137,7 @@ module.exports = {
         'latest/tutorial/forge-overview',
         {
           type: 'category',
-          label: 'Advanced Distribution Guides',
+          label: 'Advanced Reference',
           link: {
             type: 'doc',
             id: 'latest/tutorial/distribution-overview',
