@@ -15,7 +15,7 @@ slug: electron-21-0
 
 ---
 
-Electron 20.0.0 has been released! It includes upgrades to Chromium `106`, V8 `10.4`, and Node.js `16.16.0`. Read below for more details!
+Electron 21.0.0 has been released! It includes upgrades to Chromium `106`, V8 `10.4`, and Node.js `16.16.0`. Read below for more details!
 
 ---
 
