@@ -19,7 +19,9 @@ Electron 21.0.0 has been released! It includes upgrades to Chromium `106`, V8 `1
 
 ---
 
-The Electron team is excited to announce the release of Electron 21.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://www.electronjs.org/releases/stable). Continue reading for details about this release and please share any feedback you have!
+The Electron team is excited to announce the release of Electron 21.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://www.electronjs.org/releases/stable). Continue reading for details about this release.
+
+If you have any feedback, please share it with us on Twitter, or join our community [Discord](https://discord.com/invite/electronjs)! Bugs and feature requests can be reported in Electron's [issue tracker](https://github.com/electron/electron/issues).
 
 ## Notable Changes
 
