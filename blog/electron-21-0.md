@@ -38,19 +38,20 @@ If you have any feedback, please share it with us on Twitter, or join our commun
 * Chromium `106`
     * [New in Chrome 106](https://developer.chrome.com/blog/new-in-chrome-106/)
     * [New in Chrome 105](https://developer.chrome.com/blog/new-in-chrome-105/)
-    * [New in DevTools](https://developer.chrome.com/blog/new-in-devtools-106/)
+    * [New in DevTools 106](https://developer.chrome.com/blog/new-in-devtools-106/)
+    * [New in DevTools 105](https://developer.chrome.com/blog/new-in-devtools-105/)
 * Node.js `16.16.0`
     * [Node 16.16.0 blog post](https://nodejs.org/en/blog/release/v16.16.0/)
 * V8 `10.4`
 
-## Breaking Changes
+## Breaking & API Changes
+
+Below are breaking changes introduced in Electron 21. 
 
 * Enabled the V8 memory cage for external buffers. See https://www.electronjs.org/blog/v8-memory-cage for more details. [#34724](https://github.com/electron/electron/pull/34724) 
 * Refactored `webContents.printToPDF` to align with the Chrome Devtools implementation. [#33654](https://github.com/electron/electron/pull/33654) 
 
-## API Changes
-
-Below are breaking changes introduced in Electron 21. More information about these and future changes can be found on the [Planned Breaking Changes](https://www.electronjs.org/docs/latest/breaking-changes) page.
+More information about these and future changes can be found on the [Planned Breaking Changes](https://www.electronjs.org/docs/latest/breaking-changes) page.
 
 ## End of Support for 18.x.y
 
@@ -64,7 +65,7 @@ Electron 18.x.y has reached end-of-support as per the project's [support policy]
 
 ## What's Next
 
-In the short term, you can expect the team to continue to focus on keeping up with the development of the major components that make up Electron, including Chromium, Node, and V8. Although we are careful not to make promises about release dates, our plan is to release new major versions of Electron with new versions of those components approximately every 2 months.
+In the short term, you can expect the team to continue to focus on keeping up with the development of the major components that make up Electron, including Chromium, Node, and V8.
 
 You can find [Electron's public timeline here](https://www.electronjs.org/docs/latest/tutorial/electron-timelines).
 
