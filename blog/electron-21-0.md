@@ -26,6 +26,7 @@ The Electron team is excited to announce the release of Electron 21.0.0! You can
 ### New Features
 
 TODO: Add features here
+* Added LoadBrowserProcessSpecificV8Snapshot as a new fuse that will let the main/browser process load its v8 snapshot from a file at browser_v8_context_snapshot.bin. Any other process will use the same path as is used today. [35266](https://github.com/electron/electron/pull/35266)
 
 ### Stack Changes
 
@@ -37,9 +38,15 @@ TODO: Add features here
     * [Node 16.16.0 blog post](https://nodejs.org/en/blog/release/v16.16.0/)
 * V8 `10.4`
 
-## Breaking & API Changes
+## Breaking Changes
+
+There are no breaking changes for this version of Electron!
+
+## API Changes
 
 Below are breaking changes introduced in Electron 21. More information about these and future changes can be found on the [Planned Breaking Changes](https://www.electronjs.org/docs/latest/breaking-changes) page.
+
+*  Added new WebContents.ipc and WebFrameMain.ipc APIs
 
 
 ## End of Support for 18.x.y
