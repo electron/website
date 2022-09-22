@@ -25,8 +25,11 @@ The Electron team is excited to announce the release of Electron 21.0.0! You can
 
 ### New Features
 
-TODO: Add features here
-* Added LoadBrowserProcessSpecificV8Snapshot as a new fuse that will let the main/browser process load its v8 snapshot from a file at browser_v8_context_snapshot.bin. Any other process will use the same path as is used today. [35266](https://github.com/electron/electron/pull/35266)
+* Added `webFrameMain.origin`. [#35534](https://github.com/electron/electron/pull/35534) <span style="font-size:small;">(Also in [19](https://github.com/electron/electron/pull/35624), [20](https://github.com/electron/electron/pull/35535))</span>
+* Added immersive dark mode on Windows. [#33624](https://github.com/electron/electron/pull/33624) <span style="font-size:small;">(Also in [20](https://github.com/electron/electron/pull/34549))</span>
+* Added new `WebContents.ipc` and `WebFrameMain.ipc` APIs. [#35231](https://github.com/electron/electron/pull/35231) 
+* Added support for panel-like behavior. Window can float over full-screened apps. [#34388](https://github.com/electron/electron/pull/34388) <span style="font-size:small;">(Also in [20](https://github.com/electron/electron/pull/34665))</span>
+* Added support for push notifications from APNs for macOS apps. [#33574](https://github.com/electron/electron/pull/33574) 
 
 ### Stack Changes
 
@@ -40,14 +43,12 @@ TODO: Add features here
 
 ## Breaking Changes
 
-There are no breaking changes for this version of Electron!
+* Enabled the V8 memory cage for external buffers. See https://www.electronjs.org/blog/v8-memory-cage for more details. [#34724](https://github.com/electron/electron/pull/34724) 
+* Refactored `webContents.printToPDF` to align with the Chrome Devtools implementation. [#33654](https://github.com/electron/electron/pull/33654) 
 
 ## API Changes
 
 Below are breaking changes introduced in Electron 21. More information about these and future changes can be found on the [Planned Breaking Changes](https://www.electronjs.org/docs/latest/breaking-changes) page.
-
-*  Added new WebContents.ipc and WebFrameMain.ipc APIs
-
 
 ## End of Support for 18.x.y
 
