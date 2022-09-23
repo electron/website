@@ -245,6 +245,13 @@ module.exports = {
         'latest/tutorial/asar-archives',
       ],
     },
+    {
+      type: 'category',
+      label: 'Tutorial',
+      items: [
+        'latest/tutorial/forge-overview',
+      ],
+    },
   ],
   api: [
     {
