@@ -49,7 +49,7 @@ Below are breaking changes introduced in Electron 21.
 
 ### V8 Memory Cage Enabled
 
-Electron 20 enables [V8 sandboxed pointers](https://docs.google.com/document/d/1HSap8-J3HcrZvT7-5NsbYWcjfc0BVoops5TDHZNsnko/edit), following Chrome's [decision to do the same in Chrome 103](https://chromiumdash.appspot.com/commit/9a6a76bf13d3ca1c6788de193afc5513919dd0ed). This has some implications for native modules. This feature has performance and security benefits, but also places some new restrictions on native modules, e.g. use of ArrayBuffers that point to external ("off-heap") memory. Please see [this blog post](https://electronjs.org/blog/v8-memory-cage) for more information. [#34724](https://github.com/electron/electron/pull/34724) 
+Electron 21 enables [V8 sandboxed pointers](https://docs.google.com/document/d/1HSap8-J3HcrZvT7-5NsbYWcjfc0BVoops5TDHZNsnko/edit), following Chrome's [decision to do the same in Chrome 103](https://chromiumdash.appspot.com/commit/9a6a76bf13d3ca1c6788de193afc5513919dd0ed). This has some implications for native modules. This feature has performance and security benefits, but also places some new restrictions on native modules, e.g. use of ArrayBuffers that point to external ("off-heap") memory. Please see [this blog post](https://electronjs.org/blog/v8-memory-cage) for more information. [#34724](https://github.com/electron/electron/pull/34724) 
 
 ### Refactored webContents.printToPDF
 Refactored `webContents.printToPDF` to align with Chromium's headless implementation. See [#33654](https://github.com/electron/electron/pull/33654) for more information.
