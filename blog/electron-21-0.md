@@ -25,14 +25,6 @@ If you have any feedback, please share it with us on Twitter, or join our commun
 
 ## Notable Changes
 
-### New Features
-
-* Added `webFrameMain.origin`. [#35534](https://github.com/electron/electron/pull/35534) <span style="font-size:small;">(Also in [19](https://github.com/electron/electron/pull/35624), [20](https://github.com/electron/electron/pull/35535))</span>
-* Added immersive dark mode on Windows. [#33624](https://github.com/electron/electron/pull/33624) <span style="font-size:small;">(Also in [20](https://github.com/electron/electron/pull/34549))</span>
-* Added new `WebContents.ipc` and `WebFrameMain.ipc` APIs. [#35231](https://github.com/electron/electron/pull/35231) 
-* Added support for panel-like behavior. Window can float over full-screened apps. [#34388](https://github.com/electron/electron/pull/34388) <span style="font-size:small;">(Also in [20](https://github.com/electron/electron/pull/34665))</span>
-* Added support for push notifications from APNs for macOS apps. [#33574](https://github.com/electron/electron/pull/33574) 
-
 ### Stack Changes
 
 * Chromium `106`
@@ -43,6 +35,14 @@ If you have any feedback, please share it with us on Twitter, or join our commun
 * Node.js `16.16.0`
     * [Node 16.16.0 blog post](https://nodejs.org/en/blog/release/v16.16.0/)
 * V8 `10.4`
+
+### New Features
+
+* Added `webFrameMain.origin`. [#35534](https://github.com/electron/electron/pull/35534) <span style="font-size:small;">(Also in [19](https://github.com/electron/electron/pull/35624), [20](https://github.com/electron/electron/pull/35535))</span>
+* Added immersive dark mode on Windows. [#33624](https://github.com/electron/electron/pull/33624) <span style="font-size:small;">(Also in [20](https://github.com/electron/electron/pull/34549))</span>
+* Added new `WebContents.ipc` and `WebFrameMain.ipc` APIs. [#35231](https://github.com/electron/electron/pull/35231) 
+* Added support for panel-like behavior. Window can float over full-screened apps. [#34388](https://github.com/electron/electron/pull/34388) <span style="font-size:small;">(Also in [20](https://github.com/electron/electron/pull/34665))</span>
+* Added support for push notifications from APNs for macOS apps. [#33574](https://github.com/electron/electron/pull/33574) 
 
 ## Breaking & API Changes
 
