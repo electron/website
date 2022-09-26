@@ -34,7 +34,7 @@ If you have any feedback, please share it with us on Twitter, or join our commun
     * [New in DevTools 105](https://developer.chrome.com/blog/new-in-devtools-105/)
 * Node.js `16.16.0`
     * [Node 16.16.0 blog post](https://nodejs.org/en/blog/release/v16.16.0/)
-* V8 `10.4`
+* V8 `10.6`
 
 ### New Features
 
