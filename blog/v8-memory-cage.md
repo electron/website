@@ -8,11 +8,11 @@ authors:
 slug: v8-memory-cage
 ---
 
-Electron 20 and later will have the V8 Memory Cage enabled, with implications for some native modules.
+Electron 21 and later will have the V8 Memory Cage enabled, with implications for some native modules.
 
 ---
 
-In Electron 20, we will be enabling [V8 sandboxed pointers](https://docs.google.com/document/d/1HSap8-J3HcrZvT7-5NsbYWcjfc0BVoops5TDHZNsnko/edit) in Electron, following Chrome's [decision to do the same in Chrome 103](https://chromiumdash.appspot.com/commit/9a6a76bf13d3ca1c6788de193afc5513919dd0ed). This has some implications for native modules. Also, we previously enabled a related technology, [pointer compression](https://v8.dev/blog/pointer-compression), in Electron 14. We didn't talk about it much then, but pointer compression has implications for the maximum V8 heap size.
+In Electron 21, we will be enabling [V8 sandboxed pointers](https://docs.google.com/document/d/1HSap8-J3HcrZvT7-5NsbYWcjfc0BVoops5TDHZNsnko/edit) in Electron, following Chrome's [decision to do the same in Chrome 103](https://chromiumdash.appspot.com/commit/9a6a76bf13d3ca1c6788de193afc5513919dd0ed). This has some implications for native modules. Also, we previously enabled a related technology, [pointer compression](https://v8.dev/blog/pointer-compression), in Electron 14. We didn't talk about it much then, but pointer compression has implications for the maximum V8 heap size.
 
 These two technologies, when enabled, are significantly beneficial for security, performance and memory usage. However, there are some downsides to enabling them, too.
 
