@@ -642,7 +642,7 @@ win.webContents.session.setCertificateVerifyProc((request, callback) => {
     * `notifications` - Request notification creation and the ability to display them in the user's system tray.
     * `midi` - Request MIDI access in the `webmidi` API.
     * `midiSysex` - Request the use of system exclusive messages in the `webmidi` API.
-    * `pointerLock` - Request to directly interpret mouse movements as an input method. Click [here](https://developer.mozilla.org/en-US/docs/Web/API/Pointer_Lock_API) to know more.
+    * `pointerLock` - Request to directly interpret mouse movements as an input method. Click [here](https://developer.mozilla.org/en-US/docs/Web/API/Pointer_Lock_API) to know more. These requests always appear to originate from the main frame.
     * `fullscreen` - Request for the app to enter fullscreen mode.
     * `openExternal` - Request to open links in external applications.
     * `unknown` - An unrecognized permission request
@@ -773,6 +773,71 @@ app.whenReady().then(() => {
     })
     callback(selectedPort?.deviceId)
   })
+})
+```
+
+#### `ses.setBluetoothPairingHandler(handler)` _Windows_ _Linux_
+
+* `handler` Function | null
+  * `details` Object
+    * `deviceId` string
+    * `pairingKind` string - The type of pairing prompt being requested.
+      One of the following values:
+      * `confirm`
+        This prompt is requesting confirmation that the Bluetooth device should
+        be paired.
+      * `confirmPin`
+        This prompt is requesting confirmation that the provided PIN matches the
+        pin displayed on the device.
+      * `providePin`
+        This prompt is requesting that a pin be provided for the device.
+    * `frame` [WebFrameMain](latest/api/web-frame-main.md)
+    * `pin` string (optional) - The pin value to verify if `pairingKind` is `confirmPin`.
+  * `callback` Function
+    * `response` Object
+      * `confirmed` boolean - `false` should be passed in if the dialog is canceled.
+        If the `pairingKind` is `confirm` or `confirmPin`, this value should indicate
+        if the pairing is confirmed.  If the `pairingKind` is `providePin` the value
+        should be `true` when a value is provided.
+      * `pin` string | null (optional) - When the `pairingKind` is `providePin`
+        this value should be the required pin for the Bluetooth device.
+
+Sets a handler to respond to Bluetooth pairing requests. This handler
+allows developers to handle devices that require additional validation
+before pairing.  When a handler is not defined, any pairing on Linux or Windows
+that requires additional validation will be automatically cancelled.
+macOS does not require a handler because macOS handles the pairing
+automatically.  To clear the handler, call `setBluetoothPairingHandler(null)`.
+
+```javascript
+
+const { app, BrowserWindow, ipcMain, session } = require('electron')
+
+let bluetoothPinCallback = null
+
+function createWindow () {
+  const mainWindow = new BrowserWindow({
+    webPreferences: {
+      preload: path.join(__dirname, 'preload.js')
+    }
+  })
+}
+
+// Listen for an IPC message from the renderer to get the response for the Bluetooth pairing.
+ipcMain.on('bluetooth-pairing-response', (event, response) => {
+  bluetoothPinCallback(response)
+})
+
+mainWindow.webContents.session.setBluetoothPairingHandler((details, callback) => {
+  bluetoothPinCallback = callback
+  // Send a IPC message to the renderer to prompt the user to confirm the pairing.
+  // Note that this will require logic in the renderer to handle this message and
+  // display a prompt to the user.
+  mainWindow.webContents.send('bluetooth-pairing-request', details)
+})
+
+app.whenReady().then(() => {
+  createWindow()
 })
 ```
 
@@ -939,7 +1004,7 @@ Returns `string[]` - An array of language codes the spellchecker is enabled for.
 will fallback to using `en-US`.  By default on launch if this setting is an empty list Electron will try to populate this
 setting with the current OS locale.  This setting is persisted across restarts.
 
-**Note:** On macOS the OS spellchecker is used and has its own list of languages.  This API is a no-op on macOS.
+**Note:** On macOS the OS spellchecker is used and has its own list of languages. On macOS, this API will return whichever languages have been configured by the OS.
 
 #### `ses.setSpellCheckerDictionaryDownloadURL(url)`
 

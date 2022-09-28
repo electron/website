@@ -423,5 +423,12 @@ module.exports = {
         'latest/api/structures/product-subscription-period',
       ],
     },
+    {
+      type: 'category',
+      label: 'Api',
+      items: [
+        'latest/api/push-notifications',
+      ],
+    },
   ],
 };
