@@ -27,7 +27,7 @@ into your app code.
 ## Using update.electronjs.org
 
 The Electron maintainers provide a free auto-updating service for open-source apps
-at https://update.electronjs.org. Its requirements are:
+at [https://update.electronjs.org](https://update.electronjs.org). Its requirements are:
 
 - Your app runs on macOS or Windows
 - Your app has a public GitHub repository
@@ -226,7 +226,7 @@ rest of our docs and happy developing! If you have questions, please stop by our
 
 [autoupdater]: latest/api/auto-updater.md
 [code-signed]: latest/tutorial/code-signing.md
-[discord server]: https://discord.com/invite/APGC3k5yaH
+[discord server]: https://discord.gg/electronjs
 [electron fiddle]: https://electronjs.org/fiddle
 [fiddle-build]: https://github.com/electron/fiddle/blob/master/.github/workflows/build.yaml
 [fiddle-forge-config]: https://github.com/electron/fiddle/blob/master/forge.config.js
