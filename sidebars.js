@@ -124,6 +124,7 @@ module.exports = {
       label: 'Development',
       items: [
         'latest/tutorial/accessibility',
+        'latest/tutorial/asar-archives',
         'latest/tutorial/asar-integrity',
         'latest/tutorial/boilerplates-and-clis',
         'latest/tutorial/fuses',
@@ -248,13 +249,6 @@ module.exports = {
         },
       ],
     },
-    {
-      type: 'category',
-      label: 'Tutorial',
-      items: [
-        'latest/tutorial/asar-archives',
-      ],
-    },
   ],
   api: [
     {
@@ -285,6 +279,7 @@ module.exports = {
         'latest/api/power-save-blocker',
         'latest/api/process',
         'latest/api/protocol',
+        'latest/api/push-notifications',
         'latest/api/safe-storage',
         'latest/api/screen',
         'latest/api/session',
@@ -424,13 +419,6 @@ module.exports = {
         'latest/api/structures/payment-discount',
         'latest/api/structures/product-discount',
         'latest/api/structures/product-subscription-period',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Api',
-      items: [
-        'latest/api/push-notifications',
       ],
     },
   ],
