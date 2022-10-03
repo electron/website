@@ -47,7 +47,7 @@ are the different categories and what you can expect on each one:
 - **Examples**: Quick references to add features to your Electron app.
 - **Development**: Miscellaneous development guides.
 - **Distribution**: Learn how to distribute your app to end users.
-- **Testing and debugging**: How to debug JavaScript, write tests, and other tools used
+- **Testing And Debugging**: How to debug JavaScript, write tests, and other tools used
   to create quality Electron applications.
 - **References**: Useful links to better understand how the Electron project works
   and is organized.
@@ -69,7 +69,7 @@ Are you getting stuck anywhere? Here are a few links to places to look:
 [tutorial]: latest/tutorial/tutorial-1-prerequisites.md
 [api documentation]: latest/api/app.md
 [chromium]: https://www.chromium.org/
-[discord]: https://discord.com/invite/APGC3k5yaH
+[discord]: https://discord.gg/electronjs
 [examples]: latest/tutorial/examples.md
 [fiddle]: https://electronjs.org/fiddle
 [issue-tracker]: https://github.com/electron/electron/issues

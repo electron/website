@@ -39,10 +39,6 @@ The Electron team is excited to announce the release of Electron 20.0.0! You can
 
 Below are breaking changes introduced in Electron 20. More information about these and future changes can be found on the [Planned Breaking Changes](https://www.electronjs.org/docs/latest/breaking-changes) page.
 
-### V8 Memory Cage Enabled
-
-Electron 20 enables [V8 sandboxed pointers](https://docs.google.com/document/d/1HSap8-J3HcrZvT7-5NsbYWcjfc0BVoops5TDHZNsnko/edit), following Chrome's [decision to do the same in Chrome 103](https://chromiumdash.appspot.com/commit/9a6a76bf13d3ca1c6788de193afc5513919dd0ed). This has some implications for native modules. This feature has performance and security benefits, but also places some new restrictions on native modules, e.g. use of ArrayBuffers that point to external ("off-heap") memory. Please see [this blog post](https://electronjs.org/blog/v8-memory-cage) for more information.
-
 ### Default Changed: renderers without `nodeIntegration: true` are sandboxed by default
 
 Previously, renderers that specified a preload script defaulted to being unsandboxed. This meant that by default, preload scripts had access to Node.js. In Electron 20, this default has changed. Beginning in Electron 20, renderers will be sandboxed by default, unless `nodeIntegration: true` or `sandbox: false` is specified.

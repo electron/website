@@ -1,0 +1,67 @@
+.appDescription {
+  font-size: 0.8rem;
+  white-space: pre-wrap;
+}
+
+.appCategory {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  font-family: 'Monaco', 'Consolas', monospace;
+  margin-bottom: 0;
+  color: grey;
+}
+
+.appName {
+  font-weight: 700;
+  font-size: 1.1rem;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.appLogoContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 0;
+  border-top-left-radius: var(--ifm-card-border-radius);
+  border-top-right-radius: var(--ifm-card-border-radius);
+}
+
+.appLogo {
+  width: auto;
+  height: 96px;
+}
+
+.appCard {
+  position: relative;
+  overflow: visible;
+  &.appCardFav::before {
+    content: '❤️';
+    backdrop-filter: blur(5px);
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgb(245, 245, 245);
+    border-radius: 100%;
+    box-shadow: var(--shadow-elevation-high);
+    display: grid;
+    height: 1.75rem;
+    left: -0.5rem;
+    line-height: inherit;
+    padding-top: 0.25rem;
+    position: absolute;
+    place-items: center;
+    top: -0.5rem;
+    width: 2rem;
+
+    [data-theme='dark'] & {
+      background: black;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(200, 200, 200, 0.3);
+    }
+  }
+}
+
+.forceLight {
+  background: rgba(255, 255, 255, 0.5);
+  border-top-left-radius: var(--ifm-card-border-radius);
+  border-top-right-radius: var(--ifm-card-border-radius);
+}

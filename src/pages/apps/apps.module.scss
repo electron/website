@@ -1,0 +1,152 @@
+.title {
+  text-align: center;
+  font-size: 5rem;
+
+  @media (max-width: 768px) {
+    font-size: 3rem;
+  }
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 1rem;
+}
+
+.filtersContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: sticky;
+  top: var(--ifm-navbar-height);
+  z-index: 100;
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.85);
+  padding: 1rem;
+
+  [data-theme='dark'] & {
+    background: rgba(27, 27, 29, 0.85);
+  }
+}
+
+.pillFiltersList {
+  flex-wrap: wrap;
+
+  @media (max-width: 769px) {
+    display: none;
+  }
+}
+
+.pillFilter {
+  display: flex;
+  align-items: center;
+  user-select: none;
+}
+
+.filterBadge {
+  margin-left: 0.2rem;
+  padding: 0.2rem 0.4rem;
+  font-size: 80%;
+  background-color: var(--ifm-color-emphasis-200);
+  border-color: var(--ifm-color-emphasis-200);
+  color: var(--ifm-color-content);
+}
+
+.dropdownFilter {
+  width: 100%;
+  margin-bottom: 0;
+  padding: 0;
+  position: relative;
+  @media (min-width: 768px) {
+    display: none;
+  }
+
+  &::after {
+    color: var(--ifm-button-color);
+    content: '▼';
+    cursor: pointer;
+    height: 100%;
+
+    position: absolute;
+    right: 10px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.dropdownFilterItem {
+  width: 100%;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+}
+
+.dropdownMenu {
+  width: 100%;
+}
+
+.appCardContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 2rem;
+  row-gap: 2rem;
+
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 512px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.favsContainer {
+  padding: 40px;
+  max-width: calc(var(--ifm-container-width-xl) + 40px);
+  border: 1px solid rgba(200, 200, 200, 0.3);
+  border-radius: var(--ifm-card-border-radius);
+
+  @media (max-width: 1200px) {
+    margin: 0;
+  }
+}
+
+.allContainer {
+  @media (max-width: 1200px) {
+    padding: 40px;
+  }
+}
+
+.sortAndSearchContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: end;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.sortDropdownItem {
+  cursor: pointer;
+}
+
+.sortDropdownButton {
+  color: var(--ifm-color-content);
+  background-color: var(--ifm-color-emphasis-200);
+  border-color: var(--ifm-color-emphasis-200);
+  
+  &:hover {
+    color: var(--ifm-link-color);
+  }
+}
+
+.sortDropdownMenu {
+  min-width: 100%;
+}

@@ -137,6 +137,11 @@ set `NSPrincipalClass` to `AtomApplication`.
 
 You should call `event.preventDefault()` if you want to handle this event.
 
+As with the `open-file` event, be sure to register a listener for the `open-url`
+event early in your application startup to detect if the the application being
+is being opened to handle a URL. If you register the listener in response to a
+`ready` event, you'll miss URLs that trigger the launch of your application.
+
 ### Event: 'activate' _macOS_
 
 Returns:
@@ -717,13 +722,19 @@ To set the locale, you'll want to use a command line switch at app startup, whic
 **Note:** When distributing your packaged app, you have to also ship the
 `locales` folder.
 
-**Note:** On Windows, you have to call it after the `ready` events gets emitted.
+**Note:** This API must be called after the `ready` event is emitted.
 
 ### `app.getLocaleCountryCode()`
 
 Returns `string` - User operating system's locale two-letter [ISO 3166](https://www.iso.org/iso-3166-country-codes.html) country code. The value is taken from native OS APIs.
 
 **Note:** When unable to detect locale country code, it returns empty string.
+
+### `app.getSystemLocale()`
+
+Returns `string` - The current system locale. On Windows and Linux, it is fetched using Chromium's `i18n` library. On macOS, the `NSLocale` object is used instead.
+
+**Note:** This API must be called after the `ready` event is emitted.
 
 ### `app.addRecentDocument(path)` _macOS_ _Windows_
 
@@ -1388,7 +1399,7 @@ method returns false. If we fail to perform the copy, then this method will
 throw an error. The message in the error should be informative and tell
 you exactly what went wrong.
 
-By default, if an app of the same name as the one being moved exists in the Applications directory and is _not_ running, the existing app will be trashed and the active app moved into its place. If it _is_ running, the pre-existing running app will assume focus and the previously active app will quit itself. This behavior can be changed by providing the optional conflict handler, where the boolean returned by the handler determines whether or not the move conflict is resolved with default behavior.  i.e. returning `false` will ensure no further action is taken, returning `true` will result in the default behavior and the method continuing.
+By default, if an app of the same name as the one being moved exists in the Applications directory and is _not_ running, the existing app will be trashed and the active app moved into its place. If it _is_ running, the preexisting running app will assume focus and the previously active app will quit itself. This behavior can be changed by providing the optional conflict handler, where the boolean returned by the handler determines whether or not the move conflict is resolved with default behavior.  i.e. returning `false` will ensure no further action is taken, returning `true` will result in the default behavior and the method continuing.
 
 For example:
 

@@ -70,8 +70,9 @@ module.exports = {
           position: 'left',
           activeBaseRegex: '^\b$', // never active
         },
-        { to: 'fiddle', label: 'Fiddle', position: 'left' },
         { to: 'blog', label: 'Blog', position: 'left' },
+        { to: 'fiddle', label: 'Fiddle', position: 'left' },
+        { to: 'apps', label: 'Showcase', position: 'left' },
         { to: 'community', label: 'Community', position: 'left' },
         {
           href: 'https://releases.electronjs.org',
@@ -173,8 +174,10 @@ module.exports = {
   },
   plugins: [
     'docusaurus-plugin-sass',
+    path.resolve(__dirname, './src/plugins/apps'),
     path.resolve(__dirname, './src/plugins/releases'),
     path.resolve(__dirname, './src/plugins/fiddle'),
+    ['@docusaurus/plugin-ideal-image', {}],
   ],
   presets: [
     [
