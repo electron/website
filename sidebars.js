@@ -135,17 +135,27 @@ module.exports = {
       type: 'category',
       label: 'Distribution',
       items: [
-        'latest/tutorial/distribution-overview',
-        'latest/tutorial/application-distribution',
-        'latest/tutorial/code-signing',
-        'latest/tutorial/updates',
+        'latest/tutorial/forge-overview',
         {
           type: 'category',
-          label: 'App Store Guides',
+          label: 'Advanced Reference',
+          link: {
+            type: 'doc',
+            id: 'latest/tutorial/distribution-overview',
+          },
           items: [
-            'latest/tutorial/mac-app-store-submission-guide',
-            'latest/tutorial/windows-store-guide',
-            'latest/tutorial/snapcraft',
+            'latest/tutorial/application-distribution',
+            'latest/tutorial/code-signing',
+            'latest/tutorial/updates',
+            {
+              type: 'category',
+              label: 'App Store Guides',
+              items: [
+                'latest/tutorial/mac-app-store-submission-guide',
+                'latest/tutorial/windows-store-guide',
+                'latest/tutorial/snapcraft',
+              ],
+            },
           ],
         },
       ],
@@ -243,13 +253,6 @@ module.exports = {
       label: 'Tutorial',
       items: [
         'latest/tutorial/asar-archives',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Tutorial',
-      items: [
-        'latest/tutorial/forge-overview',
       ],
     },
   ],
