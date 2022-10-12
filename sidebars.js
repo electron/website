@@ -172,7 +172,6 @@ module.exports = {
         'latest/tutorial/devtools-extension',
         'latest/tutorial/application-debugging',
         'latest/tutorial/testing-on-headless-ci',
-        'latest/tutorial/testing-widevine-cdm',
       ],
     },
     {
