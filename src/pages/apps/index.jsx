@@ -21,7 +21,7 @@ export default function AppsPage() {
   const sortedApps = apps
     .sort((a, b) => {
       if (activeSort === SORTS.ALPHABETICAL) {
-        return a.name.localeCompare(b.name);
+        return a.name.localeCompare(b.name, 'en');
       } else if (activeSort === SORTS.RECENT) {
         return new Date(a.date) > new Date(b.date) ? -1 : 1;
       }
