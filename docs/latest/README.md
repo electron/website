@@ -90,7 +90,6 @@ These individual tutorials expand on topics discussed in the guide above.
 * Electron Releases & Developer Feedback
   * [Versioning Policy](latest/tutorial/electron-versioning.md)
   * [Release Timelines](latest/tutorial/electron-timelines.md)
-* [Testing Widevine CDM](latest/tutorial/testing-widevine-cdm.md)
 
 ---
 
