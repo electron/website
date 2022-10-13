@@ -14,9 +14,16 @@ Last month, Electron’s maintainer group met up in Vancouver, Canada to discuss
 project for 2023 and beyond. Over four days in a conference room, core maintainers and invited
 collaborators discussed new initiatives, maintenance pain points, and general project health.
 
-Good news: going forward, the team will still be fully dedicated to releasing regular and rapid
+<figure>
+  <img src="/assets/img/2022-maintainer-summit.jpg"/>
+  <figcaption align="center">
+    Group Photo! Taken by <a href="https://github.com/groundwater">@groundwater</a>.
+  </figcaption>
+</figure>
+
+Going forward, the team will still be fully dedicated to releasing regular and rapid
 Chromium upgrades, fixing bugs, and making Electron more secure and performant for everyone.
-Even better news: we also have a few exciting projects in the works we would love to share with
+We also have a few exciting projects in the works we would love to share with
 the community!
 
 ## Transformative new APIs
