@@ -39,7 +39,7 @@ The addition of webpack support brings several webpack features to your Forge ap
 
 ## The Forge API Has Moved
 
-If you aren't already on the beta version of Forge, since the last stable release the Forge v5 API has been refactored into its own separate node module. The new refactored Forge [Core API] exposes the v5 Forge API methods as well as a number of utility functions to Node, allowing you call them from within your own code.
+If you aren't already on the beta version of Forge, since the previous stable release the Forge v5 API has been refactored into its own separate node module. The new refactored Forge [Core API] exposes the v5 Forge API methods as well as a number of utility functions to Node, allowing you call them from within your own code.
 
 This release also adds access to the Core API from your command line interface in the form of another [CLI API]. At a high level, this is a wrapper for the Forge Core API that is accessible from the terminal.
 
@@ -84,7 +84,7 @@ _A complete list of changes and commits can be found [here](https://github.com/e
 ### Plugins
 
 * plugin-local-electron: add plugin-local-electron ([8af92682](https://github.com/electron-userland/electron-forge/commit/8af92682))
-* **plugin webpack**
+* plugin webpack
     * plugin-webpack: new webpack plugin ([531d3c80](https://github.com/electron-userland/electron-forge/commit/531d3c80))
         * log out the web logger URL on start ([cdd4cde1](https://github.com/electron-userland/electron-forge/commit/cdd4cde1))
         * capture logs into web ui, handle preload scripts ([e800049b](https://github.com/electron-userland/electron-forge/commit/e800049b))
