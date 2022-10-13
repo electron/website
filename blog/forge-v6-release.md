@@ -1,5 +1,5 @@
 ---
-title: Electron Forge v6 Stable Release
+title: Electron Forge v6.0.0
 date: 2022-10-26T00:00:00.000Z
 authors:
   - name: georgexu99
@@ -11,41 +11,19 @@ authors:
 slug: forge-v6-release-blog
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 The Electron Forge Team is excited to announce that Forge v6 is now available! This stable release contains many significant new features and improvements. Highlights of this release include the addition of our Webpack plugin as well as the introduction of the Forge Core and CLI APIs.
 
-## What Does Switching to Stable Mean?
+## What Does a Stable Release Mean?
 
 During our time in a beta release state, our team has been busy refactoring Forge’s code, improving its architecture, creating new features as well as ironing out bugs and issues.
 
-Now that we are done making changes, we’re ready to release a stable version of Forge!
+A stable release means that we are done making major breaking changes, and that beta changes have been tested thoroughly both internally and through the community.
 
-## Upgrading to Forge v6
+## Why Switch to Forge From an Existing Pipeline?
 
-Forge will try to migrate from Electron Forge v5 automatically as much as possible, but some of it may need to be migrated manually. Importing your settings can be done with the same process as importing an existing Electron app to Forge:
+If your app already uses an existing build tooling solution that provides packaging and publishing capabilities, the benefits associated with adopting Electron Forge can still outweigh the initial switching cost.
 
-<Tabs>
-   <TabItem value="Yarn" label="Yarn" default>
-
-```
-   cd my-app
-   yarn add --dev @electron-forge/cli
-   yarn electron-forge import
-```
-
-   </TabItem>
-   <TabItem value="NPM" label="NPM">
-
-```
-   cd my-app
-   npm install --save-dev @electron-forge/cli
-   npm exec --package=@electron-forge/cli -c "electron-forge import"
-```
-
-   </TabItem>
-</Tabs>
+Electron Forge will be kept up to date with the latest Electron tooling updates. This means that alongside the implicit features and plugins that Forge provides, users won't need to wire in new tooling support themselves, or wait for that support to be eventually implemented by other packages before upgrading. This reduction in the burden of maintenance for Forge applications has already been observed when Electron released `@electron/universal` [support](https://github.com/electron/universal) as well as [ASAR Integrity checking](https://www.electronjs.org/docs/latest/tutorial/asar-integrity), which were features that Forge supported out of the box.
 
 ## Introducing the Webpack Plugin
 
@@ -61,7 +39,7 @@ The addition of webpack support brings several webpack features to your Forge ap
 
 ## The Forge API Has Moved
 
-The Forge v5 API has been refactored into its own separate node module. The new refactored Forge [Core API] exposes the v5 Forge API methods as well as a number of utility functions to Node, allowing you call them from within your own code.
+If you aren't already on the beta version of Forge, since the last stable release the Forge v5 API has been refactored into its own separate node module. The new refactored Forge [Core API] exposes the v5 Forge API methods as well as a number of utility functions to Node, allowing you call them from within your own code.
 
 This release also adds access to the Core API from your command line interface in the form of another [CLI API]. At a high level, this is a wrapper for the Forge Core API that is accessible from the terminal.
 
