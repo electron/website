@@ -79,7 +79,7 @@ See: electron/electron#35658
 
 #### Example: Scrollable web contents with `ScrollView`
 
-Our friends at Stack have been driving an initiative to expose the Chromium ScrollView component to
+Our friends at [Stack](https://stackbrowser.com/) have been driving an initiative to expose the Chromium ScrollView component to
 Electron’s API. With this new API, any child View component can be made scrollable horizontally or
 vertically.
 
