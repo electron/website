@@ -8,6 +8,9 @@ authors:
   - name: vertedinde
     url: 'https://github.com/vertedinde'
     image_url: 'https://github.com/vertedinde.png?size=96'
+  - name: erickzhao
+  url: 'https://github.com/erickzhao'
+  image_url: 'https://github.com/erickzhao.png?size=96'
 slug: forge-v6-release-blog
 ---
 
@@ -23,7 +26,9 @@ A stable release means that we are done making major breaking changes, and that 
 
 If your app already uses an existing build tooling solution that provides packaging and publishing capabilities, the benefits associated with adopting Electron Forge can still outweigh the initial switching cost.
 
-Electron Forge will be kept up to date with the latest Electron tooling updates. This means that alongside the implicit features and plugins that Forge provides, users won't need to wire in new tooling support themselves, or wait for that support to be eventually implemented by other packages before upgrading. This reduction in the burden of maintenance for Forge applications has already been observed when Electron released `@electron/universal` [support](https://github.com/electron/universal) as well as [ASAR Integrity checking](https://www.electronjs.org/docs/latest/tutorial/asar-integrity), which were features that Forge supported out of the box.
+Electron Forge will receive features from the latest Electron tooling updates as soon as they come out. This means that alongside the implicit features and plugins that Forge provides, users won't need to wire in new tooling support themselves, or wait for that support to be eventually implemented by other packages before upgrading. This reduction in the burden of maintenance for Forge applications has already been observed when Electron released `@electron/universal` [support](https://github.com/electron/universal) as well as [ASAR Integrity checking](https://www.electronjs.org/docs/latest/tutorial/asar-integrity), which were features that Forge supported out of the box.
+
+In addition, Forge was built with the intention of supporting custom plugins, makers and publishers. Forge's extensible API design means that you can write your own additional build logic for any advanced use cases that you may require. For more details, see the [Extending Electron Forge] section of the docs.
 
 ## Introducing the Webpack Plugin
 
@@ -52,11 +57,13 @@ _A complete list of changes and commits can be found [here](https://github.com/e
 - renamed the default repository branch from `master` to `main` ([#2946](https://github.com/electron-userland/electron-forge/commit/d28974e35b5e64aa94e6cc53dce36c8e53f5b5bf))
 - renamed `electronRebuildConfig` to `rebuildConfig` ([placeholdercommitmsg](https://github.com/electron-userland/electron-forge/pull/2963))
 - renamed `identity-validation` to`identityValidation` ([#2959](https://github.com/electron-userland/electron-forge/commit/dba9359026b6b72479bff8133ec0c2c2e05d5595))
+
+## A Call to Action:
+Tell us what you need! The Electron Forge Team is always looking to build the project to better suit its users. You can help us improve Electron Forge by submitting feature requests, posting issues, or just letting us know your feedback!
+
 <!-- links -->
 
 [Core API]: https://www.npmjs.com/package/@electron-forge/core
 [CLI API]: https://www.npmjs.com/package/@electron-forge/cli
-[webpack template]: https://www.electronforge.io/templates/webpack-template
-
-
-
+[webpack template]: https://www.electronforge.io/templates/webpack-template]
+[Extending Electron Forge]: https://www.electronforge.io/advanced/extending-electron-forge
