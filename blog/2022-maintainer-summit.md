@@ -39,7 +39,7 @@ sneak peek of what to expect!
 
 This proposal outlines a new layer of Electron C APIs that will allow app developers to write their
 own Native Node Addons that interface with Electron’s internal resources, similar to Node’s
-own Node-API.
+own Node-API. More information about the proposed new API [can be found here](https://github.com/electron/governance/blob/main/wg-api/spec-documents/electron-c-apis.md).
 
 #### Example: Supercharging apps with Chromium resources
 
