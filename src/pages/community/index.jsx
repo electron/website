@@ -72,9 +72,7 @@ function Community() {
           this website, or join one of the language communities below:
           <ul>
             <li>
-              <a href="https://discord.gg/eZTKXHBKpK">
-                electron-zh
-              </a>{' '}
+              <a href="https://discord.gg/eZTKXHBKpK">electron-zh</a>{' '}
               <i>(Chinese)</i>
             </li>
             <li>
