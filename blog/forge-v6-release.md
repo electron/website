@@ -9,10 +9,13 @@ authors:
     url: 'https://github.com/vertedinde'
     image_url: 'https://github.com/vertedinde.png?size=96'
   - name: erickzhao
-  url: 'https://github.com/erickzhao'
-  image_url: 'https://github.com/erickzhao.png?size=96'
+    url: 'https://github.com/erickzhao'
+    image_url: 'https://github.com/erickzhao.png?size=96'
 slug: forge-v6-release-blog
 ---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 The Electron Forge Team is excited to announce that Forge v6 is now available! This stable release contains many significant new features and improvements. Highlights of this release include the addition of our Webpack plugin as well as the introduction of the Forge Core and CLI APIs.
 
@@ -48,6 +51,33 @@ If you aren't already on the beta version of Forge, since the previous stable re
 
 This release also adds access to the Core API from your command line interface in the form of another [CLI API]. At a high level, this is a wrapper for the Forge Core API that is accessible from the terminal.
 
+## Upgrading to Forge v6
+
+Forge will try to migrate from Electron Forge v5 automatically as much as possible, but some of it may need to be migrated manually. Importing your settings can be done with the same process as importing an existing Electron app to Forge:
+
+<Tabs>
+  <TabItem value="Yarn" label="Yarn" default>
+
+```
+   cd my-app
+   yarn add --dev @electron-forge/cli
+   yarn electron-forge import
+```
+
+  </TabItem>
+  <TabItem value="NPM" label="NPM">
+
+```
+   cd my-app
+   npm install --save-dev @electron-forge/cli
+   npm exec --package=@electron-forge/cli -c "electron-forge import"
+```
+
+  </TabItem>
+</Tabs>
+
+Manual migration details can be found in the Forge [import documentation]. Further help can be offered in our [Discord](https://discord.gg/f4cH9BzaDw).
+
 ## Breaking changes since beta:
 
 _A complete list of changes and commits can be found [here](https://github.com/electron-userland/electron-forge/blob/main/CHANGELOG.md)_.
@@ -65,5 +95,6 @@ Tell us what you need! The Electron Forge Team is always looking to build the pr
 
 [Core API]: https://www.npmjs.com/package/@electron-forge/core
 [CLI API]: https://www.npmjs.com/package/@electron-forge/cli
+[import documentation]: https://www.electronforge.io/import-existing-project
 [webpack template]: https://www.electronforge.io/templates/webpack-template]
 [Extending Electron Forge]: https://www.electronforge.io/advanced/extending-electron-forge
