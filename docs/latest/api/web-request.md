@@ -35,7 +35,7 @@ const { session } = require('electron')
 
 // Modify the user agent for all requests to the following urls.
 const filter = {
-  urls: ['https://*.github.com/*', '*://electron.github.io']
+  urls: ['https://*.github.com/*', '*://electron.github.io/*']
 }
 
 session.defaultSession.webRequest.onBeforeSendHeaders(filter, (details, callback) => {
