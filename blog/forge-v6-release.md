@@ -153,7 +153,10 @@ The field to configure `identity-validation` has now been shortened to `identity
 #### Removed `install` command ([#2958](https://github.com/electron-userland/electron-forge/commit/6b215b0c1d91c998bb2ab953b502e87868527ed9))
 
 ## A call to action:
-Tell us what you need! The Electron Forge Team is always looking to build the project to better suit its users. You can help us improve Electron Forge by submitting feature requests, posting [issues](https://github.com/electron/forge/issues), or just letting us know your feedback!
+
+Tell us what you need! The Electron Forge Team is always looking to build the project to better suit its users.
+ 
+You can help us improve Electron Forge by submitting feature requests, posting [issues](https://github.com/electron/forge/issues), or just letting us know your feedback! You can also join us in the [official Electron Discord server](https://discord.com/invite/electronjs), where there is a dedicated channel for Electron Forge.
 
 <!-- links -->
 
