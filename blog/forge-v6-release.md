@@ -11,51 +11,40 @@ authors:
   - name: erickzhao
     url: 'https://github.com/erickzhao'
     image_url: 'https://github.com/erickzhao.png?size=96'
-slug: forge-v6-release-blog
+slug: forge-v6-release
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-The Electron Forge Team is excited to announce that Forge v6 is now available! This stable release contains many significant new features and improvements. Highlights of this release include the addition of our Webpack plugin as well as the introduction of the Forge Core and CLI APIs.
+We are excited to announce that Electron Forge v6.0.0 is now available! This release marks the first major of Forge since 2018 and moves Forge from its home in `electron-userland` into the main Electron organization on Github. Keep on reading to see what's new and how your app can adopt Electron Forge!
 
-## What does a stable release mean?
+## What is Forge?
 
-During our time in a beta release state, our team has been busy refactoring Forge’s code, improving its architecture, creating new features as well as ironing out bugs and issues.
+Electron Forge is a tool for packaging and publishing Electron applications. It unifies Electron's build tooling ecosystem into a single extensible interface so that anyone can jump right into making Electron apps.
 
-A stable release means that we are done making major breaking changes, and that beta changes have been tested thoroughly both internally and through the community.
+Visit the [Why Electron Forge] section of our docs to learn more about Forge and the benefits that it offers.
 
-## Why switch to Forge from an existing pipeline?
+## What does this release mean for Forge?
 
-If your app already uses an existing build tooling solution that provides packaging and publishing capabilities, the benefits associated with adopting Electron Forge can still outweigh the initial switching cost.
+### A complete rewrite
 
-We believe there are two main advantages to using Forge:
+From v1 to v5, Electron Forge was based on the now-discontinued [`electron-compile`](https://www.npmjs.com/package/electron-compile) project. Forge v6 is a complete rewrite of the project with a new modular architecture that can be extended to meet any Electron application's needs. In the past few years, Forge v6.0.0-beta has achieved feature parity with v5 and code churn has slowed down dramatically, making the tool ready for general adoption.
 
-1. *Forge receives new features for application building as soon as they are supported in Electron*. This means that alongside the implicit features and plugins that Forge provides, users won't need to wire in new tooling support themselves, or wait for that support to be eventually implemented by other packages before upgrading. This reduction in the burden of maintenance for Forge applications has already been observed when Electron released `@electron/universal` [support](https://github.com/electron/universal) as well as [ASAR Integrity checking](https://www.electronjs.org/docs/latest/tutorial/asar-integrity), which were features that Forge supported out of the box.
+### Making it official
 
-2. *Forge's multi-package architecture makes it easier to understand and extend.* Forge was built with the intention of supporting custom plugins, makers and publishers. Since Forge is made up of so many smaller packages with clear responsibilities, it is easier to follow code flow. In addition, Forge's extensible API design means that you can write your own additional build logic separate from the provided configuration options for advanced use cases. For more details on extensibility, see the [Extending Electron Forge] section of the docs, or visit the ["Why Electron Forge"](https://www.electronforge.io/core-concepts/why-electron-forge) section of our docs to learn more about the benefits that Forge offers.
+Historically, the Electron project has been unopinionated about build tooling, leaving the task to various community-maintained packages. However, with Electron maturing as a project, it has become harder for new Electron developers to understand which tools they need to build and distribute their apps to users.
+To help guide Electron developers in the distribution process, **we have have decided to make Forge the official batteries-included build pipeline for Electron**. Over the past year, we have been slowly integrating Forge into the official Electron documentation, and we have most recently moved Forge over from its old home in electron-userland/electron-forge to the [electron/forge](https://github.com/electron/forge) repo.
 
-## Introducing the webpack plugin
+## Installing / upgrading to Forge v6
 
-This release adds webpack support to your build pipeline. Webpack is a module bundler: it takes your codebase’s dependencies and modules, creates a dependency graph, and bundles them (stitching them together into a single file) into a form that your index.html can read. Bundling increases performance by reducing the number of asset calls required.
+:::info
 
-Forge v6 comes with a [webpack template] that makes use of the new `@electron-forge/plugin-webpack` module, plus some preset Webpack configuration options. Configuration instructions can be found in the [docs](https://www.electronforge.io/config/plugins/webpack).
+This section assumes you have a pre-existing project. If you are looking to get started with a new Forge project, head on to the [Getting Started] section in the docs. 
 
-The addition of webpack support brings several webpack features to your Forge app. Notable features include but are not limited to:
-- Hot module reloading
-- DevServer support
-- Adding content security policies
-- Native module support
+:::
 
-## The Forge API has moved
-
-If you aren't already on the beta version of Forge, since the previous stable release the Forge v5 API has been refactored into its own separate node module. The new refactored Forge [Core API] exposes the v5 Forge API methods as well as a number of utility functions to Node, allowing you call them from within your own code.
-
-This release also adds access to the Core API from your command line interface in the form of another [CLI API]. At a high level, this is a wrapper for the Forge Core API that is accessible from the terminal.
-
-## Upgrading to Forge v6
-
-Forge will try to migrate from Electron Forge v5 automatically as much as possible, but some of it may need to be migrated manually. Importing your settings can be done with the same process as importing an existing Electron app to Forge:
+Forge will try to migrate from Electron Forge v5 automatically as much as possible using the same process as importing an existing Electron app to Forge. Some of it may need to be migrated manually. Importing your settings can be done using the [CLI API] node module, which at a high level is a wrapper for the Forge [Core API] that is accessible from the terminal.
 
 <Tabs>
   <TabItem value="Yarn" label="Yarn" default>
@@ -79,6 +68,32 @@ Forge will try to migrate from Electron Forge v5 automatically as much as possib
 </Tabs>
 
 Manual migration details can be found in the Forge [import documentation]. Further help can be offered in our [Discord](https://discord.gg/f4cH9BzaDw).
+
+## Why switch to Forge from an existing pipeline?
+
+If your app already uses an existing build tooling solution that provides packaging and publishing capabilities, the benefits associated with adopting Electron Forge can still outweigh the initial switching cost.
+
+We believe there are two main advantages to using Forge:
+
+1. *Forge receives new features for application building as soon as they are supported in Electron*. This means that alongside the implicit features and plugins that Forge provides, users won't need to wire in new tooling support themselves, or wait for that support to be eventually implemented by other packages before upgrading. This reduction in the burden of maintenance for Forge applications has already been observed when Electron released `@electron/universal` [support](https://github.com/electron/universal) as well as [ASAR Integrity checking](https://www.electronjs.org/docs/latest/tutorial/asar-integrity), which were features that Forge supported out of the box.
+
+1. *Forge's multi-package architecture makes it easy to understand and extend.* Forge was built with the intention of supporting custom plugins, makers and publishers. Since Forge is made up of many smaller packages with clear responsibilities, it is easier to follow code flow. In addition, Forge's extensible API design means that you can write your own additional build logic separate from the provided configuration options for advanced use cases. For more details on extensibility, see the [Extending Electron Forge] section of the docs.
+
+## Introducing the webpack plugin
+
+This release adds webpack support to your build pipeline. Webpack is a module bundler: it takes your codebase’s dependencies and modules, creates a dependency graph, and bundles them (stitching them together into a single file) into a form that your index.html can read. Bundling increases performance by reducing the number of asset calls required.
+
+Forge v6 comes with a [webpack template] that makes use of the new `@electron-forge/plugin-webpack` module, plus some preset Webpack configuration options. Configuration instructions can be found in the [docs](https://www.electronforge.io/config/plugins/webpack).
+
+The addition of webpack support brings several webpack features to your Forge app. Notable features include but are not limited to:
+- Hot module reloading
+- DevServer support
+- Adding content security policies
+- Native module support
+
+## The Forge API has moved
+
+If you aren't already on the beta version of Forge, the Forge v5 API has been refactored into its own separate node module in Forge v6. The new Forge [Core API] exposes the v5 Forge API methods as well as a number of utility functions to Node, allowing you call them from within your own code.
 
 ## Breaking changes:
 
@@ -108,7 +123,7 @@ This aligns the syntax for this configuration with the `publishers` and `makers`
 }
 ```
 
-#### Prefer forge.config.ts over package.json config ([#2991](https://github.com/electron-userland/electron-forge/commit/777197e5))
+#### Prefer forge.config.js over package.json config ([#2991](https://github.com/electron-userland/electron-forge/commit/777197e5))
 
   - This change affects the init and import commands. It changes these commands to create a forge.config.js rather than creating config.forge in your package.json.
   - The internal signature of `Plugin.getHook(name)` has been changed to `Plugin.getHooks(name)` [#2995](https://github.com/electron/forge/pull/2995) as part of these changes.
@@ -118,9 +133,9 @@ This aligns the syntax for this configuration with the `publishers` and `makers`
 #### Upgraded Maker Wix dependency to `electron-wix-msi@5.0.0` ([3008](https://github.com/electron/forge/pull/3008)))
   - This upgrade includes a rename from `appIconPath` to `icon` in the config ([#153](https://github.com/electron-userland/electron-wix-msi/pull/153)).
 
-#### Upgraded Node.js to 14 LTS ([#2921](https://github.com/electron/forge/pull/2921))
+#### Upgraded required Node.js to 14 LTS ([#2921](https://github.com/electron/forge/pull/2921))
 
-#### Upgraded Package dependency to `electron-packager@17` ([#2978](https://github.com/electron-userland/electron-forge/pull/2978))
+#### Upgraded package dependency to `electron-packager@17` ([#2978](https://github.com/electron-userland/electron-forge/pull/2978))
 
 The upgrade to Electron Packager 17 introduces the shiny new `@electron/osx-sign` package for macOS code signing. It's a rewrite of the old `electron-osx-sign` tool with more sensible defaults.
 
@@ -128,7 +143,7 @@ To migrate, we recommend seeing if the default `packagerConfig.osxSign` options 
 
 #### Renamed Electron Rebuild config ([#2963](https://github.com/electron-userland/electron-forge/pull/2963))
 
-For consistency with the `packagerConfig` option for `electron-packager`, the field to configure `electron-rebuild` has now been shortened to `rebuildConfig`.
+For consistency with the `packagerConfig` option for `electron-packager`, the field to configure `@electron/rebuild` has now been shortened to `rebuildConfig`.
 
 ```diff
 {
@@ -140,7 +155,7 @@ For consistency with the `packagerConfig` option for `electron-packager`, the fi
 #### Renamed `identity-validation` to`identityValidation` ([#2959](https://github.com/electron-userland/electron-forge/pull/2959))
 
 The field to configure `identity-validation` has now been shortened to `identityValidation`.
-
+1
 ```diff
 {
 -  identity-validation: ""
@@ -148,7 +163,11 @@ The field to configure `identity-validation` has now been shortened to `identity
 }
 ```
 
-#### removed `@electron-forge/template-typescript` template ([#2948](https://github.com/electron-userland/electron-forge/commit/fc9421d513300b98c987af41ae71cb5d7e696fd1))
+#### Removed `@electron-forge/template-typescript` template ([#2948](https://github.com/electron-userland/electron-forge/commit/fc9421d513300b98c987af41ae71cb5d7e696fd1))
+
+- this has been removed in favor of the [Webpack + TypeScript Template].
+
+#### Removed `lint` command ([#2964](https://github.com/electron/forge/pull/2964))
 
 #### Removed `install` command ([#2958](https://github.com/electron-userland/electron-forge/commit/6b215b0c1d91c998bb2ab953b502e87868527ed9))
 
@@ -162,6 +181,9 @@ You can help us improve Electron Forge by submitting feature requests, posting [
 
 [Core API]: https://www.npmjs.com/package/@electron-forge/core
 [CLI API]: https://www.npmjs.com/package/@electron-forge/cli
+[Getting Started]: https://www.electronforge.io/
 [import documentation]: https://www.electronforge.io/import-existing-project
 [webpack template]: https://www.electronforge.io/templates/webpack-template]
 [Extending Electron Forge]: https://www.electronforge.io/advanced/extending-electron-forge
+[TypeScript + webpack template]: https://www.electronforge.io/templates/typescript-+-webpack-template
+[Why Electron Forge]: https://www.electronforge.io/core-concepts/why-electron-forge
