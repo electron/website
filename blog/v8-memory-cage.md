@@ -12,6 +12,12 @@ Electron 21 and later will have the V8 Memory Cage enabled, with implications fo
 
 ---
 
+:::info Update (2022/11/01)
+
+To track ongoing discussion about native module usage in Electron 21+, see [electron/electron#35801](https://github.com/electron/electron/issues/35801).
+
+:::
+
 In Electron 21, we will be enabling [V8 sandboxed pointers](https://docs.google.com/document/d/1HSap8-J3HcrZvT7-5NsbYWcjfc0BVoops5TDHZNsnko/edit) in Electron, following Chrome's [decision to do the same in Chrome 103](https://chromiumdash.appspot.com/commit/9a6a76bf13d3ca1c6788de193afc5513919dd0ed). This has some implications for native modules. Also, we previously enabled a related technology, [pointer compression](https://v8.dev/blog/pointer-compression), in Electron 14. We didn't talk about it much then, but pointer compression has implications for the maximum V8 heap size.
 
 These two technologies, when enabled, are significantly beneficial for security, performance and memory usage. However, there are some downsides to enabling them, too.
@@ -52,7 +58,7 @@ There's a fairly common kind of V8 exploit that goes something like this:
 The V8 memory cage is a technique designed to categorically prevent this kind of attack. The way this is accomplished is by _not storing any pointers in the V8 heap_. Instead, all references to other memory inside the V8 heap are stored as offsets from the beginning of some reserved region. Then, even if an attacker manages to corrupt the base address of an ArrayBuffer, for instance by exploiting a type confusion error in V8, the worst they can do is read and write memory inside the cage, which they could likely already do anyway.
 There's a lot more available to read on how the V8 memory cage works, so I won't go into further detail here—the best place to start reading is probably the [high-level design doc](https://docs.google.com/document/d/1FM4fQmIhEqPG8uGp5o9A-mnPB5BOeScZYpkHjo0KKA8/edit) from the Chromium team.
 
-### I want to refactor a Node native module to support Electron 20+. How do I do that?
+### I want to refactor a Node native module to support Electron 21+. How do I do that?
 There are two ways to go about refactoring a native module to be compatible with the V8 memory cage. The first is to **copy** externally-created buffers into the V8 memory cage before passing them to JavaScript. This is generally a simple refactor, but it can be slow when the buffers are large. The other approach is to **use V8's memory allocator** to allocate memory which you intend to eventually pass to JavaScript. This is a bit more involved, but will allow you to avoid the copy, meaning better performance for large buffers.
 
 To make this more concrete, here's an example N-API module that uses external array buffers:
