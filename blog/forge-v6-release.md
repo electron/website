@@ -21,9 +21,10 @@ We are excited to announce that Electron Forge v6.0.0 is now available! This rel
 
 ## What is Forge?
 
-Electron Forge is a tool for packaging and publishing Electron applications. It unifies Electron's build tooling ecosystem into a single extensible interface so that anyone can jump right into making Electron apps.
+Electron Forge is a tool for packaging and publishing Electron applications. It unifies Electron's build tooling ecosystem into a single extensible interface so that anyone can jump right into making Electron apps. Forge comes with customizable flows to package
+and sign your app, bundle it into distributable formats for each target platform and architecture, as well as publish it online for your users.
 
-Visit the [Why Electron Forge] section of our docs to learn more about Forge and the benefits that it offers.
+Visit the [Why Electron Forge] section of its documentation to learn more.
 
 ## What does this release mean for Forge?
 
@@ -36,20 +37,18 @@ From v1 to v5, Electron Forge was based on the now-discontinued [`electron-compi
 Historically, the Electron project has been unopinionated about build tooling, leaving the task to various community-maintained packages. However, with Electron maturing as a project, it has become harder for new Electron developers to understand which tools they need to build and distribute their apps to users.
 To help guide Electron developers in the distribution process, **we have have decided to make Forge the official batteries-included build pipeline for Electron**. Over the past year, we have been slowly integrating Forge into the official Electron documentation, and we have most recently moved Forge over from its old home in electron-userland/electron-forge to the [electron/forge](https://github.com/electron/forge) repo.
 
-## Installing / upgrading to Forge v6
+## Installing Forge v6
 
 :::info
 
-This section assumes you have a pre-existing project. If you are looking to get started with a new Forge project, head on to the [Getting Started] section in the docs. 
+This section assumes you have an existing Electron app and want to migrate your pipelie to Electron Forge. If you are looking to bootstrap a new Electron project with Forge, head on to the [Getting Started] section in the docs. 
 
 :::
-
-Forge will try to migrate from Electron Forge v5 automatically as much as possible using the same process as importing an existing Electron app to Forge. Some of it may need to be migrated manually. Importing your settings can be done using the [CLI API] node module, which at a high level is a wrapper for the Forge [Core API] that is accessible from the terminal.
 
 <Tabs>
   <TabItem value="Yarn" label="Yarn" default>
 
-```
+```bash
    cd my-app
    yarn add --dev @electron-forge/cli
    yarn electron-forge import
@@ -58,7 +57,7 @@ Forge will try to migrate from Electron Forge v5 automatically as much as possib
   </TabItem>
   <TabItem value="NPM" label="NPM">
 
-```
+```bash
    cd my-app
    npm install --save-dev @electron-forge/cli
    npm exec --package=@electron-forge/cli -c "electron-forge import"
@@ -67,15 +66,17 @@ Forge will try to migrate from Electron Forge v5 automatically as much as possib
   </TabItem>
 </Tabs>
 
-Manual migration details can be found in the Forge [import documentation]. Further help can be offered in our [Discord](https://discord.gg/f4cH9BzaDw).
+When you use the `import` command, Electron Forge will add a few core dependencies and create a new `forge.config.js` configuration. If you have any existing build tooling (e.g. Electron Packager, Electron Builder, Forge v5), it will try to migrate as many settings as possible. Some of your existing configuration may need to be migrated manually.
+
+Manual migration details can be found in the Forge [import documentation]. If you need help, please stop by the Electron [Discord](https://discord.gg/f4cH9BzaDw) server.
 
 ## Why switch to Forge from an existing pipeline?
 
-If your app already uses an existing build tooling solution that provides packaging and publishing capabilities, the benefits associated with adopting Electron Forge can still outweigh the initial switching cost.
+If you already have tooling for packaging and publishing your electron app, the benefits associated with adopting Electron Forge can still outweigh the initial switching cost.
 
-We believe there are two main advantages to using Forge:
+We believe there are two main benefits to using Forge:
 
-1. *Forge receives new features for application building as soon as they are supported in Electron*. This means that alongside the implicit features and plugins that Forge provides, users won't need to wire in new tooling support themselves, or wait for that support to be eventually implemented by other packages before upgrading. This reduction in the burden of maintenance for Forge applications has already been observed when Electron released `@electron/universal` [support](https://github.com/electron/universal) as well as [ASAR Integrity checking](https://www.electronjs.org/docs/latest/tutorial/asar-integrity), which were features that Forge supported out of the box.
+1. *Forge receives new features for application building as soon as they are supported in Electron*. This means that alongside the implicit features and plugins that Forge provides, users won't need to wire in new tooling support themselves, or wait for that support to be eventually implemented by other packages before upgrading. For recent examples, see [`@electron/universal`](https://github.com/electron/universal) as well as [ASAR Integrity checking](https://www.electronjs.org/docs/latest/tutorial/asar-integrity).
 
 1. *Forge's multi-package architecture makes it easy to understand and extend.* Forge was built with the intention of supporting custom plugins, makers and publishers. Since Forge is made up of many smaller packages with clear responsibilities, it is easier to follow code flow. In addition, Forge's extensible API design means that you can write your own additional build logic separate from the provided configuration options for advanced use cases. For more details on extensibility, see the [Extending Electron Forge] section of the docs.
 
