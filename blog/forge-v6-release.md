@@ -37,13 +37,43 @@ From v1 to v5, Electron Forge was based on the now-discontinued [`electron-compi
 Historically, the Electron project has been unopinionated about build tooling, leaving the task to various community-maintained packages. However, with Electron maturing as a project, it has become harder for new Electron developers to understand which tools they need to build and distribute their apps to users.
 To help guide Electron developers in the distribution process, **we have have decided to make Forge the official batteries-included build pipeline for Electron**. Over the past year, we have been slowly integrating Forge into the official Electron documentation, and we have most recently moved Forge over from its old home in electron-userland/electron-forge to the [electron/forge](https://github.com/electron/forge) repo.
 
-## Installing Forge v6
+## Initializing a new Electron project with Forge v6
 
-:::info
+Getting started with Electron Forge can be done easily with the following commands:
 
-This section assumes you have an existing Electron app and want to migrate your pipelie to Electron Forge. If you are looking to bootstrap a new Electron project with Forge, head on to the [Getting Started] section in the docs. 
+<Tabs>
+  <TabItem value="Yarn" label="Yarn" default>
 
-:::
+```bash
+   yarn create electron-app my-app --template=webpack
+   cd my-app
+   yarn start
+```
+
+  </TabItem>
+  <TabItem value="NPM" label="NPM">
+
+```bash
+   npx create-electron-app@latest my-app --template=webpack
+   cd my-app
+   npm start
+```
+
+  </TabItem>
+</Tabs>
+
+These commands will yield a directory called `my-app` with some Electron app boilerplate inside. We have also slipped in a `--template=webpack` option into the initialization command, which adds some preset webpack configuration options to your project. If you head into the `my-app` directory and start up the app, you'll be all set to start developing. Running the `make` command after these steps will package your Electron app into platform specific distributables for you to share with the world. For more information on how to get started, visit the [Getting Started] section in the docs.
+
+### Introducing the webpack plugin
+
+This release adds webpack support to your build pipeline via the new `@electron-forge/plugin-webpack` module. To get you up and running as fast as possible, Forge v6 comes with a [webpack template], which we have slipped into the initialization commands above. This will add some preset webpack configuration options to your project.
+
+This plugin integrates webpack with Electron Forge in a few ways, including:
+- Enhancing the local development flow with `webpack-dev-server`, including support for Hot Module Replacement in the renderer,
+- Handling build logic for webpack bundles before the Package step, and,
+- Adding support for Native Node modules in the webpack bundling process.
+
+## Importing an existing project into Forge v6
 
 <Tabs>
   <TabItem value="Yarn" label="Yarn" default>
@@ -80,29 +110,13 @@ We believe there are two main benefits to using Forge:
 
 1. *Forge's multi-package architecture makes it easy to understand and extend.* Forge was built with the intention of supporting custom plugins, makers and publishers. Since Forge is made up of many smaller packages with clear responsibilities, it is easier to follow code flow. In addition, Forge's extensible API design means that you can write your own additional build logic separate from the provided configuration options for advanced use cases. For more details on extensibility, see the [Extending Electron Forge] section of the docs.
 
-## Introducing the webpack plugin
+## Breaking changes
 
-This release adds webpack support to your build pipeline. Webpack is a module bundler: it takes your codebase’s dependencies and modules, creates a dependency graph, and bundles them (stitching them together into a single file) into a form that your index.html can read. Bundling increases performance by reducing the number of asset calls required.
-
-Forge v6 comes with a [webpack template] that makes use of the new `@electron-forge/plugin-webpack` module, plus some preset Webpack configuration options. Configuration instructions can be found in the [docs](https://www.electronforge.io/config/plugins/webpack).
-
-The addition of webpack support brings several webpack features to your Forge app. Notable features include but are not limited to:
-- Hot module reloading
-- DevServer support
-- Adding content security policies
-- Native module support
-
-## The Forge API has moved
-
-If you aren't already on the beta version of Forge, the Forge v5 API has been refactored into its own separate node module in Forge v6. The new Forge [Core API] exposes the v5 Forge API methods as well as a number of utility functions to Node, allowing you call them from within your own code.
-
-## Breaking changes:
-
-Forge has spent a considerable time in beta development; this is a list of breaking changes made in recent betas, so that users who have been using the later beta versions in their apps can more easily transition to the stable release.
+Forge has spent a considerable time in beta development; this is a list of breaking changes made in recent betas (>= 6.0.0-beta.69), so that users who have been using the later beta versions in their apps can more easily transition to the stable release.
 
 _A complete list of changes and commits can be found [here](https://github.com/electron-userland/electron-forge/blob/main/CHANGELOG.md)_.
 
-#### Changed plugin configuration syntax ([#2963](https://github.com/electron-userland/electron-forge/pull/2963))
+### Changed plugin configuration syntax ([#2963](https://github.com/electron-userland/electron-forge/pull/2963))
 
 The `plugins` array now takes objects containing an object with properties `name` and `config`, rather than tuples containing the plugin name and config.
 
@@ -124,25 +138,25 @@ This aligns the syntax for this configuration with the `publishers` and `makers`
 }
 ```
 
-#### Prefer forge.config.js over package.json config ([#2991](https://github.com/electron-userland/electron-forge/commit/777197e5))
+### Prefer forge.config.js over package.json config ([#2991](https://github.com/electron-userland/electron-forge/commit/777197e5))
 
   - This change affects the init and import commands. It changes these commands to create a forge.config.js rather than creating config.forge in your package.json.
   - The internal signature of `Plugin.getHook(name)` has been changed to `Plugin.getHooks(name)` [#2995](https://github.com/electron/forge/pull/2995) as part of these changes.
   - This is considered a breaking change for any third-party templates because the base template no longer sets up a config.forge object, and any template-specific mutations to the Forge config should instead be performed on the forge.config.js file.
   - templates that mutated the Forge config within `package.json` will need to instantiate their own `forge.config.js` or `forge.config.ts`
 
-#### Upgraded Maker Wix dependency to `electron-wix-msi@5.0.0` ([3008](https://github.com/electron/forge/pull/3008)))
+### Upgraded Maker Wix dependency to `electron-wix-msi@5.0.0` ([3008](https://github.com/electron/forge/pull/3008)))
   - This upgrade includes a rename from `appIconPath` to `icon` in the config ([#153](https://github.com/electron-userland/electron-wix-msi/pull/153)).
 
-#### Upgraded required Node.js to 14 LTS ([#2921](https://github.com/electron/forge/pull/2921))
+### Upgraded required Node.js to 14 LTS ([#2921](https://github.com/electron/forge/pull/2921))
 
-#### Upgraded package dependency to `electron-packager@17` ([#2978](https://github.com/electron-userland/electron-forge/pull/2978))
+### Upgraded package dependency to `electron-packager@17` ([#2978](https://github.com/electron-userland/electron-forge/pull/2978))
 
 The upgrade to Electron Packager 17 introduces the shiny new `@electron/osx-sign` package for macOS code signing. It's a rewrite of the old `electron-osx-sign` tool with more sensible defaults.
 
 To migrate, we recommend seeing if the default `packagerConfig.osxSign` options work for you and tweaking the default entitlements to your needs. Otherwise, see the `@electron/osx-sign` [MIGRATION.md](https://github.com/electron/osx-sign/blob/main/MIGRATION.md) doc for a 1:1 conversion from the old config options to the new ones.
 
-#### Renamed Electron Rebuild config ([#2963](https://github.com/electron-userland/electron-forge/pull/2963))
+### Renamed Electron Rebuild config ([#2963](https://github.com/electron-userland/electron-forge/pull/2963))
 
 For consistency with the `packagerConfig` option for `electron-packager`, the field to configure `@electron/rebuild` has now been shortened to `rebuildConfig`.
 
@@ -153,7 +167,7 @@ For consistency with the `packagerConfig` option for `electron-packager`, the fi
 }
 ```
 
-#### Renamed `identity-validation` to`identityValidation` ([#2959](https://github.com/electron-userland/electron-forge/pull/2959))
+### Renamed `identity-validation` to`identityValidation` ([#2959](https://github.com/electron-userland/electron-forge/pull/2959))
 
 The field to configure `identity-validation` has now been shortened to `identityValidation`.
 1
@@ -164,13 +178,13 @@ The field to configure `identity-validation` has now been shortened to `identity
 }
 ```
 
-#### Removed `@electron-forge/template-typescript` template ([#2948](https://github.com/electron-userland/electron-forge/commit/fc9421d513300b98c987af41ae71cb5d7e696fd1))
+### Removed `@electron-forge/template-typescript` template ([#2948](https://github.com/electron-userland/electron-forge/commit/fc9421d513300b98c987af41ae71cb5d7e696fd1))
 
 - this has been removed in favor of the [Webpack + TypeScript Template].
 
-#### Removed `lint` command ([#2964](https://github.com/electron/forge/pull/2964))
+### Removed `lint` command ([#2964](https://github.com/electron/forge/pull/2964))
 
-#### Removed `install` command ([#2958](https://github.com/electron-userland/electron-forge/commit/6b215b0c1d91c998bb2ab953b502e87868527ed9))
+### Removed `install` command ([#2958](https://github.com/electron-userland/electron-forge/commit/6b215b0c1d91c998bb2ab953b502e87868527ed9))
 
 ## A call to action:
 
