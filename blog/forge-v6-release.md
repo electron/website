@@ -1,6 +1,6 @@
 ---
 title: Electron Forge v6.0.0
-date: 2022-10-26T00:00:00.000Z
+date: 2022-11-03T00:00:00.000Z
 authors:
   - name: georgexu99
     url: 'https://github.com/georgexu99'
@@ -45,18 +45,18 @@ Getting started with Electron Forge can be done easily with the following comman
   <TabItem value="Yarn" label="Yarn" default>
 
 ```bash
-   yarn create electron-app my-app --template=webpack
-   cd my-app
-   yarn start
+  yarn create electron-app my-app --template=webpack
+  cd my-app
+  yarn start
 ```
 
   </TabItem>
   <TabItem value="NPM" label="NPM">
 
 ```bash
-   npx create-electron-app@latest my-app --template=webpack
-   cd my-app
-   npm start
+  npx create-electron-app@latest my-app --template=webpack
+  cd my-app
+  npm start
 ```
 
   </TabItem>
@@ -79,18 +79,18 @@ This plugin integrates webpack with Electron Forge in a few ways, including:
   <TabItem value="Yarn" label="Yarn" default>
 
 ```bash
-   cd my-app
-   yarn add --dev @electron-forge/cli
-   yarn electron-forge import
+  cd my-app
+  yarn add --dev @electron-forge/cli
+  yarn electron-forge import
 ```
 
   </TabItem>
   <TabItem value="NPM" label="NPM">
 
 ```bash
-   cd my-app
-   npm install --save-dev @electron-forge/cli
-   npm exec --package=@electron-forge/cli -c "electron-forge import"
+  cd my-app
+  npm install --save-dev @electron-forge/cli
+  npm exec --package=@electron-forge/cli -c "electron-forge import"
 ```
 
   </TabItem>
@@ -112,73 +112,9 @@ We believe there are two main benefits to using Forge:
 
 ## Breaking changes
 
-Forge has spent a considerable time in beta development; this is a list of breaking changes made in recent betas (>= 6.0.0-beta.65), so that users who have been using the later beta versions in their apps can more easily transition to the stable release.
+Forge has spent a considerable time in beta development; [this is a list of breaking changes made in recent betas (>= 6.0.0-beta.65)](https://github.com/electron/forge/releases/tag/v6.0.0), so that users who have been using the later beta versions in their apps can more easily transition to the stable release.
 
 _A complete list of changes and commits can be found [here](https://github.com/electron/forge/blob/main/CHANGELOG.md)_.
-
-### Config: Changed `plugins` syntax ([#2963](https://github.com/electron/forge/pull/2963))
-
-The `plugins` array now takes objects containing an object with properties `name` and `config`, rather than tuples containing the plugin name and config.
-
-This aligns the syntax for this configuration with the `publishers` and `makers` arrays.
-
-```diff
-{
-  plugins: [
--      [
--        '@electron-forge/plugin-webpack',
--        { /* ... */ }
--      ]
-+
-+      {
-+        name: '@electron-forge/plugin-webpack',
-+        config: { /* ... */ }
-+      }
- ]
-}
-```
-
-### Config: Prefer `forge.config.js` for new Forge projects ([#2991](https://github.com/electron/forge/commit/777197e5)) [#2995](https://github.com/electron/forge/pull/2995)
-
-We have changed the `electron-forge init` and `electron-forge import` commands to create a JavaScript config file rather than a section in `package.json`. This is to better
-support dynamic build logic that isn't possible with the JSON format. Forge now has better support for alternate configuration syntaxes via [rechoir](https://github.com/gulpjs/rechoir).
-
-This is a breaking change for any existing third-party templates and plugins:
-- The internal signature of `Plugin.getHook(name)` has changed to `Plugin.getHooks().name`.
-- Templates that mutated the Forge config within `package.json` will need to instantiate their own `forge.config.js` or `forge.config.ts`
-  
-### Config: Renamed Electron Rebuild config ([#2963](https://github.com/electron/forge/pull/2963))
-
-For consistency with the `packagerConfig` option for `electron-packager`, the field to configure `@electron/rebuild` has now been shortened to `rebuildConfig`.
-
-```diff
-{
--  electronRebuildConfig: { /* ... */ }
-+  rebuildConfig: { /* ... */ }
-}
-```
-
-### Config: Renamed `ElectronRebuildConfig` ([#2963](https://github.com/electron/forge/pull/2963))
-
- Removed `@electron-forge/template-typescript` template ([#2948](https://github.com/electron/forge/commit/fc9421d513300b98c987af41ae71cb5d7e696fd1))
-
-This has been removed in favor of the [Webpack + TypeScript Template]. 
-  
-### Maker: Upgraded Maker Wix dependency to `electron-wix-msi@5.0.0` ([3008](https://github.com/electron/forge/pull/3008)))
-
-This upgrade includes a rename from `appIconPath` to `icon` in the config ([#153](https://github.com/electron/forge/pull/153)). This aligns WiX MSI's icon config with the other makers.
-
-### Build: Upgraded required Node.js to 14 LTS ([#2921](https://github.com/electron/forge/pull/2921))
-
-### Package: Upgraded package dependency to `electron-packager@17` ([#2978](https://github.com/electron/forge/pull/2978))
-
-The upgrade to Electron Packager 17 introduces the shiny new `@electron/osx-sign` package for macOS code signing. It's a rewrite of the old `electron-osx-sign` tool with more sensible defaults.
-
-To migrate, we recommend seeing if the default `packagerConfig.osxSign` options work for you and tweaking the default entitlements to your needs. Otherwise, see the `@electron/osx-sign` [MIGRATION.md](https://github.com/electron/osx-sign/blob/main/MIGRATION.md) doc for a 1:1 conversion from the old config options to the new ones.
-
-### Command: Removed `lint` command ([#2964](https://github.com/electron/forge/pull/2964))
-
-### Command: Removed `install` command ([#2958](https://github.com/electron/forge/pull/2958))
 
 ## Submit your feedback!
 
@@ -188,11 +124,8 @@ You can help us improve Electron Forge by submitting feature requests, posting [
 
 <!-- links -->
 
-[Core API]: https://www.npmjs.com/package/@electron-forge/core
-[CLI API]: https://www.npmjs.com/package/@electron-forge/cli
 [Getting Started]: https://www.electronforge.io/
 [import documentation]: https://www.electronforge.io/import-existing-project
 [webpack template]: https://www.electronforge.io/templates/webpack-template]
 [Extending Electron Forge]: https://www.electronforge.io/advanced/extending-electron-forge
-[TypeScript + webpack template]: https://www.electronforge.io/templates/typescript-+-webpack-template
 [Why Electron Forge]: https://www.electronforge.io/core-concepts/why-electron-forge
