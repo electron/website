@@ -69,9 +69,9 @@ These commands will yield a directory called `my-app` with some Electron app boi
 This release adds webpack support to your build pipeline via the new `@electron-forge/plugin-webpack` module. To get you up and running as fast as possible, Forge v6 comes with a [webpack template], which we have slipped into the initialization commands above. This will add some preset webpack configuration options to your project.
 
 This plugin integrates webpack with Electron Forge in a few ways, including:
-- Enhancing the local development flow with `webpack-dev-server`, including support for Hot Module Replacement in the renderer,
-- Handling build logic for webpack bundles before the Package step, and,
-- Adding support for Native Node modules in the webpack bundling process.
+- enhancing the local development flow with webpack-dev-server, including support for Hot Module Replacement in the renderer;
+- handling build logic for webpack bundles before the Package step; and
+- adding support for Native Node modules in the webpack bundling process.
 
 ## Importing an existing project into Forge v6
 
@@ -156,6 +156,17 @@ The upgrade to Electron Packager 17 introduces the shiny new `@electron/osx-sign
 
 To migrate, we recommend seeing if the default `packagerConfig.osxSign` options work for you and tweaking the default entitlements to your needs. Otherwise, see the `@electron/osx-sign` [MIGRATION.md](https://github.com/electron/osx-sign/blob/main/MIGRATION.md) doc for a 1:1 conversion from the old config options to the new ones.
 
+#### Renamed `identity-validation` to`identityValidation` ([#2959](https://github.com/electron-userland/electron-forge/pull/2959))
+
+The field to configure `identity-validation` has now been shortened to `identityValidation`, as part of the switch to using `@electron/osx-sign`.
+
+```diff title=config.forge.packagerConfig.osxSign"
+{
+-  identity-validation: ""
++  identityValidation: ""
+}
+```
+
 ### Renamed Electron Rebuild config ([#2963](https://github.com/electron-userland/electron-forge/pull/2963))
 
 For consistency with the `packagerConfig` option for `electron-packager`, the field to configure `@electron/rebuild` has now been shortened to `rebuildConfig`.
@@ -167,17 +178,6 @@ For consistency with the `packagerConfig` option for `electron-packager`, the fi
 }
 ```
 
-### Renamed `identity-validation` to`identityValidation` ([#2959](https://github.com/electron-userland/electron-forge/pull/2959))
-
-The field to configure `identity-validation` has now been shortened to `identityValidation`.
-1
-```diff
-{
--  identity-validation: ""
-+  identityValidation: ""
-}
-```
-
 ### Removed `@electron-forge/template-typescript` template ([#2948](https://github.com/electron-userland/electron-forge/commit/fc9421d513300b98c987af41ae71cb5d7e696fd1))
 
 - this has been removed in favor of the [Webpack + TypeScript Template].
@@ -186,7 +186,7 @@ The field to configure `identity-validation` has now been shortened to `identity
 
 ### Removed `install` command ([#2958](https://github.com/electron-userland/electron-forge/commit/6b215b0c1d91c998bb2ab953b502e87868527ed9))
 
-## A call to action:
+## Submit your feedback!:
 
 Tell us what you need! The Electron Forge Team is always looking to build the project to better suit its users.
  
