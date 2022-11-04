@@ -22,13 +22,12 @@ module.exports = {
     locales: ['en', 'de', 'es', 'fr', 'ja', 'pt', 'ru', 'zh'],
   },
   themeConfig: {
-    // announcementBar: {
-    //   id: 'announcementBar',
-    //   content: `Please help us improve Electron's Developer Experience by filling this <a href="https://www.surveymonkey.com/r/electrondevex">2min survey</a> and get a chance to win an octoplush!`,
-    //   backgroundColor: 'yellow',
-    //   textColor: '#091E42',
-    //   isCloseable: true,
-    // },
+    announcementBar: {
+      id: 'announcementBar',
+      content: `Introducing Electron Forge 6, a complete pipeline for building your Electron apps. Read more in the <strong><a target="_blank" rel="noopener noreferrer" href="./blog/">Forge 6 announcement blog</a></strong>!`,
+      backgroundColor: '#A2ECFB',
+      isCloseable: true,
+    },
     colorMode: {
       //Default to light or dark depending on system theme.
       respectPrefersColorScheme: true,
@@ -64,16 +63,26 @@ module.exports = {
           docId: 'latest/api/app',
           position: 'left',
         },
-        {
-          label: 'Examples',
-          to: 'docs/latest/tutorial/examples',
-          position: 'left',
-          activeBaseRegex: '^\b$', // never active
-        },
         { to: 'blog', label: 'Blog', position: 'left' },
-        { to: 'fiddle', label: 'Fiddle', position: 'left' },
-        { to: 'apps', label: 'Showcase', position: 'left' },
-        { to: 'community', label: 'Community', position: 'left' },
+        {
+          type: 'dropdown',
+          label: 'Tools',
+          position: 'left',
+          items: [
+            { to: 'https://electronforge.io', label: 'Electron Forge' },
+            { to: 'fiddle', label: 'Electron Fiddle' },
+          ],
+        },
+        {
+          type: 'dropdown',
+          label: 'Community',
+          position: 'left',
+          items: [
+            { to: 'governance', label: 'Governance' },
+            { to: 'apps', label: 'Showcase' },
+            { to: 'community', label: 'Resources' },
+          ],
+        },
         {
           href: 'https://releases.electronjs.org',
           label: 'Releases',
@@ -87,12 +96,12 @@ module.exports = {
         //   items: docVersions,
         // },
         {
-          type: 'localeDropdown',
+          href: 'https://github.com/electron/electron',
+          label: 'GitHub',
           position: 'right',
         },
         {
-          href: 'https://github.com/electron/electron',
-          label: 'GitHub',
+          type: 'localeDropdown',
           position: 'right',
         },
       ],
@@ -132,9 +141,23 @@ module.exports = {
           ],
         },
         {
+          title: 'Tools',
+          items: [
+            {
+              label: 'Electron Forge',
+              to: 'https://electronforge.io',
+            },
+            {
+              label: 'Electron Fiddle',
+              to: '/fiddle',
+            },
+          ],
+        },
+        {
           title: 'Community',
           items: [
             { label: 'Governance', to: '/governance' },
+            { label: 'Resources', to: '/community' },
             {
               label: 'Discord',
               href: 'https://discordapp.com/invite/APGC3k5yaH',
