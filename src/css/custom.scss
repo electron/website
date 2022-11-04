@@ -10,7 +10,7 @@
 /* We maintain separate colours for light and dark mode */
 :root {
   // modified base colors
-  --ifm-color-primary: #0057c2;
+  --ifm-color-primary: var(--electron-color-mid);
   --ifm-color-primary-dark: #000885;
   --ifm-color-primary-darker: #000047;
   --ifm-color-primary-darkest: #000000;
@@ -20,11 +20,11 @@
 
   // modified base vars
   --ifm-code-font-size: 95%;
-  --ifm-navbar-height: 86px;
+  --ifm-navbar-height: 70px;
 
   // brand-specific colors
   --electron-color-light: #9feaf9;
-  --electron-color-mid: #0d4a59;
+  --electron-color-mid: #317b88;
   --electron-color-dark: #2b2e3b;
   --electron-color-secondary-light: #ff6e6e;
   --electron-color-secondary-mid: #e3112d;
@@ -34,9 +34,11 @@
   --electron-inline-code: var(--electron-color-secondary-mid);
 
   // docusaurus variables
+  --ifm-hover-overlay: rgba(162, 236, 251, 0.2);
+  --ifm-link-color: var(--electron-color-mid);
+  --ifm-menu-color-active: var(--electron-color-dark);
   // these require !important because of some weirdness in CSS ordering
   // see: https://github.com/facebook/docusaurus/issues/3678
-  --doc-sidebar-width: 350px !important;
   --docusaurus-highlighted-code-line-bg: rgb(217, 220, 222);
 
   // infima shadow levels
@@ -78,10 +80,11 @@
 
   // docusaurus
   --docusaurus-highlighted-code-line-bg: rgb(13, 15, 28);
-  
 
   // modified base vars
   --ifm-menu-color: var(--ifm-color-primary-lightest);
+  --ifm-link-color: var(--electron-color-light);
+  --ifm-menu-color-active: var(--electron-color-light);
 
   // custom vars
   --electron-heading: var(--ifm-color-primary-lightest);
@@ -95,22 +98,26 @@
   }
 }
 
+.theme-doc-markdown {
+  max-width: 700px;
+  margin: 0 auto;
+  margin-top: 2rem;
+}
+
 .navbar {
+  backdrop-filter: blur(12px);
+
   &--dark {
     --ifm-navbar-background-color: var(--electron-color-dark);
     --ifm-navbar-link-color: var(--electron-color-light);
   }
 
-  &__brand {
-    &:hover {
-      color: var(--ifm-color-white);
-    }
+  &__inner {
+    max-width: 1400px;
+    margin: 0 auto;
   }
 
   &__item {
-    &:hover {
-      color: var(--ifm-color-white);
-    }
     // use margin instead of padding so that the border-bottom
     // on active looks better
     padding: 0;
@@ -123,8 +130,8 @@
     border-bottom: 2px solid transparent;
 
     &--active {
-      color: var(--electron-color-light);
-      border-bottom-color: var(--ifm-color-primary-lightest);
+      color: var(--electronc-);
+      border-bottom-color: var(--ifm-link-color);
     }
   }
 }
@@ -141,7 +148,16 @@
 
 .markdown {
   a {
-    font-weight: var(--ifm-font-weight-bold);
+    font-weight: var(--ifm-font-weight-semibold);
+    // code is already semibold so make code links
+    // a bit thicker to differentiate the weight
+    code {
+      font-weight: var(--ifm-font-weight-bold);
+    }
+  }
+
+  p {
+    line-height: 200%;
   }
 
   h1,
@@ -154,14 +170,13 @@
     --ifm-h3-font-size: 1.2rem;
     --ifm-h4-font-size: 1rem;
     --ifm-h5-font-size: 0.8rem;
-    color: var(--electron-heading);
   }
 
   // We want this to only apply to inline code, so don't apply
   // this color to ``` code blocks nor any headings.
   :not(pre):not(h2):not(h3):not(h4):not(h5):not(h6) > code {
     border: none;
-    color: var(--electron-inline-code);
+    // color: var(--electron-inline-code);
   }
 
   // don't apply --electron-inline-code colors to admonitions
