@@ -18,7 +18,7 @@ import TechnologiesGrid from './_components/TechnologiesGrid';
 export default function Home() {
   const { siteConfig } = useDocusaurusContext();
   return (
-    <Layout title={siteConfig.title} description={siteConfig.tagline}>
+    <Layout title={siteConfig.tagline} description={siteConfig.tagline}>
       <header className={clsx('hero', 'hero--primary', styles.heroElectron)}>
         <div className="container">
           <div className="row">
