@@ -130,7 +130,7 @@
     border-bottom: 2px solid transparent;
 
     &--active {
-      color: var(--electronc-);
+      color: var(--electron-color-light);
       border-bottom-color: var(--ifm-link-color);
     }
   }
@@ -148,7 +148,7 @@
 
 .markdown {
   a {
-    font-weight: var(--ifm-font-weight-semibold);
+    font-weight: var(--ifm-font-weight-bold);
     // code is already semibold so make code links
     // a bit thicker to differentiate the weight
     code {
@@ -176,7 +176,6 @@
   // this color to ``` code blocks nor any headings.
   :not(pre):not(h2):not(h3):not(h4):not(h5):not(h6) > code {
     border: none;
-    // color: var(--electron-inline-code);
   }
 
   // don't apply --electron-inline-code colors to admonitions
@@ -248,4 +247,8 @@
 
 .card {
   border: 1px solid rgba(200, 200, 200, 0.3);
+}
+
+.table-of-contents__link--active {
+  font-weight: var(--ifm-font-weight-bold);
 }
