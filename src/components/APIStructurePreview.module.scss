@@ -1,0 +1,43 @@
+.link {
+  --tooltip-color: var(--ifm-color-primary-dark);
+  display: inline-block;
+  text-decoration-color: var(--tooltip-color);
+  text-decoration-line: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 4px;
+  margin-right: 16px;
+  position: relative;
+  overflow: visible;
+
+  &::after {
+    content: 'i';
+    color: var(--tooltip-color);
+    border: 1px solid var(--tooltip-color);
+    border-radius: 20px;
+    width: 1.6em;
+    font-size: 50%;
+    text-align: center;
+    position: absolute;
+    left: calc(100% + 0.1em);
+    top: 0.5em;
+    margin: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+// we set the top and left values dynamically with CSS
+.card {
+  max-width: 600px;
+  max-height: 50vh;
+  overflow: auto;
+  padding: 16px;
+  position: absolute;
+
+  // react-markdown stuff
+  h1 {
+    font-size: var(--ifm-h3-font-size);
+  }
+  font-size: 80%;
+}

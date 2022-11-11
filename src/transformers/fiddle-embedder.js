@@ -38,8 +38,7 @@ function matchNode(node) {
 
 const importNode = {
   type: 'import',
-  value:
-    "import Tabs from '@theme/Tabs';\nimport TabItem from '@theme/TabItem';\n import LaunchButton from '@site/src/components/LaunchButton';",
+  value: "import FiddleEmbed from '@site/src/components/FiddleEmbed';",
 };
 
 /**
@@ -63,7 +62,7 @@ async function transformer(tree) {
    */
   function visitor(node, ancestors) {
     if (node.type === 'import') {
-      if (node.value.includes('@theme/Tabs')) {
+      if (node.value.includes('@site/src/components/FiddleEmbed')) {
         hasExistingImport = true;
       }
       return;
@@ -110,9 +109,7 @@ function getFiddleAST(dir, version, { focus = 'main.js' }) {
   const files = {};
   const children = [];
 
-  // TODO: non-alphabetic sort
   const fileNames = fs.readdirSync(dir);
-
   if (fileNames.length === 0) {
     return children;
   }
@@ -129,71 +126,12 @@ function getFiddleAST(dir, version, { focus = 'main.js' }) {
     files[file] = fs.readFileSync(path.join(dir, file)).toString();
   }
 
-  const tabValues = fileNames.reduce((acc, val) => {
-    return (acc += `{ label: '${val}', value: '${val}', },`);
-  }, '');
-
-  let index = 0;
-
-  // Generate MDXAST structure by iterating through all files in
-  // the folder and creating <TabItem> components and code blocks
-  // for each, and bookending those with the <Tabs> component.
-
-  // The finished product should look something like:
-  // <Tabs defaultValue="id1"
-  //   values={[
-  //     {label: 'id1', value: 'id1'},
-  //     {label: 'id2', value: 'id2'}
-  //   ]}>
-  //   <TabItem value="id1">
-  //     ```js
-  //     const cow = 'say';
-  //     ```
-  //   <TabItem>
-  //   <TabItem value="id2">
-  //     ```js
-  //     const hello = 'world';
-  //     ```
-  //   <TabItem>
-  // <Tabs>
   children.push({
     type: 'jsx',
-    value:
-      `<Tabs defaultValue="${focus}" ` +
-      `values={[${tabValues}]}>
-        <TabItem value="${fileNames[index]}">`,
+    value: `<FiddleEmbed files={${JSON.stringify(
+      files
+    )}} dir="${dir}" version="${version}" focus="${focus}" />`,
   });
-
-  while (index < fileNames.length) {
-    children.push({
-      type: 'code',
-      lang: path.extname(fileNames[index]).slice(1),
-      value: files[fileNames[index]],
-    });
-
-    index++;
-
-    if (index < fileNames.length) {
-      children.push({
-        type: 'jsx',
-        value: `</TabItem>\n<TabItem value="${fileNames[index]}">`,
-      });
-    } else {
-      children.push(
-        {
-          type: 'jsx',
-          value: `</TabItem>\n</Tabs>`,
-        },
-        {
-          type: 'jsx',
-          value: `<LaunchButton url="https://fiddle.electronjs.org/launch?target=electron/v${version}/${dir.replace(
-            'latest/',
-            ''
-          )}"/>`,
-        }
-      );
-    }
-  }
 
   return children;
 }

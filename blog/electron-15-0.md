@@ -28,7 +28,7 @@ Additionally, Electron will be changing supported versions from latest three ver
 ### Stack Changes
 
 * Chromium `94`
-    * [New in Chrome 94](https://developer.chrome.com/blog/deps-rems-94/)
+    * [New in Chrome 94](https://developer.chrome.com/blog/new-in-chrome-94/)
 * Node.js `16.5.0`
     * [Node 16.5.0 blog post](https://nodejs.org/en/blog/release/v16.5.0/)
 * V8 `9.4`

@@ -11,10 +11,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Use Node.js 14
+      - name: Use Node.js 16
         uses: actions/setup-node@v2
         with:
-          node-version: 14
+          node-version: 16
 
       - name: Install dependencies
         uses: bahmutov/npm-install@HEAD
@@ -25,7 +25,7 @@ jobs:
           CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
 
       - name: Download cache
-        run: ./scripts/bin/azcopy copy "https://electronjsorg.blob.core.windows.net/%24web/*?$SAS" "./build" --recursive
+        run: ./scripts/bin/azcopy copy "https://electronwebsite.blob.core.windows.net/%24web/*?$SAS" "./build" --recursive
         env:
           SAS: ${{ secrets.SAS }}
 
@@ -33,6 +33,6 @@ jobs:
         run: yarn i18n:build
 
       - name: Deploy
-        run: ./scripts/bin/azcopy copy "./build/*" "https://electronjsorg.blob.core.windows.net/%24web?$SAS" --recursive
+        run: ./scripts/bin/azcopy copy "./build/*" "https://electronwebsite.blob.core.windows.net/%24web?$SAS" --recursive
         env:
           SAS: ${{ secrets.SAS }}

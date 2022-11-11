@@ -39,11 +39,11 @@ The `contentTracing` module has the following methods:
 
 ### `contentTracing.getCategories()`
 
-Returns `Promise<String[]>` - resolves with an array of category groups once all child processes have acknowledged the `getCategories` request
+Returns `Promise<string[]>` - resolves with an array of category groups once all child processes have acknowledged the `getCategories` request
 
 Get a set of category groups. The category groups can change as new code paths
 are reached. See also the [list of built-in tracing
-categories](https://chromium.googlesource.com/chromium/src/+/master/base/trace_event/builtin_categories.h).
+categories](https://chromium.googlesource.com/chromium/src/+/main/base/trace_event/builtin_categories.h).
 
 > **NOTE:** Electron adds a non-default tracing category called `"electron"`.
 > This category can be used to capture Electron-specific tracing events.
@@ -64,9 +64,9 @@ only one trace operation can be in progress at a time.
 
 ### `contentTracing.stopRecording([resultFilePath])`
 
-* `resultFilePath` String (optional)
+* `resultFilePath` string (optional)
 
-Returns `Promise<String>` - resolves with a path to a file that contains the traced data once all child processes have acknowledged the `stopRecording` request
+Returns `Promise<string>` - resolves with a path to a file that contains the traced data once all child processes have acknowledged the `stopRecording` request
 
 Stop recording on all processes.
 
@@ -84,10 +84,10 @@ will be returned in the promise.
 
 Returns `Promise<Object>` - Resolves with an object containing the `value` and `percentage` of trace buffer maximum usage
 
-* `value` Number
-* `percentage` Number
+* `value` number
+* `percentage` number
 
 Get the maximum usage across processes of trace buffer as a percentage of the
 full state.
 
-[trace viewer]: latest/development/README.md
+[trace viewer]: https://chromium.googlesource.com/catapult/+/HEAD/tracing/README.md

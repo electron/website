@@ -134,10 +134,10 @@ If you're interested in getting involved in the project, check out [our GitHub p
 
 [Watch here](https://www.youtube.com/watch?v=YLExGgEnbFY):
 
-<iframe width="100%" height="360" src="https://www.youtube.com/embed/YLExGgEnbFY?rel=0" frameborder="0" allowfullscreen></iframe>
+<iframe width="100%" height="360" src="https://www.youtube.com/embed/YLExGgEnbFY?rel=0" frameBorder="0" allowFullScreen></iframe>
 
 [Slides here](https://speakerdeck.com/feross/real-world-electron):
 
-<script async class="speakerdeck-embed" data-id="5aae08bb7c5b4dbd89060cff11bb1300" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+<script async className="speakerdeck-embed" data-id="5aae08bb7c5b4dbd89060cff11bb1300" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
 
 [DC](https://dcpos.ch/), another WebTorrent contributor, wrote [a checklist of things you can do](https://blog.dcpos.ch/how-to-make-your-electron-app-sexy) to make your app feel polished and native. It comes with code examples and covers things like macOS dock integration, drag-and-drop, desktop notifications, and making sure your app loads quickly.

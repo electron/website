@@ -1,11 +1,11 @@
 ---
-title: "Representing Files in a BrowserWindow (macOS)"
-description: "On macOS, you can set a represented file for any window in your application. The represented file's icon will be shown in the title bar, and when users Command-Click or Control-Click, a popup with a path to the file will be shown."
+title: Representing Files in a BrowserWindow
+description: Set a represented file in the macOS title bar.
 slug: represented-file
-hide_title: false
+hide_title: true
 ---
 
-# Representing Files in a BrowserWindow (macOS)
+# Representing Files in a BrowserWindow
 
 ## Overview
 
@@ -31,7 +31,7 @@ To set the represented file of window, you can use the
 const { app, BrowserWindow } = require('electron')
 const os = require('os');
 
-function createWindow () {
+const createWindow = () => {
   const win = new BrowserWindow({
     width: 800,
     height: 600

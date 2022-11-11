@@ -32,9 +32,9 @@ The `session` module has the following methods:
 
 ### `session.fromPartition(partition[, options])`
 
-* `partition` String
+* `partition` string
 * `options` Object (optional)
-  * `cache` Boolean - Whether to enable cache.
+  * `cache` boolean - Whether to enable cache.
 
 Returns `Session` - A session instance from `partition` string. When there is an existing
 `Session` with the same `partition`, it will be returned; otherwise a new
@@ -139,9 +139,9 @@ initialized to support the start of the extension's background page.
 Returns:
 
 * `event` Event
-* `preconnectUrl` String - The URL being requested for preconnection by the
+* `preconnectUrl` string - The URL being requested for preconnection by the
   renderer.
-* `allowCredentials` Boolean - True if the renderer is requesting that the
+* `allowCredentials` boolean - True if the renderer is requesting that the
   connection include credentials (see the
   [spec](https://w3c.github.io/resource-hints/#preconnect) for more details.)
 
@@ -153,7 +153,7 @@ a [resource hint](https://w3c.github.io/resource-hints/).
 Returns:
 
 * `event` Event
-* `languageCode` String - The language code of the dictionary file
+* `languageCode` string - The language code of the dictionary file
 
 Emitted when a hunspell dictionary file has been successfully initialized. This
 occurs after the file has been downloaded.
@@ -163,7 +163,7 @@ occurs after the file has been downloaded.
 Returns:
 
 * `event` Event
-* `languageCode` String - The language code of the dictionary file
+* `languageCode` string - The language code of the dictionary file
 
 Emitted when a hunspell dictionary file starts downloading
 
@@ -172,7 +172,7 @@ Emitted when a hunspell dictionary file starts downloading
 Returns:
 
 * `event` Event
-* `languageCode` String - The language code of the dictionary file
+* `languageCode` string - The language code of the dictionary file
 
 Emitted when a hunspell dictionary file has been successfully downloaded
 
@@ -181,7 +181,7 @@ Emitted when a hunspell dictionary file has been successfully downloaded
 Returns:
 
 * `event` Event
-* `languageCode` String - The language code of the dictionary file
+* `languageCode` string - The language code of the dictionary file
 
 Emitted when a hunspell dictionary file download fails.  For details
 on the failure you should collect a netlog and inspect the download
@@ -196,7 +196,7 @@ Returns:
   * `deviceList` [HIDDevice[]](latest/api/structures/hid-device.md)
   * `frame` [WebFrameMain](latest/api/web-frame-main.md)
 * `callback` Function
-  * `deviceId` String | null (optional)
+  * `deviceId` string | null (optional)
 
 Emitted when a HID device needs to be selected when a call to
 `navigator.hid.requestDevice` is made. `callback` should be called with
@@ -260,9 +260,11 @@ Returns:
   * `device` [HIDDevice[]](latest/api/structures/hid-device.md)
   * `frame` [WebFrameMain](latest/api/web-frame-main.md)
 
-Emitted when a new HID device becomes available. For example, when a new USB device is plugged in.
-
-This event will only be emitted after `navigator.hid.requestDevice` has been called and `select-hid-device` has fired.
+Emitted after `navigator.hid.requestDevice` has been called and
+`select-hid-device` has fired if a new device becomes available before
+the callback from `select-hid-device` is called.  This event is intended for
+use when using a UI to ask users to pick a device so that the UI can be updated
+with the newly added device.
 
 #### Event: 'hid-device-removed'
 
@@ -273,9 +275,24 @@ Returns:
   * `device` [HIDDevice[]](latest/api/structures/hid-device.md)
   * `frame` [WebFrameMain](latest/api/web-frame-main.md)
 
-Emitted when a HID device has been removed.  For example, this event will fire when a USB device is unplugged.
+Emitted after `navigator.hid.requestDevice` has been called and
+`select-hid-device` has fired if a device has been removed before the callback
+from `select-hid-device` is called.  This event is intended for use when using
+a UI to ask users to pick a device so that the UI can be updated to remove the
+specified device.
 
-This event will only be emitted after `navigator.hid.requestDevice` has been called and `select-hid-device` has fired.
+#### Event: 'hid-device-revoked'
+
+Returns:
+
+* `event` Event
+* `details` Object
+  * `device` [HIDDevice[]](latest/api/structures/hid-device.md)
+  * `origin` string (optional) - The origin that the device has been revoked from.
+
+Emitted after `HIDDevice.forget()` has been called.  This event can be used
+to help maintain persistent storage of permissions when
+`setDevicePermissionHandler` is used.
 
 #### Event: 'select-serial-port'
 
@@ -285,7 +302,7 @@ Returns:
 * `portList` [SerialPort[]](latest/api/structures/serial-port.md)
 * `webContents` [WebContents](latest/api/web-contents.md)
 * `callback` Function
-  * `portId` String
+  * `portId` string
 
 Emitted when a serial port needs to be selected when a call to
 `navigator.serial.requestPort` is made. `callback` should be called with
@@ -355,7 +372,11 @@ Returns:
 * `port` [SerialPort](latest/api/structures/serial-port.md)
 * `webContents` [WebContents](latest/api/web-contents.md)
 
-Emitted after `navigator.serial.requestPort` has been called and `select-serial-port` has fired if a new serial port becomes available.  For example, this event will fire when a new USB device is plugged in.
+Emitted after `navigator.serial.requestPort` has been called and
+`select-serial-port` has fired if a new serial port becomes available before
+the callback from `select-serial-port` is called.  This event is intended for
+use when using a UI to ask users to pick a port so that the UI can be updated
+with the newly added port.
 
 #### Event: 'serial-port-removed'
 
@@ -365,7 +386,11 @@ Returns:
 * `port` [SerialPort](latest/api/structures/serial-port.md)
 * `webContents` [WebContents](latest/api/web-contents.md)
 
-Emitted after `navigator.serial.requestPort` has been called and `select-serial-port` has fired if a serial port has been removed.  For example, this event will fire when a USB device is unplugged.
+Emitted after `navigator.serial.requestPort` has been called and
+`select-serial-port` has fired if a serial port has been removed before the
+callback from `select-serial-port` is called.  This event is intended for use
+when using a UI to ask users to pick a port so that the UI can be updated
+to remove the specified port.
 
 ### Instance Methods
 
@@ -384,13 +409,13 @@ Clears the session’s HTTP cache.
 #### `ses.clearStorageData([options])`
 
 * `options` Object (optional)
-  * `origin` String (optional) - Should follow `window.location.origin`’s representation
+  * `origin` string (optional) - Should follow `window.location.origin`’s representation
     `scheme://host:port`.
-  * `storages` String[] (optional) - The types of storages to clear, can contain:
+  * `storages` string[] (optional) - The types of storages to clear, can contain:
     `appcache`, `cookies`, `filesystem`, `indexdb`, `localstorage`,
     `shadercache`, `websql`, `serviceworkers`, `cachestorage`. If not
     specified, clear all storage types.
-  * `quotas` String[] (optional) - The types of quotas to clear, can contain:
+  * `quotas` string[] (optional) - The types of quotas to clear, can contain:
     `temporary`, `persistent`, `syncable`. If not specified, clear all quotas.
 
 Returns `Promise<void>` - resolves when the storage data has been cleared.
@@ -402,7 +427,7 @@ Writes any unwritten DOMStorage data to disk.
 #### `ses.setProxy(config)`
 
 * `config` Object
-  * `mode` String (optional) - The proxy mode. Should be one of `direct`,
+  * `mode` string (optional) - The proxy mode. Should be one of `direct`,
     `auto_detect`, `pac_script`, `fixed_servers` or `system`. If it's
     unspecified, it will be automatically determined based on other specified
     options.
@@ -423,9 +448,9 @@ Writes any unwritten DOMStorage data to disk.
       Note that the system mode is different from setting no proxy configuration.
       In the latter case, Electron falls back to the system settings
       only if no command-line options influence the proxy configuration.
-  * `pacScript` String (optional) - The URL associated with the PAC file.
-  * `proxyRules` String (optional) - Rules indicating which proxies to use.
-  * `proxyBypassRules` String (optional) - Rules indicating which URLs should
+  * `pacScript` string (optional) - The URL associated with the PAC file.
+  * `proxyRules` string (optional) - Rules indicating which proxies to use.
+  * `proxyBypassRules` string (optional) - Rules indicating which URLs should
     bypass the proxy settings.
 
 Returns `Promise<void>` - Resolves when the proxy setting process is complete.
@@ -504,7 +529,7 @@ The `proxyBypassRules` is a comma separated list of rules described below:
 
 * `url` URL
 
-Returns `Promise<String>` - Resolves with the proxy information for `url`.
+Returns `Promise<string>` - Resolves with the proxy information for `url`.
 
 #### `ses.forceReloadProxyConfig()`
 
@@ -512,7 +537,7 @@ Returns `Promise<void>` - Resolves when the all internal states of proxy service
 
 #### `ses.setDownloadPath(path)`
 
-* `path` String - The download location.
+* `path` string - The download location.
 
 Sets download saving directory. By default, the download directory will be the
 `Downloads` under the respective app folder.
@@ -520,7 +545,7 @@ Sets download saving directory. By default, the download directory will be the
 #### `ses.enableNetworkEmulation(options)`
 
 * `options` Object
-  * `offline` Boolean (optional) - Whether to emulate network outage. Defaults
+  * `offline` boolean (optional) - Whether to emulate network outage. Defaults
     to false.
   * `latency` Double (optional) - RTT in ms. Defaults to 0 which will disable
     latency throttling.
@@ -546,8 +571,8 @@ window.webContents.session.enableNetworkEmulation({ offline: true })
 #### `ses.preconnect(options)`
 
 * `options` Object
-  * `url` String - URL for preconnect. Only the origin is relevant for opening the socket.
-  * `numSockets` Number (optional) - number of sockets to preconnect. Must be between 1 and 6. Defaults to 1.
+  * `url` string - URL for preconnect. Only the origin is relevant for opening the socket.
+  * `numSockets` number (optional) - number of sockets to preconnect. Must be between 1 and 6. Defaults to 1.
 
 Preconnects the given number of sockets to an origin.
 
@@ -566,14 +591,15 @@ the original network configuration.
 
 * `proc` Function | null
   * `request` Object
-    * `hostname` String
+    * `hostname` string
     * `certificate` [Certificate](latest/api/structures/certificate.md)
     * `validatedCertificate` [Certificate](latest/api/structures/certificate.md)
-    * `verificationResult` String - Verification result from chromium.
+    * `isIssuedByKnownRoot` boolean - `true` if Chromium recognises the root CA as a standard root. If it isn't then it's probably the case that this certificate was generated by a MITM proxy whose root has been installed locally (for example, by a corporate proxy). This should not be trusted if the `verificationResult` is not `OK`.
+    * `verificationResult` string - `OK` if the certificate is trusted, otherwise an error like `CERT_REVOKED`.
     * `errorCode` Integer - Error code.
   * `callback` Function
     * `verificationResult` Integer - Value can be one of certificate error codes
-    from [here](https://source.chromium.org/chromium/chromium/src/+/master:net/base/net_error_list.h).
+    from [here](https://source.chromium.org/chromium/chromium/src/+/main:net/base/net_error_list.h).
     Apart from the certificate error codes, the following special codes can be used.
       * `0` - Indicates success and disables Certificate Transparency verification.
       * `-2` - Indicates failure.
@@ -607,7 +633,7 @@ win.webContents.session.setCertificateVerifyProc((request, callback) => {
 
 * `handler` Function | null
   * `webContents` [WebContents](latest/api/web-contents.md) - WebContents requesting the permission.  Please note that if the request comes from a subframe you should use `requestingUrl` to check the request origin.
-  * `permission` String - The type of requested permission.
+  * `permission` string - The type of requested permission.
     * `clipboard-read` - Request access to read from the clipboard.
     * `media` -  Request access to media devices such as camera, microphone and speakers.
     * `display-capture` - Request access to capture the screen.
@@ -616,19 +642,19 @@ win.webContents.session.setCertificateVerifyProc((request, callback) => {
     * `notifications` - Request notification creation and the ability to display them in the user's system tray.
     * `midi` - Request MIDI access in the `webmidi` API.
     * `midiSysex` - Request the use of system exclusive messages in the `webmidi` API.
-    * `pointerLock` - Request to directly interpret mouse movements as an input method. Click [here](https://developer.mozilla.org/en-US/docs/Web/API/Pointer_Lock_API) to know more.
+    * `pointerLock` - Request to directly interpret mouse movements as an input method. Click [here](https://developer.mozilla.org/en-US/docs/Web/API/Pointer_Lock_API) to know more. These requests always appear to originate from the main frame.
     * `fullscreen` - Request for the app to enter fullscreen mode.
     * `openExternal` - Request to open links in external applications.
     * `unknown` - An unrecognized permission request
   * `callback` Function
-    * `permissionGranted` Boolean - Allow or deny the permission.
+    * `permissionGranted` boolean - Allow or deny the permission.
   * `details` Object - Some properties are only available on certain permission types.
-    * `externalURL` String (optional) - The url of the `openExternal` request.
-    * `securityOrigin` String (optional) - The security origin of the `media` request.
-    * `mediaTypes` String[] (optional) - The types of media access being requested, elements can be `video`
+    * `externalURL` string (optional) - The url of the `openExternal` request.
+    * `securityOrigin` string (optional) - The security origin of the `media` request.
+    * `mediaTypes` string[] (optional) - The types of media access being requested, elements can be `video`
       or `audio`
-    * `requestingUrl` String - The last URL the requesting frame loaded
-    * `isMainFrame` Boolean - Whether the frame making the request is the main frame
+    * `requestingUrl` string - The last URL the requesting frame loaded
+    * `isMainFrame` boolean - Whether the frame making the request is the main frame
 
 Sets the handler which can be used to respond to permission requests for the `session`.
 Calling `callback(true)` will allow the permission and `callback(false)` will reject it.
@@ -649,17 +675,17 @@ session.fromPartition('some-partition').setPermissionRequestHandler((webContents
 
 #### `ses.setPermissionCheckHandler(handler)`
 
-* `handler` Function\<Boolean&#62; | null
+* `handler` Function\<boolean&#62; | null
   * `webContents` ([WebContents](latest/api/web-contents.md) | null) - WebContents checking the permission.  Please note that if the request comes from a subframe you should use `requestingUrl` to check the request origin.  All cross origin sub frames making permission checks will pass a `null` webContents to this handler, while certain other permission checks such as `notifications` checks will always pass `null`.  You should use `embeddingOrigin` and `requestingOrigin` to determine what origin the owning frame and the requesting frame are on respectively.
-  * `permission` String - Type of permission check.  Valid values are `midiSysex`, `notifications`, `geolocation`, `media`,`mediaKeySystem`,`midi`, `pointerLock`, `fullscreen`, `openExternal`, `hid`, or `serial`.
-  * `requestingOrigin` String - The origin URL of the permission check
+  * `permission` string - Type of permission check.  Valid values are `midiSysex`, `notifications`, `geolocation`, `media`,`mediaKeySystem`,`midi`, `pointerLock`, `fullscreen`, `openExternal`, `hid`, or `serial`.
+  * `requestingOrigin` string - The origin URL of the permission check
   * `details` Object - Some properties are only available on certain permission types.
-    * `embeddingOrigin` String (optional) - The origin of the frame embedding the frame that made the permission check.  Only set for cross-origin sub frames making permission checks.
-    * `securityOrigin` String (optional) - The security origin of the `media` check.
-    * `mediaType` String (optional) - The type of media access being requested, can be `video`,
+    * `embeddingOrigin` string (optional) - The origin of the frame embedding the frame that made the permission check.  Only set for cross-origin sub frames making permission checks.
+    * `securityOrigin` string (optional) - The security origin of the `media` check.
+    * `mediaType` string (optional) - The type of media access being requested, can be `video`,
       `audio` or `unknown`
-    * `requestingUrl` String (optional) - The last URL the requesting frame loaded.  This is not provided for cross-origin sub frames making permission checks.
-    * `isMainFrame` Boolean - Whether the frame making the request is the main frame
+    * `requestingUrl` string (optional) - The last URL the requesting frame loaded.  This is not provided for cross-origin sub frames making permission checks.
+    * `isMainFrame` boolean - Whether the frame making the request is the main frame
 
 Sets the handler which can be used to respond to permission checks for the `session`.
 Returning `true` will allow the permission and `false` will reject it.  Please note that
@@ -681,12 +707,11 @@ session.fromPartition('some-partition').setPermissionCheckHandler((webContents, 
 
 #### `ses.setDevicePermissionHandler(handler)`
 
-* `handler` Function\<Boolean&#62; | null
+* `handler` Function\<boolean&#62; | null
   * `details` Object
-    * `deviceType` String - The type of device that permission is being requested on, can be `hid` or `serial`.
-    * `origin` String - The origin URL of the device permission check.
+    * `deviceType` string - The type of device that permission is being requested on, can be `hid` or `serial`.
+    * `origin` string - The origin URL of the device permission check.
     * `device` [HIDDevice](latest/api/structures/hid-device.md) | [SerialPort](latest/api/structures/serial-port.md)- the device that permission is being requested for.
-    * `frame` [WebFrameMain](latest/api/web-frame-main.md) - WebFrameMain checking the device permission.
 
 Sets the handler which can be used to respond to device permission checks for the `session`.
 Returning `true` will allow the device to be permitted and `false` will reject it.
@@ -694,8 +719,8 @@ To clear the handler, call `setDevicePermissionHandler(null)`.
 This handler can be used to provide default permissioning to devices without first calling for permission
 to devices (eg via `navigator.hid.requestDevice`).  If this handler is not defined, the default device
 permissions as granted through device selection (eg via `navigator.hid.requestDevice`) will be used.
-Additionally, the default behavior of Electron is to store granted device permision through the lifetime
-of the corresponding WebContents.  If longer term storage is needed, a developer can store granted device
+Additionally, the default behavior of Electron is to store granted device permision in memory.
+If longer term storage is needed, a developer can store granted device
 permissions (eg when handling the `select-hid-device` event) and then read from that storage with `setDevicePermissionHandler`.
 
 ```javascript
@@ -751,6 +776,71 @@ app.whenReady().then(() => {
 })
 ```
 
+#### `ses.setBluetoothPairingHandler(handler)` _Windows_ _Linux_
+
+* `handler` Function | null
+  * `details` Object
+    * `deviceId` string
+    * `pairingKind` string - The type of pairing prompt being requested.
+      One of the following values:
+      * `confirm`
+        This prompt is requesting confirmation that the Bluetooth device should
+        be paired.
+      * `confirmPin`
+        This prompt is requesting confirmation that the provided PIN matches the
+        pin displayed on the device.
+      * `providePin`
+        This prompt is requesting that a pin be provided for the device.
+    * `frame` [WebFrameMain](latest/api/web-frame-main.md)
+    * `pin` string (optional) - The pin value to verify if `pairingKind` is `confirmPin`.
+  * `callback` Function
+    * `response` Object
+      * `confirmed` boolean - `false` should be passed in if the dialog is canceled.
+        If the `pairingKind` is `confirm` or `confirmPin`, this value should indicate
+        if the pairing is confirmed.  If the `pairingKind` is `providePin` the value
+        should be `true` when a value is provided.
+      * `pin` string | null (optional) - When the `pairingKind` is `providePin`
+        this value should be the required pin for the Bluetooth device.
+
+Sets a handler to respond to Bluetooth pairing requests. This handler
+allows developers to handle devices that require additional validation
+before pairing.  When a handler is not defined, any pairing on Linux or Windows
+that requires additional validation will be automatically cancelled.
+macOS does not require a handler because macOS handles the pairing
+automatically.  To clear the handler, call `setBluetoothPairingHandler(null)`.
+
+```javascript
+
+const { app, BrowserWindow, ipcMain, session } = require('electron')
+
+let bluetoothPinCallback = null
+
+function createWindow () {
+  const mainWindow = new BrowserWindow({
+    webPreferences: {
+      preload: path.join(__dirname, 'preload.js')
+    }
+  })
+}
+
+// Listen for an IPC message from the renderer to get the response for the Bluetooth pairing.
+ipcMain.on('bluetooth-pairing-response', (event, response) => {
+  bluetoothPinCallback(response)
+})
+
+mainWindow.webContents.session.setBluetoothPairingHandler((details, callback) => {
+  bluetoothPinCallback = callback
+  // Send a IPC message to the renderer to prompt the user to confirm the pairing.
+  // Note that this will require logic in the renderer to handle this message and
+  // display a prompt to the user.
+  mainWindow.webContents.send('bluetooth-pairing-request', details)
+})
+
+app.whenReady().then(() => {
+  createWindow()
+})
+```
+
 #### `ses.clearHostResolverCache()`
 
 Returns `Promise<void>` - Resolves when the operation is complete.
@@ -759,7 +849,7 @@ Clears the host resolver cache.
 
 #### `ses.allowNTLMCredentialsForDomains(domains)`
 
-* `domains` String - A comma-separated list of servers for which
+* `domains` string - A comma-separated list of servers for which
   integrated authentication is enabled.
 
 Dynamically sets whether to always send credentials for HTTP NTLM or Negotiate
@@ -777,8 +867,8 @@ session.defaultSession.allowNTLMCredentialsForDomains('*')
 
 #### `ses.setUserAgent(userAgent[, acceptLanguages])`
 
-* `userAgent` String
-* `acceptLanguages` String (optional)
+* `userAgent` string
+* `acceptLanguages` string (optional)
 
 Overrides the `userAgent` and `acceptLanguages` for this session.
 
@@ -790,22 +880,22 @@ This doesn't affect existing `WebContents`, and each `WebContents` can use
 
 #### `ses.isPersistent()`
 
-Returns `Boolean` - Whether or not this session is a persistent one. The default
+Returns `boolean` - Whether or not this session is a persistent one. The default
 `webContents` session of a `BrowserWindow` is persistent. When creating a session
 from a partition, session prefixed with `persist:` will be persistent, while others
 will be temporary.
 
 #### `ses.getUserAgent()`
 
-Returns `String` - The user agent for this session.
+Returns `string` - The user agent for this session.
 
 #### `ses.setSSLConfig(config)`
 
 * `config` Object
-  * `minVersion` String (optional) - Can be `tls1`, `tls1.1`, `tls1.2` or `tls1.3`. The
+  * `minVersion` string (optional) - Can be `tls1`, `tls1.1`, `tls1.2` or `tls1.3`. The
     minimum SSL version to allow when connecting to remote servers. Defaults to
     `tls1`.
-  * `maxVersion` String (optional) - Can be `tls1.2` or `tls1.3`. The maximum SSL version
+  * `maxVersion` string (optional) - Can be `tls1.2` or `tls1.3`. The maximum SSL version
     to allow when connecting to remote servers. Defaults to `tls1.3`.
   * `disabledCipherSuites` Integer[] (optional) - List of cipher suites which
     should be explicitly prevented from being used in addition to those
@@ -824,13 +914,13 @@ reused for new connections.
 
 #### `ses.getBlobData(identifier)`
 
-* `identifier` String - Valid UUID.
+* `identifier` string - Valid UUID.
 
 Returns `Promise<Buffer>` - resolves with blob data.
 
 #### `ses.downloadURL(url)`
 
-* `url` String
+* `url` string
 
 Initiates a download of the resource at `url`.
 The API will generate a [DownloadItem](latest/api/download-item.md) that can be accessed
@@ -842,13 +932,13 @@ unlike [`webContents.downloadURL`](latest/api/web-contents.md#contentsdownloadur
 #### `ses.createInterruptedDownload(options)`
 
 * `options` Object
-  * `path` String - Absolute path of the download.
-  * `urlChain` String[] - Complete URL chain for the download.
-  * `mimeType` String (optional)
+  * `path` string - Absolute path of the download.
+  * `urlChain` string[] - Complete URL chain for the download.
+  * `mimeType` string (optional)
   * `offset` Integer - Start range for the download.
   * `length` Integer - Total length of the download.
-  * `lastModified` String (optional) - Last-Modified header value.
-  * `eTag` String (optional) - ETag header value.
+  * `lastModified` string (optional) - Last-Modified header value.
+  * `eTag` string (optional) - ETag header value.
   * `startTime` Double (optional) - Time when download was started in
     number of seconds since UNIX epoch.
 
@@ -864,29 +954,43 @@ Returns `Promise<void>` - resolves when the session’s HTTP authentication cach
 
 #### `ses.setPreloads(preloads)`
 
-* `preloads` String[] - An array of absolute path to preload scripts
+* `preloads` string[] - An array of absolute path to preload scripts
 
 Adds scripts that will be executed on ALL web contents that are associated with
 this session just before normal `preload` scripts run.
 
 #### `ses.getPreloads()`
 
-Returns `String[]` an array of paths to preload scripts that have been
+Returns `string[]` an array of paths to preload scripts that have been
 registered.
+
+#### `ses.setCodeCachePath(path)`
+
+* `path` String - Absolute path to store the v8 generated JS code cache from the renderer.
+
+Sets the directory to store the generated JS [code cache](https://v8.dev/blog/code-caching-for-devs) for this session. The directory is not required to be created by the user before this call, the runtime will create if it does not exist otherwise will use the existing directory. If directory cannot be created, then code cache will not be used and all operations related to code cache will fail silently inside the runtime. By default, the directory will be `Code Cache` under the
+respective user data folder.
+
+#### `ses.clearCodeCaches(options)`
+
+* `options` Object
+  * `urls` String[] (optional) - An array of url corresponding to the resource whose generated code cache needs to be removed. If the list is empty then all entries in the cache directory will be removed.
+
+Returns `Promise<void>` - resolves when the code cache clear operation is complete.
 
 #### `ses.setSpellCheckerEnabled(enable)`
 
-* `enable` Boolean
+* `enable` boolean
 
 Sets whether to enable the builtin spell checker.
 
 #### `ses.isSpellCheckerEnabled()`
 
-Returns `Boolean` - Whether the builtin spell checker is enabled.
+Returns `boolean` - Whether the builtin spell checker is enabled.
 
 #### `ses.setSpellCheckerLanguages(languages)`
 
-* `languages` String[] - An array of language codes to enable the spellchecker for.
+* `languages` string[] - An array of language codes to enable the spellchecker for.
 
 The built in spellchecker does not automatically detect what language a user is typing in.  In order for the
 spell checker to correctly check their words you must call this API with an array of language codes.  You can
@@ -896,21 +1000,23 @@ get the list of supported language codes with the `ses.availableSpellCheckerLang
 
 #### `ses.getSpellCheckerLanguages()`
 
-Returns `String[]` - An array of language codes the spellchecker is enabled for.  If this list is empty the spellchecker
+Returns `string[]` - An array of language codes the spellchecker is enabled for.  If this list is empty the spellchecker
 will fallback to using `en-US`.  By default on launch if this setting is an empty list Electron will try to populate this
 setting with the current OS locale.  This setting is persisted across restarts.
 
-**Note:** On macOS the OS spellchecker is used and has its own list of languages.  This API is a no-op on macOS.
+**Note:** On macOS the OS spellchecker is used and has its own list of languages. On macOS, this API will return whichever languages have been configured by the OS.
 
 #### `ses.setSpellCheckerDictionaryDownloadURL(url)`
 
-* `url` String - A base URL for Electron to download hunspell dictionaries from.
+* `url` string - A base URL for Electron to download hunspell dictionaries from.
 
 By default Electron will download hunspell dictionaries from the Chromium CDN.  If you want to override this
 behavior you can use this API to point the dictionary downloader at your own hosted version of the hunspell
 dictionaries.  We publish a `hunspell_dictionaries.zip` file with each release which contains the files you need
-to host here, the file server must be **case insensitive** you must upload each file twice, once with the case it
-has in the ZIP file and once with the filename as all lower case.
+to host here.
+
+The file server must be **case insensitive**. If you cannot do this, you must upload each file twice: once with
+the case it has in the ZIP file and once with the filename as all lowercase.
 
 If the files present in `hunspell_dictionaries.zip` are available at `https://example.com/dictionaries/language-code.bdic`
 then you should call this api with `ses.setSpellCheckerDictionaryDownloadURL('https://example.com/dictionaries/')`.  Please
@@ -920,32 +1026,32 @@ note the trailing slash.  The URL to the dictionaries is formed as `${url}${file
 
 #### `ses.listWordsInSpellCheckerDictionary()`
 
-Returns `Promise<String[]>` - An array of all words in app's custom dictionary.
+Returns `Promise<string[]>` - An array of all words in app's custom dictionary.
 Resolves when the full dictionary is loaded from disk.
 
 #### `ses.addWordToSpellCheckerDictionary(word)`
 
-* `word` String - The word you want to add to the dictionary
+* `word` string - The word you want to add to the dictionary
 
-Returns `Boolean` - Whether the word was successfully written to the custom dictionary. This API
+Returns `boolean` - Whether the word was successfully written to the custom dictionary. This API
 will not work on non-persistent (in-memory) sessions.
 
 **Note:** On macOS and Windows 10 this word will be written to the OS custom dictionary as well
 
 #### `ses.removeWordFromSpellCheckerDictionary(word)`
 
-* `word` String - The word you want to remove from the dictionary
+* `word` string - The word you want to remove from the dictionary
 
-Returns `Boolean` - Whether the word was successfully removed from the custom dictionary. This API
+Returns `boolean` - Whether the word was successfully removed from the custom dictionary. This API
 will not work on non-persistent (in-memory) sessions.
 
 **Note:** On macOS and Windows 10 this word will be removed from the OS custom dictionary as well
 
 #### `ses.loadExtension(path[, options])`
 
-* `path` String - Path to a directory containing an unpacked Chrome extension
+* `path` string - Path to a directory containing an unpacked Chrome extension
 * `options` Object (optional)
-  * `allowFileAccess` Boolean - Whether to allow the extension to read local files over `file://`
+  * `allowFileAccess` boolean - Whether to allow the extension to read local files over `file://`
     protocol and inject content scripts into `file://` pages. This is required e.g. for loading
     devtools extensions on `file://` URLs. Defaults to false.
 
@@ -990,7 +1096,7 @@ supported and will throw an error.
 
 #### `ses.removeExtension(extensionId)`
 
-* `extensionId` String - ID of extension to remove
+* `extensionId` string - ID of extension to remove
 
 Unloads an extension.
 
@@ -999,7 +1105,7 @@ is emitted.
 
 #### `ses.getExtension(extensionId)`
 
-* `extensionId` String - ID of extension to query
+* `extensionId` string - ID of extension to query
 
 Returns `Extension` | `null` - The loaded extension with the given ID.
 
@@ -1015,7 +1121,7 @@ is emitted.
 
 #### `ses.getStoragePath()`
 
-A `String | null` indicating the absolute file system path where data for this
+Returns `string | null` - The absolute file system path where data for this
 session is persisted on disk.  For in memory sessions this returns `null`.
 
 ### Instance Properties
@@ -1024,16 +1130,16 @@ The following properties are available on instances of `Session`:
 
 #### `ses.availableSpellCheckerLanguages` _Readonly_
 
-A `String[]` array which consists of all the known available spell checker languages.  Providing a language
+A `string[]` array which consists of all the known available spell checker languages.  Providing a language
 code to the `setSpellCheckerLanguages` API that isn't in this array will result in an error.
 
 #### `ses.spellCheckerEnabled`
 
-A `Boolean` indicating whether builtin spell checker is enabled.
+A `boolean` indicating whether builtin spell checker is enabled.
 
 #### `ses.storagePath` _Readonly_
 
-A `String | null` indicating the absolute file system path where data for this
+A `string | null` indicating the absolute file system path where data for this
 session is persisted on disk.  For in memory sessions this returns `null`.
 
 #### `ses.cookies` _Readonly_

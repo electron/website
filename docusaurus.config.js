@@ -1,8 +1,11 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
+const path = require('path');
 const npm2yarn = require('@docusaurus/remark-plugin-npm2yarn');
 const fiddleEmbedder = require('./src/transformers/fiddle-embedder.js');
 const apiLabels = require('./src/transformers/api-labels.js');
-const docVersions = require('./versions-info.json');
+const apiOptionsClass = require('./src/transformers/api-options-class.js');
+const apiStructurePreviews = require('./src/transformers/api-structure-previews.js');
+// const docVersions = require('./versions-info.json');
 
 module.exports = {
   title: 'Electron',
@@ -19,13 +22,12 @@ module.exports = {
     locales: ['en', 'de', 'es', 'fr', 'ja', 'pt', 'ru', 'zh'],
   },
   themeConfig: {
-    // announcementBar: {
-    //   id: 'announcementBar',
-    //   content: `Please help us improve Electron's Developer Experience by filling this <a href="https://www.surveymonkey.com/r/electrondevex">2min survey</a> and get a chance to win an octoplush!`,
-    //   backgroundColor: 'yellow',
-    //   textColor: '#091E42',
-    //   isCloseable: true,
-    // },
+    announcementBar: {
+      id: 'announcementBar',
+      content: `Introducing Electron Forge 6, a complete pipeline for building your Electron apps. Read more in the <strong><a target="_blank" rel="noopener noreferrer" href="https://www.electronjs.org/blog/forge-v6-release">Forge 6 announcement blog</a></strong>!`,
+      backgroundColor: '#A2ECFB',
+      isCloseable: true,
+    },
     colorMode: {
       //Default to light or dark depending on system theme.
       respectPrefersColorScheme: true,
@@ -61,31 +63,45 @@ module.exports = {
           docId: 'latest/api/app',
           position: 'left',
         },
-        {
-          label: 'Examples',
-          to: 'docs/latest/tutorial/examples',
-          position: 'left',
-          activeBaseRegex: '^\b$', // never active
-        },
         { to: 'blog', label: 'Blog', position: 'left' },
+        {
+          type: 'dropdown',
+          label: 'Tools',
+          position: 'left',
+          items: [
+            { to: 'https://electronforge.io', label: 'Electron Forge' },
+            { to: 'fiddle', label: 'Electron Fiddle' },
+          ],
+        },
+        {
+          type: 'dropdown',
+          label: 'Community',
+          position: 'left',
+          items: [
+            { to: 'governance', label: 'Governance' },
+            { to: 'apps', label: 'Showcase' },
+            { to: 'community', label: 'Resources' },
+          ],
+        },
         {
           href: 'https://releases.electronjs.org',
           label: 'Releases',
           position: 'right',
         },
-        {
-          type: 'dropdown',
-          label: docVersions[0].label,
-          position: 'right',
-          items: docVersions,
-        },
-        {
-          type: 'localeDropdown',
-          position: 'right',
-        },
+        // FIXME: Enable when versioned docs work
+        // {
+        //   type: 'dropdown',
+        //   label: docVersions[0].label,
+        //   position: 'right',
+        //   items: docVersions,
+        // },
         {
           href: 'https://github.com/electron/electron',
           label: 'GitHub',
+          position: 'right',
+        },
+        {
+          type: 'localeDropdown',
           position: 'right',
         },
       ],
@@ -94,6 +110,7 @@ module.exports = {
       logo: {
         alt: 'OpenJS Foundation Logo',
         src: 'assets/img/openjsf_logo.svg',
+        srcDark: 'assets/img/openjsf_logo-dark.svg',
         href: 'https://openjsf.org/',
       },
       links: [
@@ -124,11 +141,26 @@ module.exports = {
           ],
         },
         {
-          title: 'Community',
+          title: 'Tools',
           items: [
             {
+              label: 'Electron Forge',
+              to: 'https://electronforge.io',
+            },
+            {
+              label: 'Electron Fiddle',
+              to: '/fiddle',
+            },
+          ],
+        },
+        {
+          title: 'Community',
+          items: [
+            { label: 'Governance', to: '/governance' },
+            { label: 'Resources', to: '/community' },
+            {
               label: 'Discord',
-              href: 'https://discordapp.com/invite/electron',
+              href: 'https://discordapp.com/invite/APGC3k5yaH',
             },
             {
               label: 'Twitter',
@@ -157,15 +189,19 @@ module.exports = {
       copyright: `Copyright © ${new Date().getFullYear()} OpenJS Foundation and Electron contributors.`,
     },
     algolia: {
-      apiKey: 'c9e8f898b3b32afe40f0a96637e7ea85',
+      appId: 'MG3SRMK3K0',
+      apiKey: 'fdc2cf6080e499639d7e6b0278851ed4',
       indexName: 'electronjs',
       contextualSearch: true,
     },
-    googleAnalytics: {
-      trackingID: 'UA-160365006-1',
-    },
   },
-  plugins: ['docusaurus-plugin-sass'],
+  plugins: [
+    'docusaurus-plugin-sass',
+    path.resolve(__dirname, './src/plugins/apps'),
+    path.resolve(__dirname, './src/plugins/releases'),
+    path.resolve(__dirname, './src/plugins/fiddle'),
+    ['@docusaurus/plugin-ideal-image', {}],
+  ],
   presets: [
     [
       '@docusaurus/preset-classic',
@@ -180,8 +216,10 @@ module.exports = {
             return `https://github.com/electron/electron/edit/main/docs/${fixedPath}`;
           },
           remarkPlugins: [
-            fiddleEmbedder,
             apiLabels,
+            apiOptionsClass,
+            apiStructurePreviews,
+            fiddleEmbedder,
             [npm2yarn, { sync: true }],
           ],
         },
@@ -194,6 +232,9 @@ module.exports = {
         },
         theme: {
           customCss: [require.resolve('./src/css/custom.scss')],
+        },
+        googleAnalytics: {
+          trackingID: 'UA-160365006-1',
         },
       },
     ],

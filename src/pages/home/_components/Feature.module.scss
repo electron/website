@@ -1,0 +1,39 @@
+.featureRow {
+  display: flex;
+  align-items: center;
+  &:nth-of-type(2n) {
+    flex-direction: row-reverse;
+  }
+  margin-bottom: 2rem;
+}
+
+.featureImageContainer {
+  position: relative;
+  max-width: 400px;
+  max-height: 300px;
+  margin: 0 auto;
+  &:before {
+    content: '';
+    background: var(--electron-color-dark);
+    background: linear-gradient(
+      90deg,
+      var(--electron-color-dark),
+      var(--electron-color-light)
+    );
+    border-radius: 1rem;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    transform: rotate3d(0, 0, 1, 5deg);
+    transform-origin: 40% 80%;
+  }
+}
+
+.featureImage {
+  border-radius: 1rem;
+  box-shadow: var(--ifm-global-shadow-tl);
+  display: block;
+  position: relative;
+}

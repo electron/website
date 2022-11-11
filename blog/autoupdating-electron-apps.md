@@ -51,7 +51,7 @@ require('update-electron-app')()
 ```
 
 That's it! The module will check for updates at app startup, then
-every ten minutes. When an update is found it will download automically
+every ten minutes. When an update is found it will download automatically
 in the background, and a dialog will be displayed when the update is ready.
 
 ## Migrating existing apps

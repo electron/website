@@ -15,7 +15,7 @@ In Electron, for the APIs that take images, you can pass either file paths or
 `NativeImage` instances. An empty image will be used when `null` is passed.
 
 For example, when creating a tray or setting a window's icon, you can pass an
-image file path as a `String`:
+image file path as a `string`:
 
 ```javascript
 const { BrowserWindow, Tray } = require('electron')
@@ -128,14 +128,14 @@ Creates an empty `NativeImage` instance.
 
 ### `nativeImage.createThumbnailFromPath(path, maxSize)` _macOS_ _Windows_
 
-* `path` String - path to a file that we intend to construct a thumbnail out of.
+* `path` string - path to a file that we intend to construct a thumbnail out of.
 * `maxSize` [Size](latest/api/structures/size.md) - the maximum width and height (positive numbers) the thumbnail returned can be. The Windows implementation will ignore `maxSize.height` and scale the height according to `maxSize.width`.
 
 Returns `Promise<NativeImage>` - fulfilled with the file's thumbnail preview image, which is a [NativeImage](latest/api/native-image.md).
 
 ### `nativeImage.createFromPath(path)`
 
-* `path` String
+* `path` string
 
 Returns `NativeImage`
 
@@ -156,7 +156,7 @@ console.log(image)
 * `options` Object
   * `width` Integer
   * `height` Integer
-  * `scaleFactor` Double (optional) - Defaults to 1.0.
+  * `scaleFactor` Number (optional) - Defaults to 1.0.
 
 Returns `NativeImage`
 
@@ -169,7 +169,7 @@ pixel data returned by `toBitmap()`. The specific format is platform-dependent.
 * `options` Object (optional)
   * `width` Integer (optional) - Required for bitmap buffers.
   * `height` Integer (optional) - Required for bitmap buffers.
-  * `scaleFactor` Double (optional) - Defaults to 1.0.
+  * `scaleFactor` Number (optional) - Defaults to 1.0.
 
 Returns `NativeImage`
 
@@ -177,7 +177,7 @@ Creates a new `NativeImage` instance from `buffer`. Tries to decode as PNG or JP
 
 ### `nativeImage.createFromDataURL(dataURL)`
 
-* `dataURL` String
+* `dataURL` string
 
 Returns `NativeImage`
 
@@ -185,8 +185,8 @@ Creates a new `NativeImage` instance from `dataURL`.
 
 ### `nativeImage.createFromNamedImage(imageName[, hslShift])` _macOS_
 
-* `imageName` String
-* `hslShift` Number[] (optional)
+* `imageName` string
+* `hslShift` number[] (optional)
 
 Returns `NativeImage`
 
@@ -232,7 +232,7 @@ The following methods are available on instances of the `NativeImage` class:
 #### `image.toPNG([options])`
 
 * `options` Object (optional)
-  * `scaleFactor` Double (optional) - Defaults to 1.0.
+  * `scaleFactor` Number (optional) - Defaults to 1.0.
 
 Returns `Buffer` - A [Buffer][buffer] that contains the image's `PNG` encoded data.
 
@@ -245,7 +245,7 @@ Returns `Buffer` - A [Buffer][buffer] that contains the image's `JPEG` encoded d
 #### `image.toBitmap([options])`
 
 * `options` Object (optional)
-  * `scaleFactor` Double (optional) - Defaults to 1.0.
+  * `scaleFactor` Number (optional) - Defaults to 1.0.
 
 Returns `Buffer` - A [Buffer][buffer] that contains a copy of the image's raw bitmap pixel
 data.
@@ -253,14 +253,14 @@ data.
 #### `image.toDataURL([options])`
 
 * `options` Object (optional)
-  * `scaleFactor` Double (optional) - Defaults to 1.0.
+  * `scaleFactor` Number (optional) - Defaults to 1.0.
 
-Returns `String` - The data URL of the image.
+Returns `string` - The data URL of the image.
 
 #### `image.getBitmap([options])`
 
 * `options` Object (optional)
-  * `scaleFactor` Double (optional) - Defaults to 1.0.
+  * `scaleFactor` Number (optional) - Defaults to 1.0.
 
 Returns `Buffer` - A [Buffer][buffer] that contains the image's raw bitmap pixel data.
 
@@ -279,11 +279,11 @@ image instead of a copy, so you _must_ ensure that the associated
 
 #### `image.isEmpty()`
 
-Returns `Boolean` - Whether the image is empty.
+Returns `boolean` - Whether the image is empty.
 
 #### `image.getSize([scaleFactor])`
 
-* `scaleFactor` Double (optional) - Defaults to 1.0.
+* `scaleFactor` Number (optional) - Defaults to 1.0.
 
 Returns [`Size`](latest/api/structures/size.md).
 
@@ -291,13 +291,13 @@ If `scaleFactor` is passed, this will return the size corresponding to the image
 
 #### `image.setTemplateImage(option)`
 
-* `option` Boolean
+* `option` boolean
 
 Marks the image as a template image.
 
 #### `image.isTemplateImage()`
 
-Returns `Boolean` - Whether the image is a template image.
+Returns `boolean` - Whether the image is a template image.
 
 #### `image.crop(rect)`
 
@@ -310,7 +310,7 @@ Returns `NativeImage` - The cropped image.
 * `options` Object
   * `width` Integer (optional) - Defaults to the image's width.
   * `height` Integer (optional) - Defaults to the image's height.
-  * `quality` String (optional) - The desired quality of the resize image.
+  * `quality` string (optional) - The desired quality of the resize image.
     Possible values are `good`, `better`, or `best`. The default is `best`.
     These values express a desired quality/speed tradeoff. They are translated
     into an algorithm-specific method that depends on the capabilities
@@ -324,26 +324,26 @@ will be preserved in the resized image.
 
 #### `image.getAspectRatio([scaleFactor])`
 
-* `scaleFactor` Double (optional) - Defaults to 1.0.
+* `scaleFactor` Number (optional) - Defaults to 1.0.
 
-Returns `Float` - The image's aspect ratio.
+Returns `Number` - The image's aspect ratio.
 
 If `scaleFactor` is passed, this will return the aspect ratio corresponding to the image representation most closely matching the passed value.
 
 #### `image.getScaleFactors()`
 
-Returns `Float[]` - An array of all scale factors corresponding to representations for a given nativeImage.
+Returns `Number[]` - An array of all scale factors corresponding to representations for a given nativeImage.
 
 #### `image.addRepresentation(options)`
 
 * `options` Object
-  * `scaleFactor` Double - The scale factor to add the image representation for.
+  * `scaleFactor` Number (optional) - The scale factor to add the image representation for.
   * `width` Integer (optional) - Defaults to 0. Required if a bitmap buffer
     is specified as `buffer`.
   * `height` Integer (optional) - Defaults to 0. Required if a bitmap buffer
     is specified as `buffer`.
   * `buffer` Buffer (optional) - The buffer containing the raw image data.
-  * `dataURL` String (optional) - The data URL containing either a base 64
+  * `dataURL` string (optional) - The data URL containing either a base 64
     encoded PNG or JPEG image.
 
 Add an image representation for a specific scale factor. This can be used
@@ -356,6 +356,6 @@ can be called on empty images.
 
 #### `nativeImage.isMacTemplateImage` _macOS_
 
-A `Boolean` property that determines whether the image is considered a [template image](https://developer.apple.com/documentation/appkit/nsimage/1520017-template).
+A `boolean` property that determines whether the image is considered a [template image](https://developer.apple.com/documentation/appkit/nsimage/1520017-template).
 
 Please note that this property only has an effect on macOS.

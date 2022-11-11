@@ -16,7 +16,7 @@ methods so you can send synchronous and asynchronous messages from the render
 process (web page) to the main process. You can also receive replies from the
 main process.
 
-See [ipcMain](latest/api/ipc-main.md) for code examples.
+See [IPC tutorial](latest/tutorial/ipc.md) for code examples.
 
 ## Methods
 
@@ -24,7 +24,7 @@ The `ipcRenderer` module has the following method to listen for events and send 
 
 ### `ipcRenderer.on(channel, listener)`
 
-* `channel` String
+* `channel` string
 * `listener` Function
   * `event` IpcRendererEvent
   * `...args` any[]
@@ -34,7 +34,7 @@ Listens to `channel`, when a new message arrives `listener` would be called with
 
 ### `ipcRenderer.once(channel, listener)`
 
-* `channel` String
+* `channel` string
 * `listener` Function
   * `event` IpcRendererEvent
   * `...args` any[]
@@ -44,7 +44,7 @@ only the next time a message is sent to `channel`, after which it is removed.
 
 ### `ipcRenderer.removeListener(channel, listener)`
 
-* `channel` String
+* `channel` string
 * `listener` Function
   * `...args` any[]
 
@@ -53,13 +53,13 @@ Removes the specified `listener` from the listener array for the specified
 
 ### `ipcRenderer.removeAllListeners(channel)`
 
-* `channel` String
+* `channel` string
 
 Removes all listeners, or those of the specified `channel`.
 
 ### `ipcRenderer.send(channel, ...args)`
 
-* `channel` String
+* `channel` string
 * `...args` any[]
 
 Send an asynchronous message to the main process via `channel`, along with
@@ -85,7 +85,7 @@ If you want to receive a single response from the main process, like the result 
 
 ### `ipcRenderer.invoke(channel, ...args)`
 
-* `channel` String
+* `channel` string
 * `...args` any[]
 
 Returns `Promise<any>` - Resolves with the response from the main process.
@@ -95,14 +95,6 @@ asynchronously. Arguments will be serialized with the [Structured Clone
 Algorithm][SCA], just like [`window.postMessage`][], so prototype chains will not be
 included. Sending Functions, Promises, Symbols, WeakMaps, or WeakSets will
 throw an exception.
-
-> **NOTE:** Sending non-standard JavaScript types such as DOM objects or
-> special Electron objects will throw an exception.
->
-> Since the main process does not have support for DOM objects such as
-> `ImageBitmap`, `File`, `DOMMatrix` and so on, such objects cannot be sent over
-> Electron's IPC to the main process, as the main process would have no way to decode
-> them. Attempting to send such objects over IPC will result in an error.
 
 The main process should listen for `channel` with
 [`ipcMain.handle()`](latest/api/ipc-main.md#ipcmainhandlechannel-listener).
@@ -126,16 +118,31 @@ If you need to transfer a [`MessagePort`][] to the main process, use [`ipcRender
 
 If you do not need a response to the message, consider using [`ipcRenderer.send`](#ipcrenderersendchannel-args).
 
+> **Note**
+> Sending non-standard JavaScript types such as DOM objects or
+> special Electron objects will throw an exception.
+>
+> Since the main process does not have support for DOM objects such as
+> `ImageBitmap`, `File`, `DOMMatrix` and so on, such objects cannot be sent over
+> Electron's IPC to the main process, as the main process would have no way to decode
+> them. Attempting to send such objects over IPC will result in an error.
+
+> **Note**
+> If the handler in the main process throws an error,
+> the promise returned by `invoke` will reject.
+> However, the `Error` object in the renderer process
+> will not be the same as the one thrown in the main process.
+
 ### `ipcRenderer.sendSync(channel, ...args)`
 
-* `channel` String
+* `channel` string
 * `...args` any[]
 
 Returns `any` - The value sent back by the [`ipcMain`](latest/api/ipc-main.md) handler.
 
 Send a message to the main process via `channel` and expect a result
 synchronously. Arguments will be serialized with the [Structured Clone
-Algorithm][SCA], just like [`window.postMessage`][], so prototype chains will not be
+Algorithm][SCA], just like [`window.postMessage`], so prototype chains will not be
 included. Sending Functions, Promises, Symbols, WeakMaps, or WeakSets will
 throw an exception.
 
@@ -157,7 +164,7 @@ and replies by setting `event.returnValue`.
 
 ### `ipcRenderer.postMessage(channel, message, [transfer])`
 
-* `channel` String
+* `channel` string
 * `message` any
 * `transfer` MessagePort[] (optional)
 
@@ -187,15 +194,15 @@ documentation](https://developer.mozilla.org/en-US/docs/Web/API/MessageChannel).
 
 ### `ipcRenderer.sendTo(webContentsId, channel, ...args)`
 
-* `webContentsId` Number
-* `channel` String
+* `webContentsId` number
+* `channel` string
 * `...args` any[]
 
 Sends a message to a window with `webContentsId` via `channel`.
 
 ### `ipcRenderer.sendToHost(channel, ...args)`
 
-* `channel` String
+* `channel` string
 * `...args` any[]
 
 Like `ipcRenderer.send` but the event will be sent to the `<webview>` element in

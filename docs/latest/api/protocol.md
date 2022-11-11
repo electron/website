@@ -17,11 +17,12 @@ An example of implementing a protocol that has the same effect as the
 ```javascript
 const { app, protocol } = require('electron')
 const path = require('path')
+const url = require('url')
 
 app.whenReady().then(() => {
   protocol.registerFileProtocol('atom', (request, callback) => {
-    const url = request.url.substr(7)
-    callback({ path: path.normalize(`${__dirname}/${url}`) })
+    const filePath = url.fileURLToPath('file://' + request.url.slice('atom://'.length))
+    callback(filePath)
   })
 })
 ```
@@ -117,13 +118,13 @@ expect streaming responses.
 
 ### `protocol.registerFileProtocol(scheme, handler)`
 
-* `scheme` String
+* `scheme` string
 * `handler` Function
   * `request` [ProtocolRequest](latest/api/structures/protocol-request.md)
   * `callback` Function
-    * `response` (String | [ProtocolResponse](latest/api/structures/protocol-response.md))
+    * `response` (string | [ProtocolResponse](latest/api/structures/protocol-response.md))
 
-Returns `Boolean` - Whether the protocol was successfully registered
+Returns `boolean` - Whether the protocol was successfully registered
 
 Registers a protocol of `scheme` that will send a file as the response. The
 `handler` will be called with `request` and `callback` where `request` is
@@ -138,13 +139,13 @@ from protocols that follow the "generic URI syntax" like `file:`.
 
 ### `protocol.registerBufferProtocol(scheme, handler)`
 
-* `scheme` String
+* `scheme` string
 * `handler` Function
   * `request` [ProtocolRequest](latest/api/structures/protocol-request.md)
   * `callback` Function
     * `response` (Buffer | [ProtocolResponse](latest/api/structures/protocol-response.md))
 
-Returns `Boolean` - Whether the protocol was successfully registered
+Returns `boolean` - Whether the protocol was successfully registered
 
 Registers a protocol of `scheme` that will send a `Buffer` as a response.
 
@@ -162,29 +163,29 @@ protocol.registerBufferProtocol('atom', (request, callback) => {
 
 ### `protocol.registerStringProtocol(scheme, handler)`
 
-* `scheme` String
+* `scheme` string
 * `handler` Function
   * `request` [ProtocolRequest](latest/api/structures/protocol-request.md)
   * `callback` Function
-    * `response` (String | [ProtocolResponse](latest/api/structures/protocol-response.md))
+    * `response` (string | [ProtocolResponse](latest/api/structures/protocol-response.md))
 
-Returns `Boolean` - Whether the protocol was successfully registered
+Returns `boolean` - Whether the protocol was successfully registered
 
-Registers a protocol of `scheme` that will send a `String` as a response.
+Registers a protocol of `scheme` that will send a `string` as a response.
 
 The usage is the same with `registerFileProtocol`, except that the `callback`
-should be called with either a `String` or an object that has the `data`
+should be called with either a `string` or an object that has the `data`
 property.
 
 ### `protocol.registerHttpProtocol(scheme, handler)`
 
-* `scheme` String
+* `scheme` string
 * `handler` Function
   * `request` [ProtocolRequest](latest/api/structures/protocol-request.md)
   * `callback` Function
-    * `response` ProtocolResponse
+    * `response` [ProtocolResponse](latest/api/structures/protocol-response.md)
 
-Returns `Boolean` - Whether the protocol was successfully registered
+Returns `boolean` - Whether the protocol was successfully registered
 
 Registers a protocol of `scheme` that will send an HTTP request as a response.
 
@@ -193,13 +194,13 @@ should be called with an object that has the `url` property.
 
 ### `protocol.registerStreamProtocol(scheme, handler)`
 
-* `scheme` String
+* `scheme` string
 * `handler` Function
   * `request` [ProtocolRequest](latest/api/structures/protocol-request.md)
   * `callback` Function
     * `response` (ReadableStream | [ProtocolResponse](latest/api/structures/protocol-response.md))
 
-Returns `Boolean` - Whether the protocol was successfully registered
+Returns `boolean` - Whether the protocol was successfully registered
 
 Registers a protocol of `scheme` that will send a stream as a response.
 
@@ -242,95 +243,95 @@ protocol.registerStreamProtocol('atom', (request, callback) => {
 
 ### `protocol.unregisterProtocol(scheme)`
 
-* `scheme` String
+* `scheme` string
 
-Returns `Boolean` - Whether the protocol was successfully unregistered
+Returns `boolean` - Whether the protocol was successfully unregistered
 
 Unregisters the custom protocol of `scheme`.
 
 ### `protocol.isProtocolRegistered(scheme)`
 
-* `scheme` String
+* `scheme` string
 
-Returns `Boolean` - Whether `scheme` is already registered.
+Returns `boolean` - Whether `scheme` is already registered.
 
 ### `protocol.interceptFileProtocol(scheme, handler)`
 
-* `scheme` String
+* `scheme` string
 * `handler` Function
   * `request` [ProtocolRequest](latest/api/structures/protocol-request.md)
   * `callback` Function
-    * `response` (String | [ProtocolResponse](latest/api/structures/protocol-response.md))
+    * `response` (string | [ProtocolResponse](latest/api/structures/protocol-response.md))
 
-Returns `Boolean` - Whether the protocol was successfully intercepted
+Returns `boolean` - Whether the protocol was successfully intercepted
 
 Intercepts `scheme` protocol and uses `handler` as the protocol's new handler
 which sends a file as a response.
 
 ### `protocol.interceptStringProtocol(scheme, handler)`
 
-* `scheme` String
+* `scheme` string
 * `handler` Function
   * `request` [ProtocolRequest](latest/api/structures/protocol-request.md)
   * `callback` Function
-    * `response` (String | [ProtocolResponse](latest/api/structures/protocol-response.md))
+    * `response` (string | [ProtocolResponse](latest/api/structures/protocol-response.md))
 
-Returns `Boolean` - Whether the protocol was successfully intercepted
+Returns `boolean` - Whether the protocol was successfully intercepted
 
 Intercepts `scheme` protocol and uses `handler` as the protocol's new handler
-which sends a `String` as a response.
+which sends a `string` as a response.
 
 ### `protocol.interceptBufferProtocol(scheme, handler)`
 
-* `scheme` String
+* `scheme` string
 * `handler` Function
   * `request` [ProtocolRequest](latest/api/structures/protocol-request.md)
   * `callback` Function
     * `response` (Buffer | [ProtocolResponse](latest/api/structures/protocol-response.md))
 
-Returns `Boolean` - Whether the protocol was successfully intercepted
+Returns `boolean` - Whether the protocol was successfully intercepted
 
 Intercepts `scheme` protocol and uses `handler` as the protocol's new handler
 which sends a `Buffer` as a response.
 
 ### `protocol.interceptHttpProtocol(scheme, handler)`
 
-* `scheme` String
+* `scheme` string
 * `handler` Function
   * `request` [ProtocolRequest](latest/api/structures/protocol-request.md)
   * `callback` Function
     * `response` [ProtocolResponse](latest/api/structures/protocol-response.md)
 
-Returns `Boolean` - Whether the protocol was successfully intercepted
+Returns `boolean` - Whether the protocol was successfully intercepted
 
 Intercepts `scheme` protocol and uses `handler` as the protocol's new handler
 which sends a new HTTP request as a response.
 
 ### `protocol.interceptStreamProtocol(scheme, handler)`
 
-* `scheme` String
+* `scheme` string
 * `handler` Function
   * `request` [ProtocolRequest](latest/api/structures/protocol-request.md)
   * `callback` Function
     * `response` (ReadableStream | [ProtocolResponse](latest/api/structures/protocol-response.md))
 
-Returns `Boolean` - Whether the protocol was successfully intercepted
+Returns `boolean` - Whether the protocol was successfully intercepted
 
 Same as `protocol.registerStreamProtocol`, except that it replaces an existing
 protocol handler.
 
 ### `protocol.uninterceptProtocol(scheme)`
 
-* `scheme` String
+* `scheme` string
 
-Returns `Boolean` - Whether the protocol was successfully unintercepted
+Returns `boolean` - Whether the protocol was successfully unintercepted
 
 Remove the interceptor installed for `scheme` and restore its original handler.
 
 ### `protocol.isProtocolIntercepted(scheme)`
 
-* `scheme` String
+* `scheme` string
 
-Returns `Boolean` - Whether `scheme` is already intercepted.
+Returns `boolean` - Whether `scheme` is already intercepted.
 
 [file-system-api]: https://developer.mozilla.org/en-US/docs/Web/API/LocalFileSystem

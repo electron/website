@@ -92,7 +92,7 @@ up to date with the version of Electron you're using.
 For a summary of how to install and use Electron's new TypeScript annotations,
 watch this short demo screencast:
 
-<iframe width="100%" height="420" src="https://www.youtube.com/embed/PJRag0rYQt8" frameborder="0" allowfullscreen></iframe>
+<iframe width="100%" height="420" src="https://www.youtube.com/embed/PJRag0rYQt8" frameBorder="0" allowFullScreen></iframe>
 
 If you're using [Visual Studio Code](https://code.visualstudio.com/), you've
 already got TypeScript support built in. There are also community-maintained

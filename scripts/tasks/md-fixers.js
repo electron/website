@@ -94,6 +94,19 @@ const newLineOnHTMLComment = (line) => {
 };
 
 /**
+ * Crowdin needs extra blank lines surrounding the admonition characters so it doesn't
+ * break Docusaurus with the translated content.
+ * @param {string} line
+ */
+const newLineOnAdmonition = (line) => {
+  if (line.trim().startsWith(':::') || line.trim().endsWith(':::')) {
+    return `\n${line.trim()}\n`;
+  }
+
+  return line;
+};
+
+/**
  * Applies any transformation that can be executed line by line on
  * the document to make sure it is ready to be consumed by
  * docusaurus and our md extensions:
@@ -108,6 +121,7 @@ const transform = (doc) => {
     apiTransformer,
     fiddleTransformer,
     newLineOnHTMLComment,
+    newLineOnAdmonition,
   ];
 
   for (const line of lines) {
@@ -148,10 +162,20 @@ const fixLinks = (content, linksMaps) => {
 
   while ((val = mdLinkRegex.exec(content)) !== null) {
     const link = val[2];
-    const basename = path.basename(link);
+
+    // Don't map links from outside the electron docs
+    if (
+      link.startsWith('https://') &&
+      !link.includes('github.com/electron/electron/')
+    ) {
+      continue;
+    }
+
     // Link could be `glossary.md#main-process` and we just need `glossary.md`
+    const basename = path.basename(link);
     const parts = basename.split('#');
     const key = parts.shift();
+
     if (linksMaps.has(key)) {
       const newLink = [linksMaps.get(key), ...parts];
       const replacement = val[0].replace(val[2], newLink.join('#'));
@@ -176,10 +200,18 @@ const fixLinks = (content, linksMaps) => {
       continue;
     }
     const fixedTitle = title.replace(/\n/g, ' ');
-    updatedContent = updatedContent.replace(val[0], fixedTitle);
+    updatedContent = updatedContent.replace(val[1], fixedTitle);
   }
 
   return updatedContent;
+};
+
+/**
+ * Removes unnecesary extra blank lines
+ * @param {string} content
+ */
+const fixReturnLines = (content) => {
+  return content.replace(/\n\n(\n)+/g, '\n\n');
 };
 
 /**
@@ -210,9 +242,9 @@ const fixContent = async (root, version = 'latest') => {
 
     let fixedContent = transform(content);
 
-    // `fixLinks` analyzes the document globally instead of line by line, thus why
-    // it cannot be part of `transform`
-    fixedContent = fixLinks(fixedContent, linksMaps);
+    // `fixLinks` and `fixReturnLines` analyze the document globally instead
+    // of line by line, thus why it cannot be part of `transform`
+    fixedContent = fixReturnLines(fixLinks(fixedContent, linksMaps));
 
     await fs.writeFile(path.join(root, filePath), fixedContent, 'utf-8');
   }

@@ -1,6 +1,6 @@
 # electronjs.org-new
 
-This repository contains the code for the new electronsjs.org website. It is built using
+This repository contains the code for the new [Electron](https://www.electronjs.org/) website. It is built using
 [Docusaurus 2](https://v2.docusaurus.io/), a modern static website generator.
 
 ## Installation
@@ -24,7 +24,7 @@ updates.
 ## How to add a new blogpost
 
 To add a new blogpost you need to create a new markdown file under `/blog`. The supported
-frontmatter options are the ones documented in [Docusaurus](https://docusaurus.io/docs/2.0.0-beta.0/blog#adding-posts).
+frontmatter options are the ones documented in [Docusaurus](https://docusaurus.io/docs/blog#adding-posts).
 
 There are a couple of things that are different compared to the previous blog engine:
 
@@ -39,11 +39,11 @@ There are a couple of things that are different compared to the previous blog en
 To see your changes (and have hot-reload), run the following commands:
 
 ```console
-yarn prebuild
+yarn pre-build
 yarn start
 ```
 
-Note: `yarn prebuild` is only necessary the first time to get content under `/docs`.
+Note: `yarn pre-build` is only necessary the first time to get content under `/docs`.
 
 ## Local Development
 
@@ -51,14 +51,14 @@ If you want to use the contents from [`electron/electron`](https://github.com/el
 run the following:
 
 ```console
-yarn prebuild
+yarn pre-build
 yarn start
 ```
 
 If you want the website to pick your local documentation, run:
 
 ```console
-yarn prebuild ../relative/path/to/local/electron/repo
+yarn pre-build ../relative/path/to/local/electron/repo
 yarn start
 ```
 
@@ -74,7 +74,7 @@ For example, if you have the following structure:
 and assuming your prompt is in `/projects/electronjs.org-new/` you will have to run:
 
 ```console
-yarn prebuild ../electron
+yarn pre-build ../electron
 yarn start
 ```
 

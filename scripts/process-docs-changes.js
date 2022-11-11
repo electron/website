@@ -8,7 +8,7 @@
 //@ts-check
 if (
   !(process.env.CI || process.env.NODE_ENV === 'development') &&
-  !GITHUB_TOKEN
+  !process.env.GITHUB_TOKEN
 ) {
   console.error('Missing GITHUB_TOKEN environment variable');
   process.exit(1);
@@ -22,7 +22,6 @@ const {
   getCurrentBranchName,
 } = require('./utils/git-commands');
 
-const HEAD = 'main';
 const PR_BRANCH = 'chore/docs-updates';
 const COMMIT_MESSAGE = '"chore: update ref to docs (🤖)"';
 const EMAIL = 'electron@github.com';

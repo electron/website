@@ -98,7 +98,7 @@ organizations to see some of these fantastic projects.
 
 New to Electron? Watch the Electron 1.0 intro video:
 
-<div class="video"><iframe src="https://www.youtube.com/embed/8YP_nOCO-4Q?rel=0" frameborder="0" allowfullscreen></iframe></div>
+<div className="video"><iframe src="https://www.youtube.com/embed/8YP_nOCO-4Q?rel=0" frameBorder="0" allowFullScreen></iframe></div>
 
 [apps]: https://electronjs.org/apps
 [atom]: https://atom.io

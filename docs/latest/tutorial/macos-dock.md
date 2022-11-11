@@ -1,11 +1,11 @@
 ---
-title: "Dock (macOS)"
-description: "Electron has APIs to configure the app's icon in the macOS Dock. A macOS-only API exists to create a custom dock menu, but Electron also uses the app dock icon as the entry point for cross-platform features like recent documents and application progress."
+title: Dock
+description: Configure your application's Dock presence on macOS.
 slug: macos-dock
-hide_title: false
+hide_title: true
 ---
 
-# Dock (macOS)
+# Dock
 
 Electron has APIs to configure the app's icon in the macOS Dock. A macOS-only
 API exists to create a custom dock menu, but Electron also uses the app dock
@@ -23,16 +23,10 @@ To set your custom dock menu, you need to use the
 [`app.dock.setMenu`](latest/api/dock.md#docksetmenumenu-macos) API,
 which is only available on macOS.
 
-## Example
-
-Starting with a working application from the
- [Quick Start Guide](latest/tutorial/quick-start.md), update the `main.js` file with the
- following lines:
-
 ```fiddle docs/latest/fiddles/features/macos-dock-menu
 const { app, BrowserWindow, Menu } = require('electron')
 
-function createWindow () {
+const createWindow = () => {
   const win = new BrowserWindow({
     width: 800,
     height: 600,

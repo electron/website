@@ -1,0 +1,74 @@
+/**
+ * Adapted from facebook/docusaurus
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+ .editorWindow {
+  background: var(--ifm-color-emphasis-200);
+  border: 3px solid var(--ifm-color-emphasis-200);
+  border-radius: var(--ifm-global-radius);
+  box-shadow: var(--ifm-global-shadow-md);
+}
+
+.editorWindowHeader {
+  align-items: center;
+  justify-content: space-between;
+  background: var(--ifm-color-emphasis-200);
+  display: flex;
+  padding: 0.5rem 1rem 0;
+}
+
+.buttons {
+  white-space: nowrap;
+}
+
+.right {
+  align-self: center;
+  width: 10%;
+}
+
+.dot {
+  margin-right: 6px;
+  margin-top: 4px;
+  height: 12px;
+  width: 12px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.editorWindowMenuIcon {
+  margin-left: auto;
+}
+
+.bar {
+  width: 17px;
+  height: 3px;
+  background-color: #aaa;
+  margin: 3px 0;
+  display: block;
+}
+
+.editorWindowBody {
+  padding: 0 0.5rem;
+
+  li {
+    padding: 8px 12px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    font-weight: var(--ifm-font-weight-normal);
+    font-size: var(--ifm-h6-font-size);
+  }
+}
+
+.editorTitle {
+  font-size: 12px;
+  font-weight: 100;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

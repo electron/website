@@ -66,21 +66,17 @@ an issue:
 * [Testing and Debugging](latest/tutorial/application-debugging.md)
   * [Debugging the Main Process](latest/tutorial/debugging-main-process.md)
   * [Debugging with Visual Studio Code](latest/tutorial/debugging-vscode.md)
-  * [Using Selenium and WebDriver](latest/tutorial/using-selenium-and-webdriver.md)
   * [Testing on Headless CI Systems (Travis, Jenkins)](latest/tutorial/testing-on-headless-ci.md)
   * [DevTools Extension](latest/tutorial/devtools-extension.md)
-  * [Automated Testing with a Custom Driver](latest/tutorial/automated-testing-with-a-custom-driver.md)
+  * [Automated Testing](latest/tutorial/automated-testing.md)
   * [REPL](latest/tutorial/repl.md)
 * [Distribution](latest/tutorial/application-distribution.md)
-  * [Supported Platforms](latest/tutorial/support.md#supported-platforms)
   * [Code Signing](latest/tutorial/code-signing.md)
   * [Mac App Store](latest/tutorial/mac-app-store-submission-guide.md)
   * [Windows Store](latest/tutorial/windows-store-guide.md)
   * [Snapcraft](latest/tutorial/snapcraft.md)
+  * [ASAR Archives](latest/tutorial/asar-archives.md)
 * [Updates](latest/tutorial/updates.md)
-  * [Deploying an Update Server](latest/tutorial/updates.md#deploying-an-update-server)
-  * [Implementing Updates in Your App](latest/tutorial/updates.md#implementing-updates-in-your-app)
-  * [Applying Updates](latest/tutorial/updates.md#applying-updates)
 * [Getting Support](latest/tutorial/support.md)
 
 ## Detailed Tutorials
@@ -94,7 +90,6 @@ These individual tutorials expand on topics discussed in the guide above.
 * Electron Releases & Developer Feedback
   * [Versioning Policy](latest/tutorial/electron-versioning.md)
   * [Release Timelines](latest/tutorial/electron-timelines.md)
-* [Testing Widevine CDM](latest/tutorial/testing-widevine-cdm.md)
 
 ---
 
@@ -114,7 +109,6 @@ These individual tutorials expand on topics discussed in the guide above.
 * [`File` Object](latest/api/file-object.md)
 * [`<webview>` Tag](latest/api/webview-tag.md)
 * [`window.open` Function](latest/api/window-open.md)
-* [`BrowserWindowProxy` Object](latest/api/browser-window-proxy.md)
 
 ### Modules for the Main Process:
 

@@ -1,11 +1,11 @@
 ---
-title: 'Examples overview'
+title: 'Examples Overview'
 description: 'A set of examples for common Electron features'
 slug: examples
 hide_title: false
 ---
 
-# Examples overview
+# Examples Overview
 
 In this section, we have collected a set of guides for common features
 that you may want to implement in your Electron application. Each guide
@@ -34,5 +34,5 @@ You can find the full list of "How to?" in the sidebar. If there is
 something that you would like to do that is not documented, please join
 our [Discord server][] and let us know!
 
-[discord server]: https://discord.com/invite/electron
+[discord server]: https://discord.com/invite/electronjs
 [fiddle]: https://www.electronjs.org/fiddle

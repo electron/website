@@ -31,7 +31,7 @@ contribute:
 
 ## Asking for General Help
 
-["Finding Support"](latest/tutorial/support.md#finding-support) has a
+[The Electron website](https://electronjs.org/community) has a
 list of resources for getting programming help, reporting security issues,
 contributing, and more. Please use the issue tracker for bugs only!
 

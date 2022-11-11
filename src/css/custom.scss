@@ -11,7 +11,7 @@
 /* We maintain separate colours for light and dark mode */
 :root {
   // modified base colors
-  --ifm-color-primary: #0057c2;
+  --ifm-color-primary: var(--electron-color-mid);
   --ifm-color-primary-dark: #000885;
   --ifm-color-primary-darker: #000047;
   --ifm-color-primary-darkest: #000000;
@@ -21,20 +21,53 @@
 
   // modified base vars
   --ifm-code-font-size: 95%;
-  --ifm-navbar-height: 86px;
+  --ifm-navbar-height: 70px;
 
   // brand-specific colors
   --electron-color-light: #9feaf9;
-  --electron-color-mid: #0d4a59;
+  --electron-color-mid: #317b88;
   --electron-color-dark: #2b2e3b;
   --electron-color-secondary-light: #ff6e6e;
   --electron-color-secondary-mid: #e3112d;
-  --electron-color-white: white;
 
   // custom vars
   --electron-font: 'Varela Round', sans-serif;
   --electron-heading: var(--electron-color-mid);
   --electron-inline-code: var(--electron-color-secondary-mid);
+
+  // docusaurus variables
+  --ifm-hover-overlay: rgba(162, 236, 251, 0.2);
+  --ifm-link-color: var(--electron-color-mid);
+  --ifm-menu-color-active: var(--electron-color-dark);
+  // these require !important because of some weirdness in CSS ordering
+  // see: https://github.com/facebook/docusaurus/issues/3678
+  --docusaurus-highlighted-code-line-bg: rgb(217, 220, 222);
+
+  // infima shadow levels
+  // generated from https://www.joshwcomeau.com/shadow-palette/
+  --shadow-color: 0deg 0% 63%;
+  --shadow-elevation-low: 0px 1px 1px hsl(var(--shadow-color) / 0.07),
+    0px 1.4px 1.4px -1.8px hsl(var(--shadow-color) / 0.06),
+    -0.1px 3px 2.9px -3.5px hsl(var(--shadow-color) / 0.04);
+  --shadow-elevation-medium: 0px 1px 1px hsl(var(--shadow-color) / 0.06),
+    0px 1.8px 1.7px -0.9px hsl(var(--shadow-color) / 0.05),
+    -0.1px 3.5px 3.4px -1.8px hsl(var(--shadow-color) / 0.05),
+    -0.1px 7.5px 7.3px -2.7px hsl(var(--shadow-color) / 0.04),
+    -0.3px 15px 14.5px -3.5px hsl(var(--shadow-color) / 0.03);
+  --shadow-elevation-high: 0px 1px 1px hsl(var(--shadow-color) / 0.06),
+    0px 2.1px 2px -0.4px hsl(var(--shadow-color) / 0.05),
+    -0.1px 3.4px 3.3px -0.8px hsl(var(--shadow-color) / 0.05),
+    -0.1px 5.2px 5px -1.2px hsl(var(--shadow-color) / 0.05),
+    -0.1px 7.9px 7.6px -1.6px hsl(var(--shadow-color) / 0.04),
+    -0.2px 12px 11.6px -2px hsl(var(--shadow-color) / 0.04),
+    -0.3px 17.9px 17.3px -2.4px hsl(var(--shadow-color) / 0.04),
+    -0.5px 25.9px 25.1px -2.8px hsl(var(--shadow-color) / 0.03),
+    -0.7px 36.5px 35.3px -3.2px hsl(var(--shadow-color) / 0.03),
+    -0.9px 50px 48.4px -3.5px hsl(var(--shadow-color) / 0.03);
+
+  --ifm-global-shadow-lw: var(--shadow-elevation-low);
+  --ifm-global-shadow-md: var(--shadow-elevation-medium);
+  --ifm-global-shadow-tl: var(--shadow-elevation-high);
 }
 
 :root[data-theme='dark'] {
@@ -47,26 +80,35 @@
   --ifm-color-primary-lighter: #97e1ff;
   --ifm-color-primary-lightest: #e3f7ff;
 
+  // docusaurus
+  --docusaurus-highlighted-code-line-bg: rgb(13, 15, 28);
+
   // modified base vars
   --ifm-menu-color: var(--ifm-color-primary-lightest);
+  --ifm-link-color: var(--electron-color-light);
+  --ifm-menu-color-active: var(--electron-color-light);
 
   // custom vars
   --electron-heading: var(--ifm-color-primary-lightest);
   --electron-inline-code: var(--electron-color-secondary-light);
 }
 
-.docusaurus-highlight-code-line {
-  background-color: rgb(217, 220, 222);
-  display: block;
-  margin: 0 calc(-1 * var(--ifm-pre-padding));
-  padding: 0 var(--ifm-pre-padding);
-
-  :root[data-theme='dark'] & {
-    background-color: rgb(13, 15, 28);
+.hero {
+  &--electron {
+    color: var(--electron-color-light);
+    background: var(--electron-color-dark);
   }
 }
 
+.theme-doc-markdown {
+  max-width: 700px;
+  margin: 0 auto;
+  margin-top: 2rem;
+}
+
 .navbar {
+  backdrop-filter: blur(12px);
+
   &--dark {
     --ifm-navbar-background-color: var(--electron-color-dark);
     --ifm-navbar-link-color: var(--electron-color-light);
@@ -81,10 +123,12 @@
     }
   }
 
+  &__inner {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
   &__item {
-    &:hover {
-      color: var(--electron-color-white);
-    }
     // use margin instead of padding so that the border-bottom
     // on active looks better
     padding: 0;
@@ -98,7 +142,7 @@
 
     &--active {
       color: var(--electron-color-light);
-      border-bottom-color: var(--ifm-color-primary-lightest);
+      border-bottom-color: var(--ifm-link-color);
     }
   }
 }
@@ -107,11 +151,24 @@
   &--dark {
     --ifm-footer-background-color: --var(--electron-color-dark);
   }
+
+  .footer__logo {
+    max-width: 200px;
+  }
 }
 
 .markdown {
   a {
     font-weight: var(--ifm-font-weight-bold);
+    // code is already semibold so make code links
+    // a bit thicker to differentiate the weight
+    code {
+      font-weight: var(--ifm-font-weight-bold);
+    }
+  }
+
+  p {
+    line-height: 180%;
   }
 
   h1,
@@ -124,25 +181,85 @@
     --ifm-h3-font-size: 1.2rem;
     --ifm-h4-font-size: 1rem;
     --ifm-h5-font-size: 0.8rem;
-    color: var(--electron-heading);
   }
 
   // We want this to only apply to inline code, so don't apply
   // this color to ``` code blocks nor any headings.
   :not(pre):not(h2):not(h3):not(h4):not(h5):not(h6) > code {
-    padding: 0 4px;
-    color: var(--electron-inline-code);
+    border: none;
+  }
+
+  // don't apply --electron-inline-code colors to admonitions
+  // as well
+  .admonition {
+    code {
+      color: inherit;
+    }
   }
 }
 
-.menu {
-  &__link {
-    font-weight: var(--ifm-font-weight-normal);
-    font-size: 0.95rem;
+.button {
+  &--outline {
+    border: 1px solid;
+    color: var(--ifm-color-primary);
+    &:hover {
+      color: var(--ifm-color-primary-dark);
+    }
   }
 
-  &__link--sublist {
-    font-weight: var(--ifm-font-weight-semi-bold);
-    font-size: 1.1rem;
+  &--electron {
+    background: var(--electron-color-dark);
+    border-color: var(--electron-color-dark);
+    &:hover {
+      filter: brightness(0.9);
+      box-shadow: var(--ifm-global-shadow-md);
+      transition: 0.1s linear all;
+    }
+
+    &.button--dark,
+    :root[data-theme='dark'] & {
+      background: var(--electron-color-light);
+      border-color: var(--electron-color-light);
+      color: black;
+    }
   }
+}
+
+// sidebar
+.menu {
+  &__link {
+    font-size: 0.9rem;
+    font-weight: var(--ifm-font-weight-normal);
+
+    &--active {
+      font-weight: var(--ifm-font-weight-bold);
+    }
+
+    // Note: this CSS class is added via the
+    // swizzled src/theme/DocSidebarItem/index.jsx
+    // component.
+    &--collapsible {
+      font-weight: var(--ifm-font-weight-semibold);
+
+      .theme-doc-sidebar-item-category-level-1 & {
+        font-size: 1rem;
+      }
+      .theme-doc-sidebar-item-category-level-2 & {
+        font-size: 0.95rem;
+      }
+    }
+  }
+}
+
+// utility
+.no-select {
+  user-select: none;
+}
+
+.card {
+  border: 1px solid rgba(200, 200, 200, 0.3);
+}
+
+.table-of-contents__link--active {
+  font-weight: var(--ifm-font-weight-bold);
 }
