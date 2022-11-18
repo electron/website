@@ -46,9 +46,6 @@ module.exports = {
       logo: {
         alt: 'Electron homepage',
         src: 'assets/img/logo.svg',
-        // TODO: This can be removed when the SPA root homepage is working
-        href: 'https://electronjs.org',
-        target: '_self',
       },
       items: [
         {
