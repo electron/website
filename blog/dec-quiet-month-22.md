@@ -1,5 +1,5 @@
 ---
-title: A Quiet Place (Dec'22)
+title: A Quiet Place Part II (Dec'22)
 date: 2022-11-18T00:00:00.000Z
 authors:
   name: plainekevin
