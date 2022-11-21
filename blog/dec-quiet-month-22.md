@@ -10,10 +10,7 @@ slug: a-quiet-place-22
 
 The Electron project will pause for the month of December 2022, then return to full speed in January 2023.
 
-<div style={{width:"100%",height:"0",paddingBottom:"42%",position:"relative"}}>
-  <iframe src="https://giphy.com/embed/lbQQ1yeN4Z2wGm9q4d" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
-</div>
-<p><a href="https://giphy.com/gifs/marvelstudios-marvel-loki-studios-lbQQ1yeN4Z2wGm9q4d">via GIPHY</a></p>
+<iframe src="https://giphy.com/embed/l4EpdWVFYX4qMpYLS" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/aquietplacemovie-quiet-shh-l4EpdWVFYX4qMpYLS">via GIPHY</a></p>
 
 ---
 
