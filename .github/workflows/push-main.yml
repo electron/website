@@ -24,7 +24,7 @@ jobs:
           CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
 
   build-and-deploy:
-    uses: electron/electronjs.org-new/.github/workflows/build-and-deploy.yml@main
+    uses: electron/website/.github/workflows/build-and-deploy.yml@main
     with:
       locale: en
       branch: main

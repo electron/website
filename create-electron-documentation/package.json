@@ -4,7 +4,7 @@
   "description": "Generator to easily create new documentation pages for Electron with code examples.",
   "bin": "./index.js",
   "repository": {
-    "url": "https://github.com/electron/electronjs.org-new/tree/main/create-electron-documentation"
+    "url": "https://github.com/electron/website/tree/main/create-electron-documentation"
   },
   "main": "index.js",
   "author": "molant",
