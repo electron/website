@@ -36,7 +36,7 @@ jobs:
     needs: [update-docs]
     # If we are in a version branch, it means we have pushed the changed directly and should deploy
     if: ${{ needs.update-docs.outputs.branch == 'version' }}
-    uses: electron/electronjs.org-new/.github/workflows/build-and-deploy.yml@main
+    uses: electron/website/.github/workflows/build-and-deploy.yml@main
     with:
       locale: en
       branch: version
