@@ -12,6 +12,12 @@ slug: electron-22-0
 
 ---
 
+**
+sudowoodo generated release notes
+(doesn't seem to have breaking changes? my scrip )
+https://corp.quip.com/8FIeArIwJ6Lu/v22-release-notes
+**
+
 Electron 22.0.0 has been released! It includes upgrades to Chromium `108`, V8 `10.8`, and Node.js `16.17.1`. Read below for more details!
 
 ---
@@ -25,7 +31,7 @@ If you have any feedback, please share it with us on Twitter, or join our commun
 ### Stack Changes
 
 * Chromium `108`
-    * [New in Chrome 108]()
+    * [New in Chrome 108](https://developer.chrome.com/blog/new-in-chrome-108/)
     * [New in Chrome 107](https://developer.chrome.com/blog/new-in-chrome-107/)
     * [New in DevTools 108](https://developer.chrome.com/blog/new-in-devtools-108/)
     * [New in DevTools 107](https://developer.chrome.com/blog/new-in-devtools-107/)
@@ -35,6 +41,22 @@ If you have any feedback, please share it with us on Twitter, or join our commun
 
 ### New Features
 
+* Added WebContents `input-event` event.
+  * Deprecated BrowserWindow `scroll-touch-*` events. [#35531](https://github.com/electron/electron/pull/35531) 
+* Added `LoadBrowserProcessSpecificV8Snapshot` as a new fuse that will let the main/browser process load its v8 snapshot from a file at `browser_v8_context_snapshot.bin`. Any other process will use the same path as is used today. [#35266](https://github.com/electron/electron/pull/35266) <span style="font-size:small;">(Also in [20](https://github.com/electron/electron/pull/35694), [21](https://github.com/electron/electron/pull/35695))</span>
+* Added `WebContents.opener` to access window opener.
+  * Added `webContents.fromFrame(frame)` to get the WebContents corresponding to a WebFrameMain instance. [#35140](https://github.com/electron/electron/pull/35140) <span style="font-size:small;">(Also in [21](https://github.com/electron/electron/pull/35819))</span>
+* Added `app.getSystemLocale()` method. [#35697](https://github.com/electron/electron/pull/35697) <span style="font-size:small;">(Also in [21](https://github.com/electron/electron/pull/35794))</span>
+* Added `contextBridge.exposeInIsolatedWorld(worldId, key, api)` to expose an API to an `isolatedWorld` within a renderer from a preload script. [#34974](https://github.com/electron/electron/pull/34974) 
+* Added `webContents.close()` method. [#35509](https://github.com/electron/electron/pull/35509) 
+* Added `webFrameMain.origin`. [#35438](https://github.com/electron/electron/pull/35438) <span style="font-size:small;">(Also in [19](https://github.com/electron/electron/pull/35624), [20](https://github.com/electron/electron/pull/35535), [21](https://github.com/electron/electron/pull/35534))</span>
+* Added an `app.getPreferredSystemLanguages()` API to return the user's system languages. [#36291](https://github.com/electron/electron/pull/36291) <span style="font-size:small;">(Also in [21](https://github.com/electron/electron/pull/36290))</span>
+* Added new UtilityProcess API to launch chromium child process with node integration. [#36089](https://github.com/electron/electron/pull/36089) 
+* Added new WebContents event `content-bounds-updated`. [#35533](https://github.com/electron/electron/pull/35533) 
+* Added new `WebContents.ipc` and `WebFrameMain.ipc` APIs. [#34959](https://github.com/electron/electron/pull/34959) <span style="font-size:small;">(Also in [21](https://github.com/electron/electron/pull/35231))</span>
+* Added support for Web Bluetooth pin pairing on Linux and Windows. [#35416](https://github.com/electron/electron/pull/35416) <span style="font-size:small;">(Also in [21](https://github.com/electron/electron/pull/35818))</span>
+* Added support for `navigator.mediaDevices.getDisplayMedia` via a new session handler, `ses.setDisplayMediaRequestHandler`. [#30702](https://github.com/electron/electron/pull/30702) 
+* Added support for `serialPort.forget()` as well as a new event `serial-port-revoked` emitted when a given origin is revoked. [#36062](https://github.com/electron/electron/pull/36062)
 
 ## Breaking & API Changes
 
