@@ -41,8 +41,7 @@ If you have any feedback, please share it with us on Twitter, or join our commun
 
 ### New Features
 
-* Added WebContents `input-event` event.
-  * Deprecated BrowserWindow `scroll-touch-*` events. [#35531](https://github.com/electron/electron/pull/35531) 
+* Added WebContents `input-event` event. 
 * Added `LoadBrowserProcessSpecificV8Snapshot` as a new fuse that will let the main/browser process load its v8 snapshot from a file at `browser_v8_context_snapshot.bin`. Any other process will use the same path as is used today. [#35266](https://github.com/electron/electron/pull/35266) <span style="font-size:small;">(Also in [20](https://github.com/electron/electron/pull/35694), [21](https://github.com/electron/electron/pull/35695))</span>
 * Added `WebContents.opener` to access window opener.
   * Added `webContents.fromFrame(frame)` to get the WebContents corresponding to a WebFrameMain instance. [#35140](https://github.com/electron/electron/pull/35140) <span style="font-size:small;">(Also in [21](https://github.com/electron/electron/pull/35819))</span>
@@ -61,6 +60,88 @@ If you have any feedback, please share it with us on Twitter, or join our commun
 ## Breaking & API Changes
 
 Below are breaking changes introduced in Electron 22. 
+
+### Deprecated: `webContents.incrementCapturerCount(stayHidden, stayAwake)`
+
+`webContents.incrementCapturerCount(stayHidden, stayAwake)` has been deprecated.
+It is now automatically handled by `webContents.capturePage` when a page capture completes.
+
+```js
+const w = new BrowserWindow({ show: false })
+
+// Removed in Electron 23
+w.webContents.incrementCapturerCount()
+w.capturePage().then(image => {
+  console.log(image.toDataURL())
+  w.webContents.decrementCapturerCount()
+})
+
+// Replace with
+w.capturePage().then(image => {
+  console.log(image.toDataURL())
+})
+```
+
+### Deprecated: `webContents.decrementCapturerCount(stayHidden, stayAwake)`
+
+`webContents.decrementCapturerCount(stayHidden, stayAwake)` has been deprecated.
+It is now automatically handled by `webContents.capturePage` when a page capture completes.
+
+```js
+const w = new BrowserWindow({ show: false })
+
+// Removed in Electron 23
+w.webContents.incrementCapturerCount()
+w.capturePage().then(image => {
+  console.log(image.toDataURL())
+  w.webContents.decrementCapturerCount()
+})
+
+// Replace with
+w.capturePage().then(image => {
+  console.log(image.toDataURL())
+})
+```
+
+### Removed: WebContents `new-window` event
+
+The `new-window` event of WebContents has been removed. It is replaced by [`webContents.setWindowOpenHandler()`](api/web-contents.md#contentssetwindowopenhandlerhandler).
+
+```js
+// Removed in Electron 22
+webContents.on('new-window', (event) => {
+  event.preventDefault()
+})
+
+// Replace with
+webContents.setWindowOpenHandler((details) => {
+  return { action: 'deny' }
+})
+```
+
+### Deprecated: BrowserWindow `scroll-touch-*` events
+
+The `scroll-touch-begin`, `scroll-touch-end` and `scroll-touch-edge` events on
+BrowserWindow are deprecated. Instead, use the newly available [`input-event`
+event](api/web-contents.md#event-input-event) on WebContents.
+
+```js
+// Deprecated
+win.on('scroll-touch-begin', scrollTouchBegin)
+win.on('scroll-touch-edge', scrollTouchEdge)
+win.on('scroll-touch-end', scrollTouchEnd)
+
+// Replace with
+win.webContents.on('input-event', (_, event) => {
+  if (event.type === 'gestureScrollBegin') {
+    scrollTouchBegin()
+  } else if (event.type === 'gestureScrollUpdate') {
+    scrollTouchEdge()
+  } else if (event.type === 'gestureScrollEnd') {
+    scrollTouchEnd()
+  }
+})
+```
 
 ## End of Support for 19.x.y
 
