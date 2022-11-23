@@ -14,6 +14,7 @@ import AppsGrid from './_components/AppsGrid';
 import InstallSteps from './_components/InstallSteps';
 import Feature from './_components/Feature';
 import TechnologiesGrid from './_components/TechnologiesGrid';
+import CodeWindow from './_components/CodeWindow';
 
 export default function Home() {
   const { siteConfig } = useDocusaurusContext();
@@ -41,7 +42,7 @@ export default function Home() {
         <div className="container">
           <div className={clsx(styles.section)}>
             <div className={clsx('row', styles.blurb)}>
-              <div className="col col--4">
+              <div className={clsx('col', styles.blurb2)}>
                 <WebTech width={48} height={48} />
                 <h3>Web Technologies</h3>
                 <p>
@@ -49,7 +50,7 @@ export default function Home() {
                   to create desktop applications.
                 </p>
               </div>
-              <div className="col col--4">
+              <div className={clsx('col', styles.blurb2)}>
                 <CrossPlatform width={48} height={48} />
                 <h3>Cross Platform</h3>
                 <p>
@@ -57,7 +58,7 @@ export default function Home() {
                   on three platforms across all supported architectures.
                 </p>
               </div>
-              <div className="col col--4">
+              <div className={clsx('col', styles.blurb2)}>
                 <OpenSource width={48} height={48} />
                 <h3>Open Source</h3>
                 <p>
@@ -230,19 +231,73 @@ export default function Home() {
                 },
               ]}
             />
-            <Link
-              className="button button--electron"
-              to="/docs/latest/tutorial/boilerplates-and-clis"
-            >
-              Explore boilerplates
-            </Link>
           </div>
         </div>
         <div className={styles.accentBackground}>
           <div className="container">
             <div className={clsx(styles.section)}>
               <div className={clsx(styles.explore, 'row')}>
-                <div className="col col--4">
+                <div className="col margin-bottom--lg">
+                  <div className="badge badge--info">
+                    <span className={styles.exploreSubtext}>New!</span>
+                  </div>
+
+                  <h2>Electron Forge</h2>
+                  <p>
+                    Electron Forge is a batteries-included toolkit for building
+                    and publishing Electron apps. Get your Electron app started
+                    the right way with first-class support for JavaScript
+                    bundling and an extensible module ecosystem.
+                  </p>
+                  <div className="button-group">
+                    <Link
+                      to="https://electronforge.io"
+                      className="button button--electron"
+                    >
+                      Get started
+                    </Link>
+                    <Link
+                      to="https://github.com/electron/forge"
+                      className="button button--info"
+                    >
+                      Source code
+                    </Link>
+                  </div>
+                </div>
+                <div className="col">
+                  <CodeWindow>
+                    <span className="no-select">$ </span>npm init
+                    electron-app@latest my-app
+                    <span className={clsx(styles.codeComment, 'no-select')}>
+                      <br />✔ Locating custom template: &quot;base&quot;
+                      <br />✔ Initializing directory
+                      <br />✔ Preparing template
+                      <br />✔ Initializing template
+                      <br />✔ Installing template dependencies
+                    </span>
+                  </CodeWindow>
+                </div>
+              </div>
+              <div className={clsx(styles.explore, 'row')}>
+                <div className="col margin-bottom--lg">
+                  <span className={styles.exploreSubtext}>Direct download</span>
+                  <h2>Installation</h2>
+                  <p>
+                    If you want to figure things out for yourself, you can
+                    install the Electron package directly from the npm registry.
+                  </p>
+                  <p>
+                    For a production-ready experience, install the latest stable
+                    version. If you want something a bit more experimental, try
+                    the prerelease or nightly channels.
+                  </p>
+                </div>
+                <div className="col">
+                  <InstallSteps />
+                </div>
+              </div>
+              <div className={clsx(styles.explore, 'row')}>
+                <div className="col margin-bottom--lg">
                   <span className={styles.exploreSubtext}>
                     Experiment with the API
                   </span>
@@ -270,55 +325,12 @@ export default function Home() {
                     </Link>
                   </div>
                 </div>
-                <div className="col col--8">
+                <div className="col">
                   <img
                     className="shadow--tl"
                     src="/assets/marketing/fiddle.png"
                     alt="Screenshot of Electron Fiddle's main window"
                   />
-                </div>
-              </div>
-              <div className={clsx(styles.explore, 'row')}>
-                <div className="col col--4">
-                  <span className={styles.exploreSubtext}>
-                    Get started, fast.
-                  </span>
-                  <h2>Electron Forge</h2>
-                  <p>
-                    Electron Forge is a maintainer-supported toolkit for
-                    building and publishing.
-                  </p>
-                  <p>
-                    Learn how to run a web app in Electron, package your
-                    application, and distribute it to end users.
-                  </p>
-                  <Link
-                    to="/docs/latest/tutorial/installation"
-                    className="button button--electron"
-                  >
-                    Learn more
-                  </Link>
-                </div>
-                <div className="col col--8">
-                  <img
-                    src="/assets/marketing/tutorial.png"
-                    alt="electronjs.org tutorial quick start guide"
-                  />
-                </div>
-              </div>
-              <div className={clsx(styles.explore, 'row')}>
-                <div className="col col--6">
-                  <span className={styles.exploreSubtext}>Jump right in</span>
-                  <h2>Installation</h2>
-                  <p>
-                    We recommend you install Electron locally in your
-                    devDependencies. For a production-ready experience, install
-                    the latest stable version. If you want something a bit more
-                    experimental, try the prerelease or nightly channels.
-                  </p>
-                </div>
-                <div className="col col--6">
-                  <InstallSteps />
                 </div>
               </div>
             </div>

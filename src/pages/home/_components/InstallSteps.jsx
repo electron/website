@@ -3,6 +3,7 @@ import { usePluginData } from '@docusaurus/useGlobalData';
 import clsx from 'clsx';
 import styles from './InstallSteps.module.scss';
 import semver from 'semver';
+import CodeWindow from './CodeWindow';
 
 export default function InstallSteps() {
   const [channel, setChannel] = useState('stable');
@@ -35,7 +36,7 @@ export default function InstallSteps() {
   };
   return (
     <div>
-      <ul className="pills">
+      <ul className="pills pills--block">
         <li
           className={clsx(
             'pills__item',
@@ -64,24 +65,15 @@ export default function InstallSteps() {
           Nightly
         </li>
       </ul>
-      <div>
-        <div className={styles.buttons}>
-          <span className={styles.dot} style={{ background: '#f25f58' }} />
-          <span className={styles.dot} style={{ background: '#fbbe3c' }} />
-          <span className={styles.dot} style={{ background: '#58cb42' }} />
-        </div>
-        <pre className={styles.codeBlock}>
-          <code>
-            <span className="no-select">$ </span>npm install --save-dev{' '}
-            {releaseInfo[channel].invocation}
-            <span className={clsx(styles.codeComment, 'no-select')}>
-              <br /># Electron {releaseInfo[channel].deps.electron}
-              <br /># Node {releaseInfo[channel].deps.node}
-              <br /># Chromium {releaseInfo[channel].deps.chromium}
-            </span>
-          </code>
-        </pre>
-      </div>
+      <CodeWindow>
+        <span className="no-select">$ </span>npm install --save-dev{' '}
+        {releaseInfo[channel].invocation}
+        <span className={clsx(styles.codeComment, 'no-select')}>
+          <br /># Electron {releaseInfo[channel].deps.electron}
+          <br /># Node {releaseInfo[channel].deps.node}
+          <br /># Chromium {releaseInfo[channel].deps.chromium}
+        </span>
+      </CodeWindow>
     </div>
   );
 }
