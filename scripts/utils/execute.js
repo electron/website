@@ -64,7 +64,7 @@ const groupArgs = (args) => {
  * @param {execa.Options} [options]
  * @returns
  */
-const execute = async (command, options) => {
+const execute = (command, options) => {
   console.log(
     `${options && options.cwd ? options.cwd : process.cwd()}${
       path.sep
@@ -74,10 +74,7 @@ const execute = async (command, options) => {
   const args = command.split(' ');
   const program = args.shift();
 
-  const prog = execa(program, groupArgs(args), options);
-  prog.stdout.pipe(process.stdout);
-
-  await prog;
+  return execa(program, groupArgs(args), options);
 };
 
 module.exports = {
