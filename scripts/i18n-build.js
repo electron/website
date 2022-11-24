@@ -7,7 +7,11 @@ const {
 const processLocale = async (locale) => {
   const start = Date.now();
   const outdir = locale !== defaultLocale ? `--out-dir build/${locale}` : '';
-  await execute(`yarn docusaurus build --locale ${locale} ${outdir}`);
+  const child = execute(`yarn docusaurus build --locale ${locale} ${outdir}`);
+  child.stdout?.pipe(process.stdout);
+
+  await child;
+
   console.log(`Locale ${locale} finished in ${(Date.now() - start) / 1000}s`);
 };
 
