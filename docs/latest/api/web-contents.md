@@ -824,7 +824,7 @@ Returns:
 * `webPreferences` WebPreferences - The web preferences that will be used by the guest
   page. This object can be modified to adjust the preferences for the guest
   page.
-* `params` Record<string, string&#62; - The other `<webview>` parameters such as the `src` URL.
+* `params` Record&#60;string, string&#62; - The other `<webview>` parameters such as the `src` URL.
   This object can be modified to adjust the parameters of the guest page.
 
 Emitted when a `<webview>`'s web contents is being attached to this web
@@ -944,7 +944,7 @@ webContents.loadURL('https://github.com', options)
 
 * `filePath` string
 * `options` Object (optional)
-  * `query` Record<string, string&#62; (optional) - Passed to `url.format()`.
+  * `query` Record&#60;string, string&#62; (optional) - Passed to `url.format()`.
   * `search` string (optional) - Passed to `url.format()`.
   * `hash` string (optional) - Passed to `url.format()`.
 
@@ -1187,7 +1187,7 @@ Ignore application menu shortcuts while this web contents is focused.
 
 #### `contents.setWindowOpenHandler(handler)`
 
-* `handler` Function<{action: 'deny'} | {action: 'allow', overrideBrowserWindowOptions?: BrowserWindowConstructorOptions}&#62;
+* `handler` Function&#60;{action: 'deny'} | {action: 'allow', overrideBrowserWindowOptions?: BrowserWindowConstructorOptions}&#62;
   * `details` Object
     * `url` string - The _resolved_ version of the URL passed to `window.open()`. e.g. opening a window with `window.open('foo')` will yield something like `https://the-origin/the/current/path/foo`.
     * `frameName` string - Name of the window provided in `window.open()`
@@ -1440,7 +1440,7 @@ Returns `Promise<PrinterInfo[]>` - Resolves with a [`PrinterInfo[]`](latest/api/
     * `from` number - Index of the first page to print (0-based).
     * `to` number - Index of the last page to print (inclusive) (0-based).
   * `duplexMode` string (optional) - Set the duplex mode of the printed web page. Can be `simplex`, `shortEdge`, or `longEdge`.
-  * `dpi` Record<string, number&#62; (optional)
+  * `dpi` Record&#60;string, number&#62; (optional)
     * `horizontal` number (optional) - The horizontal dpi.
     * `vertical` number (optional) - The vertical dpi.
   * `header` string (optional) - string to be printed as page header.

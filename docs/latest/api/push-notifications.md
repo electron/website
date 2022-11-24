@@ -33,7 +33,7 @@ The `pushNotification` module emits the following events:
 
 Returns:
 
-* `userInfo` Record<String, any&#62;
+* `userInfo` Record&#60;String, any&#62;
 
 Emitted when the app receives a remote notification while running.
 See: https://developer.apple.com/documentation/appkit/nsapplicationdelegate/1428430-application?language=objc
