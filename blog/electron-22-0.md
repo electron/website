@@ -38,29 +38,25 @@ If you have any feedback, please share it with us on Twitter, or join our commun
     * [Node 16.17.1 blog post](https://nodejs.org/en/blog/release/v16.17.1/)
 * V8 `10.8`
 
-### New Features
+### Highlighted Features
 
-* Added WebContents `input-event` event. 
-* Added `LoadBrowserProcessSpecificV8Snapshot` as a new fuse that will let the main/browser process load its v8 snapshot from a file at `browser_v8_context_snapshot.bin`. Any other process will use the same path as is used today. [#35266](https://github.com/electron/electron/pull/35266) 
-* Added `WebContents.opener` to access window opener.
-  * Added `webContents.fromFrame(frame)` to get the WebContents corresponding to a WebFrameMain instance. [#35140](https://github.com/electron/electron/pull/35140)
-* Added `app.getSystemLocale()` method. [#35697](https://github.com/electron/electron/pull/35697) 
-* Added `contextBridge.exposeInIsolatedWorld(worldId, key, api)` to expose an API to an `isolatedWorld` within a renderer from a preload script. [#34974](https://github.com/electron/electron/pull/34974) 
-* Added `webContents.close()` method. [#35509](https://github.com/electron/electron/pull/35509) 
-* Added `webFrameMain.origin`. [#35438](https://github.com/electron/electron/pull/35438)
-* Added an `app.getPreferredSystemLanguages()` API to return the user's system languages. [#36291](https://github.com/electron/electron/pull/36291)
-* Added new UtilityProcess API to launch chromium child process with node integration. [#36089](https://github.com/electron/electron/pull/36089) 
-* Added new WebContents event `content-bounds-updated`. [#35533](https://github.com/electron/electron/pull/35533) 
-* Added new `WebContents.ipc` and `WebFrameMain.ipc` APIs. [#34959](https://github.com/electron/electron/pull/34959)
+* Added a new UtilityProcess API to launch a child process with node integration. [#36089](https://github.com/electron/electron/pull/36089)
 * Added support for Web Bluetooth pin pairing on Linux and Windows. [#35416](https://github.com/electron/electron/pull/35416)
+* Added `LoadBrowserProcessSpecificV8Snapshot` as a new fuse that will let the main/browser process load its v8 snapshot from a file at `browser_v8_context_snapshot.bin`. Any other process will use the same path as is used today. [#35266](https://github.com/electron/electron/pull/35266) 
+* Added `WebContents.opener` to access window opener and `webContents.fromFrame(frame)` to get the WebContents corresponding to a WebFrameMain instance. [#35140](https://github.com/electron/electron/pull/35140)
 * Added support for `navigator.mediaDevices.getDisplayMedia` via a new session handler, `ses.setDisplayMediaRequestHandler`. [#30702](https://github.com/electron/electron/pull/30702) 
-* Added support for `serialPort.forget()` as well as a new event `serial-port-revoked` emitted when a given origin is revoked. [#36062](https://github.com/electron/electron/pull/36062)
 
 ## Breaking & API Changes
 
-Below are breaking changes introduced in Electron 22. 
+Below are breaking changes introduced in Electron 22. You can read more about these changes and future changes on the [Planned Breaking Changes](https://github.com/electron/electron/blob/main/docs/breaking-changes.md) page.
 
-### Deprecated: `webContents.incrementCapturerCount(stayHidden, stayAwake)`
+### Breaking Changes
+
+Electron 22 will be the last Electron major version to support Windows 7. Electron follows the planned Chromium deprecation policy, which will [deprecate Windows 7 support in Chromium 109 (read more here)](https://support.google.com/chrome/thread/185534985/sunsetting-support-for-windows-7-8-8-1-in-early-2023?hl=en). Windows 7 will not be supported in Electron 23 and later major releases.
+
+### API Changes
+
+#### Deprecated: `webContents.incrementCapturerCount(stayHidden, stayAwake)`
 
 `webContents.incrementCapturerCount(stayHidden, stayAwake)` has been deprecated.
 It is now automatically handled by `webContents.capturePage` when a page capture completes.
@@ -81,7 +77,7 @@ w.capturePage().then(image => {
 })
 ```
 
-### Deprecated: `webContents.decrementCapturerCount(stayHidden, stayAwake)`
+#### Deprecated: `webContents.decrementCapturerCount(stayHidden, stayAwake)`
 
 `webContents.decrementCapturerCount(stayHidden, stayAwake)` has been deprecated.
 It is now automatically handled by `webContents.capturePage` when a page capture completes.
@@ -102,7 +98,7 @@ w.capturePage().then(image => {
 })
 ```
 
-### Removed: WebContents `new-window` event
+#### Removed: WebContents `new-window` event
 
 The `new-window` event of WebContents has been removed. It is replaced by [`webContents.setWindowOpenHandler()`](api/web-contents.md#contentssetwindowopenhandlerhandler).
 
@@ -118,7 +114,7 @@ webContents.setWindowOpenHandler((details) => {
 })
 ```
 
-### Deprecated: BrowserWindow `scroll-touch-*` events
+#### Deprecated: BrowserWindow `scroll-touch-*` events
 
 The `scroll-touch-begin`, `scroll-touch-end` and `scroll-touch-edge` events on
 BrowserWindow are deprecated. Instead, use the newly available [`input-event`
