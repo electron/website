@@ -675,7 +675,7 @@ session.fromPartition('some-partition').setPermissionRequestHandler((webContents
 
 #### `ses.setPermissionCheckHandler(handler)`
 
-* `handler` Function\<boolean&#62; | null
+* `handler` Function&#60;boolean&#62; | null
   * `webContents` ([WebContents](latest/api/web-contents.md) | null) - WebContents checking the permission.  Please note that if the request comes from a subframe you should use `requestingUrl` to check the request origin.  All cross origin sub frames making permission checks will pass a `null` webContents to this handler, while certain other permission checks such as `notifications` checks will always pass `null`.  You should use `embeddingOrigin` and `requestingOrigin` to determine what origin the owning frame and the requesting frame are on respectively.
   * `permission` string - Type of permission check.  Valid values are `midiSysex`, `notifications`, `geolocation`, `media`,`mediaKeySystem`,`midi`, `pointerLock`, `fullscreen`, `openExternal`, `hid`, or `serial`.
   * `requestingOrigin` string - The origin URL of the permission check
@@ -707,7 +707,7 @@ session.fromPartition('some-partition').setPermissionCheckHandler((webContents, 
 
 #### `ses.setDevicePermissionHandler(handler)`
 
-* `handler` Function\<boolean&#62; | null
+* `handler` Function&#60;boolean&#62; | null
   * `details` Object
     * `deviceType` string - The type of device that permission is being requested on, can be `hid` or `serial`.
     * `origin` string - The origin URL of the device permission check.

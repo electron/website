@@ -1071,7 +1071,7 @@ Closes the currently open [Quick Look][quick-look] panel.
 
 #### `win.setBounds(bounds[, animate])`
 
-* `bounds` Partial<[Rectangle](latest/api/structures/rectangle.md)&#62;
+* `bounds` Partial&#60;[Rectangle](latest/api/structures/rectangle.md)&#62;
 * `animate` boolean (optional) _macOS_
 
 Resizes and moves the window to the supplied bounds. Any properties that are not supplied will default to their current values.
@@ -1484,7 +1484,7 @@ win.loadURL('http://localhost:8000/post', {
 
 * `filePath` string
 * `options` Object (optional)
-  * `query` Record<string, string&#62; (optional) - Passed to `url.format()`.
+  * `query` Record&#60;string, string&#62; (optional) - Passed to `url.format()`.
   * `search` string (optional) - Passed to `url.format()`.
   * `hash` string (optional) - Passed to `url.format()`.
 

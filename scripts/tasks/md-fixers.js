@@ -35,7 +35,8 @@ const apiTransformer = (line) => {
     matches[0],
     `${matches[1]}\`${matches[2].trim()}\` ${matches[3]
       .trim()
-      .replace(/>/g, '&#62;')} ${matches[4].trim()}`.trimEnd() // matches[4] could be empty and thus end up with a trailing space
+      .replace(/>/g, '&#62;')
+      .replace(/\\?</g, '&#60;')} ${matches[4].trim()}`.trimEnd() // matches[4] could be empty and thus end up with a trailing space
   );
 
   return newLine;
@@ -176,7 +177,7 @@ const fixLinks = (content, linksMaps) => {
     const parts = basename.split('#');
     const key = parts.shift();
 
-    if (linksMaps.has(key)) {
+    if (key && linksMaps.has(key)) {
       const newLink = [linksMaps.get(key), ...parts];
       const replacement = val[0].replace(val[2], newLink.join('#'));
       updatedContent = updatedContent.replace(val[0], replacement);

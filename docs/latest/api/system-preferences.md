@@ -67,7 +67,7 @@ Returns `boolean` - Whether the Swipe between pages setting is on.
 ### `systemPreferences.postNotification(event, userInfo[, deliverImmediately])` _macOS_
 
 * `event` string
-* `userInfo` Record<string, any&#62;
+* `userInfo` Record&#60;string, any&#62;
 * `deliverImmediately` boolean (optional) - `true` to post notifications immediately even when the subscribing app is inactive.
 
 Posts `event` as native notifications of macOS. The `userInfo` is an Object
@@ -76,7 +76,7 @@ that contains the user information dictionary sent along with the notification.
 ### `systemPreferences.postLocalNotification(event, userInfo)` _macOS_
 
 * `event` string
-* `userInfo` Record<string, any&#62;
+* `userInfo` Record&#60;string, any&#62;
 
 Posts `event` as native notifications of macOS. The `userInfo` is an Object
 that contains the user information dictionary sent along with the notification.
@@ -84,7 +84,7 @@ that contains the user information dictionary sent along with the notification.
 ### `systemPreferences.postWorkspaceNotification(event, userInfo)` _macOS_
 
 * `event` string
-* `userInfo` Record<string, any&#62;
+* `userInfo` Record&#60;string, any&#62;
 
 Posts `event` as native notifications of macOS. The `userInfo` is an Object
 that contains the user information dictionary sent along with the notification.
@@ -94,7 +94,7 @@ that contains the user information dictionary sent along with the notification.
 * `event` string | null
 * `callback` Function
   * `event` string
-  * `userInfo` Record<string, unknown&#62;
+  * `userInfo` Record&#60;string, unknown&#62;
   * `object` string
 
 Returns `number` - The ID of this subscription
@@ -123,7 +123,7 @@ If `event` is null, the `NSDistributedNotificationCenter` doesn’t use it as cr
 * `event` string | null
 * `callback` Function
   * `event` string
-  * `userInfo` Record<string, unknown&#62;
+  * `userInfo` Record&#60;string, unknown&#62;
   * `object` string
 
 Returns `number` - The ID of this subscription
@@ -138,7 +138,7 @@ If `event` is null, the `NSNotificationCenter` doesn’t use it as criteria for 
 * `event` string | null
 * `callback` Function
   * `event` string
-  * `userInfo` Record<string, unknown&#62;
+  * `userInfo` Record&#60;string, unknown&#62;
   * `object` string
 
 Returns `number` - The ID of this subscription
@@ -168,7 +168,7 @@ Same as `unsubscribeNotification`, but removes the subscriber from `NSWorkspace.
 
 ### `systemPreferences.registerDefaults(defaults)` _macOS_
 
-* `defaults` Record<string, string | boolean | number&#62; - a dictionary of (`key: value`) user defaults
+* `defaults` Record&#60;string, string | boolean | number&#62; - a dictionary of (`key: value`) user defaults
 
 Add the specified defaults to your application's `NSUserDefaults`.
 
