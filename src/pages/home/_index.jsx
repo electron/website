@@ -14,6 +14,7 @@ import AppsGrid from './_components/AppsGrid';
 import InstallSteps from './_components/InstallSteps';
 import Feature from './_components/Feature';
 import TechnologiesGrid from './_components/TechnologiesGrid';
+import CodeWindow from './_components/CodeWindow';
 
 export default function Home() {
   const { siteConfig } = useDocusaurusContext();
@@ -41,7 +42,7 @@ export default function Home() {
         <div className="container">
           <div className={clsx(styles.section)}>
             <div className={clsx('row', styles.blurb)}>
-              <div className="col col--4">
+              <div className={clsx('col', styles.blurb2)}>
                 <WebTech width={48} height={48} />
                 <h3>Web Technologies</h3>
                 <p>
@@ -49,7 +50,7 @@ export default function Home() {
                   to create desktop applications.
                 </p>
               </div>
-              <div className="col col--4">
+              <div className={clsx('col', styles.blurb2)}>
                 <CrossPlatform width={48} height={48} />
                 <h3>Cross Platform</h3>
                 <p>
@@ -57,7 +58,7 @@ export default function Home() {
                   on three platforms across all supported architectures.
                 </p>
               </div>
-              <div className="col col--4">
+              <div className={clsx('col', styles.blurb2)}>
                 <OpenSource width={48} height={48} />
                 <h3>Open Source</h3>
                 <p>
@@ -67,92 +68,6 @@ export default function Home() {
                 </p>
               </div>
             </div>
-          </div>
-          <div
-            className={clsx(styles.section)}
-            style={{
-              textAlign: 'center',
-            }}
-          >
-            <div>
-              <h2>Use the tools you love</h2>
-              <p>
-                With the power of modern Chromium, Electron gives you an
-                unopinionated blank slate to build your app. Choose to integrate
-                your favourite libraries and frameworks from the front-end
-                ecosystem, or carve your own path with bespoke HTML code.
-              </p>
-            </div>
-            <TechnologiesGrid
-              list={[
-                {
-                  name: 'React',
-                  image:
-                    'https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg',
-                },
-                {
-                  name: 'Vue.js',
-                  image:
-                    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg',
-                },
-                {
-                  name: 'Next.js',
-                  image:
-                    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg',
-                  isMonochrome: true,
-                },
-                {
-                  name: 'Tailwind CSS',
-                  image:
-                    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg',
-                },
-                {
-                  name: 'Bootstrap',
-                  image:
-                    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg',
-                },
-                {
-                  name: 'Three.js',
-                  image:
-                    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/threejs/threejs-original.svg',
-                  isMonochrome: true,
-                },
-                {
-                  name: 'Angular',
-                  image:
-                    'https://upload.wikimedia.org/wikipedia/commons/c/cf/Angular_full_color_logo.svg',
-                },
-                {
-                  name: 'TypeScript',
-                  image:
-                    'https://upload.wikimedia.org/wikipedia/commons/4/4c/Typescript_logo_2020.svg',
-                },
-                {
-                  name: 'webpack',
-                  image:
-                    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/webpack/webpack-original.svg',
-                },
-                {
-                  name: 'Playwright',
-                  image: 'https://playwright.dev/img/playwright-logo.svg',
-                },
-                {
-                  name: 'Testing Library',
-                  image: 'https://testing-library.com/img/octopus-64x64.png',
-                },
-                {
-                  name: 'Sass',
-                  image:
-                    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sass/sass-original.svg',
-                },
-              ]}
-            />
-            <Link
-              className="button button--electron"
-              to="/docs/latest/tutorial/boilerplates-and-clis"
-            >
-              Explore boilerplates
-            </Link>
           </div>
           <div className={clsx(styles.section)}>
             <div style={{ textAlign: 'center', marginBottom: '6rem' }}>
@@ -242,17 +157,151 @@ export default function Home() {
               your own on-premise Crashpad server.
             </Feature>
           </div>
+          <div className={clsx(styles.section, styles.center)}>
+            <div>
+              <h2>Use the tools you love</h2>
+              <p className={styles.paragraphCenter}>
+                With the power of modern Chromium, Electron gives you an
+                unopinionated blank slate to build your app. Choose to integrate
+                your favourite libraries and frameworks from the front-end
+                ecosystem, or carve your own path with bespoke HTML code.
+              </p>
+            </div>
+            <TechnologiesGrid
+              list={[
+                {
+                  name: 'React',
+                  image:
+                    'https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg',
+                },
+                {
+                  name: 'Vue.js',
+                  image:
+                    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg',
+                },
+                {
+                  name: 'Next.js',
+                  image:
+                    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg',
+                  isMonochrome: true,
+                },
+                {
+                  name: 'Tailwind CSS',
+                  image:
+                    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg',
+                },
+                {
+                  name: 'Bootstrap',
+                  image:
+                    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg',
+                },
+                {
+                  name: 'Three.js',
+                  image:
+                    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/threejs/threejs-original.svg',
+                  isMonochrome: true,
+                },
+                {
+                  name: 'Angular',
+                  image:
+                    'https://upload.wikimedia.org/wikipedia/commons/c/cf/Angular_full_color_logo.svg',
+                },
+                {
+                  name: 'TypeScript',
+                  image:
+                    'https://upload.wikimedia.org/wikipedia/commons/4/4c/Typescript_logo_2020.svg',
+                },
+                {
+                  name: 'webpack',
+                  image:
+                    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/webpack/webpack-original.svg',
+                },
+                {
+                  name: 'Playwright',
+                  image: 'https://playwright.dev/img/playwright-logo.svg',
+                },
+                {
+                  name: 'Testing Library',
+                  image: 'https://testing-library.com/img/octopus-64x64.png',
+                },
+                {
+                  name: 'Sass',
+                  image:
+                    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sass/sass-original.svg',
+                },
+              ]}
+            />
+          </div>
         </div>
         <div className={styles.accentBackground}>
           <div className="container">
             <div className={clsx(styles.section)}>
-              <h2>Try Electron out</h2>
               <div className={clsx(styles.explore, 'row')}>
-                <div className="col col--4">
+                <div className="col margin-bottom--lg">
+                  <div className="badge badge--info">
+                    <span className={styles.exploreSubtext}>New!</span>
+                  </div>
+
+                  <h2>Electron Forge</h2>
+                  <p>
+                    Electron Forge is a batteries-included toolkit for building
+                    and publishing Electron apps. Get your Electron app started
+                    the right way with first-class support for JavaScript
+                    bundling and an extensible module ecosystem.
+                  </p>
+                  <div className="button-group">
+                    <Link
+                      to="https://electronforge.io"
+                      className="button button--electron"
+                    >
+                      Get started
+                    </Link>
+                    <Link
+                      to="https://github.com/electron/forge"
+                      className="button button--info"
+                    >
+                      Source code
+                    </Link>
+                  </div>
+                </div>
+                <div className="col">
+                  <CodeWindow>
+                    <span className="no-select">$ </span>npm init
+                    electron-app@latest my-app
+                    <span className={clsx(styles.codeComment, 'no-select')}>
+                      <br />✔ Locating custom template: &quot;base&quot;
+                      <br />✔ Initializing directory
+                      <br />✔ Preparing template
+                      <br />✔ Initializing template
+                      <br />✔ Installing template dependencies
+                    </span>
+                  </CodeWindow>
+                </div>
+              </div>
+              <div className={clsx(styles.explore, 'row')}>
+                <div className="col margin-bottom--lg">
+                  <span className={styles.exploreSubtext}>Direct download</span>
+                  <h2>Installation</h2>
+                  <p>
+                    If you want to figure things out for yourself, you can
+                    install the Electron package directly from the npm registry.
+                  </p>
+                  <p>
+                    For a production-ready experience, install the latest stable
+                    version. If you want something a bit more experimental, try
+                    the prerelease or nightly channels.
+                  </p>
+                </div>
+                <div className="col">
+                  <InstallSteps />
+                </div>
+              </div>
+              <div className={clsx(styles.explore, 'row')}>
+                <div className="col margin-bottom--lg">
                   <span className={styles.exploreSubtext}>
                     Experiment with the API
                   </span>
-                  <h3>Electron Fiddle</h3>
+                  <h2>Electron Fiddle</h2>
                   <p>
                     Electron Fiddle lets you create and play with small Electron
                     experiments. It greets you with a quick-start template after
@@ -276,55 +325,12 @@ export default function Home() {
                     </Link>
                   </div>
                 </div>
-                <div className="col col--8">
+                <div className="col">
                   <img
                     className="shadow--tl"
                     src="/assets/marketing/fiddle.png"
                     alt="Screenshot of Electron Fiddle's main window"
                   />
-                </div>
-              </div>
-              <div className={clsx(styles.explore, 'row')}>
-                <div className="col col--4">
-                  <span className={styles.exploreSubtext}>Nice and easy</span>
-                  <h3>Tutorial</h3>
-                  <p>
-                    Electron&apos;s quick start tutorial will expose you to a
-                    mix of theory and practical code that will get you
-                    developing desktop apps like a pro in no time.
-                  </p>
-                  <p>
-                    Learn how to run a web app in Electron, package your
-                    application, and distribute it to end users.
-                  </p>
-                  <Link
-                    to="/docs/latest/tutorial/installation"
-                    className="button button--electron"
-                  >
-                    Learn more
-                  </Link>
-                </div>
-                <div className="col col--8">
-                  <img
-                    src="/assets/marketing/tutorial.png"
-                    alt="electronjs.org tutorial quick start guide"
-                  />
-                </div>
-              </div>
-              <div className={clsx(styles.explore, 'row')}>
-                <div className="col col--6">
-                  <span className={styles.exploreSubtext}>Jump right in</span>
-                  <h3>Installation</h3>
-                  <p>
-                    We recommend you install Electron locally in your
-                    devDependencies. For a production-ready experience, install
-                    the latest stable version. If you want something a bit more
-                    experimental, try the prerelease (beta or alpha) or nightly
-                    channels.
-                  </p>
-                </div>
-                <div className="col col--6">
-                  <InstallSteps />
                 </div>
               </div>
             </div>
@@ -355,6 +361,11 @@ export default function Home() {
                   href: 'https://discord.com/',
                 },
                 {
+                  name: 'Dropbox',
+                  image: '/assets/apps/dropbox.svg',
+                  href: 'https://dropbox.com/',
+                },
+                {
                   name: 'Figma',
                   image: '/assets/apps/figma.svg',
                   href: 'https://figma.com/',
@@ -368,11 +379,6 @@ export default function Home() {
                   name: 'GitHub Desktop',
                   image: '/assets/apps/github-desktop.svg',
                   href: 'https://desktop.github.com/',
-                },
-                {
-                  name: 'Hyper',
-                  image: '/assets/apps/hyper.svg',
-                  href: 'https://hyper.is/',
                 },
                 {
                   name: 'itch',
@@ -455,11 +461,6 @@ export default function Home() {
                   name: 'VS Code',
                   image: '/assets/apps/vscode.svg',
                   href: 'https://code.visualstudio.com/',
-                },
-                {
-                  name: 'WhatsApp',
-                  image: '/assets/apps/whatsapp.svg',
-                  href: 'https://www.whatsapp.com/',
                 },
                 {
                   name: 'Wordpress Desktop',

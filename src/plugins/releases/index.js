@@ -1,13 +1,15 @@
 const fetch = require('node-fetch');
 const semver = require('semver');
 
+let req;
+
 module.exports = async function releasesPlugin() {
   return {
     name: 'releases-plugin',
     async loadContent() {
-      const req = await fetch.default(
-        'https://electronjs.org/headers/index.json'
-      );
+      if (!req) {
+        req = await fetch.default('https://electronjs.org/headers/index.json');
+      }
       // sort all versions by semver (descending)
       const releases = (await req.json()).sort((a, b) =>
         semver.compare(b.version, a.version)

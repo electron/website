@@ -1,6 +1,11 @@
+p {
+  line-height: 1.5;
+  font-size: 1.1rem;
+}
+
 .section {
   &:first-of-type {
-    padding-top: 8rem;
+    padding-top: 4rem;
   }
 
   &:last-of-type {
@@ -24,6 +29,15 @@
   padding: 4rem;
 }
 
+.center {
+  text-align: center;
+}
+
+.paragraphCenter {
+  max-width: 40rem;
+  margin: 0 auto;
+}
+
 .accentBackground {
   background: var(--ifm-code-background);
 }
@@ -39,7 +53,7 @@
   align-items: center;
   margin-top: 6rem;
   margin-bottom: 12rem;
-  
+
   .button {
     margin-bottom: 1rem;
   }
@@ -51,7 +65,6 @@
 }
 
 .exploreSubtext {
-  font-size: 0.8rem;
   text-transform: uppercase;
 }
 
@@ -60,16 +73,27 @@
   background: var(--electron-color-dark);
   padding: 0 2rem 4rem;
   border-bottom: 5px solid var(--electron-color-light);
+  position: relative;
+  box-shadow: 0px 0px 30px 0px #00ffff55;
 }
 
 .heroHeadline {
   h1 {
-    font-size: 3rem;
+    font-size: 2.2rem;
     font-weight: 200;
-    max-width: 50rem;
+    max-width: 40rem;
     margin-left: auto;
     margin-right: auto;
   }
 
   text-align: center;
+}
+
+.codeComment {
+  color: #719fad;
+}
+
+.blurb2 {
+  margin: 1rem;
+  padding: 1.2rem;
 }
