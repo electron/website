@@ -12,11 +12,6 @@ slug: electron-22-0
 
 ---
 
-**
-sudowoodo generated release notes
-https://corp.quip.com/8FIeArIwJ6Lu/v22-release-notes
-**
-
 Electron 22.0.0 has been released! It includes upgrades to Chromium `108`, V8 `10.8`, and Node.js `16.17.1`. Read below for more details!
 
 ---
