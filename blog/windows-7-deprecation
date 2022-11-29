@@ -41,6 +41,6 @@ What this means for developers:
   - New issues will not be accepted for any newer release lines.
 - Once Electron 22 has reached the end of its support cycle, all existing issues related to Windows 7/8/8.1 will be closed.
 
-## What's Next
+## What's next
 
 Please feel free to write to us at info@electronjs.org if you have any questions or concerns. You can also find community support in our official [Electron Discord](https://discord.gg/electronjs).
