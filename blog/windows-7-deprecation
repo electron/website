@@ -27,11 +27,11 @@ Electron 22, which contains Chromium 108, will thus be the last supported versio
 
 The following is our planned deprecation timeline:
 
-- **Dec 2022**: The Electron team is entering a quiet period for the holidays
-- **Jan 2023**: Windows 7 & 8 related issues are accepted for all supported release branches.
-- **Feb 7, 2023**: Electron 23 is released.
-- **Feb 8, 2023 - May 29, 2023**: Electron will continue to accept fixes for supported lines older than Electron 23.
-- **May 30, 2023**: Electron 22 reaches the end of its support cycle.
+- **December 2022**: The Electron team is entering a quiet period for the holidays
+- **January 2023**: Windows 7 & 8 related issues are accepted for all supported release branches.
+- **February 7 2023**: Electron 23 is released.
+- **February 8 2023 - May 29 2023**: Electron will continue to accept fixes for supported lines older than Electron 23.
+- **May 30 2023**: Electron 22 reaches the end of its support cycle.
 
 What this means for developers:
 
