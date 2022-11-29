@@ -47,7 +47,7 @@ Below are breaking changes introduced in Electron 22. You can read more about th
 
 ### Breaking Changes
 
-Electron 22 will be the last Electron major version to support Windows 7. Electron follows the planned Chromium deprecation policy, which will [deprecate Windows 7 support in Chromium 109 (read more here)](https://support.google.com/chrome/thread/185534985/sunsetting-support-for-windows-7-8-8-1-in-early-2023?hl=en). Windows 7 will not be supported in Electron 23 and later major releases.
+Electron 22 will be the last Electron major version to support Windows 7/8/8.1. Electron follows the planned Chromium deprecation policy, which will [deprecate Windows 7/8/8.1 support in Chromium 109 (read more here)](https://support.google.com/chrome/thread/185534985/sunsetting-support-for-windows-7-8-8-1-in-early-2023?hl=en). Windows 7/8/8.1 will not be supported in Electron 23 and later major releases.
 
 ### API Changes
 
