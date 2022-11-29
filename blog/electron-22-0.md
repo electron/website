@@ -12,7 +12,7 @@ slug: electron-22-0
 
 ---
 
-Electron 22.0.0 has been released! It includes upgrades to Chromium `108`, V8 `10.8`, and Node.js `16.17.1`. Read below for more details!
+Electron 22.0.0 has been released! It includes a new utility process API, updates for Windows 7/8/8.1 support, and upgrades to Chromium `108`, V8 `10.8`, and Node.js `16.17.1`. Read below for more details!
 
 ---
 
@@ -37,21 +37,22 @@ If you have any feedback, please share it with us on Twitter, or join our commun
 
 ### UtilityProcess API [#36089](https://github.com/electron/electron/pull/36089)
 
-The new `UtilityProcess` main process module allows the creation of a lightweight Chromium child process with only Node.js integration while also allowing communication with a sandboxed renderer using `MessageChannel`. The API was designed based on Node.js `child_process.fork` to allow for easier transition, with one primary difference being that the entry point `modulePath` must be from within the packaged application to allow only for trusted scripts to be loaded, unlike the Node.js version which can load from an arbitrary location.
+The new `UtilityProcess` main process module allows the creation of a lightweight Chromium child process with only Node.js integration while also allowing communication with a sandboxed renderer using `MessageChannel`. The API was designed based on Node.js `child_process.fork` to allow for easier transition, with one primary difference being that the entry point `modulePath` must be from within the packaged application to allow only for trusted scripts to be loaded. Additionally the module prevents establishing communication channels with renderers by default, upholding the contract in which the main process is the only trusted process in the application.
 
-Additionally the module prevents establishing communication channels with renderers by default, upholding the contract in which the main process is the only trusted process in the application. Instead the main process is responsible for creating the desired communication channel and sharing the endpoints to the respective child processes.
+You can read more about the [new UtilityProcess API in our docs here](https://www.electronjs.org/docs/latest/api/utility-process).
 
+## Windows 7/8/8.1 Support Update
 
-#### Additional Feature Changes 
+Electron 22 will be the last Electron major version to support Windows 7/8/8.1. Electron follows the planned Chromium deprecation policy, which will [deprecate Windows 7/8/8.1 support in Chromium 109 (read more here)](https://support.google.com/chrome/thread/185534985/sunsetting-support-for-windows-7-8-8-1-in-early-2023?hl=en).
+
+Windows 7/8/8.1 will not be supported in Electron 23 and later major releases.
+
+#### Additional Highlighted Changes 
 
 * Added support for Web Bluetooth pin pairing on Linux and Windows. [#35416](https://github.com/electron/electron/pull/35416)
 * Added `LoadBrowserProcessSpecificV8Snapshot` as a new fuse that will let the main/browser process load its v8 snapshot from a file at `browser_v8_context_snapshot.bin`. Any other process will use the same path as is used today. [#35266](https://github.com/electron/electron/pull/35266) 
 * Added `WebContents.opener` to access window opener and `webContents.fromFrame(frame)` to get the WebContents corresponding to a WebFrameMain instance. [#35140](https://github.com/electron/electron/pull/35140)
 * Added support for `navigator.mediaDevices.getDisplayMedia` via a new session handler, `ses.setDisplayMediaRequestHandler`. [#30702](https://github.com/electron/electron/pull/30702) 
-
-## Windows 7/8/8.1 Support Update
-
-Electron 22 will be the last Electron major version to support Windows 7/8/8.1. Electron follows the planned Chromium deprecation policy, which will [deprecate Windows 7/8/8.1 support in Chromium 109 (read more here)](https://support.google.com/chrome/thread/185534985/sunsetting-support-for-windows-7-8-8-1-in-early-2023?hl=en). Windows 7/8/8.1 will not be supported in Electron 23 and later major releases.
 
 ## Breaking API Changes
 
