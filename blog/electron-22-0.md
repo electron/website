@@ -35,21 +35,79 @@ If you have any feedback, please share it with us on Twitter, or join our commun
 
 ### Highlighted Features
 
-* Added a new UtilityProcess API to launch a child process with node integration. [#36089](https://github.com/electron/electron/pull/36089)
+### UtilityProcess API [#36089](https://github.com/electron/electron/pull/36089)
+
+The new `UtilityProcess` main process module allows the creation of a lightweight Chromium child process with only Node.js integration while also allowing communication with a sandboxed renderer using `MessageChannel`. The API was designed based on Node.js `child_process.fork` to allow for easier transition, with one primary difference being that the entry point `modulePath` must be from within the packaged application to allow only for trusted scripts to be loaded, unlike the Node.js version which can load from an arbitrary location.
+
+Additionally the module prevents establishing communication channels with renderers by default, upholding the contract in which the main process is the only trusted process in the application. Instead the main process is responsible for creating the desired communication channel and sharing the endpoints to the respective child processes.
+
+```typescript title='main.js'
+const w = new BrowserWindow({
+        webPreferences: {
+          sandbox: true,
+          preload: path.join(fixturesPath, 'preload.js')
+        }
+});
+
+// Create Message port pair for Renderer <-> Utility Process.
+const { port1: rendererPort, port2: utilityPort } = new MessageChannelMain();
+// Send rendererPort to the sandboxed render process
+w.webContents.postMessage('port', null, [rendererPort]);
+// Create utility process
+const child = utilityProcess.fork(path.join('path-in-application-package', 'worker.js'));
+// Send utilityPort to the utility process
+child.on('spawn', () => {
+  child.postMessage('', [utilityPort]);
+});
+// Utility process can also send messages to the main process via process.parentPort
+// We can listen to them via
+child.on('message', (data) => {
+  console.log(`MESSAGE FROM CHILD: ${data}`);
+});
+// Child process emits exit event on termination
+child.on('exit', (code) => {
+  console.log(`CHILD EXITED WITH CODE: ${code}`);
+});
+```
+
+```typescript title='preload.js'
+const { ipcRenderer } = require('electron');
+
+ipcRenderer.on('port', (e) => {
+  e.ports[0].postMessage({ data: [...] });
+  e.ports[0].on('message', ({data}) => {
+     // ... do something with data from the worker process ...
+  });
+});
+```
+
+```typescript title='worker.js'
+let rendererConnection = null
+process.parentPort.on('message', async (e) => {
+  rendererConnection = e.ports[0];
+  beginWork(e.data);
+});
+
+function beginWork(toProcess) {
+  // After work
+  rendererConnection.postMessage({ result });
+}
+```
+
+#### Additional Feature Changes 
+
 * Added support for Web Bluetooth pin pairing on Linux and Windows. [#35416](https://github.com/electron/electron/pull/35416)
 * Added `LoadBrowserProcessSpecificV8Snapshot` as a new fuse that will let the main/browser process load its v8 snapshot from a file at `browser_v8_context_snapshot.bin`. Any other process will use the same path as is used today. [#35266](https://github.com/electron/electron/pull/35266) 
 * Added `WebContents.opener` to access window opener and `webContents.fromFrame(frame)` to get the WebContents corresponding to a WebFrameMain instance. [#35140](https://github.com/electron/electron/pull/35140)
 * Added support for `navigator.mediaDevices.getDisplayMedia` via a new session handler, `ses.setDisplayMediaRequestHandler`. [#30702](https://github.com/electron/electron/pull/30702) 
 
-## Breaking & API Changes
-
-Below are breaking changes introduced in Electron 22. You can read more about these changes and future changes on the [Planned Breaking Changes](https://github.com/electron/electron/blob/main/docs/breaking-changes.md) page.
-
-### Breaking Changes
+## Windows 7/8/8.1 Support Update
 
 Electron 22 will be the last Electron major version to support Windows 7/8/8.1. Electron follows the planned Chromium deprecation policy, which will [deprecate Windows 7/8/8.1 support in Chromium 109 (read more here)](https://support.google.com/chrome/thread/185534985/sunsetting-support-for-windows-7-8-8-1-in-early-2023?hl=en). Windows 7/8/8.1 will not be supported in Electron 23 and later major releases.
 
-### API Changes
+## Breaking API Changes
+
+Below are breaking changes introduced in Electron 22. You can read more about these changes and future changes on the [Planned Breaking Changes](https://github.com/electron/electron/blob/main/docs/breaking-changes.md) page.
 
 #### Deprecated: `webContents.incrementCapturerCount(stayHidden, stayAwake)`
 
@@ -144,6 +202,8 @@ Electron 19.x.y has reached end-of-support as per the project's [support policy]
 | 17.x.y       | 18.x.y       | 19.x.y       | 20.x.y       | 21.x.y       |
 
 ## What's Next
+
+The Electron project will pause for the the month of December 2022, and return in January 2023. More information can be found in the [December shutdown blog post](https://www.electronjs.org/blog/a-quiet-place-22).
 
 In the short term, you can expect the team to continue to focus on keeping up with the development of the major components that make up Electron, including Chromium, Node, and V8.
 
