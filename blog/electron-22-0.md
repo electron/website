@@ -41,58 +41,6 @@ The new `UtilityProcess` main process module allows the creation of a lightweigh
 
 Additionally the module prevents establishing communication channels with renderers by default, upholding the contract in which the main process is the only trusted process in the application. Instead the main process is responsible for creating the desired communication channel and sharing the endpoints to the respective child processes.
 
-```typescript title='main.js'
-const w = new BrowserWindow({
-        webPreferences: {
-          sandbox: true,
-          preload: path.join(fixturesPath, 'preload.js')
-        }
-});
-
-// Create Message port pair for Renderer <-> Utility Process.
-const { port1: rendererPort, port2: utilityPort } = new MessageChannelMain();
-// Send rendererPort to the sandboxed render process
-w.webContents.postMessage('port', null, [rendererPort]);
-// Create utility process
-const child = utilityProcess.fork(path.join('path-in-application-package', 'worker.js'));
-// Send utilityPort to the utility process
-child.on('spawn', () => {
-  child.postMessage('', [utilityPort]);
-});
-// Utility process can also send messages to the main process via process.parentPort
-// We can listen to them via
-child.on('message', (data) => {
-  console.log(`MESSAGE FROM CHILD: ${data}`);
-});
-// Child process emits exit event on termination
-child.on('exit', (code) => {
-  console.log(`CHILD EXITED WITH CODE: ${code}`);
-});
-```
-
-```typescript title='preload.js'
-const { ipcRenderer } = require('electron');
-
-ipcRenderer.on('port', (e) => {
-  e.ports[0].postMessage({ data: [...] });
-  e.ports[0].on('message', ({data}) => {
-     // ... do something with data from the worker process ...
-  });
-});
-```
-
-```typescript title='worker.js'
-let rendererConnection = null
-process.parentPort.on('message', async (e) => {
-  rendererConnection = e.ports[0];
-  beginWork(e.data);
-});
-
-function beginWork(toProcess) {
-  // After work
-  rendererConnection.postMessage({ result });
-}
-```
 
 #### Additional Feature Changes 
 
