@@ -67,13 +67,38 @@ function isStructureLinkReference(node, _index, _parent) {
 function replaceLinkWithPreview(node, _ancestors) {
   // depending on if the node is a direct link or a reference-style link,
   // we get its URL differently.
-  const preview =
+  const previewPath =
     node.type === 'link' ? node.url : structureDefinitions.get(node.identifier);
-  const file = fs.readFileSync(
-    path.join(__dirname, '..', '..', `${preview}.md`)
-  );
+  let previewFile;
+
+  // links in translated locale [xy] have their paths prefixed with /xy/
+  const isTranslatedDoc = !previewPath.startsWith('/docs/');
+  // these need to be handled differently because their filesystem path is more complex
+  // /de/docs/latest/api/structures/object.md is actually served from
+  // /i18n/de/docusaurus-plugin-content-docs/current/latest/api/structures/object.md
+  if (isTranslatedDoc) {
+    const [_fullPath, locale, docPath] = previewPath.match(
+      /\/([a-z][a-z])\/docs(.*)/
+    );
+    const localePath = path.join(
+      __dirname,
+      '..',
+      '..',
+      'i18n',
+      locale,
+      'docusaurus-plugin-content-docs',
+      'current',
+      `${docPath}.md`
+    );
+    previewFile = fs.readFileSync(localePath);
+  } else {
+    // for the default locale, we can use the markdown path directly
+    previewFile = fs.readFileSync(
+      path.join(__dirname, '..', '..', `${previewPath}.md`)
+    );
+  }
   // hack to remove frontmatter from docs.
-  const str = file
+  const str = previewFile
     .toString()
     .replace(/---\n(?:(?:.|\n)*)\n---/g, '')
     .replace(/&/g, '&amp;')
@@ -87,6 +112,6 @@ function replaceLinkWithPreview(node, _ancestors) {
   if (Array.isArray(node.children) && node.children.length > 0) {
     hasStructures = true;
     node.type = 'jsx';
-    node.value = `<APIStructurePreview url="${preview}" title="${node.children[0].value}" content="${str}"/>`;
+    node.value = `<APIStructurePreview url="${previewPath}" title="${node.children[0].value}" content="${str}"/>`;
   }
 }
