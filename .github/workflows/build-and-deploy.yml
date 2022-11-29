@@ -41,15 +41,16 @@ jobs:
         run: yarn test
         env:
           CI: true
-      - name: Download cache
-        uses: nick-invision/retry@v2
-        with:
-          timeout_seconds: 300
-          max_attempts: 3
-          retry_on: error
-          command: ./scripts/bin/azcopy copy "https://electronwebsite.blob.core.windows.net/%24web/*?$SAS" "./build" --recursive
-        env:
-          SAS: ${{ secrets.SAS }}
+      # FIXME: this is stalling
+      # - name: Download cache
+      #   uses: nick-invision/retry@v2
+      #   with:
+      #     timeout_seconds: 300
+      #     max_attempts: 3
+      #     retry_on: error
+      #     command: ./scripts/bin/azcopy copy "https://electronwebsite.blob.core.windows.net/%24web/*?$SAS" "./build" --recursive
+      #   env:
+      #     SAS: ${{ secrets.SAS }}
       - name: Rewrite docs paths if version branch
         if: ${{ inputs.branch == 'version' }}
         run: node scripts/build-as-doc-version.js $(GIT_BRANCH)
