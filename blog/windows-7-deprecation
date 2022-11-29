@@ -17,13 +17,13 @@ Electron will end support of Windows 7, Windows 8 and Windows 8.1 beginning in E
 
 Electron 22 will be the last Electron major version to support Windows versions older than 10. Windows 7/8/8.1 will not be supported in Electron 23 and later major releases. Older versions of Electron will continue to function on Windows 7, and we will continue to release patches for Electron the 22.x series until May 30 2023, when Electron will end support for 22.x (according to our [support timeline](https://www.electronjs.org/docs/latest/tutorial/electron-timelines)).
 
-## Why Deprecate?
+## Why deprecate?
 
 Electron follows the planned Chromium deprecation policy, which will deprecate support in Chromium 109 ([read more about Chromium's timeline here](https://support.google.com/chrome/thread/185534985/sunsetting-support-for-windows-7-8-8-1-in-early-2023?hl=en)). Electron 23 will contain Chromium 110, which won’t support older versions of Windows.
 
 Electron 22, which contains Chromium 108, will thus be the last supported version.
 
-## Deprecation Timeline
+## Deprecation timeline
 
 The following is our planned deprecation timeline:
 
@@ -43,4 +43,4 @@ What this means for developers:
 
 ## What's Next
 
-Please feel free to write to us at info@electronjs.org if you have any questions or concerns. You can also find direct support in our official Electron Discord (link).
+Please feel free to write to us at info@electronjs.org if you have any questions or concerns. You can also find community support in our official [Electron Discord](https://discord.gg/electronjs).
