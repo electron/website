@@ -62,9 +62,11 @@ const newDocFiles = (gitOutput) => {
  *   not exist.
  */
 const processDocsChanges = async () => {
-  const output = await getChanges();
-  const branchIsTracked = await isCurrentBranchTracked();
-  const branchName = await getCurrentBranchName();
+  const [output, branchIsTracked, branchName] = await Promise.all([
+    getChanges(),
+    isCurrentBranchTracked(),
+    getCurrentBranchName()
+  ])
 
   if (output === '') {
     console.log('Nothing updated, skipping');

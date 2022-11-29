@@ -46,8 +46,7 @@ const updateConfigFiles = async (version) => {
  * @param {string} version
  */
 const publishAsVersion = async (version) => {
-  await moveDocs(version);
-  await updateConfigFiles(version);
+  await Promise.all([moveDocs(versions), updateConfigFiles(version)]);
 };
 
 // When a file is run directly from Node.js, `require.main` is set to its module.

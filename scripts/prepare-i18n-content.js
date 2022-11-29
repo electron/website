@@ -29,12 +29,10 @@ const start = async () => {
     const staticResources = ['fiddles', 'images'];
 
     console.log(`Copying static assets to ${locale}`);
-    for (const staticResource of staticResources) {
-      await fs.copy(
-        path.join(DOCS_FOLDER, staticResource),
-        path.join(localeDocs, 'latest', staticResource)
-      );
-    }
+    await Promise.all(staticResources.map((staticResource) => fs.copy(
+      path.join(DOCS_FOLDER, staticResource),
+      path.join(localeDocs, 'latest', staticResource)
+    )));
 
     console.log(`Fixing markdown (${locale})`);
     await fixContent(localeDocs, 'latest');

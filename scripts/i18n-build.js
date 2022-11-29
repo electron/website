@@ -27,14 +27,9 @@ const start = async (locale) => {
   console.log('Building the following locales:');
   console.log(localesToBuild);
 
-  for (const locale of localesToBuild) {
-    try {
-      await processLocale(locale);
-    } catch (e) {
-      // TODO: It will be nice to do some clean up and point to the right file and line
-      console.error(`Locale ${locale} failed. Please check the logs above.`);
-    }
-  }
+  await Promise.all(localesToBuild.map((locale) => processLocale(locale))).catch((err) => {
+    console.error(`Locale ${locale} failed. Please check the logs above.`);
+  });
   console.log(`Process finished in ${(Date.now() - start) / 1000}s`);
 };
 
