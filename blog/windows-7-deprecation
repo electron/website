@@ -1,5 +1,5 @@
 ---
-title: Farewell, Windows 7 (and 8)
+title: Farewell, Windows 7/8/8.1
 date: 2022-11-29T00:00:00.000Z
 authors:
     - name: vertedinde
@@ -15,7 +15,7 @@ Electron will end support of Windows 7, Windows 8 and Windows 8.1 beginning in E
 
 [In line with Chromium’s deprecation policy](https://support.google.com/chrome/thread/185534985/sunsetting-support-for-windows-7-8-8-1-in-early-2023?hl=en), Electron will end support of Windows 7, Windows 8 and Windows 8.1 beginning in Electron 23. This matches Microsoft's end of support for [Windows 7 ESU](https://docs.microsoft.com/en-US/lifecycle/faq/extended-security-updates) and [Windows 8.1 extended](https://support.microsoft.com/en-us/windows/windows-8-1-support-will-end-on-january-10-2023-3cfd4cde-f611-496a-8057-923fba401e93) on January 10th, 2023.
 
-Electron 22 will be the last Electron major version to support Windows versions older than 10. Windows 7, 8 and 8.1 will not be supported in Electron 23 and later major releases. Older versions of Electron will continue to function on Windows 7, and we will continue to release patches for Electron the 22.x series until May 30 2023, when Electron will end support for 22.x (according to our [support timeline](https://www.electronjs.org/docs/latest/tutorial/electron-timelines)).
+Electron 22 will be the last Electron major version to support Windows versions older than 10. Windows 7/8/8.1 will not be supported in Electron 23 and later major releases. Older versions of Electron will continue to function on Windows 7, and we will continue to release patches for Electron the 22.x series until May 30 2023, when Electron will end support for 22.x (according to our [support timeline](https://www.electronjs.org/docs/latest/tutorial/electron-timelines)).
 
 ## Why Deprecate?
 
@@ -27,10 +27,10 @@ Electron 22, which contains Chromium 108, will thus be the last supported versio
 
 The following is our planned deprecation timeline:
 
-- **December 2022**: The Electron team is entering a quiet period for the holidays
-- **January 2023**: Windows 7 & 8 related issues are accepted for all supported release branches.
-- **February 7, 2023**: Electron 23 is released.
-- **February 8 2023 - May 29 2023**: Electron will continue to accept fixes for supported lines older than Electron 23.
+- **Dec 2022**: The Electron team is entering a quiet period for the holidays
+- **Jan 2023**: Windows 7 & 8 related issues are accepted for all supported release branches.
+- **Feb 7, 2023**: Electron 23 is released.
+- **Feb 8, 2023 - May 29, 2023**: Electron will continue to accept fixes for supported lines older than Electron 23.
 - **May 30, 2023**: Electron 22 reaches the end of its support cycle.
 
 What this means for developers:
