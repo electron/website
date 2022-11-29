@@ -9,7 +9,6 @@ jobs:
   build-and-deploy:
     uses: electron/website/.github/workflows/build-and-deploy.yml@main
     with:
-      locale: en
       branch: version
     secrets:
       SAS: ${{ secrets.SAS }}

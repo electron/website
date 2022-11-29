@@ -5,11 +5,6 @@ name: Build And Deploy
 on:
   workflow_call:
     inputs:
-      locale:
-        description: 'Identifier for the locale to build'
-        default: ''
-        required: false
-        type: string
       branch:
         description: 'If we are in "main" or a "version" docs branch'
         required: true
@@ -58,8 +53,8 @@ jobs:
       - name: Rewrite docs paths if version branch
         if: ${{ inputs.branch == 'version' }}
         run: node scripts/build-as-doc-version.js $(GIT_BRANCH)
-      - name: Build site for locale
-        run: yarn i18n:build ${{ inputs.locale }}
+      - name: Build default locale site
+        run: yarn build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Publish "/assets" to Storage if version branch

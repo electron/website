@@ -31,7 +31,6 @@ jobs:
     if: ${{ needs.branch.outputs.branch == 'main' }}
     uses: electron/website/.github/workflows/build-and-deploy.yml@main
     with:
-      locale: en
       branch: main
     secrets:
       SAS: ${{ secrets.SAS }}
