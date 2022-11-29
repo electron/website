@@ -17,7 +17,10 @@ module.exports = {
   rules: {
     'prettier/prettier': 'error',
     'react/prop-types': 'off',
-    'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+    'no-unused-vars': [
+      'error',
+      { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
+    ],
   },
   settings: {
     react: {
