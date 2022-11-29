@@ -114,20 +114,18 @@ Below are breaking changes introduced in Electron 22. You can read more about th
 `webContents.incrementCapturerCount(stayHidden, stayAwake)` has been deprecated.
 It is now automatically handled by `webContents.capturePage` when a page capture completes.
 
-```js
+```diff
 const w = new BrowserWindow({ show: false })
 
-// Removed in Electron 23
-w.webContents.incrementCapturerCount()
-w.capturePage().then(image => {
-  console.log(image.toDataURL())
-  w.webContents.decrementCapturerCount()
-})
+- w.webContents.incrementCapturerCount()
+- w.capturePage().then(image => {
+-   console.log(image.toDataURL())
+-   w.webContents.decrementCapturerCount()
+- })
 
-// Replace with
-w.capturePage().then(image => {
-  console.log(image.toDataURL())
-})
++ w.capturePage().then(image => {
++   console.log(image.toDataURL())
++ })
 ```
 
 #### Deprecated: `webContents.decrementCapturerCount(stayHidden, stayAwake)`
@@ -135,36 +133,32 @@ w.capturePage().then(image => {
 `webContents.decrementCapturerCount(stayHidden, stayAwake)` has been deprecated.
 It is now automatically handled by `webContents.capturePage` when a page capture completes.
 
-```js
+```diff
 const w = new BrowserWindow({ show: false })
 
-// Removed in Electron 23
-w.webContents.incrementCapturerCount()
-w.capturePage().then(image => {
-  console.log(image.toDataURL())
-  w.webContents.decrementCapturerCount()
-})
+- w.webContents.incrementCapturerCount()
+- w.capturePage().then(image => {
+-   console.log(image.toDataURL())
+-   w.webContents.decrementCapturerCount()
+- })
 
-// Replace with
-w.capturePage().then(image => {
-  console.log(image.toDataURL())
-})
++ w.capturePage().then(image => {
++   console.log(image.toDataURL())
++ })
 ```
 
 #### Removed: WebContents `new-window` event
 
 The `new-window` event of WebContents has been removed. It is replaced by [`webContents.setWindowOpenHandler()`](api/web-contents.md#contentssetwindowopenhandlerhandler).
 
-```js
-// Removed in Electron 22
-webContents.on('new-window', (event) => {
-  event.preventDefault()
-})
+```diff
+- webContents.on('new-window', (event) => {
+-   event.preventDefault()
+- })
 
-// Replace with
-webContents.setWindowOpenHandler((details) => {
-  return { action: 'deny' }
-})
++ webContents.setWindowOpenHandler((details) => {
++   return { action: 'deny' }
++ })
 ```
 
 #### Deprecated: BrowserWindow `scroll-touch-*` events
@@ -173,22 +167,22 @@ The `scroll-touch-begin`, `scroll-touch-end` and `scroll-touch-edge` events on
 BrowserWindow are deprecated. Instead, use the newly available [`input-event`
 event](api/web-contents.md#event-input-event) on WebContents.
 
-```js
+```diff
 // Deprecated
-win.on('scroll-touch-begin', scrollTouchBegin)
-win.on('scroll-touch-edge', scrollTouchEdge)
-win.on('scroll-touch-end', scrollTouchEnd)
+- win.on('scroll-touch-begin', scrollTouchBegin)
+- win.on('scroll-touch-edge', scrollTouchEdge)
+- win.on('scroll-touch-end', scrollTouchEnd)
 
 // Replace with
-win.webContents.on('input-event', (_, event) => {
-  if (event.type === 'gestureScrollBegin') {
-    scrollTouchBegin()
-  } else if (event.type === 'gestureScrollUpdate') {
-    scrollTouchEdge()
-  } else if (event.type === 'gestureScrollEnd') {
-    scrollTouchEnd()
-  }
-})
++ win.webContents.on('input-event', (_, event) => {
++   if (event.type === 'gestureScrollBegin') {
++     scrollTouchBegin()
++   } else if (event.type === 'gestureScrollUpdate') {
++     scrollTouchEdge()
++   } else if (event.type === 'gestureScrollEnd') {
++     scrollTouchEnd()
++   }
++ })
 ```
 
 ## End of Support for 19.x.y
