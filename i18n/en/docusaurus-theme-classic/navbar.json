@@ -35,8 +35,32 @@
     "message": "Current",
     "description": "Navbar item with label Current"
   },
-  "item.label.15-x-y": {
-    "message": "15-x-y",
-    "description": "Navbar item with label 15-x-y"
+  "item.label.Tools": {
+    "message": "Tools",
+    "description": "Navbar item with label Tools"
+  },
+  "item.label.Community": {
+    "message": "Community",
+    "description": "Navbar item with label Community"
+  },
+  "item.label.Electron Forge": {
+    "message": "Electron Forge",
+    "description": "Navbar item with label Electron Forge"
+  },
+  "item.label.Electron Fiddle": {
+    "message": "Electron Fiddle",
+    "description": "Navbar item with label Electron Fiddle"
+  },
+  "item.label.Governance": {
+    "message": "Governance",
+    "description": "Navbar item with label Governance"
+  },
+  "item.label.Showcase": {
+    "message": "Showcase",
+    "description": "Navbar item with label Showcase"
+  },
+  "item.label.Resources": {
+    "message": "Resources",
+    "description": "Navbar item with label Resources"
   }
 }
