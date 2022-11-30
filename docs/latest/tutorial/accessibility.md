@@ -51,6 +51,4 @@ CFStringRef kAXManualAccessibility = CFSTR("AXManualAccessibility");
 ```
 
 [a11y-docs]: https://www.chromium.org/developers/design-documents/accessibility#TOC-How-Chrome-detects-the-presence-of-Assistive-Technology
-[a11y-devtools]: https://github.com/GoogleChrome/accessibility-developer-tools
-[a11y-devtools-wiki]: https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules
 [setAccessibilitySupportEnabled]: latest/api/app.md#appsetaccessibilitysupportenabledenabled-macos-windows
