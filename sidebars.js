@@ -382,7 +382,6 @@ module.exports = {
         'latest/api/structures/mime-typed-buffer',
         'latest/api/structures/mouse-input-event',
         'latest/api/structures/mouse-wheel-input-event',
-        'latest/api/structures/new-window-web-contents-event',
         'latest/api/structures/notification-action',
         'latest/api/structures/notification-response',
         'latest/api/structures/point',
