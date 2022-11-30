@@ -144,10 +144,6 @@ Corresponds to the points in time when the spinner of the tab stopped spinning.
 
 #### Event: 'dom-ready'
 
-Returns:
-
-* `event` Event
-
 Emitted when the document in the top-level frame is loaded.
 
 #### Event: 'page-title-updated'
@@ -170,63 +166,17 @@ Returns:
 
 Emitted when page receives favicon urls.
 
-#### Event: 'new-window' _Deprecated_
+#### Event: 'content-bounds-updated'
 
 Returns:
 
-* `event` NewWindowWebContentsEvent
-* `url` string
-* `frameName` string
-* `disposition` string - Can be `default`, `foreground-tab`, `background-tab`,
-  `new-window`, `save-to-disk` and `other`.
-* `options` BrowserWindowConstructorOptions - The options which will be used for creating the new
-  [`BrowserWindow`](latest/api/browser-window.md).
-* `additionalFeatures` string[] - The non-standard features (features not handled
-  by Chromium or Electron) given to `window.open()`. Deprecated, and will now
-  always be the empty array `[]`.
-* `referrer` [Referrer](latest/api/structures/referrer.md) - The referrer that will be
-  passed to the new window. May or may not result in the `Referer` header being
-  sent, depending on the referrer policy.
-* `postBody` [PostBody](latest/api/structures/post-body.md) (optional) - The post data that
-  will be sent to the new window, along with the appropriate headers that will
-  be set. If no post data is to be sent, the value will be `null`. Only defined
-  when the window is being created by a form that set `target=_blank`.
+* `event` Event
+* `bounds` [Rectangle](latest/api/structures/rectangle.md) - requested new content bounds
 
-Deprecated in favor of [`webContents.setWindowOpenHandler`](latest/api/web-contents.md#contentssetwindowopenhandlerhandler).
+Emitted when the page calls `window.moveTo`, `window.resizeTo` or related APIs.
 
-Emitted when the page requests to open a new window for a `url`. It could be
-requested by `window.open` or an external link like `<a target='_blank'>`.
-
-By default a new `BrowserWindow` will be created for the `url`.
-
-Calling `event.preventDefault()` will prevent Electron from automatically creating a
-new [`BrowserWindow`](latest/api/browser-window.md). If you call `event.preventDefault()` and manually create a new
-[`BrowserWindow`](latest/api/browser-window.md) then you must set `event.newGuest` to reference the new [`BrowserWindow`](latest/api/browser-window.md)
-instance, failing to do so may result in unexpected behavior. For example:
-
-```javascript
-myBrowserWindow.webContents.on('new-window', (event, url, frameName, disposition, options, additionalFeatures, referrer, postBody) => {
-  event.preventDefault()
-  const win = new BrowserWindow({
-    webContents: options.webContents, // use existing webContents if provided
-    show: false
-  })
-  win.once('ready-to-show', () => win.show())
-  if (!options.webContents) {
-    const loadOptions = {
-      httpReferrer: referrer
-    }
-    if (postBody != null) {
-      const { data, contentType, boundary } = postBody
-      loadOptions.postData = postBody.data
-      loadOptions.extraHeaders = `content-type: ${contentType}; boundary=${boundary}`
-    }
-
-    win.loadURL(url, loadOptions) // existing webContents will be navigated automatically
-  }
-  event.newGuest = win
-})
-```
+By default, this will move the window. To prevent that behavior, call
+`event.preventDefault()`.
 
 #### Event: 'did-create-window'
 
@@ -467,6 +417,16 @@ Emitted when a plugin process has crashed.
 #### Event: 'destroyed'
 
 Emitted when `webContents` is destroyed.
+
+#### Event: 'input-event'
+
+Returns:
+
+* `event` Event
+* `inputEvent` [InputEvent](latest/api/structures/input-event.md)
+
+Emitted when an input event is sent to the WebContents. See
+[InputEvent](latest/api/structures/input-event.md) for details.
 
 #### Event: 'before-input-event'
 
@@ -997,6 +957,21 @@ Returns `string` - The title of the current web page.
 #### `contents.isDestroyed()`
 
 Returns `boolean` - Whether the web page is destroyed.
+
+#### `contents.close([opts])`
+
+* `opts` Object (optional)
+  * `waitForBeforeUnload` boolean - if true, fire the `beforeunload` event
+    before closing the page. If the page prevents the unload, the WebContents
+    will not be closed. The [`will-prevent-unload`](#event-will-prevent-unload)
+    will be fired if the page requests prevention of unload.
+
+Closes the page, as if the web content had called `window.close()`.
+
+If the page is successfully closed (i.e. the unload is not prevented by the
+page, or `waitForBeforeUnload` is false or unspecified), the WebContents will
+be destroyed and no longer usable. The [`destroyed`](#event-destroyed) event
+will be emitted.
 
 #### `contents.focus()`
 

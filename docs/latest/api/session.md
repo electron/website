@@ -392,6 +392,50 @@ callback from `select-serial-port` is called.  This event is intended for use
 when using a UI to ask users to pick a port so that the UI can be updated
 to remove the specified port.
 
+#### Event: 'serial-port-revoked'
+
+Returns:
+
+* `event` Event
+* `details` Object
+  * `port` [SerialPort](latest/api/structures/serial-port.md)
+  * `frame` [WebFrameMain](latest/api/web-frame-main.md)
+  * `origin` string - The origin that the device has been revoked from.
+
+Emitted after `SerialPort.forget()` has been called.  This event can be used
+to help maintain persistent storage of permissions when `setDevicePermissionHandler` is used.
+
+```js
+// Browser Process
+const { app, BrowserWindow } = require('electron')
+
+app.whenReady().then(() => {
+  const win = new BrowserWindow({
+    width: 800,
+    height: 600
+  })
+
+  win.webContents.session.on('serial-port-revoked', (event, details) => {
+    console.log(`Access revoked for serial device from origin ${details.origin}`)
+  })
+})
+```
+
+```js
+// Renderer Process
+
+const portConnect = async () => {
+  // Request a port.
+  const port = await navigator.serial.requestPort()
+
+  // Wait for the serial port to open.
+  await port.open({ baudRate: 9600 })
+
+  // ...later, revoke access to the serial port.
+  await port.forget()
+}
+```
+
 ### Instance Methods
 
 The following methods are available on instances of `Session`:
@@ -704,6 +748,60 @@ session.fromPartition('some-partition').setPermissionCheckHandler((webContents, 
   return false // denied
 })
 ```
+
+#### `ses.setDisplayMediaRequestHandler(handler)`
+
+* `handler` Function | null
+  * `request` Object
+    * `frame` [WebFrameMain](latest/api/web-frame-main.md) - Frame that is requesting access to media.
+    * `securityOrigin` String - Origin of the page making the request.
+    * `videoRequested` Boolean - true if the web content requested a video stream.
+    * `audioRequested` Boolean - true if the web content requested an audio stream.
+    * `userGesture` Boolean - Whether a user gesture was active when this request was triggered.
+  * `callback` Function
+    * `streams` Object
+      * `video` Object | [WebFrameMain](latest/api/web-frame-main.md) (optional)
+        * `id` String - The id of the stream being granted. This will usually
+          come from a [DesktopCapturerSource](latest/api/structures/desktop-capturer-source.md)
+          object.
+        * `name` String - The name of the stream being granted. This will
+          usually come from a [DesktopCapturerSource](latest/api/structures/desktop-capturer-source.md)
+          object.
+      * `audio` String | [WebFrameMain](latest/api/web-frame-main.md) (optional) - If
+        a string is specified, can be `loopback` or `loopbackWithMute`.
+        Specifying a loopback device will capture system audio, and is
+        currently only supported on Windows. If a WebFrameMain is specified,
+        will capture audio from that frame.
+
+This handler will be called when web content requests access to display media
+via the `navigator.mediaDevices.getDisplayMedia` API. Use the
+[desktopCapturer](latest/api/desktop-capturer.md) API to choose which stream(s) to grant
+access to.
+
+```javascript
+const { session, desktopCapturer } = require('electron')
+
+session.defaultSession.setDisplayMediaRequestHandler((request, callback) => {
+  desktopCapturer.getSources({ types: ['screen'] }).then((sources) => {
+    // Grant access to the first screen found.
+    callback({ video: sources[0] })
+  })
+})
+```
+
+Passing a [WebFrameMain](latest/api/web-frame-main.md) object as a video or audio stream
+will capture the video or audio stream from that frame.
+
+```javascript
+const { session } = require('electron')
+
+session.defaultSession.setDisplayMediaRequestHandler((request, callback) => {
+  // Allow the tab to capture itself.
+  callback({ video: request.frame })
+})
+```
+
+Passing `null` instead of a function resets the handler to its default state.
 
 #### `ses.setDevicePermissionHandler(handler)`
 

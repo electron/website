@@ -61,7 +61,7 @@ See [issues](latest/development/issues.md) for more information.
 Most pull requests opened against the `electron/electron` repository include
 changes to either the C/C++ code in the `shell/` folder,
 the TypeScript code in the `lib/` folder, the documentation in `docs/`,
-or tests in the `spec/` and `spec-main/` folders.
+or tests in the `spec/` folder.
 
 See [pull requests](latest/development/pull-requests.md) for more information.
 

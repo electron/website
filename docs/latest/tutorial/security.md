@@ -119,6 +119,7 @@ You should at least follow these steps to improve the security of your applicati
 14. [Disable or limit creation of new windows](#14-disable-or-limit-creation-of-new-windows)
 15. [Do not use `shell.openExternal` with untrusted content](#15-do-not-use-shellopenexternal-with-untrusted-content)
 16. [Use a current version of Electron](#16-use-a-current-version-of-electron)
+17. [Validate the `sender` of all IPC messages](#17-validate-the-sender-of-all-ipc-messages)
 
 To automate the detection of misconfigurations and insecure patterns, it is
 possible to use
@@ -136,10 +137,8 @@ like `HTTP`. Similarly, we recommend the use of `WSS` over `WS`, `FTPS` over
 
 #### Why?
 
-`HTTPS` has three main benefits:
+`HTTPS` has two main benefits:
 
-1. It authenticates the remote server, ensuring your app connects to the correct
-   host instead of an impersonator.
 1. It ensures data integrity, asserting that the data was not modified while in
    transit between your application and the host.
 1. It encrypts the traffic between your user and the destination host, making it

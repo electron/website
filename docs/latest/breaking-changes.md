@@ -19,7 +19,75 @@ This document uses the following convention to categorize breaking changes:
 * **Deprecated:** An API was marked as deprecated. The API will continue to function, but will emit a deprecation warning, and will be removed in a future release.
 * **Removed:** An API or feature was removed, and is no longer supported by Electron.
 
-## Planned Breaking API Changes (20.0)
+## Planned Breaking API Changes (23.0)
+
+### Removed: BrowserWindow `scroll-touch-*` events
+
+The deprecated `scroll-touch-begin`, `scroll-touch-end` and `scroll-touch-edge`
+events on BrowserWindow have been removed. Instead, use the newly available
+[`input-event` event](latest/api/web-contents.md#event-input-event) on WebContents.
+
+```js
+// Removed in Electron 23.0
+win.on('scroll-touch-begin', scrollTouchBegin)
+win.on('scroll-touch-edge', scrollTouchEdge)
+win.on('scroll-touch-end', scrollTouchEnd)
+
+// Replace with
+win.webContents.on('input-event', (_, event) => {
+  if (event.type === 'gestureScrollBegin') {
+    scrollTouchBegin()
+  } else if (event.type === 'gestureScrollUpdate') {
+    scrollTouchEdge()
+  } else if (event.type === 'gestureScrollEnd') {
+    scrollTouchEnd()
+  }
+})
+```
+
+## Planned Breaking API Changes (22.0)
+
+### Removed: WebContents `new-window` event
+
+The `new-window` event of WebContents has been removed. It is replaced by [`webContents.setWindowOpenHandler()`](latest/api/web-contents.md#contentssetwindowopenhandlerhandler).
+
+```js
+// Removed in Electron 21
+webContents.on('new-window', (event) => {
+  event.preventDefault()
+})
+
+// Replace with
+webContents.setWindowOpenHandler((details) => {
+  return { action: 'deny' }
+})
+```
+
+### Deprecated: BrowserWindow `scroll-touch-*` events
+
+The `scroll-touch-begin`, `scroll-touch-end` and `scroll-touch-edge` events on
+BrowserWindow are deprecated. Instead, use the newly available [`input-event`
+event](latest/api/web-contents.md#event-input-event) on WebContents.
+
+```js
+// Deprecated
+win.on('scroll-touch-begin', scrollTouchBegin)
+win.on('scroll-touch-edge', scrollTouchEdge)
+win.on('scroll-touch-end', scrollTouchEnd)
+
+// Replace with
+win.webContents.on('input-event', (_, event) => {
+  if (event.type === 'gestureScrollBegin') {
+    scrollTouchBegin()
+  } else if (event.type === 'gestureScrollUpdate') {
+    scrollTouchEdge()
+  } else if (event.type === 'gestureScrollEnd') {
+    scrollTouchEnd()
+  }
+})
+```
+
+## Planned Breaking API Changes (21.0)
 
 ### Behavior Changed: V8 Memory Cage enabled
 
@@ -82,6 +150,8 @@ webContents.printToPDF({
   console.log(`Failed to write PDF to ${pdfPath}: `, error)
 })
 ```
+
+## Planned Breaking API Changes (20.0)
 
 ### Default Changed: renderers without `nodeIntegration: true` are sandboxed by default
 
