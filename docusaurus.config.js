@@ -1,4 +1,5 @@
-/** @type {import('@docusaurus/types').DocusaurusConfig} */
+// @ts-check
+// Docusaurus Config cannot be TypeScript
 const path = require('path');
 const npm2yarn = require('@docusaurus/remark-plugin-npm2yarn');
 const fiddleEmbedder = require('./src/transformers/fiddle-embedder.js');
@@ -6,6 +7,7 @@ const apiLabels = require('./src/transformers/api-labels.js');
 const apiOptionsClass = require('./src/transformers/api-options-class.js');
 const apiStructurePreviews = require('./src/transformers/api-structure-previews.js');
 
+/** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
   title: 'Electron',
   tagline: 'Build cross-platform desktop apps with JavaScript, HTML, and CSS',
@@ -20,170 +22,171 @@ module.exports = {
     defaultLocale: 'en',
     locales: ['en', 'de', 'es', 'fr', 'ja', 'pt', 'ru', 'zh'],
   },
-  themeConfig: {
-    announcementBar: {
-      id: 'announcementBar',
-      content: `Introducing Electron Forge 6, a complete pipeline for building your Electron apps. Read more in the <strong><a target="_blank" rel="noopener noreferrer" href="https://www.electronjs.org/blog/forge-v6-release">Forge 6 announcement blog</a></strong>!`,
-      backgroundColor: '#A2ECFB',
-      isCloseable: true,
-    },
-    colorMode: {
-      //Default to light or dark depending on system theme.
-      respectPrefersColorScheme: true,
-    },
-    prism: {
-      theme: require('prism-react-renderer/themes/github'),
-      darkTheme: require('prism-react-renderer/themes/dracula'),
-    },
-    tableOfContents: {
-      minHeadingLevel: 2,
-      maxHeadingLevel: 4,
-    },
-    navbar: {
-      title: 'Electron',
-      style: 'dark',
-      logo: {
-        alt: 'Electron homepage',
-        src: 'assets/img/logo.svg',
+  themeConfig:
+    /** @type {import('@docusaurus/preset-classic').ThemeConfig} */ ({
+      announcementBar: {
+        id: 'announcementBar',
+        content: `Introducing Electron Forge 6, a complete pipeline for building your Electron apps. Read more in the <strong><a target="_blank" rel="noopener noreferrer" href="https://www.electronjs.org/blog/forge-v6-release">Forge 6 announcement blog</a></strong>!`,
+        backgroundColor: '#A2ECFB',
+        isCloseable: true,
       },
-      items: [
-        {
-          label: 'Docs',
-          type: 'doc',
-          docId: 'latest/tutorial/introduction',
-          position: 'left',
-        },
-        {
-          label: 'API',
-          type: 'doc',
-          docId: 'latest/api/app',
-          position: 'left',
-        },
-        { to: 'blog', label: 'Blog', position: 'left' },
-        {
-          type: 'dropdown',
-          label: 'Tools',
-          position: 'left',
-          items: [
-            { to: 'https://electronforge.io', label: 'Electron Forge' },
-            { to: 'fiddle', label: 'Electron Fiddle' },
-          ],
-        },
-        {
-          type: 'dropdown',
-          label: 'Community',
-          position: 'left',
-          items: [
-            { to: 'governance', label: 'Governance' },
-            { to: 'apps', label: 'Showcase' },
-            { to: 'community', label: 'Resources' },
-          ],
-        },
-        {
-          href: 'https://releases.electronjs.org',
-          label: 'Releases',
-          position: 'right',
-        },
-        {
-          href: 'https://github.com/electron/electron',
-          label: 'GitHub',
-          position: 'right',
-        },
-        {
-          type: 'localeDropdown',
-          position: 'right',
-        },
-      ],
-    },
-    footer: {
-      logo: {
-        alt: 'OpenJS Foundation Logo',
-        src: 'assets/img/openjsf_logo.svg',
-        srcDark: 'assets/img/openjsf_logo-dark.svg',
-        href: 'https://openjsf.org/',
+      colorMode: {
+        //Default to light or dark depending on system theme.
+        respectPrefersColorScheme: true,
       },
-      links: [
-        {
-          title: 'Docs',
-          items: [
-            {
-              label: 'Getting Started',
-              to: '/docs/latest/',
-            },
-            {
-              label: 'API Reference',
-              to: '/docs/latest/api/app',
-            },
-          ],
+      prism: {
+        theme: require('prism-react-renderer/themes/github'),
+        darkTheme: require('prism-react-renderer/themes/dracula'),
+      },
+      tableOfContents: {
+        minHeadingLevel: 2,
+        maxHeadingLevel: 4,
+      },
+      navbar: {
+        title: 'Electron',
+        style: 'dark',
+        logo: {
+          alt: 'Electron homepage',
+          src: 'assets/img/logo.svg',
         },
-        {
-          title: 'Checklists',
-          items: [
-            {
-              label: 'Performance',
-              to: '/docs/latest/tutorial/performance',
-            },
-            {
-              label: 'Security',
-              to: '/docs/latest/tutorial/security',
-            },
-          ],
+        items: [
+          {
+            label: 'Docs',
+            type: 'doc',
+            docId: 'latest/tutorial/introduction',
+            position: 'left',
+          },
+          {
+            label: 'API',
+            type: 'doc',
+            docId: 'latest/api/app',
+            position: 'left',
+          },
+          { to: 'blog', label: 'Blog', position: 'left' },
+          {
+            type: 'dropdown',
+            label: 'Tools',
+            position: 'left',
+            items: [
+              { to: 'https://electronforge.io', label: 'Electron Forge' },
+              { to: 'fiddle', label: 'Electron Fiddle' },
+            ],
+          },
+          {
+            type: 'dropdown',
+            label: 'Community',
+            position: 'left',
+            items: [
+              { to: 'governance', label: 'Governance' },
+              { to: 'apps', label: 'Showcase' },
+              { to: 'community', label: 'Resources' },
+            ],
+          },
+          {
+            href: 'https://releases.electronjs.org',
+            label: 'Releases',
+            position: 'right',
+          },
+          {
+            href: 'https://github.com/electron/electron',
+            label: 'GitHub',
+            position: 'right',
+          },
+          {
+            type: 'localeDropdown',
+            position: 'right',
+          },
+        ],
+      },
+      footer: {
+        logo: {
+          alt: 'OpenJS Foundation Logo',
+          src: 'assets/img/openjsf_logo.svg',
+          srcDark: 'assets/img/openjsf_logo-dark.svg',
+          href: 'https://openjsf.org/',
         },
-        {
-          title: 'Tools',
-          items: [
-            {
-              label: 'Electron Forge',
-              to: 'https://electronforge.io',
-            },
-            {
-              label: 'Electron Fiddle',
-              to: '/fiddle',
-            },
-          ],
-        },
-        {
-          title: 'Community',
-          items: [
-            { label: 'Governance', to: '/governance' },
-            { label: 'Resources', to: '/community' },
-            {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/APGC3k5yaH',
-            },
-            {
-              label: 'Twitter',
-              href: 'https://twitter.com/electronjs',
-            },
-            {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/electron',
-            },
-          ],
-        },
-        {
-          title: 'More',
-          items: [
-            {
-              label: 'GitHub',
-              href: 'https://github.com/electron/electron',
-            },
-            {
-              label: 'Open Collective',
-              href: 'https://opencollective.com/electron',
-            },
-          ],
-        },
-      ],
-      copyright: `Copyright © ${new Date().getFullYear()} OpenJS Foundation and Electron contributors.`,
-    },
-    algolia: {
-      appId: 'MG3SRMK3K0',
-      apiKey: 'fdc2cf6080e499639d7e6b0278851ed4',
-      indexName: 'electronjs',
-      contextualSearch: true,
-    },
-  },
+        links: [
+          {
+            title: 'Docs',
+            items: [
+              {
+                label: 'Getting Started',
+                to: '/docs/latest/',
+              },
+              {
+                label: 'API Reference',
+                to: '/docs/latest/api/app',
+              },
+            ],
+          },
+          {
+            title: 'Checklists',
+            items: [
+              {
+                label: 'Performance',
+                to: '/docs/latest/tutorial/performance',
+              },
+              {
+                label: 'Security',
+                to: '/docs/latest/tutorial/security',
+              },
+            ],
+          },
+          {
+            title: 'Tools',
+            items: [
+              {
+                label: 'Electron Forge',
+                to: 'https://electronforge.io',
+              },
+              {
+                label: 'Electron Fiddle',
+                to: '/fiddle',
+              },
+            ],
+          },
+          {
+            title: 'Community',
+            items: [
+              { label: 'Governance', to: '/governance' },
+              { label: 'Resources', to: '/community' },
+              {
+                label: 'Discord',
+                href: 'https://discordapp.com/invite/APGC3k5yaH',
+              },
+              {
+                label: 'Twitter',
+                href: 'https://twitter.com/electronjs',
+              },
+              {
+                label: 'Stack Overflow',
+                href: 'https://stackoverflow.com/questions/tagged/electron',
+              },
+            ],
+          },
+          {
+            title: 'More',
+            items: [
+              {
+                label: 'GitHub',
+                href: 'https://github.com/electron/electron',
+              },
+              {
+                label: 'Open Collective',
+                href: 'https://opencollective.com/electron',
+              },
+            ],
+          },
+        ],
+        copyright: `Copyright © ${new Date().getFullYear()} OpenJS Foundation and Electron contributors.`,
+      },
+      algolia: {
+        appId: 'MG3SRMK3K0',
+        apiKey: 'fdc2cf6080e499639d7e6b0278851ed4',
+        indexName: 'electronjs',
+        contextualSearch: true,
+      },
+    }),
   plugins: [
     'docusaurus-plugin-sass',
     path.resolve(__dirname, './src/plugins/apps'),
@@ -194,7 +197,8 @@ module.exports = {
   presets: [
     [
       '@docusaurus/preset-classic',
-      {
+      /** @type {import('@docusaurus/preset-classic').Options} */
+      ({
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           routeBasePath: '/docs/',
@@ -223,7 +227,7 @@ module.exports = {
         googleAnalytics: {
           trackingID: 'UA-160365006-1',
         },
-      },
+      }),
     ],
   ],
   webpack: {
