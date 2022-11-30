@@ -72,4 +72,4 @@ const start = async (source) => {
   await createSidebar('docs', path.join(process.cwd(), 'sidebars.js'));
 };
 
-start(process.argv[2], process.argv[3]);
+start(process.argv[2]);
