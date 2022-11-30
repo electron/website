@@ -16,17 +16,15 @@ const { addFrontmatter } = require('./tasks/add-frontmatter');
 const { createSidebar } = require('./tasks/create-sidebar');
 const { fixContent } = require('./tasks/md-fixers');
 const { copyNewContent } = require('./tasks/copy-new-content');
-const { updateVersionsInfo } = require('./tasks/update-versions-info');
 
 const DOCS_FOLDER = path.join('docs', 'latest');
 
 /**
  *
  * @param {string} source The SHA to use to download
- * @param {string} [targetVersion] The branch where the SHA is comming from.
  * This value should be passed only when targetting the latest stable.
  */
-const start = async (source, targetVersion) => {
+const start = async (source) => {
   console.log(`Deleting previous content`);
   await del(DOCS_FOLDER);
 
@@ -72,9 +70,6 @@ const start = async (source, targetVersion) => {
 
   console.log('Updating sidebars.js');
   await createSidebar('docs', path.join(process.cwd(), 'sidebars.js'));
-
-  console.log('Updating docs versions');
-  await updateVersionsInfo(targetVersion || 'Latest');
 };
 
-start(process.argv[2], process.argv[3]);
+start(process.argv[2]);
