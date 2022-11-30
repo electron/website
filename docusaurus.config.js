@@ -5,7 +5,6 @@ const fiddleEmbedder = require('./src/transformers/fiddle-embedder.js');
 const apiLabels = require('./src/transformers/api-labels.js');
 const apiOptionsClass = require('./src/transformers/api-options-class.js');
 const apiStructurePreviews = require('./src/transformers/api-structure-previews.js');
-// const docVersions = require('./versions-info.json');
 
 module.exports = {
   title: 'Electron',
@@ -85,13 +84,6 @@ module.exports = {
           label: 'Releases',
           position: 'right',
         },
-        // FIXME: Enable when versioned docs work
-        // {
-        //   type: 'dropdown',
-        //   label: docVersions[0].label,
-        //   position: 'right',
-        //   items: docVersions,
-        // },
         {
           href: 'https://github.com/electron/electron',
           label: 'GitHub',
@@ -207,9 +199,7 @@ module.exports = {
           sidebarPath: require.resolve('./sidebars.js'),
           routeBasePath: '/docs/',
           editUrl: ({ docPath }) => {
-            // TODO: remove when `latest/` is no longer hardcoded
             const fixedPath = docPath.replace('latest/', '');
-            // TODO: versioning?
             return `https://github.com/electron/electron/edit/main/docs/${fixedPath}`;
           },
           remarkPlugins: [
