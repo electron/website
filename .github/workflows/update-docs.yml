@@ -28,7 +28,7 @@ jobs:
   build-and-deploy:
     needs: [update-docs]
     # If we are in the "main" branch, it means we have pushed the changed directly and should deploy
-    if: ${{ needs.branch.outputs.branch == 'main' }}
+    if: ${{ needs.update-docs.outputs.branch == 'main' }}
     uses: electron/website/.github/workflows/build-and-deploy.yml@main
     with:
       branch: main
