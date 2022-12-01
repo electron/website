@@ -20,7 +20,7 @@ import visitParents from 'unist-util-visit-parents';
  * Somewhere in the crawler is some cheerio code that specifies:
  *  `.not(".electron-api-options-list li, li.electron-api-options-list")`
  */
-module.exports = function attacher() {
+export default function attacher() {
   return transformer;
 };
 

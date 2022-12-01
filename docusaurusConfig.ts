@@ -1,17 +1,27 @@
 import path from 'path';
+import { DocusaurusConfig } from '@docusaurus/types';
+import npm2yarn from '@docusaurus/remark-plugin-npm2yarn';
 
-const npm2yarn = require('@docusaurus/remark-plugin-npm2yarn');
-const fiddleEmbedder = require('./src/transformers/fiddle-embedder');
-const apiLabels = require('./src/transformers/api-labels');
-const apiOptionsClass = require('./src/transformers/api-options-class');
-const apiStructurePreviews = require('./src/transformers/api-structure-previews');
+import apiLabels from './src/transformers/api-labels';
+import apiOptionsClass from './src/transformers/api-options-class';
+import apiStructurePreviews from './src/transformers/api-structure-previews';
+import fiddleEmbedder from './src/transformers/fiddle-embedder';
 
-/** @type {import('@docusaurus/types').DocusaurusConfig} */
-module.exports = {
+const config: DocusaurusConfig = {
   title: 'Electron',
   tagline: 'Build cross-platform desktop apps with JavaScript, HTML, and CSS',
   url: 'https://electronjs.org',
   baseUrl: '/',
+  titleDelimiter: '|',
+  trailingSlash: undefined,
+  noIndex: false,
+  onDuplicateRoutes: 'warn',
+  themes: [],
+  staticDirectories: ['static'],
+  scripts: [],
+  stylesheets: [],
+  clientModules: [],
+  baseUrlIssueBanner: true,
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'assets/img/favicon.ico',
@@ -20,8 +30,10 @@ module.exports = {
   i18n: {
     defaultLocale: 'en',
     locales: ['en', 'de', 'es', 'fr', 'ja', 'pt', 'ru', 'zh'],
+    path: 'i18n',
+    localeConfigs: {},
   },
-  themeConfig: /** @type {import('@docusaurus/preset-classic').ThemeConfig} */ {
+  themeConfig: {
     announcementBar: {
       id: 'announcementBar',
       content: `Introducing Electron Forge 6, a complete pipeline for building your Electron apps. Read more in the <strong><a target="_blank" rel="noopener noreferrer" href="https://www.electronjs.org/blog/forge-v6-release">Forge 6 announcement blog</a></strong>!`,
@@ -239,3 +251,5 @@ module.exports = {
     }),
   },
 };
+
+module.exports = config;

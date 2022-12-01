@@ -62,6 +62,7 @@
     "@docusaurus/module-type-aliases": "^2.2.0",
     "@docusaurus/types": "^2.1.0",
     "@tsconfig/docusaurus": "^1.0.6",
+    "@types/fs-extra": "^9.0.13",
     "@types/jest": "^26.0.23",
     "@types/mdast": "^3.0.10",
     "@types/node": "^18.11.10",

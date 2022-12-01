@@ -24,7 +24,7 @@ import { Emphasis, PhrasingContent, Text } from 'mdast';
  *
  * See: https://github.com/syntax-tree/mdast-util-to-hast
  */
-module.exports = function attacher() {
+export default function attacher() {
   return transformer;
 };
 

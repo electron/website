@@ -7,6 +7,10 @@ import { Definition, Link, LinkReference } from 'mdast';
 let structureDefinitions: Map<string, string>;
 let hasStructures: boolean;
 
+export default function attacher() {
+  return transformer;
+};
+
 async function transformer(tree: Parent) {
   structureDefinitions = new Map();
   hasStructures = false;
@@ -113,10 +117,6 @@ function replaceLinkWithPreview(node: Link | LinkReference) {
     node.value = `<APIStructurePreview url="${relativeStructurePath}" title="${node.children[0].value}" content="${str}"/>`;
   }
 }
-
-module.exports = function attacher() {
-  return transformer;
-};
 
 function isDefinition(node: Node): node is Definition {
   return node.type === 'definition';

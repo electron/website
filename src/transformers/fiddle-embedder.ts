@@ -15,7 +15,7 @@ async function getVersion() {
   return _version;
 }
 
-module.exports = function attacher() {
+export default function attacher() {
   return transformer;
 };
 
