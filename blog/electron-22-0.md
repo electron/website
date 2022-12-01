@@ -98,7 +98,7 @@ const w = new BrowserWindow({ show: false })
 
 #### Removed: WebContents `new-window` event
 
-The `new-window` event of WebContents has been removed. It is replaced by [`webContents.setWindowOpenHandler()`](api/web-contents.md#contentssetwindowopenhandlerhandler).
+The `new-window` event of WebContents has been removed. It is replaced by [`webContents.setWindowOpenHandler()`](https://electronjs.org/docs/latest/api/web-contents#contentssetwindowopenhandlerhandler).
 
 ```diff
 - webContents.on('new-window', (event) => {
@@ -114,7 +114,7 @@ The `new-window` event of WebContents has been removed. It is replaced by [`webC
 
 The `scroll-touch-begin`, `scroll-touch-end` and `scroll-touch-edge` events on
 BrowserWindow are deprecated. Instead, use the newly available [`input-event`
-event](api/web-contents.md#event-input-event) on WebContents.
+event](https://electronjs.org/docs/latest/api/web-contents#event-input-event) on WebContents.
 
 ```diff
 // Deprecated
