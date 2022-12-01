@@ -1,11 +1,10 @@
-// @ts-check
-// Docusaurus Config cannot be TypeScript
-const path = require('path');
+import path from 'path';
+
 const npm2yarn = require('@docusaurus/remark-plugin-npm2yarn');
 const fiddleEmbedder = require('./src/transformers/fiddle-embedder.js');
 const apiLabels = require('./src/transformers/api-labels.js');
 const apiOptionsClass = require('./src/transformers/api-options-class.js');
-const apiStructurePreviews = require('./src/transformers/api-structure-previews.js');
+const apiStructurePreviews = require('./src/transformers/api-structure-previews');
 
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {

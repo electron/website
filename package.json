@@ -63,6 +63,8 @@
     "@docusaurus/types": "^2.1.0",
     "@tsconfig/docusaurus": "^1.0.6",
     "@types/jest": "^26.0.23",
+    "@types/mdast": "^3.0.10",
+    "@types/node": "^18.11.10",
     "@types/unist": "^2.0.3",
     "del": "^6.0.0",
     "esbuild-loader": "^2.15.1",
