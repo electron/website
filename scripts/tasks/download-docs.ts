@@ -1,35 +1,51 @@
-//@ts-check
-const fs = require('fs').promises;
+import fs from 'fs-extra';
 
-const path = require('path');
-const makeDir = require('make-dir');
-const tar = require('tar-stream');
-const got = require('got');
-const globby = require('globby');
+import path from 'path';
+import makeDir from 'make-dir';
+import tar from 'tar-stream';
+import got from 'got';
+import globby from 'globby';
+
+interface DownloadOptions {
+  /** The GitHub organization to download the contents from */
+  org: string;
+  /** The GitHub repository to download the contents from */
+  repository: string;
+  /** The download destination as an absolute path */
+  destination: string;
+  /** The git ref (e.g. `v1.0.0`, `main`) to use for the download */
+  target: string;
+  /** The glob match to use to filter the downloaded contents */
+  downloadMatch: string;
+}
+
+interface CopyOptions {
+  /** The copy destination as an absolute path */
+  destination: string;
+  /** The source source to use for the copy action */
+  target: string;
+  /** The glob match to use to filter the copied contents */
+  copyMatch: string;
+}
 
 /**
- * @typedef DownloadOptions
- * @type {object}
- * @property {string} [org] - The organization to download the contents from
- * @property {string} [repository] - The repository to download the contents from
- * @property {string} destination - The destination absolute path.
- * @property {string} target - The branch, commit, version. (e.g. `v1.0.0`, `main`)
- * @property {string} downloadMatch - The math to use to filter the downloaded contents
+ * Entry for each documentation page
  */
-
-/**
- * @typedef Entry
- * @property {string} filename
- * @property {string} slug
- * @property {Buffer} content
- */
+interface Entry {
+  /** File name of the page */
+  filename: string;
+  /** Slug of the page */
+  slug: string;
+  /** Buffer contents of the page */
+  content: Buffer;
+}
 
 /**
  * Saves the file on disk creating the necessary folders
- * @param {Entry[]} files
- * @param {string} destination
+ * @param files Array of page entries
+ * @param destination Destination path on disk
  */
-const saveContents = async (files, destination) => {
+const saveContents = async (files: Entry[], destination: string) => {
   for (const file of files) {
     const { content, filename } = file;
     const finalPath = path.join(destination, filename);
@@ -46,10 +62,12 @@ const saveContents = async (files, destination) => {
 };
 
 /**
- * Downloads the contents of a branch or release from GitHub
- * @param {DownloadOptions} options
+ * Downloads the contents of Electron's documentation from a GitHub ref
+ * @param options
  */
-const downloadFromGitHub = async (options) => {
+const downloadFromGitHub = async (
+  options: DownloadOptions
+): Promise<Entry[]> => {
   const { org, repository, target, downloadMatch = '' } = options;
 
   const tarballUrl = `https://github.com/${org}/${repository}/archive/${target}.tar.gz`;
@@ -58,7 +76,6 @@ const downloadFromGitHub = async (options) => {
 
   return new Promise((resolve) => {
     got
-      // @ts-expect-error
       .stream(tarballUrl)
       .pipe(require('gunzip-maybe')())
       .pipe(
@@ -78,7 +95,7 @@ const downloadFromGitHub = async (options) => {
                   filename: header.name.replace(`${downloadMatch}/`, ''),
                   slug: path.basename(header.name, '.md'),
                   content,
-                });
+                } satisfies Entry);
 
                 next();
               });
@@ -99,9 +116,9 @@ const downloadFromGitHub = async (options) => {
  * with the option to choose the download destination,
  * filtering by path, and reorganizing the folder structure
  * as needed.
- * @param {DownloadOptions} userOptions
+ * @param userOptions
  */
-const download = async (userOptions) => {
+export const download = async (userOptions: DownloadOptions) => {
   const options = {
     ...{ target: 'main' },
     ...userOptions,
@@ -116,10 +133,14 @@ const download = async (userOptions) => {
  * Copies the contents of the given folder to the destination,
  * filtering by path, and reorganizing the folder structure
  * as needed.
- * @param {DownloadOptions} userOptions
+ * @param userOptions
  */
-const copy = async ({ target, destination, downloadMatch = '.' }) => {
-  const filesPaths = await globby(`${downloadMatch}/**/*`, {
+export const copy = async ({
+  target,
+  destination,
+  copyMatch = '.',
+}: CopyOptions) => {
+  const filesPaths = await globby(`${copyMatch}/**/*`, {
     cwd: target,
   });
 
@@ -127,7 +148,7 @@ const copy = async ({ target, destination, downloadMatch = '.' }) => {
 
   for (const filePath of filesPaths) {
     const content = {
-      filename: filePath.replace(`${downloadMatch}/`, ''),
+      filename: filePath.replace(`${copyMatch}/`, ''),
       content: await fs.readFile(path.join(target, filePath)),
       slug: path.basename(filePath, '.md'),
     };
@@ -136,9 +157,4 @@ const copy = async ({ target, destination, downloadMatch = '.' }) => {
   }
 
   await saveContents(contents, destination);
-};
-
-module.exports = {
-  download,
-  copy,
 };

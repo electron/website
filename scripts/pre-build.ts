@@ -10,7 +10,7 @@ import latestVersion from 'latest-version';
 import logger from '@docusaurus/logger';
 
 import { copy, download } from './tasks/download-docs';
-import { addFrontmatter } from './tasks/add-frontmatter';
+import { addFrontmatterToAllDocs } from './tasks/add-frontmatter';
 import { createSidebar } from './tasks/create-sidebar';
 import { fixContent } from './tasks/md-fixers';
 import { copyNewContent } from './tasks/copy-new-content';
@@ -22,8 +22,8 @@ const DOCS_FOLDER = path.join(__dirname, '..', 'docs', 'latest');
  * @param source The SHA to use to download our documentation.
  * This value should be passed only when targeting the latest stable.
  */
-const start = async (source: string) => {
-  logger.info(`Running ${logger.green('electronjs.org')} pre-build scripts...`)
+const start = async (source: string): Promise<void> => {
+  logger.info(`Running ${logger.green('electronjs.org')} pre-build scripts...`);
   logger.info(`Deleting previous content at ${logger.green(DOCS_FOLDER)}`);
   await remove(DOCS_FOLDER);
 
@@ -55,7 +55,7 @@ const start = async (source: string) => {
     await copy({
       target: source,
       destination: DOCS_FOLDER,
-      downloadMatch: 'docs',
+      copyMatch: 'docs',
     });
   } else {
     logger.error(`Path ${localElectron} does not exist`);
@@ -69,7 +69,7 @@ const start = async (source: string) => {
   await fixContent('docs', 'latest');
 
   logger.info('Adding automatic frontmatter');
-  await addFrontmatter(DOCS_FOLDER);
+  await addFrontmatterToAllDocs(DOCS_FOLDER);
 
   logger.info('Updating website sidebar');
   await createSidebar('docs', path.join(process.cwd(), 'sidebars.js'));

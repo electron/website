@@ -1,21 +1,17 @@
-const fs = require('fs').promises;
-const path = require('path');
+import fs from 'fs-extra';
+import path from 'path';
 
 const newContent = new Map([['how-to-examples.md', 'tutorial/examples.md']]);
 
 /**
  * Copies the new content files to the destination
- * @param {string} destination
+ * @param destination
  */
-const copyNewContent = async (destination) => {
+export const copyNewContent = async (destination: string) => {
   for (const [source, target] of newContent) {
     await fs.copyFile(
       path.join(__dirname, source),
       path.join(destination, target)
     );
   }
-};
-
-module.exports = {
-  copyNewContent,
 };

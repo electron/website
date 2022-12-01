@@ -1,40 +1,29 @@
-//@ts-check
-
-const fs = require('fs').promises;
-const { existsSync } = require('fs');
-const { stringify } = require('json5');
-const globby = require('globby');
+import fs from 'fs-extra';
+import json5 from 'json5';
+import globby from 'globby';
+import type {
+  Sidebars,
+  SidebarItemDoc
+} from '@docusaurus/plugin-content-docs/src/sidebars/types';
 
 const IGNORE_LIST = [
   'README',
   'styleguide',
-  // these need to be moved to guides
-  'api/frameless-window',
   // these don't belong to any category yet
   'api/accelerator',
   'experimental',
   // these have limited relevance
-  'development/electron-vs-nwjs',
   'tutorial/using-pepper-flash-plugin',
-  'api/synopsis',
   'latest/development/README',
-  'latest/tutorial/support',
 ];
 
 const categoryAliases = new Map([['Tutorial', 'How To']]);
 
 /**
- * @typedef Entry
- * @property {string} type
- * @property {string} label
- * @property {string[]} items
- */
-
-/**
  * Capitalizes the first letter of each word in title.
  * @param {string} title
  */
-const capitalize = (title) => {
+const capitalize = (title: string) => {
   const words = title.split(' ');
   const capitalizedWords = words.map((word) => {
     return word[0].toUpperCase() + word.substring(1);
@@ -46,12 +35,15 @@ const capitalize = (title) => {
 /**
  * Returns a category inside `sidebars` whose property
  * `label` matches `category`.
- * @param {string} categoryName The category to find
- * @param {Object.<string, Entry[]>} sidebars The sidebars object
- * @param {string} defaultTopLevel The default top level to add
- * the category if it does not exist
+ * @param categoryName The category to find
+ * @param sidebars The sidebars object
+ * @param defaultTopLevel The default top level to add to the category if it does not exist
  */
-const findCategoryForDocument = (categoryName, sidebars, defaultTopLevel) => {
+const findCategoryForDocument = (
+  categoryName: string,
+  sidebars: Sidebars,
+  defaultTopLevel: string
+) => {
   const topLevelIds = Object.keys(sidebars);
 
   const categoryAlias = categoryAliases.get(categoryName) || categoryName;
@@ -70,15 +62,15 @@ const findCategoryForDocument = (categoryName, sidebars, defaultTopLevel) => {
   }
 
   /*
-     If we reach this point, the category does not exists so we
-     create a new one and add it directly to sidebars.
-     Not a fan of modifying parameters though 😞
+    If we reach this point, the category does not exist so we
+    create a new one and add it directly to sidebars.
+    Not a fan of modifying parameters though 😞
   */
 
-  const category = {
+  const category: any = {
     type: 'category',
     label: categoryName,
-    items: [],
+    items: []
   };
 
   sidebars[defaultTopLevel].push(category);
@@ -92,21 +84,20 @@ const findCategoryForDocument = (categoryName, sidebars, defaultTopLevel) => {
  * category while preserving the order.
  * If the file does not exists, it gets created
  * using the folder structure as the guide.
- * @param {string} root Where the docs are
- * @param {string} destination The path where `sidebars.js` lives
+ * @param root Root directory for the documentation
+ * @param destination The path where `sidebars.js` lives
  */
-const createSidebar = async (root, destination) => {
+export const createSidebar = async (root: string, destination: string) => {
   const documents = await globby(`**/*.md`, {
     onlyFiles: true,
     cwd: root,
   });
 
-  const sidebars = existsSync(destination)
-    ? require(destination)
-    : { docs: [], api: [] };
+  const sidebars = (
+    fs.existsSync(destination) ? require(destination) : { docs: [], api: [] }
+  ) as Sidebars;
 
-  /** @type {Map<string, Entry>} */
-  const reverseLookup = new Map();
+  const reverseLookup = new Map<string, SidebarItemDoc>();
 
   const setRecursive = (category) => {
     // Categories can also have a doc attached to them
@@ -173,14 +164,10 @@ const createSidebar = async (root, destination) => {
     console.log(`Updating ${destination}`);
     await fs.writeFile(
       destination,
-      `module.exports = ${stringify(sidebars, null, 2)};\n`,
+      `module.exports = ${json5.stringify(sidebars, null, 2)};\n`,
       'utf-8'
     );
   } else {
     console.log(`No new documents found`);
   }
-};
-
-module.exports = {
-  createSidebar,
 };

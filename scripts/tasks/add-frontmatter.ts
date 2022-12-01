@@ -1,8 +1,6 @@
-// @ts-check
-
-const globby = require('globby');
-const path = require('path');
-const fs = require('fs-extra');
+import globby from 'globby';
+import path from 'path';
+import fs from 'fs-extra';
 /*
   To make `/docs/latest` have content we need to set the
   slug of a particular page to `/latest/`. `START_PAGE` is how we
@@ -11,11 +9,11 @@ const fs = require('fs-extra');
 const START_PAGE = 'tutorial/introduction.md';
 
 /**
- *
- * @param {string} startPath The absolute path to look for
- * @returns {Promise<Map<string, string>>}
+ * Collects all documentation files in the repo.
+ * @param startPath The absolute path for the docs folder
+ * @returns A Map of file paths and their corresponding file contents
  */
-const getMarkdownFiles = async (startPath) => {
+const getMarkdownFiles = async (startPath: string) => {
   const filesPaths = await globby(path.posix.join(startPath, '**/*.md'));
 
   const files = new Map();
@@ -30,9 +28,9 @@ const getMarkdownFiles = async (startPath) => {
 /**
  * Generates a title using the file name.
  * This should be used as a last resort.
- * @param {string} filepath
+ * @param filepath
  */
-const titleFromPath = (filepath) => {
+const getTitleFromPath = (filepath: string) => {
   const filename = path.basename(filepath);
   const title = filename
     // Other logic here
@@ -43,9 +41,9 @@ const titleFromPath = (filepath) => {
 
 /**
  * Removes markdown links and quotes
- * @param {string} content
+ * @param content
  */
-const cleanUpMarkdown = (content) => {
+const cleanUpMarkdown = (content: string) => {
   const mdLinkRegex = /\[(.*?)\][([].*?[)\]]/gim;
   const groups = content.matchAll(mdLinkRegex);
   let cleanedUp = content;
@@ -73,9 +71,9 @@ const cleanUpMarkdown = (content) => {
  * Returns the first paragraph of content (first
  * occurrence of `\n\n`) without
  * considering the headers
- * @param {string} content
+ * @param content
  */
-const descriptionFromContent = (content) => {
+const getDescriptionFromContent = (content: string) => {
   const lines = content.split('\n');
 
   let description = '';
@@ -105,10 +103,10 @@ const descriptionFromContent = (content) => {
 
 /**
  *
- * @param {string} content
- * @param {string} filepath
+ * @param content
+ * @param filepath
  */
-const addFrontMatter = (content, filepath) => {
+const addFrontMatter = (content: string, filepath: string) => {
   if (content.startsWith('---')) {
     return content;
   }
@@ -118,15 +116,15 @@ const addFrontMatter = (content, filepath) => {
   const titleMatches = content.match(titleRegex);
   const title = titleMatches
     ? titleMatches[1].trim()
-    : titleFromPath(filepath).trim();
+    : getTitleFromPath(filepath).trim();
 
   // The description of the files under `api/structures` is not meaningful so we ignore it
   const description = filepath.includes('structures')
     ? ''
-    : descriptionFromContent(content);
+    : getDescriptionFromContent(content);
   const defaultSlug = path.basename(filepath, '.md');
 
-  let slug;
+  let slug: string;
 
   if (filepath.endsWith(START_PAGE)) {
     slug = '/latest/';
@@ -153,9 +151,9 @@ ${content}`;
  * Automatically adds a frontmatter to all the markdown
  * files under `startPath` using the first heading as
  * title and paragraph as description.
- * @param {string} startPath
+ * @param startPath
  */
-const addFrontmatterToAllDocs = async (startPath) => {
+export const addFrontmatterToAllDocs = async (startPath: string) => {
   const files = await getMarkdownFiles(startPath);
 
   for (const [filepath, content] of files) {
@@ -163,8 +161,4 @@ const addFrontmatterToAllDocs = async (startPath) => {
 
     await fs.writeFile(filepath, newContent, 'utf-8');
   }
-};
-
-module.exports = {
-  addFrontmatter: addFrontmatterToAllDocs,
 };

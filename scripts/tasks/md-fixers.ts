@@ -1,8 +1,8 @@
 //@ts-check
 
-const fs = require('fs').promises;
-const path = require('path');
-const globby = require('globby');
+import fs from 'fs-extra';
+import path from 'path';
+import globby from 'globby';
 
 /**
  * RegExp used to match the details of the arguments of a function
@@ -22,9 +22,9 @@ const argumentRegex = /(\s*\*\s+)`([a-zA-Z]+?)`\s([\s\S]+?)($|\s-)/;
  * This happens when declaring the types of the arguments. This method
  * replaces the closing `>` with the unicode character `&#62;` to
  * prevent this issue.
- * @param {string} line
+ * @param line
  */
-const apiTransformer = (line) => {
+const apiTransformer = (line: string) => {
   const matches = argumentRegex.exec(line);
 
   if (!matches) {
@@ -58,9 +58,9 @@ const fiddlePathFixRegex = /```fiddle docs\//;
  * ```
  * ```fiddle docs/latest/fiddles/example
  * ```
- * @param {String} line
+ * @param line
  */
-const fiddleTransformer = (line) => {
+const fiddleTransformer = (line: string) => {
   const matches = fiddleRegex.exec(line);
   const hasNewPath = fiddlePathFixRegex.test(line);
 
@@ -84,9 +84,9 @@ const fiddleTransformer = (line) => {
  * after HTML comments and thus breaking Docusaurus
  * parse engine. We need to add a new EOL after `-->`
  * is found.
- * @param {string} line
+ * @param line
  */
-const newLineOnHTMLComment = (line) => {
+const newLineOnHTMLComment = (line: string) => {
   // The `startsWith('*')` part is to prevent messing the document `api/native-theme.md` 😓
   if (line.includes('-->') && !line.endsWith('-->') && !line.startsWith('*')) {
     return line.replace('-->', '-->\n');
@@ -97,9 +97,9 @@ const newLineOnHTMLComment = (line) => {
 /**
  * Crowdin needs extra blank lines surrounding the admonition characters so it doesn't
  * break Docusaurus with the translated content.
- * @param {string} line
+ * @param line
  */
-const newLineOnAdmonition = (line) => {
+const newLineOnAdmonition = (line: string) => {
   if (line.trim().startsWith(':::') || line.trim().endsWith(':::')) {
     return `\n${line.trim()}\n`;
   }
@@ -113,9 +113,9 @@ const newLineOnAdmonition = (line) => {
  * docusaurus and our md extensions:
  * * Fix types on regular text
  * * Update the fiddle format
- * @param {string} doc
+ * @param doc
  */
-const transform = (doc) => {
+const transform = (doc: string) => {
   const lines = doc.split('\n');
   const newDoc = [];
   const transformers = [
@@ -138,10 +138,10 @@ const transform = (doc) => {
 
 /**
  * Does a best effort to fix internal links
- * @param {string} content
- * @param {Map<string,string>} linksMaps
+ * @param content
+ * @param linksMaps
  */
-const fixLinks = (content, linksMaps) => {
+const fixLinks = (content: string, linksMaps: Map<string, string>) => {
   /**
    * This regex should match the following examples:
    * * [link label]: ./somewhere.md
@@ -209,9 +209,9 @@ const fixLinks = (content, linksMaps) => {
 
 /**
  * Removes unnecesary extra blank lines
- * @param {string} content
+ * @param content
  */
-const fixReturnLines = (content) => {
+const fixReturnLines = (content: string) => {
   return content.replace(/\n\n(\n)+/g, '\n\n');
 };
 
@@ -220,10 +220,10 @@ const fixReturnLines = (content) => {
  * directly by docusaurus. This function trasform all the md files
  * found in the given `root` (recursively) and makes sure they are
  * ready to consumed by the website.
- * @param {string} root
- * @param {string} [version]
+ * @param root
+ * @param version
  */
-const fixContent = async (root, version = 'latest') => {
+export const fixContent = async (root: string, version = 'latest') => {
   const files = await globby(`${version}/**/*.md`, {
     cwd: root,
   });
@@ -249,8 +249,4 @@ const fixContent = async (root, version = 'latest') => {
 
     await fs.writeFile(path.join(root, filePath), fixedContent, 'utf-8');
   }
-};
-
-module.exports = {
-  fixContent,
 };

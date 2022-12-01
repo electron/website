@@ -248,6 +248,13 @@ module.exports = {
         },
       ],
     },
+    {
+      type: 'category',
+      label: 'Tutorial',
+      items: [
+        'latest/tutorial/support',
+      ],
+    },
   ],
   api: [
     {
@@ -425,6 +432,7 @@ module.exports = {
       items: [
         'latest/api/parent-port',
         'latest/api/utility-process',
+        'latest/api/synopsis',
       ],
     },
   ],
