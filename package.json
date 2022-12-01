@@ -20,7 +20,7 @@
     "update-l10n-sources": "node scripts/update-l10n-sources.js",
     "lint": "eslint \"src/**/*.{js,jsx}\"  \"scripts/**/*.js\"",
     "test": "yarn lint && jest",
-    "pre-build": "node ./scripts/pre-build.js",
+    "pre-build": "ts-node ./scripts/pre-build.ts",
     "governance": "node ./scripts/governance.js",
     "process-docs-changes": "node ./scripts/process-docs-changes.js",
     "update-pinned-version": "node ./scripts/update-pinned-version.js"
