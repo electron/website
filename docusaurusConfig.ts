@@ -1,7 +1,7 @@
 import path from 'path';
 
 const npm2yarn = require('@docusaurus/remark-plugin-npm2yarn');
-const fiddleEmbedder = require('./src/transformers/fiddle-embedder.js');
+const fiddleEmbedder = require('./src/transformers/fiddle-embedder');
 const apiLabels = require('./src/transformers/api-labels');
 const apiOptionsClass = require('./src/transformers/api-options-class');
 const apiStructurePreviews = require('./src/transformers/api-structure-previews');
