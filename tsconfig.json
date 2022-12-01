@@ -1,5 +1,6 @@
 {
   "extends": "@tsconfig/docusaurus/tsconfig.json",
+  "exclude": ["**/node_modules/*", "blog", "docs", "build", "i18n"],
   "compilerOptions": {
     "baseUrl": "."
   }

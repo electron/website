@@ -1,4 +1,7 @@
-//@ts-check
+import { Parent } from 'unist';
+import visitParents from 'unist-util-visit-parents';
+import { Data as HastData } from 'mdast-util-to-hast/lib/index';
+import { Emphasis, PhrasingContent, Text } from 'mdast';
 
 /**
  * This transformer adds badge styling to our raw API documentation.
@@ -21,9 +24,6 @@
  *
  * See: https://github.com/syntax-tree/mdast-util-to-hast
  */
-
-const visitParents = require('unist-util-visit-parents');
-
 module.exports = function attacher() {
   return transformer;
 };
@@ -33,29 +33,33 @@ const DEPRECATED = 'Deprecated';
 const EXPERIMENTAL = 'Experimental';
 const READONLY = 'Readonly';
 
-/**
- *
- * @param {import("unist").Parent} tree
- */
-async function transformer(tree) {
+async function transformer(tree: Parent) {
   visitParents(tree, 'emphasis', visitor);
 }
 
-/**
- *
- * @param {import("unist").Node} node
- */
-function visitor(node) {
-  if (Array.isArray(node.children) && node.children.length === 1) {
+function visitor(node: Emphasis) {
+  if (node.children.length === 1 && isText(node.children[0])) {
     const tag = node.children[0].value;
     if (PLATFORMS.includes(tag)) {
-      node.data = { hProperties: { className: ['badge badge--primary'] } };
+      node.data = {
+        hProperties: { className: ['badge badge--primary'] },
+      } satisfies HastData;
     } else if (tag === DEPRECATED) {
-      node.data = { hProperties: { className: ['badge badge--danger'] } };
+      node.data = {
+        hProperties: { className: ['badge badge--danger'] },
+      } satisfies HastData;
     } else if (tag === EXPERIMENTAL) {
-      node.data = { hProperties: { className: ['badge badge--warning'] } };
+      node.data = {
+        hProperties: { className: ['badge badge--warning'] },
+      } satisfies HastData;
     } else if (tag === READONLY) {
-      node.data = { hProperties: { className: ['badge badge--info'] } };
+      node.data = {
+        hProperties: { className: ['badge badge--info'] },
+      } satisfies HastData;
     }
   }
+}
+
+function isText(node: PhrasingContent): node is Text {
+  return node.type === 'text';
 }
