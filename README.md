@@ -11,7 +11,7 @@ yarn install
 
 ## How to modify the documentation
 
-For English documentation the changes need to happen upstream in `[electron/electron]`. These
+For English documentation the changes need to happen upstream in [`electron/electron`][]. These
 changes are picked automatically as soon as they are done in the stable branch. The exception
 is when there is a new major release.
 
@@ -47,8 +47,7 @@ Note: `yarn pre-build` is only necessary the first time to get content under `/d
 
 ## Local Development
 
-If you want to use the contents from [`electron/electron`](https://github.com/electron/electron)
-run the following:
+If you want to use the contents from [`electron/electron`][] run the following:
 
 ```console
 yarn pre-build
@@ -111,4 +110,4 @@ The content of this repository is organized as follows:
 
 [ced]: https://npmjs.com/package/create-electron-documentation
 [Crowdin]: https://crowdin.com/project/electron
-[electron/electron]: https://github.com/electron/electron/tree/main/docs
+[`electron/electron`]: https://github.com/electron/electron/tree/main/docs
