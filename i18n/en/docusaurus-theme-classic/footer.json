@@ -52,7 +52,7 @@
     "description": "The label of footer link with label=Open Collective linking to https://opencollective.com/electron"
   },
   "copyright": {
-    "message": "Copyright © 2021 OpenJS Foundation and Electron contributors.",
+    "message": "Copyright © 2022 OpenJS Foundation and Electron contributors.",
     "description": "The footer copyright"
   },
   "link.item.label.Governance": {
