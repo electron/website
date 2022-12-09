@@ -83,5 +83,9 @@
     "remark-gfm": "^1.0.0",
     "tar-stream": "^2.2.0",
     "unist-util-visit-parents": "^3.1.1"
+  },
+  "resolutions": {
+    "**/latest-version/package-json/got": "11.8.5",
+    "**/@mdx-js/mdx/remark-parse/trim": "0.0.3"
   }
 }
