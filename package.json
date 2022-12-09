@@ -85,7 +85,7 @@
     "unist-util-visit-parents": "^3.1.1"
   },
   "resolutions": {
-    "**/latest-version/package-json/got": "11.8.5",
+    "**/latest-version/package-json": "7.0.0",
     "**/@mdx-js/mdx/remark-parse/trim": "0.0.3"
   }
 }
