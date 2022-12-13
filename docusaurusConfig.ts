@@ -1,5 +1,5 @@
 import path from 'path';
-import { DocusaurusConfig } from '@docusaurus/types';
+import { Config } from '@docusaurus/types';
 import npm2yarn from '@docusaurus/remark-plugin-npm2yarn';
 
 import apiLabels from './src/transformers/api-labels';
@@ -7,23 +7,12 @@ import apiOptionsClass from './src/transformers/api-options-class';
 import apiStructurePreviews from './src/transformers/api-structure-previews';
 import fiddleEmbedder from './src/transformers/fiddle-embedder';
 
-const config: DocusaurusConfig = {
+const config: Config = {
   title: 'Electron',
   tagline: 'Build cross-platform desktop apps with JavaScript, HTML, and CSS',
   url: 'https://electronjs.org',
   baseUrl: '/',
-  titleDelimiter: '|',
-  trailingSlash: undefined,
-  noIndex: false,
-  onDuplicateRoutes: 'warn',
-  themes: [],
-  staticDirectories: ['static'],
-  scripts: [],
-  stylesheets: [],
-  clientModules: [],
-  baseUrlIssueBanner: true,
   onBrokenLinks: 'warn',
-  onBrokenMarkdownLinks: 'warn',
   favicon: 'assets/img/favicon.ico',
   organizationName: 'electron',
   projectName: 'electron',
