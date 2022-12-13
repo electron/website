@@ -1,9 +1,15 @@
 import clsx from 'clsx';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import usePortal from 'react-useportal';
 
 import styles from './APIStructurePreview.module.scss';
+
+interface PreviewProps {
+  content: string;
+  title: string;
+  url: string;
+}
 
 /**
  * Floating API structure preview tooltip. We dynamically inject
@@ -11,7 +17,7 @@ import styles from './APIStructurePreview.module.scss';
  * See /src/transformers/api-structure-previews.js for usage.
  */
 
-function APIStructurePreview(props) {
+function APIStructurePreview(props: PreviewProps) {
   // TODO: the react-useportal module creates 1 portal per ref even before we need
   // to even render the element. Ideally, we would have a solution that only creates
   // portals on demand and cleans them up.
@@ -54,18 +60,22 @@ function APIStructurePreview(props) {
     }
   }, [show]);
 
+  const handleMouseEnter = useCallback(() => {
+    setShow(true);
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    setShow(false);
+  }, []);
+
   return (
     <a
       aria-describedby="structures-tooltip" // for accessibility purposes
       href={props.url}
       ref={linkRef}
       className={styles.link}
-      onMouseEnter={(_ev) => {
-        setShow(true);
-      }}
-      onMouseLeave={() => {
-        setShow(false);
-      }}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       {props.title}
       {!!show && (
@@ -77,7 +87,13 @@ function APIStructurePreview(props) {
   );
 }
 
-const Card = (props) => (
+interface CardProps {
+  content: string;
+  innerRef: React.LegacyRef<HTMLElement>;
+  position: React.CSSProperties;
+}
+
+const Card = (props: CardProps) => (
   <article
     ref={props.innerRef}
     id="structures-tooltip"

@@ -12,7 +12,14 @@ const filePriority = {
   'renderer.js': 1,
 };
 
-const FiddleButton = (props) => {
+interface FiddleButtonProps {
+  files: Record<string, string>;
+  focus: string;
+  version: string;
+  dir: string;
+}
+
+const FiddleButton = (props: FiddleButtonProps) => {
   const { files, focus, version, dir } = props;
 
   // NOTE: We hack together the version path using Docusaurus directories
