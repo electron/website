@@ -3,8 +3,20 @@ import Link from '@docusaurus/Link';
 import { useColorMode } from '@docusaurus/theme-common';
 import clsx from 'clsx';
 import styles from './AppsGrid.module.scss';
+import { Url } from 'url';
 
-export default function AppsGrid({ list }) {
+interface App {
+  href: string;
+  image: string;
+  isMonochrome?: boolean;
+  name: string;
+}
+
+interface AppsGridProps {
+  list: App[];
+}
+
+export default function AppsGrid({ list }: AppsGridProps) {
   const { colorMode } = useColorMode();
   const isDarkTheme = colorMode === 'dark';
   return (

@@ -44,7 +44,17 @@ export default function GovernancePage() {
   );
 }
 
-const GroupCard = ({ group }) => {
+interface GroupCardProps {
+  group: {
+    name: string;
+    members: string[];
+    link: string;
+    description: string;
+    chair: string;
+  }
+}
+
+const GroupCard = ({ group }: GroupCardProps) => {
   // WGs have variable amount of members, so we only show the first 4
   // by default. If there are more than 4 members, we use the `showAll`
   // state to indicate if the card is expanded or not
@@ -95,7 +105,7 @@ const GroupCard = ({ group }) => {
           )}
         >
           <Member user={group.chair} isChair />
-          {group.members.map((user) => (
+          {group.members.map((user: string) => (
             <Member key={user} user={user} />
           ))}
         </div>
@@ -129,7 +139,12 @@ const GroupCard = ({ group }) => {
   );
 };
 
-const Member = ({ user, isChair }) => {
+interface MemberProps {
+  user: string;
+  isChair?: boolean;
+}
+
+const Member = ({ user, isChair }: MemberProps) => {
   return (
     <div className="avatar" style={{ margin: '1rem' }}>
       <img

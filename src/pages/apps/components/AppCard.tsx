@@ -1,7 +1,10 @@
 import clsx from 'clsx';
 import * as React from 'react';
+import { App } from '../../../plugins/apps';
 
 import styles from './AppCard.module.scss';
+
+type AppCardProps = Omit<App, 'date' | 'faintColorOnWhite' | 'slug'>;
 
 export default function AppCard({
   name,
@@ -12,7 +15,7 @@ export default function AppCard({
   isFavorite,
   website,
   repository,
-}) {
+}: AppCardProps) {
   return (
     <div
       className={clsx(

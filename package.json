@@ -39,7 +39,7 @@
     "node-fetch": "^2.6.7",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-markdown": "^7.1.0",
+    "react-markdown": "^6.0.3",
     "react-useportal": "^1.0.14",
     "sass": "^1.37.5"
   },
@@ -66,6 +66,8 @@
     "@types/jest": "^26.0.23",
     "@types/mdast": "^3.0.10",
     "@types/node": "^18.11.10",
+    "@types/node-fetch": "^2.6.2",
+    "@types/semver": "^7.3.13",
     "@types/tar-stream": "^2.2.2",
     "@types/unist": "^2.0.3",
     "del": "^6.0.0",

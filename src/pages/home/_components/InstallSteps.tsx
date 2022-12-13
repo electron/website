@@ -4,10 +4,13 @@ import clsx from 'clsx';
 import styles from './InstallSteps.module.scss';
 import semver from 'semver';
 import CodeWindow from './CodeWindow';
+import { ReleasesPluginContent } from '../../../plugins/releases';
 
 export default function InstallSteps() {
   const [channel, setChannel] = useState('stable');
-  const { stable, prerelease, nightly } = usePluginData('releases-plugin');
+  const { stable, prerelease, nightly } = usePluginData(
+    'releases-plugin'
+  ) as ReleasesPluginContent;
   const releaseInfo = {
     stable: {
       invocation: 'electron@latest',

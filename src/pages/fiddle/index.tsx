@@ -9,10 +9,11 @@ import LinuxLogo from '@site/static/assets/img/platform-linux.svg';
 import clsx from 'clsx';
 
 import { usePluginData } from '@docusaurus/useGlobalData';
+import { SemVer } from 'semver';
 
 export default function FiddlePage() {
   const [OS, setOS] = useState('win32');
-  const version = usePluginData('fiddle-versions-plugin');
+  const version = usePluginData('fiddle-versions-plugin') as SemVer;
   useEffect(() => {
     if (navigator.userAgent.indexOf('Windows') != -1) return setOS('win32');
     if (navigator.userAgent.indexOf('Mac') != -1) return setOS('darwin');

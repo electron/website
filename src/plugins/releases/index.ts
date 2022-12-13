@@ -1,17 +1,34 @@
-const fetch = require('node-fetch');
-const semver = require('semver');
+import fetch, { Response } from 'node-fetch';
+import semver from 'semver';
 
-let req;
+import { Plugin } from '@docusaurus/types';
+
+/**
+ * A partial implementation of the Electron header type
+ */
+interface ReleaseInfo {
+  chrome: string;
+  node: string;
+  version: string;
+}
+
+export interface ReleasesPluginContent {
+  stable: ReleaseInfo;
+  prerelease: ReleaseInfo;
+  nightly: ReleaseInfo;
+}
+
+let req: Response;
 
 module.exports = async function releasesPlugin() {
-  return {
+  const plugin: Plugin<ReleasesPluginContent> = {
     name: 'releases-plugin',
     async loadContent() {
       if (!req) {
-        req = await fetch.default('https://electronjs.org/headers/index.json');
+        req = await fetch('https://electronjs.org/headers/index.json');
       }
       // sort all versions by semver (descending)
-      const releases = (await req.json()).sort((a, b) =>
+      const releases = ((await req.json()) as ReleaseInfo[]).sort((a, b) =>
         semver.compare(b.version, a.version)
       );
       // stable releases won't have a prerelease tag
@@ -28,8 +45,9 @@ module.exports = async function releasesPlugin() {
     },
     async contentLoaded({ content, actions }) {
       const { setGlobalData } = actions;
-      // Create friends global data
       setGlobalData(content);
     },
   };
+
+  return plugin;
 };

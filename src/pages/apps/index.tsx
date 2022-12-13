@@ -6,6 +6,7 @@ import styles from './apps.module.scss';
 import AppCard from './components/AppCard';
 import { usePluginData } from '@docusaurus/useGlobalData';
 import { useState } from 'react';
+import { AppsPluginContent } from '../../plugins/apps';
 
 const SORTS = {
   ALPHABETICAL: 'Alphabetical',
@@ -16,7 +17,7 @@ export default function AppsPage() {
   const [activeCategory, setActiveCategory] = useState(null);
   const [activeSort, setActiveSort] = useState(SORTS.ALPHABETICAL);
   const [activeQuery, setActiveQuery] = useState('');
-  const { apps, categories } = usePluginData('apps-plugin');
+  const { apps, categories } = usePluginData('apps-plugin') as AppsPluginContent;
 
   const sortedApps = apps
     .sort((a, b) => {

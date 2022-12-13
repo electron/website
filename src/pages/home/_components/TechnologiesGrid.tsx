@@ -3,7 +3,17 @@ import { useColorMode } from '@docusaurus/theme-common';
 import clsx from 'clsx';
 import styles from './TechnologiesGrid.module.scss';
 
-export default function TechnologiesGrid({ list }) {
+interface Tech {
+  image: string;
+  isMonochrome?: boolean;
+  name: string;
+}
+
+interface TechnologiesGridProps {
+  list: Tech[];
+}
+
+export default function TechnologiesGrid({ list }: TechnologiesGridProps) {
   const { colorMode } = useColorMode();
   const isDarkTheme = colorMode === 'dark';
   return (

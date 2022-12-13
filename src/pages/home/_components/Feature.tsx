@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import clsx from 'clsx';
 import styles from './Feature.module.scss';
 
-export default function Feature({ title, src, alt, children }) {
+interface FeatureProps {
+  title: string;
+  src: string;
+  alt: string;
+}
+
+export default function Feature({ title, src, alt, children }: PropsWithChildren<FeatureProps>) {
   return (
     <div className={clsx(styles.featureRow, 'row')}>
       <div className="col col--6">
