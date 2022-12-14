@@ -4,6 +4,8 @@ import path from 'path';
 import { Data, Node, Parent } from 'unist';
 import { Definition, Link, LinkReference } from 'mdast';
 
+import { Import } from '../util/interfaces';
+
 let structureDefinitions: Map<string, string>;
 let hasStructures: boolean;
 
@@ -21,7 +23,7 @@ async function transformer(tree: Parent) {
       type: 'import',
       value:
         "import APIStructurePreview from '@site/src/components/APIStructurePreview';",
-    } as any);
+    } as Import);
   }
 }
 

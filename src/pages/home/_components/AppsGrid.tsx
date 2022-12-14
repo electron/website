@@ -3,7 +3,6 @@ import Link from '@docusaurus/Link';
 import { useColorMode } from '@docusaurus/theme-common';
 import clsx from 'clsx';
 import styles from './AppsGrid.module.scss';
-import { Url } from 'url';
 
 interface App {
   href: string;

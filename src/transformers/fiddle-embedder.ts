@@ -6,6 +6,8 @@ import path from 'path';
 import fs from 'fs-extra';
 import latestVersion from 'latest-version';
 
+import { Import } from '../util/interfaces';
+
 let _version = '';
 async function getVersion() {
   if (_version === '') {
@@ -24,14 +26,6 @@ interface FiddleEmbedOptions {
 }
 
 /**
- * This is the output from remark-mdx
- * but that library isn't typed so we make do.
- */
-interface Import extends Node {
-  value: string;
-}
-
-/**
  * Tests for AST nodes that match for
  * ````
  * ```fiddle path/to/fiddle
@@ -46,7 +40,7 @@ function matchFiddleBlock(node: Node): node is Code {
   );
 }
 
-const importNode = {
+const importNode: Import = {
   type: 'import',
   value: "import FiddleEmbed from '@site/src/components/FiddleEmbed';",
 };

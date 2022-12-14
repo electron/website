@@ -1,10 +1,6 @@
-// @ts-check
+import type { TOCItem } from '@docusaurus/mdx-loader';
 
-/**
- *
- * @param {import('@docusaurus/types').TOCItem[]} toc
- */
-export function cleanTOC(toc) {
+export function cleanTOC(toc: TOCItem[]) {
   if (toc.length === 0) {
     return toc;
   }
@@ -18,10 +14,8 @@ export function cleanTOC(toc) {
 /**
  * Cleans a heading string according to the docs-parser format
  * into a more readable syntax for the Electron docs.
- * @param {string} str
- * @returns string
  */
-function cleanHeading(str) {
+function cleanHeading(str: string) {
   // For events: `Event: 'close'` becomes `close`
   const eventsMatch = str.match(/Event: &#39;([a-z]*(?:-[a-z]+)*)&#39;/);
   // For properties / methods: `win.previewFile(path[, displayName]) macOS` becomes `previewFile`
