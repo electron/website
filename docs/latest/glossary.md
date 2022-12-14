@@ -139,7 +139,7 @@ OSR (offscreen rendering) can be used for loading heavy page in
 background and then displaying it after (it will be much faster).
 It allows you to render page without showing it on screen.
 
-For more information, read the [Offscreen Rendering][osr] tutorial.
+For more information, read the [Offscreen Rendering] tutorial.
 
 ### preload script
 
@@ -242,10 +242,10 @@ embedded content.
 [mac app store submission guide]: latest/tutorial/mac-app-store-submission-guide.md
 [main]: #main-process
 [msi]: https://docs.microsoft.com/en-us/windows/win32/msi/windows-installer-portal
+[Native Node Modules]: latest/tutorial/using-native-node-modules.md
 [offscreen rendering]: latest/tutorial/offscreen-rendering.md
 [process sandboxing]: latest/tutorial/sandbox.md
 [renderer]: #renderer-process
 [userland]: #userland
-[using native node modules]: latest/tutorial/using-native-node-modules.md
 [UtilityProcess]: latest/api/utility-process.md
 [v8]: #v8
