@@ -2,7 +2,7 @@ import visitParents from 'unist-util-visit-parents';
 import fs from 'fs';
 import path from 'path';
 import { Data, Node, Parent } from 'unist';
-import { Definition, Link, LinkReference } from 'mdast';
+import { Definition, InlineCode, Link, LinkReference, Text } from 'mdast';
 
 import { Import } from '../util/interfaces';
 
@@ -11,7 +11,7 @@ let hasStructures: boolean;
 
 export default function attacher() {
   return transformer;
-};
+}
 
 async function transformer(tree: Parent) {
   structureDefinitions = new Map();
@@ -34,11 +34,7 @@ async function transformer(tree: Parent) {
  * As a side effect, this function also puts all reference-style links (definitions)
  * for API structures into a Map, which will be used on the second pass.
  */
-const checkLinksandDefinitions = (
-  node: Node<Data>,
-  _index: number,
-  _parent: Parent
-): node is Link => {
+const checkLinksandDefinitions = (node: Node<Data>): node is Link => {
   if (isDefinition(node) && node.url.includes('/api/structures/')) {
     structureDefinitions.set(node.identifier, node.url);
   }
@@ -49,11 +45,7 @@ const checkLinksandDefinitions = (
  * This function is the test function from the second pass of the tree visitor.
  * Any values returning 'true' will run replaceLinkWithPreview().
  */
-function isStructureLinkReference(
-  node: Node,
-  _index: number,
-  _parent: Parent
-): node is LinkReference {
+function isStructureLinkReference(node: Node): node is LinkReference {
   return isLinkReference(node) && structureDefinitions.has(node.identifier);
 }
 
@@ -111,12 +103,14 @@ function replaceLinkWithPreview(node: Link | LinkReference) {
 
   // replace the raw link file with our JSX component.
   // See src/components/APIStructurePreview.jsx for implementation.
-  if (Array.isArray(node.children) && node.children.length > 0) {
+  if (Array.isArray(node.children) && isTextOrInlineCode(node.children[0])) {
     hasStructures = true;
-    // @ts-ignore: We're mutating the object so we ignore types here
-    node.type = 'jsx';
-    // @ts-ignore: We're mutating the object so we ignore types here
-    node.value = `<APIStructurePreview url="${relativeStructurePath}" title="${node.children[0].value}" content="${str}"/>`;
+    /* eslint-disable @typescript-eslint/no-explicit-any */
+    (node as any).type = 'jsx';
+    (
+      node as any
+    ).value = `<APIStructurePreview url="${relativeStructurePath}" title="${node.children[0].value}" content="${str}"/>`;
+    /* eslint-enable @typescript-eslint/no-explicit-any */
   }
 }
 
@@ -130,4 +124,8 @@ function isLink(node: Node): node is Link {
 
 function isLinkReference(node: Node): node is LinkReference {
   return node.type === 'linkReference';
+}
+
+function isTextOrInlineCode(node: Node): node is Text | InlineCode {
+  return node.type === 'text' || node.type === 'inlineCode';
 }

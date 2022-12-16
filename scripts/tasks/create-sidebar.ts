@@ -1,9 +1,9 @@
 import fs from 'fs-extra';
 import json5 from 'json5';
 import globby from 'globby';
-import type {
+import {
   Sidebars,
-  SidebarItemDoc
+  SidebarItemDoc,
 } from '@docusaurus/plugin-content-docs/src/sidebars/types';
 
 const IGNORE_LIST = [
@@ -66,11 +66,11 @@ const findCategoryForDocument = (
     create a new one and add it directly to sidebars.
     Not a fan of modifying parameters though 😞
   */
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const category: any = {
     type: 'category',
     label: categoryName,
-    items: []
+    items: [],
   };
 
   sidebars[defaultTopLevel].push(category);

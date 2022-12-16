@@ -1,18 +1,17 @@
-//@ts-check
-
 /**
  * This is a pre-hook task that checks if the files `docusaurus.config.js` or
  * `sidebars.js` have been modified and if so makes sure that the files
  * needed for localization are regenerated.
  */
+import logger from '@docusaurus/logger';
 
-const { getChanges } = require('./utils/git-commands');
-const { execute } = require('./utils/execute');
+import { getChanges } from './utils/git-commands';
+import { execute } from './utils/execute';
 
 const files = ['docusaurus.config.js', 'sidebars.js'];
 
 const start = async () => {
-  console.log(`Checking if the following files have been modified:
+  logger.info(`Checking if the following files have been modified:
 ${files.join('\n')}`);
   const output = await getChanges();
 
@@ -21,7 +20,7 @@ ${files.join('\n')}`);
   });
 
   if (!needsRegeneration) {
-    console.log(`No changes found`);
+    logger.info(`No changes found`);
     return;
   }
 
@@ -30,9 +29,11 @@ ${files.join('\n')}`);
   const localeModified = (await getChanges()) !== output;
 
   if (localeModified) {
-    const pleaseCommit =
-      'Contents in "/i18n/en/" have been modified. Please add the changes to your commit';
-    console.error('\x1b[31m%s\x1b', pleaseCommit);
+    logger.error(
+      logger.red(
+        'Contents in "/i18n/en/" have been modified. Please add the changes to your commit'
+      )
+    );
     process.exit(1);
   }
 };

@@ -8,7 +8,12 @@ interface FeatureProps {
   alt: string;
 }
 
-export default function Feature({ title, src, alt, children }: PropsWithChildren<FeatureProps>) {
+export default function Feature({
+  title,
+  src,
+  alt,
+  children,
+}: PropsWithChildren<FeatureProps>) {
   return (
     <div className={clsx(styles.featureRow, 'row')}>
       <div className="col col--6">

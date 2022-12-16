@@ -25,7 +25,7 @@ module.exports = async function appsPlugin() {
   const response = await fetch(
     'https://raw.githubusercontent.com/erickzhao/apps/master/index.json'
   );
-  const apps = await response.json() as App[];
+  const apps = (await response.json()) as App[];
   const plugin: Plugin<AppsPluginContent> = {
     name: 'apps-plugin',
     async loadContent() {

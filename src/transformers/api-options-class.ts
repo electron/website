@@ -22,7 +22,7 @@ import visitParents from 'unist-util-visit-parents';
  */
 export default function attacher() {
   return transformer;
-};
+}
 
 const CLASS = 'electron-api-options-list';
 
@@ -31,7 +31,10 @@ async function transformer(tree: Parent) {
 }
 
 function visitor(node: ListItem) {
-  if (isParagraph(node.children[0]) && isOptions(node.children[0].children[0])) {
+  if (
+    isParagraph(node.children[0]) &&
+    isOptions(node.children[0].children[0])
+  ) {
     const hastProperties = {
       hProperties: { className: [CLASS] },
     } satisfies HastData;
@@ -44,5 +47,6 @@ function isParagraph(node: Node): node is Paragraph {
 }
 
 function isOptions(node: Node): node is InlineCode {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return node.type === 'inlineCode' && (node as any).value === 'options';
 }

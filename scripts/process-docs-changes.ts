@@ -4,23 +4,23 @@
  * depends on `update-pinned-version` and `pre-build` being run before
  * in order to produce the right result.
  */
-
-//@ts-check
 if (
   !(process.env.CI || process.env.NODE_ENV === 'development') &&
   !process.env.GITHUB_TOKEN
 ) {
-  console.error('Missing GITHUB_TOKEN environment variable');
+  logger.error(`Missing ${logger.yellow('GITHUB_TOKEN')} environment variable`);
   process.exit(1);
 }
 
-const {
+import logger from '@docusaurus/logger';
+
+import {
   createPR,
   getChanges,
   pushChanges,
   isCurrentBranchTracked,
   getCurrentBranchName,
-} = require('./utils/git-commands');
+} from './utils/git-commands';
 
 const PR_BRANCH = 'chore/docs-updates';
 const COMMIT_MESSAGE = '"chore: update ref to docs (🤖)"';
@@ -33,10 +33,8 @@ const NAME = 'electron-bot';
  * This is done by looking at the status of each file:
  * - `A` means it is new and has been staged
  * - `??` means it is a new file and has not been staged yet
- *
- * @param {string} gitOutput
  */
-const newDocFiles = (gitOutput) => {
+const newDocFiles = (gitOutput: string) => {
   const lines = gitOutput.split('\n');
   const newFiles = lines.filter((line) => {
     const trimmedLine = line.trim();
@@ -67,7 +65,7 @@ const processDocsChanges = async () => {
   const branchName = await getCurrentBranchName();
 
   if (output === '') {
-    console.log('Nothing updated, skipping');
+    logger.info('Nothing updated, skipping');
     return;
   } else {
     const newFiles = newDocFiles(output);
@@ -75,11 +73,11 @@ const processDocsChanges = async () => {
       branchName === 'main' ? PR_BRANCH : `${PR_BRANCH}-${branchName}`;
 
     if (newFiles.length > 0 && branchIsTracked) {
-      console.log(`New documents available:
+      logger.info(`New documents available:
 ${newFiles.join('\n')}`);
       await createPR(prBranchName, branchName, EMAIL, NAME, COMMIT_MESSAGE);
     } else {
-      console.log(
+      logger.info(
         `Only existing content has been modified. Pushing changes directly.`
       );
       await pushChanges(branchName, EMAIL, NAME, COMMIT_MESSAGE);
@@ -93,7 +91,7 @@ ${newFiles.join('\n')}`);
 // https://nodejs.org/docs/latest/api/modules.html#modules_accessing_the_main_module
 if (require.main === module) {
   process.addListener('unhandledRejection', (e) => {
-    console.error(e);
+    logger.error(e);
     process.exit(1);
   });
 

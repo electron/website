@@ -26,7 +26,7 @@ import { Emphasis, PhrasingContent, Text } from 'mdast';
  */
 export default function attacher() {
   return transformer;
-};
+}
 
 const PLATFORMS = ['macOS', 'Windows', 'Linux'];
 const DEPRECATED = 'Deprecated';

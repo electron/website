@@ -17,7 +17,9 @@ export default function AppsPage() {
   const [activeCategory, setActiveCategory] = useState(null);
   const [activeSort, setActiveSort] = useState(SORTS.ALPHABETICAL);
   const [activeQuery, setActiveQuery] = useState('');
-  const { apps, categories } = usePluginData('apps-plugin') as AppsPluginContent;
+  const { apps, categories } = usePluginData(
+    'apps-plugin'
+  ) as AppsPluginContent;
 
   const sortedApps = apps
     .sort((a, b) => {

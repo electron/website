@@ -1,22 +1,22 @@
-//@ts-check
+import path from 'path';
 
-const fs = require('fs').promises;
-const path = require('path');
+import logger from '@docusaurus/logger';
+import fs from 'fs-extra';
+
 const packageJsonPath = path.join(__dirname, '..', 'package.json');
 
 /**
  * Updates the field `sha` of the `package.json` with the value passed
  * via parameter in the CLI.
- * @param {string} sha
  */
-const updateSha = async (sha) => {
+const updateSha = async (sha: string) => {
   const packageJson = JSON.parse(await fs.readFile(packageJsonPath, 'utf-8'));
   const oldSha = packageJson.sha;
-  console.log(`New SHA: ${sha}`);
-  console.log(`Old SHA: ${oldSha}`);
+  logger.info(`New SHA: ${logger.green(sha)}`);
+  logger.info(`Old SHA: ${logger.green(oldSha)}`);
 
   if (sha === oldSha) {
-    console.log(`Nothing to update`);
+    logger.info(`Nothing to update`);
     return;
   }
 
@@ -28,7 +28,7 @@ const updateSha = async (sha) => {
     'utf-8'
   );
 
-  console.log(`SHA updated`);
+  logger.info(`SHA updated`);
 };
 
 // When a file is run directly from Node.js, `require.main` is set to its module.
@@ -39,8 +39,8 @@ if (require.main === module) {
   const sha = process.argv[2];
 
   if (!sha) {
-    console.error('Please provide an SHA value as follows:');
-    console.error('yarn update-pinned-version SHA');
+    logger.error('Please provide an SHA value as follows:');
+    logger.error('yarn update-pinned-version <SHA>');
   } else {
     updateSha(sha);
   }

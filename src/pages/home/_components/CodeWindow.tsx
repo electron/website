@@ -2,7 +2,11 @@ import React from 'react';
 
 import styles from './CodeWindow.module.scss';
 
-export default function CodeWindow({ children }) {
+interface CodeWindowProps {
+  children: React.ReactNode;
+}
+
+export default function CodeWindow({ children }: CodeWindowProps) {
   return (
     <div>
       <div className={styles.buttons}>

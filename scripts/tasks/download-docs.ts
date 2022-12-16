@@ -77,6 +77,7 @@ const downloadFromGitHub = async (
   return new Promise((resolve) => {
     got
       .stream(tarballUrl)
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
       .pipe(require('gunzip-maybe')())
       .pipe(
         tar
@@ -85,7 +86,7 @@ const downloadFromGitHub = async (
             header.name = header.name.replace(`${repository}-${target}`, '');
 
             if (header.type === 'file' && header.name.match(downloadMatch)) {
-              let chunks = [];
+              const chunks = [];
               stream.on('data', (data) => {
                 chunks.push(data);
               });

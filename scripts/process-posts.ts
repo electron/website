@@ -1,5 +1,3 @@
-//@ts-check
-
 /**
  * Transforms the original markdown of the posts in electron/electronjs.org
  * into something that can be consumed by Docusaurus.
@@ -7,13 +5,13 @@
  * This should not happen very frequently as we want to move the blog content
  * to this repo, but until that happens this file should remain here.
  */
+import path from 'path';
 
-const fs = require('fs').promises;
-const path = require('path');
-const globby = require('globby');
-const frontmatter = require('gray-matter');
+import fs from 'fs-extra';
+import globby from 'globby';
+import frontmatter from 'gray-matter';
 
-const createAuthor = (author) => {
+const createAuthor = (author: string) => {
   return {
     name: author,
     url: `https://github.com/${author}`,

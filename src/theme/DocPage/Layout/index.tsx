@@ -4,8 +4,11 @@ import Layout from '@theme/Layout';
 import BackToTopButton from '@theme/BackToTopButton';
 import DocPageLayoutSidebar from '@theme/DocPage/Layout/Sidebar';
 import DocPageLayoutMain from '@theme/DocPage/Layout/Main';
+import type { Props } from '@theme/DocPage/Layout';
+
 import styles from './styles.module.css';
-export default function DocPageLayout({ children }) {
+
+export default function DocPageLayout({ children }: Props): JSX.Element {
   const sidebar = useDocsSidebar();
   const [hiddenSidebarContainer, setHiddenSidebarContainer] = useState(false);
   return (

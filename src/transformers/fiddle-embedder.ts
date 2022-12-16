@@ -19,7 +19,7 @@ async function getVersion() {
 
 export default function attacher() {
   return transformer;
-};
+}
 
 interface FiddleEmbedOptions {
   focus: string;

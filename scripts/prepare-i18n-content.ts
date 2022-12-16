@@ -1,23 +1,20 @@
-//@ts-check
-
 /**
  * Takes care of downloading the documentation from the
  * right places, and transform it to make it ready to
  * be used by docusaurus.
  */
-const path = require('path');
-const fs = require('fs-extra');
+import path from 'path';
+import fs from 'fs-extra';
+import logger from '@docusaurus/logger';
 
-const { addFrontmatter } = require('./tasks/add-frontmatter');
-const { fixContent } = require('./tasks/md-fixers');
+import { addFrontmatterToAllDocs } from './tasks/add-frontmatter';
+import { fixContent } from './tasks/md-fixers';
+import config from '../docusaurusConfig';
 
 const DOCS_FOLDER = path.join('docs', 'latest');
-const {
-  i18n: { locales: configuredLocales },
-} = require('../docusaurus.config');
 
 const start = async () => {
-  const locales = new Set(configuredLocales);
+  const locales = new Set(config.i18n.locales);
   locales.delete('en');
   for (const locale of locales) {
     const localeDocs = path.join(
@@ -28,7 +25,7 @@ const start = async () => {
     );
     const staticResources = ['fiddles', 'images'];
 
-    console.log(`Copying static assets to ${locale}`);
+    logger.info(`Copying static assets to ${logger.green(locale)}`);
     for (const staticResource of staticResources) {
       await fs.copy(
         path.join(DOCS_FOLDER, staticResource),
@@ -36,11 +33,11 @@ const start = async () => {
       );
     }
 
-    console.log(`Fixing markdown (${locale})`);
+    logger.info(`Fixing markdown (${logger.green(locale)})`);
     await fixContent(localeDocs, 'latest');
 
-    console.log(`Adding automatic frontmatter (${locale})`);
-    await addFrontmatter(path.join(localeDocs, 'latest'));
+    logger.info(`Adding automatic frontmatter (${logger.green(locale)})`);
+    await addFrontmatterToAllDocs(path.join(localeDocs, 'latest'));
   }
 };
 

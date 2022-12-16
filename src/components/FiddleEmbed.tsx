@@ -53,6 +53,12 @@ const FiddleButton = (props: FiddleButtonProps) => {
   );
 };
 
+interface EditorWindowProps {
+  children: React.ReactNode;
+  version: string;
+  gitDir: string;
+}
+
 /**
  * Adapted facebook/docusaurus
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -60,7 +66,7 @@ const FiddleButton = (props: FiddleButtonProps) => {
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-function EditorWindow({ children, version, gitDir }) {
+function EditorWindow({ children, version, gitDir }: EditorWindowProps) {
   return (
     <div className={styles.editorWindow}>
       <div className={styles.editorWindowHeader}>

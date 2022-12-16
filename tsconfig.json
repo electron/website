@@ -4,7 +4,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "target": "ES2017",
-    "moduleResolution": "Node16",
+    "moduleResolution": "Node",
     "resolveJsonModule": true,
   }
 }

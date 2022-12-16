@@ -51,7 +51,7 @@ interface GroupCardProps {
     link: string;
     description: string;
     chair: string;
-  }
+  };
 }
 
 const GroupCard = ({ group }: GroupCardProps) => {
