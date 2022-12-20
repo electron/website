@@ -298,7 +298,6 @@ module.exports = {
         'latest/api/clipboard',
         'latest/api/context-bridge',
         'latest/api/crash-reporter',
-        'latest/api/desktop-capturer',
         'latest/api/ipc-renderer',
         'latest/api/native-image',
         'latest/api/web-frame',
