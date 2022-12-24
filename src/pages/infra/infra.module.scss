@@ -1,0 +1,142 @@
+@mixin description-text {
+  color: var(--ifm-color-emphasis-700);
+  letter-spacing: 0.01em;
+}
+
+@mixin dark-mode-invert {
+  [data-theme='dark'] & {
+    filter: invert(1);
+  }
+}
+
+.header {
+  margin: 0 auto;
+  max-width: 40rem;
+  text-align: center;
+
+  p {
+    @include description-text;
+  }
+}
+
+.cardWrapper {
+  margin: 1rem 0;
+}
+
+.card {
+  max-width: 30rem;
+  padding: 1rem;
+  margin: 0 auto;
+  height: 100%;
+}
+
+.cardTitle {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 0.2em;
+}
+
+.cardSubtitle {
+  font-size: 1em;
+  font-weight: 500;
+  margin-bottom: 0.1rem;
+}
+
+.cardLink {
+  display: inline-block;
+  vertical-align: middle;
+  opacity: 1;
+  &:hover {
+    opacity: 0.5;
+  }
+  img {
+    height: 1em;
+    margin-left: 0.2em;
+    @include dark-mode-invert;
+  }
+}
+
+.cardIcon {
+  text-align: center;
+  color: var(--ifm-color-white);
+  line-height: var(--ifm-avatar-photo-size-sm);
+  // one-off colors
+  background: linear-gradient(to top, #dd5e89, #f7bb97);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.cardDescription {
+  display: block;
+  font-size: 0.9em;
+  min-height: 2em;
+  margin-bottom: 0;
+  @include description-text;
+}
+
+.cardList {
+  $num-items: 4;
+  $height-item: 50px;
+  $height-very-very-big: 9999px;
+
+  position: relative;
+  min-height: $height-item * $num-items;
+  max-height: $height-item * $num-items;
+  overflow: hidden;
+  transition: max-height 0.2s cubic-bezier(0, 1, 0, 1);
+
+  // apply gradient to fold as pseudo-element
+  &.unexpanded {
+    &::after {
+      position: absolute;
+      content: '';
+      top: 0;
+      pointer-events: none;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        to top,
+        var(--ifm-card-background-color) 0%,
+        rgba(255, 255, 255, 0) 50%
+      );
+    }
+  }
+
+  &.expanded {
+    max-height: $height-very-very-big;
+    transition: max-height 0.5s ease-in-out;
+  }
+}
+
+.memberName {
+  font-weight: 400;
+  font-size: 0.8em;
+}
+
+.buttonSubtle {
+  border: none;
+  font-size: 1.2em;
+  color: var(--ifm-color-primary);
+  &:hover {
+    color: var(--ifm-color-primary-dark);
+  }
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.tagRow {
+  display: flex;
+  flex-direction: row;
+
+  > div {
+    &:not(:first-child) {
+      margin-left: 8px;
+    }
+  }
+
+  .invertable {
+    @include dark-mode-invert;
+  }
+}

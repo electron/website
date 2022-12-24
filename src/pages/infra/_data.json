@@ -1,0 +1,257 @@
+[
+  {
+    "name": "Sudowoodo",
+    "repo": "electron/sudowoodo",
+    "avatar": "https://slack-files2.s3-us-west-2.amazonaws.com/avatars/2018-08-15/416779643825_62fad90b900da0d03327_192.png",
+    "private": true,
+    "team": "wg-releases",
+    "description": "Responsible for orchestrating Electron releases, automatically schedules nightly and beta releases",
+    "dependsOn": ["MetaDumper", "unreleased", "Hasher", "Not Goma"],
+    "tags": ["Probot", "Slack"],
+    "slack": {
+      "commands": [{
+        "name": "/sudowoodo",
+        "description": "Summons Sudowoodo to queue a release, provides a form to choose release parameters"
+      }]
+    },
+    "deployedOn": "heroku"
+  },
+  {
+    "name": "MetaDumper",
+    "repo": "electron/metadumper",
+    "private": true,
+    "team": "wg-releases",
+    "description": "Returns `process.versions` information for a given Electron Release Artifact before it has been released.",
+    "dependsOn": [],
+    "tags": [],
+    "deployedOn": "heroku"
+  },
+  {
+    "name": "Unreleased",
+    "repo": "electron/unreleased",
+    "team": "wg-releases",
+    "description": "Runs final pre-release checks to ensure things get merged and released on time.",
+    "dependsOn": [],
+    "tags": ["Probot", "Slack"],
+    "slack": {
+      "commands": [{
+        "name": "/check-unreleased",
+        "arguments": ["[branch]"],
+        "description": "Shows unreleased commits for a given branch"
+      }, {
+        "name": "/verify-semver",
+        "arguments": ["[branch]"],
+        "description": "Shows the hypothetical next semver-compliant version number for a given branch based on what has landed on that branch"
+      }, {
+        "name": "/check-unmerged",
+        "arguments": ["[branch]"],
+        "description": "Shows unmerged PRs targeting a given branch or requiring manual backport to that branch"
+      }]
+    },
+    "deployedOn": "heroku"
+  },
+  {
+    "name": "Continuous Auth",
+    "repo": "continuousauth/web",
+    "url": "https://continuousauth.dev/",
+    "avatar": "https://avatars.githubusercontent.com/oa/1102312?s=240",
+    "team": "wg-ecosystem",
+    "description": "Enables the usage of 2FA for automated package publishing to improve the security of the Node.js ecosystem.",
+    "dependsOn": [],
+    "tags": ["Slack", "CircleCI", "GH Actions"],
+    "deployedOn": "heroku"
+  },
+  {
+    "name": "Symbol Server",
+    "repo": "electron/symbol-server",
+    "team": "wg-releases",
+    "description": "Serves up debug symbols for symbolicating crashes that occur within Electron, used by tools like Sentry.",
+    "dependsOn": [],
+    "tags": ["s3"],
+    "deployedOn": "heroku"
+  },
+  {
+    "name": "Release Status",
+    "repo": "electron/release-status",
+    "url": "https://releases.electronjs.org",
+    "private": true,
+    "team": "wg-releases",
+    "description": "Shows information of past, current and future releases including real time release information.",
+    "dependsOn": ["Sudowoodo"],
+    "tags": [],
+    "deployedOn": "heroku"
+  },
+  {
+    "name": "Sheriff",
+    "repo": "electron/sheriff",
+    "avatar": "https://avatars.slack-edge.com/2019-11-21/844347353604_500f5a5483db67de7160_192.png",
+    "team": "wg-admin",
+    "description": "Guards the entire Electron Organization, monitors for suspicious behavior and enforces our permission policies across GitHub and beyond.",
+    "dependsOn": [],
+    "tags": ["Probot"],
+    "deployedOn": "heroku"
+  },
+  {
+    "name": "Not Goma",
+    "repo": "electron/not-goma",
+    "avatar": "https://emoji.slack-edge.com/T394SAQKC/goma/d6b38c8b2035f496.png",
+    "url": "https://notgoma.com",
+    "private": true,
+    "team": "goma-squad",
+    "description": "Definitely not a goma cluster, not improving build performance by over 1000% since 2019.",
+    "dependsOn": ["Not Goma Auth"],
+    "tags": [],
+    "deployedOn": "azure"
+  },
+  {
+    "name": "Not Goma Auth",
+    "repo": "electron/not-goma-auth",
+    "url": "https://auth.notgoma.com",
+    "private": true,
+    "team": "goma-squad",
+    "description": "Not an authentication proxy for something that definitely isn't a goma cluster, signing you in via GitHub since 2021.",
+    "dependsOn": [],
+    "tags": ["GitHub"],
+    "deployedOn": "heroku"
+  },
+  {
+    "name": "Chromium Helper",
+    "repo": "electron/slack-chromium-helper",
+    "avatar": "https://avatars.slack-edge.com/2021-04-06/1927633861558_9420928d9de5fce9495a_192.png",
+    "team": "wg-upgrades",
+    "description": "Unfurls Chromium related URLs in Slack and provides additional context where it can.",
+    "dependsOn": [],
+    "tags": ["Slack"],
+    "deployedOn": "heroku"
+  },
+  {
+    "name": "Archaeologist",
+    "repo": "electron/archaeologist",
+    "avatar": "https://raw.githubusercontent.com/electron/archaeologist/main/design/logo.jpg",
+    "team": "wg-releases",
+    "description": "Diffs the automatically generated Electron Typescript definitions to make reviewing docs changes easy.",
+    "dependsOn": [],
+    "tags": ["CircleCI", "Probot"],
+    "deployedOn": "heroku"
+  },
+  {
+    "name": "Cation",
+    "repo": "electron/cation",
+    "avatar": "https://avatars.githubusercontent.com/in/25811?s=120",
+    "team": "wg-releases",
+    "description": "All the Releases WG automation ends up in this bot, semver tag enforcement, API review requirements, new PR detection, etc.",
+    "dependsOn": [],
+    "tags": ["Probot"],
+    "deployedOn": "heroku"
+  },
+  {
+    "name": "Clerk",
+    "repo": "electron/clerk",
+    "avatar": "https://avatars.githubusercontent.com/in/16104?s=120",
+    "team": "wg-releases",
+    "description": "Enforces release note requirements on all PRs and persists / groups them during a release.",
+    "dependsOn": [],
+    "tags": ["Probot"],
+    "deployedOn": "heroku"
+  },
+  {
+    "name": "Data",
+    "repo": "electron/data",
+    "private": true,
+    "team": "wg-admin",
+    "description": "A collection of webhooks and cron jobs that pull data from various other systems for analytics and debugging purposes in Grafana.",
+    "dependsOn": [],
+    "tags": ["CircleCI", "GitHub"],
+    "deployedOn": "heroku"
+  },
+  {
+    "name": "Patch Conflict Fixer",
+    "repo": "MarshallOfSound/patch-conflict-fixer",
+    "avatar": "https://avatars.githubusercontent.com/in/112758?s=120",
+    "team": "wg-upgrades",
+    "description": "Automatically fixes PR merge conflicts that arise as a result of GitHub Merges ignoring `.gitattributes` files.",
+    "dependsOn": [],
+    "tags": ["Probot"],
+    "deployedOn": "heroku"
+  },
+  {
+    "name": "Roller",
+    "repo": "electron/roller",
+    "avatar": "https://avatars.githubusercontent.com/in/115177?s=120",
+    "team": "wg-upgrades",
+    "description": "A service that automates the process of updating major dependencies in Electron including Chromium and Node.js",
+    "dependsOn": [],
+    "tags": ["Probot"],
+    "deployedOn": "heroku"
+  },
+  {
+    "name": "Rotation",
+    "repo": "electron/rotation",
+    "private": true,
+    "url": "https://rotation.electronjs.org",
+    "avatar": "https://avatars.githubusercontent.com/oa/1684500?s=120",
+    "team": "wg-admin",
+    "description": "Manages working group rotations automatically, status notifications and schedules. Ensuring there's always sometime around for the important things.",
+    "dependsOn": [],
+    "tags": ["GitHub", "Slack"],
+    "deployedOn": "heroku"
+  },
+  {
+    "name": "Trop",
+    "repo": "electron/trop",
+    "avatar": "https://avatars.githubusercontent.com/in/9879?s=120",
+    "team": "wg-releases",
+    "description": "Automates the process of backporting features and fixes to release branches.",
+    "dependsOn": [],
+    "tags": ["Probot"],
+    "deployedOn": "heroku"
+  },
+  {
+    "name": "Update Server",
+    "repo": "electron/update.electronjs.org",
+    "team": "wg-ecosystem",
+    "description": "A public, free-to-use, open source update server designed for Open Source Electron apps.",
+    "dependsOn": [],
+    "tags": ["GitHub"],
+    "deployedOn": "heroku"
+  },
+  {
+    "name": "Website",
+    "repo": "electron/electronjs.org-new",
+    "avatar": "/assets/img/logo.svg",
+    "team": "wg-ecosystem",
+    "description": "Well, you're looking at it.  Welcome to the Electron website, home to our documentation, guides and other information.",
+    "dependsOn": ["Fiddle Service"],
+    "tags": [],
+    "deployedOn": "heroku"
+  },
+  {
+    "name": "Zoilist",
+    "repo": "electron/zoilist",
+    "avatar": "https://avatars.slack-edge.com/2021-08-19/2393246201094_a3cadbb7d7e8b37309b1_192.jpg",
+    "team": "wg-api",
+    "description": "Nags the API Working Group to review semver/minor Pull Requests.",
+    "dependsOn": [],
+    "tags": ["Probot"],
+    "deployedOn": "heroku"
+  },
+  {
+    "name": "Fiddle Service",
+    "repo": "electron/fiddle.electronjs.org",
+    "avatar": "/assets/img/fiddle_logo.png",
+    "team": "wg-ecosystem",
+    "description": "Deep link handling for opening Fiddles from the Electron docs and other sources.",
+    "dependsOn": [],
+    "tags": [],
+    "deployedOn": "heroku"
+  },
+  {
+    "name": "Hasher",
+    "repo": "MarshallOfSound/hasher",
+    "team": "wg-releases",
+    "description": "Ultra fast SHA generation for S3 files, can hash gigabytes of release assets in just seconds",
+    "dependsOn": [],
+    "tags": ["s3"],
+    "deployedOn": "aws"
+  }
+]

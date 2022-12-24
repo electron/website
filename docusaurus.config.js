@@ -165,6 +165,10 @@ module.exports = {
           title: 'More',
           items: [
             {
+              label: 'Infrastructure',
+              to: '/infra'
+            },
+            {
               label: 'GitHub',
               href: 'https://github.com/electron/electron',
             },
