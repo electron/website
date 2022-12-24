@@ -34,6 +34,7 @@
   font-size: 1.2rem;
   font-weight: 500;
   margin-bottom: 0.2em;
+  white-space:nowrap; 
 }
 
 .cardSubtitle {
@@ -122,3 +123,30 @@
 .hidden {
   visibility: hidden;
 }
+
+
+@media  (min-width: 1701px)  {
+  .cardDescriptionBody {
+    min-height: 3em;
+  }
+}
+
+@media(max-width: 1700px) and (min-width: 1501px)  {
+  .cardDescriptionBody {
+    min-height: 4em;
+
+  }
+}
+
+@media(max-width: 1500px) and (min-width: 1301px)  {
+  .cardDescriptionBody {
+    min-height: 6em; 
+  }
+}
+
+@media(max-width: 1300px) and (min-width: 997px)  {
+  .cardDescriptionBody {
+    min-height: 7em;
+  }
+}
+

@@ -29,7 +29,7 @@ export default function GovernancePage() {
             </Translate>
           </p>
         </header>
-        <div className="row">
+        <div className="row" style={{ alignItems: 'flex-start' }}>
           {data.map((group) => (
             <div
               key={group.name}
@@ -74,7 +74,9 @@ const GroupCard = ({ group }) => {
               </a>
             </div>
             <p className={clsx('avatar_description', styles.cardDescription)}>
-              {group.description}
+              <div className={styles.cardDescriptionBody}>
+                {group.description}
+              </div>
             </p>
           </div>
         </div>
