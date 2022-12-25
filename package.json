@@ -69,7 +69,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.28.0",
     "fs-extra": "^9.1.0",
-    "globby": "^11.0.3",
+    "globby": "^11.1.0",
     "got": "^11.8.2",
     "gray-matter": "^4.0.3",
     "gunzip-maybe": "^1.4.2",
@@ -82,6 +82,7 @@
     "remark": "^13.0.0",
     "remark-gfm": "^1.0.0",
     "tar-stream": "^2.2.0",
+    "unist-util-visit": "^2.0.1",
     "unist-util-visit-parents": "^3.1.1"
   },
   "resolutions": {

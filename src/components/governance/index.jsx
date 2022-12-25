@@ -1,7 +1,6 @@
-import Layout from '@theme/Layout';
-import useBaseUrl from '@docusaurus/useBaseUrl';
 import clsx from 'clsx';
 import React, { useState } from 'react';
+import Link from '@docusaurus/Link';
 import Translate from '@docusaurus/Translate';
 
 import styles from './governance.module.scss';
@@ -13,34 +12,35 @@ import data from './_data.json';
 
 export default function GovernancePage() {
   return (
-    <Layout title="Governance">
-      <main className="container margin-vert--xl">
-        <header className={styles.header}>
-          <h1>Electron Governance</h1>
-          <p>
-            <Translate
-              id="governance.subheading"
-              description="The subheading of the governance page"
-            >
-              The Electron governance system is comprised of Working Groups that
-              oversee different aspects of the Electron ecosystem, and an
-              Administrative working group that functions to resolve conflicts
-              between them.
-            </Translate>
-          </p>
-        </header>
-        <div className="row">
-          {data.map((group) => (
-            <div
-              key={group.name}
-              className={clsx('col', 'col--4', styles.cardWrapper)}
-            >
-              <GroupCard group={group} />
-            </div>
-          ))}
-        </div>
-      </main>
-    </Layout>
+    <>
+      <header className={styles.header}>
+        <h1>Electron Governance</h1>
+        <p>
+          <Translate
+            id="governance.subheading"
+            description="The subheading of the governance page"
+          >
+            The Electron governance system is comprised of Working Groups that
+            oversee different aspects of the Electron ecosystem, and an
+            Administrative working group that functions to resolve conflicts
+            between them.
+          </Translate>
+        </p>
+      </header>
+      <style>
+      {'.theme-doc-markdown.markdown { max-width: initial; margin: 0 2rem; }'}
+      </style>
+      <div className={clsx('row', styles.pageWrapper)}>
+        {data.map((group) => (
+          <div
+            key={group.name}
+            className={clsx('col', 'col--4', styles.cardWrapper)}
+          >
+            <GroupCard group={group} />
+          </div>
+        ))}
+      </div>
+    </>
   );
 }
 
@@ -65,13 +65,9 @@ const GroupCard = ({ group }) => {
           </div>
           <div className="avatar__intro">
             <div className={clsx('avatar__name', styles.cardTitle)}>
-              {group.name}
-              <a className={styles.cardLink} href={group.link}>
-                <img
-                  src={useBaseUrl('assets/img/icon-external.svg')}
-                  alt={`External link to ${group.name} README`}
-                />
-              </a>
+              <Link to={`/governance/groups/${group.slug}`}>
+                {group.name}
+              </Link>
             </div>
             <p className={clsx('avatar_description', styles.cardDescription)}>
               {group.description}
@@ -94,7 +90,7 @@ const GroupCard = ({ group }) => {
             hasExpand && (expanded ? styles.expanded : styles.unexpanded)
           )}
         >
-          <Member user={group.chair} isChair />
+          {group.chair ? <Member user={group.chair} isChair /> : null}
           {group.members.map((user) => (
             <Member key={user} user={user} />
           ))}

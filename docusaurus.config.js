@@ -74,7 +74,12 @@ module.exports = {
           label: 'Community',
           position: 'left',
           items: [
-            { to: 'governance', label: 'Governance' },
+            {
+              label: 'Governance',
+              type: 'doc',
+              docId: 'index',
+              docsPluginId: 'governance-pages',
+            },
             { to: 'apps', label: 'Showcase' },
             { to: 'community', label: 'Resources' },
           ],
@@ -190,6 +195,34 @@ module.exports = {
     path.resolve(__dirname, './src/plugins/releases'),
     path.resolve(__dirname, './src/plugins/fiddle'),
     ['@docusaurus/plugin-ideal-image', {}],
+    ['@docusaurus/plugin-content-docs', {
+      id: 'governance-pages',
+      path: 'governance',
+      editUrl: ({ docPath }) => {
+        const fixedPath = docPath.replace(/groups\/([^\/]+)\//g, 'wg-$1/');
+        return `https://github.com/electron/governance/edit/main/${fixedPath}`;
+      },
+      routeBasePath: '/governance',
+      beforeDefaultRemarkPlugins: [
+        [
+          require('./scripts/remark/link-rewrite'),
+          {
+            replacer: (url) => {
+              if (!url.startsWith('http')) {
+                if (url.includes('/playbooks/')) {
+                  return `https://github.com/electron/governance/blob/main/playbooks/${url.split('/playbooks/')[1]}`;
+                }
+                if (url.includes('CODE_OF_CONDUCT.md')) {
+                  return `https://github.com/electron/governance/blob/main/CODE_OF_CONDUCT.md${url.split('CODE_OF_CONDUCT.md')[1] || ''}`;
+                }
+                return url.replace(/(^|\/)wg-([^\/]+\/)/, '$1groups/$2')
+              }
+              return url
+            }
+          }
+        ]
+      ]
+    }]
   ],
   presets: [
     [
