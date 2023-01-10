@@ -49,7 +49,7 @@ an issue:
   * [Web embeds in Electron](latest/tutorial/web-embeds.md)
 * [Boilerplates and CLIs](latest/tutorial/boilerplates-and-clis.md)
   * [Boilerplate vs CLI](latest/tutorial/boilerplates-and-clis.md#boilerplate-vs-cli)
-  * [electron-forge](latest/tutorial/boilerplates-and-clis.md#electron-forge)
+  * [Electron Forge](latest/tutorial/boilerplates-and-clis.md#electron-forge)
   * [electron-builder](latest/tutorial/boilerplates-and-clis.md#electron-builder)
   * [electron-react-boilerplate](latest/tutorial/boilerplates-and-clis.md#electron-react-boilerplate)
   * [Other Tools and Boilerplates](latest/tutorial/boilerplates-and-clis.md#other-tools-and-boilerplates)
