@@ -1,12 +1,16 @@
-const gitMock = jest.createMockFromModule('../utils/git-commands');
+const gitMock = jest.createMockFromModule(
+  '../utils/git-commands'
+) as jest.Mocked<typeof import('../utils/git-commands')>;
 jest.mock('../utils/git-commands', () => gitMock);
-// Make sure we do not run any real git commands by accident
-const executeMock = jest.createMockFromModule('../utils/execute');
-jest.mock('../utils/execute', () => executeMock);
 
-const { processDocsChanges } = require('../process-docs-changes');
+jest.mock('../utils/execute');
+
+import { processDocsChanges } from '../process-docs-changes';
 
 describe('process-docs-changes', () => {
+  beforeEach(() => {
+    process.env.NODE_ENV = 'development';
+  });
   it('does not create any PR if there are no changes', async () => {
     gitMock.getChanges.mockResolvedValue('');
 

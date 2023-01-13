@@ -1,15 +1,16 @@
-const github = require('@actions/github');
-const { execute } = require('./execute');
+import github from '@actions/github';
+import { execute } from './execute';
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const REVIEWERS = ['molant', 'erickzhao'];
 
 /**
  * Creates a new commit with the current changes.
- * @param {string} email
- * @param {string} name
- * @param {string} commitMessage
  */
-const createCommit = async (email, name, commitMessage) => {
+export const createCommit = async (
+  email: string,
+  name: string,
+  commitMessage: string
+) => {
   await execute('git remote -vv');
   await execute('git status');
   await execute(`git config --global user.email ${email}`);
@@ -21,7 +22,7 @@ const createCommit = async (email, name, commitMessage) => {
 /**
  * Returns the current modified files in the repo.
  */
-const getChanges = async () => {
+export const getChanges = async () => {
   const { stdout } = await execute('git status --porcelain');
 
   return stdout.trim();
@@ -30,12 +31,13 @@ const getChanges = async () => {
 /**
  * Creates a new commit and pushes the given branch, creating it
  * upstream if needed.
- * @param {string} branch
- * @param {string} email
- * @param {string} name
- * @param {string} message
  */
-const pushChanges = async (branch, email, name, message) => {
+export const pushChanges = async (
+  branch: string,
+  email: string,
+  name: string,
+  message: string
+) => {
   await createCommit(email, name, message);
   if (await isCurrentBranchTracked()) {
     await execute(`git pull --rebase`);
@@ -52,16 +54,17 @@ const pushChanges = async (branch, email, name, message) => {
  * Force pushes the changes to the documentation update branch
  * and creates a new PR if there is none available with review
  * request for `REVIEWERS`.
- * @param {string} branch
- * @param {string} base
- * @param {string} email
- * @param {string} name
- * @param {string} message
  */
-const createPR = async (branch, base, email, name, message) => {
+export const createPR = async (
+  branch: string,
+  base: string,
+  email: string,
+  name: string,
+  message: string
+) => {
   await createCommit(email, name, message);
 
-  if (getCurrentBranchName() !== branch) {
+  if ((await getCurrentBranchName()) !== branch) {
     await execute(`git checkout -b ${branch}`);
   }
 
@@ -107,9 +110,8 @@ const createPR = async (branch, base, email, name, message) => {
 
 /**
  * Returns an array with the remote branches.
- * @returns {Promise<string[]>}
  */
-const getRemoteBranches = async () => {
+export const getRemoteBranches = async () => {
   const { stdout } = await execute(`git branch -r`);
 
   /**
@@ -145,10 +147,8 @@ const getRemoteBranches = async () => {
  *
  * In the case above the branch `bots` is not tracked (no
  * `[origin/]` information) and is not the active branch (no `*`).
- *
- * @returns {Promise<boolean>}
  */
-const isCurrentBranchTracked = async () => {
+export const isCurrentBranchTracked = async () => {
   const { stdout } = await execute(`git branch -vv`);
 
   const lines = stdout.trim().split('\n');
@@ -163,18 +163,8 @@ const isCurrentBranchTracked = async () => {
 
 /**
  * Returns the name of the current branch
- * @returns {Promise<string>}
  */
-const getCurrentBranchName = async () => {
+export const getCurrentBranchName = async () => {
   const { stdout } = await execute(`git branch --show-current`);
   return stdout;
-};
-
-module.exports = {
-  createPR,
-  getChanges,
-  getCurrentBranchName,
-  getRemoteBranches,
-  isCurrentBranchTracked,
-  pushChanges,
 };

@@ -1,5 +1,5 @@
-const path = require('path');
-const execa = require('execa');
+import path from 'path';
+import execa, { Options } from 'execa';
 
 /**
  * Groups all string arguments into a single one. E.g.:
@@ -11,9 +11,8 @@ const execa = require('execa');
  * Distributed under an Apache-2.0 License
  *
  * https://github.com/webhintio/hint/blob/606fee86054a54aa55a598fdc6d86400d1269851/release/lib/utils.ts#L78
- * @param {string[]} args The arguments
  */
-const groupArgs = (args) => {
+const groupArgs = (args: string[]) => {
   let isStringArgument = false;
   const newArgs = args.reduce((acum, current) => {
     if (isStringArgument) {
@@ -60,11 +59,8 @@ const groupArgs = (args) => {
 /**
  * Executes the given `command` using `execa` and doing the
  * required transformations (e.g.: splitting and grouping arguments).
- * @param {string} command
- * @param {execa.Options} [options]
- * @returns
  */
-const execute = (command, options) => {
+export const execute = (command: string, options?: Options) => {
   console.log(
     `${options && options.cwd ? options.cwd : process.cwd()}${
       path.sep
@@ -75,8 +71,4 @@ const execute = (command, options) => {
   const program = args.shift();
 
   return execa(program, groupArgs(args), options);
-};
-
-module.exports = {
-  execute,
 };

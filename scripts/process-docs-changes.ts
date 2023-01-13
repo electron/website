@@ -1,17 +1,3 @@
-/**
- * Checks if there are any changes in the repo and creates or updates
- * a PR if needed. This is part of the `update-docs.yml` workflow and
- * depends on `update-pinned-version` and `pre-build` being run before
- * in order to produce the right result.
- */
-if (
-  !(process.env.CI || process.env.NODE_ENV === 'development') &&
-  !process.env.GITHUB_TOKEN
-) {
-  logger.error(`Missing ${logger.yellow('GITHUB_TOKEN')} environment variable`);
-  process.exit(1);
-}
-
 import logger from '@docusaurus/logger';
 
 import {
@@ -26,6 +12,24 @@ const PR_BRANCH = 'chore/docs-updates';
 const COMMIT_MESSAGE = '"chore: update ref to docs (🤖)"';
 const EMAIL = 'electron@github.com';
 const NAME = 'electron-bot';
+
+/**
+ * Checks if there are any changes in the repo and creates or updates
+ * a PR if needed. This is part of the `update-docs.yml` workflow and
+ * depends on `update-pinned-version` and `pre-build` being run before
+ * in order to produce the right result.
+ */
+if (
+  !(
+    process.env.CI ||
+    process.env.NODE_ENV === 'development' ||
+    process.env.NODE_ENV === 'test'
+  ) &&
+  !process.env.GITHUB_TOKEN
+) {
+  logger.error(`Missing ${logger.yellow('GITHUB_TOKEN')} environment variable`);
+  process.exit(1);
+}
 
 /**
  * Checks if there are new document files (*.md) by parsing the given
@@ -59,7 +63,7 @@ const newDocFiles = (gitOutput: string) => {
  * - Creates a new branch and pushes the changes directly if it does
  *   not exist.
  */
-const processDocsChanges = async () => {
+export const processDocsChanges = async () => {
   const output = await getChanges();
   const branchIsTracked = await isCurrentBranchTracked();
   const branchName = await getCurrentBranchName();
@@ -97,7 +101,3 @@ if (require.main === module) {
 
   processDocsChanges();
 }
-
-module.exports = {
-  processDocsChanges,
-};
