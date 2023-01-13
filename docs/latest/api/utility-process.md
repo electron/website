@@ -139,6 +139,7 @@ Returns:
 Emitted when the child process sends a message using [`process.parentPort.postMessage()`](latest/api/process.md#processparentport).
 
 [`child_process.fork`]: https://nodejs.org/dist/latest-v16.x/docs/api/child_process.html#child_processforkmodulepath-args-options
-[Services API]: https://chromium.googlesource.com/chromium/src/+/master/docs/mojo_and_services.md
+[Services API]: https://chromium.googlesource.com/chromium/src/+/main/docs/mojo_and_services.md
 [stdio]: https://nodejs.org/dist/latest/docs/api/child_process.html#optionsstdio
 [event-emitter]: https://nodejs.org/api/events.html#events_class_eventemitter
+[`MessagePortMain`]: latest/api/message-port-main.md

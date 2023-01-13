@@ -61,7 +61,7 @@ The `net` module has the following methods:
 
 ### `net.request(options)`
 
-* `options` (ClientRequestConstructorOptions | string) - The `ClientRequest` constructor options.
+* `options` ([ClientRequestConstructorOptions](latest/api/client-request.md#new-clientrequestoptions) | string) - The `ClientRequest` constructor options.
 
 Returns [`ClientRequest`](latest/api/client-request.md)
 

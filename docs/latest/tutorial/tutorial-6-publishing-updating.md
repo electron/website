@@ -222,12 +222,12 @@ rest of our docs and happy developing! If you have questions, please stop by our
 [code-signed]: latest/tutorial/code-signing.md
 [discord server]: https://discord.gg/electronjs
 [electron fiddle]: https://electronjs.org/fiddle
-[fiddle-build]: https://github.com/electron/fiddle/blob/master/.github/workflows/build.yaml
-[fiddle-forge-config]: https://github.com/electron/fiddle/blob/master/forge.config.js
+[fiddle-build]: https://github.com/electron/fiddle/blob/main/.github/workflows/build.yaml
+[fiddle-forge-config]: https://github.com/electron/fiddle/blob/main/forge.config.js
 [github actions]: https://github.com/features/actions
 [github publisher]: https://www.electronforge.io/config/publishers/github
 [github releases]: https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository
-[git tag]: https://git-scm.com/book/en/v2/Git-Basics-Tagging
+[git-tag]: https://git-scm.com/book/en/v2/Git-Basics-Tagging
 [new-pat]: https://github.com/settings/tokens/new
 [publish command]: https://www.electronforge.io/cli#publish
 [publisher]: https://www.electronforge.io/config/publishers

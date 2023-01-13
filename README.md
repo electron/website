@@ -66,11 +66,11 @@ For example, if you have the following structure:
 ```
 └── projects
      ├─ electron
-     ├─ electronjs.org-new
+     ├─ website
      ├─ ...
 ```
 
-and assuming your prompt is in `/projects/electronjs.org-new/` you will have to run:
+and assuming your prompt is in `/projects/website/` you will have to run:
 
 ```console
 yarn pre-build ../electron

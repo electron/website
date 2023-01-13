@@ -240,3 +240,4 @@ See also how the [Page Visibility API](latest/api/browser-window.md#page-visibil
 
 [SCA]: https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm
 [`postMessage`]: https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage
+[`MessagePortMain`]: latest/api/message-port-main.md

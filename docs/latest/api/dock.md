@@ -86,3 +86,5 @@ Returns `Menu | null` - The application's [dock menu][dock-menu].
 * `image` ([NativeImage](latest/api/native-image.md) | string)
 
 Sets the `image` associated with this dock icon.
+
+[dock-menu]: https://developer.apple.com/macos/human-interface-guidelines/menus/dock-menus/
