@@ -1,5 +1,5 @@
-import { Plugin } from '@docusaurus/types';
 import fetch from 'node-fetch';
+import { Plugin } from '@docusaurus/types';
 
 export interface App {
   category: string;
