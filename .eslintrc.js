@@ -1,11 +1,13 @@
+/** @type {import('eslint').Linter.Config} */
 module.exports = {
+  extends: ['eslint:recommended', 'plugin:react/recommended', 'prettier'],
+  plugins: ['react', 'prettier'],
   env: {
     browser: true,
     es2021: true,
     jest: true,
     node: true,
   },
-  extends: ['eslint:recommended', 'plugin:react/recommended', 'prettier'],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -13,15 +15,33 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: ['react', 'prettier'],
   rules: {
     'prettier/prettier': 'error',
-    'react/prop-types': 'off',
-    'no-unused-vars': [
-      'error',
-      { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
-    ],
   },
+  overrides: [
+    {
+      files: '**/*.+(ts|tsx)',
+      parser: '@typescript-eslint/parser',
+      parserOptions: {
+        project: './tsconfig.json',
+      },
+      plugins: ['react', 'prettier', '@typescript-eslint/eslint-plugin'],
+      extends: [
+        'eslint:recommended',
+        'plugin:react/recommended',
+        'plugin:@typescript-eslint/recommended',
+        'prettier',
+      ],
+      rules: {
+        '@typescript-eslint/no-unused-vars': [
+          'warn',
+          {
+            varsIgnorePattern: '^_',
+          },
+        ],
+      },
+    },
+  ],
   settings: {
     react: {
       createClass: 'createReactClass', // Regex for Component Factory to use,
