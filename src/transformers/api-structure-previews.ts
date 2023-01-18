@@ -103,7 +103,11 @@ function replaceLinkWithPreview(node: Link | LinkReference) {
 
   // replace the raw link file with our JSX component.
   // See src/components/APIStructurePreview.jsx for implementation.
-  if (Array.isArray(node.children) && isTextOrInlineCode(node.children[0])) {
+  if (
+    Array.isArray(node.children) &&
+    node.children.length > 0 &&
+    isTextOrInlineCode(node.children[0])
+  ) {
     hasStructures = true;
     /* eslint-disable @typescript-eslint/no-explicit-any */
     (node as any).type = 'jsx';
