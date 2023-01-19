@@ -9,7 +9,7 @@ hide_title: false
 
 > Perform copy and paste operations on the system clipboard.
 
-Process: [Main](latest/glossary.md#main-process), [Renderer](latest/glossary.md#renderer-process)
+Process: [Main](latest/glossary.md#main-process), [Renderer](latest/glossary.md#renderer-process) (non-sandboxed only)
 
 On Linux, there is also a `selection` clipboard. To manipulate it
 you need to pass `selection` to each method:
