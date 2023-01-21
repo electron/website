@@ -1,13 +1,11 @@
 # electronjs.org
 
 [![Push and publish main](https://github.com/electron/website/actions/workflows/push-main.yml/badge.svg)](https://github.com/electron/website/actions/workflows/push-main.yml)
-
 [![Update i18n deploy](https://github.com/electron/website/actions/workflows/update-i18n-deploy.yml/badge.svg)](https://github.com/electron/website/actions/workflows/update-i18n-deploy.yml)
-
 [![Crowdin](https://badges.crowdin.net/electron/localized.svg)](https://crowdin.com/project/electron)
 
 This repository contains the code for the [Electron](https://www.electronjs.org/) website.
-It is built using [Docusaurus 2](https://v2.docusaurus.io/), a modern static website generator.
+It is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
 
 ## Installation
 
@@ -84,3 +82,4 @@ The content of this repository is organized as follows:
 [ced]: https://npmjs.com/package/create-electron-documentation
 [crowdin]: https://crowdin.com/project/electron
 [electron/electron]: https://github.com/electron/electron/tree/main/docs
+[i18n.md]: ./i18n.md
