@@ -1,89 +1,61 @@
 # electronjs.org
 
-This repository contains the code for the [Electron](https://www.electronjs.org/) website. It is built using
-[Docusaurus 2](https://v2.docusaurus.io/), a modern static website generator.
+[![Push and publish main](https://github.com/electron/website/actions/workflows/push-main.yml/badge.svg)](https://github.com/electron/website/actions/workflows/push-main.yml)
+
+[![Update i18n deploy](https://github.com/electron/website/actions/workflows/update-i18n-deploy.yml/badge.svg)](https://github.com/electron/website/actions/workflows/update-i18n-deploy.yml)
+
+[![Crowdin](https://badges.crowdin.net/electron/localized.svg)](https://crowdin.com/project/electron)
+
+This repository contains the code for the [Electron](https://www.electronjs.org/) website.
+It is built using [Docusaurus 2](https://v2.docusaurus.io/), a modern static website generator.
 
 ## Installation
 
+To get started with a local version of the website, install dependencies with `yarn`. To get the
+website running in dev mode, run `yarn start`. To get a production build of the website, run
+`yarn build`.
+
 ```console
-yarn install
+yarn
+yarn start
 ```
 
 ## How to modify the documentation
 
-For English documentation the changes need to happen upstream in [`electron/electron`][]. These
-changes are picked automatically as soon as they are done in the stable branch. The exception
-is when there is a new major release.
+### English docs
 
-The translation work happens in [Crowdin] and the changes are picked up periodically every
-15 minutes.
+For English documentation, the documentation is mirrored from the [electron/electron][] repo.
+Changes are picked automatically by the [electron-website-updater][] webhook as soon as they
+are made the latest stable release branch.
 
-Any documentation changes done manually in this repo will be eventually override by any of these
-updates.
+For example, if the latest Electron stable release is `v22.0.3`, then any documentation changes in
+the `22-x-y` branch in electron/electron will be mirrored into the `main` branch of this repository.
 
-## How to add a new blogpost
+### Translations
 
-To add a new blogpost you need to create a new markdown file under `/blog`. The supported
-frontmatter options are the ones documented in [Docusaurus](https://docusaurus.io/docs/blog#adding-posts).
+This project uses [Crowdin][] to manage localizations. For more information on contributing to
+translations, see the [i18n.md][] document.
 
-There are a couple of things that are different compared to the previous blog engine:
+## How to add a new blog post
 
-1. There can only be one author. If there are several people working on a post please sign it at the end.
-1. The frontmatter `date` property with the format `YYYY-MM-DD` is not supported. The options to indicate the date are:
-   * Write the date in the filename: `YYYY-MM-DD-blogpost-slug`
-   * Use the output of `(new Date('YYYY-MM-DD')).toString()` and paste it in the frontmatter section:
-     ```yml
-     date: 2019-05-13T00:00:00.000Z
-     ```
+To add a new blog post, you need to create a new Markdown file under the `/blog` folder. Supported
+frontmatter options are listed in the [Docusaurus Blog docs](https://docusaurus.io/docs/blog#adding-posts).
 
-To see your changes (and have hot-reload), run the following commands:
+## Local development
 
-```console
-yarn pre-build
-yarn start
-```
-
-Note: `yarn pre-build` is only necessary the first time to get content under `/docs`.
-
-## Local Development
-
-If you want to use the contents from [`electron/electron`][] run the following:
-
-```console
-yarn pre-build
-yarn start
-```
-
-If you want the website to pick your local documentation, run:
+If you want modify Electron's documentation locally and preview how it looks on the website, you can
+tell the `pre-build` script to pull the docs from your local Electron repo.
 
 ```console
 yarn pre-build ../relative/path/to/local/electron/repo
 yarn start
 ```
 
-For example, if you have the following structure:
-
-```
-└── projects
-     ├─ electron
-     ├─ website
-     ├─ ...
-```
-
-and assuming your prompt is in `/projects/website/` you will have to run:
-
-```console
-yarn pre-build ../electron
-yarn start
-```
-
-`yarn start` starts a local development server and open up a browser window. Most changes are reflected live without having to restart the server.
-
 # Repository content organization
 
-This repository contains the code for 2 related things:
+This repository contains the code for two related things:
 
-- The code to generate the contents of https://beta.electronjs.org
+- The code to generate the contents of https://electronjs.org
 - [`create-electron-documentation`][ced] package
 
 The content of this repository is organized as follows:
@@ -93,15 +65,16 @@ The content of this repository is organized as follows:
     |
     ├─ .github/workflows → The definitions for the GitHub actions
     |
+    |- blog -> Source files for electronjs.org/blog
     |
     ├─ create-electron-documentation → Code for the npm package
     |        of the same name. Read the readme in the folder
     |        for more information.
     |
+    |- docs -> Mirrored docs from electron/electron
+    |
     ├─ scripts → The code for the package.json tasks and GitHub
     |        actions
-    |
-    ├─ spec → Tests for the scripts
     |
     ├─ src → Docusaurus code
     |
@@ -109,5 +82,5 @@ The content of this repository is organized as follows:
 ```
 
 [ced]: https://npmjs.com/package/create-electron-documentation
-[Crowdin]: https://crowdin.com/project/electron
-[`electron/electron`]: https://github.com/electron/electron/tree/main/docs
+[crowdin]: https://crowdin.com/project/electron
+[electron/electron]: https://github.com/electron/electron/tree/main/docs
