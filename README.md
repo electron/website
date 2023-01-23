@@ -41,7 +41,7 @@ frontmatter options are listed in the [Docusaurus Blog docs](https://docusaurus.
 
 ## Local development
 
-If you want modify Electron's documentation locally and preview how it looks on the website, you can
+If you want to modify Electron's documentation locally and preview how it looks on the website, you can
 tell the `pre-build` script to pull the docs from your local Electron repo.
 
 ```console
