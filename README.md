@@ -23,7 +23,7 @@ yarn start
 ### English docs
 
 For English documentation, the documentation is mirrored from the [electron/electron][] repo.
-Changes are picked automatically by the [electron-website-updater][] webhook as soon as they
+Changes are picked automatically by the [electron/electron-website-updater][] webhook as soon as they
 are made the latest stable release branch.
 
 For example, if the latest Electron stable release is `v22.0.3`, then any documentation changes in
@@ -82,4 +82,5 @@ The content of this repository is organized as follows:
 [ced]: https://npmjs.com/package/create-electron-documentation
 [crowdin]: https://crowdin.com/project/electron
 [electron/electron]: https://github.com/electron/electron/tree/main/docs
+[electron/electron-website-updater]: https://github.com/electron/electron-website-updater
 [i18n.md]: ./i18n.md
