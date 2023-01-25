@@ -18,7 +18,7 @@ const config: Config = {
   projectName: 'electron',
   i18n: {
     defaultLocale: 'en',
-    locales: ['en', 'de', 'es', 'fr', 'ja', 'pt', 'ru', 'zh'],
+    locales: ['en', 'es', 'fr', 'ja', 'zh'],
     path: 'i18n',
     localeConfigs: {},
   },
