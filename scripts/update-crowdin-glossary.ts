@@ -68,13 +68,13 @@ async function collectElectronAPI() {
     );
   }
 
-  // Electron class instance methods and properties
+  // Electron class instance methods, properties, and events
   for (const api of apis) {
     if (isClass(api)) {
       const methods = api.instanceMethods || [];
       for (const method of methods) {
         const term = `${api.instanceName}.${method.name}`;
-        if (Object.keys(glossary.entries).includes(term)) return;
+        if (Object.keys(glossary.entries).includes(term)) continue;
         glossary.set(
           term,
           'This is an Electron instance method and should usually not be translated.'
@@ -84,10 +84,28 @@ async function collectElectronAPI() {
       const props = api.instanceProperties || [];
       for (const prop of props) {
         const term = `${api.instanceName}.${prop.name}`;
-        if (Object.keys(glossary.entries).includes(term)) return;
+        if (Object.keys(glossary.entries).includes(term)) continue;
         glossary.set(
           term,
-          'This is an Electron instance property and should usually not be translated'
+          'This is an Electron instance property and should usually not be translated.'
+        );
+      }
+
+      const events = api.instanceEvents || [];
+
+      for (const event of events) {
+        const term = event.name;
+        // only include multi-word event names because some single-word events
+        // are just common English words like `close` or `quit`.
+        if (
+          Object.keys(glossary.entries).includes(term) ||
+          !term.includes('-')
+        ) {
+          continue;
+        }
+        glossary.set(
+          term,
+          'This is an Electron instance event and should usually not be translated.'
         );
       }
     }
