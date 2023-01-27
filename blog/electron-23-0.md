@@ -68,12 +68,16 @@ const portConnect = async () => {
 }
 ```
 
+#### Additional New Features
+
+* Added `label` property to `Display` objects. [#36933](https://github.com/electron/electron/pull/36933) <span style="font-size:small;">(Also in [21](https://github.com/electron/electron/pull/36931), [22](https://github.com/electron/electron/pull/36932))</span>
+* Added an `app.getPreferredSystemLanguages()` API to return the user's system languages. [#36035](https://github.com/electron/electron/pull/36035) <span style="font-size:small;">(Also in [21](https://github.com/electron/electron/pull/36290), [22](https://github.com/electron/electron/pull/36291))</span>
+* Added support for WebUSB. [#36289](https://github.com/electron/electron/pull/36289) 
+* Adds new `setHiddenInMissionControl` API to allow developers to opt out of mission control on macOS. [#36092](https://github.com/electron/electron/pull/36092) <span style="font-size:small;">(Also in [22](https://github.com/electron/electron/pull/36390))</span>
 
 ## Windows 7/8/8.1 Support Update
 
 Electron 23 no longer supports Windows 7/8/8.1. Electron follows the planned Chromium deprecation policy, which will [deprecate Windows 7/8/8.1 , as well as Windows Server 2012 and 2012 R2 support in Chromium 109 (read more here)](https://support.google.com/chrome/thread/185534985/sunsetting-support-for-windows-7-8-8-1-in-early-2023?hl=en).
-
-#### Additional Highlighted Changes 
 
 ## Breaking API Changes
 
