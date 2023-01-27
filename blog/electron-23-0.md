@@ -1,5 +1,5 @@
 ---
-title: Electron 22.0.0
+title: Electron 23.0.0
 date: 2022-1-29T00:00:00.000Z
 authors:
     - name: VerteDinde
@@ -8,7 +8,7 @@ authors:
     - name: georgexu99
       url: 'https://github.com/georgexu99'
       image_url: 'https://github.com/georgexu99.png?size=96'
-slug: electron-22-0
+slug: electron-23-0
 
 ---
 
