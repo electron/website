@@ -12,6 +12,7 @@ slug: electron-22-0
 
 ---
 
+# QUIP DOC FOR RELEASE NOTES https://corp.quip.com/LOJlA4W58dfC/v23-electron-release-notes
 Electron 23.0.0 has been released! It includes a new utility process API, updates for Windows 7/8/8.1 support, and upgrades to Chromium `110`, V8 `10.8`, and Node.js `18.12.1`. Read below for more details!
 
 ---
