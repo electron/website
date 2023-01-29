@@ -170,6 +170,6 @@ GitBook instance synced to the
 [import documentation]: https://www.electronforge.io/import-existing-project
 
 [webpack template]: https://www.electronforge.io/templates/webpack-template
-[webpack + typescript template]: https://www.electronforge.io/templates/webpack-typescript-template
+[webpack + typescript template]: https://www.electronforge.io/templates/typescript-+-webpack-template
 [Extending Electron Forge]: https://www.electronforge.io/advanced/extending-electron-forge
 [Why Electron Forge]: https://www.electronforge.io/core-concepts/why-electron-forge
