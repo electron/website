@@ -83,7 +83,7 @@ yarn start
   <TabItem value="npm" label="npm">
 
 ```bash
-npm init electron-app@latest my-app --template=webpack
+npm init electron-app@latest my-app -- --template=webpack
 cd my-app
 npm start
 ```
