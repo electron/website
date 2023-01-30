@@ -87,7 +87,7 @@
     "gray-matter": "^4.0.3",
     "gunzip-maybe": "^1.4.2",
     "jest": "^26.6.3",
-    "json5": "^2.2.0",
+    "json5": "^2.2.2",
     "latest-version": "^5.1.0",
     "make-dir": "^3.1.0",
     "mdast-util-to-string": "^2.0.0",
