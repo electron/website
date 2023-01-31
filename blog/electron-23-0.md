@@ -76,7 +76,7 @@ The deprecated scroll-touch-begin, scroll-touch-end and scroll-touch-edge events
 
 Electron 20.x.y has reached end-of-support as per the project's [support policy](https://www.electronjs.org/docs/latest/tutorial/electron-timelines#version-support-policy). Developers and applications are encouraged to upgrade to a newer version of Electron.
 
-| E20 (Aug'22) | E21 (Sep'22) | E22 (Nov'22) | E23 (Jan'23) | E24 (Mar'23) |
+| E20 (Aug'22) | E21 (Sep'22) | E22 (Nov'22) | E23 (Jan'23) | E24 (Apr'23) |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
 | 20.x.y       | 21.x.y       | 22.x.y       | 23.x.y       | 24.x.y       |
 | 19.x.y       | 20.x.y       | 21.x.y       | 22.x.y       | 23.x.y       
