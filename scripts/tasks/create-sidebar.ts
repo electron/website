@@ -15,6 +15,7 @@ const IGNORE_LIST = [
   // these have limited relevance
   'tutorial/using-pepper-flash-plugin',
   'latest/development/README',
+  'tutorial/support',
 ];
 
 const categoryAliases = new Map([['Tutorial', 'How To']]);
