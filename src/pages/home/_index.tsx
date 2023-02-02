@@ -43,24 +43,30 @@ export default function Home() {
           <div className={clsx(styles.section)}>
             <div className={clsx('row', styles.blurb)}>
               <div className={clsx('col', styles.blurb2)}>
-                <WebTech width={48} height={48} />
-                <h3>Web Technologies</h3>
+                <div style={{textAlign:"center"}}>
+                <WebTech width={48} height={48}/>
+                </div>
+                <h3 style={{textAlign:"center"}}>Web Technologies</h3>
                 <p>
                   Electron embeds Chromium and Node.js to enable web developers
                   to create desktop applications.
                 </p>
               </div>
               <div className={clsx('col', styles.blurb2)}>
-                <CrossPlatform width={48} height={48} />
-                <h3>Cross Platform</h3>
+                <div style={{textAlign:"center"}}>
+                <CrossPlatform width={48} height={48}/>
+                </div>
+                <h3  style={{textAlign:"center"}}>Cross Platform</h3>
                 <p>
                   Compatible with macOS, Windows, and Linux, Electron apps run
                   on three platforms across all supported architectures.
                 </p>
               </div>
               <div className={clsx('col', styles.blurb2)}>
-                <OpenSource width={48} height={48} />
-                <h3>Open Source</h3>
+                <div style={{textAlign:"center"}}>
+                <OpenSource width={48} height={48}/>
+                </div>
+                <h3  style={{textAlign:"center"}}>Open Source</h3>
                 <p>
                   Electron is an open source project maintained by the{' '}
                   <Link to="https://openjsf.org/">OpenJS Foundation</Link> and
