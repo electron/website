@@ -12,7 +12,6 @@ slug: electron-23-0
 
 ---
 
-# QUIP DOC FOR RELEASE NOTES https://corp.quip.com/LOJlA4W58dfC/v23-electron-release-notes
 Electron 23.0.0 has been released! It includes updates for Windows 7/8/8.1 support and upgrades to Chromium `110`, V8 `10.8`, and Node.js `18.12.1`. Read below for more details!
 
 ---
@@ -40,7 +39,7 @@ If you have any feedback, please share it with us on Twitter, or join our commun
 * Added an `app.getPreferredSystemLanguages()` API to return the user's system languages. [#36035](https://github.com/electron/electron/pull/36035) 
 * Added support for WebUSB. [#36289](https://github.com/electron/electron/pull/36289) 
 * Added support for `serialPort.forget()` as well as a new event `serial-port-revoked` emitted when a given origin is revoked. [#35310](https://github.com/electron/electron/pull/35310)
-* Adds new `setHiddenInMissionControl` API to allow developers to opt out of mission control on macOS. [#36092](https://github.com/electron/electron/pull/36092)
+* Added new `setHiddenInMissionControl` API to allow developers to opt out of mission control on macOS. [#36092](https://github.com/electron/electron/pull/36092)
 
 ## Windows 7/8/8.1 Support Update
 
@@ -76,11 +75,11 @@ The deprecated scroll-touch-begin, scroll-touch-end and scroll-touch-edge events
 
 Electron 20.x.y has reached end-of-support as per the project's [support policy](https://www.electronjs.org/docs/latest/tutorial/electron-timelines#version-support-policy). Developers and applications are encouraged to upgrade to a newer version of Electron.
 
-| E20 (Aug'22) | E21 (Sep'22) | E22 (Nov'22) | E23 (Jan'23) | E24 (Apr'23) |
+| E22 (Nov'22) | E23 (Feb'23) | E24 (Apr'23) | E25 (May'23) | E26 (Aug'23) |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
+| 22.x.y       | 23.x.y       | 24.x.y       | 25.x.y       | 26.x.y       |
+| 21.x.y       | 22.x.y       | 23.x.y       | 24.x.y       | 25.x.y       
 | 20.x.y       | 21.x.y       | 22.x.y       | 23.x.y       | 24.x.y       |
-| 19.x.y       | 20.x.y       | 21.x.y       | 22.x.y       | 23.x.y       
-| 18.x.y       | 19.x.y       | 20.x.y       | 21.x.y       | 22.x.y       |
 
 ## What's Next
 
