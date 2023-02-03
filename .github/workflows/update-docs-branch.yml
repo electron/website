@@ -28,7 +28,7 @@ jobs:
       - id: branch
         name: Calculate branch
         run: |
-          [[ $(git branch --show-current) =~ ^v[0-9]+-x-y$ ]] && echo "::set-output name=branch::version" || echo "::set-output name=branch::other"
+          [[ $(git branch --show-current) =~ ^v[0-9]+-x-y$ ]] && echo "branch=version" >> $GITHUB_OUTPUT || echo "branch=other" >> $GITHUB_OUTPUT
       - name: Show branch
         run: echo ${{ steps.branch.outputs.branch }}
   # GitHub will not kick the "push-XXX" workflow so we have to publish from here
