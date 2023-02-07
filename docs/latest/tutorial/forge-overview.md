@@ -40,4 +40,4 @@ template and submit a new issue.
 [(publish)]: https://www.electronforge.io/cli#publish
 [GitHub issue tracker]: https://github.com/electron/forge/issues
 [discord]: https://discord.gg/APGC3k5yaH
-[tutorial]: https://www.electronjs.org/docs/latest/tutorial/tutorial-prerequisites
+[tutorial]: latest/tutorial/tutorial-1-prerequisites.md
