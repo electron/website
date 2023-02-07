@@ -418,6 +418,7 @@ module.exports = {
         'latest/api/structures/payment-discount',
         'latest/api/structures/product-discount',
         'latest/api/structures/product-subscription-period',
+        'latest/api/structures/usb-device',
       ],
     },
     {

@@ -246,7 +246,7 @@ app.whenReady().then(() => {
     const selectedDevice = details.deviceList.find((device) => {
       return device.vendorId === '9025' && device.productId === '67'
     })
-    callback(selectedPort?.deviceId)
+    callback(selectedDevice?.deviceId)
   })
 })
 ```
@@ -436,6 +436,118 @@ const portConnect = async () => {
 }
 ```
 
+#### Event: 'select-usb-device'
+
+Returns:
+
+* `event` Event
+* `details` Object
+  * `deviceList` [USBDevice[]](latest/api/structures/usb-device.md)
+  * `frame` [WebFrameMain](latest/api/web-frame-main.md)
+* `callback` Function
+  * `deviceId` string (optional)
+
+Emitted when a USB device needs to be selected when a call to
+`navigator.usb.requestDevice` is made. `callback` should be called with
+`deviceId` to be selected; passing no arguments to `callback` will
+cancel the request.  Additionally, permissioning on `navigator.usb` can
+be further managed by using [ses.setPermissionCheckHandler(handler)](#sessetpermissioncheckhandlerhandler)
+and [ses.setDevicePermissionHandler(handler)`](#sessetdevicepermissionhandlerhandler).
+
+```javascript
+const { app, BrowserWindow } = require('electron')
+
+let win = null
+
+app.whenReady().then(() => {
+  win = new BrowserWindow()
+
+  win.webContents.session.setPermissionCheckHandler((webContents, permission, requestingOrigin, details) => {
+    if (permission === 'usb') {
+      // Add logic here to determine if permission should be given to allow USB selection
+      return true
+    }
+    return false
+  })
+
+  // Optionally, retrieve previously persisted devices from a persistent store (fetchGrantedDevices needs to be implemented by developer to fetch persisted permissions)
+  const grantedDevices = fetchGrantedDevices()
+
+  win.webContents.session.setDevicePermissionHandler((details) => {
+    if (new URL(details.origin).hostname === 'some-host' && details.deviceType === 'usb') {
+      if (details.device.vendorId === 123 && details.device.productId === 345) {
+        // Always allow this type of device (this allows skipping the call to `navigator.usb.requestDevice` first)
+        return true
+      }
+
+      // Search through the list of devices that have previously been granted permission
+      return grantedDevices.some((grantedDevice) => {
+        return grantedDevice.vendorId === details.device.vendorId &&
+              grantedDevice.productId === details.device.productId &&
+              grantedDevice.serialNumber && grantedDevice.serialNumber === details.device.serialNumber
+      })
+    }
+    return false
+  })
+
+  win.webContents.session.on('select-usb-device', (event, details, callback) => {
+    event.preventDefault()
+    const selectedDevice = details.deviceList.find((device) => {
+      return device.vendorId === '9025' && device.productId === '67'
+    })
+    if (selectedDevice) {
+      // Optionally, add this to the persisted devices (updateGrantedDevices needs to be implemented by developer to persist permissions)
+      grantedDevices.push(selectedDevice)
+      updateGrantedDevices(grantedDevices)
+    }
+    callback(selectedDevice?.deviceId)
+  })
+})
+```
+
+#### Event: 'usb-device-added'
+
+Returns:
+
+* `event` Event
+* `details` Object
+  * `device` [USBDevice](latest/api/structures/usb-device.md)
+  * `frame` [WebFrameMain](latest/api/web-frame-main.md)
+
+Emitted after `navigator.usb.requestDevice` has been called and
+`select-usb-device` has fired if a new device becomes available before
+the callback from `select-usb-device` is called.  This event is intended for
+use when using a UI to ask users to pick a device so that the UI can be updated
+with the newly added device.
+
+#### Event: 'usb-device-removed'
+
+Returns:
+
+* `event` Event
+* `details` Object
+  * `device` [USBDevice](latest/api/structures/usb-device.md)
+  * `frame` [WebFrameMain](latest/api/web-frame-main.md)
+
+Emitted after `navigator.usb.requestDevice` has been called and
+`select-usb-device` has fired if a device has been removed before the callback
+from `select-usb-device` is called.  This event is intended for use when using
+a UI to ask users to pick a device so that the UI can be updated to remove the
+specified device.
+
+#### Event: 'usb-device-revoked'
+
+Returns:
+
+* `event` Event
+* `details` Object
+  * `device` [USBDevice[]](latest/api/structures/usb-device.md)
+  * `origin` string (optional) - The origin that the device has been revoked from.
+
+Emitted after `USBDevice.forget()` has been called.  This event can be used
+to help maintain persistent storage of permissions when
+`setDevicePermissionHandler` is used.
+
 ### Instance Methods
 
 The following methods are available on instances of `Session`:
@@ -460,7 +572,7 @@ Clears the session’s HTTP cache.
     `shadercache`, `websql`, `serviceworkers`, `cachestorage`. If not
     specified, clear all storage types.
   * `quotas` string[] (optional) - The types of quotas to clear, can contain:
-    `temporary`, `persistent`, `syncable`. If not specified, clear all quotas.
+    `temporary`, `syncable`. If not specified, clear all quotas.
 
 Returns `Promise<void>` - resolves when the storage data has been cleared.
 
@@ -689,7 +801,7 @@ win.webContents.session.setCertificateVerifyProc((request, callback) => {
     * `pointerLock` - Request to directly interpret mouse movements as an input method. Click [here](https://developer.mozilla.org/en-US/docs/Web/API/Pointer_Lock_API) to know more. These requests always appear to originate from the main frame.
     * `fullscreen` - Request for the app to enter fullscreen mode.
     * `openExternal` - Request to open links in external applications.
-    * `window-placement` - Request access to enumerate screens using the [`getScreenDetails`](https://developer.chrome.com/en/articles/multi-screen-window-placement/) API.
+    * `window-management` - Request access to enumerate screens using the [`getScreenDetails`](https://developer.chrome.com/en/articles/multi-screen-window-placement/) API.
     * `unknown` - An unrecognized permission request
   * `callback` Function
     * `permissionGranted` boolean - Allow or deny the permission.
@@ -722,7 +834,7 @@ session.fromPartition('some-partition').setPermissionRequestHandler((webContents
 
 * `handler` Function&#60;boolean&#62; | null
   * `webContents` ([WebContents](latest/api/web-contents.md) | null) - WebContents checking the permission.  Please note that if the request comes from a subframe you should use `requestingUrl` to check the request origin.  All cross origin sub frames making permission checks will pass a `null` webContents to this handler, while certain other permission checks such as `notifications` checks will always pass `null`.  You should use `embeddingOrigin` and `requestingOrigin` to determine what origin the owning frame and the requesting frame are on respectively.
-  * `permission` string - Type of permission check.  Valid values are `midiSysex`, `notifications`, `geolocation`, `media`,`mediaKeySystem`,`midi`, `pointerLock`, `fullscreen`, `openExternal`, `hid`, or `serial`.
+  * `permission` string - Type of permission check.  Valid values are `midiSysex`, `notifications`, `geolocation`, `media`,`mediaKeySystem`,`midi`, `pointerLock`, `fullscreen`, `openExternal`, `hid`, `serial`, or `usb`.
   * `requestingOrigin` string - The origin URL of the permission check
   * `details` Object - Some properties are only available on certain permission types.
     * `embeddingOrigin` string (optional) - The origin of the frame embedding the frame that made the permission check.  Only set for cross-origin sub frames making permission checks.
@@ -808,7 +920,7 @@ Passing `null` instead of a function resets the handler to its default state.
 
 * `handler` Function&#60;boolean&#62; | null
   * `details` Object
-    * `deviceType` string - The type of device that permission is being requested on, can be `hid` or `serial`.
+    * `deviceType` string - The type of device that permission is being requested on, can be `hid`, `serial`, or `usb`.
     * `origin` string - The origin URL of the device permission check.
     * `device` [HIDDevice](latest/api/structures/hid-device.md) | [SerialPort](latest/api/structures/serial-port.md)- the device that permission is being requested for.
 
@@ -836,6 +948,8 @@ app.whenReady().then(() => {
       return true
     } else if (permission === 'serial') {
       // Add logic here to determine if permission should be given to allow serial port selection
+    } else if (permission === 'usb') {
+      // Add logic here to determine if permission should be given to allow USB device selection
     }
     return false
   })
