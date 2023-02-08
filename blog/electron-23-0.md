@@ -44,7 +44,7 @@ If you have any feedback, please share it with us on Twitter, or join our commun
 * Added support for [`SerialPort.forget()`](https://developer.mozilla.org/en-US/docs/Web/API/SerialPort/forget) as well as a new event `serial-port-revoked` emitted on [Session](https://www.electronjs.org/docs/latest/api/session) objects when a given origin is revoked. [#35310](https://github.com/electron/electron/pull/35310)
 * Added new `win.setHiddenInMissionControl` API to allow developers to opt out of Mission Control on macOS. [#36092](https://github.com/electron/electron/pull/36092)
 
-## Windows 7/8/8.1 Support Update
+## Dropping Windows 7/8/8.1 Support
 
 Electron 23 no longer supports Windows 7/8/8.1. Electron follows the planned Chromium deprecation policy, which will [deprecate Windows 7/8/8.1 , as well as Windows Server 2012 and 2012 R2 support in Chromium 109 (read more here)](https://support.google.com/chrome/thread/185534985/sunsetting-support-for-windows-7-8-8-1-in-early-2023?hl=en).
 
