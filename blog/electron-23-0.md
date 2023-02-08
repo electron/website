@@ -8,11 +8,14 @@ authors:
     - name: georgexu99
       url: 'https://github.com/georgexu99'
       image_url: 'https://github.com/georgexu99.png?size=96'
+    name: erickzhao
+      url: 'https://github.com/erickzhao'
+      image_url: 'https://github.com/erickzhao.png?size=96'
 slug: electron-23-0
 
 ---
 
-Electron 23.0.0 has been released! It includes updates for Windows 7/8/8.1 support and upgrades to Chromium `110`, V8 `10.8`, and Node.js `18.12.1`. Read below for more details!
+Electron 23.0.0 has been released! It drops support for Windows 7/8/8.1 support and upgrades to Chromium `110`, V8 `11.0`, and Node.js `18.12.1`. Read below for more details!
 
 ---
 
@@ -35,11 +38,11 @@ If you have any feedback, please share it with us on Twitter, or join our commun
 
 ### New Features
 
-* Added `label` property to `Display` objects. [#36933](https://github.com/electron/electron/pull/36933) 
+* Added `label` property to [`Display`](https://www.electronjs.org/docs/latest/api/structures/display) objects. [#36933](https://github.com/electron/electron/pull/36933) 
 * Added an `app.getPreferredSystemLanguages()` API to return the user's system languages. [#36035](https://github.com/electron/electron/pull/36035) 
-* Added support for WebUSB. [#36289](https://github.com/electron/electron/pull/36289) 
-* Added support for `serialPort.forget()` as well as a new event `serial-port-revoked` emitted when a given origin is revoked. [#35310](https://github.com/electron/electron/pull/35310)
-* Added new `setHiddenInMissionControl` API to allow developers to opt out of mission control on macOS. [#36092](https://github.com/electron/electron/pull/36092)
+* Added support for the [WebUSB](https://developer.mozilla.org/en-US/docs/Web/API/WebUSB_API) API. [#36289](https://github.com/electron/electron/pull/36289) 
+* Added support for [`SerialPort.forget()`](https://developer.mozilla.org/en-US/docs/Web/API/SerialPort/forget) as well as a new event `serial-port-revoked` emitted on [Session](https://www.electronjs.org/docs/latest/api/session) objects when a given origin is revoked. [#35310](https://github.com/electron/electron/pull/35310)
+* Added new `win.setHiddenInMissionControl` API to allow developers to opt out of Mission Control on macOS. [#36092](https://github.com/electron/electron/pull/36092)
 
 ## Windows 7/8/8.1 Support Update
 
@@ -49,9 +52,9 @@ Electron 23 no longer supports Windows 7/8/8.1. Electron follows the planned Chr
 
 Below are breaking changes introduced in Electron 23. You can read more about these changes and future changes on the [Planned Breaking Changes](https://github.com/electron/electron/blob/main/docs/breaking-changes.md) page.
 
-#### Removed: `BrowserWindow scroll-touch-* events`
+### Removed: `BrowserWindow scroll-touch-* events`
 
-The deprecated scroll-touch-begin, scroll-touch-end and scroll-touch-edge events on BrowserWindow have been removed. Instead, use the newly available input-event event on WebContents.
+The deprecated `scroll-touch-begin`, `scroll-touch-end` and `scroll-touch-edge` events on BrowserWindow have been removed. Instead, use the newly available `input-event` event on WebContents.
 
 ```diff
 // Removed in Electron 23.0
@@ -78,7 +81,7 @@ Electron 20.x.y has reached end-of-support as per the project's [support policy]
 | E22 (Nov'22) | E23 (Feb'23) | E24 (Apr'23) | E25 (May'23) | E26 (Aug'23) |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
 | 22.x.y       | 23.x.y       | 24.x.y       | 25.x.y       | 26.x.y       |
-| 21.x.y       | 22.x.y       | 23.x.y       | 24.x.y       | 25.x.y       
+| 21.x.y       | 22.x.y       | 23.x.y       | 24.x.y       | 25.x.y       |
 | 20.x.y       | 21.x.y       | 22.x.y       | 23.x.y       | 24.x.y       |
 
 ## What's Next
