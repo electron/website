@@ -8,7 +8,7 @@ authors:
     - name: georgexu99
       url: 'https://github.com/georgexu99'
       image_url: 'https://github.com/georgexu99.png?size=96'
-    name: erickzhao
+    - name: erickzhao
       url: 'https://github.com/erickzhao'
       image_url: 'https://github.com/erickzhao.png?size=96'
 slug: electron-23-0
