@@ -15,7 +15,7 @@ slug: electron-23-0
 
 ---
 
-Electron 23.0.0 has been released! It drops support for Windows 7/8/8.1 support and upgrades to Chromium `110`, V8 `11.0`, and Node.js `18.12.1`. Read below for more details!
+Electron 23.0.0 has been released! It includes upgrades to Chromium `110`, V8 `11.0`, and Node.js `18.12.1`.  Additionally, support for Windows 7/8/8.1 has been dropped. Read below for more details!
 
 ---
 
@@ -52,7 +52,7 @@ Electron 23 no longer supports Windows 7/8/8.1. Electron follows the planned Chr
 
 Below are breaking changes introduced in Electron 23. You can read more about these changes and future changes on the [Planned Breaking Changes](https://github.com/electron/electron/blob/main/docs/breaking-changes.md) page.
 
-### Removed: `BrowserWindow scroll-touch-* events`
+### Removed: BrowserWindow `scroll-touch-*` events
 
 The deprecated `scroll-touch-begin`, `scroll-touch-end` and `scroll-touch-edge` events on BrowserWindow have been removed. Instead, use the newly available `input-event` event on WebContents.
 
