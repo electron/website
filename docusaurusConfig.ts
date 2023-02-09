@@ -158,6 +158,10 @@ const config: Config = {
               href: 'https://twitter.com/electronjs',
             },
             {
+              label: 'Mastodon',
+              href: 'https://social.lfx.dev/@electronjs',
+            },
+            {
               label: 'Stack Overflow',
               href: 'https://stackoverflow.com/questions/tagged/electron',
             },
