@@ -50,8 +50,7 @@ You can read more about the [new UtilityProcess API in our docs here](https://ww
 Last month, Google announced that [Chrome 109 would continue to receive critical
 security fixes](https://support.google.com/chrome/a/thread/185534987) for
 Windows Server 2012 and Windows Server 2012 R2 until October 10, 2023. 
-In accordance, Electron 22 (Chromium 108) will backport any security fixes that are
-part of this program until October 10, 2023.
+In accordance, Electron 22's (Chromium 108) planned end of life date will be extended from May 30, 2023 to October 10, 2023. The Electron team will continue to backport any security fixes that are part of this program to Electron 22 until October 10, 2023.
 
 Note that we will not make additional security fixes for Windows 7/8/8.1.
 Also, Electron 23 (Chromium 110) will only function on Windows 10 and above as
