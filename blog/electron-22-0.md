@@ -43,6 +43,21 @@ You can read more about the [new UtilityProcess API in our docs here](https://ww
 
 ## Windows 7/8/8.1 Support Update
 
+:::info
+
+**2023/02/16: An update on Windows Server 2012 support**
+
+Last month, Google announced that [Chrome 109 would continue to receive critical
+security fixes](https://support.google.com/chrome/a/thread/185534987) for
+Windows Server 2012 and Windows Server 2012 R2 until October 10, 2023. 
+In accordance, Electron 22's (Chromium 108) planned end of life date will be extended from May 30, 2023 to October 10, 2023. The Electron team will continue to backport any security fixes that are part of this program to Electron 22 until October 10, 2023.
+
+Note that we will not make additional security fixes for Windows 7/8/8.1.
+Also, Electron 23 (Chromium 110) will only function on Windows 10 and above as
+previously announced.
+
+:::
+
 Electron 22 will be the last Electron major version to support Windows 7/8/8.1. Electron follows the planned Chromium deprecation policy, which will [deprecate Windows 7/8/8.1 support in Chromium 109 (read more here)](https://support.google.com/chrome/thread/185534985/sunsetting-support-for-windows-7-8-8-1-in-early-2023?hl=en).
 
 Windows 7/8/8.1 will not be supported in Electron 23 and later major releases.
