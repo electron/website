@@ -6,7 +6,6 @@ import styles from './apps.module.scss';
 import AppCard from './AppCard';
 import { useState } from 'react';
 import { AppsPluginContent } from '..';
-// import { AppsPluginContent } from '../../plugins/apps';
 
 const SORTS = {
   ALPHABETICAL: 'Alphabetical',
