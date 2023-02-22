@@ -3,23 +3,20 @@ import Layout from '@theme/Layout';
 import clsx from 'clsx';
 
 import styles from './apps.module.scss';
-import AppCard from './components/AppCard';
-import { usePluginData } from '@docusaurus/useGlobalData';
+import AppCard from './AppCard';
 import { useState } from 'react';
-import { AppsPluginContent } from '../../plugins/apps';
+import { AppsPluginContent } from '..';
+// import { AppsPluginContent } from '../../plugins/apps';
 
 const SORTS = {
   ALPHABETICAL: 'Alphabetical',
   RECENT: 'Most Recent',
 };
 
-export default function AppsPage() {
+export default function AppsPage({ apps, categories }: AppsPluginContent) {
   const [activeCategory, setActiveCategory] = useState(null);
   const [activeSort, setActiveSort] = useState(SORTS.ALPHABETICAL);
   const [activeQuery, setActiveQuery] = useState('');
-  const { apps, categories } = usePluginData(
-    'apps-plugin'
-  ) as AppsPluginContent;
 
   const sortedApps = apps
     .sort((a, b) => {
@@ -104,7 +101,7 @@ export default function AppsPage() {
   );
 
   return (
-    <Layout title="App Showcase">
+    <Layout>
       <main className="margin-vert--xl">
         <h1 className={styles.title}>Showcase</h1>
         <p className={styles.subtitle}>

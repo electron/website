@@ -77,8 +77,26 @@ module.exports = async function appsPlugin() {
       };
     },
     async contentLoaded({ content, actions }) {
-      const { setGlobalData } = actions;
-      setGlobalData(content);
+      const { addRoute, createData } = actions;
+
+      const appsJsonPath = await createData(
+        'apps.json',
+        JSON.stringify(content.apps)
+      );
+      const categoriesJsonPath = await createData(
+        'categories.json',
+        JSON.stringify(content.categories)
+      );
+
+      addRoute({
+        path: '/apps',
+        component: '@site/src/plugins/apps/components/index.tsx',
+        modules: {
+          apps: appsJsonPath,
+          categories: categoriesJsonPath,
+        },
+        exact: true,
+      });
     },
   };
   return plugin;

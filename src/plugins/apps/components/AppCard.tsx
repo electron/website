@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { App } from '../../../plugins/apps';
+import { App } from '..';
 
 import styles from './AppCard.module.scss';
 
