@@ -98,8 +98,7 @@ async function getGitHubREADME(wg: string) {
   const res = await got(
     `https://raw.githubusercontent.com/electron/governance/main/wg-${wg}/README.md`
   );
-  const { content } = JSON.parse(res.body);
-  return Buffer.from(content, 'base64').toString();
+  return res.body;
 }
 
 export { fetchData };
