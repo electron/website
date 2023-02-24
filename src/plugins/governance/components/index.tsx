@@ -44,17 +44,7 @@ export default function GovernancePage({
   );
 }
 
-interface GroupCardProps {
-  group: {
-    name: string;
-    members: string[];
-    link: string;
-    description: string;
-    chair: string;
-  };
-}
-
-const GroupCard = ({ group }: GroupCardProps) => {
+const GroupCard = ({ group }: { group: WorkingGroup }) => {
   // WGs have variable amount of members, so we only show the first 4
   // by default. If there are more than 4 members, we use the `showAll`
   // state to indicate if the card is expanded or not
@@ -104,7 +94,7 @@ const GroupCard = ({ group }: GroupCardProps) => {
             hasExpand && (expanded ? styles.expanded : styles.unexpanded)
           )}
         >
-          <Member user={group.chair} isChair />
+          group.chair && <Member user={group.chair} isChair />
           {group.members.map((user: string) => (
             <Member key={user} user={user} />
           ))}

@@ -8,7 +8,7 @@ import { Table, Link } from 'mdast';
 export interface WorkingGroup {
   name: string;
   description: string;
-  chair: string;
+  chair?: string;
   link: string;
   members: string[];
 }
@@ -82,7 +82,7 @@ async function getWGInfo(workingGroup: string): Promise<WorkingGroup> {
       }
       return acc;
     },
-    { chair: '', members: [] }
+    { chair: undefined, members: [] }
   );
 
   const { chair, members } = wgMembers;
