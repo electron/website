@@ -194,6 +194,7 @@ const config: Config = {
     path.resolve(__dirname, './src/plugins/apps'),
     path.resolve(__dirname, './src/plugins/releases'),
     path.resolve(__dirname, './src/plugins/fiddle'),
+    path.resolve(__dirname, './src/plugins/governance'),
   ],
   presets: [
     [

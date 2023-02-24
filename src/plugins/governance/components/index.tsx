@@ -5,15 +5,15 @@ import React, { useState } from 'react';
 import Translate from '@docusaurus/Translate';
 
 import styles from './governance.module.scss';
+import { WorkingGroup } from '../fetch-data';
 
-/**
- * See "governance" script for _data.json generation
- */
-import data from './_data.json';
-
-export default function GovernancePage() {
+export default function GovernancePage({
+  governance,
+}: {
+  governance: WorkingGroup[];
+}) {
   return (
-    <Layout title="Governance">
+    <Layout>
       <main className="container margin-vert--xl">
         <header className={styles.header}>
           <h1>Electron Governance</h1>
@@ -30,7 +30,7 @@ export default function GovernancePage() {
           </p>
         </header>
         <div className="row">
-          {data.map((group) => (
+          {governance.map((group) => (
             <div
               key={group.name}
               className={clsx('col', 'col--4', styles.cardWrapper)}
