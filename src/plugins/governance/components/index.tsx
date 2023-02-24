@@ -5,15 +5,15 @@ import React, { useState } from 'react';
 import Translate from '@docusaurus/Translate';
 
 import styles from './governance.module.scss';
+import { WorkingGroup } from '../fetch-data';
 
-/**
- * See "governance" script for _data.json generation
- */
-import data from './_data.json';
-
-export default function GovernancePage() {
+export default function GovernancePage({
+  governance,
+}: {
+  governance: WorkingGroup[];
+}) {
   return (
-    <Layout title="Governance">
+    <Layout>
       <main className="container margin-vert--xl">
         <header className={styles.header}>
           <h1>Electron Governance</h1>
@@ -30,7 +30,7 @@ export default function GovernancePage() {
           </p>
         </header>
         <div className="row">
-          {data.map((group) => (
+          {governance.map((group) => (
             <div
               key={group.name}
               className={clsx('col', 'col--4', styles.cardWrapper)}
@@ -44,17 +44,7 @@ export default function GovernancePage() {
   );
 }
 
-interface GroupCardProps {
-  group: {
-    name: string;
-    members: string[];
-    link: string;
-    description: string;
-    chair: string;
-  };
-}
-
-const GroupCard = ({ group }: GroupCardProps) => {
+const GroupCard = ({ group }: { group: WorkingGroup }) => {
   // WGs have variable amount of members, so we only show the first 4
   // by default. If there are more than 4 members, we use the `showAll`
   // state to indicate if the card is expanded or not
@@ -104,7 +94,7 @@ const GroupCard = ({ group }: GroupCardProps) => {
             hasExpand && (expanded ? styles.expanded : styles.unexpanded)
           )}
         >
-          <Member user={group.chair} isChair />
+          group.chair && <Member user={group.chair} isChair />
           {group.members.map((user: string) => (
             <Member key={user} user={user} />
           ))}
