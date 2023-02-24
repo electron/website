@@ -4,8 +4,6 @@ import gfm from 'remark-gfm';
 import toString from 'mdast-util-to-string';
 import { Node, Parent } from 'unist';
 import { Table, Link } from 'mdast';
-import * as dotenv from 'dotenv';
-dotenv.config();
 
 export interface WorkingGroup {
   name: string;
@@ -98,13 +96,7 @@ async function getWGInfo(workingGroup: string): Promise<WorkingGroup> {
  */
 async function getGitHubREADME(wg: string) {
   const res = await got(
-    `https://api.github.com/repos/electron/governance/contents/wg-${wg}/README.md`,
-    {
-      headers: {
-        // note: you might hit rate limiting here if unauthenticated
-        Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
-      },
-    }
+    `https://raw.githubusercontent.com/electron/governance/main/wg-${wg}/README.md`
   );
   const { content } = JSON.parse(res.body);
   return Buffer.from(content, 'base64').toString();
