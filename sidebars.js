@@ -419,6 +419,8 @@ module.exports = {
         'latest/api/structures/product-discount',
         'latest/api/structures/product-subscription-period',
         'latest/api/structures/usb-device',
+        'latest/api/structures/browser-window-options',
+        'latest/api/structures/web-preferences',
       ],
     },
     {

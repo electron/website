@@ -33,6 +33,7 @@ The `pushNotification` module emits the following events:
 
 Returns:
 
+* `event` Event
 * `userInfo` Record&#60;String, any&#62;
 
 Emitted when the app receives a remote notification while running.
