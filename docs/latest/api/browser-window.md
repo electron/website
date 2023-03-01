@@ -158,7 +158,7 @@ It creates a new `BrowserWindow` with native properties as set by the `options`.
 
 ### `new BrowserWindow([options])`
 
-* `options` [BrowserWindowConstructorOptions](latest/api/structures/browser-window-options.md) (optional)
+* `options` [BrowserWindowConstructorOptions](latest/api/structures/browser-window-options.md#inline) (optional)
 
 ### Instance Events
 

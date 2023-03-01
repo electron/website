@@ -4,6 +4,7 @@ import npm2yarn from '@docusaurus/remark-plugin-npm2yarn';
 
 import apiLabels from './src/transformers/api-labels';
 import apiOptionsClass from './src/transformers/api-options-class';
+import apiStructureInlines from './src/transformers/api-structure-inlines';
 import apiStructurePreviews from './src/transformers/api-structure-previews';
 import fiddleEmbedder from './src/transformers/fiddle-embedder';
 
@@ -207,6 +208,7 @@ const config: Config = {
             const fixedPath = docPath.replace('latest/', '');
             return `https://github.com/electron/electron/edit/main/docs/${fixedPath}`;
           },
+          beforeDefaultRemarkPlugins: [apiStructureInlines],
           remarkPlugins: [
             apiLabels,
             apiOptionsClass,
