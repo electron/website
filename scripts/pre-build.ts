@@ -14,6 +14,7 @@ import { addFrontmatterToAllDocs } from './tasks/add-frontmatter';
 import { createSidebar } from './tasks/create-sidebar';
 import { fixContent } from './tasks/md-fixers';
 import { copyNewContent } from './tasks/copy-new-content';
+import { inlineStructures } from './tasks/inline-structures';
 
 const DOCS_FOLDER = path.join(__dirname, '..', 'docs', 'latest');
 
@@ -70,6 +71,8 @@ const start = async (source: string): Promise<void> => {
 
   logger.info('Adding automatic frontmatter');
   await addFrontmatterToAllDocs(DOCS_FOLDER);
+
+  await inlineStructures();
 
   logger.info('Updating website sidebar');
   await createSidebar('docs', path.join(process.cwd(), 'sidebars.js'));

@@ -2,7 +2,7 @@ import visitParents from 'unist-util-visit-parents';
 import fs from 'fs';
 import path from 'path';
 import { Data, Node, Parent } from 'unist';
-import { Definition, InlineCode, Link, LinkReference, Text } from 'mdast';
+import { Link } from 'mdast';
 
 import remark from 'remark';
 
@@ -24,11 +24,9 @@ const checkLinksandDefinitionsInline = (node: Node<Data>): node is Link => {
 
 function replaceLinkWithInline(node: Link) {
   const relativeStructurePath = node.url;
-
   // 1. grab the contents from the node link, put into string variable
   const noHash = relativeStructurePath.split('#')[0];
   const str = getStructureFileContent(noHash);
-  console.log(str);
   const rootNode = remark().parse(str) as Parent;
   // /* eslint-disable @typescript-eslint/no-explicit-any */
   (node as any).type = 'paragraph';
