@@ -131,13 +131,14 @@ What have we been doing to develop our community presence?
 - In 2020, we participated in the initial iteration of Google Season of Docs, where we worked with
   [@bandantonio](https://github.com/bandantonio) to rework Electron’s new user tutorial flow.
 - In 2022, we mentored a Google Summer of Code student for the first time.
-  [@aryanshridhar](https://github.com/aryanshridhar) did some awesome work to refactor Electron
-  Fiddle’s core version loading logic and migrate its bundler from Parcel 1 to webpack.
+  [@aryanshridhar](https://github.com/aryanshridhar) did some awesome work to refactor [Electron
+  Fiddle](https://github.com/electron/fiddle)'s core version loading logic and migrate its bundler 
+  to [webpack](https://webpack.js.org/).
 
 ### Automate all the things!
 
 Today, Electron governance has about 30 active maintainers. Less than half of us are full-time
-contributors, which means that there’s a lot of work to go around. What’s our trick to keep
+contributors, which means that there’s a lot of work to go around. What’s our trick to keeping
 everything running smoothly? Our motto is that computers are cheap, and human time is expensive.
 In typical engineer fashion, we’ve developed a suite of automated support tooling to make our lives
 easier.
@@ -225,14 +226,13 @@ Altogether, our little family of bots has given us a huge boost in developer pro
 
 As we enter our second decade as a project, you might be asking: what’s next for Electron?
 
-Not much is changing in the immediate future. We’re going to keep releasing major versions of
-Electron regularly every 8 weeks, keeping the framework updated with the latest and greatest from
-the web platform and Node.js while maintaining stability and security for enterprise-grade
-applications.
+We’re going to stay in sync with Chromium's release cadence, releasing  new major versions of 
+Electron every 8 weeks, keeping the framework updated with the latest and greatest from the web 
+platform and Node.js while maintaining stability and security for enterprise-grade applications.
 
-Aside from that, we generally announce news on upcoming initiatives when they become concrete.
-If you want to keep up with future releases, features, and general project updates, you can read
-[our blog](https://electronjs.org/blog) and follow our social media profiles
+We generally announce news on upcoming initiatives when they become concrete. If you want to 
+keep up with future releases, features, and general project updates, you can read 
+[our blog](https://electronjs.org/blog) and follow our social media profiles 
 ([Twitter](https://twitter.com/electronjs) and [Mastodon](https://social.lfx.dev/@electronjs))!
 
 [^1]: This is actually the first commit from the
