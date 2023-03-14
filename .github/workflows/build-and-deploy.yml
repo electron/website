@@ -38,7 +38,7 @@ jobs:
       - name: Install dependencies
         uses: bahmutov/npm-install@8add8c6d2c8586964896d9fdc639e021312a643f # tag: v1.8.28
       - name: Test
-        run: yarn test
+        run: yarn lint && yarn test
         env:
           CI: true
       # FIXME: this is stalling

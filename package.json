@@ -19,13 +19,14 @@
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
     "update-l10n-sources": "ts-node scripts/update-l10n-sources.ts",
-    "lint": "prettier . --check && eslint \"src/**/*.{js,jsx,ts,tsx}\"  \"scripts/**/*.{js,ts}\"",
-    "lint:fix": "prettier . --write && eslint \"src/**/*.{js,jsx,ts,tsx}\"  \"scripts/**/*.{js,ts}\" --fix",
-    "test": "yarn lint && jest",
+    "lint": "prettier . --check && eslint \"src/**/*.{js,jsx,ts,tsx}\" \"scripts/**/*.{js,ts}\"",
+    "lint:fix": "prettier . --write && eslint \"src/**/*.{js,jsx,ts,tsx}\" \"scripts/**/*.{js,ts}\" --fix",
+    "test": "jest",
     "pre-build": "ts-node ./scripts/pre-build.ts",
     "governance": "node ./scripts/governance.js",
     "process-docs-changes": "ts-node ./scripts/process-docs-changes.ts",
-    "update-pinned-version": "ts-node ./scripts/update-pinned-version.ts"
+    "update-pinned-version": "ts-node ./scripts/update-pinned-version.ts",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@docusaurus/core": "^2.2.0",
@@ -57,6 +58,18 @@
       "last 1 safari version"
     ]
   },
+  "lint-staged": {
+    "*.{html,json,md,yml}": "prettier --write",
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --write",
+      "eslint --fix"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "devDependencies": {
     "@actions/core": "^1.2.7",
     "@actions/github": "^4.0.0",
@@ -87,9 +100,11 @@
     "got": "^11.8.2",
     "gray-matter": "^4.0.3",
     "gunzip-maybe": "^1.4.2",
+    "husky": "^8.0.0",
     "jest": "^26.6.3",
     "json5": "^2.2.2",
     "latest-version": "^5.1.0",
+    "lint-staged": "^13.2.0",
     "make-dir": "^3.1.0",
     "mdast-util-to-string": "^2.0.0",
     "prettier": "^2.8.0",
