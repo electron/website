@@ -10,6 +10,7 @@ authors:
     image_url: 'https://github.com/zeke.png?size=96'
 slug: ghost
 ---
+
 This week we chatted with [Felix Rieseberg](https://felixrieseberg.com/), desktop engineer at [Slack](https://slack.com/) and maintainer of [Ghost Desktop](https://ghost.org/downloads/), an Electron client for the [Ghost](https://ghost.org/) publishing platform.
 
 ---
@@ -58,7 +59,7 @@ We would love to see Electron bring the operating system's native spellchecking 
 
 ## What are your favorite things about Electron?
 
-JavaScript is famous for being a vast ecosystem, involving countless tools and frameworks - but the convenience it affords us is hard to overstate. Building an app with Electron is only _slightly_ harder than building a web app, which is an amazing  feat.
+JavaScript is famous for being a vast ecosystem, involving countless tools and frameworks - but the convenience it affords us is hard to overstate. Building an app with Electron is only _slightly_ harder than building a web app, which is an amazing feat.
 
 ## Is Ghost done? If not, what's coming next?
 

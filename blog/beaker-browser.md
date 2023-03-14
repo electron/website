@@ -10,6 +10,7 @@ authors:
     image_url: 'https://github.com/zeke.png?size=96'
 slug: beaker-browser
 ---
+
 This week we caught up with [Paul Frazee](http://pfrazee.github.io/), creator
 of [Beaker Browser](https://beakerbrowser.com/). Beaker is an experimental
 peer-to-peer web browser that uses the Dat protocol to host sites from users’

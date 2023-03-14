@@ -7,6 +7,7 @@ authors:
     image_url: 'https://github.com/electron.png?size=96'
 slug: webview2
 ---
+
 Over the past weeks, we’ve received several questions about the differences between the new [WebView2](https://docs.microsoft.com/en-us/microsoft-edge/webview2/) and Electron.
 
 Both teams have the expressed goal of making web-tech the best it can be on the Desktop,
@@ -42,12 +43,13 @@ Every Electron application is a separate process tree, containing a root browser
 WebView2 apps that use the same [user data folder](https://docs.microsoft.com/en-us/microsoft-edge/webview2/concepts/user-data-folder) (like a suite of apps would do), share non-renderer processes.
 WebView2 apps using different data folders do not share processes.
 
-* ElectronJS Process Model:
+- ElectronJS Process Model:
 
-    ![ElectronJS Process Model Diagram](/assets/img/electron-architecture.png)
-* WebView2 Based Application Process Model:
+  ![ElectronJS Process Model Diagram](/assets/img/electron-architecture.png)
 
-    ![WebView2 Process Model Diagram](/assets/img/webview2-architecture.png)
+- WebView2 Based Application Process Model:
+
+  ![WebView2 Process Model Diagram](/assets/img/webview2-architecture.png)
 
 Read more about [WebView2’s process model](https://docs.microsoft.com/en-us/microsoft-edge/webview2/concepts/process-model) and [Electron’s process model](https://www.electronjs.org/docs/tutorial/process-model) here.
 
@@ -75,19 +77,19 @@ The WebView2 source is not available on GitHub.
 
 Quick Summary:
 
-|                                           | Electron        | WebView2                     |
-| ----------------------------------------- | --------------: | ---------------------------: |
-| Build Dependency                          | Chromium        | Edge                         |
-| Source Available on GitHub                | Yes             | No                           |
-| Shares Edge/Chrome DLLs                   | No              | Yes (as of Edge 90)          |
-| Shared Runtime Between Applications       | No              | Optional                     |
-| Application APIs                          | Yes             | No                           |
-| Node.js                                   | Yes             | No                           |
-| Sandbox                                   | Optional        | Always                       |
-| Requires an Application Framework         | No              | Yes                          |
-| Supported Platforms                       | Mac, Win, Linux | Win (Mac/Linux planned)      |
-| Process Sharing Between Apps              | Never           | Optional                     |
-| Framework Updates Managed By              | Application     | WebView2                     |
+|                                     |        Electron |                WebView2 |
+| ----------------------------------- | --------------: | ----------------------: |
+| Build Dependency                    |        Chromium |                    Edge |
+| Source Available on GitHub          |             Yes |                      No |
+| Shares Edge/Chrome DLLs             |              No |     Yes (as of Edge 90) |
+| Shared Runtime Between Applications |              No |                Optional |
+| Application APIs                    |             Yes |                      No |
+| Node.js                             |             Yes |                      No |
+| Sandbox                             |        Optional |                  Always |
+| Requires an Application Framework   |              No |                     Yes |
+| Supported Platforms                 | Mac, Win, Linux | Win (Mac/Linux planned) |
+| Process Sharing Between Apps        |           Never |                Optional |
+| Framework Updates Managed By        |     Application |                WebView2 |
 
 ## Performance Discussion
 
@@ -106,7 +108,7 @@ While Electron allows unsandboxed render processes, many apps choose to enable t
 WebView2 always has the sandbox enabled, so for most Electron and WebView2 apps IPC can impact overall performance.
 
 Even though Electron and WebView2 have a similar process models, the underlying IPC differs.
-Communicating between JavaScript and C++ or C# requires [marshalling](https://en.wikipedia.org/wiki/Marshalling_(computer_science)),
+Communicating between JavaScript and C++ or C# requires [marshalling](<https://en.wikipedia.org/wiki/Marshalling_(computer_science)>),
 most commonly to a JSON string. JSON serialization/parsing is an expensive operation, and IPC-bottlenecks can negatively impact performance.
 Starting with Edge 93, WV2 will use [CBOR](https://en.wikipedia.org/wiki/CBOR) for network events.
 

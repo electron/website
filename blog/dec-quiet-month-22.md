@@ -30,4 +30,3 @@ The Electron project will pause for the month of December 2022, then return to f
 ## Why is this happening?
 
 With the success of December Quiet Month 2021, we wanted to bring it back for 2022. December continues to be a quiet month for most companies, so we want to give our maintainers a chance to recharge. Everyone is looking forward to 2023, and we expect good things to come! We encourage other projects to consider similar measures.
-

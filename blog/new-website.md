@@ -7,6 +7,7 @@ authors:
   image_url: 'https://github.com/zeke.png?size=96'
 slug: new-website
 ---
+
 Electron has a new website at [electronjs.org]! We've replaced
 our static Jekyll site with a Node.js webserver, giving us flexibility to
 internationalize the site and paving the way for more exciting new features.
@@ -162,14 +163,14 @@ Thank you!
 
 ![Thumbs up!](https://user-images.githubusercontent.com/2289/32871386-92eaa4ea-ca35-11e7-9511-a746c7fbf2c4.png)
 
-[Atom]: https://atom.io
+[atom]: https://atom.io
 [cask]: https://caskroom.github.io
 [crowdin.com/project/electron]: https://crowdin.com/project/electron
-[Crowdin]: https://crowdin.com/project/electron
+[crowdin]: https://crowdin.com/project/electron
 [electron/electron-apps]: https://github.com/electron/electron-apps
 [electron/electron-i18n]: https://github.com/electron/electron-i18n#readme
 [electronjs.org]: https://electronjs.org
-[GitHub Desktop]: https://desktop.github.com
-[Homebrew]: https://brew.sh
-[Jekyll]: https://jekyllrb.com
-[Node.js]: https://nodejs.org
+[github desktop]: https://desktop.github.com
+[homebrew]: https://brew.sh
+[jekyll]: https://jekyllrb.com
+[node.js]: https://nodejs.org

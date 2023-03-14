@@ -7,6 +7,7 @@ authors:
   image_url: 'https://github.com/BinaryMuse.png?size=96'
 slug: electron-4-0
 ---
+
 The Electron team is excited to announce that the stable release of Electron 4 is now available! You can install it from [electronjs.org](https://electronjs.org/) or from npm via `npm install electron@latest`. The release is packed with upgrades, fixes, and new features, and we can't wait to see what you build with them. Read more for details about this release, and please share any feedback you have as you explore!
 
 ---
@@ -45,34 +46,43 @@ When a module is required via `remote.require` in a renderer process, a `remote-
 // Control `remote.require` from all WebContents:
 app.on('remote-require', function (event, webContents, requestedModuleName) {
   // ...
-})
+});
 
 // Control `remote.require` from a specific WebContents instance:
-browserWin.webContents.on('remote-require', function (event, requestedModuleName) {
-  // ...
-})
+browserWin.webContents.on(
+  'remote-require',
+  function (event, requestedModuleName) {
+    // ...
+  }
+);
 ```
 
 In a similar fashion, when `remote.getGlobal(name)` is called, a `remote-get-global` event is raised. This works the same way as the `remote-require` event: call `preventDefault()` to prevent the global from being returned, and set `event.returnValue` to return a custom value.
 
 ```javascript
 // Control `remote.getGlobal` from all WebContents:
-app.on('remote-get-global', function (event, webContents, requrestedGlobalName) {
-  // ...
-})
+app.on(
+  'remote-get-global',
+  function (event, webContents, requrestedGlobalName) {
+    // ...
+  }
+);
 
 // Control `remote.getGlobal` from a specific WebContents instance:
-browserWin.webContents.on('remote-get-global', function (event, requestedGlobalName) {
-  // ...
-})
+browserWin.webContents.on(
+  'remote-get-global',
+  function (event, requestedGlobalName) {
+    // ...
+  }
+);
 ```
 
 For more information, see the following documentation:
 
-* [`remote.require`](https://electronjs.org/docs/api/remote#remoterequiremodule)
-* [`remote.getGlobal`](https://electronjs.org/docs/api/remote#remotegetglobalname)
-* [`app`](https://electronjs.org/docs/api/app)
-* [`WebContents`](https://electronjs.org/docs/api/web-contents)
+- [`remote.require`](https://electronjs.org/docs/api/remote#remoterequiremodule)
+- [`remote.getGlobal`](https://electronjs.org/docs/api/remote#remotegetglobalname)
+- [`app`](https://electronjs.org/docs/api/app)
+- [`WebContents`](https://electronjs.org/docs/api/web-contents)
 
 ### JavaScript Access to the About Panel
 
@@ -119,11 +129,11 @@ When creating a new `BrowserWindow` with the `webPreferences` option set, the fo
 
 <div className="table table-ruled table-full-width">
 
-| Property | Deprecated Default | New Default |
-|----------|--------------------|-------------|
-| `contextIsolation` | `false` | `true` |
-| `nodeIntegration` | `true` | `false` |
-| `webviewTag` | value of `nodeIntegration` if set, otherwise `true` | `false` |
+| Property           | Deprecated Default                                  | New Default |
+| ------------------ | --------------------------------------------------- | ----------- |
+| `contextIsolation` | `false`                                             | `true`      |
+| `nodeIntegration`  | `true`                                              | `false`     |
+| `webviewTag`       | value of `nodeIntegration` if set, otherwise `true` | `false`     |
 
 </div>
 

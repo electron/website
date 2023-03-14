@@ -36,18 +36,19 @@ In order to be selected as an Electron contributor for Google Summer of Code, yo
 Want to apply? First, check out the [five project idea drafts](https://docs.google.com/document/d/1hJBiju0185Tga99WF3023u0uHgnfCG-J1DfzmhYHca0/edit?usp=sharing) that we have prepared. All of the listed ideas are currently open for proposals. We are also open to accepting new ideas that are not on the proposed project list.
 
 Your application should include:
-* Your proposal, which is a written document that describes in detail what you plan to achieve over the course of the summer.
-* Your background as a developer. If you have a resume, please include a copy, otherwise tell us about your past experience with an emphasis on relevant technical experience.
+
+- Your proposal, which is a written document that describes in detail what you plan to achieve over the course of the summer.
+- Your background as a developer. If you have a resume, please include a copy, otherwise tell us about your past experience with an emphasis on relevant technical experience.
 
 [A detailed guide of what to submit as part of your Electron application is here.](https://docs.google.com/document/d/17vDEvxq7bEwFXO-hJX7bsnyDCx8aRK3yo-rerrxYaOk/edit?usp=sharing)
 
-You can also read through the [official GSoC student/contributor guide](https://google.github.io/gsocguides/student/) for important tips on preparing your proposal. 
+You can also read through the [official GSoC student/contributor guide](https://google.github.io/gsocguides/student/) for important tips on preparing your proposal.
 
 If you want to discuss project proposals or have questions, come hang out in our [#gsoc-general Discord channel](https://discord.gg/w25Dn82xw9)!
 
 ## References
 
-* [Electron Proposal Guide](https://docs.google.com/document/d/17vDEvxq7bEwFXO-hJX7bsnyDCx8aRK3yo-rerrxYaOk/edit?usp=sharing)
-* [Electron GitHub](https://github.com/electron/electron)
-* [Project Ideas Document](https://docs.google.com/document/d/1hJBiju0185Tga99WF3023u0uHgnfCG-J1DfzmhYHca0/edit?usp=sharing)
-* [Google Summer of Code Student/Contributor Guide](https://google.github.io/gsocguides/student/)
+- [Electron Proposal Guide](https://docs.google.com/document/d/17vDEvxq7bEwFXO-hJX7bsnyDCx8aRK3yo-rerrxYaOk/edit?usp=sharing)
+- [Electron GitHub](https://github.com/electron/electron)
+- [Project Ideas Document](https://docs.google.com/document/d/1hJBiju0185Tga99WF3023u0uHgnfCG-J1DfzmhYHca0/edit?usp=sharing)
+- [Google Summer of Code Student/Contributor Guide](https://google.github.io/gsocguides/student/)

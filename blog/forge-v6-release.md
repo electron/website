@@ -27,12 +27,13 @@ Keep on reading to see what's new and how your app can adopt Electron Forge!
 [Electron Forge](https://electronforge.io) is a tool for packaging and distributing Electron applications. It unifies Electron's build tooling ecosystem into a single extensible interface so that anyone can jump right into making Electron apps.
 
 Highlight features include:
-* 📦 Application packaging and code signing
-* 🚚 Customizable installers on Windows, macOS, and Linux (DMG, deb, MSI, PKG, AppX, etc.)
-* ☁️ Automated publishing flow for cloud providers (GitHub, S3, Bitbucket, etc.)
-* ⚡️ Easy-to-use boilerplate templates for webpack and TypeScript
-* ⚙️ Native Node.js module support
-* 🔌 Extensible JavaScript plugin API
+
+- 📦 Application packaging and code signing
+- 🚚 Customizable installers on Windows, macOS, and Linux (DMG, deb, MSI, PKG, AppX, etc.)
+- ☁️ Automated publishing flow for cloud providers (GitHub, S3, Bitbucket, etc.)
+- ⚡️ Easy-to-use boilerplate templates for webpack and TypeScript
+- ⚙️ Native Node.js module support
+- 🔌 Extensible JavaScript plugin API
 
 :::info Further reading
 
@@ -168,8 +169,7 @@ GitBook instance synced to the
 
 [getting started]: https://www.electronforge.io/
 [import documentation]: https://www.electronforge.io/import-existing-project
-
 [webpack template]: https://www.electronforge.io/templates/webpack-template
 [webpack + typescript template]: https://www.electronforge.io/templates/typescript-+-webpack-template
-[Extending Electron Forge]: https://www.electronforge.io/advanced/extending-electron-forge
-[Why Electron Forge]: https://www.electronforge.io/core-concepts/why-electron-forge
+[extending electron forge]: https://www.electronforge.io/advanced/extending-electron-forge
+[why electron forge]: https://www.electronforge.io/core-concepts/why-electron-forge

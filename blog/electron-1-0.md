@@ -7,6 +7,7 @@ authors:
   image_url: 'https://github.com/jlord.png?size=96'
 slug: electron-1-0
 ---
+
 For the last two years, Electron has helped developers build cross platform
 desktop apps using HTML, CSS, and JavaScript. Now we're excited to share a major
 milestone for our framework and for the community that created it. The release
@@ -63,14 +64,14 @@ designed to help you inspect, debug, and troubleshoot your Electron app.
 
 ### Features
 
-  * **Require graph** that helps you visualize your app's internal and external
-    library dependencies in both the main and renderer processes
-  * **IPC monitor** that tracks and displays the messages sent and received
-    between the processes in your app
-  * **Event inspector** that shows you the events and listeners that are registered
-    in your app on the core Electron APIs such as the window, app, and processes
-  * **App Linter** that checks your apps for common mistakes and missing
-    functionality
+- **Require graph** that helps you visualize your app's internal and external
+  library dependencies in both the main and renderer processes
+- **IPC monitor** that tracks and displays the messages sent and received
+  between the processes in your app
+- **Event inspector** that shows you the events and listeners that are registered
+  in your app on the core Electron APIs such as the window, app, and processes
+- **App Linter** that checks your apps for common mistakes and missing
+  functionality
 
 ## Spectron
 

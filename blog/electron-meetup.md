@@ -7,6 +7,7 @@ authors:
   image_url: 'https://github.com/jlord.png?size=96'
 slug: electron-meetup
 ---
+
 Join us September 29th at GitHub's HQ for an Electron meetup hosted by Atom team members [@jlord](https://github.com/jlord) and [@kevinsawicki](https://github.com/kevinsawicki). There will be talks, food to snack on, and time to hangout and meet others doing cool things with Electron. We'll also have a bit of time to do lightning talks for those interested. Hope to see you there!
 
 ---
@@ -15,7 +16,7 @@ Join us September 29th at GitHub's HQ for an Electron meetup hosted by Atom team
 
 - **Jonathan Ross** and **Francois Laberge** from [Jibo](http://jibo.com) will share how they use Electron to animate a robot.
 - **Jessica Lord** will talk about building a teaching tool, [Git-it](https://github.com/jlord/git-it-electron), on Electron.
-- **Tom Moor** will talk about the pros and cons of building  video and screen sharing on Electron with [speak.io](https://speak.io).
+- **Tom Moor** will talk about the pros and cons of building video and screen sharing on Electron with [speak.io](https://speak.io).
 - **Ben Gotow** will preview N1: [The Nylas Mail Client](https://www.nylas.com/blog/splitting-the-atom) and talk about developing it on Electron.
 
 ### Details

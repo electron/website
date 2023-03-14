@@ -7,6 +7,7 @@ authors:
   image_url: 'https://github.com/zeke.png?size=96'
 slug: simple-samples
 ---
+
 We recently hosted an Electron hackathon at GitHub HQ for members of [Hackbright Academy](https://hackbrightacademy.com), a coding school for women founded in San Francisco. To help attendees get a head start on their projects, our own [Kevin Sawicki](https://github.com/kevinsawicki) created a few sample Electron applications.
 
 ---

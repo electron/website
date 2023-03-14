@@ -7,6 +7,7 @@ authors:
   image_url: 'https://github.com/zeke.png?size=96'
 slug: autoupdating-electron-apps
 ---
+
 Today we're releasing a free, open-source, hosted
 [updates webservice][update.electronjs.org] and companion
 [npm package][update-electron-app]
@@ -47,7 +48,7 @@ npm install update-electron-app
 Call it from anywhere in your app's [main process]:
 
 ```js
-require('update-electron-app')()
+require('update-electron-app')();
 ```
 
 That's it! The module will check for updates at app startup, then
@@ -83,14 +84,14 @@ service.
 
 🌲 Here's to an evergreen future for Electron apps!
 
-[autoUpdater]: https://electronjs.org/docs/tutorial/updates
+[autoupdater]: https://electronjs.org/docs/tutorial/updates
 [electron-builder]: https://github.com/electron-userland/electron-builder
-[Hazel]: https://github.com/zeit/hazel
-[Julian Gruber]: http://juliangruber.com/
+[hazel]: https://github.com/zeit/hazel
+[julian gruber]: http://juliangruber.com/
 [main process]: https://electronjs.org/docs/glossary#main-process
-[Deploying an Update Server]: https://electronjs.org/docs/tutorial/updates#deploying-an-update-server
-[Nucleus]: https://github.com/atlassian/nucleus
-[Samuel Attard]: https://www.samuelattard.com/
+[deploying an update server]: https://electronjs.org/docs/tutorial/updates#deploying-an-update-server
+[nucleus]: https://github.com/atlassian/nucleus
+[samuel attard]: https://www.samuelattard.com/
 [update-electron-app]: https://github.com/electron/update-electron-app
 [update.electronjs.org]: https://github.com/electron/update.electronjs.org
-[Zeit]: https://zeit.co
+[zeit]: https://zeit.co

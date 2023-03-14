@@ -7,6 +7,7 @@ authors:
   image_url: 'https://github.com/groundwater.png?size=96'
 slug: electron-2-semantic-boogaloo
 ---
+
 A new major version of Electron is in the works, and with it some changes to our versioning strategy. As of version 2.0.0, Electron will strictly adhere to Semantic Versioning.
 
 ---
@@ -15,24 +16,24 @@ This change means you'll see the major version bump more often, and it will usua
 
 **Major Version Increments**
 
-* Chromium version updates
-* Node.js major version updates
-* Electron breaking API changes
+- Chromium version updates
+- Node.js major version updates
+- Electron breaking API changes
 
 **Minor Version Increments**
 
-* Node.js minor version updates
-* Electron non-breaking API changes
+- Node.js minor version updates
+- Electron non-breaking API changes
 
 **Patch Version Increments**
 
-* Node.js patch version updates
-* fix-related chromium patches
-* Electron bug fixes
+- Node.js patch version updates
+- fix-related chromium patches
+- Electron bug fixes
 
 Because Electron's semver ranges will now be more meaningful, we recommend
 installing Electron using npm's default `--save-dev` flag, which will prefix
-your version with `^`, keeping you safely up to date with minor and patch 
+your version with `^`, keeping you safely up to date with minor and patch
 updates:
 
 ```sh

@@ -7,6 +7,7 @@ authors:
   image_url: 'https://github.com/zeke.png?size=96'
 slug: protocol-handler-fix
 ---
+
 A remote code execution vulnerability has been discovered affecting
 Electron apps that use custom protocol handlers. This vulnerability has been
 assigned the CVE identifier [CVE-2018-1000006].
@@ -43,8 +44,8 @@ after which only positional parameters are accepted.
 ```js
 app.setAsDefaultProtocolClient(protocol, process.execPath, [
   '--your-switches-here',
-  '--'
-])
+  '--',
+]);
 ```
 
 See the [app.setAsDefaultProtocolClient] API for more details.
@@ -56,5 +57,5 @@ If you wish to report a vulnerability in Electron, email
 security@electronjs.org.
 
 [security tutorial]: https://electronjs.org/docs/tutorial/security
-[app.setAsDefaultProtocolClient]: https://electronjs.org/docs/api/app#appsetasdefaultprotocolclientprotocol-path-args-macos-windows
-[CVE-2018-1000006]: https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-1000006
+[app.setasdefaultprotocolclient]: https://electronjs.org/docs/api/app#appsetasdefaultprotocolclientprotocol-path-args-macos-windows
+[cve-2018-1000006]: https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-1000006

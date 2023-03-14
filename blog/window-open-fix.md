@@ -7,6 +7,7 @@ authors:
   image_url: 'https://github.com/ckerr.png?size=96'
 slug: window-open-fix
 ---
+
 A code vulnerability has been discovered that allows Node to be re-enabled in child windows.
 
 ---
@@ -15,7 +16,7 @@ Opening a BrowserView with `sandbox: true` or `nativeWindowOpen: true` and `node
 
 ## Mitigation
 
-We've published new versions of Electron which include fixes for  this vulnerability:
+We've published new versions of Electron which include fixes for this vulnerability:
 [`2.0.17`](https://github.com/electron/electron/releases/tag/v2.0.17),
 [`3.0.15`](https://github.com/electron/electron/releases/tag/v3.0.15),
 [`3.1.3`](https://github.com/electron/electron/releases/tag/v3.1.3),
@@ -26,7 +27,7 @@ We encourage all Electron developers to update their apps to the latest stable v
 If for some reason you are unable to upgrade your Electron version, you can mitigate this issue by disabling all child web contents:
 
 ```javascript
-view.webContents.on('-add-new-contents', e => e.preventDefault());
+view.webContents.on('-add-new-contents', (e) => e.preventDefault());
 ```
 
 ## Further Information

@@ -7,6 +7,7 @@ authors:
   image_url: 'https://github.com/zcbenz.png?size=96'
 slug: electron-internals-node-integration
 ---
+
 This is the first post of a series that explains the internals of Electron. This
 post introduces how Node's event loop is integrated with Chromium in Electron.
 
@@ -79,7 +80,7 @@ You can find the implemention of the message loop integration in the
 `node_bindings` files under [`electron/atom/common/`][node-bindings]. It can be
 easily reused for projects that want to integrate Node.
 
-*Update: Implementation moved to [`electron/shell/common/node_bindings.cc`][node-bindings-updated].*
+_Update: Implementation moved to [`electron/shell/common/node_bindings.cc`][node-bindings-updated]._
 
 [node-gui]: https://github.com/zcbenz/node-gui
 [node-qt]: https://github.com/arturadib/node-qt

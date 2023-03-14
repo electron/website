@@ -13,6 +13,7 @@ authors:
     image_url: 'https://github.com/zeke.png?size=96'
 slug: kap
 ---
+
 The Electron community is growing quickly, and people are creating powerful
 new apps and tools at an astounding rate. To celebrate this creative momentum
 and keep the community informed of some of these new projects, we've decided to
@@ -28,13 +29,13 @@ a geodistributed team of freelance designers and developers.
 
 ## What is Kap?
 
-[Kap is an open-source screen recorder](https://getkap.co) built primarily for designers and developers to easily capture their work. People use it to share animated prototypes, document bugs, create silly GIFs and everything in-between.  
+[Kap is an open-source screen recorder](https://getkap.co) built primarily for designers and developers to easily capture their work. People use it to share animated prototypes, document bugs, create silly GIFs and everything in-between.
 
 We've seen people of all ages and backgrounds use it in educational settings, screencasts, tutorials... the list goes on. Even to create production assets! We're completely blown away by how well received our little side project has been.
 
 ## Why did you build it?
 
-That's a very good question, it's not like there's a lack of screen recorders out there! We felt the alternatives were either too complex, too expensive or too limited. Nothing felt *just right* for our everyday needs. We also think it's great when the tools we use to do our work are open-source, that way everyone can help shape them. [Building Kap ended up being just as much about what we didn't do](https://medium.com/wulkano-friends/from-idea-to-product-and-beyond-a12850403c38). It's all in the details, an accumulation of small improvements that became the outline of a tool we wanted to use.
+That's a very good question, it's not like there's a lack of screen recorders out there! We felt the alternatives were either too complex, too expensive or too limited. Nothing felt _just right_ for our everyday needs. We also think it's great when the tools we use to do our work are open-source, that way everyone can help shape them. [Building Kap ended up being just as much about what we didn't do](https://medium.com/wulkano-friends/from-idea-to-product-and-beyond-a12850403c38). It's all in the details, an accumulation of small improvements that became the outline of a tool we wanted to use.
 
 However, and maybe most importantly, Kap has become a place for us to leave our worries at the door and just have fun building something for ourselves and people like us. It's so important to create an environment where you get to just vent, try new thins and enjoy your craft. No requirements, no pressure, no expectations. Should designers and developers side project? Why, yes. Yes, they should.
 
@@ -42,13 +43,13 @@ However, and maybe most importantly, Kap has become a place for us to leave our 
 
 There were a number of reasons:
 
-* Web tech
-* Most of the team are web developers
-* We're invested in JavaScript
-* It opens the door for more people to contribute
-* Electron itself is open-source
-* The power and easily maintainable modularity of `node_modules`
-* Cross-platform possibilities
+- Web tech
+- Most of the team are web developers
+- We're invested in JavaScript
+- It opens the door for more people to contribute
+- Electron itself is open-source
+- The power and easily maintainable modularity of `node_modules`
+- Cross-platform possibilities
 
 We think the future of apps are in the browser, but we're not quite there yet. Electron is an important step in the journey towards that future. It not only makes the apps themselves more accessible, but also the code they're built with. An interesting thought is imagining a future where the OS is a browser, and the tabs are essentially Electron apps.
 

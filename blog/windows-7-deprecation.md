@@ -2,11 +2,10 @@
 title: Farewell, Windows 7/8/8.1
 date: 2022-11-29T00:00:00.000Z
 authors:
-    - name: vertedinde
-      url: 'https://github.com/vertedinde'
-      image_url: 'https://github.com/vertedinde.png?size=96'
+  - name: vertedinde
+    url: 'https://github.com/vertedinde'
+    image_url: 'https://github.com/vertedinde.png?size=96'
 slug: windows-7-to-8-1-deprecation-notice
-
 ---
 
 Electron will end support of Windows 7, Windows 8 and Windows 8.1 beginning in Electron 23.
@@ -35,9 +34,9 @@ The following is our planned deprecation timeline:
 
 What this means for developers:
 
-- The Electron team will accept issues and fixes related to Windows 7/8/8.1 for stable supported lines, until each line reaches the end of its support cycle. 
+- The Electron team will accept issues and fixes related to Windows 7/8/8.1 for stable supported lines, until each line reaches the end of its support cycle.
   - This specifically applies to Electron 22, Electron 21 and Electron 20.
-- New issues related to Windows 7/8/8.1 will be accepted for Electron versions older than Electron 23. 
+- New issues related to Windows 7/8/8.1 will be accepted for Electron versions older than Electron 23.
   - New issues will not be accepted for any newer release lines.
 - Once Electron 22 has reached the end of its support cycle, all existing issues related to Windows 7/8/8.1 will be closed.
 

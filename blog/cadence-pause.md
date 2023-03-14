@@ -7,6 +7,7 @@ authors:
   image_url: 'https://github.com/codebytere.png?size=96'
 slug: cadence-pause
 ---
+
 Electron is temporarily pausing major releases
 
 ---

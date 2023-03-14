@@ -7,6 +7,7 @@ authors:
   image_url: 'https://github.com/jlord.png?size=96'
 slug: electron-updates-mac-app-store-and-windows-auto-updater
 ---
+
 Recently Electron added two exciting features: a Mac App Store compatible build and a built-in Windows auto updater.
 
 ---

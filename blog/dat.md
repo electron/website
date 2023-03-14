@@ -16,6 +16,7 @@ authors:
     image_url: 'https://github.com/zeke.png?size=96'
 slug: dat
 ---
+
 This week's featured project is [Dat](https://datproject.org/), a
 [grant-funded](https://changelog.com/rfc/6), open source, decentralized tool
 for distributing data sets. Dat is built and maintained by a

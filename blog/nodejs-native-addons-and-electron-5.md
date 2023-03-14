@@ -7,6 +7,7 @@ authors:
   image_url: 'https://github.com/BinaryMuse.png?size=96'
 slug: nodejs-native-addons-and-electron-5
 ---
+
 If you're having trouble using a native Node.js addon with Electron 5.0, there's a chance it needs to be updated to work with the most recent version of V8.
 
 ---
@@ -15,7 +16,7 @@ If you're having trouble using a native Node.js addon with Electron 5.0, there's
 
 In 2014, the V8 team deprecated `v8::Handle` in favor of `v8::Local` for local handles. Electron 5.0 includes a version of V8 that has finally removed `v8::Handle` for good, and native Node.js addons that still use it will need to be updated before they can be used with Electron 5.0.
 
-The required code change is minimal, but *every* native Node module that still uses `v8::Handle` will fail to build with Electron 5.0 and will need to be modified. The good news is that Node.js v12 will also include this V8 change, so any modules that use `v8::Handle` will need to be updated *anyway* to work with the upcoming version of Node.
+The required code change is minimal, but _every_ native Node module that still uses `v8::Handle` will fail to build with Electron 5.0 and will need to be modified. The good news is that Node.js v12 will also include this V8 change, so any modules that use `v8::Handle` will need to be updated _anyway_ to work with the upcoming version of Node.
 
 ## I maintain a native addon, how can I help?
 

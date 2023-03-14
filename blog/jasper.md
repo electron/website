@@ -13,6 +13,7 @@ authors:
     image_url: 'https://github.com/zeke.png?size=96'
 slug: jasper
 ---
+
 This week we interviewed the creator of [Jasper], an Electron-based tool for
 managing GitHub notifications.
 
@@ -74,41 +75,41 @@ I will introduce what kind of conditions can be used for stream.
 
 ### Users and Teams
 
-| Stream | Issues |
-| ---- | --- |
-| `mentions:cat mentions:dog` | Issues that mention user `cat` or `dog`|
-| `author:cat author:dog` | Issues created by user `cat` or `dog` |
-| `assignee:cat assignee:dog` | Issues assigned to `cat` or `dog` |
-| `commenter:cat commenter:dog` | Issues that `cat` or `dog` commented on |
-| `involves:cat involves:dog` | Issues that "involve" `cat` or `bob` |
+| Stream                                        | Issues                                                                |
+| --------------------------------------------- | --------------------------------------------------------------------- |
+| `mentions:cat mentions:dog`                   | Issues that mention user `cat` or `dog`                               |
+| `author:cat author:dog`                       | Issues created by user `cat` or `dog`                                 |
+| `assignee:cat assignee:dog`                   | Issues assigned to `cat` or `dog`                                     |
+| `commenter:cat commenter:dog`                 | Issues that `cat` or `dog` commented on                               |
+| `involves:cat involves:dog`                   | Issues that "involve" `cat` or `bob`                                  |
 | `team:animal/white-cat team:animal/black-dog` | Issues that `animal/white-cat` or `animal/black-dog` are mentioned in |
 
 `involves` means `mention`, `author`, `assignee` or `commenter`
 
 ### Repositories and Organizations
 
-| Stream | Issues |
-| --- | --- |
-| `repo:cat/jump repo:dog/run` | Issues in `cat/jump` or `dog/run` |
+| Stream                           | Issues                               |
+| -------------------------------- | ------------------------------------ |
+| `repo:cat/jump repo:dog/run`     | Issues in `cat/jump` or `dog/run`    |
 | `org:electron user:cat user:dog` | Issues in `electron`, `cat` or `dog` |
 
 `org` is same as `user`
 
 ### Attributes
 
-| Stream | Issues |
-| --- | --- |
+| Stream                                            | Issues                                                         |
+| ------------------------------------------------- | -------------------------------------------------------------- |
 | `repo:cat/jump milestone:v1.0.0 milestone:v1.0.1` | Issues that are attached to `v1.0.0` or `v1.0.1` in `cat/jump` |
-| `repo:cat/jump label:bug label:blocker` | Issues that are attached `bug` **and** `blocker` in `cat/jump` |
-| `electron OR atomshell` | Issues that include `electron` or `atomshell` |
+| `repo:cat/jump label:bug label:blocker`           | Issues that are attached `bug` **and** `blocker` in `cat/jump` |
+| `electron OR atomshell`                           | Issues that include `electron` or `atomshell`                  |
 
 ### Review Status
 
-| Stream | Issues |
-| --- | --- |
-| `is:pr review:required` | Issues that are required review in `cat/jump` |
+| Stream                       | Issues                                                                           |
+| ---------------------------- | -------------------------------------------------------------------------------- |
+| `is:pr review:required`      | Issues that are required review in `cat/jump`                                    |
 | `is:pr review-requested:cat` | Issues that are requested review by `cat`. <br/> But these are not reviewed yet. |
-| `is:pr reviewed-by:cat` | Issues that are reviewed by `cat` |
+| `is:pr reviewed-by:cat`      | Issues that are reviewed by `cat`                                                |
 
 <br/>
 
@@ -151,8 +152,8 @@ I have a plan to develop the following features:
 
 Follow [@jasperappio](https://twitter.com/jasperappio) on Twitter for updates.
 
-[Jasper]: https://jasperapp.io
-[Notifications API]: https://developer.github.com/v3/activity/notifications/
-[Pull Requests API]: https://developer.github.com/v3/pulls/
-[Issues API]: https://developer.github.com/v3/issues/
-[Search API]: https://developer.github.com/v3/search/
+[jasper]: https://jasperapp.io
+[notifications api]: https://developer.github.com/v3/activity/notifications/
+[pull requests api]: https://developer.github.com/v3/pulls/
+[issues api]: https://developer.github.com/v3/issues/
+[search api]: https://developer.github.com/v3/search/

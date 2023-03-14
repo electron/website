@@ -7,6 +7,7 @@ authors:
   image_url: 'https://github.com/jlord.png?size=96'
 slug: accessibility-tools
 ---
+
 Making accessible applications is important and we're happy to introduce new functionality to [Devtron](https://electronjs.org/devtron) and [Spectron](https://electronjs.org/spectron) that gives developers the opportunity to make their apps better for everyone.
 
 ---
@@ -22,9 +23,9 @@ In the testing framework Spectron, you can now audit each window and `<webview>`
 ```javascript
 app.client.auditAccessibility().then(function (audit) {
   if (audit.failed) {
-    console.error(audit.message)
+    console.error(audit.message);
   }
-})
+});
 ```
 
 You can read more about this feature in [Spectron's documentation](https://github.com/electron/spectron#accessibility-testing).

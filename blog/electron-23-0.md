@@ -2,20 +2,19 @@
 title: Electron 23.0.0
 date: 2023-2-07T00:00:00.000Z
 authors:
-    - name: VerteDinde
-      url: 'https://github.com/VerteDinde'
-      image_url: 'https://github.com/vertedinde.png?size=96'
-    - name: georgexu99
-      url: 'https://github.com/georgexu99'
-      image_url: 'https://github.com/georgexu99.png?size=96'
-    - name: erickzhao
-      url: 'https://github.com/erickzhao'
-      image_url: 'https://github.com/erickzhao.png?size=96'
+  - name: VerteDinde
+    url: 'https://github.com/VerteDinde'
+    image_url: 'https://github.com/vertedinde.png?size=96'
+  - name: georgexu99
+    url: 'https://github.com/georgexu99'
+    image_url: 'https://github.com/georgexu99.png?size=96'
+  - name: erickzhao
+    url: 'https://github.com/erickzhao'
+    image_url: 'https://github.com/erickzhao.png?size=96'
 slug: electron-23-0
-
 ---
 
-Electron 23.0.0 has been released! It includes upgrades to Chromium `110`, V8 `11.0`, and Node.js `18.12.1`.  Additionally, support for Windows 7/8/8.1 has been dropped. Read below for more details!
+Electron 23.0.0 has been released! It includes upgrades to Chromium `110`, V8 `11.0`, and Node.js `18.12.1`. Additionally, support for Windows 7/8/8.1 has been dropped. Read below for more details!
 
 ---
 
@@ -27,22 +26,22 @@ If you have any feedback, please share it with us on Twitter, or join our commun
 
 ### Stack Changes
 
-* Chromium `110`
-    * [New in Chrome 110](https://developer.chrome.com/blog/new-in-chrome-110/)
-    * [New in Chrome 109](https://developer.chrome.com/blog/new-in-chrome-109/)
-    * [New in DevTools 110](https://developer.chrome.com/blog/new-in-devtools-110/)
-    * [New in DevTools 109](https://developer.chrome.com/blog/new-in-devtools-109/)
-* Node.js `18.12.1`
-    * [Node 18.12.1 blog post](https://nodejs.org/en/blog/release/v18.12.1/)
-* V8 `11.0`
+- Chromium `110`
+  - [New in Chrome 110](https://developer.chrome.com/blog/new-in-chrome-110/)
+  - [New in Chrome 109](https://developer.chrome.com/blog/new-in-chrome-109/)
+  - [New in DevTools 110](https://developer.chrome.com/blog/new-in-devtools-110/)
+  - [New in DevTools 109](https://developer.chrome.com/blog/new-in-devtools-109/)
+- Node.js `18.12.1`
+  - [Node 18.12.1 blog post](https://nodejs.org/en/blog/release/v18.12.1/)
+- V8 `11.0`
 
 ### New Features
 
-* Added `label` property to [`Display`](https://www.electronjs.org/docs/latest/api/structures/display) objects. [#36933](https://github.com/electron/electron/pull/36933) 
-* Added an `app.getPreferredSystemLanguages()` API to return the user's system languages. [#36035](https://github.com/electron/electron/pull/36035) 
-* Added support for the [WebUSB](https://developer.mozilla.org/en-US/docs/Web/API/WebUSB_API) API. [#36289](https://github.com/electron/electron/pull/36289) 
-* Added support for [`SerialPort.forget()`](https://developer.mozilla.org/en-US/docs/Web/API/SerialPort/forget) as well as a new event `serial-port-revoked` emitted on [Session](https://www.electronjs.org/docs/latest/api/session) objects when a given origin is revoked. [#35310](https://github.com/electron/electron/pull/35310)
-* Added new `win.setHiddenInMissionControl` API to allow developers to opt out of Mission Control on macOS. [#36092](https://github.com/electron/electron/pull/36092)
+- Added `label` property to [`Display`](https://www.electronjs.org/docs/latest/api/structures/display) objects. [#36933](https://github.com/electron/electron/pull/36933)
+- Added an `app.getPreferredSystemLanguages()` API to return the user's system languages. [#36035](https://github.com/electron/electron/pull/36035)
+- Added support for the [WebUSB](https://developer.mozilla.org/en-US/docs/Web/API/WebUSB_API) API. [#36289](https://github.com/electron/electron/pull/36289)
+- Added support for [`SerialPort.forget()`](https://developer.mozilla.org/en-US/docs/Web/API/SerialPort/forget) as well as a new event `serial-port-revoked` emitted on [Session](https://www.electronjs.org/docs/latest/api/session) objects when a given origin is revoked. [#35310](https://github.com/electron/electron/pull/35310)
+- Added new `win.setHiddenInMissionControl` API to allow developers to opt out of Mission Control on macOS. [#36092](https://github.com/electron/electron/pull/36092)
 
 ## Dropping Windows 7/8/8.1 Support
 

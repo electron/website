@@ -1,0 +1,7 @@
+node_modules
+.docusaurus
+build/
+docs/
+create-electron-documentation/
+i18n/
+!i18n/en/

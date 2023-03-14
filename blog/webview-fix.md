@@ -7,20 +7,21 @@ authors:
   image_url: 'https://github.com/ckerr.png?size=96'
 slug: webview-fix
 ---
+
 A vulnerability has been discovered which allows Node.js integration to be re-enabled in some Electron applications that disable it. This vulnerability has been assigned the CVE identifier [CVE-2018-1000136](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-1000136).
 
 ---
 
 ## Affected Applications
 
-An application is affected if *all* of the following are true:
+An application is affected if _all_ of the following are true:
 
- 1. Runs on Electron 1.7, 1.8, or a 2.0.0-beta
- 2. Allows execution of arbitrary remote code
- 3. Disables Node.js integration
- 4. Does not explicitly declare `webviewTag: false` in its webPreferences
- 5. Does not enable the `nativeWindowOption` option
- 6. Does not intercept `new-window` events and manually override `event.newGuest` without using the supplied options tag
+1.  Runs on Electron 1.7, 1.8, or a 2.0.0-beta
+2.  Allows execution of arbitrary remote code
+3.  Disables Node.js integration
+4.  Does not explicitly declare `webviewTag: false` in its webPreferences
+5.  Does not enable the `nativeWindowOption` option
+6.  Does not intercept `new-window` events and manually override `event.newGuest` without using the supplied options tag
 
 Although this appears to be a minority of Electron applicatons, we encourage all applications to be upgraded as a precaution.
 
@@ -32,23 +33,25 @@ Developers who are unable to upgrade their application's Electron version can mi
 
 ```js
 app.on('web-contents-created', (event, win) => {
-  win.on('new-window', (event, newURL, frameName, disposition,
-                        options, additionalFeatures) => {
-    if (!options.webPreferences) options.webPreferences = {};
-    options.webPreferences.nodeIntegration = false;
-    options.webPreferences.nodeIntegrationInWorker = false;
-    options.webPreferences.webviewTag = false;
-    delete options.webPreferences.preload;
-  })
-})
+  win.on(
+    'new-window',
+    (event, newURL, frameName, disposition, options, additionalFeatures) => {
+      if (!options.webPreferences) options.webPreferences = {};
+      options.webPreferences.nodeIntegration = false;
+      options.webPreferences.nodeIntegrationInWorker = false;
+      options.webPreferences.webviewTag = false;
+      delete options.webPreferences.preload;
+    }
+  );
+});
 
 // and *IF* you don't use WebViews at all,
 // you might also want
 app.on('web-contents-created', (event, win) => {
   win.on('will-attach-webview', (event, webPreferences, params) => {
     event.preventDefault();
-  })
-})
+  });
+});
 ```
 
 ## Further Information

@@ -2,11 +2,10 @@
 title: Electron 20.0.0
 date: 2022-08-02T00:00:00.000Z
 authors:
-    - name: ckerr
-      url: 'https://github.com/ckerr'
-      image_url: 'https://github.com/ckerr.png?size=96'
+  - name: ckerr
+    url: 'https://github.com/ckerr'
+    image_url: 'https://github.com/ckerr.png?size=96'
 slug: electron-20-0
-
 ---
 
 Electron 20.0.0 has been released! It includes upgrades to Chromium `104`, V8 `10.4`, and Node.js `16.15.0`. Read below for more details!
@@ -19,21 +18,21 @@ The Electron team is excited to announce the release of Electron 20.0.0! You can
 
 ### New Features
 
-* Added immersive dark mode on Windows. [#34549](https://github.com/electron/electron/pull/34549)
-* Added support for panel-like behavior. Window can float over full-screened apps. [#34665](https://github.com/electron/electron/pull/34665)
-* Updated Windows Control Overlay buttons to look and feel more native on Windows 11. [#34888](https://github.com/electron/electron/pull/34888)
-* Renderers are now sandboxed by default unless `nodeIntegration: true` or `sandbox: false` is specified. [#35125](https://github.com/electron/electron/pull/35125)
-* Added safeguards when building native modules with nan. [#35160](https://github.com/electron/electron/pull/35160)
+- Added immersive dark mode on Windows. [#34549](https://github.com/electron/electron/pull/34549)
+- Added support for panel-like behavior. Window can float over full-screened apps. [#34665](https://github.com/electron/electron/pull/34665)
+- Updated Windows Control Overlay buttons to look and feel more native on Windows 11. [#34888](https://github.com/electron/electron/pull/34888)
+- Renderers are now sandboxed by default unless `nodeIntegration: true` or `sandbox: false` is specified. [#35125](https://github.com/electron/electron/pull/35125)
+- Added safeguards when building native modules with nan. [#35160](https://github.com/electron/electron/pull/35160)
 
 ### Stack Changes
 
-* Chromium `104`
-    * [New in Chrome 104](https://developer.chrome.com/blog/new-in-chrome-104/)
-    * [New in Chrome 103](https://developer.chrome.com/blog/new-in-chrome-103/)
-    * [New in DevTools](https://developer.chrome.com/blog/new-in-devtools-104/)
-* Node.js `16.15.0`
-    * [Node 16.15.0 blog post](https://nodejs.org/en/blog/release/v16.15.0/)
-* V8 `10.4`
+- Chromium `104`
+  - [New in Chrome 104](https://developer.chrome.com/blog/new-in-chrome-104/)
+  - [New in Chrome 103](https://developer.chrome.com/blog/new-in-chrome-103/)
+  - [New in DevTools](https://developer.chrome.com/blog/new-in-devtools-104/)
+- Node.js `16.15.0`
+  - [Node 16.15.0 blog post](https://nodejs.org/en/blog/release/v16.15.0/)
+- V8 `10.4`
 
 ## Breaking & API Changes
 
@@ -48,6 +47,7 @@ If your preload scripts do not depend on Node, no action is needed. If your prel
 ### Fixed: spontaneous crashing in nan native modules
 
 In Electron 20, we changed two items related to native modules:
+
 1. V8 headers now use `c++17` by default. This flag was added to electron-rebuild.
 1. We fixed an issue where a missing include would cause spontaneous crashing in native modules that depended on nan.
 

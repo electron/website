@@ -27,19 +27,19 @@ Additionally, Electron will be changing supported versions from latest three ver
 
 ### Stack Changes
 
-* Chromium `94`
-    * [New in Chrome 94](https://developer.chrome.com/blog/new-in-chrome-94/)
-* Node.js `16.5.0`
-    * [Node 16.5.0 blog post](https://nodejs.org/en/blog/release/v16.5.0/)
-* V8 `9.4`
-    * [V8 9.4 blog post](https://v8.dev/blog/v8-release-94)
+- Chromium `94`
+  - [New in Chrome 94](https://developer.chrome.com/blog/new-in-chrome-94/)
+- Node.js `16.5.0`
+  - [Node 16.5.0 blog post](https://nodejs.org/en/blog/release/v16.5.0/)
+- V8 `9.4`
+  - [V8 9.4 blog post](https://v8.dev/blog/v8-release-94)
 
 ### Highlight Features
 
-* `nativeWindowOpen: true` is no longer experimental, and is now the default.
-* Added `safeStorage` string encryption API. [#30430](https://github.com/electron/electron/pull/30430) 
-* Added 'frame-created' event to `WebContents` which emits when a frame is created in the page. [#30801](https://github.com/electron/electron/pull/30801) 
-* Added resize `edge` info to `BrowserWindow`'s `will-resize` event. [#29199](https://github.com/electron/electron/pull/29199)
+- `nativeWindowOpen: true` is no longer experimental, and is now the default.
+- Added `safeStorage` string encryption API. [#30430](https://github.com/electron/electron/pull/30430)
+- Added 'frame-created' event to `WebContents` which emits when a frame is created in the page. [#30801](https://github.com/electron/electron/pull/30801)
+- Added resize `edge` info to `BrowserWindow`'s `will-resize` event. [#29199](https://github.com/electron/electron/pull/29199)
 
 See the [15.0.0 release notes](https://github.com/electron/electron/releases/tag/v15.0.0) for a full list of new features and changes.
 
@@ -53,19 +53,17 @@ Prior to Electron 15, `window.open` was by default shimmed to use `BrowserWindow
 
 See the documentation for [window.open](https://www.electronjs.org/docs/latest/api/window-open) in Electron for more details.
 
-
 ## API Changes
 
-* Added 'frame-created' event to `WebContents` which emits when a frame is created in the page. [#30801](https://github.com/electron/electron/pull/30801) 
-* Added `safeStorage` string encryption API. [#30430](https://github.com/electron/electron/pull/30430) 
-* Added `signal` option to `dialog.showMessageBox`. [#26102](https://github.com/electron/electron/pull/26102) 
-* Added an [Electron Fuse](https://www.electronjs.org/docs/latest/tutorial/fuses) for enforcing code signatures on the `app.asar` file your application loads.  Requires the latest `asar` module (v3.1.0 or higher). [#30900](https://github.com/electron/electron/pull/30900) 
-* Added fuses to disable `NODE_OPTIONS` and `--inspect` debug arguments in packaged apps. [#30420](https://github.com/electron/electron/pull/30420)
-* Added new `MenuItem.userAccelerator` property to read user-assigned macOS accelerator overrides. [#26682](https://github.com/electron/electron/pull/26682) 
-* Added new `app.runningUnderARM64Translation` property to detect when running under Rosetta on Apple Silicon, or WOW on Windows for ARM. [#29168](https://github.com/electron/electron/pull/29168) 
-* Added new `imageAnimationPolicy` web preference to control how images are animated. [#29095](https://github.com/electron/electron/pull/29095) 
-* Added support for sending Blobs over the context bridge. [#29247](https://github.com/electron/electron/pull/29247)
-
+- Added 'frame-created' event to `WebContents` which emits when a frame is created in the page. [#30801](https://github.com/electron/electron/pull/30801)
+- Added `safeStorage` string encryption API. [#30430](https://github.com/electron/electron/pull/30430)
+- Added `signal` option to `dialog.showMessageBox`. [#26102](https://github.com/electron/electron/pull/26102)
+- Added an [Electron Fuse](https://www.electronjs.org/docs/latest/tutorial/fuses) for enforcing code signatures on the `app.asar` file your application loads. Requires the latest `asar` module (v3.1.0 or higher). [#30900](https://github.com/electron/electron/pull/30900)
+- Added fuses to disable `NODE_OPTIONS` and `--inspect` debug arguments in packaged apps. [#30420](https://github.com/electron/electron/pull/30420)
+- Added new `MenuItem.userAccelerator` property to read user-assigned macOS accelerator overrides. [#26682](https://github.com/electron/electron/pull/26682)
+- Added new `app.runningUnderARM64Translation` property to detect when running under Rosetta on Apple Silicon, or WOW on Windows for ARM. [#29168](https://github.com/electron/electron/pull/29168)
+- Added new `imageAnimationPolicy` web preference to control how images are animated. [#29095](https://github.com/electron/electron/pull/29095)
+- Added support for sending Blobs over the context bridge. [#29247](https://github.com/electron/electron/pull/29247)
 
 ### Removed/Deprecated Changes
 
@@ -77,12 +75,12 @@ Starting in Electron 15, we will change supported versions from latest three ver
 
 Developers and applications are encouraged to upgrade to a newer version of Electron.
 
-|	E15 (Sep'21) |	E16 (Nov'21) |	E17 (Feb'22) |	E18 (Mar'22) |	E19 (May'22) |
-| ---- | ---- | ---- | ---- | ---- |
-|	15.x.y |	16.x.y |	17.x.y |	18.x.y |	19.x.y |
-|	14.x.y |	15.x.y |	16.x.y |	17.x.y |	18.x.y |
-|	13.x.y |	14.x.y |	15.x.y |	16.x.y |	17.x.y |
-|	12.x.y |	13.x.y |	14.x.y |	15.x.y |	-- |
+| E15 (Sep'21) | E16 (Nov'21) | E17 (Feb'22) | E18 (Mar'22) | E19 (May'22) |
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+| 15.x.y       | 16.x.y       | 17.x.y       | 18.x.y       | 19.x.y       |
+| 14.x.y       | 15.x.y       | 16.x.y       | 17.x.y       | 18.x.y       |
+| 13.x.y       | 14.x.y       | 15.x.y       | 16.x.y       | 17.x.y       |
+| 12.x.y       | 13.x.y       | 14.x.y       | 15.x.y       | --           |
 
 ## What's Next
 

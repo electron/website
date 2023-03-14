@@ -7,7 +7,8 @@ authors:
     image_url: 'https://github.com/VerteDinde.png?size=96'
 slug: electron-openjs-impact-project
 ---
-At [OpenJS World](https://events.linuxfoundation.org/openjs-world/) this morning, we announced that Electron has officially graduated from the [OpenJS Foundation's](https://openjsf.org/) incubation program, and is now an OpenJS Foundation Impact Project. 
+
+At [OpenJS World](https://events.linuxfoundation.org/openjs-world/) this morning, we announced that Electron has officially graduated from the [OpenJS Foundation's](https://openjsf.org/) incubation program, and is now an OpenJS Foundation Impact Project.
 
 Electron [entered incubation in December of 2019](https://openjsf.org/blog/2019/12/11/electron-joins-the-openjs-foundation/), at the last OpenJS Foundation global conference in Montreal. We're excited to take a larger role in the JavaScript community as an Impact Project, and continue our partnership with the OpenJS Foundation.
 

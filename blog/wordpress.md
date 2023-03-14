@@ -13,6 +13,7 @@ authors:
     image_url: 'https://github.com/zeke.png?size=96'
 slug: wordpress
 ---
+
 This week we caught up with folks at [Automattic](https://automattic.com/) to
 talk about [WordPress Desktop](https://apps.wordpress.com/desktop/), an
 open-source desktop client for managing WordPress content.
@@ -31,7 +32,7 @@ It's actually using exactly the same technology you get when visiting [WordPress
 
 ## Why did you choose to build WordPress Desktop on Electron?
 
-At the end of 2015 we rebuilt much of WordPress.com in the form of [Calypso](https://github.com/automattic/wp-calypso), an open-source modern JavaScript app using React. We started looking at Electron and with some changes to Calypso were able to get it running locally. It was a compelling  experience and we thought there was a lot of value in developing it further.
+At the end of 2015 we rebuilt much of WordPress.com in the form of [Calypso](https://github.com/automattic/wp-calypso), an open-source modern JavaScript app using React. We started looking at Electron and with some changes to Calypso were able to get it running locally. It was a compelling experience and we thought there was a lot of value in developing it further.
 
 We had several teams working on Calypso. To make a full multi-platform GUI client that matched this using traditional desktop technologies would have taken more work. By using Electron, a small team of 2-4 of us were able to leverage the other team’s efforts and build the Desktop app in a couple of months.
 

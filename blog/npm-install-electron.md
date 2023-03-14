@@ -7,6 +7,7 @@ authors:
   image_url: 'https://github.com/zeke.png?size=96'
 slug: npm-install-electron
 ---
+
 As of Electron version 1.3.1, you can `npm install electron --save-dev` to
 install the latest precompiled version of Electron in your app.
 
@@ -44,7 +45,7 @@ As of version 1.3.1, we have begun publishing
 packages to npm in tandem. The two packages are identical. We chose to continue publishing
 the package under both names for a while so as not to inconvenience the
 thousands of developers who are currently using `electron-prebuilt` in their projects.
-We recommend updating your `package.json` files to use the  new `electron` dependency,
+We recommend updating your `package.json` files to use the new `electron` dependency,
 but we will continue releasing new versions of `electron-prebuilt` until the
 end of 2016.
 

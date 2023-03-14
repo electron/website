@@ -32,11 +32,10 @@ The Electron project will pause for the month of December 2021, then return to f
 
 ## Why is this happening?
 
-In short, while maintainers are happy and engaged with the project, _THE WORLD IS TIRED_. 
+In short, while maintainers are happy and engaged with the project, _THE WORLD IS TIRED_.
 December is a quiet month for most companies, so we want to give our maintainers a chance to recharge. We encourage other projects to consider similar measures.
 
 ## Should I be worried about the future of Electron?
 
 No. We are able to take this step because the project is in good shape.
 Everyone is looking forward to 2022, and we expect good things to come!
-

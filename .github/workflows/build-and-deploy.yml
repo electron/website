@@ -31,12 +31,12 @@ jobs:
         if: ${{ inputs.branch == 'main' }}
         run: echo ${{ inputs.branch }}
       # This should be set up from earlier
-      - uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c  # tag: v3.3.0
-      - uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c  # tag: v3.6.0
+      - uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # tag: v3.3.0
+      - uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c # tag: v3.6.0
         with:
           node-version: 16
       - name: Install dependencies
-        uses: bahmutov/npm-install@8add8c6d2c8586964896d9fdc639e021312a643f  # tag: v1.8.28
+        uses: bahmutov/npm-install@8add8c6d2c8586964896d9fdc639e021312a643f # tag: v1.8.28
       - name: Test
         run: yarn test
         env:
@@ -60,7 +60,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Publish "/assets" to Storage if version branch
         if: ${{ inputs.branch == 'version' }}
-        uses: nick-invision/retry@943e742917ac94714d2f408a0e8320f2d1fcafcd  # tag: v2.8.3
+        uses: nick-invision/retry@943e742917ac94714d2f408a0e8320f2d1fcafcd # tag: v2.8.3
         with:
           timeout_seconds: 300
           max_attempts: 3
@@ -70,7 +70,7 @@ jobs:
           SAS: ${{ secrets.SAS }}
       - name: Publish "/docs" to Storage if version branch
         if: ${{ inputs.branch == 'version' }}
-        uses: nick-invision/retry@943e742917ac94714d2f408a0e8320f2d1fcafcd  # tag: v2.8.3
+        uses: nick-invision/retry@943e742917ac94714d2f408a0e8320f2d1fcafcd # tag: v2.8.3
         with:
           timeout_seconds: 300
           max_attempts: 3
@@ -80,7 +80,7 @@ jobs:
           SAS: ${{ secrets.SAS }}
       - name: Publish everything to Storage if main branch
         if: ${{ inputs.branch == 'main' }}
-        uses: nick-invision/retry@943e742917ac94714d2f408a0e8320f2d1fcafcd  # tag: v2.8.3
+        uses: nick-invision/retry@943e742917ac94714d2f408a0e8320f2d1fcafcd # tag: v2.8.3
         with:
           timeout_seconds: 300
           max_attempts: 3

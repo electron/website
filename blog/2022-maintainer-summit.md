@@ -33,7 +33,7 @@ Major API proposals in the Electron project that require consensus go through a 
 
 This year, we have driven forward two major proposals that have the potential to unlock a new
 dimension of capabilities for Electron apps. These proposals are highly experimental, but here’s a
-sneak peek of what to expect! 
+sneak peek of what to expect!
 
 ### New native addon enhancements (C APIs)
 
@@ -109,6 +109,7 @@ Electron Forge 6 comes with first-class TypeScript and Webpack support, as well 
 API that allows developers to create their own plugins and installers.
 
 ### Stay tuned: announcement coming soon
+
 If you’re interested in building a project with Forge or building templates or plugins with Forge’s
 extensible third-party APIs, stay tuned for our official announcement on the Forge v6 stable
 release sometime this month!

@@ -99,7 +99,7 @@
     fill: var(--electron-color-dark);
   }
 }
-:root[data-theme=dark] {
+:root[data-theme='dark'] {
   .downloadOS {
     path {
       fill: var(--electron-color-light);
