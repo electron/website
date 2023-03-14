@@ -30,7 +30,7 @@ Every contribution is invaluable to us as maintainers.
 ## How did we get here?
 
 **Atom Shell** was built as the backbone for GitHub’s [Atom editor](https://atom.io/), which launched in
-public beta in April 2014. It was built from the ground-up as an alternative to the web-based
+public beta in April 2014. It was built from the ground up as an alternative to the web-based
 desktop frameworks available at the time (node-webkit and Chrome Embedded Framework). It had a
 killer feature: embedding Node.js and Chromium to provide a powerful desktop runtime for web
 technologies.
@@ -46,7 +46,7 @@ download count over time, courtesy of [npmtrends.com](https://npmtrends.com/elec
 ![Electron weekly downloads graph over time](/assets/img/weekly-download-graph.png)
 
 Electron v1.0 was released in 2016, promising increased API stability and better docs and tooling.
-Electron v2.0 released in 2018 and introduced semantic versioning, making it easier for Electron
+Electron v2.0 was released in 2018 and introduced semantic versioning, making it easier for Electron
 developers to keep track of the release cycle.
 
 By Electron v6.0, we shifted to a regular 12-week major release cadence to match Chromium’s. This
