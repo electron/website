@@ -113,7 +113,7 @@ What have we been doing to develop our community presence?
 
 #### Building virtual communities
 
-- In 2020, we launched our community Discord server. We had previously had a section in Atom’s forum,
+- In 2020, we launched our community Discord server. We previously had a section in Atom’s forum,
   but decided to have a more informal messaging platform to have a space for discussions between
   maintainers and Electron developers and for general debugging help.
 - In 2021, we established the [Electron China](https://github.com/electronjs-cn) user group with the help of
