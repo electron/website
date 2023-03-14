@@ -79,8 +79,8 @@ across companies, countries, and time zones?
 In the early days, Electron’s maintainer group relied on informal coordination, which is fast and
 lightweight for smaller projects, but doesn’t scale to wider collaboration. In 2019, we shifted to
 a governance model where different working groups have formal areas of responsibility. This has been
-instrumental in streamlining processes and assigning ownership to specific maintainers. What is
-each Working Group (WG) responsible for nowadays?
+instrumental in streamlining processes and assigning portions of project ownership to specific
+maintainers. What is each Working Group (WG) responsible for nowadays?
 
 - Getting Electron releases out the door (Releases WG)
 - Upgrading Chromium and Node.js (Upgrades WG)
@@ -91,8 +91,13 @@ each Working Group (WG) responsible for nowadays?
 - Community moderation (Community & Safety WG)
 - Maintaining our build infrastructure, maintainer tools, and cloud services (Infrastructure WG)
 
-While this model isn’t perfect, it has suited us well through an ownership change[^2], a global
-pandemic, and macroeconomic headwinds. Going forward, we plan on revamping the governance charter to
+Around the same time we shifted to the governance model, we also moved Electron's ownership from
+GitHub [to the OpenJS Foundation](https://www.electronjs.org/blog/electron-joins-openjsf).
+Although the original core team still works at Microsoft today, they are only a part of a larger
+group of collaborators that form Electron governance.
+
+While this model isn’t perfect, it has suited us well through a global pandemic and ongoing
+macroeconomic headwinds. Going forward, we plan on revamping the governance charter to
 guide us through the second decade of Electron.
 
 :::info
