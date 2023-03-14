@@ -45,11 +45,11 @@ download count over time, courtesy of [npmtrends.com](https://npmtrends.com/elec
 
 ![Electron weekly downloads graph over time](/assets/img/weekly-download-graph.png)
 
-Electron v1.0 was released in 2016, promising increased API stability and better docs and tooling.
-Electron v2.0 was released in 2018 and introduced semantic versioning, making it easier for Electron
+Electron v1 was released in 2016, promising increased API stability and better docs and tooling.
+Electron v2 was released in 2018 and introduced semantic versioning, making it easier for Electron
 developers to keep track of the release cycle.
 
-By Electron v6.0, we shifted to a regular 12-week major release cadence to match Chromium’s. This
+By Electron v6, we shifted to a regular 12-week major release cadence to match Chromium’s. This
 decision was a change in mentality for the project, bringing “having the most up-to-date Chromium
 version” from a nice-to-have to a priority. This has reduced the amount of tech debt between
 upgrades, making it easier for us to keep Electron updated and secure.
@@ -58,7 +58,7 @@ Since then, we’ve been a well-oiled machine, releasing a new Electron version 
 every Chromium stable. By the time Chromium sped up their release schedule to 4 weeks in 2021,
 we were able to shrug our shoulders and increase our release cadence to 8 weeks accordingly.
 
-We’re now on Electron v23.0 (and counting), and are still dedicated to building the best runtime for
+We’re now on Electron v23 (and counting), and are still dedicated to building the best runtime for
 building cross-platform desktop applications. Even with the boom in JavaScript developer tools in
 recent years, Electron has remained a stable, battle-tested stalwart of the desktop app framework
 landscape. Electron apps are ubiquitous nowadays: you can program with Visual Studio Code, design
