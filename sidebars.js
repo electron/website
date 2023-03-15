@@ -40,35 +40,26 @@ module.exports = {
     {
       type: 'category',
       label: 'Examples',
-      link: {
-        type: 'doc',
-        id: 'latest/tutorial/examples',
-      },
+      link: { type: 'doc', id: 'latest/tutorial/examples' },
       items: [
         'latest/tutorial/dark-mode',
         'latest/tutorial/devices',
         {
           type: 'doc',
           id: 'latest/tutorial/in-app-purchases',
-          customProps: {
-            tags: ['mac'],
-          },
+          customProps: { tags: ['mac'] },
         },
         'latest/tutorial/keyboard-shortcuts',
         'latest/tutorial/launch-app-from-url-in-another-app',
         {
           type: 'doc',
           id: 'latest/tutorial/linux-desktop-actions',
-          customProps: {
-            tags: ['linux'],
-          },
+          customProps: { tags: ['linux'] },
         },
         {
           type: 'doc',
           id: 'latest/tutorial/macos-dock',
-          customProps: {
-            tags: ['mac'],
-          },
+          customProps: { tags: ['mac'] },
         },
         'latest/tutorial/multithreading',
         'latest/tutorial/native-file-drag-drop',
@@ -79,16 +70,12 @@ module.exports = {
         {
           type: 'doc',
           id: 'latest/tutorial/recent-documents',
-          customProps: {
-            tags: ['mac', 'windows'],
-          },
+          customProps: { tags: ['mac', 'windows'] },
         },
         {
           type: 'doc',
           id: 'latest/tutorial/represented-file',
-          customProps: {
-            tags: ['mac'],
-          },
+          customProps: { tags: ['mac'] },
         },
         'latest/tutorial/spellchecker',
         'latest/tutorial/tray',
@@ -96,9 +83,7 @@ module.exports = {
         {
           type: 'doc',
           id: 'latest/tutorial/windows-taskbar',
-          customProps: {
-            tags: ['windows'],
-          },
+          customProps: { tags: ['windows'] },
         },
         'latest/tutorial/window-customization',
       ],
@@ -124,10 +109,7 @@ module.exports = {
         {
           type: 'category',
           label: 'Advanced Reference',
-          link: {
-            type: 'doc',
-            id: 'latest/tutorial/distribution-overview',
-          },
+          link: { type: 'doc', id: 'latest/tutorial/distribution-overview' },
           items: [
             'latest/tutorial/application-distribution',
             'latest/tutorial/code-signing',
@@ -176,10 +158,7 @@ module.exports = {
         {
           type: 'category',
           label: 'Build Instructions',
-          link: {
-            type: 'doc',
-            id: 'latest/development/build-instructions-gn',
-          },
+          link: { type: 'doc', id: 'latest/development/build-instructions-gn' },
           items: [
             'latest/development/build-instructions-linux',
             'latest/development/build-instructions-macos',
@@ -190,10 +169,7 @@ module.exports = {
         {
           type: 'category',
           label: 'Debugging',
-          link: {
-            type: 'doc',
-            id: 'latest/development/debugging',
-          },
+          link: { type: 'doc', id: 'latest/development/debugging' },
           items: [
             'latest/development/debugging-on-macos',
             'latest/development/debugging-on-windows',
@@ -404,11 +380,6 @@ module.exports = {
         'latest/api/structures/product-subscription-period',
         'latest/api/structures/usb-device',
       ],
-    },
-    {
-      type: 'category',
-      label: 'Api',
-      items: ['latest/api/synopsis'],
     },
   ],
 };

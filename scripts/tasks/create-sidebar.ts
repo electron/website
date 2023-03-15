@@ -5,6 +5,9 @@ import {
   Sidebars,
   SidebarItemDoc,
 } from '@docusaurus/plugin-content-docs/src/sidebars/types';
+import logger from '@docusaurus/logger';
+import prettier from 'prettier';
+import path from 'path';
 
 const IGNORE_LIST = [
   'README',
@@ -16,6 +19,7 @@ const IGNORE_LIST = [
   'tutorial/using-pepper-flash-plugin',
   'latest/development/README',
   'tutorial/support',
+  'api/synopsis',
 ];
 
 const categoryAliases = new Map([['Tutorial', 'How To']]);
@@ -145,7 +149,7 @@ export const createSidebar = async (root: string, destination: string) => {
     // The last segment is the name of the file
     segments.pop();
 
-    console.log(`New document found: ${document}`);
+    logger.info(`New document found: ${logger.green(document)}`);
     hasNewDocuments = true;
 
     const categoryId = segments
@@ -162,13 +166,20 @@ export const createSidebar = async (root: string, destination: string) => {
   }
 
   if (hasNewDocuments) {
-    console.log(`Updating ${destination}`);
-    await fs.writeFile(
-      destination,
-      `module.exports = ${json5.stringify(sidebars, null, 2)};\n`,
-      'utf-8'
+    logger.info(`Updating ${logger.green(destination)}`);
+    const sidebarString = `module.exports = ${json5.stringify(sidebars)};`;
+
+    // run it through our linter
+    const prettierConfig = await prettier.resolveConfig(
+      path.resolve(__dirname, '..', '..', '.prettierrc')
     );
+    const formattedSidebarString = prettier.format(
+      sidebarString,
+      prettierConfig
+    );
+
+    await fs.writeFile(destination, formattedSidebarString, 'utf-8');
   } else {
-    console.log(`No new documents found`);
+    logger.info(`No new documents found`);
   }
 };
