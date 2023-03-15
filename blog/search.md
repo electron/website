@@ -13,6 +13,7 @@ authors:
     image_url: 'https://github.com/zeke.png?size=96'
 slug: search
 ---
+
 The Electron website has a new search engine that delivers instant results for
 API docs, tutorials, Electron-related npm packages, and more.
 
@@ -54,8 +55,8 @@ Here are some of the features that made Algolia a good fit for the Electron proj
 
 ## API Docs
 
-Sometimes you know *what* you want to accomplish, but you don't know exactly
-*how* to do it. Electron has over 750 API methods, events, and properties.
+Sometimes you know _what_ you want to accomplish, but you don't know exactly
+_how_ to do it. Electron has over 750 API methods, events, and properties.
 No human can easily remember all of them, but computers are good at this stuff.
 Using Electron's [JSON API docs](https://electronjs.org/blog/api-docs-json-schema),
 we indexed all of this data in Algolia, and now you can easily find
@@ -152,7 +153,7 @@ for building these new search capabilities, to [Libraries.io] for providing
 [`security`]: https://electronjs.org/?query=security
 [`sourceranks`]: https://github.com/nice-registry/sourceranks
 [`widnow`]: https://electronjs.org/?query=widnow
-[Algolia]: https://algolia.com
-[Libraries.io]: https://libraries.io
+[algolia]: https://algolia.com
+[libraries.io]: https://libraries.io
 [quick-start]: https://github.com/electron/electron-quick-start
-[SourceRank]: https://docs.libraries.io/overview.html#sourcerank
+[sourcerank]: https://docs.libraries.io/overview.html#sourcerank

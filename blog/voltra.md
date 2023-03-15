@@ -13,6 +13,7 @@ authors:
     image_url: 'https://github.com/zeke.png?size=96'
 slug: voltra
 ---
+
 This week we met with [Aprile Elcich](https://twitter.com/aprileelcich) and
 [Paolo Fragomeni](https://twitter.com/0x00A) to talk about Voltra, an
 Electron-powered music player.
@@ -71,7 +72,7 @@ We spend a lot of time focused on performance. We started with frameworks but mo
 
 We handle very large collections pretty well at this point. Large collections means possibly tens of thousands of images! Having Node.js’ file system module directly available from the render process made it really easy to lazy load and unload lots of images super quickly based on DOM events.
 
-In general *[setImmediate]* and *[requestIdleCallback]* have been super important tools for performing lots of processing while keeping the UI responsive. More specifically, distributing CPU-bound tasks into separate processes really helps to keep the user interface responsive. For example, we moved the actual audio context into a separate process, communicating with it over [IPC] to avoid potential interruptions from a busy UI.
+In general _[setImmediate]_ and _[requestIdleCallback]_ have been super important tools for performing lots of processing while keeping the UI responsive. More specifically, distributing CPU-bound tasks into separate processes really helps to keep the user interface responsive. For example, we moved the actual audio context into a separate process, communicating with it over [IPC] to avoid potential interruptions from a busy UI.
 
 ## Why did you choose to build Voltra on Electron?
 
@@ -87,7 +88,7 @@ Also, and most importantly, with Electron you develop once and it should Just Wo
 
 **Competency**: It’s just the web stack, so literally our whole team is involved in actually building the product.
 
-**Community**:  There is a highly organized community that knows how to communicate really well! We feel pretty great about developing with support like that.
+**Community**: There is a highly organized community that knows how to communicate really well! We feel pretty great about developing with support like that.
 
 ## In what areas could Electron be improved?
 
@@ -97,6 +98,6 @@ We would like to see Electron endorse a single packager. The packager is as impo
 
 We‘re currently developing a mobile app, and working with artists and labels to add their music to the Voltra shop. Hey! If you’re an artist or label, [sign up now](https://admin.voltra.co/signup)! We plan on opening up the shop when we reach our goal of 10 million tracks.
 
-[setImmediate]: https://developer.mozilla.org/en-US/docs/Web/API/Window/setImmediate
-[requestIdleCallback]: https://developer.mozilla.org/en-US/docs/Web/API/Window/requestIdleCallback
-[IPC]: https://electronjs.org/docs/glossary/#ipc
+[setimmediate]: https://developer.mozilla.org/en-US/docs/Web/API/Window/setImmediate
+[requestidlecallback]: https://developer.mozilla.org/en-US/docs/Web/API/Window/requestIdleCallback
+[ipc]: https://electronjs.org/docs/glossary/#ipc

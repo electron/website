@@ -10,6 +10,7 @@ authors:
     image_url: 'https://github.com/zeke.png?size=96'
 slug: webtorrent
 ---
+
 This week we caught up with [@feross](https://github.com/feross) and [@dcposch](https://github.com/dcposch) to talk about WebTorrent, the web-powered torrent client that connects users together to form a distributed, decentralized browser-to-browser network.
 
 ---
@@ -130,7 +131,7 @@ If you're interested in getting involved in the project, check out [our GitHub p
 
 ## Any Electron development tips that might be useful to other developers?
 
-[Feross](http://feross.org/), one of the WebTorrent Desktop contributors, recently gave a talk *"Real world Electron: Building Cross-platform desktop apps with JavaScript"* at NodeConf Argentina that contains useful tips for releasing a polished Electron app. The talk is especially useful if you're at the stage where you have a basic working app and you're trying to take it to the next level of polish and professionalism.
+[Feross](http://feross.org/), one of the WebTorrent Desktop contributors, recently gave a talk _"Real world Electron: Building Cross-platform desktop apps with JavaScript"_ at NodeConf Argentina that contains useful tips for releasing a polished Electron app. The talk is especially useful if you're at the stage where you have a basic working app and you're trying to take it to the next level of polish and professionalism.
 
 [Watch here](https://www.youtube.com/watch?v=YLExGgEnbFY):
 

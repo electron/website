@@ -7,6 +7,7 @@ authors:
   image_url: 'https://github.com/zeke.png?size=96'
 slug: api-docs-json-schema
 ---
+
 Today we're announcing some improvements to Electron's documentation. Every new
 release now includes a
 [JSON file](https://github.com/electron/electron/releases/download/v1.4.1/electron-api.json)

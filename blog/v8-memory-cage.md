@@ -39,14 +39,17 @@ Lastly, there are workarounds for apps that really need a larger heap size. For 
 ## FAQ
 
 ### How will I know if my app is impacted by this change?
+
 Attempting to wrap external memory with an ArrayBuffer will crash at runtime in Electron 20+.
 
 If you don't use any native Node modules in your app, you're safe—there's no way to trigger this crash from pure JS. This change only affects native Node modules which allocate memory outside of the V8 heap (e.g. using `malloc` or `new`) and then wrap the external memory with an ArrayBuffer. This is a fairly rare use case, but some modules do use this technique, and such modules will need to be refactored in order to be compatible with Electron 20+.
 
 ### How can I measure how much V8 heap memory my app is using to know if I'm close to the 4GB limit?
+
 In the renderer process, you can use [`performance.memory.usedJSHeapSize`](https://developer.mozilla.org/en-US/docs/Web/API/Performance/memory), which will return the V8 heap usage in bytes. In the main process, you can use [`process.memoryUsage().heapUsed`](https://nodejs.org/api/process.html#processmemoryusage), which is comparable.
 
 ### What is the V8 memory cage?
+
 Some documents refer to it as the "V8 sandbox", but that term is easily confusable with [other kinds of sandboxing](https://chromium.googlesource.com/chromium/src/+/HEAD/docs/design/sandbox.md) that happen in Chromium, so I'll stick to the term "memory cage".
 
 There's a fairly common kind of V8 exploit that goes something like this:
@@ -59,6 +62,7 @@ The V8 memory cage is a technique designed to categorically prevent this kind of
 There's a lot more available to read on how the V8 memory cage works, so I won't go into further detail here—the best place to start reading is probably the [high-level design doc](https://docs.google.com/document/d/1FM4fQmIhEqPG8uGp5o9A-mnPB5BOeScZYpkHjo0KKA8/edit) from the Chromium team.
 
 ### I want to refactor a Node native module to support Electron 21+. How do I do that?
+
 There are two ways to go about refactoring a native module to be compatible with the V8 memory cage. The first is to **copy** externally-created buffers into the V8 memory cage before passing them to JavaScript. This is generally a simple refactor, but it can be slow when the buffers are large. The other approach is to **use V8's memory allocator** to allocate memory which you intend to eventually pass to JavaScript. This is a bit more involved, but will allow you to avoid the copy, meaning better performance for large buffers.
 
 To make this more concrete, here's an example N-API module that uses external array buffers:

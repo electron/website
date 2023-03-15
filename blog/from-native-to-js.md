@@ -7,6 +7,7 @@ authors:
   image_url: 'https://github.com/codebytere.png?size=96'
 slug: from-native-to-js
 ---
+
 How do Electron's features written in C++ or Objective-C get to JavaScript so they're available to an end-user?
 
 ---
@@ -24,7 +25,7 @@ To trace this pathway, let's start with the [`app` module](https://electronjs.or
 By opening the [`app.ts`](https://github.com/electron/electron/blob/0431997c8d64c9ed437b293e8fa15a96fc73a2a7/lib/browser/api/app.ts) file inside our `lib/` directory, you'll find the following line of code towards the top:
 
 ```js
-const binding = process.electronBinding('app')
+const binding = process.electronBinding('app');
 ```
 
 This line points directly to Electron's mechanism for binding its C++/Objective-C modules to JavaScript for use by developers. This function is created by the header and [implementation file](https://github.com/electron/electron/blob/0431997c8d64c9ed437b293e8fa15a96fc73a2a7/atom/common/api/electron_bindings.cc) for the `ElectronBindings` class.
@@ -37,7 +38,7 @@ When a top-level JavaScript module (like `app`) requires this native code, how i
 
 ## `native_mate`
 
-At present, answers to this question can be found in `native_mate`:  a fork of Chromium's [`gin` library](https://chromium.googlesource.com/chromium/src.git/+/lkgr/gin/) that makes it easier to marshal types between C++ and JavaScript.
+At present, answers to this question can be found in `native_mate`: a fork of Chromium's [`gin` library](https://chromium.googlesource.com/chromium/src.git/+/lkgr/gin/) that makes it easier to marshal types between C++ and JavaScript.
 
 Inside `native_mate/native_mate` there's a header and implementation file for `object_template_builder`. This is what allow us to form modules in native code whose shape conforms to what JavaScript developers would expect.
 

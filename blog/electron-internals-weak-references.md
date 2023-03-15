@@ -7,11 +7,12 @@ authors:
   image_url: 'https://github.com/zcbenz.png?size=96'
 slug: electron-internals-weak-references
 ---
+
 As a language with garbage collection, JavaScript frees users from managing
 resources manually. But because Electron hosts this environment, it has to be
 very careful avoiding both memory and resources leaks.
 
-This post introduces the concept of weak references and how they are used to 
+This post introduces the concept of weak references and how they are used to
 manage resources in Electron.
 
 ---
@@ -44,7 +45,7 @@ are gone.
 
 There is no way to directly test weak references in raw JavaScript since the
 language doesn't have a way to assign weak references. The only API in
-JavaScript related to weak references is [WeakMap][WeakMap], but since it only
+JavaScript related to weak references is [WeakMap][weakmap], but since it only
 creates weak-reference keys, it is impossible to know when an object has been
 garbage collected.
 
@@ -54,17 +55,17 @@ to the passed object and calls the callback when the object is garbage collected
 
 ```javascript
 // Code below can only run on Electron < v0.37.8.
-var v8Util = process.atomBinding('v8_util')
+var v8Util = process.atomBinding('v8_util');
 
-var object = {}
+var object = {};
 v8Util.setDestructor(object, function () {
-  console.log('The object is garbage collected')
-})
+  console.log('The object is garbage collected');
+});
 
 // Remove all references to the object.
-object = undefined
+object = undefined;
 // Manually starts a GC.
-gc()
+gc();
 // Console prints "The object is garbage collected".
 ```
 
@@ -93,10 +94,10 @@ For example, without proper implementation, following code would cause memory
 leaks quickly:
 
 ```javascript
-const {remote} = require('electron')
+const { remote } = require('electron');
 
 for (let i = 0; i < 10000; ++i) {
-  remote.nativeImage.createEmpty()
+  remote.nativeImage.createEmpty();
 }
 ```
 
@@ -107,41 +108,41 @@ renderer process. In the renderer process, the `remote` module will receive
 the ID and wrap it with a proxy object and when the proxy object is garbage
 collected, a message will be sent to the main process to free the object.
 
-Using `remote.require` API as an example, a simplified implementation looks 
+Using `remote.require` API as an example, a simplified implementation looks
 like this:
 
 ```javascript
 remote.require = function (name) {
   // Tell the main process to return the metadata of the module.
-  const meta = ipcRenderer.sendSync('REQUIRE', name)
+  const meta = ipcRenderer.sendSync('REQUIRE', name);
   // Create a proxy object.
-  const object = metaToValue(meta)
+  const object = metaToValue(meta);
   // Tell the main process to free the object when the proxy object is garbage
   // collected.
   v8Util.setDestructor(object, function () {
-    ipcRenderer.send('FREE', meta.id)
-  })
-  return object
-}
+    ipcRenderer.send('FREE', meta.id);
+  });
+  return object;
+};
 ```
 
 In the main process:
 
 ```javascript
-const map = {}
-const id = 0
+const map = {};
+const id = 0;
 
 ipcMain.on('REQUIRE', function (event, name) {
-  const object = require(name)
+  const object = require(name);
   // Add a reference to the object.
-  map[++id] = object
+  map[++id] = object;
   // Convert the object to metadata.
-  event.returnValue = valueToMeta(id, object)
-})
+  event.returnValue = valueToMeta(id, object);
+});
 
 ipcMain.on('FREE', function (event, id) {
-  delete map[id]
-})
+  delete map[id];
+});
 ```
 
 ## Maps with weak values
@@ -158,10 +159,10 @@ collection.
 For example, the following code:
 
 ```javascript
-const {remote} = require('electron')
+const { remote } = require('electron');
 
 for (let i = 0; i < 10000; ++i) {
-  remote.getCurrentWindow()
+  remote.getCurrentWindow();
 }
 ```
 
@@ -175,7 +176,7 @@ instead of creating a new one.
 
 This is not possible with the API in JavaScript core. Using the normal map
 to cache objects will prevent V8 from garbage collecting the objects, while the
-[WeakMap][WeakMap] class can only use objects as weak keys.
+[WeakMap][weakmap] class can only use objects as weak keys.
 
 To solve this, a map type with values as weak references is added, which is
 perfect for caching objects with IDs. Now the `remote.require` looks like
@@ -206,14 +207,14 @@ found in following files:
 
 The `setDestructor` API:
 
-* [`object_life_monitor.cc`](https://github.com/electron/electron/blob/v1.3.4/atom/common/api/object_life_monitor.cc)
-* [`object_life_monitor.h`](https://github.com/electron/electron/blob/v1.3.4/atom/common/api/object_life_monitor.h)
+- [`object_life_monitor.cc`](https://github.com/electron/electron/blob/v1.3.4/atom/common/api/object_life_monitor.cc)
+- [`object_life_monitor.h`](https://github.com/electron/electron/blob/v1.3.4/atom/common/api/object_life_monitor.h)
 
 The `createIDWeakMap` API:
 
-* [`key_weak_map.h`](https://github.com/electron/electron/blob/v1.3.4/atom/common/key_weak_map.h)
-* [`atom_api_key_weak_map.h`](https://github.com/electron/electron/blob/v1.3.4/atom/common/api/atom_api_key_weak_map.h)
+- [`key_weak_map.h`](https://github.com/electron/electron/blob/v1.3.4/atom/common/key_weak_map.h)
+- [`atom_api_key_weak_map.h`](https://github.com/electron/electron/blob/v1.3.4/atom/common/api/atom_api_key_weak_map.h)
 
 [window-disappearing]: https://electronjs.org/docs/faq/#my-apps-windowtray-disappeared-after-a-few-minutes
-[WeakMap]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap
+[weakmap]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap
 [remote-procedure-call]: https://en.wikipedia.org/wiki/Remote_procedure_call

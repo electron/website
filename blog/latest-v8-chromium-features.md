@@ -7,6 +7,7 @@ authors:
   image_url: 'https://github.com/jlord.png?size=96'
 slug: latest-v8-chromium-features
 ---
+
 Building an Electron application means you only need to create one codebase and design for one browser, which is pretty handy. But because Electron stays up to date with [Node.js](http://nodejs.org) and [Chromium](https://www.chromium.org) as they release, you also get to make use of the great features they ship with. In some cases this eliminates dependencies you might have previously needed to include in a web app.
 
 ---
@@ -26,10 +27,11 @@ findTime () => {
   console.log(new Date())
 }
 ```
+
 **String Interpolation**
 
 ```js
-var octocat = "Mona Lisa";
+var octocat = 'Mona Lisa';
 console.log(`The octocat's name is ${octocat}`);
 ```
 
@@ -50,7 +52,7 @@ new Octocat();
 **Array Includes**
 
 ```js
- // Returns true
+// Returns true
 [1, 2].includes(2);
 ```
 
@@ -59,8 +61,8 @@ new Octocat();
 ```js
 // Represent indefinite number of arguments as an array
 (o, c, ...args) => {
-  console.log(args.length)
-}
+  console.log(args.length);
+};
 ```
 
 ## Chromium Features

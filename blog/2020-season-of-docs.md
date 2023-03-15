@@ -7,6 +7,7 @@ authors:
     image_url: 'https://github.com/erickzhao.png?size=96'
 slug: 2020-season-of-docs
 ---
+
 Electron is proud to be participating in the second edition of Google's Season of Docs initiative, which pairs mentors from open source organizations with technical writers to improve project documentation.
 
 ---
@@ -33,6 +34,6 @@ If you want to discuss project proposals, shoot us an email at [season-of-docs@e
 
 # References
 
-* [Electron documentation](https://www.electronjs.org/docs)
-* [Project ideas document](https://github.com/electron/season-of-docs-2020/blob/master/project-ideas.md)
-* [Season of Docs tech writer guide](https://developers.google.com/season-of-docs/docs/tech-writer-guide)
+- [Electron documentation](https://www.electronjs.org/docs)
+- [Project ideas document](https://github.com/electron/season-of-docs-2020/blob/master/project-ideas.md)
+- [Season of Docs tech writer guide](https://developers.google.com/season-of-docs/docs/tech-writer-guide)

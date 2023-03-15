@@ -2,14 +2,13 @@
 title: Electron 22.0.0
 date: 2022-11-29T00:00:00.000Z
 authors:
-    - name: VerteDinde
-      url: 'https://github.com/VerteDinde'
-      image_url: 'https://github.com/vertedinde.png?size=96'
-    - name: georgexu99
-      url: 'https://github.com/georgexu99'
-      image_url: 'https://github.com/georgexu99.png?size=96'
+  - name: VerteDinde
+    url: 'https://github.com/VerteDinde'
+    image_url: 'https://github.com/vertedinde.png?size=96'
+  - name: georgexu99
+    url: 'https://github.com/georgexu99'
+    image_url: 'https://github.com/georgexu99.png?size=96'
 slug: electron-22-0
-
 ---
 
 Electron 22.0.0 has been released! It includes a new utility process API, updates for Windows 7/8/8.1 support, and upgrades to Chromium `108`, V8 `10.8`, and Node.js `16.17.1`. Read below for more details!
@@ -24,14 +23,14 @@ If you have any feedback, please share it with us on Twitter, or join our commun
 
 ### Stack Changes
 
-* Chromium `108`
-    * [New in Chrome 108](https://developer.chrome.com/blog/new-in-chrome-108/)
-    * [New in Chrome 107](https://developer.chrome.com/blog/new-in-chrome-107/)
-    * [New in DevTools 108](https://developer.chrome.com/blog/new-in-devtools-108/)
-    * [New in DevTools 107](https://developer.chrome.com/blog/new-in-devtools-107/)
-* Node.js `16.17.1`
-    * [Node 16.17.1 blog post](https://nodejs.org/en/blog/release/v16.17.1/)
-* V8 `10.8`
+- Chromium `108`
+  - [New in Chrome 108](https://developer.chrome.com/blog/new-in-chrome-108/)
+  - [New in Chrome 107](https://developer.chrome.com/blog/new-in-chrome-107/)
+  - [New in DevTools 108](https://developer.chrome.com/blog/new-in-devtools-108/)
+  - [New in DevTools 107](https://developer.chrome.com/blog/new-in-devtools-107/)
+- Node.js `16.17.1`
+  - [Node 16.17.1 blog post](https://nodejs.org/en/blog/release/v16.17.1/)
+- V8 `10.8`
 
 ### Highlighted Features
 
@@ -49,7 +48,7 @@ You can read more about the [new UtilityProcess API in our docs here](https://ww
 
 Last month, Google announced that [Chrome 109 would continue to receive critical
 security fixes](https://support.google.com/chrome/a/thread/185534987) for
-Windows Server 2012 and Windows Server 2012 R2 until October 10, 2023. 
+Windows Server 2012 and Windows Server 2012 R2 until October 10, 2023.
 In accordance, Electron 22's (Chromium 108) planned end of life date will be extended from May 30, 2023 to October 10, 2023. The Electron team will continue to backport any security fixes that are part of this program to Electron 22 until October 10, 2023.
 
 Note that we will not make additional security fixes for Windows 7/8/8.1.
@@ -62,12 +61,12 @@ Electron 22 will be the last Electron major version to support Windows 7/8/8.1. 
 
 Windows 7/8/8.1 will not be supported in Electron 23 and later major releases.
 
-#### Additional Highlighted Changes 
+#### Additional Highlighted Changes
 
-* Added support for Web Bluetooth pin pairing on Linux and Windows. [#35416](https://github.com/electron/electron/pull/35416)
-* Added `LoadBrowserProcessSpecificV8Snapshot` as a new fuse that will let the main/browser process load its v8 snapshot from a file at `browser_v8_context_snapshot.bin`. Any other process will use the same path as is used today. [#35266](https://github.com/electron/electron/pull/35266) 
-* Added `WebContents.opener` to access window opener and `webContents.fromFrame(frame)` to get the WebContents corresponding to a WebFrameMain instance. [#35140](https://github.com/electron/electron/pull/35140)
-* Added support for `navigator.mediaDevices.getDisplayMedia` via a new session handler, `ses.setDisplayMediaRequestHandler`. [#30702](https://github.com/electron/electron/pull/30702) 
+- Added support for Web Bluetooth pin pairing on Linux and Windows. [#35416](https://github.com/electron/electron/pull/35416)
+- Added `LoadBrowserProcessSpecificV8Snapshot` as a new fuse that will let the main/browser process load its v8 snapshot from a file at `browser_v8_context_snapshot.bin`. Any other process will use the same path as is used today. [#35266](https://github.com/electron/electron/pull/35266)
+- Added `WebContents.opener` to access window opener and `webContents.fromFrame(frame)` to get the WebContents corresponding to a WebFrameMain instance. [#35140](https://github.com/electron/electron/pull/35140)
+- Added support for `navigator.mediaDevices.getDisplayMedia` via a new session handler, `ses.setDisplayMediaRequestHandler`. [#30702](https://github.com/electron/electron/pull/30702)
 
 ## Breaking API Changes
 

@@ -22,7 +22,6 @@ We can attach metadata onto `sidebars.js` items via the `customProps` object,
 but the default `DocSidebarItem` component has no way to act on the props being
 passed in, so we must Swizzle.
 
-
 See: https://docusaurus.io/docs/sidebar#passing-custom-props
 
 The `customProps` object will accept a `tags` property of type

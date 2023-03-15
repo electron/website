@@ -7,6 +7,7 @@ authors:
   image_url: 'https://github.com/nornagon.png?size=96'
 slug: gn
 ---
+
 Electron now uses GN to build itself. Here's a discussion of why.
 
 ---
@@ -33,14 +34,13 @@ If you're developing an app with Electron, there are a few minor changes you mig
 
 GN is [faster](https://chromium.googlesource.com/chromium/src/tools/gn/+/48062805e19b4697c5fbd926dc649c78b6aaa138/README.md) than GYP and its files are more readable and maintainable. Moreover, we hope that using a single build configuration system will reduce the work required to upgrade Electron to new versions of Chromium.
 
- * It's already helped development on Electron 4.0.0 substantially because Chromium 67 removed support for MSVC and switched to building with Clang on Windows. With the GN build, we inherit all the compiler commands from Chromium directly, so we got the Clang build on Windows for free!
+- It's already helped development on Electron 4.0.0 substantially because Chromium 67 removed support for MSVC and switched to building with Clang on Windows. With the GN build, we inherit all the compiler commands from Chromium directly, so we got the Clang build on Windows for free!
 
- * It's also made it easier for Electron to use [BoringSSL] in a unified build across Electron, Chromium, and Node -- something that was [problematic before](https://electronjs.org/blog/electron-internals-using-node-as-a-library#shared-library-or-static-library).
+- It's also made it easier for Electron to use [BoringSSL] in a unified build across Electron, Chromium, and Node -- something that was [problematic before](https://electronjs.org/blog/electron-internals-using-node-as-a-library#shared-library-or-static-library).
 
-
-[BoringSSL]: https://boringssl.googlesource.com/boringssl/
-[Electron code]: https://github.com/electron/electron
-[GN]: https://gn.googlesource.com/gn/
-[GYP]: https://gyp.gsrc.io/
-[Ninja]: https://ninja-build.org/
+[boringssl]: https://boringssl.googlesource.com/boringssl/
+[electron code]: https://github.com/electron/electron
+[gn]: https://gn.googlesource.com/gn/
+[gyp]: https://gyp.gsrc.io/
+[ninja]: https://ninja-build.org/
 [libchromiumcontent]: https://github.com/electron/libchromiumcontent

@@ -7,6 +7,7 @@ authors:
   image_url: 'https://github.com/jlord.png?size=96'
 slug: electron-doumentation
 ---
+
 This week we've given Electron's documentation a home on [electronjs.org](https://electronjs.org). You can visit [/docs/latest](https://electronjs.org/docs/latest) for the latest set of docs. We'll keep versions of older docs, too, so you're able to visit [/docs/vX.XX.X](https://electronjs.org/docs/v0.26.0) for the docs that correlate to the version you're using.
 
 ---
@@ -73,9 +74,9 @@ In the site's `_config.yml` file a variable `latest_version` is set every time t
 ```yaml
 latest_version: v0.27.0
 available_versions:
-    - v0.27.0
+  - v0.27.0
 collections:
-    docs: {output: true, permalink: '/docs/:path/'}
+  docs: { output: true, permalink: '/docs/:path/' }
 ```
 
 The file `latest.md` in our site root is empty except for this front matter which allows users to see the index (aka `README`) of the latest version of docs by visiting this URL, [electron.atom.io/docs/latest](https://electronjs.org/docs/latest), rather than using the latest version number specifically (though you can do that, too).
@@ -92,22 +93,19 @@ redirect_to: /docs/{{ site.data.releases[0].version }}
 In the `docs.html` layout template we use conditionals to either show or hide information in the header and breadcrumb.
 
 ```html
-{% raw %}
-{% if page.category != 'ignore' %}
-<h6 class='docs-breadcrumb'>{{ page.version }} / {{ page.category }}
-  {% if page.title != 'README' %} / {{ page.title }} {% endif %}</h6>
-{% endif %}
-{% endraw %}
+{% raw %} {% if page.category != 'ignore' %}
+<h6 class="docs-breadcrumb">
+  {{ page.version }} / {{ page.category }} {% if page.title != 'README' %} / {{
+  page.title }} {% endif %}
+</h6>
+{% endif %} {% endraw %}
 ```
 
 To create a page showing the versions that are available we just loop through the list in our config on a file, `versions.md`, in the site's root. Also we give this page a permalink: `/docs/`
 
 ```html
-{% raw %}
-{% for version in site.available_versions %}
-- [{{ version }}](/docs/{{ version }})
-{% endfor %}
-{% endraw %}
+{% raw %} {% for version in site.available_versions %} - [{{ version
+}}](/docs/{{ version }}) {% endfor %} {% endraw %}
 ```
 
 Hope you enjoyed these technical bits! If you're interested in more information on using Jekyll for documentation sites, checkout how GitHub's docs team publishes [GitHub's docs on Jekyll](https://github.com/blog/1939-how-github-uses-github-to-document-github).

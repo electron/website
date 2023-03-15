@@ -7,6 +7,7 @@ authors:
   image_url: 'https://github.com/VerteDinde.png?size=96'
 slug: 8-week-cadence
 ---
+
 Beginning in September 2021, Electron will release a new major stable version every 8 weeks.
 
 ---
@@ -31,25 +32,25 @@ With these two requirements, our team faced a timing dilemma. Moving Electron 15
 
 To help with this switchover, Electron will offer a temporary **alpha build**, only for the Electron 15 release. This alpha build will allow developers more time to test and plan for an Electron 15 release, with a more stable build than our current nightlies.
 
-The alpha channel build will ship for **Electron 15** on **July 20th, 2021**. It will transition to a beta release on **September 1st, 2021**  with a stable release target of **September 21st, 2021**. Subsequent Electron releases will not have alpha releases.
+The alpha channel build will ship for **Electron 15** on **July 20th, 2021**. It will transition to a beta release on **September 1st, 2021** with a stable release target of **September 21st, 2021**. Subsequent Electron releases will not have alpha releases.
 
 ## 2021 Plan for Releases
 
 Below is our current release schedule for 2021:
 
 | Electron | Chrome | Alpha Release | Beta Release | Stable Release | Stable Cycle (Weeks) |
-| -------- | ------ | ----- | ---- | ------ | -------- |
-| E13 | M91 | -          | 2021-Mar-05 | 2021-May-25 | 12 |
-| E14 | M93 | -          | 2021-May-26 | 2021-Aug-31 | 14 |
-| E15 | M94 | 2021-Jul-20 | 2021-Sep-01 | 2021-Sep-21 | 9 (includes alpha) |
-| E16 | M96 |  - | 2021-Sep-22 | 2021-Nov-16 | 8 |
-| E17 | M98 |  - | 2021-Nov-17 | 2022-Feb-01 | 11 |
+| -------- | ------ | ------------- | ------------ | -------------- | -------------------- |
+| E13      | M91    | -             | 2021-Mar-05  | 2021-May-25    | 12                   |
+| E14      | M93    | -             | 2021-May-26  | 2021-Aug-31    | 14                   |
+| E15      | M94    | 2021-Jul-20   | 2021-Sep-01  | 2021-Sep-21    | 9 (includes alpha)   |
+| E16      | M96    | -             | 2021-Sep-22  | 2021-Nov-16    | 8                    |
+| E17      | M98    | -             | 2021-Nov-17  | 2022-Feb-01    | 11                   |
 
 Adding the alpha channel extends the development time before Electron 15's launch from 3 weeks to 9 weeks - closer to our new 8 week cycle, while still meeting the requirements for Windows Store submission.
 
 To further help app developers, **for the remainder of 2021 until May 2022, we will also be extending our supported versions policy from the latest 3 versions to the latest 4 versions of Electron.** That means that even if you can't immediately alter your upgrade schedule, older versions of Electron will still receive security updates and fixes.
 
-## Addressing Concerns 
+## Addressing Concerns
 
 There's a reason we're publishing this post well before this release cycle change is scheduled. We know that a faster release cycle will have a real impact on Electron apps - some of which may already find our major release cadence aggressive.
 
@@ -77,11 +78,10 @@ We will be extending our supported version policy from the latest three versions
 
 | E13 (May'21) | E14 (Aug'21) | E15 (Sep'21) | E16 (Nov'21) | E17 (Feb'22) | E18 (Mar'22) | E19 (May'22) |
 | ------------ | ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
-| 13.x.y | 14.x.y | 15.x.y | 16.x.y | 17.x.y | 18.x.y | 19.x.y |
-| 12.x.y | 13.x.y | 14.x.y | 15.x.y | 16.x.y | 17.x.y | 18.x.y |
-| 11.x.y | 12.x.y | 13.x.y | 14.x.y | 15.x.y | 16.x.y | 17.x.y |
-| --     | --     | 12.x.y | 13.x.y | 14.x.y | 15.x.y |  -- |
-
+| 13.x.y       | 14.x.y       | 15.x.y       | 16.x.y       | 17.x.y       | 18.x.y       | 19.x.y       |
+| 12.x.y       | 13.x.y       | 14.x.y       | 15.x.y       | 16.x.y       | 17.x.y       | 18.x.y       |
+| 11.x.y       | 12.x.y       | 13.x.y       | 14.x.y       | 15.x.y       | 16.x.y       | 17.x.y       |
+| --           | --           | 12.x.y       | 13.x.y       | 14.x.y       | 15.x.y       | --           |
 
 ## Questions?
 

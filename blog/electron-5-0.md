@@ -13,6 +13,7 @@ authors:
     image_url: 'https://github.com/jkleinsc.png?size=96'
 slug: electron-5-0
 ---
+
 The Electron team is excited to announce the release of Electron 5.0.0! You can install it with npm via `npm install electron@latest` or download the tarballs from [our releases page](https://github.com/electron/electron/releases/tag/v5.0.0). The release is packed with upgrades, fixes, and new features. We can't wait to see what you build with them! Continue reading for details about this release, and please share any feedback you have!
 
 ---
@@ -36,25 +37,27 @@ Electron 5 also includes improvements to Electron-specific APIs. A summary of th
 ### Promisification
 
 Electron 5 continues [Promisification initiative](https://github.com/electron/electron/blob/5-0-x/docs/api/promisification.md) initiative to convert Electron's callback-based API to use Promises. These APIs were converted for Electron 5:
-* `app.getFileIcon`
-* `contentTracing.getCategories`
-* `contentTracing.startRecording`
-* `contentTracing.stopRecording`
-* `debugger.sendCommand`
-* Cookies API
-* `shell.openExternal`
-* `webContents.loadFile`
-* `webContents.loadURL`
-* `webContents.zoomLevel`
-* `webContents.zoomFactor`
-* `win.capturePage`
+
+- `app.getFileIcon`
+- `contentTracing.getCategories`
+- `contentTracing.startRecording`
+- `contentTracing.stopRecording`
+- `debugger.sendCommand`
+- Cookies API
+- `shell.openExternal`
+- `webContents.loadFile`
+- `webContents.loadURL`
+- `webContents.zoomLevel`
+- `webContents.zoomFactor`
+- `win.capturePage`
 
 ### System colors access for macOS
 
 These functions were changed or added to `systemPreferences` to access macOS systems' colors:
-* `systemPreferences.getAccentColor`
-* `systemPreferences.getColor`
-* `systemPreferences.getSystemColor`
+
+- `systemPreferences.getAccentColor`
+- `systemPreferences.getColor`
+- `systemPreferences.getSystemColor`
 
 ### Process memory information
 
@@ -79,6 +82,7 @@ Packaged apps will now behave the same as the default app: a default application
 Mixed sandbox mode is now enabled by default. Renderers launched with `sandbox: true` will now be actually sandboxed, where previously they would only be sandboxed if mixed-sandbox mode was also enabled.
 
 ### Security improvements
+
 The default values of `nodeIntegration` and `webviewTag` are now `false` to improve security.
 
 ### Spellchecker now asynchronous
@@ -90,25 +94,32 @@ The SpellCheck API has been changed to provide [asynchronous results](https://gi
 The following APIs are newly deprecated in Electron 5.0.0 and planned for removal in 6.0.0:
 
 ### Mksnapshot binaries for arm and arm64
+
 Native binaries of mksnapshot for arm and arm64 are deprecated and will be removed in 6.0.0. Snapshots can be created for arm and arm64 using the x64 binaries.
 
 ### ServiceWorker APIs on WebContents
+
 Deprecated ServiceWorker APIs on WebContents in preparation for their removal.
-* `webContents.hasServiceWorker`
-* `webContents.unregisterServiceWorker`
+
+- `webContents.hasServiceWorker`
+- `webContents.unregisterServiceWorker`
 
 ### Automatic modules with sandboxed webContents
+
 In order to improve security, the following modules are being deprecated for use directly via `require` and will instead need to be included via `remote.require` in a sandboxed webcontents:
-* `electron.screen`
-* `child_process`
-* `fs`
-* `os`
-* `path`
+
+- `electron.screen`
+- `child_process`
+- `fs`
+- `os`
+- `path`
 
 ## webFrame Isolated World APIs
+
 `webFrame.setIsolatedWorldContentSecurityPolicy`,`webFrame.setIsolatedWorldHumanReadableName`, `webFrame.setIsolatedWorldSecurityOrigin` have been deprecated in favor of `webFrame.setIsolatedWorldInfo`.
 
 ### Mixed sandbox
+
 `enableMixedSandbox` and the `--enable-mixed-sandbox` command-line switch still exist for compatibility, but are deprecated and have no effect.
 
 ## End of support for 2.0.x

@@ -7,6 +7,7 @@ authors:
   image_url: 'https://github.com/kevinsawicki.png?size=96'
 slug: certificate-transparency-fix
 ---
+
 Electron [1.4.12] contains an important patch that fixes an upstream Chrome
 issue where some Symantec, GeoTrust, and Thawte SSL/TLS certificates
 are incorrectly rejected 10 weeks from the build time of [libchromiumcontent],
@@ -99,8 +100,6 @@ requests to sites using these affected certificates will start to fail.
         </tr>
     </tbody>
 </table>
-
-
 
 You can verify your app's impact date by setting your computer's clock ahead
 and then check to see if [https://symbeta.symantec.com/welcome/](https://symbeta.symantec.com/welcome/)

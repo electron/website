@@ -2,14 +2,13 @@
 title: Electron 19.0.0
 date: 2022-05-24T00:00:00.000Z
 authors:
-    - name: VerteDinde
-      url: 'https://github.com/VerteDinde'
-      image_url: 'https://github.com/VerteDinde.png?size=96'
-    - name: ckerr
-      url: 'https://github.com/ckerr'
-      image_url: 'https://github.com/ckerr.png?size=96'
+  - name: VerteDinde
+    url: 'https://github.com/VerteDinde'
+    image_url: 'https://github.com/VerteDinde.png?size=96'
+  - name: ckerr
+    url: 'https://github.com/ckerr'
+    image_url: 'https://github.com/ckerr.png?size=96'
 slug: electron-19-0
-
 ---
 
 Electron 19.0.0 has been released! It includes upgrades to Chromium `102`, V8 `10.2`, and Node.js `16.14.2`. Read below for more details!
@@ -22,16 +21,16 @@ The Electron team is excited to announce the release of Electron 19.0.0! You can
 
 ### Electron Release Cadence Change
 
-The project is returning to its earlier policy of supporting the latest three major versions. [See our versioning document](https://www.electronjs.org/docs/latest/tutorial/electron-versioning) for more detailed information about Electron versioning and support. This had temporarily been four major versions to help users adjust to the new release cadence that began in Electron 15. You can read the [full details here](https://www.electronjs.org/blog/8-week-cadence). 
+The project is returning to its earlier policy of supporting the latest three major versions. [See our versioning document](https://www.electronjs.org/docs/latest/tutorial/electron-versioning) for more detailed information about Electron versioning and support. This had temporarily been four major versions to help users adjust to the new release cadence that began in Electron 15. You can read the [full details here](https://www.electronjs.org/blog/8-week-cadence).
 
 ### Stack Changes
 
-* Chromium `102`
-    * [New in Chrome 102](https://developer.chrome.com/blog/new-in-chrome-102/)
-    * [New in Chrome 101](https://developer.chrome.com/blog/new-in-chrome-101/)
-* Node.js `16.14.2`
-    * [Node 16.14.2 blog post](https://nodejs.org/en/blog/release/v16.14.2/)
-* V8 `10.2`
+- Chromium `102`
+  - [New in Chrome 102](https://developer.chrome.com/blog/new-in-chrome-102/)
+  - [New in Chrome 101](https://developer.chrome.com/blog/new-in-chrome-101/)
+- Node.js `16.14.2`
+  - [Node 16.14.2 blog post](https://nodejs.org/en/blog/release/v16.14.2/)
+- V8 `10.2`
 
 ## Breaking & API Changes
 
@@ -49,12 +48,13 @@ The semi-documented `preloadURL` property has been removed from WebPreferences. 
 
 Electron 14.x.y and 15.x.y have both reached end-of-support. This [returns](https://www.electronjs.org/blog/8-week-cadence/#-will-electron-extend-the-number-of-supported-versions) Electron to its [existing policy](https://www.electronjs.org/docs/latest/tutorial/electron-timelines#version-support-policy) of supporting the latest three major versions. Developers and applications are encouraged to upgrade to a newer version of Electron.
 
-|	E15 (Sep'21) |	E16 (Nov'21) |	E17 (Feb'22) |	E18 (Mar'22) |	E19 (May'22) |
-| ---- | ---- | ---- | ---- | ---- |
-|	15.x.y |	16.x.y |	17.x.y |	18.x.y |	19.x.y |
-|	14.x.y |	15.x.y |	16.x.y |	17.x.y |	18.x.y |
-|	13.x.y |	14.x.y |	15.x.y |	16.x.y |	17.x.y |
-|	12.x.y |	13.x.y |	14.x.y |	15.x.y |	-- |
+| E15 (Sep'21) | E16 (Nov'21) | E17 (Feb'22) | E18 (Mar'22) | E19 (May'22) |
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+| 15.x.y       | 16.x.y       | 17.x.y       | 18.x.y       | 19.x.y       |
+| 14.x.y       | 15.x.y       | 16.x.y       | 17.x.y       | 18.x.y       |
+| 13.x.y       | 14.x.y       | 15.x.y       | 16.x.y       | 17.x.y       |
+| 12.x.y       | 13.x.y       | 14.x.y       | 15.x.y       | --           |
+
 ## What's Next
 
 In the short term, you can expect the team to continue to focus on keeping up with the development of the major components that make up Electron, including Chromium, Node, and V8. Although we are careful not to make promises about release dates, our plan is to release new major versions of Electron with new versions of those components approximately every 2 months.

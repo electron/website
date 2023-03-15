@@ -137,7 +137,7 @@ What have we been doing to develop our community presence?
   [@bandantonio](https://github.com/bandantonio) to rework Electron’s new user tutorial flow.
 - In 2022, we mentored a Google Summer of Code student for the first time.
   [@aryanshridhar](https://github.com/aryanshridhar) did some awesome work to refactor [Electron
-  Fiddle](https://github.com/electron/fiddle)'s core version loading logic and migrate its bundler 
+  Fiddle](https://github.com/electron/fiddle)'s core version loading logic and migrate its bundler
   to [webpack](https://webpack.js.org/).
 
 ### Automate all the things!
@@ -231,19 +231,21 @@ Altogether, our little family of bots has given us a huge boost in developer pro
 
 As we enter our second decade as a project, you might be asking: what’s next for Electron?
 
-We’re going to stay in sync with Chromium's release cadence, releasing  new major versions of 
-Electron every 8 weeks, keeping the framework updated with the latest and greatest from the web 
+We’re going to stay in sync with Chromium's release cadence, releasing new major versions of
+Electron every 8 weeks, keeping the framework updated with the latest and greatest from the web
 platform and Node.js while maintaining stability and security for enterprise-grade applications.
 
-We generally announce news on upcoming initiatives when they become concrete. If you want to 
-keep up with future releases, features, and general project updates, you can read 
-[our blog](https://electronjs.org/blog) and follow our social media profiles 
+We generally announce news on upcoming initiatives when they become concrete. If you want to
+keep up with future releases, features, and general project updates, you can read
+[our blog](https://electronjs.org/blog) and follow our social media profiles
 ([Twitter](https://twitter.com/electronjs) and [Mastodon](https://social.lfx.dev/@electronjs))!
 
-[^1]: This is actually the first commit from the
-[electron-archive/brightray project](https://github.com/electron-archive/brightray), which got
-absorbed into Electron in 2017 and had its git history merged. But who’s counting?
-It’s our birthday, so we get to make the rules!
+[^1]:
+    This is actually the first commit from the
+    [electron-archive/brightray project](https://github.com/electron-archive/brightray), which got
+    absorbed into Electron in 2017 and had its git history merged. But who’s counting?
+    It’s our birthday, so we get to make the rules!
 
-[^2]: Contrary to popular belief, Electron is no longer owned by GitHub or Microsoft, and is part of
-the [OpenJS Foundation](https://openjsf.org/) nowadays.
+[^2]:
+    Contrary to popular belief, Electron is no longer owned by GitHub or Microsoft, and is part of
+    the [OpenJS Foundation](https://openjsf.org/) nowadays.
