@@ -381,6 +381,5 @@ module.exports = {
         'latest/api/structures/usb-device',
       ],
     },
-    { type: 'category', label: 'Api', items: ['latest/api/synopsis'] },
   ],
 };
