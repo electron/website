@@ -94,7 +94,7 @@ const GroupCard = ({ group }: { group: WorkingGroup }) => {
             hasExpand && (expanded ? styles.expanded : styles.unexpanded)
           )}
         >
-          group.chair && <Member user={group.chair} isChair />
+          {group.chair && <Member user={group.chair} isChair />}
           {group.members.map((user: string) => (
             <Member key={user} user={user} />
           ))}
