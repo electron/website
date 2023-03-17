@@ -134,7 +134,7 @@ export default function FiddlePage() {
   };
 
   return (
-    <Layout title="Electron Fiddle">
+    <Layout>
       <header className={styles.header}>
         <FiddleLogo width={48} height={48} />
         <h1 className={styles.tagline}>

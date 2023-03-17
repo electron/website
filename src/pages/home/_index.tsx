@@ -19,7 +19,7 @@ import CodeWindow from './_components/CodeWindow';
 export default function Home() {
   const { siteConfig } = useDocusaurusContext();
   return (
-    <Layout title={siteConfig.tagline} description={siteConfig.tagline}>
+    <Layout>
       <header className={clsx('hero', 'hero--primary', styles.heroElectron)}>
         <div className="container">
           <div className="row">

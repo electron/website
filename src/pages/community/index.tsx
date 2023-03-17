@@ -4,7 +4,7 @@ import Link from '@docusaurus/Link';
 
 function Community() {
   return (
-    <Layout title="Community">
+    <Layout>
       <div className={'hero hero--electron'}>
         <div className="container">
           <h1 className="hero__title">Community</h1>
