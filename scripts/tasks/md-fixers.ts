@@ -4,6 +4,8 @@ import fs from 'fs-extra';
 import path from 'path';
 import globby from 'globby';
 
+import logger from '@docusaurus/logger';
+
 /**
  * RegExp used to match the details of the arguments of a function
  * in the documention and used in `apiTransformer`. It matches:
@@ -159,7 +161,7 @@ const fixLinks = (content: string, linksMaps: Map<string, string>) => {
    */
   let updatedContent = content;
   const mdLinkRegex = /(]:\s*|]\()(\S*?)?(?:\s|$|\))/gi;
-  let val;
+  let val: RegExpExecArray;
 
   while ((val = mdLinkRegex.exec(content)) !== null) {
     const link = val[2];
@@ -216,6 +218,136 @@ const fixReturnLines = (content: string) => {
 };
 
 /**
+ * Inline API structure content if a link URL query parameter is ?inline.
+ *
+ * This will place the content of the structure (minus the document header)
+ * on the line following the link. If the line with the link is a list, the
+ * inlined content will be indented so that it is the next level in the list.
+ *
+ * Fairly heavy on assumptions and heuristics about how the docs are laid out
+ * so this code may be fragile to upstream changes.
+ *
+ * @param filePath
+ * @param content
+ */
+const inlineApiStructures = async (filePath: string, content: string) => {
+  // This is a modified version of the regex in `fixLinks`
+  const inlineApiStructureRegex = /\[\S+(?:]\()((\S*?)\?inline)?(?:\s|$|\))/g;
+
+  // This is from vscode-markdown-languageservice
+  const linkDefinitionPattern =
+    /^([\t ]*\[(?!\^)((?:\\\]|[^\]])+)\]:\s*)([^<]\S*|<[^>]+>)/gm;
+
+  let updatedContent = content;
+
+  for (const val of content.matchAll(inlineApiStructureRegex)) {
+    const link = val[2];
+
+    // Don't consider links from outside the electron docs
+    if (
+      link.startsWith('https://') &&
+      !link.includes('github.com/electron/electron/')
+    ) {
+      continue;
+    }
+
+    logger.info(
+      `Inlining API structure content for '${logger.green(
+        link
+      )}' in ${logger.green(filePath)}`
+    );
+
+    try {
+      // Recursively inline to ensure all inline links have been inlined
+      const apiStructureFilePath = path.join(path.dirname(filePath), link);
+      let apiStructureContent = await inlineApiStructures(
+        apiStructureFilePath,
+        await fs.readFile(apiStructureFilePath, 'utf-8')
+      );
+
+      // Strip the header if there is one
+      if (apiStructureContent.match(/^# /m)) {
+        const headerIdx = apiStructureContent.match(/^# /m).index;
+        const firstNewline = apiStructureContent.indexOf('\n', headerIdx);
+        apiStructureContent = apiStructureContent.slice(
+          apiStructureContent.indexOf('\n', firstNewline + 1) + 1
+        );
+      }
+
+      const indexOfLineStart = updatedContent.lastIndexOf('\n', val.index) + 1;
+      const indexOfLineEnd =
+        val.index + updatedContent.slice(val.index).indexOf('\n');
+      const line = updatedContent.slice(indexOfLineStart, indexOfLineEnd);
+
+      // The line with the link is a list item
+      if (line.trim().startsWith('*')) {
+        const indentation = line.indexOf('*');
+
+        if (![0, 2, 4, 6].includes(indentation)) {
+          throw new Error(
+            'Expected an indentation level of 0, 2, 4, or 6 for list item'
+          );
+        }
+
+        // Assume list indentation is a multiple of 2, should be enforced by
+        // upstream linter. Increase the indentation of the API structure
+        // content by two spaces for the list of properties, which is presumed
+        // to be the first block in the document after the header, which ends
+        // when there's a blank line, or end of file
+        let initialPropsSection = true;
+
+        const lines = apiStructureContent.split('\n');
+        apiStructureContent = lines
+          .map((line) => {
+            if (line.trim() === '') {
+              initialPropsSection = false;
+            }
+
+            return initialPropsSection
+              ? `${' '.repeat(indentation + 2)}${line}`
+              : line;
+          })
+          .join('\n');
+      }
+
+      // Pull out any reference link definitions so they don't interfere
+      // with list indentation when inlining the structure properties
+      const apiStructureContentLines = apiStructureContent.split('\n');
+      const referenceLinkDefinitions = apiStructureContentLines.filter((line) =>
+        line.match(linkDefinitionPattern)
+      );
+
+      if (referenceLinkDefinitions.length) {
+        apiStructureContent = apiStructureContentLines
+          .filter((line) => !line.match(linkDefinitionPattern))
+          .join('\n');
+      }
+
+      // Insert the API structure content
+      const preContent = updatedContent.slice(0, indexOfLineEnd);
+      const postContent = updatedContent.slice(indexOfLineEnd + 1);
+      updatedContent =
+        preContent + '\n' + apiStructureContent.trimEnd() + '\n' + postContent;
+
+      // Replace the special link to strip off the ?inline query parameter
+      updatedContent = updatedContent.replace(val[1], val[2]);
+
+      // Place any reference links from API structure content at end
+      if (referenceLinkDefinitions.length) {
+        updatedContent =
+          updatedContent + '\n' + referenceLinkDefinitions.join('\n') + '\n';
+      }
+    } catch (err) {
+      logger.error(
+        `Error inlining API structure link in file ${filePath}: ${err}`
+      );
+    }
+  }
+
+  return updatedContent;
+};
+
+/**
  * The current doc's format on `electron/electron` cannot be used
  * directly by docusaurus. This function trasform all the md files
  * found in the given `root` (recursively) and makes sure they are
@@ -239,12 +371,16 @@ export const fixContent = async (root: string, version = 'latest') => {
   }
 
   for (const filePath of files) {
-    const content = await fs.readFile(path.join(root, filePath), 'utf-8');
+    const fullFilePath = path.join(root, filePath);
+    const content = await fs.readFile(fullFilePath, 'utf-8');
 
-    let fixedContent = transform(content);
+    // Inline API structures first so all other fixes affect them
+    let fixedContent = await inlineApiStructures(fullFilePath, content);
 
-    // `fixLinks` and `fixReturnLines` analyze the document globally instead
-    // of line by line, thus why it cannot be part of `transform`
+    fixedContent = transform(fixedContent);
+
+    // These analyze the document globally instead of line by line,
+    // thus why they cannot be part of `transform`
     fixedContent = fixReturnLines(fixLinks(fixedContent, linksMaps));
 
     await fs.writeFile(path.join(root, filePath), fixedContent, 'utf-8');
