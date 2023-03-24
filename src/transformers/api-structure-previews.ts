@@ -9,6 +9,8 @@ import { Import } from '../util/interfaces';
 let structureDefinitions: Map<string, string>;
 let hasStructures: boolean;
 
+const EXCLUDE_LIST = ['browser-window-options', 'web-preferences'];
+
 export default function attacher() {
   return transformer;
 }
@@ -38,7 +40,13 @@ const checkLinksandDefinitions = (node: Node<Data>): node is Link => {
   if (isDefinition(node) && node.url.includes('/api/structures/')) {
     structureDefinitions.set(node.identifier, node.url);
   }
-  return isLink(node) && node.url.includes('/api/structures/');
+  if (isLink(node) && node.url.includes('/api/structures/')) {
+    return EXCLUDE_LIST.every(
+      (excludedFile) => !node.url.endsWith(`/api/structures/${excludedFile}`)
+    );
+  }
+
+  return false;
 };
 
 /**
