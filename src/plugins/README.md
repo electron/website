@@ -43,11 +43,11 @@ module.exports = function myPlugin() {
       const data = await loadSomeContentHere();
       return data; // gets passed to contentLoaded API
     },
-    async contentLoaded({content, actions}) {
+    async contentLoaded({ content, actions }) {
       // saves to the `.docusaurus/` cache.
       const myFile = await actions.createData(
         `my-file.json`,
-        JSON.stringify(content), // content from above
+        JSON.stringify(content) // content from above
       );
       // adds the page as a route
       actions.addRoute({
@@ -58,9 +58,9 @@ module.exports = function myPlugin() {
           myPropName: myFile, // myPropName passed down as prop to component
         },
       });
-    }
-  }
-}
+    },
+  };
+};
 ```
 
 Notice how the above `actions.addRoute` call specifies a `component` property.
@@ -84,5 +84,5 @@ Also, we prefer to use CSS modules for page-specific custom styles.
 
 ### Examples
 
-* [plugins/fiddle](./fiddle/index.ts)
-* [plugins/releases](./releases/index.ts)
+- [plugins/fiddle](./fiddle/index.ts)
+- [plugins/releases](./releases/index.ts)
