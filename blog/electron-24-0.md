@@ -5,7 +5,7 @@ authors:
   - name: georgexu99
     url: 'https://github.com/georgexu99'
     image_url: 'https://github.com/georgexu99.png?size=96'
-slug: electron-23-0
+slug: electron-24-0
 ---
 
 Electron 24.0.0 has been released! It includes upgrades to Chromium `112`, V8 `11.0`, and Node.js `18.14.0`. Read below for more details!
@@ -46,11 +46,11 @@ If you have any feedback, please share it with us on Twitter, or join our commun
 
 Electron 21.x.y has reached end-of-support as per the project's [support policy](https://www.electronjs.org/docs/latest/tutorial/electron-timelines#version-support-policy). Developers and applications are encouraged to upgrade to a newer version of Electron.
 
-| E23 (Feb'23) | E24 (Apr'23) | E25 (May'23) | E26 (Aug'23) |
-| ------------ | ------------ | ------------ | ------------ |
-| 23.x.y       | 24.x.y       | 25.x.y       | 26.x.y       |
-| 22.x.y       | 23.x.y       | 24.x.y       | 25.x.y       |
-| 21.x.y       | 22.x.y       | 23.x.y       | 24.x.y       |
+| E24 (Apr'23) | E25 (May'23) | E26 (Aug'23) |
+| ------------ | ------------ | ------------ | 
+| 24.x.y       | 25.x.y       | 26.x.y       |
+| 23.x.y       | 24.x.y       | 25.x.y       |
+| 22.x.y       | 23.x.y       | 24.x.y       |
 
 ## What's Next
 
