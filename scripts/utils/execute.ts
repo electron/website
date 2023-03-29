@@ -7,7 +7,7 @@ import execa, { Options } from 'execa';
  * ['-m', '"Upgrade:', 'to', 'latest', 'version"'] --> ['-m', '"Upgrade: to latest version"']`
  * ```
  *
- * Original code writeng by @molant for webhint/hint.
+ * Original code written by @molant for webhint/hint.
  * Distributed under an Apache-2.0 License
  *
  * https://github.com/webhintio/hint/blob/606fee86054a54aa55a598fdc6d86400d1269851/release/lib/utils.ts#L78

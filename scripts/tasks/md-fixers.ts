@@ -6,7 +6,7 @@ import globby from 'globby';
 
 /**
  * RegExp used to match the details of the arguments of a function
- * in the documention and used in `apiTransformer`. It matches:
+ * in the documentation and used in `apiTransformer`. It matches:
  * >   * `userInfo` Record<String, unknown>
  * ➡ ["  * ", "`userInfo` Record<String, unknown>", "userInfo", "Record<String, unknown>", ""]
  * > * `channel` String
@@ -208,7 +208,7 @@ const fixLinks = (content: string, linksMaps: Map<string, string>) => {
 };
 
 /**
- * Removes unnecesary extra blank lines
+ * Removes unnecessary extra blank lines
  * @param content
  */
 const fixReturnLines = (content: string) => {
@@ -217,7 +217,7 @@ const fixReturnLines = (content: string) => {
 
 /**
  * The current doc's format on `electron/electron` cannot be used
- * directly by docusaurus. This function trasform all the md files
+ * directly by docusaurus. This function transform all the md files
  * found in the given `root` (recursively) and makes sure they are
  * ready to consumed by the website.
  * @param root

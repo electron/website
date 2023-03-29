@@ -59,7 +59,7 @@ const newDocFiles = (gitOutput: string) => {
  *   the branch upstream.
  * - If there is new content it creates a new branch and opens a PR for
  *   review. The format of the pr branch name is `chore/docs-updates` for `main`
- *   and `chore/docs-updates-vXX-Y-X` for the ones targetting `vXX-Y-X`.
+ *   and `chore/docs-updates-vXX-Y-X` for the ones targeting `vXX-Y-X`.
  * - Creates a new branch and pushes the changes directly if it does
  *   not exist.
  */
