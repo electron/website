@@ -8,7 +8,7 @@ authors:
 slug: electron-24-0
 ---
 
-Electron 24.0.0 has been released! It includes upgrades to Chromium `112`, V8 `11.0`, and Node.js `18.14.0`. Read below for more details!
+Electron 24.0.0 has been released! It includes upgrades to Chromium `112`, V8 `11.2`, and Node.js `18.14.0`. Read below for more details!
 
 ---
 
@@ -31,15 +31,15 @@ If you have any feedback, please share it with us on Twitter, or join our commun
 
 ### New Features
 
-- Added `httpOnly` to the cookie filter. [#37365](https://github.com/electron/electron/pull/37365)
-- Added `logUsage` to `shell.openExternal()` options, which allows passing the `SEE_MASK_FLAG_LOG_USAGE` flag to `ShellExecuteEx` on Windows. [#37291](https://github.com/electron/electron/pull/37291)
-- Added `types` to `webRequest` filter. [#37427](https://github.com/electron/electron/pull/37427)
+- Added the ability to filter `HttpOnly` cookies with `cookies.get()`. [#37365](https://github.com/electron/electron/pull/37365)
+- Added `logUsage` to `shell.openExternal()` options, which allows passing the `SEE_MASK_FLAG_LOG_USAGE` flag to `ShellExecuteEx` on Windows. The `SEE_MASK_FLAG_LOG_USAGE` flag indicates a user initiated launch that enables tracking of frequently used programs and other behaviors. [#37291](https://github.com/electron/electron/pull/37291)
+- Added `types` to the `webRequest` filter, adding the ability to filter the requests you listen to.[#37427](https://github.com/electron/electron/pull/37427)
 - Added a new `devtools-open-url` event to `webContents` to allow developers to open new windows with them. [#36774](https://github.com/electron/electron/pull/36774)
 - Added several standard page size options to `webContents.print()`. [#37265](https://github.com/electron/electron/pull/37265)
 - Added the `enableLocalEcho` flag to the session handler `ses.setDisplayMediaRequestHandler()` callback for allowing remote audio input to be echoed in the local output stream when `audio` is a `WebFrameMain`. [#37528](https://github.com/electron/electron/pull/37528)
 - Allow an application-specific username to be passed to `inAppPurchase.purchaseProduct()`. [#35902](https://github.com/electron/electron/pull/35902)
 - Exposed `window.invalidateShadow()` to clear residual visual artifacts on macOS. [#32452](https://github.com/electron/electron/pull/32452)
-- Whole-program optimization is now enabled by default in electron node headers config file. [#36937](https://github.com/electron/electron/pull/36937)
+- Whole-program optimization is now enabled by default in electron node headers config file, allowing the compiler to perform opimizations with information from all modules in a program as opposed to a per-module (compiland) basis. [#36937](https://github.com/electron/electron/pull/36937)
 - `SystemPreferences::CanPromptTouchID` (macOS) now supports Apple Watch. [#36935](https://github.com/electron/electron/pull/36935)
 
 ## End of Support for 21.x.y
