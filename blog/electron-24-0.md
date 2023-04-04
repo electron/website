@@ -57,7 +57,7 @@ nativeImage.createThumbnailFromPath(imagePath, downSize).then((result) => {
 `BrowserWindow.setTrafficLightPosition(position)` has been deprecated, the `BrowserWindow.setWindowButtonPosition(position)` API should be used instead which accepts `null` instead of `{ x: 0, y: 0 }` to reset the position to system default.
 
 ```js
-// Removed in Electron 24
+// Deprecated in Electron 24
 win.setTrafficLightPosition({ x: 10, y: 10 });
 win.setTrafficLightPosition({ x: 0, y: 0 });
 
