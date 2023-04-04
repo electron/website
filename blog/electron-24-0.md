@@ -8,7 +8,7 @@ authors:
 slug: electron-24-0
 ---
 
-Electron 24.0.0 has been released! It includes upgrades to Chromium `112`, V8 `11.2`, and Node.js `18.14.0`. Read below for more details!
+Electron 24.0.0 has been released! It includes upgrades to Chromium `112.0.5615.49`, V8 `11.2`, and Node.js `18.14.0`. Read below for more details!
 
 ---
 
@@ -20,7 +20,7 @@ If you have any feedback, please share it with us on Twitter, or join our commun
 
 ### Stack Changes
 
-- Chromium `112`
+- Chromium `112.0.5615.49`
   - [New in Chrome 112](https://developer.chrome.com/blog/new-in-chrome-112/)
   - [New in Chrome 111](https://developer.chrome.com/blog/new-in-chrome-111/)
   - [New in DevTools 112](https://developer.chrome.com/blog/new-in-devtools-112/)
