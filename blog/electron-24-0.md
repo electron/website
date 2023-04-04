@@ -1,6 +1,6 @@
 ---
 title: Electron 24.0.0
-date: 2023-4-08T00:00:00.000Z
+date: 2023-04-04T00:00:00.000Z
 authors:
   - name: georgexu99
     url: 'https://github.com/georgexu99'
@@ -71,7 +71,7 @@ win.setWindowButtonPosition(null)
 `BrowserWindow.getTrafficLightPosition()` has been deprecated, the `BrowserWindow.getWindowButtonPosition()` API should be used instead which returns `null` instead of `{ x: 0, y: 0 }` when there is no custom position.
 
 ```js
-// Removed in Electron 24
+// Deprecated in Electron 24
 const pos = win.getTrafficLightPosition()
 if (pos.x === 0 && pos.y === 0) {
   // No custom position.
