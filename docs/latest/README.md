@@ -97,7 +97,6 @@ These individual tutorials expand on topics discussed in the guide above.
 
 ## API References
 
-* [Synopsis](latest/api/synopsis.md)
 * [Process Object](latest/api/process.md)
 * [Supported Command Line Switches](latest/api/command-line-switches.md)
 * [Environment Variables](latest/api/environment-variables.md)
@@ -117,6 +116,7 @@ These individual tutorials expand on topics discussed in the guide above.
 * [BrowserView](latest/api/browser-view.md)
 * [BrowserWindow](latest/api/browser-window.md)
 * [contentTracing](latest/api/content-tracing.md)
+* [desktopCapturer](latest/api/desktop-capturer.md)
 * [dialog](latest/api/dialog.md)
 * [globalShortcut](latest/api/global-shortcut.md)
 * [inAppPurchase](latest/api/in-app-purchase.md)
@@ -125,19 +125,22 @@ These individual tutorials expand on topics discussed in the guide above.
 * [MenuItem](latest/api/menu-item.md)
 * [MessageChannelMain](latest/api/message-channel-main.md)
 * [MessagePortMain](latest/api/message-port-main.md)
+* [nativeTheme](latest/api/native-theme.md)
 * [net](latest/api/net.md)
 * [netLog](latest/api/net-log.md)
-* [nativeTheme](latest/api/native-theme.md)
 * [Notification](latest/api/notification.md)
 * [powerMonitor](latest/api/power-monitor.md)
 * [powerSaveBlocker](latest/api/power-save-blocker.md)
 * [protocol](latest/api/protocol.md)
+* [pushNotifications](latest/api/push-notifications.md)
+* [safeStorage](latest/api/safe-storage.md)
 * [screen](latest/api/screen.md)
 * [session](latest/api/session.md)
 * [ShareMenu](latest/api/share-menu.md)
 * [systemPreferences](latest/api/system-preferences.md)
 * [TouchBar](latest/api/touch-bar.md)
 * [Tray](latest/tutorial/tray.md)
+* [utilityProcess](latest/api/utility-process.md)
 * [webContents](latest/api/web-contents.md)
 * [webFrameMain](latest/api/web-frame-main.md)
 
@@ -149,11 +152,10 @@ These individual tutorials expand on topics discussed in the guide above.
 
 ### Modules for Both Processes:
 
-* [clipboard](latest/api/clipboard.md)
+* [clipboard](latest/api/clipboard.md) (non-sandboxed renderers only)
 * [crashReporter](latest/api/crash-reporter.md)
-* [desktopCapturer](latest/api/desktop-capturer.md)
 * [nativeImage](latest/api/native-image.md)
-* [shell](latest/api/shell.md)
+* [shell](latest/api/shell.md) (non-sandboxed renderers only)
 
 ## Development
 

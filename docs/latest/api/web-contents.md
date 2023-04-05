@@ -202,7 +202,7 @@ Returns:
     Only defined when the window is being created by a form that set
     `target=_blank`.
   * `disposition` string - Can be `default`, `foreground-tab`,
-    `background-tab`, `new-window`, `save-to-disk` and `other`.
+    `background-tab`, `new-window` or `other`.
 
 Emitted _after_ successful creation of a window via `window.open` in the renderer.
 Not emitted if the creation of the window is canceled from
@@ -499,6 +499,14 @@ The `focus` and `blur` events of `WebContents` should only be used to detect
 focus change between different `WebContents` and `BrowserView` in the same
 window.
 
+#### Event: 'devtools-open-url'
+
+Returns:
+
+* `url` string - URL of the link that was clicked or selected.
+
+Emitted when a link is clicked in DevTools or 'Open in new tab' is selected for a link in its context menu.
+
 #### Event: 'devtools-opened'
 
 Emitted when DevTools is opened.
@@ -577,7 +585,7 @@ Returns:
   * `finalUpdate` boolean
 
 Emitted when a result is available for
-[`webContents.findInPage`] request.
+[`webContents.findInPage`](#contentsfindinpagetext-options) request.
 
 #### Event: 'media-started-playing'
 
@@ -748,7 +756,7 @@ app.whenReady().then(() => {
     })
     if (!result) {
       // The device wasn't found so we need to either wait longer (eg until the
-      // device is turned on) or cancel the request by calling the callback
+      // device is turned on) or cancel the request by calling the callback 
       // with an empty string.
       callback('')
     } else {
@@ -1175,7 +1183,7 @@ Ignore application menu shortcuts while this web contents is focused.
     * `frameName` string - Name of the window provided in `window.open()`
     * `features` string - Comma separated list of window features provided to `window.open()`.
     * `disposition` string - Can be `default`, `foreground-tab`, `background-tab`,
-      `new-window`, `save-to-disk` or `other`.
+      `new-window` or `other`.
     * `referrer` [Referrer](latest/api/structures/referrer.md) - The referrer that will be
       passed to the new window. May or may not result in the `Referer` header being
       sent, depending on the referrer policy.
@@ -1338,7 +1346,7 @@ can be obtained by subscribing to [`found-in-page`](latest/api/web-contents.md#e
 #### `contents.stopFindInPage(action)`
 
 * `action` string - Specifies the action to take place when ending
-  [`webContents.findInPage`] request.
+  [`webContents.findInPage`](#contentsfindinpagetext-options) request.
   * `clearSelection` - Clear the selection.
   * `keepSelection` - Translate the selection into a normal selection.
   * `activateSelection` - Focus and click the selection node.
@@ -1675,7 +1683,7 @@ For additional reading, refer to [Electron's IPC guide](latest/tutorial/ipc.md).
 
 #### `contents.sendToFrame(frameId, channel, ...args)`
 
-* `frameId` Integer | [number, number] - the ID of the frame to send to, or a
+* `frameId` Integer | \[number, number] - the ID of the frame to send to, or a
   pair of `[processId, frameId]` if the frame is in a different process to the
   main frame.
 * `channel` string
