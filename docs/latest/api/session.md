@@ -202,8 +202,8 @@ Emitted when a HID device needs to be selected when a call to
 `navigator.hid.requestDevice` is made. `callback` should be called with
 `deviceId` to be selected; passing no arguments to `callback` will
 cancel the request.  Additionally, permissioning on `navigator.hid` can
-be further managed by using [ses.setPermissionCheckHandler(handler)](#sessetpermissioncheckhandlerhandler)
-and [ses.setDevicePermissionHandler(handler)`](#sessetdevicepermissionhandlerhandler).
+be further managed by using [`ses.setPermissionCheckHandler(handler)`](#sessetpermissioncheckhandlerhandler)
+and [`ses.setDevicePermissionHandler(handler)`](#sessetdevicepermissionhandlerhandler).
 
 ```javascript
 const { app, BrowserWindow } = require('electron')
@@ -451,8 +451,8 @@ Emitted when a USB device needs to be selected when a call to
 `navigator.usb.requestDevice` is made. `callback` should be called with
 `deviceId` to be selected; passing no arguments to `callback` will
 cancel the request.  Additionally, permissioning on `navigator.usb` can
-be further managed by using [ses.setPermissionCheckHandler(handler)](#sessetpermissioncheckhandlerhandler)
-and [ses.setDevicePermissionHandler(handler)`](#sessetdevicepermissionhandlerhandler).
+be further managed by using [`ses.setPermissionCheckHandler(handler)`](#sessetpermissioncheckhandlerhandler)
+and [`ses.setDevicePermissionHandler(handler)`](#sessetdevicepermissionhandlerhandler).
 
 ```javascript
 const { app, BrowserWindow } = require('electron')
@@ -666,7 +666,7 @@ The `proxyBypassRules` is a comma separated list of rules described below:
    Match URLs which are IP address literals.
 
    Examples:
-     "127.0.1", "[0:0::1]", "[::1]", "http://[::1]:99"
+     "127.0.1", "\[0:0::1]", "\[::1]", "http://\[::1]:99"
 
 * `IP_LITERAL "/" PREFIX_LENGTH_IN_BITS`
 

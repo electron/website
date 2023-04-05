@@ -194,7 +194,7 @@ Some popular `key` and `type`s are:
 
 * `key` string
 * `type` Type - Can be `string`, `boolean`, `integer`, `float`, `double`, `url`, `array` or `dictionary`.
-* `value` UserDefaultTypes[Type]
+* `value` UserDefaultTypes\[Type]
 
 Set the value of `key` in `NSUserDefaults`.
 

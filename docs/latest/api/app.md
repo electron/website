@@ -758,14 +758,21 @@ This API can be used for purposes such as deciding what language to present the 
 
 Here are some examples of return values of the various language and locale APIs with different configurations:
 
-* For Windows, where the application locale is German, the regional format is Finnish (Finland), and the preferred system languages from most to least preferred are French (Canada), English (US), Simplified Chinese (China), Finnish, and Spanish (Latin America):
-  * `app.getLocale()` returns `'de'`
-  * `app.getSystemLocale()` returns `'fi-FI'`
-  * `app.getPreferredSystemLanguages()` returns `['fr-CA', 'en-US', 'zh-Hans-CN', 'fi', 'es-419']`
-* On macOS, where the application locale is German, the region is Finland, and the preferred system languages from most to least preferred are French (Canada), English (US), Simplified Chinese, and Spanish (Latin America):
-  * `app.getLocale()` returns `'de'`
-  * `app.getSystemLocale()` returns `'fr-FI'`
-  * `app.getPreferredSystemLanguages()` returns `['fr-CA', 'en-US', 'zh-Hans-FI', 'es-419']`
+On Windows, given application locale is German, the regional format is Finnish (Finland), and the preferred system languages from most to least preferred are French (Canada), English (US), Simplified Chinese (China), Finnish, and Spanish (Latin America):
+
+```js
+app.getLocale() // 'de'
+app.getSystemLocale() // 'fi-FI'
+app.getPreferredSystemLanguages() // ['fr-CA', 'en-US', 'zh-Hans-CN', 'fi', 'es-419']
+```
+
+On macOS, given the application locale is German, the region is Finland, and the preferred system languages from most to least preferred are French (Canada), English (US), Simplified Chinese, and Spanish (Latin America):
+
+```js
+app.getLocale() // 'de'
+app.getSystemLocale() // 'fr-FI'
+app.getPreferredSystemLanguages() // ['fr-CA', 'en-US', 'zh-Hans-FI', 'es-419']
+```
 
 Both the available languages and regions and the possible return values differ between the two operating systems.
 
@@ -811,7 +818,7 @@ editor. Please refer to [Apple's documentation][CFBundleURLTypes] for details.
 **Note:** In a Windows Store environment (when packaged as an `appx`) this API
 will return `true` for all calls but the registry key it sets won't be accessible
 by other applications.  In order to register your Windows Store application
-as a default protocol handler you must [declare the protocol in your manifest](https://docs.microsoft.com/en-us/uwp/schemas/appxpackage/uapmanifestschema/element-uap-protocol).
+as a default protocol handler you must [declare the protocol in your manifest](https://learn.microsoft.com/en-us/uwp/schemas/appxpackage/uapmanifestschema/element-uap-protocol).
 
 The API uses the Windows Registry and `LSSetDefaultHandlerForURLScheme` internally.
 
@@ -1361,7 +1368,7 @@ This API must be called after the `ready` event is emitted.
 
 ### `app.showAboutPanel()`
 
-Show the app's about panel options. These options can be overridden with `app.setAboutPanelOptions(options)`.
+Show the app's about panel options. These options can be overridden with `app.setAboutPanelOptions(options)`. This function runs asynchronously.
 
 ### `app.setAboutPanelOptions(options)`
 

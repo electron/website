@@ -31,9 +31,9 @@ Process: [Main](latest/glossary.md#main-process)<br />
     `stderr` to either `pipe`, `inherit` or `ignore`. Configuring `stdin` is not supported; `stdin` will
     always be ignored.
     For example, the supported values will be processed as following:
-    * `pipe`: equivalent to ['ignore', 'pipe', 'pipe'] (the default)
-    * `ignore`: equivalent to 'ignore', 'ignore', 'ignore']
-    * `inherit`: equivalent to ['ignore', 'inherit', 'inherit']
+    * `pipe`: equivalent to \['ignore', 'pipe', 'pipe'] (the default)
+    * `ignore`: equivalent to \['ignore', 'ignore', 'ignore']
+    * `inherit`: equivalent to \['ignore', 'inherit', 'inherit']
   * `serviceName` string (optional) - Name of the process that will appear in `name` property of
     [`child-process-gone` event of `app`](latest/api/app.md#event-child-process-gone).
     Default is `node.mojom.NodeService`.
@@ -97,7 +97,7 @@ the child process exits, then the value is `undefined` after the `exit` event is
 #### `child.stdout`
 
 A `NodeJS.ReadableStream | null` that represents the child process's stdout.
-If the child was spawned with options.stdio[1] set to anything other than 'pipe', then this will be `null`.
+If the child was spawned with options.stdio\[1] set to anything other than 'pipe', then this will be `null`.
 When the child process exits, then the value is `null` after the `exit` event is emitted.
 
 ```js
@@ -112,7 +112,7 @@ child.stdout.on('data', (data) => {
 #### `child.stderr`
 
 A `NodeJS.ReadableStream | null` that represents the child process's stderr.
-If the child was spawned with options.stdio[2] set to anything other than 'pipe', then this will be `null`.
+If the child was spawned with options.stdio\[2] set to anything other than 'pipe', then this will be `null`.
 When the child process exits, then the value is `null` after the `exit` event is emitted.
 
 ### Instance Events
