@@ -379,6 +379,8 @@ module.exports = {
         'latest/api/structures/product-discount',
         'latest/api/structures/product-subscription-period',
         'latest/api/structures/usb-device',
+        'latest/api/structures/resolved-endpoint',
+        'latest/api/structures/resolved-host',
       ],
     },
   ],
