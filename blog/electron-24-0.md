@@ -25,9 +25,9 @@ If you have any feedback, please share it with us on Twitter, or join our commun
   - [New in Chrome 111](https://developer.chrome.com/blog/new-in-chrome-111/)
   - [New in DevTools 112](https://developer.chrome.com/blog/new-in-devtools-112/)
   - [New in DevTools 111](https://developer.chrome.com/blog/new-in-devtools-111/)
-- Node.js `18.12.1`
-  - [Node 18.12.1 blog post](https://nodejs.org/en/blog/release/v18.12.1/)
-- V8 `11.0`
+- Node.js `18.14.0`
+  - [Node 18.14.0 blog post](https://nodejs.org/en/blog/release/v18.14.0/)
+- V8 `11.2`
 
 ### Breaking Changes
 
