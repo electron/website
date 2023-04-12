@@ -76,7 +76,7 @@ As noted in [Farewell, Windows 7/8/8.1](https://www.electronjs.org/blog/windows-
 | 24.x.y       | 25.x.y       | 26.x.y       |
 | 23.x.y       | 24.x.y       | 25.x.y       |
 | 22.x.y       | 23.x.y       | 24.x.y       |
-| ---       | 22.x.y       | 22.x.y       |
+| --           | 22.x.y       | 22.x.y       |
 
 ## What's Next
 
