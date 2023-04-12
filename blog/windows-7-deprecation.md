@@ -40,6 +40,21 @@ What this means for developers:
   - New issues will not be accepted for any newer release lines.
 - Once Electron 22 has reached the end of its support cycle, all existing issues related to Windows 7/8/8.1 will be closed.
 
+:::info
+
+**2023/02/16: An update on Windows Server 2012 support**
+
+Last month, Google announced that [Chrome 109 would continue to receive critical
+security fixes](https://support.google.com/chrome/a/thread/185534987) for
+Windows Server 2012 and Windows Server 2012 R2 until October 10, 2023.
+In accordance, Electron 22's (Chromium 108) planned end of life date will be extended from May 30, 2023 to October 10, 2023. The Electron team will continue to backport any security fixes that are part of this program to Electron 22 until October 10, 2023.
+
+Note that we will not make additional security fixes for Windows 7/8/8.1.
+Also, Electron 23 (Chromium 110) will only function on Windows 10 and above as
+previously announced.
+
+:::
+
 ## What's next
 
 Please feel free to write to us at info@electronjs.org if you have any questions or concerns. You can also find community support in our official [Electron Discord](https://discord.gg/electronjs).
