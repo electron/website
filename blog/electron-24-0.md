@@ -69,11 +69,14 @@ nativeImage.createThumbnailFromPath(imagePath, downSize).then((result) => {
 
 Electron 21.x.y has reached end-of-support as per the project's [support policy](https://www.electronjs.org/docs/latest/tutorial/electron-timelines#version-support-policy). Developers and applications are encouraged to upgrade to a newer version of Electron.
 
+As noted in [Farewell, Windows 7/8/8.1](https://www.electronjs.org/blog/windows-7-to-8-1-deprecation-notice), Electron 22's (Chromium 108) planned end of life date will be extended from May 30, 2023 to October 10, 2023. The Electron team will continue to backport any security fixes that are part of this program to Electron 22 until October 10, 2023.
+
 | E24 (Apr'23) | E25 (May'23) | E26 (Aug'23) |
 | ------------ | ------------ | ------------ |
 | 24.x.y       | 25.x.y       | 26.x.y       |
 | 23.x.y       | 24.x.y       | 25.x.y       |
 | 22.x.y       | 23.x.y       | 24.x.y       |
+| --           | 22.x.y       | 22.x.y       |
 
 ## What's Next
 
