@@ -44,7 +44,7 @@ This installs all necessary packages for you and generates a `wdio.conf.js` conf
 Update the capabilities in your configuration file to point to your Electron app binary:
 
 ```javascript title='wdio.conf.js'
-export.config = {
+exports.config = {
   // ...
   capabilities: [{
     browserName: 'chrome',
@@ -225,10 +225,10 @@ test('example test', async () => {
   const isPackaged = await electronApp.evaluate(async ({ app }) => {
     // This runs in Electron's main process, parameter here is always
     // the result of the require('electron') in the main app script.
-    return app.isPackaged;
-  });
+    return app.isPackaged
+  })
 
-  expect(isPackaged).toBe(false);
+  expect(isPackaged).toBe(false)
 
   // Wait for the first BrowserWindow to open
   // and return its Page object
@@ -237,7 +237,7 @@ test('example test', async () => {
 
   // close app
   await electronApp.close()
-});
+})
 ```
 
 Then, run Playwright Test using `npx playwright test`. You should see the test pass in your
@@ -353,7 +353,7 @@ class TestDriver {
   }
 }
 
-module.exports = { TestDriver };
+module.exports = { TestDriver }
 ```
 
 In your app code, can then write a simple handler to receive RPC calls:
