@@ -91,11 +91,11 @@ renderer process using the [addEventListener() API][addEventListener-api].
 ```fiddle docs/latest/fiddles/features/keyboard-shortcuts/web-apis|focus=renderer.js
 const handleKeyPress = (event) => {
   // You can put code here to handle the keypress.
-  document.getElementById("last-keypress").innerText = event.key;
-  console.log(`You pressed ${event.key}`);
+  document.getElementById('last-keypress').innerText = event.key
+  console.log(`You pressed ${event.key}`)
 }
 
-window.addEventListener('keyup', handleKeyPress, true);
+window.addEventListener('keyup', handleKeyPress, true)
 ```
 
 > Note:  the third parameter `true` indicates that the listener will always receive
