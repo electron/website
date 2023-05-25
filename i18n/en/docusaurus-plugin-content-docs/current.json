@@ -7,13 +7,21 @@
     "message": "Get Started",
     "description": "The label for category Get Started in sidebar docs"
   },
-  "sidebar.docs.category.How To": {
-    "message": "How To",
-    "description": "The label for category How To in sidebar docs"
+  "sidebar.docs.category.Tutorial": {
+    "message": "Tutorial",
+    "description": "The label for category Tutorial in sidebar docs"
   },
-  "sidebar.docs.category.Developer Checklists": {
-    "message": "Developer Checklists",
-    "description": "The label for category Developer Checklists in sidebar docs"
+  "sidebar.docs.category.Processes in Electron": {
+    "message": "Processes in Electron",
+    "description": "The label for category Processes in Electron in sidebar docs"
+  },
+  "sidebar.docs.category.Best Practices": {
+    "message": "Best Practices",
+    "description": "The label for category Best Practices in sidebar docs"
+  },
+  "sidebar.docs.category.Examples": {
+    "message": "Examples",
+    "description": "The label for category Examples in sidebar docs"
   },
   "sidebar.docs.category.Development": {
     "message": "Development",
@@ -23,17 +31,45 @@
     "message": "Distribution",
     "description": "The label for category Distribution in sidebar docs"
   },
+  "sidebar.docs.category.Advanced Reference": {
+    "message": "Advanced Reference",
+    "description": "The label for category Advanced Reference in sidebar docs"
+  },
+  "sidebar.docs.category.App Store Guides": {
+    "message": "App Store Guides",
+    "description": "The label for category App Store Guides in sidebar docs"
+  },
   "sidebar.docs.category.Testing And Debugging": {
     "message": "Testing And Debugging",
     "description": "The label for category Testing And Debugging in sidebar docs"
   },
-  "sidebar.docs.category.Resources": {
-    "message": "Resources",
-    "description": "The label for category Resources in sidebar docs"
+  "sidebar.docs.category.References": {
+    "message": "References",
+    "description": "The label for category References in sidebar docs"
   },
   "sidebar.docs.category.Contributing": {
     "message": "Contributing",
     "description": "The label for category Contributing in sidebar docs"
+  },
+  "sidebar.docs.category.Build Instructions": {
+    "message": "Build Instructions",
+    "description": "The label for category Build Instructions in sidebar docs"
+  },
+  "sidebar.docs.category.Debugging": {
+    "message": "Debugging",
+    "description": "The label for category Debugging in sidebar docs"
+  },
+  "sidebar.docs.category.Development Guides": {
+    "message": "Development Guides",
+    "description": "The label for category Development Guides in sidebar docs"
+  },
+  "sidebar.docs.category.GitHub": {
+    "message": "GitHub",
+    "description": "The label for category GitHub in sidebar docs"
+  },
+  "sidebar.docs.category.Upstream Development": {
+    "message": "Upstream Development",
+    "description": "The label for category Upstream Development in sidebar docs"
   },
   "sidebar.api.category.Main Process Modules": {
     "message": "Main Process Modules",
@@ -58,53 +94,5 @@
   "sidebar.api.category.API Structures": {
     "message": "API Structures",
     "description": "The label for category API Structures in sidebar api"
-  },
-  "sidebar.docs.category.Tutorial": {
-    "message": "Tutorial",
-    "description": "The label for category Tutorial in sidebar docs"
-  },
-  "sidebar.docs.category.Processes in Electron": {
-    "message": "Processes in Electron",
-    "description": "The label for category Processes in Electron in sidebar docs"
-  },
-  "sidebar.docs.category.Best Practices": {
-    "message": "Best Practices",
-    "description": "The label for category Best Practices in sidebar docs"
-  },
-  "sidebar.docs.category.Examples": {
-    "message": "Examples",
-    "description": "The label for category Examples in sidebar docs"
-  },
-  "sidebar.docs.category.Advanced Reference": {
-    "message": "Advanced Reference",
-    "description": "The label for category Advanced Reference in sidebar docs"
-  },
-  "sidebar.docs.category.App Store Guides": {
-    "message": "App Store Guides",
-    "description": "The label for category App Store Guides in sidebar docs"
-  },
-  "sidebar.docs.category.References": {
-    "message": "References",
-    "description": "The label for category References in sidebar docs"
-  },
-  "sidebar.docs.category.Build Instructions": {
-    "message": "Build Instructions",
-    "description": "The label for category Build Instructions in sidebar docs"
-  },
-  "sidebar.docs.category.Debugging": {
-    "message": "Debugging",
-    "description": "The label for category Debugging in sidebar docs"
-  },
-  "sidebar.docs.category.Development Guides": {
-    "message": "Development Guides",
-    "description": "The label for category Development Guides in sidebar docs"
-  },
-  "sidebar.docs.category.GitHub": {
-    "message": "GitHub",
-    "description": "The label for category GitHub in sidebar docs"
-  },
-  "sidebar.docs.category.Upstream Development": {
-    "message": "Upstream Development",
-    "description": "The label for category Upstream Development in sidebar docs"
   }
 }

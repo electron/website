@@ -7,6 +7,10 @@
     "message": "Checklists",
     "description": "The title of the footer links column with title=Checklists in the footer"
   },
+  "link.title.Tools": {
+    "message": "Tools",
+    "description": "The title of the footer links column with title=Tools in the footer"
+  },
   "link.title.Community": {
     "message": "Community",
     "description": "The title of the footer links column with title=Community in the footer"
@@ -31,6 +35,22 @@
     "message": "Security",
     "description": "The label of footer link with label=Security linking to /docs/latest/tutorial/security"
   },
+  "link.item.label.Electron Forge": {
+    "message": "Electron Forge",
+    "description": "The label of footer link with label=Electron Forge linking to https://electronforge.io"
+  },
+  "link.item.label.Electron Fiddle": {
+    "message": "Electron Fiddle",
+    "description": "The label of footer link with label=Electron Fiddle linking to /fiddle"
+  },
+  "link.item.label.Governance": {
+    "message": "Governance",
+    "description": "The label of footer link with label=Governance linking to /governance"
+  },
+  "link.item.label.Resources": {
+    "message": "Resources",
+    "description": "The label of footer link with label=Resources linking to /community"
+  },
   "link.item.label.Discord": {
     "message": "Discord",
     "description": "The label of footer link with label=Discord linking to https://discordapp.com/invite/APGC3k5yaH"
@@ -52,27 +72,11 @@
     "description": "The label of footer link with label=Open Collective linking to https://opencollective.com/electron"
   },
   "copyright": {
-    "message": "Copyright © 2021 OpenJS Foundation and Electron contributors.",
+    "message": "Copyright © 2023 OpenJS Foundation and Electron contributors.",
     "description": "The footer copyright"
   },
-  "link.item.label.Governance": {
-    "message": "Governance",
-    "description": "The label of footer link with label=Governance linking to /governance"
-  },
-  "link.title.Tools": {
-    "message": "Tools",
-    "description": "The title of the footer links column with title=Tools in the footer"
-  },
-  "link.item.label.Electron Forge": {
-    "message": "Electron Forge",
-    "description": "The label of footer link with label=Electron Forge linking to https://electronforge.io"
-  },
-  "link.item.label.Electron Fiddle": {
-    "message": "Electron Fiddle",
-    "description": "The label of footer link with label=Electron Fiddle linking to /fiddle"
-  },
-  "link.item.label.Resources": {
-    "message": "Resources",
-    "description": "The label of footer link with label=Resources linking to /community"
+  "logo.alt": {
+    "message": "OpenJS Foundation Logo",
+    "description": "The alt text of footer logo"
   }
 }
