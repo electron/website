@@ -42,42 +42,41 @@ protocol, and responses can be of any type.
 ```js
 // Deprecated in Electron 25
 protocol.registerBufferProtocol('some-protocol', () => {
-  callback({ mimeType: 'text/html', data: Buffer.from('<h5>Response</h5>') })
-})
+  callback({ mimeType: 'text/html', data: Buffer.from('<h5>Response</h5>') });
+});
 
 // Replace with
 protocol.handle('some-protocol', () => {
   return new Response(
     Buffer.from('<h5>Response</h5>'), // Could also be a string or ReadableStream.
     { headers: { 'content-type': 'text/html' } }
-  )
-})
+  );
+});
 ```
 
 ```js
 // Deprecated in Electron 25
 protocol.registerHttpProtocol('some-protocol', () => {
-  callback({ url: 'https://electronjs.org' })
-})
+  callback({ url: 'https://electronjs.org' });
+});
 
 // Replace with
 protocol.handle('some-protocol', () => {
-  return net.fetch('https://electronjs.org')
-})
+  return net.fetch('https://electronjs.org');
+});
 ```
 
 ```js
 // Deprecated in Electron 25
 protocol.registerFileProtocol('some-protocol', () => {
-  callback({ filePath: '/path/to/my/file' })
-})
+  callback({ filePath: '/path/to/my/file' });
+});
 
 // Replace with
 protocol.handle('some-protocol', () => {
-  return net.fetch('file:///path/to/my/file')
-})
+  return net.fetch('file:///path/to/my/file');
+});
 ```
-
 
 #### Deprecated: `BrowserWindow.setTrafficLightPosition(position)`
 
@@ -88,12 +87,12 @@ system default.
 
 ```js
 // Deprecated in Electron 25
-win.setTrafficLightPosition({ x: 10, y: 10 })
-win.setTrafficLightPosition({ x: 0, y: 0 })
+win.setTrafficLightPosition({ x: 10, y: 10 });
+win.setTrafficLightPosition({ x: 0, y: 0 });
 
 // Replace with
-win.setWindowButtonPosition({ x: 10, y: 10 })
-win.setWindowButtonPosition(null)
+win.setWindowButtonPosition({ x: 10, y: 10 });
+win.setWindowButtonPosition(null);
 ```
 
 #### Deprecated: `BrowserWindow.getTrafficLightPosition()`
@@ -105,13 +104,13 @@ position.
 
 ```js
 // Deprecated in Electron 25
-const pos = win.getTrafficLightPosition()
+const pos = win.getTrafficLightPosition();
 if (pos.x === 0 && pos.y === 0) {
   // No custom position.
 }
 
 // Replace with
-const ret = win.getWindowButtonPosition()
+const ret = win.getWindowButtonPosition();
 if (ret === null) {
   // No custom position.
 }
@@ -119,32 +118,31 @@ if (ret === null) {
 
 ### New Features
 
-* Added BrowserWindow.set/getWindowButtonPosition APIs. [#37094](https://github.com/electron/electron/pull/37094)
-* Added `protocol.handle`, replacing and deprecating `protocol.{register,intercept}{String,Buffer,Stream,Http,File}Protocol`. [#36674](https://github.com/electron/electron/pull/36674) 
-* Added a `will-frame-navigate` event to `webContents` and the `<webview>` tag, which fires whenever any frame within the frame hierarchy attempts to navigate. [#34418](https://github.com/electron/electron/pull/34418)
-* Added initiator information to navigator events. This information allows distinguishing `window.open` from a parent frame causing a navigation, as opposed to a child-initiated navigation. [#37085](https://github.com/electron/electron/pull/37085)
-* Added net.resolveHost that resolves hosts using defaultSession object. [#38152](https://github.com/electron/electron/pull/38152)
-* Added new 'did-resign-active' event to `app`. [#38018](https://github.com/electron/electron/pull/38018)
-* Added several standard page size options to `webContents.print()`. [#37159](https://github.com/electron/electron/pull/37159)
-* Added the `enableLocalEcho` flag to the session handler `ses.setDisplayMediaRequestHandler()` callback for allowing remote audio input to be echoed in the local output stream when `audio` is a `WebFrameMain`. [#37315](https://github.com/electron/electron/pull/37315)
-* Added thermal management information to `powerMonitor`. [#38028](https://github.com/electron/electron/pull/38028)
-* Allows an absolute path to be passed to the session.fromPath() API. [#37604](https://github.com/electron/electron/pull/37604) 
-* Changed `net.fetch` to support requests to `file:` URLs and custom protocols registered with `protocol.register*Protocol`. [#36606](https://github.com/electron/electron/pull/36606) 
-* Exposes the `audio-state-changed` event on `webContents`. [#37366](https://github.com/electron/electron/pull/37366)
+- Added `net.fetch()`. [#36733](https://github.com/electron/electron/pull/36733) 
+  - `net.fetch` supports requests to `file:` URLs and custom protocols registered with `protocol.register*Protocol`. [#36606](https://github.com/electron/electron/pull/36606)
+- Added BrowserWindow.set/getWindowButtonPosition APIs. [#37094](https://github.com/electron/electron/pull/37094)
+- Added `protocol.handle`, replacing and deprecating `protocol.{register,intercept}{String,Buffer,Stream,Http,File}Protocol`. [#36674](https://github.com/electron/electron/pull/36674)
+- Added a `will-frame-navigate` event to `webContents` and the `<webview>` tag, which fires whenever any frame within the frame hierarchy attempts to navigate. [#34418](https://github.com/electron/electron/pull/34418)
+- Added initiator information to navigator events. This information allows distinguishing `window.open` from a parent frame causing a navigation, as opposed to a child-initiated navigation. [#37085](https://github.com/electron/electron/pull/37085)
+- Added net.resolveHost that resolves hosts using defaultSession object. [#38152](https://github.com/electron/electron/pull/38152)
+- Added new 'did-resign-active' event to `app`. [#38018](https://github.com/electron/electron/pull/38018)
+- Added several standard page size options to `webContents.print()`. [#37159](https://github.com/electron/electron/pull/37159)
+- Added the `enableLocalEcho` flag to the session handler `ses.setDisplayMediaRequestHandler()` callback for allowing remote audio input to be echoed in the local output stream when `audio` is a `WebFrameMain`. [#37315](https://github.com/electron/electron/pull/37315)
+- Added thermal management information to `powerMonitor`. [#38028](https://github.com/electron/electron/pull/38028)
+- Allows an absolute path to be passed to the session.fromPath() API. [#37604](https://github.com/electron/electron/pull/37604)
+- Exposes the `audio-state-changed` event on `webContents`. [#37366](https://github.com/electron/electron/pull/37366)
 
 ## 22.x.y Continued Support
 
 As noted in [Farewell, Windows 7/8/8.1](https://www.electronjs.org/blog/windows-7-to-8-1-deprecation-notice), Electron 22's (Chromium 108) planned end of life date will be extended from May 30, 2023 to October 10, 2023. The Electron team will continue to backport any security fixes that are part of this program to Electron 22 until October 10, 2023. The October
 support date follows the extended support dates from both Chromium and Microsoft. On October 11, the Electron team will drop support back to the latest three stable major versions, which will no longer support Windows 7/8/8.1.
 
-
-
-E25 (May'23) | E26 (Aug'23) | E27 (Oct'23) |
------------- | ------------ | ------------ |
-25.x.y       | 26.x.y       | 27.x.y       |
-24.x.y       | 25.x.y       | 26.x.y       |
-23.x.y       | 24.x.y       | 25.x.y       |
-22.x.y       | 22.x.y       | --           |
+| E25 (May'23) | E26 (Aug'23) | E27 (Oct'23) |
+| ------------ | ------------ | ------------ |
+| 25.x.y       | 26.x.y       | 27.x.y       |
+| 24.x.y       | 25.x.y       | 26.x.y       |
+| 23.x.y       | 24.x.y       | 25.x.y       |
+| 22.x.y       | 22.x.y       | --           |
 
 ## What's Next
 
