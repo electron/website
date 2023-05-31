@@ -23,7 +23,7 @@ If you have any feedback, please share it with us on Twitter, or join our commun
 
 ### Highlights
 
-- Implemented `net.fetch` within Electron's net module, using Chromium's networking stack. This differs from Node's `fetch()`, which uses Node.js's HTTP stack. See [#36733](https://github.com/electron/electron/pull/36733) and [#36606](https://github.com/electron/electron/pull/36606)\
+- Implemented `net.fetch` within Electron's net module, using Chromium's networking stack. This differs from Node's `fetch()`, which uses Node.js' HTTP stack. See [#36733](https://github.com/electron/electron/pull/36733) and [#36606](https://github.com/electron/electron/pull/36606).
 - Added `protocol.handle`, which replaces and deprecates `protocol.{register,intercept}{String,Buffer,Stream,Http,File}Protocol`. [#36674](https://github.com/electron/electron/pull/36674)
 - Extended support for Electron 22, in order to match Chromium and Microsoft's Windows 7/8/8.1 deprecation plan. See additional details at the end of this blog post.
 
