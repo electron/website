@@ -49,6 +49,22 @@ To create a `Session` with `options`, you have to ensure the `Session` with the
 `partition` has never been used before. There is no way to change the `options`
 of an existing `Session` object.
 
+### `session.fromPath(path[, options])`
+
+* `path` string
+* `options` Object (optional)
+  * `cache` boolean - Whether to enable cache.
+
+Returns `Session` - A session instance from the absolute path as specified by the `path`
+string. When there is an existing `Session` with the same absolute path, it
+will be returned; otherwise a new `Session` instance will be created with `options`. The
+call will throw an error if the path is not an absolute path. Additionally, an error will
+be thrown if an empty string is provided.
+
+To create a `Session` with `options`, you have to ensure the `Session` with the
+`path` has never been used before. There is no way to change the `options`
+of an existing `Session` object.
+
 ## Properties
 
 The `session` module has the following properties:
@@ -510,9 +526,8 @@ app.whenReady().then(() => {
 Returns:
 
 * `event` Event
-* `details` Object
-  * `device` [USBDevice](latest/api/structures/usb-device.md)
-  * `frame` [WebFrameMain](latest/api/web-frame-main.md)
+* `device` [USBDevice](latest/api/structures/usb-device.md)
+* `webContents` [WebContents](latest/api/web-contents.md)
 
 Emitted after `navigator.usb.requestDevice` has been called and
 `select-usb-device` has fired if a new device becomes available before
@@ -525,9 +540,8 @@ with the newly added device.
 Returns:
 
 * `event` Event
-* `details` Object
-  * `device` [USBDevice](latest/api/structures/usb-device.md)
-  * `frame` [WebFrameMain](latest/api/web-frame-main.md)
+* `device` [USBDevice](latest/api/structures/usb-device.md)
+* `webContents` [WebContents](latest/api/web-contents.md)
 
 Emitted after `navigator.usb.requestDevice` has been called and
 `select-usb-device` has fired if a device has been removed before the callback
@@ -541,7 +555,7 @@ Returns:
 
 * `event` Event
 * `details` Object
-  * `device` [USBDevice[]](latest/api/structures/usb-device.md)
+  * `device` [USBDevice](latest/api/structures/usb-device.md)
   * `origin` string (optional) - The origin that the device has been revoked from.
 
 Emitted after `USBDevice.forget()` has been called.  This event can be used
@@ -772,6 +786,61 @@ Preconnects the given number of sockets to an origin.
 Returns `Promise<void>` - Resolves when all connections are closed.
 
 **Note:** It will terminate / fail all requests currently in flight.
+
+#### `ses.fetch(input[, init])`
+
+* `input` string | [GlobalRequest](https://nodejs.org/api/globals.html#request)
+* `init` [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/fetch#options) (optional)
+
+Returns `Promise<GlobalResponse>` - see [Response](https://developer.mozilla.org/en-US/docs/Web/API/Response).
+
+Sends a request, similarly to how `fetch()` works in the renderer, using
+Chrome's network stack. This differs from Node's `fetch()`, which uses
+Node.js's HTTP stack.
+
+Example:
+
+```js
+async function example () {
+  const response = await net.fetch('https://my.app')
+  if (response.ok) {
+    const body = await response.json()
+    // ... use the result.
+  }
+}
+```
+
+See also [`net.fetch()`](latest/api/net.md#netfetchinput-init), a convenience method which
+issues requests from the [default session](#sessiondefaultsession).
+
+See the MDN documentation for
+[`fetch()`](https://developer.mozilla.org/en-US/docs/Web/API/fetch) for more
+details.
+
+Limitations:
+
+* `net.fetch()` does not support the `data:` or `blob:` schemes.
+* The value of the `integrity` option is ignored.
+* The `.type` and `.url` values of the returned `Response` object are
+  incorrect.
+
+By default, requests made with `net.fetch` can be made to [custom
+protocols](latest/api/protocol.md) as well as `file:`, and will trigger
+[webRequest](latest/api/web-request.md) handlers if present. When the non-standard
+`bypassCustomProtocolHandlers` option is set in RequestInit, custom protocol
+handlers will not be called for this request. This allows forwarding an
+intercepted request to the built-in handler. [webRequest](latest/api/web-request.md)
+handlers will still be triggered when bypassing custom protocols.
+
+```js
+protocol.handle('https', (req) => {
+  if (req.url === 'https://my-app.com') {
+    return new Response('<body>my app</body>')
+  } else {
+    return net.fetch(req, { bypassCustomProtocolHandlers: true })
+  }
+})
+```
 
 #### `ses.disableNetworkEmulation()`
 

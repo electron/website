@@ -26,6 +26,36 @@ const contents = win.webContents
 console.log(contents)
 ```
 
+## Navigation Events
+
+Several events can be used to monitor navigations as they occur within a `webContents`.
+
+### Document Navigations
+
+When a `webContents` navigates to another page (as opposed to an [in-page navigation](latest/api/web-contents.md#in-page-navigation)), the following events will be fired.
+
+* [`did-start-navigation`](latest/api/web-contents.md#event-did-start-navigation)
+* [`will-frame-navigate`](latest/api/web-contents.md#event-will-frame-navigate)
+* [`will-navigate`](latest/api/web-contents.md#event-will-navigate) (only fired when main frame navigates)
+* [`will-redirect`](latest/api/web-contents.md#event-will-redirect) (only fired when a redirect happens during navigation)
+* [`did-redirect-navigation`](latest/api/web-contents.md#event-did-redirect-navigation) (only fired when a redirect happens during navigation)
+* [`did-frame-navigate`](latest/api/web-contents.md#event-did-frame-navigate)
+* [`did-navigate`](latest/api/web-contents.md#event-did-navigate) (only fired when main frame navigates)
+
+Subsequent events will not fire if `event.preventDefault()` is called on any of the cancellable events.
+
+### In-page Navigation
+
+In-page navigations don't cause the page to reload, but instead navigate to a location within the current page. These events are not cancellable. For an in-page navigations, the following events will fire in this order:
+
+* [`did-start-navigation`](latest/api/web-contents.md#event-did-start-navigation)
+* [`did-navigate-in-page`](latest/api/web-contents.md#event-did-navigate-in-page)
+
+### Frame Navigation
+
+The [`will-navigate`](latest/api/web-contents.md#event-will-navigate) and [`did-navigate`](latest/api/web-contents.md#event-did-navigate) events only fire when the [mainFrame](latest/api/web-contents.md#contentsmainframe-readonly) navigates.
+If you want to also observe navigations in `<iframe>`s, use [`will-frame-navigate`](latest/api/web-contents.md#event-will-frame-navigate) and [`did-frame-navigate`](latest/api/web-contents.md#event-did-frame-navigate) events.
+
 ## Methods
 
 These methods can be accessed from the `webContents` module:
@@ -214,11 +244,54 @@ See [`window.open()`](latest/api/window-open.md) for more details and how to use
 
 Returns:
 
-* `event` Event
-* `url` string
+* `details` Event&#60;&#62;
+  * `url` string - The URL the frame is navigating to.
+  * `isSameDocument` boolean - Whether the navigation happened without changing
+    document. Examples of same document navigations are reference fragment
+    navigations, pushState/replaceState, and same page history navigation.
+  * `isMainFrame` boolean - True if the navigation is taking place in a main frame.
+  * `frame` WebFrameMain - The frame to be navigated.
+  * `initiator` WebFrameMain (optional) - The frame which initiated the
+    navigation, which can be a parent frame (e.g. via `window.open` with a
+    frame's name), or null if the navigation was not initiated by a frame. This
+    can also be null if the initiating frame was deleted before the event was
+    emitted.
+* `url` string _Deprecated_
+* `isInPlace` boolean _Deprecated_
+* `isMainFrame` boolean _Deprecated_
+* `frameProcessId` Integer _Deprecated_
+* `frameRoutingId` Integer _Deprecated_
 
-Emitted when a user or the page wants to start navigation. It can happen when
+Emitted when a user or the page wants to start navigation on the main frame. It can happen when
 the `window.location` object is changed or a user clicks a link in the page.
+
+This event will not emit when the navigation is started programmatically with
+APIs like `webContents.loadURL` and `webContents.back`.
+
+It is also not emitted for in-page navigations, such as clicking anchor links
+or updating the `window.location.hash`. Use `did-navigate-in-page` event for
+this purpose.
+
+Calling `event.preventDefault()` will prevent the navigation.
+
+#### Event: 'will-frame-navigate'
+
+Returns:
+
+* `details` Event&#60;&#62;
+  * `url` string - The URL the frame is navigating to.
+  * `isMainFrame` boolean - True if the navigation is taking place in a main frame.
+  * `frame` WebFrameMain - The frame to be navigated.
+  * `initiator` WebFrameMain (optional) - The frame which initiated the
+    navigation, which can be a parent frame (e.g. via `window.open` with a
+    frame's name), or null if the navigation was not initiated by a frame. This
+    can also be null if the initiating frame was deleted before the event was
+    emitted.
+
+Emitted when a user or the page wants to start navigation in any frame. It can happen when
+the `window.location` object is changed or a user clicks a link in the page.
+
+Unlike `will-navigate`, `will-frame-navigate` is fired when the main frame or any of its subframes attempts to navigate. When the navigation event comes from the main frame, `isMainFrame` will be `true`.
 
 This event will not emit when the navigation is started programmatically with
 APIs like `webContents.loadURL` and `webContents.back`.
@@ -233,26 +306,47 @@ Calling `event.preventDefault()` will prevent the navigation.
 
 Returns:
 
-* `event` Event
-* `url` string
-* `isInPlace` boolean
-* `isMainFrame` boolean
-* `frameProcessId` Integer
-* `frameRoutingId` Integer
+* `details` Event&#60;&#62;
+  * `url` string - The URL the frame is navigating to.
+  * `isSameDocument` boolean - Whether the navigation happened without changing
+    document. Examples of same document navigations are reference fragment
+    navigations, pushState/replaceState, and same page history navigation.
+  * `isMainFrame` boolean - True if the navigation is taking place in a main frame.
+  * `frame` WebFrameMain - The frame to be navigated.
+  * `initiator` WebFrameMain (optional) - The frame which initiated the
+    navigation, which can be a parent frame (e.g. via `window.open` with a
+    frame's name), or null if the navigation was not initiated by a frame. This
+    can also be null if the initiating frame was deleted before the event was
+    emitted.
+* `url` string _Deprecated_
+* `isInPlace` boolean _Deprecated_
+* `isMainFrame` boolean _Deprecated_
+* `frameProcessId` Integer _Deprecated_
+* `frameRoutingId` Integer _Deprecated_
 
-Emitted when any frame (including main) starts navigating. `isInPlace` will be
-`true` for in-page navigations.
+Emitted when any frame (including main) starts navigating.
 
 #### Event: 'will-redirect'
 
 Returns:
 
-* `event` Event
-* `url` string
-* `isInPlace` boolean
-* `isMainFrame` boolean
-* `frameProcessId` Integer
-* `frameRoutingId` Integer
+* `details` Event&#60;&#62;
+  * `url` string - The URL the frame is navigating to.
+  * `isSameDocument` boolean - Whether the navigation happened without changing
+    document. Examples of same document navigations are reference fragment
+    navigations, pushState/replaceState, and same page history navigation.
+  * `isMainFrame` boolean - True if the navigation is taking place in a main frame.
+  * `frame` WebFrameMain - The frame to be navigated.
+  * `initiator` WebFrameMain (optional) - The frame which initiated the
+    navigation, which can be a parent frame (e.g. via `window.open` with a
+    frame's name), or null if the navigation was not initiated by a frame. This
+    can also be null if the initiating frame was deleted before the event was
+    emitted.
+* `url` string _Deprecated_
+* `isInPlace` boolean _Deprecated_
+* `isMainFrame` boolean _Deprecated_
+* `frameProcessId` Integer _Deprecated_
+* `frameRoutingId` Integer _Deprecated_
 
 Emitted when a server side redirect occurs during navigation.  For example a 302
 redirect.
@@ -267,12 +361,23 @@ redirect).
 
 Returns:
 
-* `event` Event
-* `url` string
-* `isInPlace` boolean
-* `isMainFrame` boolean
-* `frameProcessId` Integer
-* `frameRoutingId` Integer
+* `details` Event&#60;&#62;
+  * `url` string - The URL the frame is navigating to.
+  * `isSameDocument` boolean - Whether the navigation happened without changing
+    document. Examples of same document navigations are reference fragment
+    navigations, pushState/replaceState, and same page history navigation.
+  * `isMainFrame` boolean - True if the navigation is taking place in a main frame.
+  * `frame` WebFrameMain - The frame to be navigated.
+  * `initiator` WebFrameMain (optional) - The frame which initiated the
+    navigation, which can be a parent frame (e.g. via `window.open` with a
+    frame's name), or null if the navigation was not initiated by a frame. This
+    can also be null if the initiating frame was deleted before the event was
+    emitted.
+* `url` string _Deprecated_
+* `isInPlace` boolean _Deprecated_
+* `isMainFrame` boolean _Deprecated_
+* `frameProcessId` Integer _Deprecated_
+* `frameRoutingId` Integer _Deprecated_
 
 Emitted after a server side redirect occurs during navigation.  For example a 302
 redirect.
@@ -596,6 +701,15 @@ Emitted when media starts playing.
 
 Emitted when media is paused or done playing.
 
+#### Event: 'audio-state-changed'
+
+Returns:
+
+* `event` Event&#60;&#62;
+  * `audible` boolean - True if one or more frames or child `webContents` are emitting audio.
+
+Emitted when media becomes audible or inaudible.
+
 #### Event: 'did-change-theme-color'
 
 Returns:
@@ -848,7 +962,7 @@ Emitted when the preload script `preloadPath` throws an unhandled exception `err
 
 Returns:
 
-* `event` Event
+* `event` [IpcMainEvent](latest/api/structures/ipc-main-event.md)
 * `channel` string
 * `...args` any[]
 
@@ -860,7 +974,7 @@ See also [`webContents.ipc`](#contentsipc-readonly), which provides an [`IpcMain
 
 Returns:
 
-* `event` Event
+* `event` [IpcMainEvent](latest/api/structures/ipc-main-event.md)
 * `channel` string
 * `...args` any[]
 
@@ -1285,6 +1399,10 @@ Executes the editing command `cut` in web page.
 
 Executes the editing command `copy` in web page.
 
+#### `contents.centerSelection()`
+
+Centers the current text selection in web page.
+
 #### `contents.copyImageAt(x, y)`
 
 * `x` Integer
@@ -1311,6 +1429,46 @@ Executes the editing command `selectAll` in web page.
 #### `contents.unselect()`
 
 Executes the editing command `unselect` in web page.
+
+#### `contents.scrollToTop()`
+
+Scrolls to the top of the current `webContents`.
+
+#### `contents.scrollToBottom()`
+
+Scrolls to the bottom of the current `webContents`.
+
+#### `contents.adjustSelection(options)`
+
+* `options` Object
+  * `start` Number (optional) - Amount to shift the start index of the current selection.
+  * `end` Number (optional) - Amount to shift the end index of the current selection.
+
+Adjusts the current text selection starting and ending points in the focused frame by the given amounts. A negative amount moves the selection towards the beginning of the document, and a positive amount moves the selection towards the end of the document.
+
+Example:
+
+```js
+const win = new BrowserWindow()
+
+// Adjusts the beginning of the selection 1 letter forward,
+// and the end of the selection 5 letters forward.
+win.webContents.adjustSelection({ start: 1, end: 5 })
+
+// Adjusts the beginning of the selection 2 letters forward,
+// and the end of the selection 3 letters backward.
+win.webContents.adjustSelection({ start: 2, end: -3 })
+```
+
+For a call of `win.webContents.adjustSelection({ start: 1, end: 5 })`
+
+Before:
+
+<img width="487" alt="Image Before Text Selection Adjustment" src="https://user-images.githubusercontent.com/2036040/231761306-cd4e7b15-c2ed-46cf-8e80-10811f6de83e.png">
+
+After:
+
+<img width="487" alt="Image After Text Selection Adjustment" src="https://user-images.githubusercontent.com/2036040/231761169-887eb8ef-06fb-46e4-9efa-898bcb0d6a2b.png">
 
 #### `contents.replace(text)`
 

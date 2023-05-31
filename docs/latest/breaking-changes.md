@@ -19,6 +19,93 @@ This document uses the following convention to categorize breaking changes:
 * **Deprecated:** An API was marked as deprecated. The API will continue to function, but will emit a deprecation warning, and will be removed in a future release.
 * **Removed:** An API or feature was removed, and is no longer supported by Electron.
 
+## Planned Breaking API Changes (25.0)
+
+### Deprecated: `protocol.{register,intercept}{Buffer,String,Stream,File,Http}Protocol`
+
+The `protocol.register*Protocol` and `protocol.intercept*Protocol` methods have
+been replaced with [`protocol.handle`](latest/api/protocol.md#protocolhandlescheme-handler).
+
+The new method can either register a new protocol or intercept an existing
+protocol, and responses can be of any type.
+
+```js
+// Deprecated in Electron 25
+protocol.registerBufferProtocol('some-protocol', () => {
+  callback({ mimeType: 'text/html', data: Buffer.from('<h5>Response</h5>') })
+})
+
+// Replace with
+protocol.handle('some-protocol', () => {
+  return new Response(
+    Buffer.from('<h5>Response</h5>'), // Could also be a string or ReadableStream.
+    { headers: { 'content-type': 'text/html' } }
+  )
+})
+```
+
+```js
+// Deprecated in Electron 25
+protocol.registerHttpProtocol('some-protocol', () => {
+  callback({ url: 'https://electronjs.org' })
+})
+
+// Replace with
+protocol.handle('some-protocol', () => {
+  return net.fetch('https://electronjs.org')
+})
+```
+
+```js
+// Deprecated in Electron 25
+protocol.registerFileProtocol('some-protocol', () => {
+  callback({ filePath: '/path/to/my/file' })
+})
+
+// Replace with
+protocol.handle('some-protocol', () => {
+  return net.fetch('file:///path/to/my/file')
+})
+```
+
+### Deprecated: `BrowserWindow.setTrafficLightPosition(position)`
+
+`BrowserWindow.setTrafficLightPosition(position)` has been deprecated, the
+`BrowserWindow.setWindowButtonPosition(position)` API should be used instead
+which accepts `null` instead of `{ x: 0, y: 0 }` to reset the position to
+system default.
+
+```js
+// Deprecated in Electron 25
+win.setTrafficLightPosition({ x: 10, y: 10 })
+win.setTrafficLightPosition({ x: 0, y: 0 })
+
+// Replace with
+win.setWindowButtonPosition({ x: 10, y: 10 })
+win.setWindowButtonPosition(null)
+```
+
+### Deprecated: `BrowserWindow.getTrafficLightPosition()`
+
+`BrowserWindow.getTrafficLightPosition()` has been deprecated, the
+`BrowserWindow.getWindowButtonPosition()` API should be used instead
+which returns `null` instead of `{ x: 0, y: 0 }` when there is no custom
+position.
+
+```js
+// Deprecated in Electron 25
+const pos = win.getTrafficLightPosition()
+if (pos.x === 0 && pos.y === 0) {
+  // No custom position.
+}
+
+// Replace with
+const ret = win.getWindowButtonPosition()
+if (ret === null) {
+  // No custom position.
+}
+```
+
 ## Planned Breaking API Changes (24.0)
 
 ### API Changed: `nativeImage.createThumbnailFromPath(path, size)`
@@ -195,6 +282,39 @@ webContents.on('new-window', (event) => {
 // Replace with
 webContents.setWindowOpenHandler((details) => {
   return { action: 'deny' }
+})
+```
+
+### Removed: `<webview>` `new-window` event
+
+The `new-window` event of `<webview>` has been removed. There is no direct replacement.
+
+```js
+// Removed in Electron 22
+webview.addEventListener('new-window', (event) => {})
+```
+
+```fiddle docs/latest/fiddles/ipc/webview-new-window
+// Replace with
+
+// main.js
+mainWindow.webContents.on('did-attach-webview', (event, wc) => {
+  wc.setWindowOpenHandler((details) => {
+    mainWindow.webContents.send('webview-new-window', wc.id, details)
+    return { action: 'deny' }
+  })
+})
+
+// preload.js
+const { ipcRenderer } = require('electron')
+ipcRenderer.on('webview-new-window', (e, webContentsId, details) => {
+  console.log('webview-new-window', webContentsId, details)
+  document.getElementById('webview').dispatchEvent(new Event('new-window'))
+})
+
+// renderer.js
+document.getElementById('webview').addEventListener('new-window', () => {
+  console.log('got new-window event')
 })
 ```
 
