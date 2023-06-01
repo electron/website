@@ -26,7 +26,7 @@ code that acts as the page template.
 
 This is what the plugin code looks like:
 
-```
+```text
 plugins/my-plugin
 └── index.js
 ```
@@ -71,7 +71,7 @@ component into the same folder as pages handled by `@docusaurus/content-plugin-p
 Because of some bundler magic, we can use the `@site` prefix from the plugin to specify
 the site root.
 
-```
+```text
 src/pages
 ├── _my-page.jsx
 ├── _my-page.module.scss

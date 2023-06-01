@@ -59,7 +59,7 @@ Once Jasper is configured, the following screen appears. From left to right, you
 
 This "stream" is the core feature of Jasper. For example, if you want to see "issues that are assigned to @zeke in the electron/electron repository", you create the following stream:
 
-```
+```text
 repo:electron/electron assignee:zeke is:issue
 ```
 

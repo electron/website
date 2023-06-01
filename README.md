@@ -58,7 +58,7 @@ This repository contains the code for two related things:
 
 The content of this repository is organized as follows:
 
-```
+```text
 └─ root
     |
     ├─ .github/workflows → The definitions for the GitHub actions

@@ -165,7 +165,6 @@ Thank you!
 
 [atom]: https://atom.io
 [cask]: https://caskroom.github.io
-[crowdin.com/project/electron]: https://crowdin.com/project/electron
 [crowdin]: https://crowdin.com/project/electron
 [electron/electron-apps]: https://github.com/electron/electron-apps
 [electron/electron-i18n]: https://github.com/electron/electron-i18n#readme

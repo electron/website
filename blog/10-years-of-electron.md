@@ -94,7 +94,7 @@ maintainers. What is each Working Group (WG) responsible for nowadays?
 Around the same time we shifted to the governance model, we also moved Electron's ownership from
 GitHub [to the OpenJS Foundation](https://www.electronjs.org/blog/electron-joins-openjsf).
 Although the original core team still works at Microsoft today, they are only a part of a larger
-group of collaborators that form Electron governance.
+group of collaborators that form Electron governance.[^2]
 
 While this model isn’t perfect, it has suited us well through a global pandemic and ongoing
 macroeconomic headwinds. Going forward, we plan on revamping the governance charter to
