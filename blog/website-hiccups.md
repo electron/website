@@ -41,7 +41,7 @@ there's an Electron app for that, too.
 Check out [devdocs-app](https://electronjs.org/apps/devdocs-app)
 on the Electron site.
 
-[![](https://user-images.githubusercontent.com/8784712/27121730-11676ba8-511b-11e7-8c01-00444ee8501a.png)](https://electronjs.org/apps/devdocs-app)
+[![devdocs-app](https://user-images.githubusercontent.com/8784712/27121730-11676ba8-511b-11e7-8c01-00444ee8501a.png)](https://electronjs.org/apps/devdocs-app)
 
 If you like to install apps without using your mouse or trackpad, give
 [Electron Forge](https://electronforge.io/)'s `install` command a try:

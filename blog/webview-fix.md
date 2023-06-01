@@ -16,12 +16,12 @@ A vulnerability has been discovered which allows Node.js integration to be re-en
 
 An application is affected if _all_ of the following are true:
 
-1.  Runs on Electron 1.7, 1.8, or a 2.0.0-beta
-2.  Allows execution of arbitrary remote code
-3.  Disables Node.js integration
-4.  Does not explicitly declare `webviewTag: false` in its webPreferences
-5.  Does not enable the `nativeWindowOption` option
-6.  Does not intercept `new-window` events and manually override `event.newGuest` without using the supplied options tag
+1. Runs on Electron 1.7, 1.8, or a 2.0.0-beta
+2. Allows execution of arbitrary remote code
+3. Disables Node.js integration
+4. Does not explicitly declare `webviewTag: false` in its webPreferences
+5. Does not enable the `nativeWindowOption` option
+6. Does not intercept `new-window` events and manually override `event.newGuest` without using the supplied options tag
 
 Although this appears to be a minority of Electron applicatons, we encourage all applications to be upgraded as a precaution.
 

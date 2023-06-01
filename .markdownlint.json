@@ -1,0 +1,4 @@
+{
+  "extends": "@electron/lint-roller/configs/markdownlint.json",
+  "no-shortcut-reference-links": false
+}

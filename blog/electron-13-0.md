@@ -56,7 +56,7 @@ More information about these and future changes can be found on the [Planned Bre
 - Added new `session.storagePath` API to get the path on disk for session-specific data.[28866](https://github.com/electron/electron/pull/28866)
 - Added support for passing DOM elements over the context bridge. [#26776](https://github.com/electron/electron/pull/26776)
 - Added `process.uptime()` to sandboxed renderers. [#26684](https://github.com/electron/electron/pull/26684)
-- Added missing fields to the parameters emitted as part of the `context-menu `event.[#26788](https://github.com/electron/electron/pull/26788)
+- Added missing fields to the parameters emitted as part of the `context-menu` event.[#26788](https://github.com/electron/electron/pull/26788)
 - Added support for registering Manifest V3 extension service workers.
 - Added ‘registration-completed’ event to ServiceWorkers. [#27562](https://github.com/electron/electron/pull/27562)
 
