@@ -322,7 +322,6 @@ module.exports = {
         'latest/api/structures/custom-scheme',
         'latest/api/structures/desktop-capturer-source',
         'latest/api/structures/display',
-        'latest/api/structures/event',
         'latest/api/structures/extension',
         'latest/api/structures/extension-info',
         'latest/api/structures/file-filter',
