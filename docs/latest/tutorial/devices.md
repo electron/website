@@ -149,6 +149,8 @@ Electron provides several APIs for working with the WebUSB API:
   `setDevicePermissionHandler`.
 * [`ses.setPermissionCheckHandler(handler)`](latest/api/session.md#sessetpermissioncheckhandlerhandler)
   can be used to disable USB access for specific origins.
+* [`ses.setUSBProtectedClassesHandler](latest/api/session.md#sessetusbprotectedclasseshandlerhandler)
+  can be used to allow usage of [protected USB classes](https://wicg.github.io/webusb/#usbinterface-interface) that are not available by default.
 
 ### Example
 
