@@ -111,7 +111,7 @@ The `callback` function is expected to be called back with user credentials:
 * `username` string
 * `password` string
 
-```javascript
+```javascript @ts-type={request:Electron.ClientRequest}
 request.on('login', (authInfo, callback) => {
   callback('username', 'password')
 })
@@ -120,7 +120,7 @@ request.on('login', (authInfo, callback) => {
 Providing empty credentials will cancel the request and report an authentication
 error on the response object:
 
-```javascript
+```javascript @ts-type={request:Electron.ClientRequest}
 request.on('response', (response) => {
   console.log(`STATUS: ${response.statusCode}`)
   response.on('error', (error) => {

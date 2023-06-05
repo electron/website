@@ -96,7 +96,7 @@ tuples. So, the even-numbered offsets are key values, and the odd-numbered
 offsets are the associated values. Header names are not lowercased, and
 duplicates are not merged.
 
-```javascript
+```javascript @ts-type={response:Electron.IncomingMessage}
 // Prints something like:
 //
 // [ 'user-agent',
@@ -107,5 +107,5 @@ duplicates are not merged.
 //   '127.0.0.1:8000',
 //   'ACCEPT',
 //   '*/*' ]
-console.log(request.rawHeaders)
+console.log(response.rawHeaders)
 ```
