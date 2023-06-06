@@ -43,7 +43,7 @@ To have your custom protocol work in combination with a custom session, you need
 to register it to that session explicitly.
 
 ```javascript
-const { session, app, protocol } = require('electron')
+const { app, BrowserWindow, net, protocol, session } = require('electron')
 const path = require('path')
 
 app.whenReady().then(() => {
@@ -55,7 +55,7 @@ app.whenReady().then(() => {
     callback({ path: path.normalize(path.join(__dirname, url)) })
   })
 
-  mainWindow = new BrowserWindow({ webPreferences: { partition } })
+  const mainWindow = new BrowserWindow({ webPreferences: { partition } })
 })
 ```
 
