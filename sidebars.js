@@ -181,7 +181,6 @@ module.exports = {
           type: 'category',
           label: 'Development Guides',
           items: [
-            'latest/development/azure-vm-setup',
             'latest/development/clang-tidy',
             'latest/development/coding-style',
             'latest/development/creating-api',
