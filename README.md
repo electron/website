@@ -51,7 +51,7 @@ yarn start
 
 ## Search indexing
 
-The search functionality on electronjs.org is powered by [Algolia DocSearch](https://www.google.com/search?q=algolia+docsearch&sourceid=chrome&ie=UTF-8). DocSearch is a program run by Algolia that offers free
+The search functionality on electronjs.org is powered by [Algolia DocSearch](https://docsearch.algolia.com/). DocSearch is a program run by Algolia that offers free
 documentation search for open source projects.
 
 If you are a maintainer with an @electronjs.org email, please message [@erickzhao](https://github.com/erickzhao)
