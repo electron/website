@@ -212,7 +212,7 @@ const config: Config = {
             apiOptionsClass,
             apiStructurePreviews,
             fiddleEmbedder,
-            [npm2yarn, { sync: true }],
+            [npm2yarn, { sync: true, converters: ['yarn'] }],
           ],
         },
         blog: {
