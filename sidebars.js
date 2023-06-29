@@ -1,18 +1,4 @@
-// Sort api sidebar elements alphabetically
-const sortSidebarElements = (sidebarConfig) => {
-  Object.keys(sidebarConfig).forEach((key) => {
-    if (key === 'api') {
-      sidebarConfig[key].forEach((element) => {
-        if (element.items && Array.isArray(element.items)) {
-          element.items.sort();
-        }
-      });
-    }
-  });
-  return sidebarConfig;
-};
-
-module.exports = sortSidebarElements({
+module.exports = {
   docs: [
     {
       type: 'category',
@@ -357,17 +343,22 @@ module.exports = sortSidebarElements({
         'latest/api/structures/mouse-wheel-input-event',
         'latest/api/structures/notification-action',
         'latest/api/structures/notification-response',
+        'latest/api/structures/payment-discount',
         'latest/api/structures/point',
         'latest/api/structures/post-body',
         'latest/api/structures/printer-info',
         'latest/api/structures/process-memory-info',
         'latest/api/structures/process-metric',
         'latest/api/structures/product',
+        'latest/api/structures/product-discount',
+        'latest/api/structures/product-subscription-period',
         'latest/api/structures/protocol-request',
         'latest/api/structures/protocol-response',
         'latest/api/structures/protocol-response-upload-data',
         'latest/api/structures/rectangle',
         'latest/api/structures/referrer',
+        'latest/api/structures/resolved-endpoint',
+        'latest/api/structures/resolved-host',
         'latest/api/structures/scrubber-item',
         'latest/api/structures/segmented-control-segment',
         'latest/api/structures/serial-port',
@@ -384,16 +375,11 @@ module.exports = sortSidebarElements({
         'latest/api/structures/upload-data',
         'latest/api/structures/upload-file',
         'latest/api/structures/upload-raw-data',
+        'latest/api/structures/usb-device',
         'latest/api/structures/user-default-types',
         'latest/api/structures/web-request-filter',
         'latest/api/structures/web-source',
-        'latest/api/structures/payment-discount',
-        'latest/api/structures/product-discount',
-        'latest/api/structures/product-subscription-period',
-        'latest/api/structures/usb-device',
-        'latest/api/structures/resolved-endpoint',
-        'latest/api/structures/resolved-host',
       ],
     },
   ],
-});
+};
