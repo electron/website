@@ -1291,9 +1291,11 @@ reused for new connections.
 
 Returns `Promise<Buffer>` - resolves with blob data.
 
-#### `ses.downloadURL(url)`
+#### `ses.downloadURL(url[, options])`
 
 * `url` string
+* `options` Object (optional)
+  * `headers` Record&#60;string, string&#62; (optional) - HTTP request headers.
 
 Initiates a download of the resource at `url`.
 The API will generate a [DownloadItem](latest/api/download-item.md) that can be accessed
