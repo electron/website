@@ -30,12 +30,21 @@ export default function FiddlePage() {
       arm64: `https://github.com/electron/fiddle/releases/download/${version.raw}/Electron.Fiddle-darwin-arm64-${version.version}.zip`,
     },
     linux: {
-      debx64: `https://github.com/electron/fiddle/releases/download/${version.raw}/electron-fiddle_${version.version}_amd64.deb`,
-      debarm64: `https://github.com/electron/fiddle/releases/download/${version.raw}/electron-fiddle_${version.version}_arm64.deb`,
-      debarm7l: `https://github.com/electron/fiddle/releases/download/${version.raw}/electron-fiddle_${version.version}_armhf.deb`,
-      rpmx64: `https://github.com/electron/fiddle/releases/download/${version.raw}/electron-fiddle-${version.version}-1.x86_64.rpm`,
-      rpmarm64: `https://github.com/electron/fiddle/releases/download/${version.raw}/electron-fiddle-${version.version}-1.arm64.rpm`,
-      rpmarm7l: `https://github.com/electron/fiddle/releases/download/${version.raw}/electron-fiddle-${version.version}-1.armv7hl.rpm`,
+      deb: {
+        x64: `https://github.com/electron/fiddle/releases/download/${version.raw}/electron-fiddle_${version.version}_amd64.deb`,
+        arm64: `https://github.com/electron/fiddle/releases/download/${version.raw}/electron-fiddle_${version.version}_arm64.deb`,
+        arm7l: `https://github.com/electron/fiddle/releases/download/${version.raw}/electron-fiddle_${version.version}_armhf.deb`,
+      },
+      rpm: {
+        x64: `https://github.com/electron/fiddle/releases/download/${version.raw}/electron-fiddle-${version.version}-1.x86_64.rpm`,
+        arm64: `https://github.com/electron/fiddle/releases/download/${version.raw}/electron-fiddle-${version.version}-1.arm64.rpm`,
+        arm7l: `https://github.com/electron/fiddle/releases/download/${version.raw}/electron-fiddle-${version.version}-1.armv7hl.rpm`,
+      },
+      appimage: {
+        x64: `https://github.com/electron/fiddle/releases/download/${version.raw}/Electron.Fiddle-${version.version}-x86_64.AppImage`,
+        arm64: `https://github.com/electron/fiddle/releases/download/${version.raw}/Electron.Fiddle-${version.version}-arm64.AppImage`,
+        arm7l: `https://github.com/electron/fiddle/releases/download/${version.raw}/Electron.Fiddle-${version.version}-armv7hl.AppImage`,
+      },
     },
   };
 
@@ -78,56 +87,25 @@ export default function FiddlePage() {
       case 'linux':
         return (
           <React.Fragment>
-            <div
-              className={clsx(
-                styles.responsiveButtonGroup,
-                'button--sm margin-bottom--md'
-              )}
-            >
-              <a
-                href={downloadLinks.linux.debx64}
-                className={clsx('button', styles.buttonFiddle)}
+            {Object.entries(downloadLinks.linux).map(([format, archmap]) => (
+              <div
+                key={format}
+                className={clsx(
+                  styles.responsiveButtonGroup,
+                  'button--sm margin-bottom--md'
+                )}
               >
-                Download (.deb, x64)
-              </a>
-              <a
-                href={downloadLinks.linux.debarm64}
-                className={clsx('button', styles.buttonFiddle)}
-              >
-                Download (.deb, arm64)
-              </a>
-              <a
-                href={downloadLinks.linux.debarm7l}
-                className={clsx('button', styles.buttonFiddle)}
-              >
-                Download (.deb, arm7l)
-              </a>
-            </div>
-            <div
-              className={clsx(
-                styles.responsiveButtonGroup,
-                'button--sm margin-bottom--md'
-              )}
-            >
-              <a
-                href={downloadLinks.linux.rpmx64}
-                className={clsx('button', styles.buttonFiddle)}
-              >
-                Download (.rpm, x64)
-              </a>
-              <a
-                href={downloadLinks.linux.rpmarm64}
-                className={clsx('button', styles.buttonFiddle)}
-              >
-                Download (.rpm, arm64)
-              </a>
-              <a
-                href={downloadLinks.linux.rpmarm7l}
-                className={clsx('button', styles.buttonFiddle)}
-              >
-                Download (.rpm, arm7l)
-              </a>
-            </div>
+                {Object.entries(archmap).map(([arch, link]) => (
+                  <a
+                    key={arch}
+                    href={link}
+                    className={clsx('button', styles.buttonFiddle)}
+                  >
+                    Download ({format}, {arch})
+                  </a>
+                ))}
+              </div>
+            ))}
           </React.Fragment>
         );
     }
@@ -344,52 +322,24 @@ export default function FiddlePage() {
                 </div>
               </div>
               <div className={clsx('card__footer', styles.downloadsCardFooter)}>
-                <div>
-                  <code>.rpm</code>{' '}
-                  <div className="button-group">
-                    <a
-                      href={downloadLinks.linux.rpmx64}
-                      className={clsx('button', styles.buttonFiddle)}
-                    >
-                      x64
-                    </a>
-                    <a
-                      href={downloadLinks.linux.rpmarm64}
-                      className={clsx('button', styles.buttonFiddle)}
-                    >
-                      arm64
-                    </a>
-                    <a
-                      href={downloadLinks.linux.rpmarm7l}
-                      className={clsx('button', styles.buttonFiddle)}
-                    >
-                      armv7
-                    </a>
-                  </div>
-                </div>
-                <div className="margin-top--xs">
-                  <code>.deb</code>{' '}
-                  <div className="button-group">
-                    <a
-                      href={downloadLinks.linux.debx64}
-                      className={clsx('button', styles.buttonFiddle)}
-                    >
-                      x64
-                    </a>
-                    <a
-                      href={downloadLinks.linux.debarm64}
-                      className={clsx('button', styles.buttonFiddle)}
-                    >
-                      arm64
-                    </a>
-                    <a
-                      href={downloadLinks.linux.debarm7l}
-                      className={clsx('button', styles.buttonFiddle)}
-                    >
-                      armv7
-                    </a>
-                  </div>
-                </div>
+                {Object.entries(downloadLinks.linux).map(
+                  ([format, archmap]) => (
+                    <div key={format} className="margin-top--sm">
+                      <code>.{format}</code>{' '}
+                      <div className="button-group margin-top--xs">
+                        {Object.entries(archmap).map(([arch, link]) => (
+                          <a
+                            key={arch}
+                            href={link}
+                            className={clsx('button', styles.buttonFiddle)}
+                          >
+                            {arch}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  )
+                )}
               </div>
             </div>
           </div>
