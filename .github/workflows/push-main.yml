@@ -8,6 +8,8 @@ on:
     branches:
       - main
 
+concurrency: publish
+
 jobs:
   # Make a reusable workflow
   crowdin-upload:
