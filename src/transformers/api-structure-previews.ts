@@ -1,13 +1,20 @@
+import logger from '@docusaurus/logger';
 import visitParents from 'unist-util-visit-parents';
-import fs from 'fs';
 import path from 'path';
-import { Data, Node, Parent } from 'unist';
+import { Data, Literal, Node, Parent } from 'unist';
 import { Definition, InlineCode, Link, LinkReference, Text } from 'mdast';
+import table from 'mdast-util-gfm-table';
+import toMarkdown from 'mdast-util-to-markdown';
+import type { VFile } from 'vfile';
 
 import { Import } from '../util/interfaces';
 
-let structureDefinitions: Map<string, string>;
-let hasStructures: boolean;
+const fileContent = new Map<
+  string,
+  { promise: Promise<string>; resolve?: (value: string) => void }
+>();
+const structureDefinitions = new Map<string, string>();
+const modifiers = new Set<Promise<void>>();
 
 const EXCLUDE_LIST = ['browser-window-options', 'web-preferences'];
 
@@ -15,17 +22,51 @@ export default function attacher() {
   return transformer;
 }
 
-async function transformer(tree: Parent) {
-  structureDefinitions = new Map();
-  hasStructures = false;
+async function transformer(tree: Parent, file: VFile) {
+  // While transforming API structures, put the unmodified content
+  // (we don't want previews on previews or deadlocks) into a map
+  // so that when other docs are processed they can grab the content
+  // which Docusaurus has already processed (important for links).
+  // Since we don't want to depend on the order in which docs are
+  // transformed, if other docs are waiting on the content of an
+  // API structure there will be a promise resolver in the map and
+  // the other docs will be awaiting the associated promise.
+  if (file.path.includes('/api/structures/')) {
+    let exportsNode: Node | undefined;
+    const relativePath = `/${path.relative(file.cwd, file.path)}`;
+
+    // Temporarily remove this node, toMarkdown chokes on it
+    if (tree.children[0].type === 'export') {
+      exportsNode = tree.children.shift();
+    }
+
+    // It's not ideal to go from the parsed Markdown back to text
+    // just to be parsed again to be rendered, but it is what it is
+    const content = toMarkdown(tree, { extensions: [table.toMarkdown()] });
+
+    // Put the node back, because we need it
+    if (exportsNode) {
+      tree.children.unshift(exportsNode);
+    }
+
+    if (fileContent.has(relativePath)) {
+      const { resolve } = fileContent.get(relativePath);
+      if (resolve) resolve(content);
+    } else {
+      fileContent.set(relativePath, { promise: Promise.resolve(content) });
+    }
+  }
+  structureDefinitions.clear();
+  modifiers.clear();
   visitParents(tree, checkLinksandDefinitions, replaceLinkWithPreview);
   visitParents(tree, isStructureLinkReference, replaceLinkWithPreview);
-  if (hasStructures) {
+  if (modifiers.size) {
     tree.children.unshift({
       type: 'import',
       value:
         "import APIStructurePreview from '@site/src/components/APIStructurePreview';",
     } as Import);
+    await Promise.all(Array.from(modifiers));
   }
 }
 
@@ -60,54 +101,47 @@ function isStructureLinkReference(node: Node): node is LinkReference {
 function replaceLinkWithPreview(node: Link | LinkReference) {
   // depending on if the node is a direct link or a reference-style link,
   // we get its URL differently.
-  let relativeStructurePath: string;
+  let relativeStructureUrl: string;
   if (isLink(node)) {
-    relativeStructurePath = node.url;
+    relativeStructureUrl = node.url;
   } else if (isLinkReference(node)) {
-    relativeStructurePath = structureDefinitions.get(node.identifier);
-  }
-
-  let absoluteStructurePath: string;
-
-  // links in translated locale [xy] have their paths prefixed with /xy/
-  const isTranslatedDoc = !relativeStructurePath.startsWith('/docs/');
-  // these need to be handled differently because their filesystem path is more complex
-  // /de/docs/latest/api/structures/object.md is actually served from
-  // /i18n/de/docusaurus-plugin-content-docs/current/latest/api/structures/object.md
-  if (isTranslatedDoc) {
-    const [_fullPath, locale, docPath] = relativeStructurePath.match(
-      /\/([a-z][a-z])\/docs(.*)/
-    );
-    const localePath = path.join(
-      __dirname,
-      '..',
-      '..',
-      'i18n',
-      locale,
-      'docusaurus-plugin-content-docs',
-      'current',
-      `${docPath}.md`
-    );
-    absoluteStructurePath = localePath;
+    relativeStructureUrl = structureDefinitions.get(node.identifier);
   } else {
-    // for the default locale, we can use the markdown path directly
-    absoluteStructurePath = path.join(
-      __dirname,
-      '..',
-      '..',
-      `${relativeStructurePath}.md`
-    );
+    return;
   }
 
-  // hack to remove frontmatter from docs.
-  const str = fs
-    .readFileSync(absoluteStructurePath, { encoding: 'utf-8' })
-    .replace(/---\n(?:(?:.|\n)*)\n---/g, '')
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#039;');
+  const relativeStructurePath = `${relativeStructureUrl}.md`;
+
+  // No file content promise available, so add one and then wait
+  // on it being resolved when the structure doc is processed
+  if (!fileContent.has(relativeStructurePath)) {
+    let resolve: (value: string) => void;
+    let reject: (err: Error) => void;
+
+    // Set a timeout as a backstop so we don't deadlock forever if something
+    // causes content to never be resolved - in theory an upstream change in
+    // Docusaurus could cause that if they limited how many files are being
+    // processed in parallel such that too many docs are awaiting others
+    const timeoutId = setTimeout(() => {
+      reject(
+        new Error(
+          `Timed out waiting for API structure content from ${relativeStructurePath}`
+        )
+      );
+    }, 30000);
+
+    const promise = new Promise<string>((resolve_, reject_) => {
+      resolve = (value: string) => {
+        clearTimeout(timeoutId);
+        resolve_(value);
+      };
+      reject = reject_;
+    });
+
+    fileContent.set(relativeStructurePath, { promise, resolve });
+  }
+
+  const { promise } = fileContent.get(relativeStructurePath);
 
   // replace the raw link file with our JSX component.
   // See src/components/APIStructurePreview.jsx for implementation.
@@ -116,13 +150,21 @@ function replaceLinkWithPreview(node: Link | LinkReference) {
     node.children.length > 0 &&
     isTextOrInlineCode(node.children[0])
   ) {
-    hasStructures = true;
-    /* eslint-disable @typescript-eslint/no-explicit-any */
-    (node as any).type = 'jsx';
-    (
-      node as any
-    ).value = `<APIStructurePreview url="${relativeStructurePath}" title="${node.children[0].value}" content="${str}"/>`;
-    /* eslint-enable @typescript-eslint/no-explicit-any */
+    modifiers.add(
+      promise
+        .then((content) => {
+          const previewNode = node as unknown as Literal<string>;
+          previewNode.type = 'jsx';
+          previewNode.value = `<APIStructurePreview url="${relativeStructureUrl}" title="${
+            (node.children[0] as Text | InlineCode).value
+          }" content="${encodeURIComponent(content)}"/>`;
+        })
+        .catch((err) => {
+          logger.error(err);
+          // NOTE - if build starts failing, comment the throw out
+          throw err;
+        })
+    );
   }
 }
 
