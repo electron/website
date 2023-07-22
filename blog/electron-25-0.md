@@ -43,7 +43,7 @@ If you have any feedback, please share it with us on Twitter, or join our commun
 #### Deprecated: `protocol.{register,intercept}{Buffer,String,Stream,File,Http}Protocol`
 
 The `protocol.register*Protocol` and `protocol.intercept*Protocol` methods have
-been replaced with [`protocol.handle`](latest/api/protocol.md#protocolhandlescheme-handler).
+been replaced with [`protocol.handle`](https://www.electronjs.org/docs/latest/api/protocol#protocolhandlescheme-handler).
 
 The new method can either register a new protocol or intercept an existing
 protocol, and responses can be of any type.
