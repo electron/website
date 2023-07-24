@@ -33,7 +33,7 @@ const DEPRECATED = 'Deprecated';
 const EXPERIMENTAL = 'Experimental';
 const READONLY = 'Readonly';
 
-async function transformer(tree: Parent) {
+function transformer(tree: Parent) {
   visitParents(tree, 'emphasis', visitor);
 }
 

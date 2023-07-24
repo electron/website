@@ -3,6 +3,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import usePortal from 'react-useportal';
 
+import apiLabels from '../transformers/api-labels';
 import styles from './APIStructurePreview.module.scss';
 
 interface PreviewProps {
@@ -102,7 +103,10 @@ const Card = (props: CardProps) => (
     style={props.position}
   >
     <div className="card__body">
-      <ReactMarkdown allowedElements={['h1', 'ul', 'li', 'code', 'a']}>
+      <ReactMarkdown
+        allowedElements={['h1', 'ul', 'li', 'code', 'a', 'em']}
+        remarkPlugins={[apiLabels]}
+      >
         {props.content}
       </ReactMarkdown>
     </div>
