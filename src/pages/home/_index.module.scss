@@ -3,6 +3,10 @@ p {
   font-size: 1.1rem;
 }
 
+summary {
+  font-weight: bold;
+}
+
 .section {
   &:first-of-type {
     padding-top: 4rem;
