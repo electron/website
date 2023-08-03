@@ -13,7 +13,7 @@ Process: [Main](latest/glossary.md#main-process)
 
 ```javascript
 const { systemPreferences } = require('electron')
-console.log(systemPreferences.isDarkMode())
+console.log(systemPreferences.isAeroGlassEnabled())
 ```
 
 ## Events
@@ -53,12 +53,6 @@ Returns:
 **Deprecated:** Should use the new [`updated`](latest/api/native-theme.md#event-updated) event on the `nativeTheme` module.
 
 ## Methods
-
-### `systemPreferences.isDarkMode()` _macOS_ _Windows_ _Deprecated_
-
-Returns `boolean` - Whether the system is in Dark Mode.
-
-**Deprecated:** Should use the new [`nativeTheme.shouldUseDarkColors`](latest/api/native-theme.md#nativethemeshouldusedarkcolors-readonly) API.
 
 ### `systemPreferences.isSwipeTrackingFromScrollEventsEnabled()` _macOS_
 
@@ -362,18 +356,6 @@ The following colors are only available on macOS 10.14: `find-highlight`, `selec
 Returns `string` - The standard system color formatted as `#RRGGBBAA`.
 
 Returns one of several standard system colors that automatically adapt to vibrancy and changes in accessibility settings like 'Increase contrast' and 'Reduce transparency'. See [Apple Documentation](https://developer.apple.com/design/human-interface-guidelines/macos/visual-design/color#system-colors) for  more details.
-
-### `systemPreferences.isInvertedColorScheme()` _Windows_ _Deprecated_
-
-Returns `boolean` - `true` if an inverted color scheme (a high contrast color scheme with light text and dark backgrounds) is active, `false` otherwise.
-
-**Deprecated:** Should use the new [`nativeTheme.shouldUseInvertedColorScheme`](latest/api/native-theme.md#nativethemeshoulduseinvertedcolorscheme-macos-windows-readonly) API.
-
-### `systemPreferences.isHighContrastColorScheme()` _macOS_ _Windows_ _Deprecated_
-
-Returns `boolean` - `true` if a high contrast theme is active, `false` otherwise.
-
-**Deprecated:** Should use the new [`nativeTheme.shouldUseHighContrastColors`](latest/api/native-theme.md#nativethemeshouldusehighcontrastcolors-macos-windows-readonly) API.
 
 ### `systemPreferences.getEffectiveAppearance()` _macOS_
 
