@@ -107,7 +107,7 @@ const Card = (props: CardProps) => (
         allowedElements={['h1', 'ul', 'li', 'code', 'a', 'em']}
         remarkPlugins={[apiLabels]}
       >
-        {props.content}
+        {decodeURIComponent(props.content)}
       </ReactMarkdown>
     </div>
   </article>
