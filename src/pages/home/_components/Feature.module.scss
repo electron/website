@@ -28,6 +28,10 @@
     left: 0;
     transform: rotate3d(0, 0, 1, 5deg);
     transform-origin: 40% 80%;
+    transition: all 0.5s ease;
+  }
+  &:hover:before {
+    transform: rotate3d(0, 0, 1, 0deg);
   }
 }
 
