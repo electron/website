@@ -42,6 +42,9 @@ function visitor(node: Emphasis) {
   if (node.children.length === 1 && isText(node.children[0])) {
     const tag = node.children[0].value;
     if (PLATFORMS.includes(tag)) {
+      if (tag === 'mas') {
+        node.children[0].value = tag.toUpperCase();
+      }
       node.data = {
         hProperties: { className: ['badge badge--primary'] },
       } satisfies HastData;
