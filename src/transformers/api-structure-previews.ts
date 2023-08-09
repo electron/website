@@ -33,7 +33,18 @@ async function transformer(tree: Parent, file: VFile) {
   // the other docs will be awaiting the associated promise.
   if (file.path.includes('/api/structures/')) {
     let exportsNode: Node | undefined;
-    const relativePath = `/${path.relative(file.cwd, file.path)}`;
+    let relativePath = `/${path.relative(file.cwd, file.path)}`;
+
+    const isTranslatedDoc = relativePath.startsWith('/i18n/');
+    // these need to be handled differently because their filesystem path is more complex
+    // /de/docs/latest/api/structures/object.md is actually served from
+    // /i18n/de/docusaurus-plugin-content-docs/current/latest/api/structures/object.md
+    if (isTranslatedDoc) {
+      const [_fullPath, locale, docPath] = relativePath.match(
+        /\/i18n\/([a-z][a-z])\/docusaurus-plugin-content-docs\/current\/(.*)/
+      );
+      relativePath = `/${locale}/docs/${docPath}`;
+    }
 
     // Temporarily remove this node, toMarkdown chokes on it
     if (tree.children[0].type === 'export') {
