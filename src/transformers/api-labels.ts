@@ -11,6 +11,7 @@ import { Emphasis, PhrasingContent, Text } from 'mdast';
  *
  * The raw Markdown nodes to be transformed are:
  * _macOS_
+ * _mas_
  * _Linux_
  * _Windows_
  * _Readonly_
@@ -28,7 +29,7 @@ export default function attacher() {
   return transformer;
 }
 
-const PLATFORMS = ['macOS', 'Windows', 'Linux'];
+const PLATFORMS = ['macOS', 'mas', 'Windows', 'Linux'];
 const DEPRECATED = 'Deprecated';
 const EXPERIMENTAL = 'Experimental';
 const READONLY = 'Readonly';
@@ -41,6 +42,9 @@ function visitor(node: Emphasis) {
   if (node.children.length === 1 && isText(node.children[0])) {
     const tag = node.children[0].value;
     if (PLATFORMS.includes(tag)) {
+      if (tag === 'mas') {
+        node.children[0].value = tag.toUpperCase();
+      }
       node.data = {
         hProperties: { className: ['badge badge--primary'] },
       } satisfies HastData;
