@@ -1,5 +1,6 @@
 import logger from '@docusaurus/logger';
 import visitParents from 'unist-util-visit-parents';
+import fs from 'fs';
 import path from 'path';
 import { Data, Literal, Node, Parent } from 'unist';
 import { Definition, InlineCode, Link, LinkReference, Text } from 'mdast';
@@ -33,7 +34,18 @@ async function transformer(tree: Parent, file: VFile) {
   // the other docs will be awaiting the associated promise.
   if (file.path.includes('/api/structures/')) {
     let exportsNode: Node | undefined;
-    const relativePath = `/${path.relative(file.cwd, file.path)}`;
+    let relativePath = `/${path.relative(file.cwd, file.path)}`;
+
+    const isTranslatedDoc = relativePath.startsWith('/i18n/');
+    // these need to be handled differently because their filesystem path is more complex
+    // /de/docs/latest/api/structures/object.md is actually served from
+    // /i18n/de/docusaurus-plugin-content-docs/current/latest/api/structures/object.md
+    if (isTranslatedDoc) {
+      const [_fullPath, locale, docPath] = relativePath.match(
+        /\/i18n\/([a-z][a-z])\/docusaurus-plugin-content-docs\/current\/(.*)/
+      );
+      relativePath = `/${locale}/docs/${docPath}`;
+    }
 
     // Temporarily remove this node, toMarkdown chokes on it
     if (tree.children[0].type === 'export') {
@@ -123,6 +135,27 @@ function replaceLinkWithPreview(node: Link | LinkReference) {
     // Docusaurus could cause that if they limited how many files are being
     // processed in parallel such that too many docs are awaiting others
     const timeoutId = setTimeout(() => {
+      // links in translated locale [xy] have their paths prefixed with /xy/
+      const isTranslatedDoc = !relativeStructurePath.startsWith('/docs/');
+
+      if (isTranslatedDoc) {
+        // If we're running locally we might not have translations downloaded
+        // so if we don't find it locally just supply the default locale
+        const [_fullPath, locale, docPath] = relativeStructurePath.match(
+          /\/([a-z][a-z])\/docs\/(.*)/
+        );
+        const defaultLocalePath = `/docs/${docPath}`;
+        const localeDir = path.join(__dirname, '..', '..', 'i18n', locale);
+
+        if (!fs.existsSync(localeDir)) {
+          if (fileContent.has(defaultLocalePath)) {
+            const { promise } = fileContent.get(defaultLocalePath);
+            promise.then((content) => resolve(content));
+            return;
+          }
+        }
+      }
+
       reject(
         new Error(
           `Timed out waiting for API structure content from ${relativeStructurePath}`
