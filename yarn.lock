@@ -1240,9 +1240,9 @@
   integrity sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==
 
 "@crowdin/cli@^3.9.3":
-  version "3.9.3"
-  resolved "https://registry.yarnpkg.com/@crowdin/cli/-/cli-3.9.3.tgz#32dcd8f0a8fbe26912ebdf405215d7253b2ace3b"
-  integrity sha512-xZJXlcUdsqLCAcN1TADERo61YW0ilR1ttHx+e796ndsXcwYCKtA5fnDjJ94RMbIXtvi+2NAnO8i1R5OMf/a8SA==
+  version "3.13.0"
+  resolved "https://registry.yarnpkg.com/@crowdin/cli/-/cli-3.13.0.tgz#47c9223a017885e480f95d723791870dc28d3e05"
+  integrity sha512-4YY1XSJyFdIADMX3U11WtkhL9wVWU/KCBEB6N360ybZVOWKE6G2/ERmWmYs8N1kXO6eoM2UUOp4qb8LmJ9UGTg==
   dependencies:
     command-exists-promise "^2.0.2"
     node-fetch "2.6.7"
