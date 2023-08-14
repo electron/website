@@ -82,9 +82,9 @@ systemPreferences.getColor('selected-content-background');
 
 ### New Features
 
-- Added `safeStorage.setUsePlainTextEncryption` and `safeStorage.getSelectedStorageBackend` api. [#39107](https://github.com/electron/electron/pull/39107) <span style="font-size:small;">(Also in [25](https://github.com/electron/electron/pull/39325))</span>
-- Added `safeStorage.setUsePlainTextEncryption` and `safeStorage.getSelectedStorageBackend` api. [#39155](https://github.com/electron/electron/pull/39155) <span style="font-size:small;">(Also in [25](https://github.com/electron/electron/pull/39325))</span>
-- Added `senderIsMainFrame` to messages sent via `ipcRenderer.sendTo()`. [#39206](https://github.com/electron/electron/pull/39206) <span style="font-size:small;">(Also in [24](https://github.com/electron/electron/pull/39207), [25](https://github.com/electron/electron/pull/39208))</span>
+- Added `safeStorage.setUsePlainTextEncryption` and `safeStorage.getSelectedStorageBackend` api. [#39107](https://github.com/electron/electron/pull/39107)
+- Added `safeStorage.setUsePlainTextEncryption` and `safeStorage.getSelectedStorageBackend` api. [#39155](https://github.com/electron/electron/pull/39155)
+- Added `senderIsMainFrame` to messages sent via `ipcRenderer.sendTo()`. [#39206](https://github.com/electron/electron/pull/39206)
 - Added support for flagging a Menu as being keyboard initiated. [#38954](https://github.com/electron/electron/pull/38954)
 
 ## End of Support for 23.x.y
