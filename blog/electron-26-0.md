@@ -35,14 +35,14 @@ The `webContents.getPrinters` method has been deprecated. Use
 `webContents.getPrintersAsync` instead.
 
 ```js
-const w = new BrowserWindow({ show: false })
+const w = new BrowserWindow({ show: false });
 
 // Deprecated
-console.log(w.webContents.getPrinters())
+console.log(w.webContents.getPrinters());
 // Replace with
 w.webContents.getPrintersAsync().then((printers) => {
-  console.log(printers)
-})
+  console.log(printers);
+});
 ```
 
 ### Deprecated: `systemPreferences.{get,set}AppLevelAppearance` and `systemPreferences.appLevelAppearance`
@@ -53,19 +53,19 @@ Use the `nativeTheme` module instead.
 
 ```js
 // Deprecated
-systemPreferences.getAppLevelAppearance()
+systemPreferences.getAppLevelAppearance();
 // Replace with
-nativeTheme.shouldUseDarkColors
+nativeTheme.shouldUseDarkColors;
 
 // Deprecated
-systemPreferences.appLevelAppearance
+systemPreferences.appLevelAppearance;
 // Replace with
-nativeTheme.shouldUseDarkColors
+nativeTheme.shouldUseDarkColors;
 
 // Deprecated
-systemPreferences.setAppLevelAppearance('dark')
+systemPreferences.setAppLevelAppearance('dark');
 // Replace with
-nativeTheme.themeSource = 'dark'
+nativeTheme.themeSource = 'dark';
 ```
 
 ### Deprecated: `alternate-selected-control-text` value for `systemPreferences.getColor`
@@ -75,12 +75,13 @@ has been deprecated. Use `selected-content-background` instead.
 
 ```js
 // Deprecated
-systemPreferences.getColor('alternate-selected-control-text')
+systemPreferences.getColor('alternate-selected-control-text');
 // Replace with
-systemPreferences.getColor('selected-content-background')
+systemPreferences.getColor('selected-content-background');
 ```
 
 ### New Features
+
 - Added `safeStorage.setUsePlainTextEncryption` and `safeStorage.getSelectedStorageBackend` api. [#39107](https://github.com/electron/electron/pull/39107) <span style="font-size:small;">(Also in [25](https://github.com/electron/electron/pull/39325))</span>
 - Added `safeStorage.setUsePlainTextEncryption` and `safeStorage.getSelectedStorageBackend` api. [#39155](https://github.com/electron/electron/pull/39155) <span style="font-size:small;">(Also in [25](https://github.com/electron/electron/pull/39325))</span>
 - Added `senderIsMainFrame` to messages sent via `ipcRenderer.sendTo()`. [#39206](https://github.com/electron/electron/pull/39206) <span style="font-size:small;">(Also in [24](https://github.com/electron/electron/pull/39207), [25](https://github.com/electron/electron/pull/39208))</span>
