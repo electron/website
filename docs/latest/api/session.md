@@ -581,11 +581,11 @@ Clears the session’s HTTP cache.
 * `options` Object (optional)
   * `origin` string (optional) - Should follow `window.location.origin`’s representation
     `scheme://host:port`.
-  * `storages` string[] (optional) - The types of storages to clear, can contain:
+  * `storages` string[] (optional) - The types of storages to clear, can be
     `cookies`, `filesystem`, `indexdb`, `localstorage`,
     `shadercache`, `websql`, `serviceworkers`, `cachestorage`. If not
     specified, clear all storage types.
-  * `quotas` string[] (optional) - The types of quotas to clear, can contain:
+  * `quotas` string[] (optional) - The types of quotas to clear, can be
     `temporary`, `syncable`. If not specified, clear all quotas.
 
 Returns `Promise<void>` - resolves when the storage data has been cleared.
@@ -1120,7 +1120,7 @@ app.whenReady().then(() => {
 
 * `handler` Function&#60;string[]&#62; | null
   * `details` Object
-    * `protectedClasses` string[] - The current list of protected USB classes. Possible class values are:
+    * `protectedClasses` string[] - The current list of protected USB classes. Possible class values include:
       * `audio`
       * `audio-video`
       * `hid`
@@ -1466,7 +1466,7 @@ extension to be loaded.
 const { app, session } = require('electron')
 const path = require('path')
 
-app.on('ready', async () => {
+app.whenReady().then(async () => {
   await session.defaultSession.loadExtension(
     path.join(__dirname, 'react-devtools'),
     // allowFileAccess is required to load the devtools extension on file:// URLs.
