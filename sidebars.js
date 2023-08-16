@@ -379,6 +379,8 @@ module.exports = {
         'latest/api/structures/usb-device',
         'latest/api/structures/resolved-endpoint',
         'latest/api/structures/resolved-host',
+        'latest/api/structures/browser-window-options',
+        'latest/api/structures/web-preferences',
       ],
     },
   ],

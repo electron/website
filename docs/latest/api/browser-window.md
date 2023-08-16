@@ -159,7 +159,7 @@ It creates a new `BrowserWindow` with native properties as set by the `options`.
 
 ### `new BrowserWindow([options])`
 
-* `options` Object (optional)
+* `options` [BrowserWindowConstructorOptions](latest/api/structures/browser-window-options.md) (optional)
   * `width` Integer (optional) - Window's width in pixels. Default is `800`.
   * `height` Integer (optional) - Window's height in pixels. Default is `600`.
   * `x` Integer (optional) - (**required** if y is used) Window's left offset from screen.
@@ -272,7 +272,7 @@ It creates a new `BrowserWindow` with native properties as set by the `options`.
     deprecated and have been removed in macOS Catalina (10.15).
   * `backgroundMaterial` string (optional) _Windows_ - Set the window's
     system-drawn background material, including behind the non-client area.
-    Can be `auto`, `none`, `mica`, `acrylic` or `tabbed`. See [win.setBackgroundMaterial](#winsetbackgroundmaterialmaterial-windows) for more information.
+    Can be `auto`, `none`, `mica`, `acrylic` or `tabbed`. See [win.setBackgroundMaterial](latest/api/browser-window.md#winsetbackgroundmaterialmaterial-windows) for more information.
   * `zoomToPageWidth` boolean (optional) _macOS_ - Controls the behavior on
     macOS when option-clicking the green stoplight button on the toolbar or by
     clicking the Window > Zoom menu item. If `true`, the window will grow to
@@ -284,7 +284,7 @@ It creates a new `BrowserWindow` with native properties as set by the `options`.
     tabbing identifier will be grouped together. This also adds a native new
     tab button to your window's tab bar and allows your `app` and window to
     receive the `new-window-for-tab` event.
-  * `webPreferences` Object (optional) - Settings of web page's features.
+  * `webPreferences` [WebPreferences](latest/api/structures/web-preferences.md) (optional) - Settings of web page's features.
     * `devTools` boolean (optional) - Whether to enable DevTools. If it is set to `false`, can not use `BrowserWindow.webContents.openDevTools()` to open DevTools. Default is `true`.
     * `nodeIntegration` boolean (optional) - Whether node integration is enabled.
       Default is `false`.
@@ -358,7 +358,7 @@ It creates a new `BrowserWindow` with native properties as set by the `options`.
     * `defaultEncoding` string (optional) - Defaults to `ISO-8859-1`.
     * `backgroundThrottling` boolean (optional) - Whether to throttle animations and timers
       when the page becomes background. This also affects the
-      [Page Visibility API](#page-visibility). Defaults to `true`.
+      [Page Visibility API](latest/api/browser-window.md#page-visibility). Defaults to `true`.
     * `offscreen` boolean (optional) - Whether to enable offscreen rendering for the browser
       window. Defaults to `false`. See the
       [offscreen rendering tutorial](latest/tutorial/offscreen-rendering.md) for
@@ -438,6 +438,16 @@ Possible values are:
 
 * On Linux, possible types are `desktop`, `dock`, `toolbar`, `splash`,
   `notification`.
+  * The `desktop` type places the window at the desktop background window level
+    (kCGDesktopWindowLevel - 1). However, note that a desktop window will not
+    receive focus, keyboard, or mouse events. You can still use globalShortcut to
+    receive input sparingly.
+  * The `dock` type creates a dock-like window behavior.
+  * The `toolbar` type creates a window with a toolbar appearance.
+  * The `splash` type behaves in a specific way. It is not
+    draggable, even if the CSS styling of the window's body contains
+    -webkit-app-region: drag. This type is commonly used for splash screens.
+  * The `notification` type creates a window that behaves like a system notification.
 * On macOS, possible types are `desktop`, `textured`, `panel`.
   * The `textured` type adds metal gradient appearance
     (`NSWindowStyleMaskTexturedBackground`).
@@ -1964,12 +1974,13 @@ removed in future Electron releases.
 On a Window with Window Controls Overlay already enabled, this method updates
 the style of the title bar overlay.
 
-[runtime-enabled-features]: https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/platform/runtime_enabled_features.json5
 [page-visibility-api]: https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API
 [quick-look]: https://en.wikipedia.org/wiki/Quick_Look
 [vibrancy-docs]: https://developer.apple.com/documentation/appkit/nsvisualeffectview?preferredLanguage=objc
 [window-levels]: https://developer.apple.com/documentation/appkit/nswindow/level
-[chrome-content-scripts]: https://developer.chrome.com/extensions/content_scripts#execution-environment
 [event-emitter]: https://nodejs.org/api/events.html#events_class_eventemitter
-[overlay-javascript-apis]: https://github.com/WICG/window-controls-overlay/blob/main/explainer.md#javascript-apis
+
 [overlay-css-env-vars]: https://github.com/WICG/window-controls-overlay/blob/main/explainer.md#css-environment-variables
+[overlay-javascript-apis]: https://github.com/WICG/window-controls-overlay/blob/main/explainer.md#javascript-apis
+[chrome-content-scripts]: https://developer.chrome.com/extensions/content_scripts#execution-environment
+[runtime-enabled-features]: https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/platform/runtime_enabled_features.json5

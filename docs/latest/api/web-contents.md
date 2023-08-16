@@ -217,7 +217,7 @@ Returns:
   * `url` string - URL for the created window.
   * `frameName` string - Name given to the created window in the
      `window.open()` call.
-  * `options` BrowserWindowConstructorOptions - The options used to create the
+  * `options` [BrowserWindowConstructorOptions](latest/api/structures/browser-window-options.md) - The options used to create the
     BrowserWindow. They are merged in increasing precedence: parsed options
     from the `features` string from `window.open()`, security-related
     webPreferences inherited from the parent, and options given by
@@ -246,9 +246,8 @@ Returns:
 
 * `details` Event&#60;&#62;
   * `url` string - The URL the frame is navigating to.
-  * `isSameDocument` boolean - Whether the navigation happened without changing
-    document. Examples of same document navigations are reference fragment
-    navigations, pushState/replaceState, and same page history navigation.
+  * `isSameDocument` boolean - This event does not fire for same document navigations using window.history api and reference fragment navigations.
+    This property is always set to `false` for this event.
   * `isMainFrame` boolean - True if the navigation is taking place in a main frame.
   * `frame` WebFrameMain - The frame to be navigated.
   * `initiator` WebFrameMain (optional) - The frame which initiated the
@@ -280,6 +279,8 @@ Returns:
 
 * `details` Event&#60;&#62;
   * `url` string - The URL the frame is navigating to.
+  * `isSameDocument` boolean - This event does not fire for same document navigations using window.history api and reference fragment navigations.
+    This property is always set to `false` for this event.
   * `isMainFrame` boolean - True if the navigation is taking place in a main frame.
   * `frame` WebFrameMain - The frame to be navigated.
   * `initiator` WebFrameMain (optional) - The frame which initiated the
@@ -801,7 +802,7 @@ Returns:
   * `frameCharset` string - The character encoding of the frame on which the
     menu was invoked.
   * `inputFieldType` string - If the context menu was invoked on an input
-    field, the type of that field. Possible values are `none`, `plainText`,
+    field, the type of that field. Possible values include `none`, `plainText`,
     `password`, `other`.
   * `spellcheckEnabled` boolean - If the context is editable, whether or not spellchecking is enabled.
   * `menuSourceType` string - Input source that invoked the context menu.
@@ -913,7 +914,7 @@ Emitted when the devtools window instructs the webContents to reload
 Returns:
 
 * `event` Event
-* `webPreferences` WebPreferences - The web preferences that will be used by the guest
+* `webPreferences` [WebPreferences](latest/api/structures/web-preferences.md) - The web preferences that will be used by the guest
   page. This object can be modified to adjust the preferences for the guest
   page.
 * `params` Record&#60;string, string&#62; - The other `<webview>` parameters such as the `src` URL.
