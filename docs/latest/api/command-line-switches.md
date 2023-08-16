@@ -304,6 +304,15 @@ Print stack traces for deprecations.
 
 Print stack traces for process warnings (including deprecations).
 
+### `--dns-result-order=order`
+
+Set the default value of the `verbatim` parameter in the Node.js [`dns.lookup()`](https://nodejs.org/api/dns.html#dnslookuphostname-options-callback) and [`dnsPromises.lookup()`](https://nodejs.org/api/dns.html#dnspromiseslookuphostname-options) functions. The value could be:
+
+* `ipv4first`: sets default `verbatim` `false`.
+* `verbatim`: sets default `verbatim` `true`.
+
+The default is `verbatim` and `dns.setDefaultResultOrder()` have higher priority than `--dns-result-order`.
+
 [app]: latest/api/app.md
 [append-switch]: latest/api/command-line.md#commandlineappendswitchswitch-value
 [debugging-main-process]: latest/tutorial/debugging-main-process.md
