@@ -161,7 +161,7 @@ function replaceLinkWithPreview(node: Link | LinkReference) {
           `Timed out waiting for API structure content from ${relativeStructurePath}`
         )
       );
-    }, 30000);
+    }, 60000);
 
     const promise = new Promise<string>((resolve_, reject_) => {
       resolve = (value: string) => {
