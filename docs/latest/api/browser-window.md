@@ -1127,9 +1127,13 @@ win.setBounds({ width: 100 })
 console.log(win.getBounds())
 ```
 
+**Note:** On macOS, the y-coordinate value cannot be smaller than the [Tray](latest/tutorial/tray.md) height. The tray height has changed over time and depends on the operating system, but is between 20-40px. Passing a value lower than the tray height will result in a window that is flush to the tray.
+
 #### `win.getBounds()`
 
 Returns [`Rectangle`](latest/api/structures/rectangle.md) - The `bounds` of the window as `Object`.
+
+**Note:** On macOS, the y-coordinate value returned will be at minimum the [Tray](latest/tutorial/tray.md) height. For example, calling `win.setBounds({ x: 25, y: 20, width: 800, height: 600 })` with a tray height of 38 means that `win.getBounds()` will return `{ x: 25, y: 38, width: 800, height: 600 }`.
 
 #### `win.getBackgroundColor()`
 
