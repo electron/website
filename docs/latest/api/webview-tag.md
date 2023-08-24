@@ -287,9 +287,11 @@ if the page fails to load (see
 Loads the `url` in the webview, the `url` must contain the protocol prefix,
 e.g. the `http://` or `file://`.
 
-### `<webview>.downloadURL(url)`
+### `<webview>.downloadURL(url[, options])`
 
 * `url` string
+* `options` Object (optional)
+  * `headers` Record&#60;string, string&#62; (optional) - HTTP request headers.
 
 Initiates a download of the resource at `url` without navigating.
 
