@@ -463,7 +463,7 @@ export default function Home() {
                   href: 'https://code.visualstudio.com/',
                 },
                 {
-                  name: 'Wordpress Desktop',
+                  name: 'WordPress Desktop',
                   image: '/assets/apps/wordpress.svg',
                   href: 'https://apps.wordpress.com/desktop/',
                 },
