@@ -28,6 +28,6 @@ There are two things you need to tackle:
 
 Consult our documentation on [Inter-Process Communication](https://www.electronjs.org/docs/latest/tutorial/ipc). In my case, I moved a lot of code and wrapped it in `ipcRenderer.invoke()` and `ipcMain.handle()`, but the process was straightforward and quickly done. 2. Since enabling the sandbox disables Node.js integration in your preload scripts, you can no longer use `require("../my-script")`. In other words, your preload script needs to be a single file.
 
-There are multiple ways to do that: Webpack, esbuild, parcel, and rollup will all get the job done. I used [Electron Forge’s excellent Webpack plugin](https://www.electronforge.io/config/plugins/webpack), users of the equally popular `electron-builder` can use `[electron-webpack](https://webpack.electron.build/)`.
+There are multiple ways to do that: Webpack, esbuild, parcel, and rollup will all get the job done. I used [Electron Forge’s excellent Webpack plugin](https://www.electronforge.io/config/plugins/webpack), users of the equally popular `electron-builder` can use [`electron-webpack`](https://webpack.electron.build/).
 
 All in all, the entire process took me around four days — and that includes a lot of scratching my head at how to wrangle Webpack’s massive power, since I decided to use the opportunity to refactor my code in plenty of other ways, too.
