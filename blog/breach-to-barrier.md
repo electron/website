@@ -30,7 +30,7 @@ There are two things you need to tackle:
 
 1. If you’re using Node.js code in either `preload` scripts or the actual `WebContents`, you need to move all that Node.js interaction to the main process (or, if you are fancy, a utility process). Given how powerful renderers have become, chances are high that the vast majority of your code doesn’t really need refactoring.
 
-   Consult our documentation on [Inter-Process Communication](https://www.electronjs.org/docs/latest/tutorial/ipc). In my case, I moved a lot of code and wrapped it in `ipcRenderer.invoke()` and `ipcMain.handle()`, but the process was straightforward and quickly done.
+   Consult our documentation on [Inter-Process Communication](https://www.electronjs.org/docs/latest/tutorial/ipc). In my case, I moved a lot of code and wrapped it in `ipcRenderer.invoke()` and `ipcMain.handle()`, but the process was straightforward and quickly done. Be a little mindful of your APIs here - if you build an API called `executeCodeAsRoot(code)`, the sandbox won't protect your users much.
 
 2. Since enabling the sandbox disables Node.js integration in your preload scripts, you can no longer use `require("../my-script")`. In other words, your preload script needs to be a single file.
 
