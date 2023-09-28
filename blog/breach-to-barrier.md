@@ -14,7 +14,7 @@ Electron, too, spun into action and released new versions the same day: If your 
 
 Now that we are all freshly aware that an interaction as innocent as “rendering an image” is a potentially dangerous activity, we want to use this opportunity to remind everyone that Electron comes with a process sandbox that will limit the blast radius of the next big attack — whatever it may be.
 
-The sandbox was available ever since Electron v1 and enabled by default in v20, but we know that many apps (especially those that have been around for a while) may have a `sandbox: false` somewhere in their code – or a `nodeIntegration: true`, which equally disables the sandbox. That’s understandable: If you’ve been with us for a long time, you probably enjoyed the power of throwing a `require("child_process")` or `require("fs")` into the same code that runs your HTML/CSS.
+The sandbox was available ever since Electron v1 and enabled by default in v20, but we know that many apps (especially those that have been around for a while) may have a `sandbox: false` somewhere in their code – or a `nodeIntegration: true`, which equally disables the sandbox when there is no explicit `sandbox` setting. That’s understandable: If you’ve been with us for a long time, you probably enjoyed the power of throwing a `require("child_process")` or `require("fs")` into the same code that runs your HTML/CSS.
 
 Before we talk about _how_ you migrate to the sandbox, let’s first discuss _why_ you want it.
 
