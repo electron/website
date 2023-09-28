@@ -8,7 +8,7 @@ authors:
 slug: breach-to-barrier
 ---
 
-It’s been more than a week since [CVE-2023-4863: Heap buffer overflow in WebP](https://chromereleases.googleblog.com/2023/09/stable-channel-update-for-desktop_11.html) was made public, leading to a flurry of new releases of software rendering `webp` images: macOS, iOS, Chrome, Firefox, and various Linux distributions all received updates. This followed investigations by Citizen Lab, discovering that an iPhone used by a “Washington DC-based civil society organization” was under attack using a zero-click attack within iMessage.
+It’s been more than a week since [CVE-2023-4863: Heap buffer overflow in WebP](https://chromereleases.googleblog.com/2023/09/stable-channel-update-for-desktop_11.html) was made public, leading to a flurry of new releases of software rendering `webp` images: macOS, iOS, Chrome, Firefox, and various Linux distributions all received updates. This followed investigations by Citizen Lab, discovering that an iPhone used by a “Washington DC-based civil society organization” was under attack using a zero-click exploit within iMessage.
 
 Electron, too, spun into action and released new versions the same day: If your app renders any user-provided content, you should update your version of Electron - v27.0.0-beta.2, v26.2.1, v25.8.1, v24.8.3, and v22.3.24 all contain a fixed version of `libwebp`, the library responsible for rendering `webp` images.
 
