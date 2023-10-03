@@ -23,12 +23,6 @@ const config: Config = {
     localeConfigs: {},
   },
   themeConfig: {
-    announcementBar: {
-      id: 'announcementBar',
-      content: `Introducing Electron Forge 6, a complete pipeline for building your Electron apps. Read more in the <strong><a target="_blank" rel="noopener noreferrer" href="https://www.electronjs.org/blog/forge-v6-release">Forge 6 announcement blog</a></strong>!`,
-      backgroundColor: '#A2ECFB',
-      isCloseable: true,
-    },
     colorMode: {
       //Default to light or dark depending on system theme.
       respectPrefersColorScheme: true,
