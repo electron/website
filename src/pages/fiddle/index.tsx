@@ -54,7 +54,7 @@ export default function FiddlePage() {
     x64: `https://github.com/electron/fiddle/releases/download/v${version}/Electron.Fiddle-darwin-x64-${version}.zip`,
     arm64: `https://github.com/electron/fiddle/releases/download/v${version}/Electron.Fiddle-darwin-arm64-${version}.zip`,
   };
-  
+
   const renderDownloadButtons = () => {
     switch (OS) {
       case 'win32':
