@@ -33,6 +33,14 @@ export default function AppsPage({ apps, categories }: AppsPluginContent) {
       }
     });
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const appsPerPage = 10;
+  const totalItems = sortedApps.length;
+  const totalPages = Math.ceil(totalItems / appsPerPage);
+  const start = (currentPage - 1) * appsPerPage;
+  const end = start + appsPerPage;
+  const appsToDisplay = sortedApps.slice(start, end);
+
   const filters = Object.entries(categories);
 
   const renderSort = (sort) => {
@@ -212,7 +220,7 @@ export default function AppsPage({ apps, categories }: AppsPluginContent) {
             'margin-bottom--xl'
           )}
         >
-          {sortedApps
+          {appsToDisplay
             .filter(
               (app) => !activeCategory || app.category === activeCategory[0]
             )
@@ -231,6 +239,29 @@ export default function AppsPage({ apps, categories }: AppsPluginContent) {
                 />
               );
             })}
+        </div>
+        <div>
+          <button
+            disabled={currentPage === 1}
+            onClick={() => setCurrentPage(currentPage - 1)}
+          >
+            {`<`}
+          </button>
+          {Array.from({ length: totalPages }).map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrentPage(i + 1)}
+              className={currentPage === i + 1 ? 'active' : ''}
+            >
+              {i + 1}
+            </button>
+          ))}
+          <button
+            disabled={currentPage === totalPages}
+            onClick={() => setCurrentPage(currentPage + 1)}
+          >
+            {`>`}
+          </button>
         </div>
       </main>
     </Layout>
