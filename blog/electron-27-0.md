@@ -131,7 +131,7 @@ systemPreferences.getColor('selected-content-background');
 
 Electron 24.x.y has reached end-of-support as per the project's [support policy](https://www.electronjs.org/docs/latest/tutorial/electron-timelines#version-support-policy). Developers and applications are encouraged to upgrade to a newer version of Electron.
 
-| E27 (Aug'23) | E28 (Oct'23) | E29 (Jan'24) |
+| E27 (Oct'23) | E28 (Dec'23) | E29 (Feb'24) |
 | ------------ | ------------ | ------------ |
 | 27.x.y       | 28.x.y       | 29.x.y       |
 | 26.x.y       | 27.x.y       | 28.x.y       |
