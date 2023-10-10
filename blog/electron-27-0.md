@@ -8,13 +8,13 @@ authors:
 slug: electron-27-0
 ---
 
-Electron 27.0.0 has been released! It includes upgrades to Chromium `118.0.5993.32`, V8 `11.8`, and Node.js `18.17.1`. Read below for more details!
+Electron 27.0.0 has been released! It includes upgrades to Chromium `118.0.5993.32`, V8 `11.8`, and Node.js `18.17.1`.
 
 ---
 
 The Electron team is excited to announce the release of Electron 27.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://releases.electronjs.org/releases/stable). Continue reading for details about this release.
 
-If you have any feedback, please share it with us on Twitter, or join our community [Discord](https://discord.com/invite/electronjs)! Bugs and feature requests can be reported in Electron's [issue tracker](https://github.com/electron/electron/issues).
+If you have any feedback, please share it with us on [Twitter](https://twitter.com/electronjs), or join our community [Discord](https://discord.com/invite/electronjs)! Bugs and feature requests can be reported in Electron's [issue tracker](https://github.com/electron/electron/issues).
 
 ## Notable Changes
 
