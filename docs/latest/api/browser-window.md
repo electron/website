@@ -264,12 +264,9 @@ It creates a new `BrowserWindow` with native properties as set by the `options`.
     Windows, which adds standard window frame. Setting it to `false` will remove
     window shadow and window animations. Default is `true`.
   * `vibrancy` string (optional) _macOS_ - Add a type of vibrancy effect to
-    the window, only on macOS. Can be `appearance-based`, `light`, `dark`,
-    `titlebar`, `selection`, `menu`, `popover`, `sidebar`, `medium-light`,
-    `ultra-dark`, `header`, `sheet`, `window`, `hud`, `fullscreen-ui`,
-    `tooltip`, `content`, `under-window`, or `under-page`. Please note that
-    `appearance-based`, `light`, `dark`, `medium-light`, and `ultra-dark` are
-    deprecated and have been removed in macOS Catalina (10.15).
+    the window, only on macOS. Can be `appearance-based`, `titlebar`, `selection`,
+    `menu`, `popover`, `sidebar`, `header`, `sheet`, `window`, `hud`, `fullscreen-ui`,
+    `tooltip`, `content`, `under-window`, or `under-page`.
   * `backgroundMaterial` string (optional) _Windows_ - Set the window's
     system-drawn background material, including behind the non-client area.
     Can be `auto`, `none`, `mica`, `acrylic` or `tabbed`. See [win.setBackgroundMaterial](latest/api/browser-window.md#winsetbackgroundmaterialmaterial-windows) for more information.
@@ -352,6 +349,7 @@ It creates a new `BrowserWindow` with native properties as set by the `options`.
       * `monospace` string (optional) - Defaults to `Courier New`.
       * `cursive` string (optional) - Defaults to `Script`.
       * `fantasy` string (optional) - Defaults to `Impact`.
+      * `math` string (optional) - Defaults to `Latin Modern Math`.
     * `defaultFontSize` Integer (optional) - Defaults to `16`.
     * `defaultMonospaceFontSize` Integer (optional) - Defaults to `13`.
     * `minimumFontSize` Integer (optional) - Defaults to `0`.
@@ -811,6 +809,10 @@ events.
 #### `win.id` _Readonly_
 
 A `Integer` property representing the unique ID of the window. Each ID is unique among all `BrowserWindow` instances of the entire Electron application.
+
+#### `win.tabbingIdentifier` _macOS_ _Readonly_
+
+A `string` (optional) property that is equal to the `tabbingIdentifier` passed to the `BrowserWindow` constructor or `undefined` if none was set.
 
 #### `win.autoHideMenuBar`
 
@@ -1842,6 +1844,10 @@ tabs in the window.
 Selects the next tab when native tabs are enabled and there are other
 tabs in the window.
 
+#### `win.showAllTabs()` _macOS_
+
+Shows or hides the tab overview when native tabs are enabled.
+
 #### `win.mergeAllWindows()` _macOS_
 
 Merges all windows into one window with multiple tabs when native tabs
@@ -1865,15 +1871,11 @@ Adds a window as a tab on this window, after the tab for the window instance.
 
 #### `win.setVibrancy(type)` _macOS_
 
-* `type` string | null - Can be `appearance-based`, `light`, `dark`, `titlebar`,
-  `selection`, `menu`, `popover`, `sidebar`, `medium-light`, `ultra-dark`, `header`, `sheet`, `window`, `hud`, `fullscreen-ui`, `tooltip`, `content`, `under-window`, or `under-page`. See
+* `type` string | null - Can be `titlebar`, `selection`, `menu`, `popover`, `sidebar`, `header`, `sheet`, `window`, `hud`, `fullscreen-ui`, `tooltip`, `content`, `under-window`, or `under-page`. See
   the [macOS documentation][vibrancy-docs] for more details.
 
 Adds a vibrancy effect to the browser window. Passing `null` or an empty string
 will remove the vibrancy effect on the window.
-
-Note that `appearance-based`, `light`, `dark`, `medium-light`, and `ultra-dark` have been
-deprecated and will be removed in an upcoming version of macOS.
 
 #### `win.setBackgroundMaterial(material)` _Windows_
 
@@ -1962,8 +1964,8 @@ Throws an error if `browserView` is not attached to `win`.
 
 #### `win.getBrowserViews()` _Experimental_
 
-Returns `BrowserView[]` - an array of all BrowserViews that have been attached
-with `addBrowserView` or `setBrowserView`.
+Returns `BrowserView[]` - a sorted by z-index array of all BrowserViews that have been attached
+with `addBrowserView` or `setBrowserView`. The top-most BrowserView is the last element of the array.
 
 **Note:** The BrowserView API is currently experimental and may change or be
 removed in future Electron releases.
