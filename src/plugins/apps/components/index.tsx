@@ -3,6 +3,8 @@ import Layout from '@theme/Layout';
 import clsx from 'clsx';
 
 import styles from './apps.module.scss';
+import { PaginationRange } from '../utils/pagination';
+import Pagination from './Pagination.module.scss';
 import AppCard from './AppCard';
 import { useState } from 'react';
 import { AppsPluginContent } from '..';
@@ -40,7 +42,7 @@ export default function AppsPage({ apps, categories }: AppsPluginContent) {
   const start = (currentPage - 1) * appsPerPage;
   const end = start + appsPerPage;
   const appsToDisplay = sortedApps.slice(start, end);
-
+  const paginationArray = PaginationRange(totalPages, currentPage, 1);
   const filters = Object.entries(categories);
 
   const renderSort = (sort) => {
@@ -240,28 +242,36 @@ export default function AppsPage({ apps, categories }: AppsPluginContent) {
               );
             })}
         </div>
-        <div>
-          <button
-            disabled={currentPage === 1}
-            onClick={() => setCurrentPage(currentPage - 1)}
-          >
-            {`<`}
-          </button>
-          {Array.from({ length: totalPages }).map((_, i) => (
+        <div className={Pagination.pagination}>
+          <div className={Pagination.container}>
             <button
-              key={i}
-              onClick={() => setCurrentPage(i + 1)}
-              className={currentPage === i + 1 ? 'active' : ''}
+              disabled={currentPage === 1}
+              onClick={() => setCurrentPage(currentPage - 1)}
             >
-              {i + 1}
+              {`Prev`}
             </button>
-          ))}
-          <button
-            disabled={currentPage === totalPages}
-            onClick={() => setCurrentPage(currentPage + 1)}
-          >
-            {`>`}
-          </button>
+
+            {paginationArray.map((item, index) => (
+              <button
+                key={index}
+                className={`${Pagination.pagination} ${
+                  item === '...' ? Pagination.dots : ''
+                } ${currentPage === item ? Pagination.active : ''} ${
+                  item === 1 ? Pagination.first : ''
+                } ${item === totalPages ? Pagination.last : ''}`}
+                onClick={() => setCurrentPage(item)}
+              >
+                {item === '...' ? '...' : item}
+              </button>
+            ))}
+
+            <button
+              disabled={currentPage === totalPages}
+              onClick={() => setCurrentPage(currentPage + 1)}
+            >
+              {`Next`}
+            </button>
+          </div>
         </div>
       </main>
     </Layout>
