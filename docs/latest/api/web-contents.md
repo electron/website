@@ -20,7 +20,7 @@ the [`BrowserWindow`](latest/api/browser-window.md) object. An example of access
 const { BrowserWindow } = require('electron')
 
 const win = new BrowserWindow({ width: 800, height: 1500 })
-win.loadURL('http://github.com')
+win.loadURL('https://github.com')
 
 const contents = win.webContents
 console.log(contents)
@@ -891,7 +891,7 @@ const win = new BrowserWindow({ webPreferences: { offscreen: true } })
 win.webContents.on('paint', (event, dirty, image) => {
   // updateBitmap(dirty, image.getBitmap())
 })
-win.loadURL('http://github.com')
+win.loadURL('https://github.com')
 ```
 
 #### Event: 'devtools-reload-page'
@@ -1069,7 +1069,7 @@ Returns `string` - The URL of the current web page.
 ```javascript
 const { BrowserWindow } = require('electron')
 const win = new BrowserWindow({ width: 800, height: 600 })
-win.loadURL('http://github.com').then(() => {
+win.loadURL('https://github.com').then(() => {
   const currentURL = win.webContents.getURL()
   console.log(currentURL)
 })
@@ -1543,14 +1543,6 @@ If you would like the page to stay hidden, you should ensure that `stayHidden` i
 Returns `boolean` - Whether this page is being captured. It returns true when the capturer count
 is large then 0.
 
-#### `contents.getPrinters()` _Deprecated_
-
-Get the system printer list.
-
-Returns [`PrinterInfo[]`](latest/api/structures/printer-info.md)
-
-**Deprecated:** Should use the new [`contents.getPrintersAsync`](latest/api/web-contents.md#contentsgetprintersasync) API.
-
 #### `contents.getPrintersAsync()`
 
 Get the system printer list.
@@ -1629,7 +1621,7 @@ win.webContents.print(options, (success, errorType) => {
     * `bottom` number (optional) - Bottom margin in inches. Defaults to 1cm (~0.4 inches).
     * `left` number (optional) - Left margin in inches. Defaults to 1cm (~0.4 inches).
     * `right` number (optional) - Right margin in inches. Defaults to 1cm (~0.4 inches).
-  * `pageRanges` string (optional) - Paper ranges to print, e.g., '1-5, 8, 11-13'. Defaults to the empty string, which means print all pages.
+  * `pageRanges` string (optional) - Page ranges to print, e.g., '1-5, 8, 11-13'. Defaults to the empty string, which means print all pages.
   * `headerTemplate` string (optional) - HTML template for the print header. Should be valid HTML markup with following classes used to inject printing values into them: `date` (formatted print date), `title` (document title), `url` (document location), `pageNumber` (current page number) and `totalPages` (total pages in the document). For example, `<span class=title></span>` would generate span containing the title.
   * `footerTemplate` string (optional) - HTML template for the print footer. Should use the same format as the `headerTemplate`.
   * `preferCSSPageSize` boolean (optional) - Whether or not to prefer page size as defined by css. Defaults to false, in which case the content will be scaled to fit the paper size.
@@ -1649,7 +1641,7 @@ const path = require('node:path')
 const os = require('node:os')
 
 const win = new BrowserWindow()
-win.loadURL('http://github.com')
+win.loadURL('https://github.com')
 
 win.webContents.on('did-finish-load', () => {
   // Use default printing options
@@ -1775,6 +1767,7 @@ app.whenReady().then(() => {
     In `undocked` mode it's possible to dock back. In `detach` mode it's not.
   * `activate` boolean (optional) - Whether to bring the opened devtools window
     to the foreground. The default is `true`.
+  * `title` string (optional) - A title for the DevTools window (only in `undocked` or `detach` mode).
 
 Opens the devtools.
 
@@ -1794,6 +1787,18 @@ Returns `boolean` - Whether the devtools is opened.
 #### `contents.isDevToolsFocused()`
 
 Returns `boolean` - Whether the devtools view is focused .
+
+#### `contents.getDevToolsTitle()`
+
+Returns `string` - the current title of the DevTools window. This will only be visible
+if DevTools is opened in `undocked` or `detach` mode.
+
+#### `contents.setDevToolsTitle(title)`
+
+* `title` string
+
+Changes the title of the DevTools window to `title`. This will only be visible if DevTools is
+opened in `undocked` or `detach` mode.
 
 #### `contents.toggleDevTools()`
 
