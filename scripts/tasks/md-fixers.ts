@@ -110,6 +110,19 @@ const newLineOnAdmonition = (line: string) => {
 };
 
 /**
+ * MDX requires </details> tag to be on its own line for some reason.
+ * @param line
+ */
+const newLineOnDetails = (line: string) => {
+  if (line.trim().endsWith(' </details>')) {
+    const restOfContent = line.trim().split(' </details>')[0];
+    return `${restOfContent}\n</details>`;
+  }
+
+  return line;
+};
+
+/**
  * Applies any transformation that can be executed line by line on
  * the document to make sure it is ready to be consumed by
  * docusaurus and our md extensions:
@@ -125,6 +138,7 @@ const transform = (doc: string) => {
     fiddleTransformer,
     newLineOnHTMLComment,
     newLineOnAdmonition,
+    newLineOnDetails,
   ];
 
   for (const line of lines) {
