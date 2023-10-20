@@ -108,6 +108,7 @@ app.whenReady().then(() => {
       * `monospace` string (optional) - Defaults to `Courier New`.
       * `cursive` string (optional) - Defaults to `Script`.
       * `fantasy` string (optional) - Defaults to `Impact`.
+      * `math` string (optional) - Defaults to `Latin Modern Math`.
     * `defaultFontSize` Integer (optional) - Defaults to `16`.
     * `defaultMonospaceFontSize` Integer (optional) - Defaults to `13`.
     * `minimumFontSize` Integer (optional) - Defaults to `0`.

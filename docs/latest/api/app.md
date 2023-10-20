@@ -135,9 +135,8 @@ Emitted when the user wants to open a URL with the application. Your application
 set `NSPrincipalClass` to `AtomApplication`.
 
 As with the `open-file` event, be sure to register a listener for the `open-url`
-event early in your application startup to detect if the the application being
-is being opened to handle a URL. If you register the listener in response to a
-`ready` event, you'll miss URLs that trigger the launch of your application.
+event early in your application startup to detect if the application is being opened to handle a URL.
+If you register the listener in response to a `ready` event, you'll miss URLs that trigger the launch of your application.
 
 ### Event: 'activate' _macOS_
 
@@ -1142,11 +1141,11 @@ indicates success while any other value indicates failure according to Chromium 
     resolver will attempt to use the system's DNS settings to do DNS lookups
     itself. Enabled by default on macOS, disabled by default on Windows and
     Linux.
-  * `secureDnsMode` string (optional) - Can be "off", "automatic" or "secure".
-    Configures the DNS-over-HTTP mode. When "off", no DoH lookups will be
-    performed. When "automatic", DoH lookups will be performed first if DoH is
+  * `secureDnsMode` string (optional) - Can be 'off', 'automatic' or 'secure'.
+    Configures the DNS-over-HTTP mode. When 'off', no DoH lookups will be
+    performed. When 'automatic', DoH lookups will be performed first if DoH is
     available, and insecure DNS lookups will be performed as a fallback. When
-    "secure", only DoH lookups will be performed. Defaults to "automatic".
+    'secure', only DoH lookups will be performed. Defaults to 'automatic'.
   * `secureDnsServers` string[]&#32;(optional) - A list of DNS-over-HTTP
     server templates. See [RFC8484 § 3][] for details on the template format.
     Most servers support the POST method; the template for such servers is
@@ -1271,6 +1270,9 @@ On macOS, it shows on the dock icon. On Linux, it only works for Unity launcher.
 
 **Note:** Unity launcher requires a `.desktop` file to work. For more information,
 please read the [Unity integration documentation][unity-requirement].
+
+**Note:** On macOS, you need to ensure that your application has the permission
+to display notifications for this method to work.
 
 ### `app.getBadgeCount()` _Linux_ _macOS_
 
