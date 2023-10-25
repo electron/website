@@ -119,7 +119,11 @@
     // use margin instead of padding so that the border-bottom
     // on active looks better
     padding: 0;
-    margin: 0.25rem 0.64rem;
+    margin: var(--ifm-navbar-item-padding-vertical)
+      var(--ifm-navbar-item-padding-horizontal);
+    @media screen and (max-width: 1033px) {
+      margin: 0.25rem 0.64rem;
+    }
   }
 
   &__link {
