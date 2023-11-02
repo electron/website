@@ -96,7 +96,7 @@ with Chromium's 4-week release schedule. For example, Electron 26 uses Chromium 
 Electron upgrades its `main` branch to even-number versions of Node.js when they enter Active LTS. The schedule
 is as follows:
 
-<img src="https://raw.githubusercontent.com/nodejs/Release/main/schedule.svg?sanitize=true" alt="Releases">
+<img src="https://raw.githubusercontent.com/nodejs/Release/main/schedule.svg?sanitize=true" alt="Releases"/>
 
 As a rule, stable branches of Electron do not receive Node.js upgrades after they have been cut.
 If Electron has recently updated its `main` branch to a new major version of Node.js, the next stable
