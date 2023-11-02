@@ -123,6 +123,19 @@ const newLineOnDetails = (line: string) => {
 };
 
 /**
+ * MDX requires <img> tags to be closed (e.g. <img/>).
+ * This fixer isn't perfect and only works for <img> tags that take up a whole line.
+ * @param line
+ */
+const noUnclosedImageTags = (line: string) => {
+  if (line.match(/^(<img[^>]+)(?<!\/)>$/)) {
+    return `${line.slice(0, -1)}/>`;
+  } else {
+    return line;
+  }
+};
+
+/**
  * Applies any transformation that can be executed line by line on
  * the document to make sure it is ready to be consumed by
  * docusaurus and our md extensions:
@@ -139,6 +152,7 @@ const transform = (doc: string) => {
     newLineOnHTMLComment,
     newLineOnAdmonition,
     newLineOnDetails,
+    noUnclosedImageTags,
   ];
 
   for (const line of lines) {
