@@ -22,12 +22,12 @@ export default function FiddlePage() {
 
   const downloadLinks = {
     win32: {
-      ia32: `https://github.com/electron/fiddle/releases/download/${version}/electron-fiddle-${version}-win32-ia32-setup.exe`,
-      x64: `https://github.com/electron/fiddle/releases/download/${version}/electron-fiddle-${version}-win32-x64-setup.exe`,
+      ia32: `https://github.com/electron/fiddle/releases/download/v${version}/electron-fiddle-${version}-win32-ia32-setup.exe`,
+      x64: `https://github.com/electron/fiddle/releases/download/v${version}/electron-fiddle-${version}-win32-x64-setup.exe`,
     },
     darwin: {
-      x64: `https://github.com/electron/fiddle/releases/download/${version}/Electron.Fiddle-darwin-x64-${version}.zip`,
-      arm64: `https://github.com/electron/fiddle/releases/download/${version}/Electron.Fiddle-darwin-arm64-${version}.zip`,
+      x64: `https://github.com/electron/fiddle/releases/download/v${version}/Electron.Fiddle-darwin-x64-${version}.zip`,
+      arm64: `https://github.com/electron/fiddle/releases/download/v${version}/Electron.Fiddle-darwin-arm64-${version}.zip`,
     },
     linux: {
       deb: {
