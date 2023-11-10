@@ -13,7 +13,7 @@ import { SemVer } from 'semver';
 
 export default function FiddlePage() {
   const [OS, setOS] = useState('win32');
-  let { version } = usePluginData('fiddle-versions-plugin') as SemVer;
+  const { version } = usePluginData('fiddle-versions-plugin') as SemVer;
   useEffect(() => {
     if (navigator.userAgent.indexOf('Windows') != -1) return setOS('win32');
     if (navigator.userAgent.indexOf('Mac') != -1) return setOS('darwin');
@@ -21,6 +21,14 @@ export default function FiddlePage() {
   }, []);
 
   const downloadLinks = {
+    win32: {
+      ia32: `https://github.com/electron/fiddle/releases/download/${version}/electron-fiddle-${version}-win32-ia32-setup.exe`,
+      x64: `https://github.com/electron/fiddle/releases/download/${version}/electron-fiddle-${version}-win32-x64-setup.exe`,
+    },
+    darwin: {
+      x64: `https://github.com/electron/fiddle/releases/download/${version}/Electron.Fiddle-darwin-x64-${version}.zip`,
+      arm64: `https://github.com/electron/fiddle/releases/download/${version}/Electron.Fiddle-darwin-arm64-${version}.zip`,
+    },
     linux: {
       deb: {
         x64: `https://github.com/electron/fiddle/releases/download/v${version}/electron-fiddle_${version}_amd64.deb`,
@@ -38,21 +46,6 @@ export default function FiddlePage() {
         arm7l: `https://github.com/electron/fiddle/releases/download/v${version}/Electron.Fiddle-${version}-armv7hl.AppImage`,
       },
     },
-  };
-
-  // TODO(dsanders11): Remove this ugly hack once this is resolved
-  // v0.34.3 is a Linux-only release, so for other platforms fall back to v0.34.2
-  if (version === '0.34.3') {
-    version = '0.34.2';
-  }
-
-  downloadLinks.win32 = {
-    ia32: `https://github.com/electron/fiddle/releases/download/v${version}/electron-fiddle-${version}-win32-ia32-setup.exe`,
-    x64: `https://github.com/electron/fiddle/releases/download/v${version}/electron-fiddle-${version}-win32-x64-setup.exe`,
-  };
-  downloadLinks.darwin = {
-    x64: `https://github.com/electron/fiddle/releases/download/v${version}/Electron.Fiddle-darwin-x64-${version}.zip`,
-    arm64: `https://github.com/electron/fiddle/releases/download/v${version}/Electron.Fiddle-darwin-arm64-${version}.zip`,
   };
 
   const renderDownloadButtons = () => {
