@@ -18,7 +18,7 @@ January 2024.
 ## What will be the same in December
 
 1. Zero-day and other major security-related releases will be published as necessary. Security
-   incidents should be reported via [SECURITY.md](https://github.com/electron/electron/tree/master/SECURITY.md).
+   incidents should be reported via [SECURITY.md](https://github.com/electron/electron/tree/main/SECURITY.md).
 1. [Code of Conduct](https://github.com/electron/electron/blob/main/CODE_OF_CONDUCT.md) reports
    and moderation will continue.
 
