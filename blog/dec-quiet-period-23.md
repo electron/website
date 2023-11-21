@@ -2,9 +2,12 @@
 title: December Quiet Month (Dec'23)
 date: 2023-11-20T00:00:00.000Z
 authors:
-  name: plainekevin
-  url: 'https://github.com/PlaineKevin'
-  image_url: 'https://github.com/plainekevin.png?size=96'
+  - name: PlaineKevin
+    url: 'https://github.com/PlaineKevin'
+    image_url: 'https://github.com/PlaineKevin.png?size=96'
+  - name: erickzhao
+    url: 'https://github.com/erickzhao'
+    image_url: 'https://github.com/erickzhao.png?size=96'
 slug: dec-quiet-period-23
 ---
 
