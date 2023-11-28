@@ -27,7 +27,8 @@ January 2024.
 
 ## What will be different in December
 
-1. No new Stable releases in December. No Nightly and Alpha releases for the last two weeks of December.
+1. Electron 28.0.0 will be released on December 5th. After Electron 28, there will be no new Stable releases in December.
+1. No Nightly and Alpha releases for the last two weeks of December.
 1. With few exceptions, no pull request reviews or merges.
 1. No issue tracker updates on any repositories.
 1. No Discord debugging help from maintainers.
