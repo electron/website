@@ -35,6 +35,7 @@ For more details, see the full [Forge v7.0.0 changelog](https://github.com/elect
 - **[Makers now run in parallel](https://github.com/electron/forge/pull/3363):** In Electron Forge 6, Makers ran sequentially for ✨ legacy ✨ reasons. Since then, we’ve tested out parallelization for the Make step with no adverse side effects, so you should see a speed-up when building multiple targets for the same platform!
 
 :::info Thank you!
+
 🙇 Big thanks to **[mahnunchik](https://github.com/mahnunchik)** for the contributions for both the GCS Publisher and ESM support in Forge configurations!
 
 :::
@@ -69,6 +70,7 @@ updateElectronApp({
 ```
 
 :::info Further reading
+
 📦 Want to learn more? For a detailed guide, see [Forge’s auto update documentation](https://www.electronforge.io/advanced/auto-update).
 
 :::
@@ -96,6 +98,7 @@ Going forward, all first-party packages we release will also be in the `@electro
 - Electron Forge will continue to publish all of its monorepo packages under the `@electron-forge/` namespace.
 
 :::info Star seeking
+
 ⭐ During this process, we also accidentally took the electron/packager repository private, which has the unfortunate side effect of erasing our GitHub star count (over 9000 before the erasure). If you are an active user of Packager, we’d appreciate a ⭐ **Star** ⭐!
 
 :::
