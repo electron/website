@@ -34,10 +34,10 @@ For more details, see the full [Forge v7.0.0 changelog](https://github.com/elect
 - **ESM forge.config.js support:** Electron Forge now supports ESM `forge.config.js` files. (P.S. Look forward to ESM entrypoint support in Electron 28.)
 - **Makers now run in parallel:** In Electron Forge 6, Makers ran sequentially for ✨ legacy ✨ reasons. Since then, we’ve tested out parallelization for the Make step with no adverse side effects, so you should see a speed-up when building multiple targets for the same platform!
 
-<aside>
+:::info Thank you!
 🙇 Big thanks to **[mahnunchik](https://github.com/mahnunchik)** for the contributions for both the GCS Publisher and ESM support in Forge configurations!
 
-</aside>
+:::
 
 ## Better static storage auto updates
 
@@ -68,10 +68,10 @@ updateElectronApp({
 });
 ```
 
-<aside>
+:::info Further reading
 📦 Want to learn more? For a detailed guide, see [Forge’s auto update documentation](https://www.electronforge.io/advanced/auto-update).
 
-</aside>
+:::
 
 ## The `@electron/` extended universe
 
@@ -95,10 +95,10 @@ Going forward, all first-party packages we release will also be in the `@electro
 - Electron core will continue to be published under the `electron` package.
 - Electron Forge will continue to publish all of its monorepo packages under the `@electron-forge/` namespace.
 
-<aside>
+:::info Star seeking
 ⭐ During this process, we also accidentally took the electron/packager repository private, which has the unfortunate side effect of erasing our GitHub star count (over 9000 before the erasure). If you are an active user of Packager, we’d appreciate a ⭐ **Star** ⭐!
 
-</aside>
+:::
 
 ## Introducing `@electron/windows-sign`
 
