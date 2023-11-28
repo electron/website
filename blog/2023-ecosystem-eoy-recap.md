@@ -111,8 +111,6 @@ In practice, this meant that code signing became a lot harder for apps that buil
 
 This situation has been a common pain point for Electron developers, which is why we have been working on a better solution that isolates Windows code signing into its own standalone step, similar to what `@electron/osx-sign` does on macOS.
 
-https://github.com/electron/windows-sign
-
 In the future, we plan on fully integrating this package into the Electron Forge toolchain, but it currently lives on its own. The package is currently available for installation at `npm install --save-dev @electron/windows-sign` and can used programmatically or via CLI.
 
 Please try it out and give us your feedback in the [repo’s issue tracker](https://github.com/electron/windows-sign/issues)!
