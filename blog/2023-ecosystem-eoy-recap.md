@@ -25,7 +25,7 @@ For more details, see the full [Forge v7.0.0 changelog](https://github.com/elect
 ### Breaking changes
 
 - **Switched to `notarytool` for macOS notarization:** As of 2023-11-01, Apple sunset the legacy `altool` for macOS notarization, and this release removes it from Electron Forge entirely.
-- **Minimum Node.js increased to v16.0.0:** With this release, we’ve set the minimum required Node.js version to 16.0.0.
+- **Minimum Node.js increased to v16.4.0:** With this release, we’ve set the minimum required Node.js version to 16.4.0.
 - **Dropped support for `electron-prebuilt` and `electron-prebuilt-compile`**: `electron-prebuilt` [was the original name for Electron’s npm module](https://www.electronjs.org/blog/npm-install-electron), but was replaced by `electron` in v1.3.1. `electron-prebuilt-compile` was an alternative to that binary that came with enhanced DX features, but was eventually abandoned as a project.
 
 ### Highlights
