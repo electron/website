@@ -115,7 +115,7 @@ In the future, we plan on fully integrating this package into the Electron Forge
 
 Please try it out and give us your feedback in the [repo’s issue tracker](https://github.com/electron/windows-sign/issues)!
 
-## What's Next?
+## What's next?
 
 We'll be entering our annual December quiet period next month. While we do, we'll be thinking about how we can make the Electron development experience even better in 2024.
 
