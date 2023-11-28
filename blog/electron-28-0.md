@@ -11,7 +11,7 @@ authors:
 slug: electron-28-0
 ---
 
-Electron 28.0.0 has been released! It includes upgrades to Chromium `120.0.5993.32`, V8 `11.8`, and Node.js `18.17.1`.
+Electron 28.0.0 has been released! It includes upgrades to Chromium `120.0.6099.18`, V8 `11.8`, and Node.js `18.18.2`.
 
 ---
 
@@ -23,13 +23,20 @@ If you have any feedback, please share it with us on [Twitter](https://twitter.c
 
 ### Stack Changes
 
-- Chromium `120.x`
-  - [New in Chrome 118](https://developer.chrome.com/blog/new-in-chrome-118/)
-  - [New in DevTools 118](https://developer.chrome.com/blog/new-in-devtools-118/)
-- Node.js `18.x`
-  - [Node 18.17.1 blog post](https://nodejs.org/en/blog/release/v18.17.1/)
-  - [Node 18.17.0 blog post](https://nodejs.org/en/blog/release/v18.17.0/)
+- Chromium `120.0.6099.18`
+  - [New in Chrome 120](https://developer.chrome.com/blog/new-in-chrome-120/)
+  - [New in DevTools 120](https://developer.chrome.com/blog/new-in-devtools-120/)
+- Node.js `18.18.2`
+  - [Node 18.18.2 blog post](https://nodejs.org/en/blog/release/v18.18.2/)
+  - [Node 18.18.1 blog post](https://nodejs.org/en/blog/release/v18.18.1/)
+  - [Node 18.18.0 blog post](https://nodejs.org/en/blog/release/v18.18.0/)
 - V8 `11.8`
+
+### New Features
+
+- Enabled ESM support. [#37535](https://github.com/electron/electron/pull/37535)
+    - For more details, see the [ESM documentation](https://github.com/electron/electron/blob/main/docs/tutorial/esm.md).
+- 
 
 ### Breaking Changes
 
@@ -155,10 +162,6 @@ app.on('gpu-process-crashed', (event, killed) => { /* ... */ })
 app.on('child-process-gone', (event, details) => { /* ... */ })
 ```
 
-### New Features
-
-- TBD: ADD
-
 ## End of Support for 25.x.y
 
 Electron 25.x.y has reached end-of-support as per the project's [support policy](https://www.electronjs.org/docs/latest/tutorial/electron-timelines#version-support-policy). Developers and applications are encouraged to upgrade to a newer version of Electron.
@@ -166,7 +169,7 @@ Electron 25.x.y has reached end-of-support as per the project's [support policy]
 | E28 (Dec'23) | E29 (Feb'24) | E30 (May'24) |
 | ------------ | ------------ | ------------ |
 | 28.x.y       | 29.x.y       | 30.x.y       |
-| 27.x.y       | 38.x.y       | 29.x.y       |
+| 27.x.y       | 28.x.y       | 29.x.y       |
 | 26.x.y       | 27.x.y       | 28.x.y       |
 
 
