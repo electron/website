@@ -42,7 +42,7 @@ For more details, see the full [Forge v7.0.0 changelog](https://github.com/elect
 
 ## Better static storage auto updates
 
-[Squirrel.Windows](http://Squirrel.Windows) and Squirrel.Mac are platform-specific updater technologies that back Electron’s built-in `autoUpdater` module. Both projects support auto updates via two methods:
+Squirrel.Windows and Squirrel.Mac are platform-specific updater technologies that back Electron’s built-in `autoUpdater` module. Both projects support auto updates via two methods:
 
 - A Squirrel-compatible update server
 - A manifest URL hosted on a static storage provider (e.g. AWS, Google Cloud Platform, Microsoft Azure, etc.)
@@ -53,8 +53,8 @@ On the other hand, the static storage method has always been possible, but was u
 
 With some great work from `@MarshallOfSound`, the update story for serverless automatic app updates has been drastically streamlined:
 
-- Electron Forge’s Zip and [Squirrel.Windows](http://Squirrel.Windows) makers can now be configured to output `autoUpdater`-compatible update manifests.
-- A new major version of `update-electron-app` (v2.0.0) can now read these generated manifests as an alternative to the [update.electronjs.org](http://update.electronjs.org) server.
+- Electron Forge’s Zip and Squirrel.Windows makers can now be configured to output `autoUpdater`-compatible update manifests.
+- A new major version of `update-electron-app` (v2.0.0) can now read these generated manifests as an alternative to the [update.electronjs.org](https://update.electronjs.org) server.
 
 Once your Makers and Publishers are configured to upload update manifests to cloud file storage, you can enable auto updates with only a few lines of configuration:
 
@@ -115,7 +115,7 @@ https://github.com/electron/windows-sign
 
 In the future, we plan on fully integrating this package into the Electron Forge toolchain, but it currently lives on its own. The package is currently available for installation at `npm install --save-dev @electron/windows-sign` and can used programmatically or via CLI.
 
-Please try it out and give us your feedback in the repo’s issue tracker!
+Please try it out and give us your feedback in the [repo’s issue tracker](https://github.com/electron/windows-sign/issues)!
 
 ## What's Next?
 
