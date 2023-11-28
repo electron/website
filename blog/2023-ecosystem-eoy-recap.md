@@ -30,9 +30,9 @@ For more details, see the full [Forge v7.0.0 changelog](https://github.com/elect
 
 ### Highlights
 
-- **Google Cloud Storage publisher:** As part of our push to better support static auto updating, Electron Forge now supports publishing directly to Google Cloud Storage!
-- **ESM forge.config.js support:** Electron Forge now supports ESM `forge.config.js` files. (P.S. Look forward to ESM entrypoint support in Electron 28.)
-- **Makers now run in parallel:** In Electron Forge 6, Makers ran sequentially for ✨ legacy ✨ reasons. Since then, we’ve tested out parallelization for the Make step with no adverse side effects, so you should see a speed-up when building multiple targets for the same platform!
+- **[Google Cloud Storage publisher](https://github.com/electron/forge/pull/2100):** As part of our push to better support static auto updating, Electron Forge now supports publishing directly to Google Cloud Storage!
+- **[ESM forge.config.js support](https://github.com/electron/forge/pull/3358):** Electron Forge now supports ESM `forge.config.js` files. (P.S. Look forward to ESM entrypoint support in Electron 28.)
+- **[Makers now run in parallel](https://github.com/electron/forge/pull/3363):** In Electron Forge 6, Makers ran sequentially for ✨ legacy ✨ reasons. Since then, we’ve tested out parallelization for the Make step with no adverse side effects, so you should see a speed-up when building multiple targets for the same platform!
 
 :::info Thank you!
 🙇 Big thanks to **[mahnunchik](https://github.com/mahnunchik)** for the contributions for both the GCS Publisher and ESM support in Forge configurations!
