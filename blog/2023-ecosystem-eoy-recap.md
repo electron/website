@@ -1,5 +1,5 @@
 ---
-title: Electron's Ecosystem 2023 Recap
+title: Ecosystem 2023 Recap
 date: 2023-11-30T00:00:00.000Z
 authors:
   - name: erickzhao
