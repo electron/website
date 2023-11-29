@@ -158,7 +158,7 @@ can have a submenu.
 
 An example of creating the application menu with the simple template API:
 
-```javascript @ts-expect-error=[107]
+```js @ts-expect-error=[107]
 const { app, Menu } = require('electron')
 
 const isMac = process.platform === 'darwin'
@@ -360,7 +360,7 @@ By default, items will be inserted in the order they exist in the template unles
 
 Template:
 
-```javascript
+```js
 [
   { id: '1', label: 'one' },
   { id: '2', label: 'two' },
@@ -380,7 +380,7 @@ Menu:
 
 Template:
 
-```javascript
+```js
 [
   { id: '1', label: 'one' },
   { type: 'separator' },
@@ -404,7 +404,7 @@ Menu:
 
 Template:
 
-```javascript
+```js
 [
   { id: '1', label: 'one', after: ['3'] },
   { id: '2', label: 'two', before: ['1'] },

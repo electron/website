@@ -68,7 +68,7 @@ By default Electron employs the same [blocklist](https://github.com/WICG/webhid/
 used by Chromium.  If you wish to override this behavior, you can do so by
 setting the `disable-hid-blocklist` flag:
 
-```javascript
+```js
 app.commandLine.appendSwitch('disable-hid-blocklist')
 ```
 

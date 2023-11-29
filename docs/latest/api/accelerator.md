@@ -22,7 +22,7 @@ Shortcuts are registered with the [`globalShortcut`](latest/api/global-shortcut.
 using the [`register`](latest/api/global-shortcut.md#globalshortcutregisteraccelerator-callback)
 method, i.e.
 
-```javascript
+```js
 const { app, globalShortcut } = require('electron')
 
 app.whenReady().then(() => {

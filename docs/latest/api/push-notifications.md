@@ -13,7 +13,7 @@ Process: [Main](latest/glossary.md#main-process)
 
 For example, when registering for push notifications via Apple push notification services (APNS):
 
-```javascript
+```js
 const { pushNotifications, Notification } = require('electron')
 
 pushNotifications.registerForAPNSNotifications().then((token) => {

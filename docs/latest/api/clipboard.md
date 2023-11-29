@@ -14,7 +14,7 @@ Process: [Main](latest/glossary.md#main-process), [Renderer](latest/glossary.md#
 On Linux, there is also a `selection` clipboard. To manipulate it
 you need to pass `selection` to each method:
 
-```javascript
+```js
 const { clipboard } = require('electron')
 
 clipboard.writeText('Example string', 'selection')

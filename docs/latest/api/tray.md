@@ -15,7 +15,7 @@ Process: [Main](latest/glossary.md#main-process)
 
 `Tray` is an [EventEmitter][event-emitter].
 
-```javascript
+```js
 const { app, Menu, Tray } = require('electron')
 
 let tray = null
@@ -46,7 +46,7 @@ app.whenReady().then(() => {
 * In order for changes made to individual `MenuItem`s to take effect,
   you have to call `setContextMenu` again. For example:
 
-```javascript
+```js
 const { app, Menu, Tray } = require('electron')
 
 let appIcon = null
