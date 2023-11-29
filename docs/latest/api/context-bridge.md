@@ -13,7 +13,7 @@ Process: [Renderer](latest/glossary.md#renderer-process)
 
 An example of exposing an API to a renderer from an isolated preload script is given below:
 
-```javascript
+```js
 // Preload (Isolated World)
 const { contextBridge, ipcRenderer } = require('electron')
 
@@ -25,7 +25,7 @@ contextBridge.exposeInMainWorld(
 )
 ```
 
-```javascript @ts-nocheck
+```js @ts-nocheck
 // Renderer (Main World)
 
 window.electron.doThing()
@@ -71,7 +71,7 @@ the API become immutable and updates on either side of the bridge do not result 
 
 An example of a complex API is shown below:
 
-```javascript
+```js
 const { contextBridge, ipcRenderer } = require('electron')
 
 contextBridge.exposeInMainWorld(
@@ -99,7 +99,7 @@ contextBridge.exposeInMainWorld(
 
 An example of `exposeInIsolatedWorld` is shown below:
 
-```javascript
+```js
 const { contextBridge, ipcRenderer } = require('electron')
 
 contextBridge.exposeInIsolatedWorld(
@@ -111,7 +111,7 @@ contextBridge.exposeInIsolatedWorld(
 )
 ```
 
-```javascript @ts-nocheck
+```js @ts-nocheck
 // Renderer (In isolated world id1004)
 
 window.electron.doThing()
@@ -152,7 +152,7 @@ The table of supported types described above also applies to Node APIs that you 
 Please note that many Node APIs grant access to local system resources.
 Be very cautious about which globals and APIs you expose to untrusted remote content.
 
-```javascript
+```js
 const { contextBridge } = require('electron')
 const crypto = require('node:crypto')
 contextBridge.exposeInMainWorld('nodeCrypto', {

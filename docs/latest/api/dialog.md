@@ -13,7 +13,7 @@ Process: [Main](latest/glossary.md#main-process)
 
 An example of showing a dialog to select multiple files:
 
-```javascript
+```js
 const { dialog } = require('electron')
 console.log(dialog.showOpenDialog({ properties: ['openFile', 'multiSelections'] }))
 ```
@@ -59,7 +59,7 @@ The `browserWindow` argument allows the dialog to attach itself to a parent wind
 The `filters` specifies an array of file types that can be displayed or
 selected when you want to limit the user to a specific type. For example:
 
-```javascript
+```js
 {
   filters: [
     { name: 'Images', extensions: ['jpg', 'png', 'gif'] },
@@ -126,7 +126,7 @@ The `browserWindow` argument allows the dialog to attach itself to a parent wind
 The `filters` specifies an array of file types that can be displayed or
 selected when you want to limit the user to a specific type. For example:
 
-```javascript
+```js
 {
   filters: [
     { name: 'Images', extensions: ['jpg', 'png', 'gif'] },

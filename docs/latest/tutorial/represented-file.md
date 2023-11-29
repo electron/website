@@ -31,29 +31,31 @@ To set the represented file of window, you can use the
 const { app, BrowserWindow } = require('electron')
 const os = require('node:os')
 
-const createWindow = () => {
+function createWindow () {
   const win = new BrowserWindow({
     width: 800,
     height: 600
   })
-}
-
-app.whenReady().then(() => {
-  const win = new BrowserWindow()
 
   win.setRepresentedFilename(os.homedir())
   win.setDocumentEdited(true)
+
+  win.loadFile('index.html')
+}
+
+app.whenReady().then(() => {
+  createWindow()
+
+  app.on('activate', () => {
+    if (BrowserWindow.getAllWindows().length === 0) {
+      createWindow()
+    }
+  })
 })
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit()
-  }
-})
-
-app.on('activate', () => {
-  if (BrowserWindow.getAllWindows().length === 0) {
-    createWindow()
   }
 })
 ```

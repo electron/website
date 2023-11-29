@@ -17,7 +17,7 @@ a `Session`.
 
 For example:
 
-```javascript
+```js
 const { session } = require('electron')
 
 // Query all cookies.

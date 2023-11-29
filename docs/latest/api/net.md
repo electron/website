@@ -33,7 +33,7 @@ Node.js.
 
 Example usage:
 
-```javascript
+```js
 const { app } = require('electron')
 app.whenReady().then(() => {
   const { net } = require('electron')

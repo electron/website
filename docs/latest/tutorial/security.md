@@ -391,7 +391,7 @@ which can be set using Electron's
 [`webRequest.onHeadersReceived`](latest/api/web-request.md#webrequestonheadersreceivedfilter-listener)
 handler:
 
-```javascript title='main.js (Main Process)'
+```js title='main.js (Main Process)'
 const { session } = require('electron')
 
 session.defaultSession.webRequest.onHeadersReceived((details, callback) => {

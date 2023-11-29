@@ -23,7 +23,7 @@ module is emitted.
 
 ### Example
 
-```javascript
+```js
 // In the main process.
 const { app, BrowserView, BrowserWindow } = require('electron')
 

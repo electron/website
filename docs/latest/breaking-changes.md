@@ -431,7 +431,7 @@ The `new-window` event of `<webview>` has been removed. There is no direct repla
 webview.addEventListener('new-window', (event) => {})
 ```
 
-```fiddle docs/latest/fiddles/ipc/webview-new-window
+```js
 // Replace with
 
 // main.js
@@ -1096,7 +1096,7 @@ module](https://medium.com/@nornagon/electrons-remote-module-considered-harmful-
 
 The APIs are now synchronous and the optional callback is no longer needed.
 
-```javascript
+```js
 // Deprecated
 protocol.unregisterProtocol(scheme, () => { /* ... */ })
 // Replace with
@@ -1125,7 +1125,7 @@ protocol.unregisterProtocol(scheme)
 
 The APIs are now synchronous and the optional callback is no longer needed.
 
-```javascript
+```js
 // Deprecated
 protocol.registerFileProtocol(scheme, handler, () => { /* ... */ })
 // Replace with
@@ -1140,7 +1140,7 @@ until navigation happens.
 This API is deprecated and users should use `protocol.isProtocolRegistered`
 and `protocol.isProtocolIntercepted` instead.
 
-```javascript
+```js
 // Deprecated
 protocol.isProtocolHandled(scheme).then(() => { /* ... */ })
 // Replace with
