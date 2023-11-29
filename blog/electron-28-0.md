@@ -31,12 +31,12 @@ If you have any feedback, please share it with us on [Twitter](https://twitter.c
 
 ### Breaking Changes
 
-### Behavior Changed: `WebContents.backgroundThrottling` set to false affects all `WebContents` in the host `BrowserWindow`
+#### Behavior Changed: `WebContents.backgroundThrottling` set to false affects all `WebContents` in the host `BrowserWindow`
 
 `WebContents.backgroundThrottling` set to false will disable frames throttling
 in the `BrowserWindow` for all `WebContents` displayed by it.
 
-### Removed: `BrowserWindow.setTrafficLightPosition(position)`
+#### Removed: `BrowserWindow.setTrafficLightPosition(position)`
 
 `BrowserWindow.setTrafficLightPosition(position)` has been removed, the
 `BrowserWindow.setWindowButtonPosition(position)` API should be used instead
@@ -53,7 +53,7 @@ win.setWindowButtonPosition({ x: 10, y: 10 })
 win.setWindowButtonPosition(null)
 ```
 
-### Removed: `BrowserWindow.getTrafficLightPosition()`
+#### Removed: `BrowserWindow.getTrafficLightPosition()`
 
 `BrowserWindow.getTrafficLightPosition()` has been removed, the
 `BrowserWindow.getWindowButtonPosition()` API should be used instead
@@ -74,13 +74,13 @@ if (ret === null) {
 }
 ```
 
-### Removed: `ipcRenderer.sendTo()`
+#### Removed: `ipcRenderer.sendTo()`
 
 The `ipcRenderer.sendTo()` API has been removed. It should be replaced by setting up a [`MessageChannel`](tutorial/message-ports.md#setting-up-a-messagechannel-between-two-renderers) between the renderers.
 
 The `senderId` and `senderIsMainFrame` properties of `IpcRendererEvent` have been removed as well.
 
-### Removed: `app.runningUnderRosettaTranslation`
+#### Removed: `app.runningUnderRosettaTranslation`
 
 The `app.runningUnderRosettaTranslation` property has been removed.
 Use `app.runningUnderARM64Translation` instead.
@@ -90,53 +90,6 @@ Use `app.runningUnderARM64Translation` instead.
 console.log(app.runningUnderRosettaTranslation)
 // Replace with
 console.log(app.runningUnderARM64Translation)
-```
-
-### Deprecated: `renderer-process-crashed` event on `app`
-
-The `renderer-process-crashed` event on `app` has been deprecated.
-Use the new `render-process-gone` event instead.
-
-```js
-// Deprecated
-app.on('renderer-process-crashed', (event, webContents, killed) => { /* ... */ })
-
-// Replace with
-app.on('render-process-gone', (event, webContents, details) => { /* ... */ })
-```
-
-### Deprecated: `params.inputFormType` property on `context-menu` on `WebContents`
-
-The `inputFormType` property of the params object in the `context-menu`
-event from `WebContents` has been deprecated. Use the new `formControlType`
-property instead.
-
-### Deprecated: `crashed` event on `WebContents` and `<webview>`
-
-The `crashed` events on `WebContents` and `<webview>` have been deprecated.
-Use the new `render-process-gone` event instead.
-
-```js
-// Deprecated
-win.webContents.on('crashed', (event, killed) => { /* ... */ })
-webview.addEventListener('crashed', (event) => { /* ... */ })
-
-// Replace with
-win.webContents.on('render-process-gone', (event, details) => { /* ... */ })
-webview.addEventListener('render-process-gone', (event) => { /* ... */ })
-```
-
-### Deprecated: `gpu-process-crashed` event on `app`
-
-The `gpu-process-crashed` event on `app` has been deprecated.
-Use the new `child-process-gone` event instead.
-
-```js
-// Deprecated
-app.on('gpu-process-crashed', (event, killed) => { /* ... */ })
-
-// Replace with
-app.on('child-process-gone', (event, details) => { /* ... */ })
 ```
 
 ### New Features
