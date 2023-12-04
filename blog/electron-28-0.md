@@ -8,7 +8,7 @@ authors:
 slug: electron-28-0
 ---
 
-Electron 28.0.0 has been released! It includes upgrades to Chromium `120.0.6099.5`, V8 `12.0`, and Node.js `18.18.2`.
+Electron 28.0.0 has been released! It includes upgrades to Chromium `120.0.6099.56`, V8 `12.0`, and Node.js `18.18.2`.
 
 ---
 
@@ -20,7 +20,7 @@ If you have any feedback, please share it with us on [Twitter](https://twitter.c
 
 ### Stack Changes
 
-- Chromium `120.0.6099.5`
+- Chromium `120.0.6099.56`
   - New in [Chrome 119](https://developer.chrome.com/blog/new-in-chrome-119/) and in [DevTools 119](https://developer.chrome.com/blog/new-in-devtools-119/)
   - New in [Chrome 120](https://developer.chrome.com/blog/new-in-chrome-120/) and in [DevTools 120](https://developer.chrome.com/blog/new-in-devtools-120/)
 
@@ -29,6 +29,16 @@ If you have any feedback, please share it with us on [Twitter](https://twitter.c
   - [Node 18.18.1 notes](https://nodejs.org/en/blog/release/v18.18.1/)
   - [Node 18.18.2 notes](https://nodejs.org/en/blog/release/v18.18.2/)
 * V8 `12.0`
+
+### New Features
+
+- Enabled ESM support. [#37535](https://github.com/electron/electron/pull/37535)
+    - For more details, see the [ESM documentation](https://github.com/electron/electron/blob/main/docs/tutorial/esm.md).
+- The `UtilityProcess` API now supports ESM entrypoints. [#40047](https://github.com/electron/electron/pull/40047)
+- Added several properties to the `display` object including `detected`, `maximumCursorSize`, and `nativeOrigin`. [#40554](https://github.com/electron/electron/pull/40554)
+- Added support for `ELECTRON_OZONE_PLATFORM_HINT` environment variable on Linux. [#39792](https://github.com/electron/electron/pull/39792)
+
+In addition to enabling ESM support in Electron itself, Electron Forge also supports using ESM to package, build and develop Electron applications. You can find this support in Forge v7.0.0 or higher: https://github.com/electron/forge/releases/tag/v7.0.0
 
 ### Breaking Changes
 
@@ -92,13 +102,6 @@ console.log(app.runningUnderRosettaTranslation);
 // Replace with
 console.log(app.runningUnderARM64Translation);
 ```
-
-### New Features
-
-- Added ESM support. For more details, see [the ESM limitations document](https://github.com/electron/electron/blob/main/docs/tutorial/esm-limitations.md). [#37535](https://github.com/electron/electron/pull/37535)
-- The `UtilityProcess` API now supports ESM entrypoints. [#40047](https://github.com/electron/electron/pull/40047)
-- Added several properties to the `display` object including `detected`, `maximumCursorSize`, and `nativeOrigin`. [#40554](https://github.com/electron/electron/pull/40554)
-- Added support for `ELECTRON_OZONE_PLATFORM_HINT` environment variable on Linux. [#39792](https://github.com/electron/electron/pull/39792)
 
 ## End of Support for 25.x.y
 
