@@ -21,14 +21,15 @@ If you have any feedback, please share it with us on [Twitter](https://twitter.c
 ### Stack Changes
 
 - Chromium `120.0.6099.56`
+
   - New in [Chrome 119](https://developer.chrome.com/blog/new-in-chrome-119/) and in [DevTools 119](https://developer.chrome.com/blog/new-in-devtools-119/)
   - New in [Chrome 120](https://developer.chrome.com/blog/new-in-chrome-120/) and in [DevTools 120](https://developer.chrome.com/blog/new-in-devtools-120/)
 
-* Node `18.18.2`
+- Node `18.18.2`
   - [Node 18.18.0 notes](https://nodejs.org/en/blog/release/v18.18.0/)
   - [Node 18.18.1 notes](https://nodejs.org/en/blog/release/v18.18.1/)
   - [Node 18.18.2 notes](https://nodejs.org/en/blog/release/v18.18.2/)
-* V8 `12.0`
+- V8 `12.0`
 
 ### New Features
 
