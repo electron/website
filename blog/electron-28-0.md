@@ -21,12 +21,13 @@ If you have any feedback, please share it with us on [Twitter](https://twitter.c
 ### Stack Changes
 
 - Chromium `120.0.6099.5`
-    - New in [Chrome 119](https://developer.chrome.com/blog/new-in-chrome-119/) and in [DevTools 119](https://developer.chrome.com/blog/new-in-devtools-119/)
-    - New in [Chrome 120](https://developer.chrome.com/blog/new-in-chrome-120/) and in [DevTools 120](https://developer.chrome.com/blog/new-in-devtools-120/)
+  - New in [Chrome 119](https://developer.chrome.com/blog/new-in-chrome-119/) and in [DevTools 119](https://developer.chrome.com/blog/new-in-devtools-119/)
+  - New in [Chrome 120](https://developer.chrome.com/blog/new-in-chrome-120/) and in [DevTools 120](https://developer.chrome.com/blog/new-in-devtools-120/)
+
 * Node `18.18.2`
-    *  [Node 18.18.0 notes](https://nodejs.org/en/blog/release/v18.18.0/)
-    *  [Node 18.18.1 notes](https://nodejs.org/en/blog/release/v18.18.1/)
-    *  [Node 18.18.2 notes](https://nodejs.org/en/blog/release/v18.18.2/)
+  - [Node 18.18.0 notes](https://nodejs.org/en/blog/release/v18.18.0/)
+  - [Node 18.18.1 notes](https://nodejs.org/en/blog/release/v18.18.1/)
+  - [Node 18.18.2 notes](https://nodejs.org/en/blog/release/v18.18.2/)
 * V8 `12.0`
 
 ### Breaking Changes
@@ -45,12 +46,12 @@ system default.
 
 ```js
 // Removed in Electron 28
-win.setTrafficLightPosition({ x: 10, y: 10 })
-win.setTrafficLightPosition({ x: 0, y: 0 })
+win.setTrafficLightPosition({ x: 10, y: 10 });
+win.setTrafficLightPosition({ x: 0, y: 0 });
 
 // Replace with
-win.setWindowButtonPosition({ x: 10, y: 10 })
-win.setWindowButtonPosition(null)
+win.setWindowButtonPosition({ x: 10, y: 10 });
+win.setWindowButtonPosition(null);
 ```
 
 #### Removed: `BrowserWindow.getTrafficLightPosition()`
@@ -62,13 +63,13 @@ position.
 
 ```js
 // Removed in Electron 28
-const pos = win.getTrafficLightPosition()
+const pos = win.getTrafficLightPosition();
 if (pos.x === 0 && pos.y === 0) {
   // No custom position.
 }
 
 // Replace with
-const ret = win.getWindowButtonPosition()
+const ret = win.getWindowButtonPosition();
 if (ret === null) {
   // No custom position.
 }
@@ -87,27 +88,27 @@ Use `app.runningUnderARM64Translation` instead.
 
 ```js
 // Removed
-console.log(app.runningUnderRosettaTranslation)
+console.log(app.runningUnderRosettaTranslation);
 // Replace with
-console.log(app.runningUnderARM64Translation)
+console.log(app.runningUnderARM64Translation);
 ```
 
 ### New Features
 
-- Added ESM support. For more details, see [the ESM limitations document](https://github.com/electron/electron/blob/main/docs/tutorial/esm-limitations.md). [#37535](https://github.com/electron/electron/pull/37535) 
+- Added ESM support. For more details, see [the ESM limitations document](https://github.com/electron/electron/blob/main/docs/tutorial/esm-limitations.md). [#37535](https://github.com/electron/electron/pull/37535)
 - The `UtilityProcess` API now supports ESM entrypoints. [#40047](https://github.com/electron/electron/pull/40047)
-- Added several properties to the `display` object including `detected`, `maximumCursorSize`, and `nativeOrigin`. [#40554](https://github.com/electron/electron/pull/40554) 
-- Added support for `ELECTRON_OZONE_PLATFORM_HINT` environment variable on Linux. [#39792](https://github.com/electron/electron/pull/39792) 
+- Added several properties to the `display` object including `detected`, `maximumCursorSize`, and `nativeOrigin`. [#40554](https://github.com/electron/electron/pull/40554)
+- Added support for `ELECTRON_OZONE_PLATFORM_HINT` environment variable on Linux. [#39792](https://github.com/electron/electron/pull/39792)
 
 ## End of Support for 25.x.y
 
 Electron 25.x.y has reached end-of-support as per the project's [support policy](https://www.electronjs.org/docs/latest/tutorial/electron-timelines#version-support-policy). Developers and applications are encouraged to upgrade to a newer version of Electron.
 
-| E28 (Dec'23) | E29 (Feb'24) | E30 (Apr'24)
-| ------------ | ------------ | ------------
-| 28.x.y       | 29.x.y       | 30.x.y
-| 27.x.y       | 28.x.y       | 29.x.y
-| 26.x.y       | 27.x.y       | 28.x.y
+| E28 (Dec'23) | E29 (Feb'24) | E30 (Apr'24) |
+| ------------ | ------------ | ------------ |
+| 28.x.y       | 29.x.y       | 30.x.y       |
+| 27.x.y       | 28.x.y       | 29.x.y       |
+| 26.x.y       | 27.x.y       | 28.x.y       |
 
 ## What's Next
 
