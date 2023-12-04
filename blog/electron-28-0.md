@@ -33,7 +33,7 @@ If you have any feedback, please share it with us on [Twitter](https://twitter.c
 ### New Features
 
 - Enabled ESM support. [#37535](https://github.com/electron/electron/pull/37535)
-    - For more details, see the [ESM documentation](https://github.com/electron/electron/blob/main/docs/tutorial/esm.md).
+  - For more details, see the [ESM documentation](https://github.com/electron/electron/blob/main/docs/tutorial/esm.md).
 - The `UtilityProcess` API now supports ESM entrypoints. [#40047](https://github.com/electron/electron/pull/40047)
 - Added several properties to the `display` object including `detected`, `maximumCursorSize`, and `nativeOrigin`. [#40554](https://github.com/electron/electron/pull/40554)
 - Added support for `ELECTRON_OZONE_PLATFORM_HINT` environment variable on Linux. [#39792](https://github.com/electron/electron/pull/39792)
