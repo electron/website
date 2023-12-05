@@ -18,13 +18,16 @@ If you have any feedback, please share it with us on [Twitter](https://twitter.c
 
 ## Notable Changes
 
+## Highlights
+
+- Implemented support for EcmaScript Modules ESM support. This includes support for ESM in Electron proper, as well as areas such as the `UtilityProcess` API entrypoints. See [#37535](https://github.com/electron/electron/pull/37535). and [#40047](https://github.com/electron/electron/pull/40047) for more details
+- In addition to enabling ESM support in Electron itself, Electron Forge also supports using ESM to package, build and develop Electron applications. You can find this support in [Forge v7.0.0](https://github.com/electron/forge/releases/tag/v7.0.0) or higher.
+
 ### Stack Changes
 
 - Chromium `120.0.6099.56`
-
   - New in [Chrome 119](https://developer.chrome.com/blog/new-in-chrome-119/) and in [DevTools 119](https://developer.chrome.com/blog/new-in-devtools-119/)
   - New in [Chrome 120](https://developer.chrome.com/blog/new-in-chrome-120/) and in [DevTools 120](https://developer.chrome.com/blog/new-in-devtools-120/)
-
 - Node `18.18.2`
   - [Node 18.18.0 notes](https://nodejs.org/en/blog/release/v18.18.0/)
   - [Node 18.18.1 notes](https://nodejs.org/en/blog/release/v18.18.1/)
@@ -35,11 +38,9 @@ If you have any feedback, please share it with us on [Twitter](https://twitter.c
 
 - Enabled ESM support. [#37535](https://github.com/electron/electron/pull/37535)
   - For more details, see the [ESM documentation](https://github.com/electron/electron/blob/main/docs/tutorial/esm.md).
-- The `UtilityProcess` API now supports ESM entrypoints. [#40047](https://github.com/electron/electron/pull/40047)
+- Added ESM entrypoints to the `UtilityProcess` API. [#40047](https://github.com/electron/electron/pull/40047)
 - Added several properties to the `display` object including `detected`, `maximumCursorSize`, and `nativeOrigin`. [#40554](https://github.com/electron/electron/pull/40554)
 - Added support for `ELECTRON_OZONE_PLATFORM_HINT` environment variable on Linux. [#39792](https://github.com/electron/electron/pull/39792)
-
-In addition to enabling ESM support in Electron itself, Electron Forge also supports using ESM to package, build and develop Electron applications. You can find this support in Forge v7.0.0 or higher: https://github.com/electron/forge/releases/tag/v7.0.0
 
 ### Breaking Changes
 
