@@ -51,7 +51,7 @@ In this example, we add a progress bar to the main window that increments over t
 using Node.js timers.
 
 ```fiddle docs/latest/fiddles/features/progress-bar
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow } = require('electron/main')
 
 let progressInterval
 

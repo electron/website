@@ -24,7 +24,7 @@ To set your custom dock menu, you need to use the
 which is only available on macOS.
 
 ```fiddle docs/latest/fiddles/features/macos-dock-menu
-const { app, BrowserWindow, Menu } = require('electron')
+const { app, BrowserWindow, Menu } = require('electron/main')
 
 function createWindow () {
   const win = new BrowserWindow({

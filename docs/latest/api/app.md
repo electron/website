@@ -1549,7 +1549,7 @@ A `boolean` property that returns  `true` if the app is packaged, `false` otherw
 [tasks]:https://learn.microsoft.com/en-us/windows/win32/shell/taskbar-extensions#tasks
 [app-user-model-id]: https://learn.microsoft.com/en-us/windows/win32/shell/appids
 [electron-forge]: https://www.electronforge.io/
-[electron-packager]: https://github.com/electron/electron-packager
+[electron-packager]: https://github.com/electron/packager
 [CFBundleURLTypes]: https://developer.apple.com/library/ios/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html#//apple_ref/doc/uid/TP40009249-102207-TPXREF115
 [LSCopyDefaultHandlerForURLScheme]: https://developer.apple.com/documentation/coreservices/1441725-lscopydefaulthandlerforurlscheme?language=objc
 [handoff]: https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/Handoff/HandoffFundamentals/HandoffFundamentals.html
@@ -1577,19 +1577,6 @@ This is the user agent that will be used when no user agent is set at the
 `webContents` or `session` level.  It is useful for ensuring that your entire
 app has the same user agent.  Set to a custom value as early as possible
 in your app's initialization to ensure that your overridden value is used.
-
-### `app.runningUnderRosettaTranslation` _macOS_ _Readonly_ _Deprecated_
-
-A `boolean` which when `true` indicates that the app is currently running
-under the [Rosetta Translator Environment](https://en.wikipedia.org/wiki/Rosetta_(software)).
-
-You can use this property to prompt users to download the arm64 version of
-your application when they are running the x64 version under Rosetta
-incorrectly.
-
-**Deprecated:** This property is superceded by the `runningUnderARM64Translation`
-property which detects when the app is being translated to ARM64 in both macOS
-and Windows.
 
 ### `app.runningUnderARM64Translation` _Readonly_ _macOS_ _Windows_
 

@@ -207,6 +207,7 @@ module.exports = {
         },
       ],
     },
+    { type: 'category', label: 'Tutorial', items: ['latest/tutorial/esm'] },
   ],
   api: [
     {

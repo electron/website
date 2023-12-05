@@ -38,7 +38,7 @@ new Notification({
 Here's a full example that you can open with Electron Fiddle:
 
 ```fiddle docs/latest/fiddles/features/notifications/main
-const { app, BrowserWindow, Notification } = require('electron')
+const { app, BrowserWindow, Notification } = require('electron/main')
 
 function createWindow () {
   const win = new BrowserWindow({

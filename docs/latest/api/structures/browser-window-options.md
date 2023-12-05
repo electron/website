@@ -104,9 +104,6 @@ hide_title: false
 * `roundedCorners` boolean (optional) _macOS_ - Whether frameless window
   should have rounded corners on macOS. Default is `true`. Setting this property
   to `false` will prevent the window from being fullscreenable.
-* `fullscreenWindowTitle` boolean (optional) _macOS_ _Deprecated_ - Shows
-  the title in the title bar in full screen mode on macOS for `hiddenInset`
-  titleBarStyle. Default is `false`.
 * `thickFrame` boolean (optional) - Use `WS_THICKFRAME` style for frameless windows on
   Windows, which adds standard window frame. Setting it to `false` will remove
   window shadow and window animations. Default is `true`.
@@ -203,7 +200,11 @@ hide_title: false
   * `defaultEncoding` string (optional) - Defaults to `ISO-8859-1`.
   * `backgroundThrottling` boolean (optional) - Whether to throttle animations and timers
     when the page becomes background. This also affects the
-    [Page Visibility API](latest/api/browser-window.md#page-visibility). Defaults to `true`.
+    [Page Visibility API](latest/api/browser-window.md#page-visibility). When at least one
+    [webContents](latest/api/web-contents.md) displayed in a single
+    [browserWindow](latest/api/browser-window.md) has disabled `backgroundThrottling` then
+    frames will be drawn and swapped for the whole window and other
+    [webContents](latest/api/web-contents.md) displayed by it. Defaults to `true`.
   * `offscreen` boolean (optional) - Whether to enable offscreen rendering for the browser
     window. Defaults to `false`. See the
     [offscreen rendering tutorial](latest/tutorial/offscreen-rendering.md) for

@@ -25,7 +25,7 @@ the application via JumpList or dock menu, respectively.
 ### Managing recent documents
 
 ```fiddle docs/latest/fiddles/features/recent-documents
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow } = require('electron/main')
 const fs = require('node:fs')
 const path = require('node:path')
 

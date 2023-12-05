@@ -24,7 +24,7 @@ Starting with a working application from the
 [Quick Start Guide](latest/tutorial/quick-start.md), update the `main.js` to be:
 
 ```fiddle docs/latest/fiddles/features/keyboard-shortcuts/local
-const { app, BrowserWindow, Menu, MenuItem } = require('electron')
+const { app, BrowserWindow, Menu, MenuItem } = require('electron/main')
 
 function createWindow () {
   const win = new BrowserWindow({
@@ -85,7 +85,7 @@ Starting with a working application from the
 [Quick Start Guide](latest/tutorial/quick-start.md), update the `main.js` to be:
 
 ```fiddle docs/latest/fiddles/features/keyboard-shortcuts/global
-const { app, BrowserWindow, globalShortcut } = require('electron')
+const { app, BrowserWindow, globalShortcut } = require('electron/main')
 
 function createWindow () {
   const win = new BrowserWindow({
@@ -155,7 +155,7 @@ Starting with a working application from the
 following lines:
 
 ```fiddle docs/latest/fiddles/features/keyboard-shortcuts/interception-from-main
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow } = require('electron/main')
 
 app.whenReady().then(() => {
   const win = new BrowserWindow({ width: 800, height: 600 })

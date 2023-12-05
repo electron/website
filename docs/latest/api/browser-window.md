@@ -257,9 +257,6 @@ It creates a new `BrowserWindow` with native properties as set by the `options`.
   * `roundedCorners` boolean (optional) _macOS_ - Whether frameless window
     should have rounded corners on macOS. Default is `true`. Setting this property
     to `false` will prevent the window from being fullscreenable.
-  * `fullscreenWindowTitle` boolean (optional) _macOS_ _Deprecated_ - Shows
-    the title in the title bar in full screen mode on macOS for `hiddenInset`
-    titleBarStyle. Default is `false`.
   * `thickFrame` boolean (optional) - Use `WS_THICKFRAME` style for frameless windows on
     Windows, which adds standard window frame. Setting it to `false` will remove
     window shadow and window animations. Default is `true`.
@@ -356,7 +353,11 @@ It creates a new `BrowserWindow` with native properties as set by the `options`.
     * `defaultEncoding` string (optional) - Defaults to `ISO-8859-1`.
     * `backgroundThrottling` boolean (optional) - Whether to throttle animations and timers
       when the page becomes background. This also affects the
-      [Page Visibility API](latest/api/browser-window.md#page-visibility). Defaults to `true`.
+      [Page Visibility API](latest/api/browser-window.md#page-visibility). When at least one
+      [webContents](latest/api/web-contents.md) displayed in a single
+      [browserWindow](latest/api/browser-window.md) has disabled `backgroundThrottling` then
+      frames will be drawn and swapped for the whole window and other
+      [webContents](latest/api/web-contents.md) displayed by it. Defaults to `true`.
     * `offscreen` boolean (optional) - Whether to enable offscreen rendering for the browser
       window. Defaults to `false`. See the
       [offscreen rendering tutorial](latest/tutorial/offscreen-rendering.md) for
@@ -671,36 +672,6 @@ The following app commands are explicitly supported on Linux:
 
 * `browser-backward`
 * `browser-forward`
-
-#### Event: 'scroll-touch-begin' _macOS_ _Deprecated_
-
-Emitted when scroll wheel event phase has begun.
-
-> **Note**
-> This event is deprecated beginning in Electron 22.0.0. See [Breaking
-> Changes](latest/breaking-changes.md#deprecated-browserwindow-scroll-touch--events)
-> for details of how to migrate to using the [WebContents
-> `input-event`](latest/api/web-contents.md#event-input-event) event.
-
-#### Event: 'scroll-touch-end' _macOS_ _Deprecated_
-
-Emitted when scroll wheel event phase has ended.
-
-> **Note**
-> This event is deprecated beginning in Electron 22.0.0. See [Breaking
-> Changes](latest/breaking-changes.md#deprecated-browserwindow-scroll-touch--events)
-> for details of how to migrate to using the [WebContents
-> `input-event`](latest/api/web-contents.md#event-input-event) event.
-
-#### Event: 'scroll-touch-edge' _macOS_ _Deprecated_
-
-Emitted when scroll wheel event phase filed upon reaching the edge of element.
-
-> **Note**
-> This event is deprecated beginning in Electron 22.0.0. See [Breaking
-> Changes](latest/breaking-changes.md#deprecated-browserwindow-scroll-touch--events)
-> for details of how to migrate to using the [WebContents
-> `input-event`](latest/api/web-contents.md#event-input-event) event.
 
 #### Event: 'swipe' _macOS_
 
@@ -1904,25 +1875,6 @@ Passing `null` will reset the position to default.
 Returns `Point | null` - The custom position for the traffic light buttons in
 frameless window, `null` will be returned when there is no custom position.
 
-#### `win.setTrafficLightPosition(position)` _macOS_ _Deprecated_
-
-* `position` [Point](latest/api/structures/point.md)
-
-Set a custom position for the traffic light buttons in frameless window.
-Passing `{ x: 0, y: 0 }` will reset the position to default.
-
-> **Note**
-> This function is deprecated. Use [setWindowButtonPosition](#winsetwindowbuttonpositionposition-macos) instead.
-
-#### `win.getTrafficLightPosition()` _macOS_ _Deprecated_
-
-Returns `Point` - The custom position for the traffic light buttons in
-frameless window, `{ x: 0, y: 0 }` will be returned when there is no custom
-position.
-
-> **Note**
-> This function is deprecated. Use [getWindowButtonPosition](#wingetwindowbuttonposition-macos) instead.
-
 #### `win.setTouchBar(touchBar)` _macOS_
 
 * `touchBar` TouchBar | null
@@ -1975,7 +1927,7 @@ removed in future Electron releases.
 * `options` Object
   * `color` String (optional) _Windows_ - The CSS color of the Window Controls Overlay when enabled.
   * `symbolColor` String (optional) _Windows_ - The CSS color of the symbols on the Window Controls Overlay when enabled.
-  * `height` Integer (optional) _Windows_ - The height of the title bar and Window Controls Overlay in pixels.
+  * `height` Integer (optional) _macOS_ _Windows_ - The height of the title bar and Window Controls Overlay in pixels.
 
 On a Window with Window Controls Overlay already enabled, this method updates
 the style of the title bar overlay.
