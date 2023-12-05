@@ -20,7 +20,7 @@ If you have any feedback, please share it with us on [Twitter](https://twitter.c
 
 ## Highlights
 
-- Implemented support for EcmaScript Modules ESM support. This includes support for ESM in Electron proper, as well as areas such as the `UtilityProcess` API entrypoints. See [#37535](https://github.com/electron/electron/pull/37535). and [#40047](https://github.com/electron/electron/pull/40047) for more details
+- Implemented support for ECMAScript modules or ESM (What are ECMAScript modules? [learn more here](https://nodejs.org/api/esm.html#modules-ecmascript-modules). This includes support for ESM in Electron proper, as well as areas such as the `UtilityProcess` API entrypoints. See [#37535](https://github.com/electron/electron/pull/37535). and [#40047](https://github.com/electron/electron/pull/40047) for more details
 - In addition to enabling ESM support in Electron itself, Electron Forge also supports using ESM to package, build and develop Electron applications. You can find this support in [Forge v7.0.0](https://github.com/electron/forge/releases/tag/v7.0.0) or higher.
 
 ### Stack Changes
