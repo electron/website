@@ -47,7 +47,7 @@ To enable this mode, GPU acceleration has to be disabled by calling the
 ## Example
 
 ```fiddle docs/latest/fiddles/features/offscreen-rendering
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow } = require('electron/main')
 const fs = require('node:fs')
 const path = require('node:path')
 

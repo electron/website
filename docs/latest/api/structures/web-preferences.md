@@ -81,7 +81,11 @@ hide_title: false
 * `defaultEncoding` string (optional) - Defaults to `ISO-8859-1`.
 * `backgroundThrottling` boolean (optional) - Whether to throttle animations and timers
   when the page becomes background. This also affects the
-  [Page Visibility API](latest/api/browser-window.md#page-visibility). Defaults to `true`.
+  [Page Visibility API](latest/api/browser-window.md#page-visibility). When at least one
+  [webContents](latest/api/web-contents.md) displayed in a single
+  [browserWindow](latest/api/browser-window.md) has disabled `backgroundThrottling` then
+  frames will be drawn and swapped for the whole window and other
+  [webContents](latest/api/web-contents.md) displayed by it. Defaults to `true`.
 * `offscreen` boolean (optional) - Whether to enable offscreen rendering for the browser
   window. Defaults to `false`. See the
   [offscreen rendering tutorial](latest/tutorial/offscreen-rendering.md) for

@@ -372,7 +372,7 @@ window.onmessage = (event) => {
     // process.
     port.onmessage = (event) => {
       console.log('from main process:', event.data)
-      port.postMessage(event.data * 2)
+      port.postMessage(event.data.test * 2)
     }
   }
 }

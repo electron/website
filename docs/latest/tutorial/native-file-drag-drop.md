@@ -64,7 +64,7 @@ In the Main process (`main.js` file), expand the received event with a path to t
 being dragged and an icon:
 
 ```fiddle docs/latest/fiddles/features/drag-and-drop
-const { app, BrowserWindow, ipcMain } = require('electron')
+const { app, BrowserWindow, ipcMain } = require('electron/main')
 const path = require('node:path')
 const fs = require('node:fs')
 const https = require('node:https')
