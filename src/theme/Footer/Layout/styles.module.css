@@ -32,10 +32,10 @@
   display: none;
 }
 
-[data-theme="dark"] .darkOnly {
+[data-theme='dark'] .darkOnly {
   display: initial;
 }
 
-[data-theme="light"] .lightOnly {
+[data-theme='light'] .lightOnly {
   display: initial;
 }
