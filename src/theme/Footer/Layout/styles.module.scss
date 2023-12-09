@@ -4,7 +4,8 @@
     flex-direction: column-reverse;
     flex-wrap: wrap;
 
-    > :first-child, > :last-child {
+    > :first-child,
+    > :last-child {
       text-align: center;
     }
   }
