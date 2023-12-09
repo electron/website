@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 
-import styles from './styles.module.css';
+import styles from './styles.module.scss';
 
 export default function FooterLayout({
   style,
@@ -24,11 +24,11 @@ export default function FooterLayout({
         {links}
         {(logo || copyright) && (
           <div className={styles.footerSplit}>
-            <div className="footer__bottom text--center">
+            <div className="footer__bottom text--left">
               {logo && <div className="margin-bottom--sm">{logo}</div>}
               {copyright}
             </div>
-            <div className="footer__bottom text--center">
+            <div className="footer__bottom text--right">
               <div className="margin-bottom--sm">
                 Hosting and infrastructure graciously provided by
               </div>

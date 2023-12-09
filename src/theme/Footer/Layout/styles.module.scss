@@ -3,6 +3,10 @@
     display: flex;
     flex-direction: column-reverse;
     flex-wrap: wrap;
+
+    > :first-child, > :last-child {
+      text-align: center;
+    }
   }
 
   > div {
