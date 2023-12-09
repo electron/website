@@ -96,6 +96,7 @@ module.exports = {
         'latest/tutorial/asar-archives',
         'latest/tutorial/asar-integrity',
         'latest/tutorial/boilerplates-and-clis',
+        'latest/tutorial/esm',
         'latest/tutorial/fuses',
         'latest/tutorial/using-native-node-modules',
         'latest/tutorial/windows-arm',
@@ -207,7 +208,6 @@ module.exports = {
         },
       ],
     },
-    { type: 'category', label: 'Tutorial', items: ['latest/tutorial/esm'] },
   ],
   api: [
     {
