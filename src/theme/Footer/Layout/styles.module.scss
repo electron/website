@@ -1,0 +1,46 @@
+.footerSplit {
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column-reverse;
+    flex-wrap: wrap;
+
+    > :first-child,
+    > :last-child {
+      text-align: center;
+    }
+  }
+
+  > div {
+    display: inline-block;
+    width: 50%;
+
+    @media (max-width: 768px) {
+      width: 100%;
+
+      &:last-child {
+        margin-bottom: 24px;
+      }
+    }
+  }
+}
+
+.logoCluster > img {
+  margin: 0 12px;
+  height: 40px;
+}
+
+.darkOnly {
+  display: none;
+}
+
+.lightOnly {
+  display: none;
+}
+
+[data-theme='dark'] .darkOnly {
+  display: initial;
+}
+
+[data-theme='light'] .lightOnly {
+  display: initial;
+}
