@@ -1,6 +1,6 @@
 ---
 title: Electron 28.0.0
-date: 2023-11-28T00:00:00.000Z
+date: 2023-12-06T00:00:00.000Z
 authors:
   - name: ckerr
     url: 'https://github.com/ckerr'
