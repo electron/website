@@ -16,3 +16,5 @@ hide_title: false
   * `supportFetchAPI` boolean (optional) - Default false.
   * `corsEnabled` boolean (optional) - Default false.
   * `stream` boolean (optional) - Default false.
+  * `codeCache` boolean (optional) - Enable V8 code cache for the scheme, only
+    works when `standard` is also set to true. Default false.
