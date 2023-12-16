@@ -89,7 +89,7 @@ if (ret === null) {
 
 #### Removed: `ipcRenderer.sendTo()`
 
-The `ipcRenderer.sendTo()` API has been removed. It should be replaced by setting up a [`MessageChannel`](tutorial/message-ports.md#setting-up-a-messagechannel-between-two-renderers) between the renderers.
+The `ipcRenderer.sendTo()` API has been removed. It should be replaced by setting up a [`MessageChannel`](https://www.electronjs.org/docs/latest/tutorial/message-ports#setting-up-a-messagechannel-between-two-renderers) between the renderers.
 
 The `senderId` and `senderIsMainFrame` properties of `IpcRendererEvent` have been removed as well.
 
