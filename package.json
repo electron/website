@@ -25,9 +25,7 @@
     "lint:fix": "prettier . --write && npm run lint:eslint --fix && npm run lint:markdown --fix",
     "test": "jest",
     "pre-build": "ts-node ./scripts/pre-build.ts",
-    "governance": "node ./scripts/governance.js",
     "process-docs-changes": "ts-node ./scripts/process-docs-changes.ts",
-    "update-pinned-version": "ts-node ./scripts/update-pinned-version.ts",
     "prepare": "husky install"
   },
   "dependencies": {
