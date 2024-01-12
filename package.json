@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "license": "Apache-2.0",
+  "engines": {
+    "node": "16"
+  },
   "scripts": {
     "crowdin": "crowdin",
     "i18n:upload": "crowdin upload sources",
