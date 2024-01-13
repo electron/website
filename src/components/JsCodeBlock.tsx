@@ -3,12 +3,12 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 
-interface ESMCodeBlockProps {
+interface JsCodeBlockProps {
   cjs: string;
   mjs: string;
 }
 
-const ESMCodeBlock = (props: ESMCodeBlockProps) => {
+const JsCodeBlock = (props: JsCodeBlockProps) => {
   const { cjs, mjs } = props;
 
   const tabValues = [
@@ -28,4 +28,4 @@ const ESMCodeBlock = (props: ESMCodeBlockProps) => {
   );
 };
 
-export default ESMCodeBlock;
+export default JsCodeBlock;

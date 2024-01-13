@@ -23,28 +23,28 @@ function matchMjsCodeBlock(node: Node): node is Code {
 
 const importNode: Import = {
   type: 'import',
-  value: "import ESMCodeBlock from '@site/src/components/ESMCodeBlock';",
+  value: "import JsCodeBlock from '@site/src/components/JsCodeBlock';",
 };
 
 async function transformer(tree: Parent) {
   let documentHasExistingImport = false;
-  visitParents(tree, 'import', checkForESMCodeBlockImport);
-  visitParents(tree, matchCjsCodeBlock, maybeGenerateESMCodeBlock);
+  visitParents(tree, 'import', checkForJsCodeBlockImport);
+  visitParents(tree, matchCjsCodeBlock, maybeGenerateJsCodeBlock);
 
   if (!documentHasExistingImport) {
     tree.children.unshift(importNode);
   }
 
-  function checkForESMCodeBlockImport(node: Node) {
+  function checkForJsCodeBlockImport(node: Node) {
     if (
       isImport(node) &&
-      node.value.includes('@site/src/components/ESMCodeBlock')
+      node.value.includes('@site/src/components/JsCodeBlock')
     ) {
       documentHasExistingImport = true;
     }
   }
 
-  function maybeGenerateESMCodeBlock(
+  function maybeGenerateJsCodeBlock(
     node: Code,
     ancestors: Parent[]
   ): ActionTuple | void {
@@ -77,10 +77,10 @@ async function transformer(tree: Parent) {
       mjs = mjs.slice(MJS_PREAMBLE.length);
     }
 
-    // Replace the two code blocks with the ESMCodeBlock
+    // Replace the two code blocks with the JsCodeBlock
     parent.children.splice(idx, 2, {
       type: 'jsx',
-      value: `<ESMCodeBlock
+      value: `<JsCodeBlock
         cjs={${JSON.stringify(cjs)}}
         mjs={${JSON.stringify(mjs)}}
       />`,
