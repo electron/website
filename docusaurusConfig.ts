@@ -5,6 +5,7 @@ import npm2yarn from '@docusaurus/remark-plugin-npm2yarn';
 import apiLabels from './src/transformers/api-labels';
 import apiOptionsClass from './src/transformers/api-options-class';
 import apiStructurePreviews from './src/transformers/api-structure-previews';
+import jsCodeBlocks from './src/transformers/js-code-blocks';
 import fiddleEmbedder from './src/transformers/fiddle-embedder';
 
 const config: Config = {
@@ -205,6 +206,7 @@ const config: Config = {
             apiLabels,
             apiOptionsClass,
             apiStructurePreviews,
+            jsCodeBlocks,
             fiddleEmbedder,
             [npm2yarn, { sync: true, converters: ['yarn'] }],
           ],
