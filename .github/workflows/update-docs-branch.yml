@@ -14,8 +14,7 @@ jobs:
       - name: 'Switch branches'
         # We switch to the version branch or create a new one if needed
         run: git fetch origin && git checkout -t origin/v${{ github.event.client_payload.branch}} || git checkout -b v${{ github.event.client_payload.branch}}
-      - name: Setup Node.js v20
-        uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c # tag: v3.6.0
+      - uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c # tag: v3.6.0
         with:
           node-version: 20
       - name: Install dependencies
