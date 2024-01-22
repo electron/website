@@ -54,6 +54,8 @@ jobs:
       - name: Rewrite docs paths if version branch
         if: ${{ inputs.branch == 'version' }}
         run: node scripts/build-as-doc-version.js $(GIT_BRANCH)
+      - name: Add Docusaurus problem matcher
+        run: echo "::add-matcher::.github/problem-matchers/docusaurus.json"
       - name: Build default locale site
         run: yarn build
         env:
