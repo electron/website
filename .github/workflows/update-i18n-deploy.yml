@@ -38,6 +38,9 @@ jobs:
       #   env:
       #     SAS: ${{ secrets.SAS }}
 
+      - name: Add Docusaurus problem matcher
+        run: echo "::add-matcher::.github/problem-matchers/docusaurus.json"
+
       - name: Build
         run: yarn i18n:build
 

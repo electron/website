@@ -1,0 +1,14 @@
+{
+  "problemMatcher": [
+    {
+      "owner": "docusaurus",
+      "pattern": [
+        {
+          "regexp": "^\\[(WARNING)\\] (.*)$",
+          "severity": 1,
+          "message": 2
+        }
+      ]
+    }
+  ]
+}
