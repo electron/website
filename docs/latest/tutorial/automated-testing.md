@@ -203,16 +203,8 @@ support via Electron's support for the [Chrome DevTools Protocol][] (CDP).
 
 ### Install dependencies
 
-You can install Playwright through your preferred Node.js package manager. The Playwright team
-recommends using the `PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD` environment variable to avoid
-unnecessary browser downloads when testing an Electron app.
-
-```sh npm2yarn
-PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 npm install --save-dev playwright
-```
-
-Playwright also comes with its own test runner, Playwright Test, which is built for end-to-end
-testing. You can also install it as a dev dependency in your project:
+You can install Playwright through your preferred Node.js package manager. It comes with its
+own [test runner][playwright-intro], which is built for end-to-end testing:
 
 ```sh npm2yarn
 npm install --save-dev @playwright/test
@@ -220,16 +212,9 @@ npm install --save-dev @playwright/test
 
 :::caution Dependencies
 
-This tutorial was written `playwright@1.16.3` and `@playwright/test@1.16.3`. Check out
+This tutorial was written with `@playwright/test@1.41.1`. Check out
 [Playwright's releases][playwright-releases] page to learn about
 changes that might affect the code below.
-
-:::
-
-:::info Using third-party test runners
-
-If you're interested in using an alternative test runner (e.g. Jest or Mocha), check out
-Playwright's [Third-Party Test Runner][playwright-test-runners] guide.
 
 :::
 
@@ -240,8 +225,7 @@ To point this API to your Electron app, you can pass the path to your main proce
 entry point (here, it is `main.js`).
 
 ```js {5} @ts-nocheck
-const { _electron: electron } = require('playwright')
-const { test } = require('@playwright/test')
+const { test, _electron: electron } = require('@playwright/test')
 
 test('launch app', async () => {
   const electronApp = await electron.launch({ args: ['main.js'] })
@@ -253,9 +237,8 @@ test('launch app', async () => {
 After that, you will access to an instance of Playwright's `ElectronApp` class. This
 is a powerful class that has access to main process modules for example:
 
-```js {6-11} @ts-nocheck
-const { _electron: electron } = require('playwright')
-const { test } = require('@playwright/test')
+```js {5-10} @ts-nocheck
+const { test, _electron: electron } = require('@playwright/test')
 
 test('get isPackaged', async () => {
   const electronApp = await electron.launch({ args: ['main.js'] })
@@ -274,8 +257,7 @@ It can also create individual [Page][playwright-page] objects from Electron Brow
 For example, to grab the first BrowserWindow and save a screenshot:
 
 ```js {6-7} @ts-nocheck
-const { _electron: electron } = require('playwright')
-const { test } = require('@playwright/test')
+const { test, _electron: electron } = require('@playwright/test')
 
 test('save screenshot', async () => {
   const electronApp = await electron.launch({ args: ['main.js'] })
@@ -286,12 +268,11 @@ test('save screenshot', async () => {
 })
 ```
 
-Putting all this together using the PlayWright Test runner, let's create a `example.spec.js`
+Putting all this together using the Playwright test-runner, let's create a `example.spec.js`
 test file with a single test and assertion:
 
 ```js title='example.spec.js' @ts-nocheck
-const { _electron: electron } = require('playwright')
-const { test, expect } = require('@playwright/test')
+const { test, expect, _electron: electron } = require('@playwright/test')
 
 test('example test', async () => {
   const electronApp = await electron.launch({ args: ['.'] })
@@ -328,6 +309,7 @@ Running 1 test using 1 worker
 
 Playwright Test will automatically run any files matching the `.*(test|spec)\.(js|ts|mjs)` regex.
 You can customize this match in the [Playwright Test configuration options][playwright-test-config].
+It also works with TypeScript out of the box.
 
 :::
 
@@ -488,10 +470,10 @@ test.after.always('cleanup', async t => {
 
 [chrome-driver]: https://sites.google.com/chromium.org/driver/
 [Puppeteer]: https://github.com/puppeteer/puppeteer
+[playwright-intro]: https://playwright.dev/docs/intro
 [playwright-electron]: https://playwright.dev/docs/api/class-electron/
 [playwright-electronapplication]: https://playwright.dev/docs/api/class-electronapplication
 [playwright-page]: https://playwright.dev/docs/api/class-page
-[playwright-releases]: https://github.com/microsoft/playwright/releases
+[playwright-releases]: https://playwright.dev/docs/release-notes
 [playwright-test-config]: https://playwright.dev/docs/api/class-testconfig#test-config-test-match
-[playwright-test-runners]: https://playwright.dev/docs/test-runners/
 [Chrome DevTools Protocol]: https://chromedevtools.github.io/devtools-protocol/

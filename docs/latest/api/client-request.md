@@ -9,7 +9,7 @@ hide_title: false
 
 > Make HTTP/HTTPS requests.
 
-Process: [Main](latest/glossary.md#main-process)<br />
+Process: [Main](latest/glossary.md#main-process), [Utility](latest/glossary.md#utility-process)<br />
 _This class is not exported from the `'electron'` module. It is only available as a return value of other methods in the Electron API._
 
 `ClientRequest` implements the [Writable Stream](https://nodejs.org/api/stream.html#stream_writable_streams)
