@@ -9,7 +9,7 @@ hide_title: false
 
 > Issue HTTP/HTTPS requests using Chromium's native networking library
 
-Process: [Main](latest/glossary.md#main-process)
+Process: [Main](latest/glossary.md#main-process), [Utility](latest/glossary.md#utility-process)
 
 The `net` module is a client-side API for issuing HTTP(S) requests. It is
 similar to the [HTTP](https://nodejs.org/api/http.html) and
@@ -125,6 +125,9 @@ protocol.handle('https', (req) => {
   }
 })
 ```
+
+Note: in the [utility process](latest/glossary.md#utility-process) custom protocols
+are not supported.
 
 ### `net.isOnline()`
 
