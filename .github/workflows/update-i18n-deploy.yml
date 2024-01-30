@@ -19,7 +19,7 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        uses: bahmutov/npm-install@8add8c6d2c8586964896d9fdc639e021312a643f # tag: v1.8.28
+        uses: bahmutov/npm-install@d476752204653fb5cce6c09db0eaf220761f5d9e # tag: v1.8.37
 
       - name: Download crowdin translation
         run: yarn i18n:download

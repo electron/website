@@ -21,7 +21,7 @@ jobs:
         with:
           node-version: 20
       - name: Install dependencies
-        uses: bahmutov/npm-install@8add8c6d2c8586964896d9fdc639e021312a643f # tag: v1.8.28
+        uses: bahmutov/npm-install@d476752204653fb5cce6c09db0eaf220761f5d9e # tag: v1.8.37
       - name: 'Prebuild'
         run: 'yarn pre-build ${{ github.event.client_payload.sha }}'
       - name: 'Push changes or create PR'
