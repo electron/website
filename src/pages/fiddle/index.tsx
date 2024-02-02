@@ -43,7 +43,7 @@ export default function FiddlePage() {
       appimage: {
         x64: `https://github.com/electron/fiddle/releases/download/v${version}/Electron.Fiddle-${version}-x64.AppImage`,
         arm64: `https://github.com/electron/fiddle/releases/download/v${version}/Electron.Fiddle-${version}-arm64.AppImage`,
-        arm7l: `https://github.com/electron/fiddle/releases/download/v${version}/Electron.Fiddle-${version}-armv7hl.AppImage`,
+        arm7l: `https://github.com/electron/fiddle/releases/download/v${version}/Electron.Fiddle-${version}-armv7l.AppImage`,
       },
     },
   };
