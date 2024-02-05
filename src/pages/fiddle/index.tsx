@@ -9,7 +9,7 @@ import LinuxLogo from '@site/static/assets/img/platform-linux.svg';
 import clsx from 'clsx';
 
 import { usePluginData } from '@docusaurus/useGlobalData';
-import { SemVer } from 'semver';
+import { SemVer, satisfies } from 'semver';
 
 export default function FiddlePage() {
   const [OS, setOS] = useState('win32');
@@ -20,33 +20,42 @@ export default function FiddlePage() {
     if (navigator.userAgent.indexOf('Linux') != -1) return setOS('linux');
   }, []);
 
+  const downloadPrefix = `https://github.com/electron/fiddle/releases/download/v${version}`;
   const downloadLinks = {
     win32: {
-      ia32: `https://github.com/electron/fiddle/releases/download/v${version}/electron-fiddle-${version}-win32-ia32-setup.exe`,
-      x64: `https://github.com/electron/fiddle/releases/download/v${version}/electron-fiddle-${version}-win32-x64-setup.exe`,
+      ia32: `${downloadPrefix}/electron-fiddle-${version}-win32-ia32-setup.exe`,
+      x64: `${downloadPrefix}/electron-fiddle-${version}-win32-x64-setup.exe`,
     },
     darwin: {
-      x64: `https://github.com/electron/fiddle/releases/download/v${version}/Electron.Fiddle-darwin-x64-${version}.zip`,
-      arm64: `https://github.com/electron/fiddle/releases/download/v${version}/Electron.Fiddle-darwin-arm64-${version}.zip`,
+      x64: `${downloadPrefix}/Electron.Fiddle-darwin-x64-${version}.zip`,
+      arm64: `${downloadPrefix}/Electron.Fiddle-darwin-arm64-${version}.zip`,
     },
     linux: {
       deb: {
-        x64: `https://github.com/electron/fiddle/releases/download/v${version}/electron-fiddle_${version}_amd64.deb`,
-        arm64: `https://github.com/electron/fiddle/releases/download/v${version}/electron-fiddle_${version}_arm64.deb`,
-        arm7l: `https://github.com/electron/fiddle/releases/download/v${version}/electron-fiddle_${version}_armhf.deb`,
+        x64: `${downloadPrefix}/electron-fiddle_${version}_amd64.deb`,
+        arm64: `${downloadPrefix}/electron-fiddle_${version}_arm64.deb`,
+        arm7l: `${downloadPrefix}/electron-fiddle_${version}_armhf.deb`,
       },
       rpm: {
-        x64: `https://github.com/electron/fiddle/releases/download/v${version}/electron-fiddle-${version}-1.x86_64.rpm`,
-        arm64: `https://github.com/electron/fiddle/releases/download/v${version}/electron-fiddle-${version}-1.arm64.rpm`,
-        arm7l: `https://github.com/electron/fiddle/releases/download/v${version}/electron-fiddle-${version}-1.armv7hl.rpm`,
+        x64: `${downloadPrefix}/electron-fiddle-${version}-1.x86_64.rpm`,
+        arm64: `${downloadPrefix}/electron-fiddle-${version}-1.arm64.rpm`,
+        arm7l: `${downloadPrefix}/electron-fiddle-${version}-1.armv7hl.rpm`,
       },
       appimage: {
-        x64: `https://github.com/electron/fiddle/releases/download/v${version}/Electron.Fiddle-${version}-x64.AppImage`,
-        arm64: `https://github.com/electron/fiddle/releases/download/v${version}/Electron.Fiddle-${version}-arm64.AppImage`,
-        arm7l: `https://github.com/electron/fiddle/releases/download/v${version}/Electron.Fiddle-${version}-armv7l.AppImage`,
+        x64: `${downloadPrefix}/Electron.Fiddle-${version}-x64.AppImage`,
+        arm64: `${downloadPrefix}/Electron.Fiddle-${version}-arm64.AppImage`,
+        arm7l: `${downloadPrefix}/Electron.Fiddle-${version}-armv7l.AppImage`,
       },
     },
   };
+
+  // Handle a temporary Forge naming issue that replaced the period in "Electron.Fiddle" with
+  // a hyphen in the 0.36.0 release. We expect that 0.37 and onwards will have a fix. Once
+  // released, this code can be removed.
+  if (satisfies(version, '^0.36.0')) {
+    downloadLinks.darwin.x64 = `${downloadPrefix}/Electron-Fiddle-darwin-x64-${version}.zip`;
+    downloadLinks.darwin.arm64 = `${downloadPrefix}/Electron-Fiddle-darwin-arm64-${version}.zip`;
+  }
 
   const renderDownloadButtons = () => {
     switch (OS) {
