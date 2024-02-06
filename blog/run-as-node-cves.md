@@ -11,7 +11,7 @@ authors:
 slug: statement-run-as-node-cves
 ---
 
-Earlier today, the Electron team was alerted to several public CVEs recently filed against several notable Electron apps. The CVEs are related to two of Electron’s [fuses][https://www.electronjs.org/docs/latest/tutorial/fuses] - `runAsNode` and `enableNodeCliInspectArguments` - and incorrectly claim that a remote attacker is able to execute arbitrary code via these components if they have not been actively disabled.
+Earlier today, the Electron team was alerted to several public CVEs recently filed against several notable Electron apps. The CVEs are related to two of Electron’s [fuses](https://www.electronjs.org/docs/latest/tutorial/fuses) - `runAsNode` and `enableNodeCliInspectArguments` - and incorrectly claim that a remote attacker is able to execute arbitrary code via these components if they have not been actively disabled.
 
 We do not believe that these CVEs were filed in good faith. First of all, the statement is incorrect - the configuration does _not_ enable remote code execution. Secondly, companies called out in these CVEs have not been notified despite having bug bounty programs. Lastly, while we do believe that disabling the components in question enhances app security, we do not believe that the CVEs have been filed with the correct severity. “Critical” is reserved for issues of the highest danger, which is certainly not the case here.
 
