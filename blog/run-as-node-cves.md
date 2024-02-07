@@ -41,4 +41,4 @@ The easiest way to mitigate this issue is to disable the `runAsNode` fuse within
 
 Please note that if this fuse is disabled, then `process.fork` in the main process will not function as expected as it depends on this environment variable to function. Instead, we recommend that you use [Utility Processes](https://www.notion.so/api/utility-process.md), which work for many use cases where you need a standalone Node.js process (like a Sqlite server process or similar scenarios).
 
-You can find more info about security best practices we recommend for Electron apps in our [Security Checklist](https://www.electronjs.org/docs/latest/tutorial/security). s
+You can find more info about security best practices we recommend for Electron apps in our [Security Checklist](https://www.electronjs.org/docs/latest/tutorial/security).
