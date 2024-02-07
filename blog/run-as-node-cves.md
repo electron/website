@@ -37,7 +37,7 @@ By default, all released versions of Electron have the `runAsNode` and `enableNo
 
 ### Mitigation
 
-The easiest way to mitigate this issue is to disable the `runAsNode` fuse within your Electron app. The `runAsNode` fuse toggles whether the `ELECTRON_RUN_AS_NODE` environment variable is respected or not. Please see the [Electron Fuses documentation](https://www.electronjs.org/docs/latest/tutorial/fuses) for information on hwo to toggle theses fuses.
+The easiest way to mitigate this issue is to disable the `runAsNode` fuse within your Electron app. The `runAsNode` fuse toggles whether the `ELECTRON_RUN_AS_NODE` environment variable is respected or not. Please see the [Electron Fuses documentation](https://www.electronjs.org/docs/latest/tutorial/fuses) for information on how to toggle theses fuses.
 
 Please note that if this fuse is disabled, then `process.fork` in the main process will not function as expected as it depends on this environment variable to function. Instead, we recommend that you use [Utility Processes](https://www.notion.so/api/utility-process.md), which work for many use cases where you need a standalone Node.js process (like a Sqlite server process or similar scenarios).
 
