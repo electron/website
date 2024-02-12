@@ -1,0 +1,31 @@
+name: Check Blog Links
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - blog/*.md
+
+jobs:
+  check-blog-links:
+    name: Check Blog Links
+    permissions:
+      contents: read
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+      - name: Setup Node.js
+        uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4.0.2
+        with:
+          node-version: 20.x
+      - name: Install dependencies
+        run: yarn install
+      - name: Check for changed blog posts
+        id: check-for-changed-blog-posts
+        uses: tj-actions/changed-files@90a06d6ba9543371ab4df8eeca0be07ca6054959 # v42.0.2
+        with:
+          files: blog/*.md
+      - name: Check blog post links
+        if: steps.check-for-changed-blog-posts.outputs.any_changed == 'true'
+        run: npx electron-lint-markdown-links --ignore-path .markdownlintignore --fetch-external-links ${{ steps.check-for-changed-blog-posts.outputs.all_changed_files }}
