@@ -39,9 +39,15 @@ flowchart TD
   PC --> P;
   P --> D[Declined];
   A --> D;
+  style P color:black;
+  style P fill:white;
+  style D color:black;
   style D fill:red;
+  style A color:black;
   style A fill:orange;
+  style C color:black;
   style C fill:lightgreen;
+  style PC color:black;
   style PC fill:yellow;
 ```
 
