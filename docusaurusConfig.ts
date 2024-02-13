@@ -17,6 +17,10 @@ const config: Config = {
   favicon: 'assets/img/favicon.ico',
   organizationName: 'electron',
   projectName: 'electron',
+  markdown: {
+    mermaid: true,
+  },
+  themes: ['@docusaurus/theme-mermaid'],
   i18n: {
     defaultLocale: 'en',
     locales: ['en', 'de', 'es', 'fr', 'ja', 'pt', 'ru', 'zh'],
