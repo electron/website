@@ -188,7 +188,7 @@ export default function Home() {
                 {
                   name: 'Tailwind CSS',
                   image:
-                    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg',
+                    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg',
                 },
                 {
                   name: 'Bootstrap',
