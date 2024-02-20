@@ -30,7 +30,7 @@ If you have any feedback, please share it with us on [Twitter](https://twitter.c
 
 ### New Features
 
-- Added net module to utility process. [#40890](https://github.com/electron/electron/pull/40890)
+- Added [net](https://www.electronjs.org/docs/latest/api/net) module to [utility process](https://www.electronjs.org/docs/latest/glossary#utility-process). [#40890](https://github.com/electron/electron/pull/40890)
 - Added new [Electron Fuse](https://www.electronjs.org/docs/latest/tutorial/fuses) that opts the `file://` protocol into more secure and restrictive behaviour that matches Chromium. [#40372](https://github.com/electron/electron/pull/40372)
 - Added new `webUtils.getPathForFile` method to replace `File.path` augmentation. [#38776](https://github.com/electron/electron/pull/38776)
 - Added an option in `protocol.registerSchemesAsPrivileged` to allow V8 code cache in custom schemes. [#40544](https://github.com/electron/electron/pull/40544)
@@ -41,16 +41,15 @@ If you have any feedback, please share it with us on [Twitter](https://twitter.c
 
 #### Behavior Changed: `ipcRenderer` can no longer be sent over the `contextBridge`
 
-Attempting to send `ipcRenderer` as an object over the `contextBridge` will now result in
+Attempting to send the entire `ipcRenderer` module as an object over the `contextBridge` will now result in
 an empty object on the receiving side of the bridge. This change was made to remove / mitigate
-a security footgun, you should not directly expose ipcRenderer or it's methods over the bridge.
-Instead provide a safe wrapper like below:
+a security footgun. You should not directly expose ipcRenderer or its methods over the bridge.
+Instead, provide a safe wrapper like below:
 
 ```js
 contextBridge.exposeInMainWorld('app', {
   onEvent: (cb) => ipcRenderer.on('foo', (e, ...args) => cb(args)),
 });
-```
 
 #### Removed: `renderer-process-crashed` event on `app`
 
@@ -120,6 +119,8 @@ Electron 26.x.y has reached end-of-support as per the project's [support policy]
 | 27.x.y       | 28.x.y       | 29.x.y       |
 
 ## What's Next
+
+Did you know that Electron recently added a community Request for Comments (RFC) process? If you want to add a feature to the framework, RFCs can be a useful tool to start a dialogue with maintainers on its design. You can also see upcoming changes being discussed in the Pull Requests. To learn more, check out our [Introducing electron/rfcs](https://www.electronjs.org/blog/rfcs) blog post, or check out the README of the [electron/rfcs](https://www.github.com/electron/rfcs) repository directly.
 
 In the short term, you can expect the team to continue to focus on keeping up with the development of the major components that make up Electron, including Chromium, Node, and V8.
 
