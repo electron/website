@@ -39,7 +39,7 @@ If you have any feedback, please share it with us on [Twitter](https://twitter.c
 
 ### Breaking Changes
 
-### Behavior Changed: `ipcRenderer` can no longer be sent over the `contextBridge`
+#### Behavior Changed: `ipcRenderer` can no longer be sent over the `contextBridge`
 
 Attempting to send `ipcRenderer` as an object over the `contextBridge` will now result in
 an empty object on the receiving side of the bridge. This change was made to remove / mitigate
@@ -52,7 +52,7 @@ contextBridge.exposeInMainWorld('app', {
 });
 ```
 
-### Removed: `renderer-process-crashed` event on `app`
+#### Removed: `renderer-process-crashed` event on `app`
 
 The `renderer-process-crashed` event on `app` has been removed.
 Use the new `render-process-gone` event instead.
@@ -69,7 +69,7 @@ app.on('render-process-gone', (event, webContents, details) => {
 });
 ```
 
-### Removed: `crashed` event on `WebContents` and `<webview>`
+#### Removed: `crashed` event on `WebContents` and `<webview>`
 
 The `crashed` events on `WebContents` and `<webview>` have been removed.
 Use the new `render-process-gone` event instead.
@@ -92,7 +92,7 @@ webview.addEventListener('render-process-gone', (event) => {
 });
 ```
 
-### Removed: `gpu-process-crashed` event on `app`
+#### Removed: `gpu-process-crashed` event on `app`
 
 The `gpu-process-crashed` event on `app` has been removed.
 Use the new `child-process-gone` event instead.
