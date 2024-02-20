@@ -1859,10 +1859,10 @@
     ora "^4.0.3"
     pretty-ms "^5.1.0"
 
-"@electron/lint-roller@^1.11.0":
-  version "1.11.0"
-  resolved "https://registry.yarnpkg.com/@electron/lint-roller/-/lint-roller-1.11.0.tgz#85492052ace3f9bcba478627f0f3ff4e407d7377"
-  integrity sha512-ogkoSsEnvp7bfoZ7DR3iWK64Z9CDXZugC8/70/dnu7uFi0ZbJVsCVlDPpGPLoUUAUr6HW+vzRFKPzyuF0G9hcw==
+"@electron/lint-roller@^1.11.1":
+  version "1.11.1"
+  resolved "https://registry.yarnpkg.com/@electron/lint-roller/-/lint-roller-1.11.1.tgz#bf4ab114e8cb3a77e2c634807d4af3d40c3ba863"
+  integrity sha512-LfErOK5MnSmoSyVN5OnHWsQ8p5It8JBE0AmRYCx65WS4BZudnYeRcohlRSOSi+GGqldujdKHyEo+fdY5lREL/Q==
   dependencies:
     "@dsanders11/vscode-markdown-languageservice" "^0.3.0"
     balanced-match "^2.0.0"
