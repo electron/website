@@ -31,10 +31,10 @@ If you have any feedback, please share it with us on [Twitter](https://twitter.c
 ### New Features
 
 - Added [net](https://www.electronjs.org/docs/latest/api/net) module to [utility process](https://www.electronjs.org/docs/latest/glossary#utility-process). [#40890](https://github.com/electron/electron/pull/40890)
-- Added new [Electron Fuse](https://www.electronjs.org/docs/latest/tutorial/fuses) that opts the `file://` protocol into more secure and restrictive behaviour that matches Chromium. [#40372](https://github.com/electron/electron/pull/40372)
-- Added new `webUtils.getPathForFile` method to replace `File.path` augmentation. [#38776](https://github.com/electron/electron/pull/38776)
+- Added a new [Electron Fuse](https://www.electronjs.org/docs/latest/tutorial/fuses), `grantFileProtocolExtraPrivileges`, that opts the `file://` protocol into more secure and restrictive behaviour that matches Chromium. [#40372](https://github.com/electron/electron/pull/40372)
+- Added new `webUtils` module, a utility layer to interact with Web API objects, to replace `File.path` augmentation. [#38776](https://github.com/electron/electron/pull/38776)
 - Added an option in `protocol.registerSchemesAsPrivileged` to allow V8 code cache in custom schemes. [#40544](https://github.com/electron/electron/pull/40544)
-- Migrated `app.{set|get}LoginItemSettings(settings)` to use Apple's new recommended underlying framework on macOS. [#37244](https://github.com/electron/electron/pull/37244)
+- Migrated `app.{set|get}LoginItemSettings(settings)` to use Apple's new recommended underlying framework on macOS 13.0+. [#37244](https://github.com/electron/electron/pull/37244)
 - Upgraded Node from v18.18.2 to v20.9.0 [#40545](https://github.com/electron/electron/pull/40545)
 
 ### Breaking Changes
@@ -50,6 +50,7 @@ Instead, provide a safe wrapper like below:
 contextBridge.exposeInMainWorld('app', {
   onEvent: (cb) => ipcRenderer.on('foo', (e, ...args) => cb(args)),
 });
+```
 
 #### Removed: `renderer-process-crashed` event on `app`
 
