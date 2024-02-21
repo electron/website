@@ -263,6 +263,7 @@ module.exports = {
         'latest/api/ipc-renderer',
         'latest/api/native-image',
         'latest/api/web-frame',
+        'latest/api/web-utils',
       ],
     },
     {
@@ -385,6 +386,5 @@ module.exports = {
         'latest/api/structures/render-process-gone-details',
       ],
     },
-    { type: 'category', label: 'Api', items: ['latest/api/web-utils'] },
   ],
 };
