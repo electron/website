@@ -18,6 +18,10 @@ If you have any feedback, please share it with us on [Twitter](https://twitter.c
 
 ## Notable Changes
 
+### Highlights
+
+- Added a new top-level `webUtils` module, a renderer process module that provides a utility layer to interact with Web API objects. The first available API in the module is `webUtils.getPathForFile`. Electron's previous `File.path` augmentation was a deviation from web standards; this new API is more in line with current web standards behavior.
+
 ### Stack Changes
 
 - Chromium `122.0.6261.39`
@@ -32,9 +36,9 @@ Electron 29 upgrades Chromium from `120.0.6099.56` to `122.0.6261.39`, Node from
 
 ### New Features
 
+- Added new `webUtils` module, a utility layer to interact with Web API objects, to replace `File.path` augmentation. [#38776](https://github.com/electron/electron/pull/38776)
 - Added [net](https://www.electronjs.org/docs/latest/api/net) module to [utility process](https://www.electronjs.org/docs/latest/glossary#utility-process). [#40890](https://github.com/electron/electron/pull/40890)
 - Added a new [Electron Fuse](https://www.electronjs.org/docs/latest/tutorial/fuses), `grantFileProtocolExtraPrivileges`, that opts the `file://` protocol into more secure and restrictive behaviour that matches Chromium. [#40372](https://github.com/electron/electron/pull/40372)
-- Added new `webUtils` module, a utility layer to interact with Web API objects, to replace `File.path` augmentation. [#38776](https://github.com/electron/electron/pull/38776)
 - Added an option in `protocol.registerSchemesAsPrivileged` to allow V8 code cache in custom schemes. [#40544](https://github.com/electron/electron/pull/40544)
 - Migrated `app.{set|get}LoginItemSettings(settings)` to use Apple's new recommended underlying framework on macOS 13.0+. [#37244](https://github.com/electron/electron/pull/37244)
 
