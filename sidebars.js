@@ -263,6 +263,7 @@ module.exports = {
         'latest/api/ipc-renderer',
         'latest/api/native-image',
         'latest/api/web-frame',
+        'latest/api/web-utils',
       ],
     },
     {

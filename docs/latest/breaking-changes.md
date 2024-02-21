@@ -19,6 +19,76 @@ This document uses the following convention to categorize breaking changes:
 * **Deprecated:** An API was marked as deprecated. The API will continue to function, but will emit a deprecation warning, and will be removed in a future release.
 * **Removed:** An API or feature was removed, and is no longer supported by Electron.
 
+## Planned Breaking API Changes (30.0)
+
+### Behavior Changed: cross-origin iframes now use Permission Policy to access features
+
+Cross-origin iframes must now specify features available to a given `iframe` via the `allow`
+attribute in order to access them.
+
+See [documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#allow) for
+more information.
+
+### Removed: The `--disable-color-correct-rendering` switch
+
+This switch was never formally documented but it's removal is being noted here regardless. Chromium itself now has better support for color spaces so this flag should not be needed.
+
+## Planned Breaking API Changes (29.0)
+
+### Behavior Changed: `ipcRenderer` can no longer be sent over the `contextBridge`
+
+Attempting to send `ipcRenderer` as an object over the `contextBridge` will now result in
+an empty object on the receiving side of the bridge. This change was made to remove / mitigate
+a security footgun, you should not directly expose ipcRenderer or it's methods over the bridge.
+Instead provide a safe wrapper like below:
+
+```js
+contextBridge.exposeInMainWorld('app', {
+  onEvent: (cb) => ipcRenderer.on('foo', (e, ...args) => cb(args))
+})
+```
+
+### Removed: `renderer-process-crashed` event on `app`
+
+The `renderer-process-crashed` event on `app` has been removed.
+Use the new `render-process-gone` event instead.
+
+```js
+// Removed
+app.on('renderer-process-crashed', (event, webContents, killed) => { /* ... */ })
+
+// Replace with
+app.on('render-process-gone', (event, webContents, details) => { /* ... */ })
+```
+
+### Removed: `crashed` event on `WebContents` and `<webview>`
+
+The `crashed` events on `WebContents` and `<webview>` have been removed.
+Use the new `render-process-gone` event instead.
+
+```js
+// Removed
+win.webContents.on('crashed', (event, killed) => { /* ... */ })
+webview.addEventListener('crashed', (event) => { /* ... */ })
+
+// Replace with
+win.webContents.on('render-process-gone', (event, details) => { /* ... */ })
+webview.addEventListener('render-process-gone', (event) => { /* ... */ })
+```
+
+### Removed: `gpu-process-crashed` event on `app`
+
+The `gpu-process-crashed` event on `app` has been removed.
+Use the new `child-process-gone` event instead.
+
+```js
+// Removed
+app.on('gpu-process-crashed', (event, killed) => { /* ... */ })
+
+// Replace with
+app.on('child-process-gone', (event, details) => { /* ... */ })
+```
+
 ## Planned Breaking API Changes (28.0)
 
 ### Behavior Changed: `WebContents.backgroundThrottling` set to false affects all `WebContents` in the host `BrowserWindow`
