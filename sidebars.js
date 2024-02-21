@@ -385,5 +385,6 @@ module.exports = {
         'latest/api/structures/render-process-gone-details',
       ],
     },
+    { type: 'category', label: 'Api', items: ['latest/api/web-utils'] },
   ],
 };
