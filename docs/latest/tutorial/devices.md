@@ -40,7 +40,7 @@ clicked.
 ## WebHID API
 
 The [WebHID API](https://web.dev/hid/) can be used to access HID devices such
-as keyboards and gamepads.  Electron provides several APIs for working with
+as keyboards and gamepads. Electron provides several APIs for working with
 the WebHID API:
 
 * The [`select-hid-device` event on the Session](latest/api/session.md#event-select-hid-device)

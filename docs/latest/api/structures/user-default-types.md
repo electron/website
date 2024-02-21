@@ -16,4 +16,4 @@ hide_title: false
 * `array` Array&#60;unknown&#62;
 * `dictionary` Record&#60;string, unknown&#62;
 
-This type is a helper alias, no object will never exist of this type.
+This type is a helper alias, no object will ever exist of this type.

@@ -89,9 +89,9 @@ contextBridge.exposeInMainWorld('electronAPI', {
 })
 ```
 
-You can create a `renderer.d.ts` declaration file and globally augment the `Window` interface:
+You can create a `interface.d.ts` declaration file and globally augment the `Window` interface:
 
-```ts title='renderer.d.ts' @ts-noisolate
+```ts title='interface.d.ts' @ts-noisolate
 export interface IElectronAPI {
   loadPreferences: () => Promise<void>,
 }
