@@ -28,6 +28,8 @@ If you have any feedback, please share it with us on [Twitter](https://twitter.c
   - [Node 20.0.0 notes](https://nodejs.org/en/blog/release/v20.0.0/)
 - V8 `12.2`
 
+Electron 29 upgrades Chromium from `120.0.6099.56` to `122.0.6261.39`, Node from `18.18.2` to `20.9.0`, and V8 from `12.0` to `12.2`.
+
 ### New Features
 
 - Added [net](https://www.electronjs.org/docs/latest/api/net) module to [utility process](https://www.electronjs.org/docs/latest/glossary#utility-process). [#40890](https://github.com/electron/electron/pull/40890)
@@ -35,7 +37,6 @@ If you have any feedback, please share it with us on [Twitter](https://twitter.c
 - Added new `webUtils` module, a utility layer to interact with Web API objects, to replace `File.path` augmentation. [#38776](https://github.com/electron/electron/pull/38776)
 - Added an option in `protocol.registerSchemesAsPrivileged` to allow V8 code cache in custom schemes. [#40544](https://github.com/electron/electron/pull/40544)
 - Migrated `app.{set|get}LoginItemSettings(settings)` to use Apple's new recommended underlying framework on macOS 13.0+. [#37244](https://github.com/electron/electron/pull/37244)
-- Upgraded Node from v18.18.2 to v20.9.0 [#40545](https://github.com/electron/electron/pull/40545)
 
 ### Breaking Changes
 
