@@ -1,6 +1,6 @@
 ---
 title: Google Summer of Code 2024
-date: 2024-11-23T00:00:00.000Z
+date: 2024-02-23T00:00:00.000Z
 authors:
   - name: erickzhao
     url: 'https://github.com/erickzhao'
