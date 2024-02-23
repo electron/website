@@ -45,7 +45,7 @@ If you aren’t very familiar with Electron, we would recommend you start by rea
 [documentation](https://electronjs.org/docs/latest) and trying out examples in [Electron Fiddle](https://electronjs.org/fiddle).
 
 To learn more about Electron app distribution, you can also play around with
-[Electron Forge](https://github.com/electron/forge/blob/main/LICENSE) by creating a sample application:
+[Electron Forge](https://www.electronforge.io/) by creating a sample application:
 
 ```bash
 npm init electron-app@latest my-app
