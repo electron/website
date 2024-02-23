@@ -27,7 +27,7 @@ yarn start
 
 For English documentation, the documentation is mirrored from the [electron/electron][] repo.
 Changes are picked automatically by the [electron/electron-website-updater][] webhook as soon as they
-are made the latest stable release branch.
+are made in the latest stable release branch.
 
 For example, if the latest Electron stable release is `v22.0.3`, then any documentation changes in
 the `22-x-y` branch in electron/electron will be mirrored into the `main` branch of this repository.
