@@ -100,7 +100,7 @@ you can read his report in the [2022 GSoC program archives](https://summerofcode
 ## Questions?
 
 If you have questions we didn’t address in the blog post or inquiries for your proposal draft,
-please send us an email at [summer-of-code@electronjs.org](mailto:summer-of-code@electronjs.org)!
+please send us an email at [summer-of-code@electronjs.org](mailto:summer-of-code@electronjs.org) or check [GSoC FAQ](https://developers.google.com/open-source/gsoc/faq)!
 
 ## Resources
 
