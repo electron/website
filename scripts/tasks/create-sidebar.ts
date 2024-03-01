@@ -178,6 +178,22 @@ export const createSidebar = async (root: string, destination: string) => {
       prettierConfig
     );
 
+    for (const id of Object.keys(sidebars)) {
+      for (const category of sidebars[id]) {
+        setRecursive(category);
+        // Sort items alphabetically within each category
+        category.items.sort((a, b) => {
+          if (typeof a === 'string' && typeof b === 'string') {
+            return a.localeCompare(b);
+          } else if (a.label && b.label) {
+            return a.label.localeCompare(b.label);
+          } else {
+            return 0;
+          }
+        });
+      }
+    }
+
     await fs.writeFile(destination, formattedSidebarString, 'utf-8');
   } else {
     logger.info(`No new documents found`);
