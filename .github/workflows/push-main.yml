@@ -21,7 +21,7 @@ jobs:
         with:
           node-version: 20
       - name: Install dependencies
-        uses: bahmutov/npm-install@d476752204653fb5cce6c09db0eaf220761f5d9e # tag: v1.8.37
+        uses: bahmutov/npm-install@237ded403e6012a48281f4572eab0c8eafe55b3f # tag: v1.10.1
       - name: Upload sources to Crowdin
         run: 'yarn i18n:upload'
         env:
