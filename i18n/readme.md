@@ -12,11 +12,12 @@ Some of the files that are generated are `code.json`, `navbar.json`,
 For the website's source language (`en-US`), these JSON files are **not**
 used by Docusaurus. Rather, they serve as source files for our
 [Crowdin](https://crowdin.com/project/electron) internationalization (i18n)
-workflow. The [`electron/i18n`](https://github.com/electron/i18n) repository
-periodically updates these source strings on Crowdin via
-[GitHub Actions](https://github.com/electron/i18n/actions/workflows/schedule-update-source-content.yml).
+workflow.
 
 To keep everything in sync, there is a pre-commit hook that automatically
 deletes and creates again the `en-US` folder and its contents when
 `docusaurus.config.js` or `sidebars.js` are modified.
-The script the hook invokes is in `/scripts/update-l10n-sources.js`.
+The script the hook invokes is in `/scripts/update-l10n-sources.ts`.
+
+For details on how to contribute to the i18n of the Electron docs, please
+see [i18n.md](../i18n.md).
