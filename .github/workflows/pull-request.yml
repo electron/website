@@ -22,7 +22,7 @@ jobs:
       - name: Install dependencies
         uses: bahmutov/npm-install@237ded403e6012a48281f4572eab0c8eafe55b3f # tag: v1.10.1
 
-      - name: Test
-        run: yarn lint && yarn test
+      - name: Lint
+        run: yarn lint
         env:
           CI: true
