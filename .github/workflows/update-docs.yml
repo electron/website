@@ -4,36 +4,48 @@ on:
   repository_dispatch:
     types: [doc_changes]
 
+permissions: {}
+
 jobs:
   update-docs:
     runs-on: ubuntu-latest
-    outputs:
-      branch: ${{ steps.branch.outputs.branch }}
-    permissions:
-      contents: write
-      pull-requests: write
     steps:
+      - name: Generate GitHub App token
+        uses: electron/github-app-auth-action@384fd19694fe7b6dcc9a684746c6976ad78228ae # v1.1.1
+        id: generate-token
+        with:
+          creds: ${{ secrets.DOCS_UPDATER_GH_APP_CREDS }}
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # tag: v4.1.1
+        with:
+          token: ${{ steps.generate-token.outputs.token }}
       - uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # tag: v4.0.2
         with:
           node-version: 20
       - name: Install dependencies
         uses: bahmutov/npm-install@237ded403e6012a48281f4572eab0c8eafe55b3f # tag: v1.10.1
-      - name: 'Prebuild'
-        run: 'yarn pre-build ${{ github.event.client_payload.sha }} ${{ github.event.client_payload.branch}}'
-      - name: 'Push changes or create PR'
-        run: 'yarn process-docs-changes'
+      - name: Prebuild
+        run: |
+          'yarn pre-build ${{ github.event.client_payload.sha }} ${{ github.event.client_payload.branch}}'
+          git add .
+      - name: Check if PR is needed
+        id: check-if-pr-needed
+        run: |
+          git diff-index --cached --diff-filter=A --exit-code HEAD
+          NEW_FILES=$?
+          git ls-remote --heads --exit-code origin refs/heads/$(git name-rev --name-only HEAD)
+          test $? -eq 2
+          TRACKED_BRANCH=$?
+          echo "PR_NEEDED=$(($NEW_FILES & $TRACKED_BRANCH))" >> $GITHUB_OUTPUT
+      - name: Push changes
+        id: commit-action
+        uses: dsanders11/github-app-commit-action@48d2ff8c1a855eb15d16afa97ae12616456d7cbc # v1.4.0
+        with:
+          message: 'chore: update ref to docs (🤖)'
+          ref: ${{ steps.check-if-pr-needed.outputs.PR_NEEDED && 'chore/docs-updates' || 'main' }}
+          token: ${{ steps.generate-token.outputs.token }}
+      - name: Create pull request
+        if: ${{ steps.check-if-pr-needed.outputs.PR_NEEDED }}
+        run: |
+          gh pr create --head ${{ steps.commit-action.outputs.refs }} --reviewer erickzhao --title 'chore: update ref to docs (🤖)' --body-file=-
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: branch
-        run: echo "branch=$(git branch --show-current)" >> $GITHUB_OUTPUT
-  # GitHub will not kick the "push-XXX" workflow so we have to publish from here
-  build-and-deploy:
-    needs: [update-docs]
-    # If we are in the "main" branch, it means we have pushed the changed directly and should deploy
-    if: ${{ needs.update-docs.outputs.branch == 'main' }}
-    uses: electron/website/.github/workflows/build-and-deploy.yml@main
-    with:
-      branch: main
-    secrets:
-      SAS: ${{ secrets.SAS }}
+          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
