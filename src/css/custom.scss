@@ -126,6 +126,8 @@
   &__link {
     font-weight: var(--ifm-font-weight-normal);
     border-bottom: 2px solid transparent;
+    display: block;
+    width: max-content;
 
     &--active {
       color: var(--electron-color-light);
