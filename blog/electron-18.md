@@ -39,7 +39,7 @@ Additionally, Electron has changed supported versions from latest three versions
 - Removed the old `BrowserWindowProxy`-based implementation of `window.open`. This also removes the `nativeWindowOpen` option from `webPreferences`. [#29405](https://github.com/electron/electron/pull/29405)
 - Added 'focus' and 'blur' events to `WebContents`. [#25873](https://github.com/electron/electron/pull/25873)
 - Added Substitutions menu roles on macOS: `showSubstitutions`, `toggleSmartQuotes`, `toggleSmartDashes`, `toggleTextReplacement`. [#32024](https://github.com/electron/electron/pull/32024)
-- Added `first-instance-ack` event to the `app.requestSingleInstanceLock()` flow, so that users can pass some data back from the second instance to the first instance. [#31460](https://github.com/electron/electron/pull/31460)
+- Added a `first-instance-ack` event to the `app.requestSingleInstanceLock()` flow, allowing users to seamlessly transmit data from the first instance to the second instance. [#31460](https://github.com/electron/electron/pull/31460)
 - Added support for more color formats in `setBackgroundColor`. [#33364](https://github.com/electron/electron/pull/33364)
 
 See the [18.0.0 release notes](https://github.com/electron/electron/releases/tag/v18.0.0) for a full list of new features and changes.
