@@ -9,7 +9,7 @@ import LinuxLogo from '@site/static/assets/img/platform-linux.svg';
 import clsx from 'clsx';
 
 import { usePluginData } from '@docusaurus/useGlobalData';
-import { SemVer, satisfies } from 'semver';
+import { SemVer } from 'semver';
 
 export default function FiddlePage() {
   const [OS, setOS] = useState('win32');
