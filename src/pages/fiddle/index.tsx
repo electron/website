@@ -49,14 +49,6 @@ export default function FiddlePage() {
     },
   };
 
-  // Handle a temporary Forge naming issue that replaced the period in "Electron.Fiddle" with
-  // a hyphen in the 0.36.0 release. We expect that 0.37 and onwards will have a fix. Once
-  // released, this code can be removed.
-  if (satisfies(version, '^0.36.0')) {
-    downloadLinks.darwin.x64 = `${downloadPrefix}/Electron-Fiddle-darwin-x64-${version}.zip`;
-    downloadLinks.darwin.arm64 = `${downloadPrefix}/Electron-Fiddle-darwin-arm64-${version}.zip`;
-  }
-
   const renderDownloadButtons = () => {
     switch (OS) {
       case 'win32':
