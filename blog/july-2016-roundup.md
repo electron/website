@@ -36,7 +36,6 @@ If you've made an Electron app or host a meetup, make a [pull request](https://g
 
 ### New Meetups
 
-{: .table .table-ruled .table-full-width .table-with-spacious-first-column .mb-7}
-| | |
-| --- | -- |
+|                                                                                                         |            |
+| ------------------------------------------------------------------------------------------------------- | ---------- |
 | [Electron Open Source Desktop Framework](http://www.meetup.com/Electron-Open-Source-Desktop-Framework/) | London, UK |
