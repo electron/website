@@ -39,7 +39,7 @@ In most cases, you should do everything in the `ready` event handler.
 Returns:
 
 * `event` Event
-* `launchInfo` Record&#60;string, any&#62; | [NotificationResponse](latest/api/structures/notification-response.md) _macOS_
+* `launchInfo` Record&#60;string, any\&#62; | [NotificationResponse](latest/api/structures/notification-response.md) _macOS_
 
 Emitted once, when Electron has finished initializing. On macOS, `launchInfo`
 holds the `userInfo` of the [`NSUserNotification`](https://developer.apple.com/documentation/foundation/nsusernotification)
@@ -977,7 +977,7 @@ app.setJumpList([
 
 ### `app.requestSingleInstanceLock([additionalData])`
 
-* `additionalData` Record&#60;any, any&#62; (optional) - A JSON object containing additional data to send to the first instance.
+* `additionalData` Record&#60;any, any\&#62; (optional) - A JSON object containing additional data to send to the first instance.
 
 Returns `boolean`
 
