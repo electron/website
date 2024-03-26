@@ -46,6 +46,8 @@ const config: Config = {
       logo: {
         alt: 'Electron homepage',
         src: 'assets/img/logo.svg',
+        width: 32,
+        height: 32,
       },
       items: [
         {
