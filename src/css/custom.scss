@@ -251,7 +251,7 @@
   font-weight: var(--ifm-font-weight-bold);
 }
 
-// avoid layout change during theme change
+// fix https://github.com/electron/website/issues/539
 .navbar__logo {
   width: 2rem;
 }
