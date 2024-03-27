@@ -250,3 +250,8 @@
 .table-of-contents__link--active {
   font-weight: var(--ifm-font-weight-bold);
 }
+
+// avoid layout change during theme change
+.navbar__logo {
+  width: 2rem;
+}
