@@ -24,6 +24,8 @@ following properties:
     method.
   * `url` string (optional) - The request URL. Must be provided in the absolute
     form with the protocol scheme specified as http or https.
+  * `headers` Record&#60;string, string | string[]&#62; (optional) - Headers to be sent
+    with the request.
   * `session` Session (optional) - The [`Session`](latest/api/session.md) instance with
     which the request is associated.
   * `partition` string (optional) - The name of the [`partition`](latest/api/session.md)
