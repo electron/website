@@ -383,6 +383,7 @@ module.exports = {
         'latest/api/structures/browser-window-options',
         'latest/api/structures/web-preferences',
         'latest/api/structures/render-process-gone-details',
+        'latest/api/structures/proxy-config',
       ],
     },
   ],
