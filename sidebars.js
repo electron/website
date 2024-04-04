@@ -386,6 +386,10 @@ module.exports = {
         'latest/api/structures/proxy-config',
       ],
     },
-    { type: 'category', label: 'Api', items: ['latest/api/web-utils'] },
+    {
+      type: 'category',
+      label: 'Api',
+      items: ['latest/api/web-utils', 'latest/api/navigation-history'],
+    },
   ],
 };
