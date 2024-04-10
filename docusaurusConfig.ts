@@ -176,6 +176,10 @@ const config: Config = {
               label: 'Open Collective',
               href: 'https://opencollective.com/electron',
             },
+            {
+              label: 'Infrastructure Dashboard',
+              href: 'https://p.datadoghq.com/sb/c44e1df0-85d7-11ee-94c9-da7ad0900002-c245f7ef47d0d0c32abecdc0938c2a85',
+            },
           ],
         },
       ],
