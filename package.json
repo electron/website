@@ -26,9 +26,7 @@
     "lint:markdown": "electron-markdownlint \"**/*.md\"",
     "lint": "prettier . --check && npm run lint:eslint && npm run lint:markdown",
     "lint:fix": "prettier . --write && npm run lint:eslint --fix && npm run lint:markdown --fix",
-    "test": "jest",
     "pre-build": "ts-node ./scripts/pre-build.ts",
-    "process-docs-changes": "ts-node ./scripts/process-docs-changes.ts",
     "prepare": "husky install"
   },
   "dependencies": {
