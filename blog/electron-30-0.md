@@ -24,7 +24,7 @@ If you have any feedback, please share it with us on [Twitter](https://twitter.c
 ### Highlights
 
 - ASAR Integrity fuse now supported on Windows [#40504](https://github.com/electron/electron/pull/40504)
-  - Existing apps with ASAR Integrity enabled may not work on Windows if not configured correctly.
+  - Existing apps with ASAR Integrity enabled may not work on Windows if not configured correctly. Apps using Electron packaging tools should upgrade to `@electron/packager@18.3.1` or `@electron/forge@7.4.0`.
   - Take a look at our [ASAR Integrity tutorial](https://www.electronjs.org/docs/latest/tutorial/asar-integrity) for more information.
 - Added `WebContentsView` and `BaseWindow`, deprecating & replacing `BrowserView` [#35658](https://github.com/electron/electron/pull/35658)
 - Added `net` module to utility process [#40017](https://github.com/electron/electron/pull/40017)
@@ -51,9 +51,9 @@ attribute in order to access them.
 See [documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#allow) for
 more information.
 
-#### Removed: The `--disable-color-correct-rendering` switch
+#### Removed: The `--disable-color-correct-rendering` command line switch
 
-This switch was never formally documented but it's removal is being noted here regardless. Chromium itself now has better support for color spaces so this flag should not be needed.
+This switch was never formally documented but its removal is being noted here regardless. Chromium itself now has better support for color spaces so this flag should not be needed.
 
 #### Behavior Changed: `BrowserView.setAutoResize` behavior on macOS
 
