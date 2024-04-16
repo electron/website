@@ -23,12 +23,12 @@ If you have any feedback, please share it with us on [Twitter](https://twitter.c
 
 ### Highlights
 
-* ASAR Integrity fuse now supported on Windows
+* ASAR Integrity fuse now supported on Windows [#40504](https://github.com/electron/electron/pull/40504)
   * Existing apps with ASAR Integrity enabled may not work on Windows if not configured correctly.
   * Take a look at our [ASAR Integrity tutorial](https://www.electronjs.org/docs/latest/tutorial/asar-integrity) for more information.
-* Added `WebContentsView` and `BaseWindow`, deprecating & replacing `BrowserView`
-* Added `net` module to utility process
-* Implemented support for the File System API
+* Added `WebContentsView` and `BaseWindow`, deprecating & replacing `BrowserView` [#35658](https://github.com/electron/electron/pull/35658)
+* Added `net` module to utility process [#40017](https://github.com/electron/electron/pull/40017)
+* Implemented support for the File System API [#41827](https://github.com/electron/electron/commit/cf1087badd437906f280373decb923733a8523e6)
 
 ### Stack Changes
 
