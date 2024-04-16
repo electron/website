@@ -28,7 +28,7 @@ If you have any feedback, please share it with us on [Twitter](https://twitter.c
   - Take a look at our [ASAR Integrity tutorial](https://www.electronjs.org/docs/latest/tutorial/asar-integrity) for more information.
 - Added `WebContentsView` and `BaseWindow`, deprecating & replacing `BrowserView` ([#35658](https://github.com/electron/electron/pull/35658))
   - See [our Web Embeds documentation](https://www.electronjs.org/docs/latest/tutorial/web-embeds) for a comparison of the new `WebContentsView` API to other similar APIs.
-- Added `net` module to utility process ([#40017](https://github.com/electron/electron/pull/40017))
+- Added [`net`](https://www.electronjs.org/docs/latest/api/net) module to utility process ([#40017](https://github.com/electron/electron/pull/40017))
 - Implemented support for the [File System API](https://developer.mozilla.org/en-US/docs/Web/API/File_System_API) ([#41827](https://github.com/electron/electron/commit/cf1087badd437906f280373decb923733a8523e6))
 
 ### Stack Changes
