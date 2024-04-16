@@ -57,7 +57,7 @@ This switch was never formally documented but it's removal is being noted here r
 
 #### Behavior Changed: `BrowserView.setAutoResize` behavior on macOS
 
-In Electron 30, BrowserView is now a wrapper around the new [WebContentsView](api/web-contents-view.md) API.
+In Electron 30, BrowserView is now a wrapper around the new [WebContentsView](https://www.electronjs.org/docs/latest/api/web-contents-view) API.
 
 Previously, the `setAutoResize` function of the `BrowserView` API was backed by [autoresizing](https://developer.apple.com/documentation/appkit/nsview/1483281-autoresizingmask?language=objc) on macOS, and by a custom algorithm on Windows and Linux.
 For simple use cases such as making a BrowserView fill the entire window, the behavior of these two approaches was identical.
