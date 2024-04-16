@@ -11,7 +11,7 @@ authors:
 slug: electron-30-0
 ---
 
-Electron 30.0.0 has been released! It includes upgrades to Chromium `124.0.6367.29`, V8 `12.5`, and Node.js `20.11.1`.
+Electron 30.0.0 has been released! It includes upgrades to Chromium `124.0.6367.49`, V8 `12.4`, and Node.js `20.11.1`.
 
 ---
 
