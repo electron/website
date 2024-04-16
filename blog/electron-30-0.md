@@ -5,6 +5,9 @@ authors:
   - name: clavin
     url: 'https://github.com/clavin'
     image_url: 'https://github.com/clavin.png?size=96'
+  - name: VerteDinde
+    url: 'https://github.com/vertedinde'
+    image_url: 'https://github.com/vertedinde.png?size=96'
 slug: electron-30-0
 ---
 
