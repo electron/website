@@ -23,12 +23,13 @@ If you have any feedback, please share it with us on [Twitter](https://twitter.c
 
 ### Highlights
 
-- ASAR Integrity fuse now supported on Windows [#40504](https://github.com/electron/electron/pull/40504)
+- ASAR Integrity fuse now supported on Windows ([#40504](https://github.com/electron/electron/pull/40504))
   - Existing apps with ASAR Integrity enabled may not work on Windows if not configured correctly. Apps using Electron packaging tools should upgrade to `@electron/packager@18.3.1` or `@electron/forge@7.4.0`.
   - Take a look at our [ASAR Integrity tutorial](https://www.electronjs.org/docs/latest/tutorial/asar-integrity) for more information.
-- Added `WebContentsView` and `BaseWindow`, deprecating & replacing `BrowserView` [#35658](https://github.com/electron/electron/pull/35658)
-- Added `net` module to utility process [#40017](https://github.com/electron/electron/pull/40017)
-- Implemented support for the File System API [#41827](https://github.com/electron/electron/commit/cf1087badd437906f280373decb923733a8523e6)
+- Added `WebContentsView` and `BaseWindow`, deprecating & replacing `BrowserView` ([#35658](https://github.com/electron/electron/pull/35658))
+  - See [our Web Embeds documentation](https://www.electronjs.org/docs/latest/tutorial/web-embeds) for a comparison of the new `WebContentsView` API to other similar APIs.
+- Added `net` module to utility process ([#40017](https://github.com/electron/electron/pull/40017))
+- Implemented support for the [File System API](https://developer.mozilla.org/en-US/docs/Web/API/File_System_API) ([#41827](https://github.com/electron/electron/commit/cf1087badd437906f280373decb923733a8523e6))
 
 ### Stack Changes
 
