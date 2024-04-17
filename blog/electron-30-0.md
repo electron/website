@@ -29,7 +29,6 @@ If you have any feedback, please share it with us on [Twitter](https://twitter.c
 - Added [`WebContentsView`](https://www.electronjs.org/docs/latest/api/web-contents-view) and [`BaseWindow`](https://www.electronjs.org/docs/latest/api/base-window) main process modules, deprecating & replacing `BrowserView` ([#35658](https://github.com/electron/electron/pull/35658))
   - `BrowserView` is now a shim over `WebContentsView` and the old implementation has been removed.
   - See [our Web Embeds documentation](https://www.electronjs.org/docs/latest/tutorial/web-embeds) for a comparison of the new `WebContentsView` API to other similar APIs.
-- Added [`net`](https://www.electronjs.org/docs/latest/api/net) module to utility process ([#40017](https://github.com/electron/electron/pull/40017))
 - Implemented support for the [File System API](https://developer.mozilla.org/en-US/docs/Web/API/File_System_API) ([#41827](https://github.com/electron/electron/commit/cf1087badd437906f280373decb923733a8523e6))
 
 ### Stack Changes
@@ -42,6 +41,15 @@ If you have any feedback, please share it with us on [Twitter](https://twitter.c
 - V8 `12.4`
 
 Electron 30 upgrades Chromium from `122.0.6261.39` to `124.0.6367.49`, Node from `20.9.0` to `20.11.1`, and V8 from `12.2` to `12.4`.
+
+### New Features
+
+- Added a `transparent` webpreference to webviews. ([#40301](https://github.com/electron/electron/pull/40301))
+- Added a new instance property `navigationHistory` on webContents API with `navigationHistory.getEntryAtIndex` method, enabling applications to retrieve the URL and title of any navigation entry within the browsing history. ([#41662](https://github.com/electron/electron/pull/41662)) <span style="font-size:small;">(Also in [29](https://github.com/electron/electron/pull/41661))</span>
+- Added a new method `BrowserWindow.isOccluded()` to allow apps to check occlusion status. ([#38982](https://github.com/electron/electron/pull/38982))
+- Added proxy configuring support for requests made with net module from utility process. ([#41417](https://github.com/electron/electron/pull/41417)) <span style="font-size:small;">(Also in [28](https://github.com/electron/electron/pull/41744), [29](https://github.com/electron/electron/pull/41416))</span>
+- Added support for Bluetooth ports being requested by service class ID in `navigator.serial`. ([#41734](https://github.com/electron/electron/pull/41734)) <span style="font-size:small;">(Also in [29](https://github.com/electron/electron/pull/41735))</span>
+- Added support for `NODE_EXTRA_CA_CERTS`. ([#41822](https://github.com/electron/electron/pull/41822))
 
 ### Breaking Changes
 
