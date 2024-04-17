@@ -40,7 +40,7 @@ If you have any feedback, please share it with us on [Twitter](https://twitter.c
   - [Node 20.11.1 notes](https://nodejs.org/en/blog/release/v20.11.1/)
 - V8 `12.4`
 
-Electron 29 upgrades Chromium from `122.0.6261.39` to `124.0.6367.49`, Node from `20.9.0` to `20.11.1`, and V8 from `12.2` to `12.4`.
+Electron 30 upgrades Chromium from `122.0.6261.39` to `124.0.6367.49`, Node from `20.9.0` to `20.11.1`, and V8 from `12.2` to `12.4`.
 
 ### Breaking Changes
 
