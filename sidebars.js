@@ -338,7 +338,6 @@ module.exports = {
         'latest/api/structures/gpu-feature-status',
         'latest/api/structures/hid-device',
         'latest/api/structures/input-event',
-        'latest/api/structures/io-counters',
         'latest/api/structures/ipc-main-event',
         'latest/api/structures/ipc-main-invoke-event',
         'latest/api/structures/ipc-renderer-event',
