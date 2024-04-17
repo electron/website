@@ -45,10 +45,10 @@ Electron 30 upgrades Chromium from `122.0.6261.39` to `124.0.6367.49`, Node from
 ### New Features
 
 - Added a `transparent` webpreference to webviews. ([#40301](https://github.com/electron/electron/pull/40301))
-- Added a new instance property `navigationHistory` on webContents API with `navigationHistory.getEntryAtIndex` method, enabling applications to retrieve the URL and title of any navigation entry within the browsing history. ([#41662](https://github.com/electron/electron/pull/41662)) <span style="font-size:small;">(Also in [29](https://github.com/electron/electron/pull/41661))</span>
+- Added a new instance property `navigationHistory` on webContents API with `navigationHistory.getEntryAtIndex` method, enabling applications to retrieve the URL and title of any navigation entry within the browsing history. ([#41662](https://github.com/electron/electron/pull/41662))
 - Added new `BrowserWindow.isOccluded()` method to allow apps to check occlusion status. ([#38982](https://github.com/electron/electron/pull/38982))
-- Added proxy configuring support for requests made with the `net` module from the utility process. ([#41417](https://github.com/electron/electron/pull/41417)) <span style="font-size:small;">(Also in [28](https://github.com/electron/electron/pull/41744), [29](https://github.com/electron/electron/pull/41416))</span>
-- Added support for Bluetooth ports being requested by service class ID in `navigator.serial`. ([#41734](https://github.com/electron/electron/pull/41734)) <span style="font-size:small;">(Also in [29](https://github.com/electron/electron/pull/41735))</span>
+- Added proxy configuring support for requests made with the `net` module from the utility process. ([#41417](https://github.com/electron/electron/pull/41417))
+- Added support for Bluetooth ports being requested by service class ID in `navigator.serial`. ([#41734](https://github.com/electron/electron/pull/41734))
 - Added support for the Node.js [`NODE_EXTRA_CA_CERTS`](https://nodejs.org/api/cli.html#node_extra_ca_certsfile) CLI flag. ([#41822](https://github.com/electron/electron/pull/41822))
 
 ### Breaking Changes
