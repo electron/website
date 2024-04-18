@@ -133,7 +133,7 @@ folder of your project:
 
 ```html
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8">
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
@@ -427,9 +427,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
 ```html
 <!--index.html-->
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8">
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->

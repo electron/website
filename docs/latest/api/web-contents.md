@@ -589,6 +589,15 @@ Returns:
 
 Emitted when a link is clicked in DevTools or 'Open in new tab' is selected for a link in its context menu.
 
+#### Event: 'devtools-search-query'
+
+Returns:
+
+* `event` Event
+* `query` string - text to query for.
+
+Emitted when 'Search' is selected for text in its context menu.
+
 #### Event: 'devtools-opened'
 
 Emitted when DevTools is opened.
@@ -785,9 +794,6 @@ Returns:
     `input-text`, `input-time`, `input-url`, `input-week`, `output`, `reset-button`,
     `select-list`, `select-list`, `select-multiple`, `select-one`, `submit-button`,
     and `text-area`,
-  * `inputFieldType` string _Deprecated_ - If the context menu was invoked on an
-    input field, the type of that field. Possible values include `none`,
-    `plainText`, `password`, `other`.
   * `spellcheckEnabled` boolean - If the context is editable, whether or not spellchecking is enabled.
   * `menuSourceType` string - Input source that invoked the context menu.
     Can be `none`, `mouse`, `keyboard`, `touch`, `touchMenu`, `longPress`, `longTap`, `touchHandle`, `stylus`, `adjustSelection`, or `adjustSelectionReset`.
@@ -2206,6 +2212,10 @@ A `Integer` representing the unique ID of this WebContents. Each ID is unique am
 #### `contents.session` _Readonly_
 
 A [`Session`](latest/api/session.md) used by this webContents.
+
+#### `contents.navigationHistory` _Readonly_
+
+A [`NavigationHistory`](latest/api/navigation-history.md) used by this webContents.
 
 #### `contents.hostWebContents` _Readonly_
 

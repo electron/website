@@ -113,7 +113,7 @@ These individual tutorials expand on topics discussed in the guide above.
 
 * [app](latest/api/app.md)
 * [autoUpdater](latest/api/auto-updater.md)
-* [BrowserView](latest/api/browser-view.md)
+* [BaseWindow](latest/api/base-window.md)
 * [BrowserWindow](latest/api/browser-window.md)
 * [contentTracing](latest/api/content-tracing.md)
 * [desktopCapturer](latest/api/desktop-capturer.md)
@@ -141,8 +141,10 @@ These individual tutorials expand on topics discussed in the guide above.
 * [TouchBar](latest/api/touch-bar.md)
 * [Tray](latest/tutorial/tray.md)
 * [utilityProcess](latest/api/utility-process.md)
+* [View](latest/api/view.md)
 * [webContents](latest/api/web-contents.md)
 * [webFrameMain](latest/api/web-frame-main.md)
+* [WebContentsView](latest/api/web-contents-view.md)
 
 ### Modules for the Renderer Process (Web Page):
 
