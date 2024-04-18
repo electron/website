@@ -82,8 +82,8 @@ will be able to execute native code on the user's machine.
 Under no circumstances should you load and execute remote code with
 Node.js integration enabled. Instead, use only local files (packaged together
 with your application) to execute Node.js code. To display remote content, use
-the [`<webview>`][webview-tag] tag or [`BrowserView`][browser-view], make sure
-to disable the `nodeIntegration` and enable `contextIsolation`.
+the [`<webview>`][webview-tag] tag or a [`WebContentsView`][web-contents-view]
+and make sure to disable the `nodeIntegration` and enable `contextIsolation`.
 
 :::
 
@@ -176,7 +176,7 @@ This recommendation is the default behavior in Electron since 5.0.0.
 :::
 
 It is paramount that you do not enable Node.js integration in any renderer
-([`BrowserWindow`][browser-window], [`BrowserView`][browser-view], or
+([`BrowserWindow`][browser-window], [`WebContentsView`][web-contents-view], or
 [`<webview>`][webview-tag]) that loads remote content. The goal is to limit the
 powers you grant to remote content, thus making it dramatically more difficult
 for an attacker to harm your users should they gain the ability to execute
@@ -324,8 +324,8 @@ This recommendation is Electron's default.
 
 You may have already guessed that disabling the `webSecurity` property on a
 renderer process ([`BrowserWindow`][browser-window],
-[`BrowserView`][browser-view], or [`<webview>`][webview-tag]) disables crucial
-security features.
+[`WebContentsView`][web-contents-view], or [`<webview>`][webview-tag]) disables
+crucial security features.
 
 Do not disable `webSecurity` in production applications.
 
@@ -830,10 +830,10 @@ potential error cases, and refer to
 
 [breaking-changes]: latest/breaking-changes.md
 [browser-window]: latest/api/browser-window.md
-[browser-view]: latest/api/browser-view.md
 [webview-tag]: latest/api/webview-tag.md
+[web-contents-view]: latest/api/web-contents-view.md
+[responsible-disclosure]: https://en.wikipedia.org/wiki/Responsible_disclosure
 [web-contents]: latest/api/web-contents.md
 [window-open-handler]: latest/api/web-contents.md#contentssetwindowopenhandlerhandler
 [will-navigate]: latest/api/web-contents.md#event-will-navigate
 [open-external]: latest/api/shell.md#shellopenexternalurl-options
-[responsible-disclosure]: https://en.wikipedia.org/wiki/Responsible_disclosure
