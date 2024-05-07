@@ -1,11 +1,16 @@
 {
-  "extends": "@tsconfig/docusaurus/tsconfig.json",
+  "extends": "./node_modules/@tsconfig/docusaurus/tsconfig.json",
   "exclude": ["**/node_modules/*", "blog", "docs", "build", "i18n"],
   "compilerOptions": {
     "baseUrl": ".",
-    "target": "ES2017",
-    "moduleResolution": "Node",
-    "resolveJsonModule": true,
-    "types": ["jest"]
+    "target": "ES2015"
+  },
+  "ts-node": {
+    // these options are overrides used only by ts-node
+    // same as the --compilerOptions flag and the TS_NODE_COMPILER_OPTIONS environment variable
+    "compilerOptions": {
+      "module": "commonjs",
+      "moduleResolution": "Node"
+    }
   }
 }
