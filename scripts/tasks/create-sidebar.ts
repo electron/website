@@ -1,10 +1,10 @@
 import fs from 'fs-extra';
 import json5 from 'json5';
 import globby from 'globby';
-import {
+import type {
   Sidebars,
   SidebarItemDoc,
-} from '@docusaurus/plugin-content-docs/src/sidebars/types';
+} from '@docusaurus/plugin-content-docs/src/sidebars/types.js';
 import logger from '@docusaurus/logger';
 import prettier from 'prettier';
 import path from 'path';
