@@ -83,7 +83,6 @@
     "@electron/lint-roller": "^1.11.1",
     "@tsconfig/docusaurus": "^2.0.3",
     "@types/fs-extra": "^9.0.13",
-    "@types/jest": "^26.0.23",
     "@types/mdast": "^3.0.10",
     "@types/node": "^18.11.10",
     "@types/node-fetch": "^2.6.2",
@@ -104,7 +103,6 @@
     "gray-matter": "^4.0.3",
     "gunzip-maybe": "^1.4.2",
     "husky": "^8.0.0",
-    "jest": "^26.6.3",
     "json5": "^2.2.2",
     "latest-version": "^5.1.0",
     "lint-staged": "^13.2.0",
@@ -114,7 +112,6 @@
     "remark": "^13.0.0",
     "remark-gfm": "^1.0.0",
     "tar-stream": "^2.2.0",
-    "ts-jest": "^v26.5.5",
     "ts-node": "^10.9.1",
     "typescript": "5.3.2",
     "unist-util-visit-parents": "^3.1.1"
