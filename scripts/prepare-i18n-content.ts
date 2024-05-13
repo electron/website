@@ -9,7 +9,7 @@ import logger from '@docusaurus/logger';
 
 import { addFrontmatterToAllDocs } from './tasks/add-frontmatter';
 import { fixContent } from './tasks/md-fixers';
-import config from '../docusaurusConfig';
+import config from '../docusaurus.config';
 
 const DOCS_FOLDER = path.join('docs', 'latest');
 

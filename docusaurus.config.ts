@@ -1,12 +1,13 @@
 import path from 'path';
 import { Config } from '@docusaurus/types';
 import npm2yarn from '@docusaurus/remark-plugin-npm2yarn';
+import { themes as prismThemes } from 'prism-react-renderer';
 
-import apiLabels from './src/transformers/api-labels';
-import apiOptionsClass from './src/transformers/api-options-class';
-import apiStructurePreviews from './src/transformers/api-structure-previews';
-import jsCodeBlocks from './src/transformers/js-code-blocks';
-import fiddleEmbedder from './src/transformers/fiddle-embedder';
+// import apiLabels from './src/transformers/api-labels';
+// import apiOptionsClass from './src/transformers/api-options-class';
+// import apiStructurePreviews from './src/transformers/api-structure-previews';
+// import jsCodeBlocks from './src/transformers/js-code-blocks';
+// import fiddleEmbedder from './src/transformers/fiddle-embedder';
 
 const config: Config = {
   title: 'Electron',
@@ -33,8 +34,8 @@ const config: Config = {
       respectPrefersColorScheme: true,
     },
     prism: {
-      theme: require('prism-react-renderer/themes/github'),
-      darkTheme: require('prism-react-renderer/themes/dracula'),
+      theme: prismThemes.github,
+      darkTheme: prismThemes.dracula,
     },
     tableOfContents: {
       minHeadingLevel: 2,
@@ -194,10 +195,10 @@ const config: Config = {
   },
   plugins: [
     'docusaurus-plugin-sass',
-    path.resolve(__dirname, './src/plugins/apps'),
-    path.resolve(__dirname, './src/plugins/releases'),
-    path.resolve(__dirname, './src/plugins/fiddle'),
-    path.resolve(__dirname, './src/plugins/governance'),
+    path.resolve(__dirname, './src/plugins/apps/index.ts'),
+    path.resolve(__dirname, './src/plugins/releases/index.ts'),
+    path.resolve(__dirname, './src/plugins/fiddle/index.ts'),
+    path.resolve(__dirname, './src/plugins/governance/index.ts'),
   ],
   presets: [
     [
@@ -212,10 +213,10 @@ const config: Config = {
           },
           remarkPlugins: [
             apiLabels,
-            apiOptionsClass,
-            apiStructurePreviews,
-            jsCodeBlocks,
-            fiddleEmbedder,
+            // apiOptionsClass,
+            // apiStructurePreviews,
+            // jsCodeBlocks,
+            // fiddleEmbedder,
             [npm2yarn, { sync: true, converters: ['yarn'] }],
           ],
         },

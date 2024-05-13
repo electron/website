@@ -1,5 +1,5 @@
 import got from 'got';
-import remark from 'remark';
+import { remark } from 'remark';
 import gfm from 'remark-gfm';
 import toString from 'mdast-util-to-string';
 import { Node, Parent } from 'unist';
