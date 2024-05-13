@@ -1,7 +1,7 @@
 import { Node, Parent } from 'unist';
 import { InlineCode, ListItem, Paragraph } from 'mdast';
-import { Data as HastData } from 'mdast-util-to-hast/lib/index';
-import visitParents from 'unist-util-visit-parents';
+import { Data as HastData } from 'hast';
+import { visitParents } from 'unist-util-visit-parents';
 
 /**
  * This transformer adds the class="electron-api-options-list"

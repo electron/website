@@ -4,7 +4,7 @@ import npm2yarn from '@docusaurus/remark-plugin-npm2yarn';
 import { themes as prismThemes } from 'prism-react-renderer';
 
 import apiLabels from './src/transformers/api-labels';
-// import apiOptionsClass from './src/transformers/api-options-class';
+import apiOptionsClass from './src/transformers/api-options-class';
 // import apiStructurePreviews from './src/transformers/api-structure-previews';
 // import jsCodeBlocks from './src/transformers/js-code-blocks';
 // import fiddleEmbedder from './src/transformers/fiddle-embedder';
@@ -213,7 +213,7 @@ const config: Config = {
           },
           remarkPlugins: [
             apiLabels,
-            // apiOptionsClass,
+            apiOptionsClass,
             // apiStructurePreviews,
             // jsCodeBlocks,
             // fiddleEmbedder,
