@@ -1,6 +1,6 @@
 import { Parent } from 'unist';
-import visitParents from 'unist-util-visit-parents';
-import { Data as HastData } from 'mdast-util-to-hast/lib/index';
+import { visitParents } from 'unist-util-visit-parents';
+import { Data as HastData } from 'hast';
 import { Emphasis, PhrasingContent, Text } from 'mdast';
 
 /**

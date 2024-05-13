@@ -3,7 +3,7 @@ import { Config } from '@docusaurus/types';
 import npm2yarn from '@docusaurus/remark-plugin-npm2yarn';
 import { themes as prismThemes } from 'prism-react-renderer';
 
-// import apiLabels from './src/transformers/api-labels';
+import apiLabels from './src/transformers/api-labels';
 // import apiOptionsClass from './src/transformers/api-options-class';
 // import apiStructurePreviews from './src/transformers/api-structure-previews';
 // import jsCodeBlocks from './src/transformers/js-code-blocks';
