@@ -54,7 +54,7 @@ const importNode = {
 async function transformer(tree: Parent) {
   let needImport = false;
   visitParents(tree, matchCjsCodeBlock, maybeGenerateJsCodeBlock);
-  visitParents(tree, 'import', checkForJsCodeBlockImport);
+  visitParents(tree, 'mdxjsEsm', checkForJsCodeBlockImport);
 
   if (needImport) {
     tree.children.unshift(importNode);
