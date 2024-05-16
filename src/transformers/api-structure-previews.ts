@@ -3,19 +3,20 @@ import { visitParents } from 'unist-util-visit-parents';
 import fs from 'fs';
 import path from 'path';
 import { Node, Parent } from 'unist';
-import type {
-  Definition,
-  InlineCode,
-  Link,
-  LinkReference,
-  Nodes,
-  Text,
-} from 'mdast';
+import type { InlineCode, Link, LinkReference, Nodes, Text } from 'mdast';
 import { gfmTableToMarkdown } from 'mdast-util-gfm-table';
 import { frontmatterToMarkdown } from 'mdast-util-frontmatter';
 import { toMarkdown } from 'mdast-util-to-markdown';
 import { MdxJsxFlowElement } from 'mdast-util-mdx-jsx';
 import type { VFile } from 'vfile';
+import {
+  getJSXImport,
+  isDefinition,
+  isInlineCode,
+  isLink,
+  isLinkReference,
+  isText,
+} from '../util/mdx-utils';
 
 const fileContent = new Map<
   string,
@@ -81,38 +82,9 @@ async function transformer(tree: Parent, file: VFile) {
   modifiers.clear();
   visitParents(tree, checkLinksandDefinitions, replaceLinkWithPreview);
   visitParents(tree, isStructureLinkReference, replaceLinkWithPreview);
+  const importNode = getJSXImport('APIStructurePreview');
   if (modifiers.size) {
-    tree.children.unshift({
-      type: 'mdxjsEsm',
-      value:
-        "import APIStructurePreview from '@site/src/components/APIStructurePreview'",
-      data: {
-        estree: {
-          type: 'Program',
-          body: [
-            {
-              type: 'ImportDeclaration',
-              specifiers: [
-                {
-                  type: 'ImportDefaultSpecifier',
-                  local: {
-                    type: 'Identifier',
-                    name: 'APIStructurePreview',
-                  },
-                },
-              ],
-              source: {
-                type: 'Literal',
-                value: '@site/src/components/APIStructurePreview',
-                raw: "'@site/src/components/APIStructurePreview'",
-              },
-            },
-          ],
-          sourceType: 'module',
-          comments: [],
-        },
-      },
-    } as unknown as MdxJsxFlowElement);
+    tree.children.unshift(importNode);
     await Promise.all(Array.from(modifiers));
   }
 }
@@ -214,9 +186,10 @@ function replaceLinkWithPreview(node: Link | LinkReference) {
   // replace the raw link file with our JSX component.
   // See src/components/APIStructurePreview.jsx for implementation.
   if (
-    Array.isArray(node.children) &&
-    node.children.length > 0 &&
-    isTextOrInlineCode(node.children[0])
+    (Array.isArray(node.children) &&
+      node.children.length > 0 &&
+      isText(node.children[0])) ||
+    isInlineCode(node.children[0])
   ) {
     modifiers.add(
       promise
@@ -256,20 +229,4 @@ function replaceLinkWithPreview(node: Link | LinkReference) {
         })
     );
   }
-}
-
-function isDefinition(node: Node): node is Definition {
-  return node.type === 'definition';
-}
-
-function isLink(node: Node): node is Link {
-  return node.type === 'link';
-}
-
-function isLinkReference(node: Node): node is LinkReference {
-  return node.type === 'linkReference';
-}
-
-function isTextOrInlineCode(node: Node): node is Text | InlineCode {
-  return node.type === 'text' || node.type === 'inlineCode';
 }

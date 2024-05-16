@@ -1,12 +1,11 @@
 import { Node, Parent } from 'unist';
 import { Code } from 'mdast';
-import { MdxjsEsm } from 'mdast-util-mdxjs-esm';
 import { MdxJsxFlowElement } from 'mdast-util-mdx-jsx';
-
 import { visitParents, ActionTuple, SKIP } from 'unist-util-visit-parents';
 import path from 'path';
 import fs from 'fs-extra';
 import latestVersion from 'latest-version';
+import { getJSXImport, isCode, isImport } from '../util/mdx-utils';
 
 let _version = '';
 async function getVersion() {
@@ -40,36 +39,7 @@ function matchFiddleBlock(node: Node): node is Code {
   );
 }
 
-const importNode = {
-  type: 'mdxjsEsm',
-  value: "import FiddleEmbed from '@site/src/components/FiddleEmbed'",
-  data: {
-    estree: {
-      type: 'Program',
-      body: [
-        {
-          type: 'ImportDeclaration',
-          specifiers: [
-            {
-              type: 'ImportDefaultSpecifier',
-              local: {
-                type: 'Identifier',
-                name: 'FiddleEmbed',
-              },
-            },
-          ],
-          source: {
-            type: 'Literal',
-            value: '@site/src/components/FiddleEmbed',
-            raw: "'@site/src/components/FiddleEmbed'",
-          },
-        },
-      ],
-      sourceType: 'module',
-      comments: [],
-    },
-  },
-};
+const importNode = getJSXImport('FiddleEmbed');
 
 async function transformer(tree: Parent) {
   let needImport = false;
@@ -224,12 +194,4 @@ async function transformer(tree: Parent) {
 
     return children;
   }
-}
-
-function isImport(node: Node): node is MdxjsEsm {
-  return node.type === 'mdxjsEsm';
-}
-
-function isCode(node: Node): node is Code {
-  return node.type === 'code';
 }

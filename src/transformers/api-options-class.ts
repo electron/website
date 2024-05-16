@@ -1,7 +1,8 @@
-import { Node, Parent } from 'unist';
-import { InlineCode, ListItem, Paragraph } from 'mdast';
+import { Parent } from 'unist';
+import { ListItem } from 'mdast';
 import { Data as HastData } from 'hast';
 import { visitParents } from 'unist-util-visit-parents';
+import { isOptions, isParagraph } from '../util/mdx-utils';
 
 /**
  * This transformer adds the class="electron-api-options-list"
@@ -40,13 +41,4 @@ function visitor(node: ListItem) {
     } satisfies HastData;
     node.data = hastProperties;
   }
-}
-
-function isParagraph(node: Node): node is Paragraph {
-  return node.type === 'paragraph';
-}
-
-function isOptions(node: Node): node is InlineCode {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return node.type === 'inlineCode' && (node as any).value === 'options';
 }
