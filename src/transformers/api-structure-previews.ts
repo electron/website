@@ -1,14 +1,21 @@
 import logger from '@docusaurus/logger';
-import visitParents from 'unist-util-visit-parents';
+import { visitParents } from 'unist-util-visit-parents';
 import fs from 'fs';
 import path from 'path';
-import { Data, Literal, Node, Parent } from 'unist';
-import { Definition, InlineCode, Link, LinkReference, Text } from 'mdast';
-import table from 'mdast-util-gfm-table';
-import toMarkdown from 'mdast-util-to-markdown';
+import { Node, Parent } from 'unist';
+import type {
+  Definition,
+  InlineCode,
+  Link,
+  LinkReference,
+  Nodes,
+  Text,
+} from 'mdast';
+import { gfmTableToMarkdown } from 'mdast-util-gfm-table';
+import { frontmatterToMarkdown } from 'mdast-util-frontmatter';
+import { toMarkdown } from 'mdast-util-to-markdown';
+import { MdxJsxFlowElement } from 'mdast-util-mdx-jsx';
 import type { VFile } from 'vfile';
-
-import { Import } from '../util/interfaces';
 
 const fileContent = new Map<
   string,
@@ -48,13 +55,15 @@ async function transformer(tree: Parent, file: VFile) {
     }
 
     // Temporarily remove this node, toMarkdown chokes on it
-    if (tree.children[0].type === 'export') {
-      exportsNode = tree.children.shift();
+    if (tree.children[tree.children.length - 1].type === 'mdxjsEsm') {
+      exportsNode = tree.children.pop();
     }
 
     // It's not ideal to go from the parsed Markdown back to text
     // just to be parsed again to be rendered, but it is what it is
-    const content = toMarkdown(tree, { extensions: [table.toMarkdown()] });
+    const content = toMarkdown(tree as Nodes, {
+      extensions: [gfmTableToMarkdown(), frontmatterToMarkdown(['yaml'])],
+    });
 
     // Put the node back, because we need it
     if (exportsNode) {
@@ -74,10 +83,36 @@ async function transformer(tree: Parent, file: VFile) {
   visitParents(tree, isStructureLinkReference, replaceLinkWithPreview);
   if (modifiers.size) {
     tree.children.unshift({
-      type: 'import',
+      type: 'mdxjsEsm',
       value:
-        "import APIStructurePreview from '@site/src/components/APIStructurePreview';",
-    } as Import);
+        "import APIStructurePreview from '@site/src/components/APIStructurePreview'",
+      data: {
+        estree: {
+          type: 'Program',
+          body: [
+            {
+              type: 'ImportDeclaration',
+              specifiers: [
+                {
+                  type: 'ImportDefaultSpecifier',
+                  local: {
+                    type: 'Identifier',
+                    name: 'APIStructurePreview',
+                  },
+                },
+              ],
+              source: {
+                type: 'Literal',
+                value: '@site/src/components/APIStructurePreview',
+                raw: "'@site/src/components/APIStructurePreview'",
+              },
+            },
+          ],
+          sourceType: 'module',
+          comments: [],
+        },
+      },
+    } as unknown as MdxJsxFlowElement);
     await Promise.all(Array.from(modifiers));
   }
 }
@@ -89,7 +124,7 @@ async function transformer(tree: Parent, file: VFile) {
  * As a side effect, this function also puts all reference-style links (definitions)
  * for API structures into a Map, which will be used on the second pass.
  */
-const checkLinksandDefinitions = (node: Node<Data>): node is Link => {
+const checkLinksandDefinitions = (node: Node): node is Link => {
   if (isDefinition(node) && node.url.includes('/api/structures/')) {
     structureDefinitions.set(node.identifier, node.url);
   }
@@ -186,11 +221,33 @@ function replaceLinkWithPreview(node: Link | LinkReference) {
     modifiers.add(
       promise
         .then((content) => {
-          const previewNode = node as unknown as Literal<string>;
-          previewNode.type = 'jsx';
-          previewNode.value = `<APIStructurePreview url="${relativeStructureUrl}" title="${
-            (node.children[0] as Text | InlineCode).value
-          }" content="${encodeURIComponent(content)}"/>`;
+          const title = (node.children[0] as Text | InlineCode).value;
+
+          // replace the Link node with an MDX element in-place
+          const previewNode = node as unknown as MdxJsxFlowElement;
+          previewNode.type = 'mdxJsxFlowElement';
+          previewNode.name = 'APIStructurePreview';
+          previewNode.children = [];
+          previewNode.data = {
+            _mdxExplicitJsx: true,
+          };
+          previewNode.attributes = [
+            {
+              type: 'mdxJsxAttribute',
+              name: 'url',
+              value: `${relativeStructureUrl}`,
+            },
+            {
+              type: 'mdxJsxAttribute',
+              name: 'title',
+              value: title,
+            },
+            {
+              type: 'mdxJsxAttribute',
+              name: 'content',
+              value: encodeURIComponent(content),
+            },
+          ];
         })
         .catch((err) => {
           logger.error(err);

@@ -1,6 +1,7 @@
 import { Node, Parent } from 'unist';
 import { Code } from 'mdast';
 import { MdxjsEsm } from 'mdast-util-mdxjs-esm';
+import { MdxJsxFlowElement } from 'mdast-util-mdx-jsx';
 
 import { visitParents, ActionTuple, SKIP } from 'unist-util-visit-parents';
 import path from 'path';
@@ -153,7 +154,7 @@ async function transformer(tree: Parent) {
       files[file] = fs.readFileSync(path.join(dir, file)).toString();
     }
 
-    const fiddleBlock = {
+    const fiddleBlock: MdxJsxFlowElement = {
       type: 'mdxJsxFlowElement',
       name: 'FiddleEmbed',
       attributes: [
