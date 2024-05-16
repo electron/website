@@ -7,44 +7,6 @@ import globby from 'globby';
 import logger from '@docusaurus/logger';
 
 /**
- * RegExp used to match the details of the arguments of a function
- * in the documentation and used in `apiTransformer`. It matches:
- * >   * `userInfo` Record<String, unknown>
- * ➡ ["  * ", "`userInfo` Record<String, unknown>", "userInfo", "Record<String, unknown>", ""]
- * > * `channel` String
- * ➡ ["* ", "`channel` String", "channel", "String", ""]
- * > * `deliverImmediately` Boolean (optional) - `true` to post notifications immediately even when the subscribing app is inactive.
- * ➡ ["* ", "...", "deliverImmediately", "Boolean (optional) ", "-"] ⚠ Note the trailing space in [3]
- */
-const argumentRegex = /(\s*\*\s+)`([a-zA-Z]+?)`\s([\s\S]+?)($|\s-)/;
-
-/**
- * MDX has some problems with strings like `Promise<void>` when they
- * are out of code blocks.
- * This happens when declaring the types of the arguments. This method
- * replaces the closing `>` with the unicode character `&#62;` to
- * prevent this issue.
- * @param line
- */
-const apiTransformer = (line: string) => {
-  const matches = argumentRegex.exec(line);
-
-  if (!matches) {
-    return line;
-  }
-
-  const newLine = line.replace(
-    matches[0],
-    `${matches[1]}\`${matches[2].trim()}\` ${matches[3]
-      .trim()
-      .replace(/>/g, '&#62;')
-      .replace(/\\?</g, '&#60;')} ${matches[4].trim()}`.trimEnd() // matches[4] could be empty and thus end up with a trailing space
-  );
-
-  return newLine;
-};
-
-/**
  * RegExp use to match the old markdown format for fiddle
  * in `fiddleTransformer`.
  */
@@ -147,7 +109,6 @@ const transform = (doc: string) => {
   const lines = doc.split('\n');
   const newDoc = [];
   const transformers = [
-    apiTransformer,
     fiddleTransformer,
     newLineOnHTMLComment,
     newLineOnAdmonition,
