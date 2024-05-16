@@ -672,8 +672,8 @@ document.getElementById('webview').addEventListener('new-window', () => {
 ### Deprecated: BrowserWindow `scroll-touch-*` events
 
 The `scroll-touch-begin`, `scroll-touch-end` and `scroll-touch-edge` events on
-BrowserWindow are deprecated. Instead, use the newly available [`input-event`
-event](latest/api/web-contents.md#event-input-event) on WebContents.
+BrowserWindow are deprecated. Instead, use the newly available
+[`input-event` event](latest/api/web-contents.md#event-input-event) on WebContents.
 
 ```js
 // Deprecated
@@ -1974,8 +1974,7 @@ app.getGPUInfo('basic')
 When building native modules for windows, the `win_delay_load_hook` variable in
 the module's `binding.gyp` must be true (which is the default). If this hook is
 not present, then the native module will fail to load on Windows, with an error
-message like `Cannot find module`. See the [native module
-guide](latest/tutorial/using-native-node-modules.md) for more.
+message like `Cannot find module`. See the [native module guide](latest/tutorial/using-native-node-modules.md) for more.
 
 ### Removed: IA32 Linux support
 

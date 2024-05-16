@@ -736,9 +736,8 @@ Limitations:
 * The `.type` and `.url` values of the returned `Response` object are
   incorrect.
 
-By default, requests made with `net.fetch` can be made to [custom
-protocols](latest/api/protocol.md) as well as `file:`, and will trigger
-[webRequest](latest/api/web-request.md) handlers if present. When the non-standard
+By default, requests made with `net.fetch` can be made to [custom protocols](latest/api/protocol.md)
+as well as `file:`, and will trigger [webRequest](latest/api/web-request.md) handlers if present. When the non-standard
 `bypassCustomProtocolHandlers` option is set in RequestInit, custom protocol
 handlers will not be called for this request. This allows forwarding an
 intercepted request to the built-in handler. [webRequest](latest/api/web-request.md)
