@@ -1,9 +1,8 @@
 import { Node, Parent } from 'unist';
 import { Code } from 'mdast';
 
-import visitParents, { ActionTuple } from 'unist-util-visit-parents';
-
-import { Import } from '../util/interfaces';
+import { visitParents, ActionTuple, SKIP } from 'unist-util-visit-parents';
+import { getJSXImport, isCode, isImport } from '../util/mdx-utils';
 
 const CJS_PREAMBLE = '// CommonJS\n';
 const MJS_PREAMBLE = '// ESM\n';
@@ -21,18 +20,13 @@ function matchMjsCodeBlock(node: Node): node is Code {
   return isCode(node) && node.lang === 'mjs';
 }
 
-const importNode: Import = {
-  type: 'import',
-  value: "import JsCodeBlock from '@site/src/components/JsCodeBlock';",
-};
-
 async function transformer(tree: Parent) {
-  let documentHasExistingImport = false;
-  visitParents(tree, 'import', checkForJsCodeBlockImport);
+  let needImport = false;
   visitParents(tree, matchCjsCodeBlock, maybeGenerateJsCodeBlock);
+  visitParents(tree, 'mdxjsEsm', checkForJsCodeBlockImport);
 
-  if (!documentHasExistingImport) {
-    tree.children.unshift(importNode);
+  if (needImport) {
+    tree.children.unshift(getJSXImport('JsCodeBlock'));
   }
 
   function checkForJsCodeBlockImport(node: Node) {
@@ -40,7 +34,7 @@ async function transformer(tree: Parent) {
       isImport(node) &&
       node.value.includes('@site/src/components/JsCodeBlock')
     ) {
-      documentHasExistingImport = true;
+      needImport = false;
     }
   }
 
@@ -77,26 +71,33 @@ async function transformer(tree: Parent) {
       mjs = mjs.slice(MJS_PREAMBLE.length);
     }
 
-    // Replace the two code blocks with the JsCodeBlock
-    parent.children.splice(idx, 2, {
-      type: 'jsx',
-      value: `<JsCodeBlock
-        cjs={${JSON.stringify(cjs)}}
-        mjs={${JSON.stringify(mjs)}}
-      />`,
-    } as Node);
+    const tabbedCodeBlock = {
+      type: 'mdxJsxFlowElement',
+      name: 'JsCodeBlock',
+      attributes: [
+        {
+          type: 'mdxJsxAttribute',
+          name: 'cjs',
+          value: `${cjs}`,
+        },
+        {
+          type: 'mdxJsxAttribute',
+          name: 'mjs',
+          value: `${mjs}`,
+        },
+      ],
+      children: [],
+      data: {
+        _mdxExplicitJsx: true,
+      },
+    };
+
+    parent.children.splice(idx, 2, tabbedCodeBlock);
+    needImport = true;
 
     // Return an ActionTuple [Action, Index], where
     // Action SKIP means we want to skip visiting these new children
     // Index is the index of the AST we want to continue parsing at.
-    return [visitParents.SKIP, idx + 1];
+    return [SKIP, idx + 1];
   }
-}
-
-function isImport(node: Node): node is Import {
-  return node.type === 'import';
-}
-
-function isCode(node: Node): node is Code {
-  return node.type === 'code';
 }

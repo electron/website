@@ -1,12 +1,11 @@
 import { Node, Parent } from 'unist';
 import { Code } from 'mdast';
-
-import visitParents, { ActionTuple } from 'unist-util-visit-parents';
+import { MdxJsxFlowElement } from 'mdast-util-mdx-jsx';
+import { visitParents, ActionTuple, SKIP } from 'unist-util-visit-parents';
 import path from 'path';
 import fs from 'fs-extra';
 import latestVersion from 'latest-version';
-
-import { Import } from '../util/interfaces';
+import { getJSXImport, isCode, isImport } from '../util/mdx-utils';
 
 let _version = '';
 async function getVersion() {
@@ -40,18 +39,15 @@ function matchFiddleBlock(node: Node): node is Code {
   );
 }
 
-const importNode: Import = {
-  type: 'import',
-  value: "import FiddleEmbed from '@site/src/components/FiddleEmbed';",
-};
+const importNode = getJSXImport('FiddleEmbed');
 
 async function transformer(tree: Parent) {
-  let documentHasExistingImport = false;
+  let needImport = false;
   const version = await getVersion();
-  visitParents(tree, 'import', checkForFiddleEmbedImport);
   visitParents(tree, matchFiddleBlock, generateFiddleEmbed);
+  visitParents(tree, 'mdxjsEsm', checkForFiddleEmbedImport);
 
-  if (!documentHasExistingImport) {
+  if (needImport) {
     tree.children.unshift(importNode);
   }
 
@@ -60,7 +56,7 @@ async function transformer(tree: Parent) {
       isImport(node) &&
       node.value.includes('@site/src/components/FiddleEmbed')
     ) {
-      documentHasExistingImport = true;
+      needImport = false;
     }
   }
 
@@ -82,67 +78,120 @@ async function transformer(tree: Parent) {
     // Return an ActionTuple [Action, Index], where
     // Action SKIP means we want to skip visiting these new children
     // Index is the index of the AST we want to continue parsing at.
-    return [visitParents.SKIP, index + newChildren.length];
+    return [SKIP, index + newChildren.length];
   }
-}
 
-function parseFiddleEmbedOptions(
-  optStrings: string[]
-): Partial<FiddleEmbedOptions> {
-  // If there are optional parameters, parse them out to pass to the getFiddleAST method.
-  return optStrings.reduce((opts, option) => {
-    // Use indexOf to support bizarre combinations like `|key=Myvalue=2` (which will properly
-    // parse to {'key': 'Myvalue=2'})
-    const firstEqual = option.indexOf('=');
-    const key = option.slice(0, firstEqual);
-    const value = option.slice(firstEqual + 1);
-    return { ...opts, [key]: value };
-  }, {});
-}
+  function parseFiddleEmbedOptions(
+    optStrings: string[]
+  ): Partial<FiddleEmbedOptions> {
+    // If there are optional parameters, parse them out to pass to the getFiddleAST method.
+    return optStrings.reduce((opts, option) => {
+      // Use indexOf to support bizarre combinations like `|key=Myvalue=2` (which will properly
+      // parse to {'key': 'Myvalue=2'})
+      const firstEqual = option.indexOf('=');
+      const key = option.slice(0, firstEqual);
+      const value = option.slice(firstEqual + 1);
+      return { ...opts, [key]: value };
+    }, {});
+  }
 
-/**
- * From a directory in `/docs/fiddles/`, generate the AST needed
- * for the tabbed code MDX structure.
- */
-function createFiddleAST(
-  dir: string,
-  version: string,
-  { focus = 'main.js' }: Partial<FiddleEmbedOptions>
-) {
-  const files = {};
-  const children = [];
+  /**
+   * From a directory in `/docs/fiddles/`, generate the AST needed
+   * for the tabbed code MDX structure.
+   */
+  function createFiddleAST(
+    dir: string,
+    version: string,
+    { focus = 'main.js' }: Partial<FiddleEmbedOptions>
+  ) {
+    const files = {};
+    const children = [];
 
-  const fileNames = fs.readdirSync(dir);
-  if (fileNames.length === 0) {
+    const fileNames = fs.readdirSync(dir);
+    if (fileNames.length === 0) {
+      return children;
+    }
+
+    if (!fileNames.includes(focus)) {
+      throw new Error(
+        `Provided focus (${focus}) is not an available file in this fiddle (${dir}). Available files are [${fileNames.join(
+          ', '
+        )}]`
+      );
+    }
+
+    for (const file of fileNames) {
+      files[file] = fs.readFileSync(path.join(dir, file)).toString();
+    }
+
+    const fiddleBlock: MdxJsxFlowElement = {
+      type: 'mdxJsxFlowElement',
+      name: 'FiddleEmbed',
+      attributes: [
+        {
+          type: 'mdxJsxAttribute',
+          name: 'files',
+          value: {
+            type: 'mdxJsxAttributeValueExpression',
+            value: JSON.stringify(files),
+            data: {
+              estree: {
+                type: 'Program',
+                body: [
+                  {
+                    type: 'ExpressionStatement',
+                    expression: {
+                      type: 'ObjectExpression',
+                      properties: fileNames.map((file) => ({
+                        type: 'Property',
+                        method: false,
+                        shorthand: false,
+                        computed: false,
+                        key: {
+                          type: 'Identifier',
+                          name: JSON.stringify(file), // extra JSON.stringify to escape key names
+                        },
+                        value: {
+                          type: 'Literal',
+                          value: files[file],
+                          raw: JSON.stringify(files[file]), // extra JSON.stringify to escape file contents
+                        },
+                        kind: 'init',
+                      })),
+                    },
+                  },
+                ],
+                sourceType: 'module',
+                comments: [],
+              },
+            },
+          },
+        },
+        {
+          type: 'mdxJsxAttribute',
+          name: 'dir',
+          value: `${dir}`,
+        },
+        {
+          type: 'mdxJsxAttribute',
+          name: 'version',
+          value: `${version}`,
+        },
+        {
+          type: 'mdxJsxAttribute',
+          name: 'focus',
+          value: `${focus}`,
+        },
+      ],
+      children: [],
+      data: {
+        _mdxExplicitJsx: true,
+      },
+    };
+
+    children.push(fiddleBlock);
+    needImport = true;
+
     return children;
   }
-
-  if (!fileNames.includes(focus)) {
-    throw new Error(
-      `Provided focus (${focus}) is not an available file in this fiddle (${dir}). Available files are [${fileNames.join(
-        ', '
-      )}]`
-    );
-  }
-
-  for (const file of fileNames) {
-    files[file] = fs.readFileSync(path.join(dir, file)).toString();
-  }
-
-  children.push({
-    type: 'jsx',
-    value: `<FiddleEmbed files={${JSON.stringify(
-      files
-    )}} dir="${dir}" version="${version}" focus="${focus}" />`,
-  });
-
-  return children;
-}
-
-function isImport(node: Node): node is Import {
-  return node.type === 'import';
-}
-
-function isCode(node: Node): node is Code {
-  return node.type === 'code';
 }

@@ -1,7 +1,8 @@
 import { Parent } from 'unist';
-import visitParents from 'unist-util-visit-parents';
-import { Data as HastData } from 'mdast-util-to-hast/lib/index';
-import { Emphasis, PhrasingContent, Text } from 'mdast';
+import { visitParents } from 'unist-util-visit-parents';
+import { Data as HastData } from 'hast';
+import { Emphasis } from 'mdast';
+import { isText } from '../util/mdx-utils';
 
 /**
  * This transformer adds badge styling to our raw API documentation.
@@ -62,8 +63,4 @@ function visitor(node: Emphasis) {
       } satisfies HastData;
     }
   }
-}
-
-function isText(node: PhrasingContent): node is Text {
-  return node.type === 'text';
 }

@@ -20,7 +20,7 @@ export interface AppsPluginContent {
   categories: Map<string, App>;
 }
 
-module.exports = async function appsPlugin() {
+export default async function appsPlugin() {
   // TODO: actually use the electron/apps repo as a data source
   const response = await fetch(
     'https://raw.githubusercontent.com/erickzhao/apps/master/index.json'
@@ -100,4 +100,4 @@ module.exports = async function appsPlugin() {
     },
   };
   return plugin;
-};
+}
