@@ -8,6 +8,36 @@ import apiOptionsClass from './src/transformers/api-options-class';
 import apiStructurePreviews from './src/transformers/api-structure-previews';
 import jsCodeBlocks from './src/transformers/js-code-blocks';
 import fiddleEmbedder from './src/transformers/fiddle-embedder';
+import apiHistory from './src/transformers/api-history';
+
+import { Options as StringReplaceLoaderOptions } from 'string-replace-loader';
+
+// TODO: Rename to something better
+function apiHtmlCommentToCodeBlock() {
+  return {
+    // TODO: Rename to something better
+    name: 'apiHtmlCommentToCodeBlock-plugin',
+    configureWebpack() {
+      return {
+        module: {
+          rules: [
+            {
+              test: /\/api\/.*?\.md$/,
+              loader: 'string-replace-loader',
+              options: {
+                // TODO: Test this regex
+                search: /<!--\r?\n(```YAML history[\s\S]*?```)\r?\n-->/,
+                replace(_, p1) {
+                  return p1;
+                },
+              } as StringReplaceLoaderOptions,
+            },
+          ],
+        },
+      };
+    },
+  };
+}
 
 const config: Config = {
   title: 'Electron',
@@ -219,6 +249,7 @@ const config: Config = {
             apiStructurePreviews,
             jsCodeBlocks,
             fiddleEmbedder,
+            apiHistory,
             [npm2yarn, { sync: true, converters: ['yarn'] }],
           ],
         },
