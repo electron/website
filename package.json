@@ -24,7 +24,7 @@
     "update-l10n-sources": "npx tsx scripts/update-l10n-sources.ts",
     "lint:eslint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" \"scripts/**/*.{js,ts}\"",
     "lint:markdown": "electron-markdownlint \"**/*.md\"",
-    "lint": "prettier . --check && npm run lint:eslint && npm run lint:markdown",
+    "lint": "npx tsc --noEmit && prettier . --check && npm run lint:eslint && npm run lint:markdown",
     "lint:fix": "prettier . --write && npm run lint:eslint --fix && npm run lint:markdown --fix",
     "pre-build": "npx tsx ./scripts/pre-build.ts",
     "prepare": "husky install"
