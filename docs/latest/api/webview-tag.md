@@ -292,7 +292,7 @@ e.g. the `http://` or `file://`.
 
 * `url` string
 * `options` Object (optional)
-  * `headers` Record&#60;string, string\&#62; (optional) - HTTP request headers.
+  * `headers` Record\<string, string\> (optional) - HTTP request headers.
 
 Initiates a download of the resource at `url` without navigating.
 
@@ -585,7 +585,7 @@ Stops any `findInPage` request for the `webview` with the provided `action`.
     * `from` number - Index of the first page to print (0-based).
     * `to` number - Index of the last page to print (inclusive) (0-based).
   * `duplexMode` string (optional) - Set the duplex mode of the printed web page. Can be `simplex`, `shortEdge`, or `longEdge`.
-  * `dpi` Record&#60;string, number\&#62; (optional)
+  * `dpi` Record\<string, number\> (optional)
     * `horizontal` number (optional) - The horizontal dpi.
     * `vertical` number (optional) - The vertical dpi.
   * `header` string (optional) - string to be printed as page header.
@@ -603,7 +603,7 @@ Prints `webview`'s web page. Same as `webContents.print([options])`.
   * `landscape` boolean (optional) - Paper orientation.`true` for landscape, `false` for portrait. Defaults to false.
   * `displayHeaderFooter` boolean (optional) - Whether to display header and footer. Defaults to false.
   * `printBackground` boolean (optional) - Whether to print background graphics. Defaults to false.
-  * `scale` number(optional) - Scale of the webpage rendering. Defaults to 1.
+  * `scale` number(optional)  - Scale of the webpage rendering. Defaults to 1.
   * `pageSize` string | Size (optional) - Specify page size of the generated PDF. Can be `A0`, `A1`, `A2`, `A3`,
   `A4`, `A5`, `A6`, `Legal`, `Letter`, `Tabloid`, `Ledger`, or an Object containing `height` and `width` in inches. Defaults to `Letter`.
   * `margins` Object (optional)
@@ -661,7 +661,7 @@ examples.
 
 ### `<webview>.sendInputEvent(event)`
 
-* `event` [MouseInputEvent](latest/api/structures/mouse-input-event.md) | [MouseWheelInputEvent](latest/api/structures/mouse-wheel-input-event.md) | [KeyboardInputEvent](latest/api/structures/keyboard-input-event.md)
+* `event`  [MouseInputEvent](latest/api/structures/mouse-input-event.md) | [MouseWheelInputEvent](latest/api/structures/mouse-wheel-input-event.md) | [KeyboardInputEvent](latest/api/structures/keyboard-input-event.md)
 
 Returns `Promise<void>`
 

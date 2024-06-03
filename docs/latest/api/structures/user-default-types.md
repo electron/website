@@ -13,7 +13,7 @@ hide_title: false
 * `float` number
 * `double` number
 * `url` string
-* `array` Array&#60;unknown&#62;
-* `dictionary` Record&#60;string, unknown&#62;
+* `array` Array\<unknown>
+* `dictionary` Record\<string, unknown>
 
 This type is a helper alias, no object will ever exist of this type.
