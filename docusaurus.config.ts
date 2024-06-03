@@ -26,11 +26,12 @@ function apiHtmlCommentToCodeBlock() {
               loader: 'string-replace-loader',
               options: {
                 // TODO: Test this regex
-                search: /<!--\r?\n(```YAML history[\s\S]*?```)\r?\n-->/,
+                search: /<!--\r?\n(```YAML history[\s\S]*?```)\r?\n-->/g,
                 replace(_, p1) {
                   return p1;
                 },
-              } as StringReplaceLoaderOptions,
+                flags: 'g'
+              } satisfies StringReplaceLoaderOptions,
             },
           ],
         },
