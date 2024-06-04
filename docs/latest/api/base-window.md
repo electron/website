@@ -813,7 +813,7 @@ Closes the currently open [Quick Look][quick-look] panel.
 
 #### `win.setBounds(bounds[, animate])`
 
-* `bounds` Partial&#60;[Rectangle](latest/api/structures/rectangle.md)\&#62;
+* `bounds` Partial\<[Rectangle](latest/api/structures/rectangle.md)\>
 * `animate` boolean (optional) _macOS_
 
 Resizes and moves the window to the supplied bounds. Any properties that are not supplied will default to their current values.

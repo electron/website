@@ -15,6 +15,6 @@ hide_title: false
 * `errorMessage` string - The error message if an error occurred while processing the transaction.
 * `payment` Object
   * `productIdentifier` string - The identifier of the purchased product.
-  * `quantity` Integer - The quantity purchased.
+  * `quantity` Integer  - The quantity purchased.
   * `applicationUsername` string - An opaque identifier for the user’s account on your system.
   * `paymentDiscount` [PaymentDiscount](latest/api/structures/payment-discount.md) (optional) - The details of the discount offer to apply to the payment.

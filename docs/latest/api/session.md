@@ -848,7 +848,7 @@ session.fromPartition('some-partition').setPermissionRequestHandler((webContents
 
 #### `ses.setPermissionCheckHandler(handler)`
 
-* `handler` Function&#60;boolean&#62; | null
+* `handler` Function\<boolean> | null
   * `webContents` ([WebContents](latest/api/web-contents.md) | null) - WebContents checking the permission.  Please note that if the request comes from a subframe you should use `requestingUrl` to check the request origin.  All cross origin sub frames making permission checks will pass a `null` webContents to this handler, while certain other permission checks such as `notifications` checks will always pass `null`.  You should use `embeddingOrigin` and `requestingOrigin` to determine what origin the owning frame and the requesting frame are on respectively.
   * `permission` string - Type of permission check.
     * `clipboard-read` - Request access to read from the clipboard.
@@ -955,7 +955,7 @@ Passing `null` instead of a function resets the handler to its default state.
 
 #### `ses.setDevicePermissionHandler(handler)`
 
-* `handler` Function&#60;boolean&#62; | null
+* `handler` Function\<boolean> | null
   * `details` Object
     * `deviceType` string - The type of device that permission is being requested on, can be `hid`, `serial`, or `usb`.
     * `origin` string - The origin URL of the device permission check.
@@ -1028,7 +1028,7 @@ app.whenReady().then(() => {
 
 #### `ses.setUSBProtectedClassesHandler(handler)`
 
-* `handler` Function&#60;string[]&#62; | null
+* `handler` Function\<string[]> | null
   * `details` Object
     * `protectedClasses` string[] - The current list of protected USB classes. Possible class values include:
       * `audio`
@@ -1221,7 +1221,7 @@ Returns `Promise<Buffer>` - resolves with blob data.
 
 * `url` string
 * `options` Object (optional)
-  * `headers` Record&#60;string, string\&#62; (optional) - HTTP request headers.
+  * `headers` Record\<string, string\> (optional) - HTTP request headers.
 
 Initiates a download of the resource at `url`.
 The API will generate a [DownloadItem](latest/api/download-item.md) that can be accessed

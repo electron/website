@@ -9,8 +9,8 @@
   "scripts": {
     "crowdin": "crowdin",
     "i18n:upload": "crowdin upload sources",
-    "i18n:download": "crowdin download --verbose && ts-node scripts/prepare-i18n-content.ts",
-    "i18n:glossary": "ts-node scripts/update-crowdin-glossary.ts",
+    "i18n:download": "crowdin download --verbose && npx tsx scripts/prepare-i18n-content.ts",
+    "i18n:glossary": "npx tsx scripts/update-crowdin-glossary.ts",
     "i18n:build": "docusaurus build",
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
@@ -21,12 +21,12 @@
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
-    "update-l10n-sources": "ts-node scripts/update-l10n-sources.ts",
+    "update-l10n-sources": "npx tsx scripts/update-l10n-sources.ts",
     "lint:eslint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" \"scripts/**/*.{js,ts}\"",
     "lint:markdown": "electron-markdownlint \"**/*.md\"",
-    "lint": "prettier . --check && npm run lint:eslint && npm run lint:markdown",
+    "lint": "npx tsc --noEmit && prettier . --check && npm run lint:eslint && npm run lint:markdown",
     "lint:fix": "prettier . --write && npm run lint:eslint --fix && npm run lint:markdown --fix",
-    "pre-build": "ts-node ./scripts/pre-build.ts",
+    "pre-build": "npx tsx ./scripts/pre-build.ts",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -91,6 +91,7 @@
     "remark": "^15.0.0",
     "remark-gfm": "^4.0.0",
     "tar-stream": "^2.2.0",
+    "tsx": "^4.11.2",
     "typescript": "5.3.2",
     "unist-util-visit-parents": "^6.0.1"
   },

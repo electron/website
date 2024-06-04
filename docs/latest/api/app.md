@@ -39,7 +39,7 @@ In most cases, you should do everything in the `ready` event handler.
 Returns:
 
 * `event` Event
-* `launchInfo` Record&#60;string, any\&#62; | [NotificationResponse](latest/api/structures/notification-response.md) _macOS_
+* `launchInfo` Record\<string, any\> | [NotificationResponse](latest/api/structures/notification-response.md) _macOS_
 
 Emitted once, when Electron has finished initializing. On macOS, `launchInfo`
 holds the `userInfo` of the [`NSUserNotification`](https://developer.apple.com/documentation/foundation/nsusernotification)
@@ -848,7 +848,7 @@ This method returns the application name of the default handler for the protocol
 Returns `Promise<Object>` - Resolve with an object containing the following:
 
 * `icon` NativeImage - the display icon of the app handling the protocol.
-* `path` string - installation path of the app handling the protocol.
+* `path` string  - installation path of the app handling the protocol.
 * `name` string - display name of the app handling the protocol.
 
 This method returns a promise that contains the application name, icon and path of the default handler for the protocol
@@ -981,7 +981,7 @@ app.setJumpList([
 
 ### `app.requestSingleInstanceLock([additionalData])`
 
-* `additionalData` Record&#60;any, any\&#62; (optional) - A JSON object containing additional data to send to the first instance.
+* `additionalData` Record\<any, any\> (optional) - A JSON object containing additional data to send to the first instance.
 
 Returns `boolean`
 
@@ -1420,7 +1420,7 @@ systems Application folder. Use in combination with `app.moveToApplicationsFolde
 ### `app.moveToApplicationsFolder([options])` _macOS_
 
 * `options` Object (optional)
-  * `conflictHandler` Function&#60;boolean&#62; (optional) - A handler for potential conflict in move failure.
+  * `conflictHandler` Function\<boolean> (optional) - A handler for potential conflict in move failure.
     * `conflictType` string - The type of move conflict encountered by the handler; can be `exists` or `existsAndRunning`, where `exists` means that an app of the same name is present in the Applications directory and `existsAndRunning` means both that it exists and that it's presently running.
 
 Returns `boolean` - Whether the move was successful. Please note that if
