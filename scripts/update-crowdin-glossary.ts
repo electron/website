@@ -14,7 +14,6 @@ import {
 import * as dotenv from 'dotenv';
 import latestVersion from 'latest-version';
 import toString from 'mdast-util-to-string';
-import fetch from 'node-fetch';
 import remarkParse from 'remark-parse';
 import { unified } from 'unified';
 
