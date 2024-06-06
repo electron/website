@@ -28,4 +28,4 @@ jobs:
           files: blog/*.md
       - name: Check blog post links
         if: steps.check-for-changed-blog-posts.outputs.any_changed == 'true'
-        run: npx electron-lint-markdown-links --ignore-path .markdownlintignore --fetch-external-links ${{ steps.check-for-changed-blog-posts.outputs.all_changed_files }}
+        run: npx lint-roller-markdown-links --ignore-path .markdownlintignore --fetch-external-links ${{ steps.check-for-changed-blog-posts.outputs.all_changed_files }}
