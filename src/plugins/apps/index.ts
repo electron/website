@@ -1,4 +1,3 @@
-import fetch from 'node-fetch';
 import { Plugin } from '@docusaurus/types';
 
 export interface App {

@@ -1,4 +1,3 @@
-import fetch, { Response } from 'node-fetch';
 import semver from 'semver';
 
 import { Plugin } from '@docusaurus/types';
