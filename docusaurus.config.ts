@@ -12,7 +12,8 @@ import apiHistory from './src/transformers/api-history';
 
 import { Options as StringReplaceLoaderOptions } from 'string-replace-loader';
 
-const apiHistoryRegex = /<!--\r?\n(```YAML history[\s\S]*?```)\r?\n-->/g;
+const apiHistoryRegex =
+  /<!--\r?\n(```YAML history\r?\n([\s\S]*?)\r?\n```)\r?\n-->/g;
 
 // TODO: Rename to something better
 function apiHtmlCommentToCodeBlock() {
