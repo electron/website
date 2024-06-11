@@ -25,8 +25,7 @@ If you have any feedback, please share it with us on [Twitter](https://twitter.c
 - Updated window.flashFrame(bool) to flash continuously on macOS. [#41391](https://github.com/electron/electron/pull/41391)
 - Removed `WebSQL` support [#41868](https://github.com/electron/electron/pull/41868)
 - `nativeImage.toDataURL` will preserve PNG colorspace [#41610](https://github.com/electron/electron/pull/41610)
-- Extended `webContents.setWindowOpenHandler` to support manual creation of BrowserWindow. [#41432](https://github.com/el
-  ectron/electron/pull/41432)
+- Extended `webContents.setWindowOpenHandler` to support manual creation of BrowserWindow. [#41432](https://github.com/electron/electron/pull/41432)
 
 ### Stack Changes
 
