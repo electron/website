@@ -41,14 +41,14 @@ Electron 31 upgrades Chromium from `124.0.6367.49` to `126.0.6478.36`, Node from
 
 ### New Features
 
-- Added a new instance property `navigationHistory` on webContents API with `navigationHistory.getEntryAtIndex` method, enabling applications to retrieve the URL and title of any navigation entry within the browsing history. [#41577](https://github.com/electron/electron/pull/41577)
-- Added options parameter to `Session.clearData` API. [#41355](https://github.com/electron/electron/pull/41355)
+- Added `clearData` method to `Session`. [#40983](https://github.com/electron/electron/pull/40983)
+  - Added options parameter to `Session.clearData` API. [#41355](https://github.com/electron/electron/pull/41355)
 - Added support for Bluetooth ports being requested by service class ID in `navigator.serial`. [#41638](https://github.com/electron/electron/pull/41638)
 - Added support for Node's [`NODE_EXTRA_CA_CERTS`](https://nodejs.org/api/cli.html#node_extra_ca_certsfile) environment variable. [#41689](https://github.com/electron/electron/pull/41689)
 - Extended `webContents.setWindowOpenHandler` to support manual creation of BrowserWindow. [#41432](https://github.com/electron/electron/pull/41432)
 - Implemented support for the web standard [File System API](https://developer.mozilla.org/en-US/docs/Web/API/File_System_API). [#41419](https://github.com/electron/electron/pull/41419)
-- `clearData` method added to `Session`. [#40983](https://github.com/electron/electron/pull/40983)
 - Extended `WebContentsView` to accept pre-existing `WebContents` instances. [#42319](https://github.com/electron/electron/pull/42319)
+- Added a new instance property `navigationHistory` on webContents API with `navigationHistory.getEntryAtIndex` method, enabling applications to retrieve the URL and title of any navigation entry within the browsing history. [#41577](https://github.com/electron/electron/pull/41577) <span style="font-size:small;">(Also in [29](https://github.com/electron/electron/pull/41661), [30](https://github.com/electron/electron/pull/41662))</span>
 
 ### Breaking Changes
 
