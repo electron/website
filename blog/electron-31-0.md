@@ -44,23 +44,23 @@ Electron 31 upgrades Chromium from `124.0.6367.49` to `126.0.6478.36`, Node from
 - Added a new instance property `navigationHistory` on webContents API with `navigationHistory.getEntryAtIndex` method, enabling applications to retrieve the URL and title of any navigation entry within the browsing history. [#41577](https://github.com/electron/electron/pull/41577)
 - Added options parameter to `Session.clearData` API. [#41355](https://github.com/electron/electron/pull/41355)
 - Added support for Bluetooth ports being requested by service class ID in `navigator.serial`. [#41638](https://github.com/electron/electron/pull/41638)
-- Added support for `NODE_EXTRA_CA_CERTS`. [#41689](https://github.com/electron/electron/pull/41689)
+- Added support for Node's [`NODE_EXTRA_CA_CERTS`](https://nodejs.org/api/cli.html#node_extra_ca_certsfile) environment variable. [#41689](https://github.com/electron/electron/pull/41689)
 - Extended `webContents.setWindowOpenHandler` to support manual creation of BrowserWindow. [#41432](https://github.com/electron/electron/pull/41432)
-- Implemented support for the File System API. [#41419](https://github.com/electron/electron/pull/41419)
+- Implemented support for the web standard [File System API](https://developer.mozilla.org/en-US/docs/Web/API/File_System_API). [#41419](https://github.com/electron/electron/pull/41419)
 - `clearData` method added to `Session`. [#40983](https://github.com/electron/electron/pull/40983)
-- Extended `WebContentsView` to accept pre-existing `webContents` object. [#42319](https://github.com/electron/electron/pull/42319)
+- Extended `WebContentsView` to accept pre-existing `WebContents` instances. [#42319](https://github.com/electron/electron/pull/42319)
 
 ### Breaking Changes
 
 #### Removed: `WebSQL` support
 
 Chromium has removed support for WebSQL upstream, transitioning it to Android only. See
-[Chromium's intent to remove discussion](https://groups.google.com/a/chromium.org/g/blink-dev/c/fWYb6evVA-w/m/wGI863zaAAAJ)
+[Chromium's intent to remove discussion](https://groups.google.com/a/chromium.org/g/blink-dev/c/fWYb6evVA-w/m/pziWcvboAgAJ)
 for more information.
 
 #### Behavior Changed: `nativeImage.toDataURL` will preseve PNG colorspace
 
-PNG decoder implementation has been changed to preserve colorspace data, the
+PNG decoder implementation has been changed to preserve colorspace data. The
 encoded data returned from this function now matches it.
 
 See [crbug.com/332584706](https://issues.chromium.org/issues/332584706) for more information.
