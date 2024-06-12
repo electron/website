@@ -43,8 +43,9 @@ Process: [Main](latest/glossary.md#main-process)
 
 * `options` Object (optional)
   * `webPreferences` [WebPreferences](latest/api/structures/web-preferences.md) (optional) - Settings of web page's features.
+  * `webContents` [WebContents](latest/api/web-contents.md) (optional) - If present, the given WebContents will be adopted by the WebContentsView. A WebContents may only be presented in one WebContentsView at a time.
 
-Creates an empty WebContentsView.
+Creates a WebContentsView.
 
 ### Instance Properties
 

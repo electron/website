@@ -394,6 +394,7 @@ module.exports = {
         'latest/api/structures/web-preferences',
         'latest/api/structures/web-request-filter',
         'latest/api/structures/web-source',
+        'latest/api/structures/window-open-handler-response',
       ],
     },
   ],
