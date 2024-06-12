@@ -258,7 +258,7 @@ and prevent the use of Node primitives `contextIsolation` **must** also be used.
 For more information on what `contextIsolation` is and how to enable it please
 see our dedicated [Context Isolation](latest/tutorial/context-isolation.md) document.
 
-:::info
+:::
 
 ### 4. Enable process sandboxing
 
@@ -273,7 +273,7 @@ content in an unsandboxed process, including the main process, is not advised.
 For more information on what Process Sandboxing is and how to enable it please
 see our dedicated [Process Sandboxing](latest/tutorial/sandbox.md) document.
 
-:::info
+:::
 
 ### 5. Handle session permission requests from remote content
 
