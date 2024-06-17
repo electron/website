@@ -9,6 +9,7 @@ authors:
     url: 'https://github.com/ckerr'
     image_url: 'https://github.com/ckerr.png?size=96'
 slug: electron-19-0
+tags: [release]
 ---
 
 Electron 19.0.0 has been released! It includes upgrades to Chromium `102`, V8 `10.2`, and Node.js `16.14.2`. Read below for more details!

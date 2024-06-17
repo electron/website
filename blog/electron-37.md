@@ -6,6 +6,7 @@ authors:
   url: 'https://github.com/zeke'
   image_url: 'https://github.com/zeke.png?size=96'
 slug: electron-37
+tags: [release]
 ---
 
 Electron `0.37` was recently [released](https://github.com/electron/electron/releases) and included a major upgrade from Chrome 47 to Chrome 49 and also several new core APIs. This latest release brings in all the new features shipped in [Chrome 48](http://blog.chromium.org/2015/12/chrome-48-beta-present-to-cast-devices_91.html) and [Chrome 49](http://blog.chromium.org/2016/02/chrome-49-beta-css-custom-properties.html). This includes CSS custom properties, increased [ES6](http://www.ecma-international.org/ecma-262/6.0/) support, `KeyboardEvent` improvements, `Promise` improvements, and many other new features now available in your Electron app.

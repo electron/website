@@ -9,6 +9,7 @@ authors:
     url: 'https://github.com/sofianguy'
     image_url: 'https://github.com/sofianguy.png?size=96'
 slug: electron-18-0
+tags: [release]
 ---
 
 Electron 18.0.0 has been released! It includes upgrades to Chromium `100`, V8 `10.0`, and Node.js `16.13.2`. Read below for more details!

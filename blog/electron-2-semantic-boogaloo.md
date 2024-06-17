@@ -6,6 +6,7 @@ authors:
   url: 'https://github.com/groundwater'
   image_url: 'https://github.com/groundwater.png?size=96'
 slug: electron-2-semantic-boogaloo
+tags: [release]
 ---
 
 A new major version of Electron is in the works, and with it some changes to our versioning strategy. As of version 2.0.0, Electron will strictly adhere to Semantic Versioning.

@@ -6,6 +6,7 @@ authors:
   url: 'https://github.com/jlord'
   image_url: 'https://github.com/jlord.png?size=96'
 slug: electron-1-0
+tags: [release]
 ---
 
 For the last two years, Electron has helped developers build cross platform

@@ -6,6 +6,7 @@ authors:
   url: 'https://github.com/zeke'
   image_url: 'https://github.com/zeke.png?size=96'
 slug: protocol-handler-fix
+tags: [security]
 ---
 
 A remote code execution vulnerability has been discovered affecting

@@ -6,6 +6,7 @@ authors:
     url: 'https://github.com/vertedinde'
     image_url: 'https://github.com/vertedinde.png?size=96'
 slug: electron-31-0
+tags: [release]
 ---
 
 Electron 31.0.0 has been released! It includes upgrades to Chromium `126.0.6478.36`, V8 `12.6`, and Node `20.14.0`.

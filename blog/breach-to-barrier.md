@@ -6,6 +6,7 @@ authors:
     url: 'https://github.com/felixrieseberg'
     image_url: 'https://github.com/felixrieseberg.png?size=96'
 slug: breach-to-barrier
+tags: [security]
 ---
 
 It’s been more than a week since [CVE-2023-4863: Heap buffer overflow in WebP](https://chromereleases.googleblog.com/2023/09/stable-channel-update-for-desktop_11.html) was made public, leading to a flurry of new releases of software rendering `webp` images: macOS, iOS, Chrome, Firefox, and various Linux distributions all received updates. This followed investigations by Citizen Lab, discovering that an iPhone used by a “Washington DC-based civil society organization” was under attack using a zero-click exploit within iMessage.

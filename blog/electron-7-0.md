@@ -9,6 +9,7 @@ authors:
     url: 'https://github.com/ckerr'
     image_url: 'https://github.com/ckerr.png?size=96'
 slug: electron-7-0
+tags: [release]
 ---
 
 Electron 7.0.0 has been released! It includes upgrades to Chromium 78, V8 7.8, and Node.js 12.8.1. We've added a Window on Arm 64 release, faster IPC methods, a new `nativeTheme` API, and much more!

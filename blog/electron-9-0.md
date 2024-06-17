@@ -9,6 +9,7 @@ authors:
     url: 'https://github.com/VerteDinde'
     image_url: 'https://github.com/VerteDinde.png?size=96'
 slug: electron-9-0
+tags: [release]
 ---
 
 Electron 9.0.0 has been released! It includes upgrades to Chromium `83`, V8 `8.3`, and Node.js `12.14`. We've added several new API integrations for our spellchecker feature, enabled PDF viewer, and much more!

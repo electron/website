@@ -6,6 +6,7 @@ authors:
   url: 'https://github.com/ckerr'
   image_url: 'https://github.com/ckerr.png?size=96'
 slug: web-preferences-fix
+tags: [security]
 ---
 
 A remote code execution vulnerability has been discovered affecting apps with the ability to open nested child windows on Electron versions (3.0.0-beta.6, 2.0.7, 1.8.7, and 1.7.15). This vulnerability has been assigned the CVE identifier [CVE-2018-15685].

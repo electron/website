@@ -9,6 +9,7 @@ authors:
     url: 'https://github.com/vertedinde'
     image_url: 'https://github.com/vertedinde.png?size=96'
 slug: electron-25-0
+tags: [release]
 ---
 
 Electron 25.0.0 has been released! It includes upgrades to Chromium `114`, V8 `11.4`, and Node.js `18.15.0`. Read below for more details!
