@@ -10,39 +10,6 @@ import jsCodeBlocks from './src/transformers/js-code-blocks';
 import fiddleEmbedder from './src/transformers/fiddle-embedder';
 import apiHistory from './src/transformers/api-history';
 
-import { Options as StringReplaceLoaderOptions } from 'string-replace-loader';
-
-const apiHistoryRegex =
-  /<!--\r?\n(```YAML history\r?\n([\s\S]*?)\r?\n```)\r?\n-->/g;
-
-// TODO: Rename to something better
-function apiHtmlCommentToCodeBlock() {
-  return {
-    // TODO: Rename to something better
-    name: 'apiHtmlCommentToCodeBlock-plugin',
-    configureWebpack() {
-      return {
-        module: {
-          rules: [
-            {
-              test: /\/api\/.*?\.md$/,
-              loader: 'string-replace-loader',
-              options: {
-                // TODO: Test this regex
-                search: apiHistoryRegex,
-                replace(_, p1) {
-                  return p1;
-                },
-                flags: 'g',
-              } satisfies StringReplaceLoaderOptions,
-            },
-          ],
-        },
-      };
-    },
-  };
-}
-
 const config: Config = {
   title: 'Electron',
   tagline: 'Build cross-platform desktop apps with JavaScript, HTML, and CSS',
