@@ -11,6 +11,8 @@ tags: [release]
 
 Electron 11.0.0 has been released! It includes upgrades to Chromium `87`, V8 `8.7`, and Node.js `12.18.3`. We've added support for Apple silicon, and general improvements. Read below for more details!
 
+<!-- truncate -->
+
 ---
 
 The Electron team is excited to announce the release of Electron 11.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://electronjs.org/releases/stable). The release is packed with upgrades, fixes, and new support for Apple's M1 hardware.

@@ -10,6 +10,8 @@ slug: 8-week-cadence
 
 Beginning in September 2021, Electron will release a new major stable version every 8 weeks.
 
+<!-- truncate -->
+
 ---
 
 In 2019, Electron [moved to a 12 week release cycle](https://www.electronjs.org/blog/12-week-cadence) to match Chromium's 6 week release cycle. Recently, both Chrome and Microsoft announced changes that made us reconsider Electron's current release cadence:

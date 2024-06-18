@@ -14,6 +14,8 @@ desktop apps using HTML, CSS, and JavaScript. Now we're excited to share a major
 milestone for our framework and for the community that created it. The release
 of Electron 1.0 is now available from [electronjs.org][electronjs.org].
 
+<!-- truncate -->
+
 ---
 
 ![Electron 1.0](https://cloud.githubusercontent.com/assets/378023/15007352/315f5eea-1213-11e6-984e-21f5dab31267.png)

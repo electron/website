@@ -14,6 +14,8 @@ tags: [release]
 
 Electron 22.0.0 has been released! It includes a new utility process API, updates for Windows 7/8/8.1 support, and upgrades to Chromium `108`, V8 `10.8`, and Node.js `16.17.1`. Read below for more details!
 
+<!-- truncate -->
+
 ---
 
 The Electron team is excited to announce the release of Electron 22.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://releases.electronjs.org/releases/stable). Continue reading for details about this release.

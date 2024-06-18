@@ -17,6 +17,8 @@ tags: [release]
 
 Electron 23.0.0 has been released! It includes upgrades to Chromium `110`, V8 `11.0`, and Node.js `18.12.1`. Additionally, support for Windows 7/8/8.1 has been dropped. Read below for more details!
 
+<!-- truncate -->
+
 ---
 
 The Electron team is excited to announce the release of Electron 23.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://releases.electronjs.org/releases/stable). Continue reading for details about this release.

@@ -14,6 +14,8 @@ tags: [release]
 
 Electron 25.0.0 has been released! It includes upgrades to Chromium `114`, V8 `11.4`, and Node.js `18.15.0`. Read below for more details!
 
+<!-- truncate -->
+
 ---
 
 The Electron team is excited to announce the release of Electron 25.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://releases.electronjs.org/releases/stable). Continue reading for details about this release.

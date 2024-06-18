@@ -11,6 +11,8 @@ tags: [release]
 
 Electron 31.0.0 has been released! It includes upgrades to Chromium `126.0.6478.36`, V8 `12.6`, and Node `20.14.0`.
 
+<!-- truncate -->
+
 ---
 
 The Electron team is excited to announce the release of Electron 31.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://releases.electronjs.org/releases/stable). Continue reading for details about this release.

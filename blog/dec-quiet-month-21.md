@@ -15,6 +15,8 @@ The Electron project will pause for the month of December 2021, then return to f
 </div>
 <p><a href="https://giphy.com/gifs/shh-john-krasinski-a-quiet-place-4QEGwDMDbOYC2G7m9p">via GIPHY</a></p>
 
+<!-- truncate -->
+
 ---
 
 ## What will be the same in December

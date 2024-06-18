@@ -16,6 +16,8 @@ January 2024.
 
 <iframe src="https://giphy.com/embed/7ShQBUr50tPfvgrwX9" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/disneyplus-7ShQBUr50tPfvgrwX9">via GIPHY</a></p>
 
+<!-- truncate -->
+
 ---
 
 ## What will be the same in December

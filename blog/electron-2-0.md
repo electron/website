@@ -13,6 +13,8 @@ After more than four months of development, eight beta releases, and worldwide
 testing from many apps' staged rollouts, the release of Electron 2.0.0 is now
 available from [electronjs.org](https://electronjs.org/).
 
+<!-- truncate -->
+
 ---
 
 ## Release Process

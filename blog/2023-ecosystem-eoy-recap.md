@@ -10,6 +10,8 @@ slug: ecosystem-2023-eoy-recap
 
 Reflecting on the improvements and changes in Electron's developer ecosystem in 2023.
 
+<!-- truncate -->
+
 ---
 
 In the past few months, we've been cooking up some changes across the Electron ecosystem to supercharge the developer experience for Electron apps! Here’s a swift rundown of the latest additions straight from Electron HQ.

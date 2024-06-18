@@ -10,6 +10,8 @@ slug: 2020-season-of-docs
 
 Electron is proud to be participating in the second edition of Google's Season of Docs initiative, which pairs mentors from open source organizations with technical writers to improve project documentation.
 
+<!-- truncate -->
+
 ---
 
 # What is Season of Docs?

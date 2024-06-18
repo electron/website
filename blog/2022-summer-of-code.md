@@ -19,6 +19,8 @@ slug: 2022-summer-of-code
 
 The Electron team is excited to announce that we will be participating in Google Summer of Code for the first time this year!
 
+<!-- truncate -->
+
 ---
 
 ## What is Google Summer of Code?

@@ -14,6 +14,8 @@ tags: [release]
 
 Electron 9.0.0 has been released! It includes upgrades to Chromium `83`, V8 `8.3`, and Node.js `12.14`. We've added several new API integrations for our spellchecker feature, enabled PDF viewer, and much more!
 
+<!-- truncate -->
+
 ---
 
 The Electron team is excited to announce the release of Electron 9.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://electronjs.org/releases/stable). The release is packed with upgrades, fixes, and new features. We can't wait to see what you build with them! Continue reading for details about this release, and please share any feedback you have!

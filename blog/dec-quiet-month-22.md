@@ -12,6 +12,8 @@ The Electron project will pause for the month of December 2022, then return to f
 
 <iframe src="https://giphy.com/embed/l4EpdWVFYX4qMpYLS" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/aquietplacemovie-quiet-shh-l4EpdWVFYX4qMpYLS">via GIPHY</a></p>
 
+<!-- truncate -->
+
 ---
 
 ## What will be the same in December

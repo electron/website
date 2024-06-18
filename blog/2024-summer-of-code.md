@@ -20,6 +20,8 @@ program focused on bringing new contributors into open source software developme
 
 For more program details, check out Google’s [Summer of Code homepage](https://summerofcode.withgoogle.com/).
 
+<!-- truncate -->
+
 ## About us
 
 Electron is a JavaScript framework for building cross-platform desktop applications using

@@ -14,6 +14,8 @@ tags: [release]
 
 Electron 15.0.0 has been released! It includes upgrades to Chromium `94`, V8 `9.4`, and Node.js `16.5.0`. We've added API updates to window.open, bug fixes, and general improvements. Read below for more details!
 
+<!-- truncate -->
+
 ---
 
 The Electron team is excited to announce the release of Electron 15.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://www.electronjs.org/releases/stable). Continue reading for details about this release and please share any feedback you have!

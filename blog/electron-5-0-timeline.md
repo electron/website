@@ -11,6 +11,8 @@ tags: [release]
 
 For the first time ever, Electron is excited to publicize our release schedule starting with v5.0.0. This is our first step in having a public, long-term timeline.
 
+<!-- truncate -->
+
 ---
 
 As mentioned in our v4.0.0 stable release [blog post](https://electronjs.org/blog/electron-4-0#whats-next), we are planning to release approximately quarterly to maintain closer cadence with Chromium releases. Chromium releases a new version very quickly -- every 6 weeks.

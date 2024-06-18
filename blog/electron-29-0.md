@@ -11,6 +11,8 @@ tags: [release]
 
 Electron 29.0.0 has been released! It includes upgrades to Chromium `122.0.6261.39`, V8 `12.2`, and Node.js `20.9.0`.
 
+<!-- truncate -->
+
 ---
 
 The Electron team is excited to announce the release of Electron 29.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://releases.electronjs.org/releases/stable). Continue reading for details about this release.

@@ -17,6 +17,8 @@ tags: [release]
 
 Electron 14.0.0 has been released! It includes upgrades to Chromium `93` and V8 `9.3`. We've added several API updates, bug fixes, and general improvements. Read below for more details!
 
+<!-- truncate -->
+
 ---
 
 The Electron team is excited to announce the release of Electron 14.0.0! You can
