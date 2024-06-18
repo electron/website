@@ -9,6 +9,7 @@ authors:
     url: 'https://github.com/sofianguy'
     image_url: 'https://github.com/sofianguy.png?size=96'
 slug: electron-10-0
+tags: [release]
 ---
 
 Electron 10.0.0 has been released! It includes upgrades to Chromium `85`, V8 `8.5`, and Node.js `12.16`. We've added several new API integrations and improvements. Read below for more details!

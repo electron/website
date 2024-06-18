@@ -12,6 +12,7 @@ authors:
     url: 'https://github.com/VerteDinde'
     image_url: 'https://github.com/VerteDinde.png?size=96'
 slug: electron-13-0
+tags: [release]
 ---
 
 Electron 13.0.0 has been released! It includes upgrades to Chromium `91` and V8 `9.1`. We've added several API updates, bug fixes, and general improvements. Read below for more details!

@@ -6,6 +6,7 @@ authors:
   url: 'https://github.com/codebytere'
   image_url: 'https://github.com/codebytere.png?size=96'
 slug: electron-3-0
+tags: [release]
 ---
 
 The Electron team is excited to announce that the first stable release of Electron 3 is now

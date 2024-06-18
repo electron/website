@@ -12,6 +12,7 @@ authors:
     url: 'https://github.com/codebytere'
     image_url: 'https://github.com/codebytere.png?size=96'
 slug: electron-6-0
+tags: [release]
 ---
 
 The Electron team is excited to announce the release of Electron 6.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://electronjs.org/releases/stable). The release is packed with upgrades, fixes, and new features. We can't wait to see what you build with them! Continue reading for details about this release, and please share any feedback you have!

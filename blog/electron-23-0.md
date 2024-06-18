@@ -12,6 +12,7 @@ authors:
     url: 'https://github.com/erickzhao'
     image_url: 'https://github.com/erickzhao.png?size=96'
 slug: electron-23-0
+tags: [release]
 ---
 
 Electron 23.0.0 has been released! It includes upgrades to Chromium `110`, V8 `11.0`, and Node.js `18.12.1`. Additionally, support for Windows 7/8/8.1 has been dropped. Read below for more details!

@@ -6,6 +6,7 @@ authors:
   url: 'https://github.com/BinaryMuse'
   image_url: 'https://github.com/BinaryMuse.png?size=96'
 slug: electron-4-0
+tags: [release]
 ---
 
 The Electron team is excited to announce that the stable release of Electron 4 is now available! You can install it from [electronjs.org](https://electronjs.org/) or from npm via `npm install electron@latest`. The release is packed with upgrades, fixes, and new features, and we can't wait to see what you build with them. Read more for details about this release, and please share any feedback you have as you explore!

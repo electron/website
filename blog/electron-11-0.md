@@ -6,6 +6,7 @@ authors:
     url: 'https://github.com/VerteDinde'
     image_url: 'https://github.com/VerteDinde.png?size=96'
 slug: electron-11-0
+tags: [release]
 ---
 
 Electron 11.0.0 has been released! It includes upgrades to Chromium `87`, V8 `8.7`, and Node.js `12.18.3`. We've added support for Apple silicon, and general improvements. Read below for more details!

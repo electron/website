@@ -9,6 +9,7 @@ authors:
     url: 'https://github.com/sofianguy'
     image_url: 'https://github.com/sofianguy.png?size=96'
 slug: electron-8-0
+tags: [release]
 ---
 
 Electron 8.0.0 has been released! It includes upgrades to Chromium `80`, V8 `8.0`, and Node.js `12.13.0`. We've added Chrome's built-in spellchecker, and much more!

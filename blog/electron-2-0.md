@@ -6,6 +6,7 @@ authors:
   url: 'https://github.com/ckerr'
   image_url: 'https://github.com/ckerr.png?size=96'
 slug: electron-2-0
+tags: [release]
 ---
 
 After more than four months of development, eight beta releases, and worldwide

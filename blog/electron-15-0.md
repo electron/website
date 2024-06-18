@@ -9,6 +9,7 @@ authors:
     url: 'https://github.com/vertedinde'
     image_url: 'https://github.com/vertedinde.png?size=96'
 slug: electron-15-0
+tags: [release]
 ---
 
 Electron 15.0.0 has been released! It includes upgrades to Chromium `94`, V8 `9.4`, and Node.js `16.5.0`. We've added API updates to window.open, bug fixes, and general improvements. Read below for more details!

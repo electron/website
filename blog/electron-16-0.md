@@ -9,6 +9,7 @@ authors:
     url: 'https://github.com/ckerr'
     image_url: 'https://github.com/ckerr.png?size=96'
 slug: electron-16-0
+tags: [release]
 ---
 
 Electron 16.0.0 has been released! It includes upgrades to Chromium `96`, V8 `9.6`, and Node.js `16.9.1`. Read below for more details!

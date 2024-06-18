@@ -9,6 +9,7 @@ authors:
     url: 'https://github.com/VerteDinde'
     image_url: 'https://github.com/VerteDinde.png?size=96'
 slug: electron-17-0
+tags: [release]
 ---
 
 Electron 17.0.0 has been released! It includes upgrades to Chromium `98`, V8 `9.8`, and Node.js `16.13.0`. Read below for more details!

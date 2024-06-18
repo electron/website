@@ -9,6 +9,7 @@ authors:
     url: 'https://github.com/felixrieseberg'
     image_url: 'https://github.com/felixrieseberg.png?size=96'
 slug: statement-run-as-node-cves
+tags: [security]
 ---
 
 Earlier today, the Electron team was alerted to several public CVEs recently filed against several notable Electron apps. The CVEs are related to two of Electron’s [fuses](https://www.electronjs.org/docs/latest/tutorial/fuses) - `runAsNode` and `enableNodeCliInspectArguments` - and incorrectly claim that a remote attacker is able to execute arbitrary code via these components if they have not been actively disabled.

@@ -12,6 +12,7 @@ authors:
     url: 'https://github.com/georgexu99'
     image_url: 'https://github.com/georgexu99.png?size=96'
 slug: electron-21-0
+tags: [release]
 ---
 
 Electron 21.0.0 has been released! It includes upgrades to Chromium `106`, V8 `10.6`, and Node.js `16.16.0`. Read below for more details!

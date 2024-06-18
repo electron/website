@@ -9,6 +9,7 @@ authors:
     url: 'https://github.com/georgexu99'
     image_url: 'https://github.com/georgexu99.png?size=96'
 slug: electron-22-0
+tags: [release]
 ---
 
 Electron 22.0.0 has been released! It includes a new utility process API, updates for Windows 7/8/8.1 support, and upgrades to Chromium `108`, V8 `10.8`, and Node.js `16.17.1`. Read below for more details!

@@ -1,0 +1,4 @@
+release:
+  description: 'Blog posts about new Electron releases'
+security:
+  description: 'Blog posts related to security'

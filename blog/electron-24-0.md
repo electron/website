@@ -6,6 +6,7 @@ authors:
     url: 'https://github.com/georgexu99'
     image_url: 'https://github.com/georgexu99.png?size=96'
 slug: electron-24-0
+tags: [release]
 ---
 
 Electron 24.0.0 has been released! It includes upgrades to Chromium `112.0.5615.49`, V8 `11.2`, and Node.js `18.14.0`. Read below for more details!

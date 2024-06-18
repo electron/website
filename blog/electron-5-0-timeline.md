@@ -6,6 +6,7 @@ authors:
   url: 'https://github.com/sofianguy'
   image_url: 'https://github.com/sofianguy.png?size=96'
 slug: electron-5-0-timeline
+tags: [release]
 ---
 
 For the first time ever, Electron is excited to publicize our release schedule starting with v5.0.0. This is our first step in having a public, long-term timeline.

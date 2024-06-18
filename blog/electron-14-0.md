@@ -12,6 +12,7 @@ authors:
     url: 'https://github.com/ckerr'
     image_url: 'https://github.com/ckerr.png?size=96'
 slug: electron-14-0
+tags: [release]
 ---
 
 Electron 14.0.0 has been released! It includes upgrades to Chromium `93` and V8 `9.3`. We've added several API updates, bug fixes, and general improvements. Read below for more details!
