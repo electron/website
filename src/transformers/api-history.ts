@@ -18,13 +18,11 @@ enum Change {
   ADDED = 'API ADDED',
   CHANGED = 'API CHANGED',
   DEPRECATED = 'API DEPRECATED',
-  REMOVED = 'API REMOVED',
 }
 
 type ApiHistory = {
   added?: { 'pr-url': string }[];
   deprecated?: { 'pr-url': string; 'breaking-changes-header': string }[];
-  removed?: { 'pr-url': string; 'breaking-changes-header': string }[];
   changes?: { 'pr-url': string; description: string }[];
 };
 
@@ -109,9 +107,6 @@ function transformer(tree: ParentWithMdxJsxFlowElement) {
       ) ?? []),
       ...(apiHistory.deprecated?.map((deprecated) =>
         generateTableRow(Change.DEPRECATED, deprecated['pr-url'])
-      ) ?? []),
-      ...(apiHistory.removed?.map((removed) =>
-        generateTableRow(Change.REMOVED, removed['pr-url'])
       ) ?? []),
     ];
 
