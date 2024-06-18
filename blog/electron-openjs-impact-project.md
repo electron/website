@@ -1,10 +1,7 @@
 ---
 title: Electron becomes an OpenJS Foundation Impact Project
 date: 2020-06-23T00:00:00.000Z
-authors:
-  - name: VerteDinde
-    url: 'https://github.com/VerteDinde'
-    image_url: 'https://github.com/VerteDinde.png?size=96'
+authors: VerteDinde
 slug: electron-openjs-impact-project
 ---
 

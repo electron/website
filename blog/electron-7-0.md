@@ -2,12 +2,8 @@
 title: Electron 7.0.0
 date: 2019-10-22T00:00:00.000Z
 authors:
-  - name: sofianguy
-    url: 'https://github.com/sofianguy'
-    image_url: 'https://github.com/sofianguy.png?size=96'
-  - name: ckerr
-    url: 'https://github.com/ckerr'
-    image_url: 'https://github.com/ckerr.png?size=96'
+  - sofianguy
+  - ckerr
 slug: electron-7-0
 tags: [release]
 ---

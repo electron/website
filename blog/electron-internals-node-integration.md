@@ -1,10 +1,7 @@
 ---
 title: 'Electron Internals: Message Loop Integration'
 date: 2016-07-28T00:00:00.000Z
-authors:
-  name: zcbenz
-  url: 'https://github.com/zcbenz'
-  image_url: 'https://github.com/zcbenz.png?size=96'
+authors: zcbenz
 slug: electron-internals-node-integration
 ---
 

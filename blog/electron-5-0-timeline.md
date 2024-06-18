@@ -1,10 +1,7 @@
 ---
 title: Electron v5.0.0 Timeline
 date: 2019-01-25T00:00:00.000Z
-authors:
-  name: sofianguy
-  url: 'https://github.com/sofianguy'
-  image_url: 'https://github.com/sofianguy.png?size=96'
+authors: sofianguy
 slug: electron-5-0-timeline
 tags: [release]
 ---

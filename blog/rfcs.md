@@ -1,10 +1,7 @@
 ---
 title: Introducing electron/rfcs
 date: 2024-02-13T12:00:00.000Z
-authors:
-  - name: erickzhao
-    url: 'https://github.com/erickzhao'
-    image_url: 'https://github.com/erickzhao.png?size=96'
+authors: erickzhao
 slug: rfcs
 ---
 

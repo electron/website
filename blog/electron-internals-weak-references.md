@@ -1,10 +1,7 @@
 ---
 title: 'Electron Internals: Weak References'
 date: 2016-09-20T00:00:00.000Z
-authors:
-  name: zcbenz
-  url: 'https://github.com/zcbenz'
-  image_url: 'https://github.com/zcbenz.png?size=96'
+authors: zcbenz
 slug: electron-internals-weak-references
 ---
 

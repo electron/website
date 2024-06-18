@@ -1,10 +1,7 @@
 ---
 title: Electron 24.0.0
 date: 2023-04-04T00:00:00.000Z
-authors:
-  - name: georgexu99
-    url: 'https://github.com/georgexu99'
-    image_url: 'https://github.com/georgexu99.png?size=96'
+authors: georgexu99
 slug: electron-24-0
 tags: [release]
 ---

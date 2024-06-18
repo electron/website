@@ -2,12 +2,8 @@
 title: Electron 25.0.0
 date: 2023-05-30T00:00:00.000Z
 authors:
-  - name: georgexu99
-    url: 'https://github.com/georgexu99'
-    image_url: 'https://github.com/georgexu99.png?size=96'
-  - name: vertedinde
-    url: 'https://github.com/vertedinde'
-    image_url: 'https://github.com/vertedinde.png?size=96'
+  - georgexu99
+  - VerteDinde
 slug: electron-25-0
 tags: [release]
 ---

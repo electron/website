@@ -2,12 +2,8 @@
 title: Electron 10.0.0
 date: 2020-08-25T00:00:00.000Z
 authors:
-  - name: VerteDinde
-    url: 'https://github.com/VerteDinde'
-    image_url: 'https://github.com/VerteDinde.png?size=96'
-  - name: sofianguy
-    url: 'https://github.com/sofianguy'
-    image_url: 'https://github.com/sofianguy.png?size=96'
+  - VerteDinde
+  - sofianguy
 slug: electron-10-0
 tags: [release]
 ---

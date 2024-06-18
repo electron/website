@@ -1,10 +1,7 @@
 ---
 title: Ecosystem 2023 Recap
 date: 2023-11-30T00:00:00.000Z
-authors:
-  - name: erickzhao
-    url: 'https://github.com/erickzhao'
-    image_url: 'https://github.com/erickzhao.png?size=96'
+authors: erickzhao
 slug: ecosystem-2023-eoy-recap
 ---
 

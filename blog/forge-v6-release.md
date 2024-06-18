@@ -2,15 +2,9 @@
 title: Introducing Electron Forge 6
 date: 2022-11-03T00:00:00.000Z
 authors:
-  - name: georgexu99
-    url: 'https://github.com/georgexu99'
-    image_url: 'https://github.com/georgexu99.png?size=96'
-  - name: vertedinde
-    url: 'https://github.com/vertedinde'
-    image_url: 'https://github.com/vertedinde.png?size=96'
-  - name: erickzhao
-    url: 'https://github.com/erickzhao'
-    image_url: 'https://github.com/erickzhao.png?size=96'
+  - georgexu99
+  - VerteDinde
+  - erickzhao
 slug: forge-v6-release
 toc_max_heading_level: 3
 ---

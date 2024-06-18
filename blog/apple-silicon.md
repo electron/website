@@ -1,10 +1,7 @@
 ---
 title: Apple Silicon Support
 date: 2020-10-15T00:00:00.000Z
-authors:
-  name: MarshallOfSound
-  url: 'https://github.com/MarshallOfSound'
-  image_url: 'https://github.com/MarshallOfSound.png?size=96'
+authors: MarshallOfSound
 slug: apple-silicon
 ---
 

@@ -1,10 +1,7 @@
 ---
 title: 'Electron Internals: Building Chromium as a Library'
 date: 2017-03-03T00:00:00.000Z
-authors:
-  name: zcbenz
-  url: 'https://github.com/zcbenz'
-  image_url: 'https://github.com/zcbenz.png?size=96'
+authors: zcbenz
 slug: electron-internals-building-chromium-as-a-library
 ---
 

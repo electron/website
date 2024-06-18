@@ -1,10 +1,7 @@
 ---
 title: Announcing TypeScript support in Electron
 date: 2017-06-01T00:00:00.000Z
-authors:
-  name: zeke
-  url: 'https://github.com/zeke'
-  image_url: 'https://github.com/zeke.png?size=96'
+authors: zeke
 slug: typescript
 ---
 

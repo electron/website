@@ -2,15 +2,9 @@
 title: Electron 6.0.0
 date: 2019-07-30T00:00:00.000Z
 authors:
-  - name: sofianguy
-    url: 'https://github.com/sofianguy'
-    image_url: 'https://github.com/sofianguy.png?size=96'
-  - name: ckerr
-    url: 'https://github.com/ckerr'
-    image_url: 'https://github.com/ckerr.png?size=96'
-  - name: codebytere
-    url: 'https://github.com/codebytere'
-    image_url: 'https://github.com/codebytere.png?size=96'
+  - sofianguy
+  - ckerr
+  - codebytere
 slug: electron-6-0
 tags: [release]
 ---

@@ -2,12 +2,8 @@
 title: Electron 22.0.0
 date: 2022-11-29T00:00:00.000Z
 authors:
-  - name: VerteDinde
-    url: 'https://github.com/VerteDinde'
-    image_url: 'https://github.com/vertedinde.png?size=96'
-  - name: georgexu99
-    url: 'https://github.com/georgexu99'
-    image_url: 'https://github.com/georgexu99.png?size=96'
+  - VerteDinde
+  - georgexu99
 slug: electron-22-0
 tags: [release]
 ---

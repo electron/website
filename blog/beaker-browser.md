@@ -5,9 +5,7 @@ authors:
   - name: pfrazee
     url: 'https://github.com/pfrazee'
     image_url: 'https://github.com/pfrazee.png?size=96'
-  - name: zeke
-    url: 'https://github.com/zeke'
-    image_url: 'https://github.com/zeke.png?size=96'
+  - zeke
 slug: beaker-browser
 ---
 

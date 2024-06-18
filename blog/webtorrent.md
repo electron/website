@@ -5,9 +5,7 @@ authors:
   - name: feross
     url: 'https://github.com/feross'
     image_url: 'https://github.com/feross.png?size=96'
-  - name: zeke
-    url: 'https://github.com/zeke'
-    image_url: 'https://github.com/zeke.png?size=96'
+  - zeke
 slug: webtorrent
 ---
 

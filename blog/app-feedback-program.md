@@ -1,10 +1,7 @@
 ---
 title: Electron App Feedback Program
 date: 2018-10-02T00:00:00.000Z
-authors:
-  name: sofianguy
-  url: 'https://github.com/sofianguy'
-  image_url: 'https://github.com/sofianguy.png?size=96'
+authors: sofianguy
 slug: app-feedback-program
 ---
 

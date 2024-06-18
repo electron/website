@@ -5,12 +5,8 @@ authors:
   - name: BinaryMuse
     url: 'https://github.com/BinaryMuse'
     image_url: 'https://github.com/BinaryMuse.png?size=96'
-  - name: ckerr
-    url: 'https://github.com/ckerr'
-    image_url: 'https://github.com/ckerr.png?size=96'
-  - name: jkleinsc
-    url: 'https://github.com/jkleinsc'
-    image_url: 'https://github.com/jkleinsc.png?size=96'
+  - ckerr
+  - jkleinsc
 slug: electron-5-0
 tags: [release]
 ---

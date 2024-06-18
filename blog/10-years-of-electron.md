@@ -1,10 +1,7 @@
 ---
 title: 10 years of Electron 🎉
 date: 2023-03-13T00:00:00.000Z
-authors:
-  name: erickzhao
-  url: 'https://github.com/erickzhao'
-  image_url: 'https://github.com/erickzhao.png?size=96'
+authors: erickzhao
 slug: 10-years-of-electron
 ---
 

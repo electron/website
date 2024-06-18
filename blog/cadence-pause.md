@@ -1,10 +1,7 @@
 ---
 title: Upcoming Electron Releases
 date: 2020-03-19T00:00:00.000Z
-authors:
-  name: codebytere
-  url: 'https://github.com/codebytere'
-  image_url: 'https://github.com/codebytere.png?size=96'
+authors: codebytere
 slug: cadence-pause
 ---
 

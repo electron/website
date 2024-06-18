@@ -1,10 +1,7 @@
 ---
 title: 'Breach to Barrier: Strengthening Apps with the Sandbox'
 date: 2023-09-29T00:00:00.000Z
-authors:
-  - name: felixrieseberg
-    url: 'https://github.com/felixrieseberg'
-    image_url: 'https://github.com/felixrieseberg.png?size=96'
+authors: felixrieseberg
 slug: breach-to-barrier
 tags: [security]
 ---

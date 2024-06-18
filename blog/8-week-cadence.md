@@ -1,10 +1,7 @@
 ---
 title: New Electron Release Cadence
 date: 2021-07-14T00:00:00.000Z
-authors:
-  name: VerteDinde
-  url: 'https://github.com/VerteDinde'
-  image_url: 'https://github.com/VerteDinde.png?size=96'
+authors: VerteDinde
 slug: 8-week-cadence
 ---
 

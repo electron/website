@@ -1,10 +1,7 @@
 ---
 title: Protocol Handler Vulnerability Fix
 date: 2018-01-22T00:00:00.000Z
-authors:
-  name: zeke
-  url: 'https://github.com/zeke'
-  image_url: 'https://github.com/zeke.png?size=96'
+authors: zeke
 slug: protocol-handler-fix
 tags: [security]
 ---

@@ -2,12 +2,8 @@
 title: Electron 30.0.0
 date: 2024-04-16T00:00:00.000Z
 authors:
-  - name: clavin
-    url: 'https://github.com/clavin'
-    image_url: 'https://github.com/clavin.png?size=96'
-  - name: VerteDinde
-    url: 'https://github.com/vertedinde'
-    image_url: 'https://github.com/vertedinde.png?size=96'
+  - clavin
+  - VerteDinde
 slug: electron-30-0
 tags: [release]
 ---

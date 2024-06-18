@@ -1,10 +1,7 @@
 ---
 title: API Changes Coming in Electron 1.0
 date: 2015-11-17T00:00:00.000Z
-authors:
-  name: zcbenz
-  url: 'https://github.com/zcbenz'
-  image_url: 'https://github.com/zcbenz.png?size=96'
+authors: zcbenz
 slug: electron-api-changes
 ---
 

@@ -1,10 +1,7 @@
 ---
 title: Electron Userland
 date: 2016-12-20T00:00:00.000Z
-authors:
-  name: zeke
-  url: 'https://github.com/zeke'
-  image_url: 'https://github.com/zeke.png?size=96'
+authors: zeke
 slug: userland
 ---
 

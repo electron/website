@@ -1,10 +1,7 @@
 ---
 title: Google Season of Docs
 date: 2020-05-21T00:00:00.000Z
-authors:
-  - name: erickzhao
-    url: 'https://github.com/erickzhao'
-    image_url: 'https://github.com/erickzhao.png?size=96'
+authors: erickzhao
 slug: 2020-season-of-docs
 ---
 
