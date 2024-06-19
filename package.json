@@ -67,7 +67,6 @@
     "@types/unist": "^3.0.2",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
-    "del": "^6.0.0",
     "esbuild-loader": "^2.15.1",
     "eslint": "^8.29.0",
     "eslint-config-prettier": "^8.3.0",
