@@ -1,10 +1,7 @@
 ---
 title: Discontinuing support for 32-bit Linux
 date: 2019-03-04T00:00:00.000Z
-authors:
-  name: felixrieseberg
-  url: 'https://github.com/felixrieseberg'
-  image_url: 'https://github.com/felixrieseberg.png?size=96'
+authors: felixrieseberg
 slug: linux-32bit-support
 ---
 

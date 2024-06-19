@@ -1,10 +1,7 @@
 ---
 title: Website Hiccups
 date: 2018-02-12T00:00:00.000Z
-authors:
-  name: zeke
-  url: 'https://github.com/zeke'
-  image_url: 'https://github.com/zeke.png?size=96'
+authors: zeke
 slug: website-hiccups
 ---
 

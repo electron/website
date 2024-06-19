@@ -1,10 +1,7 @@
 ---
 title: 'July 2016: New Apps and Meetups'
 date: 2016-08-04T00:00:00.000Z
-authors:
-  name: jlord
-  url: 'https://github.com/jlord'
-  image_url: 'https://github.com/jlord.png?size=96'
+authors: jlord
 slug: july-2016-roundup
 ---
 

@@ -5,9 +5,7 @@ authors:
   - name: PlaineKevin
     url: 'https://github.com/PlaineKevin'
     image_url: 'https://github.com/PlaineKevin.png?size=96'
-  - name: erickzhao
-    url: 'https://github.com/erickzhao'
-    image_url: 'https://github.com/erickzhao.png?size=96'
+  - erickzhao
 slug: dec-quiet-period-23
 ---
 

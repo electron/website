@@ -1,10 +1,7 @@
 ---
 title: Farewell, Windows 7/8/8.1
 date: 2022-11-29T00:00:00.000Z
-authors:
-  - name: vertedinde
-    url: 'https://github.com/vertedinde'
-    image_url: 'https://github.com/vertedinde.png?size=96'
+authors: VerteDinde
 slug: windows-7-to-8-1-deprecation-notice
 ---
 

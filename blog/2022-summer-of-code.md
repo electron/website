@@ -2,18 +2,10 @@
 title: Google Summer of Code 2022
 date: 2022-03-07T00:00:00.000Z
 authors:
-  - name: erickzhao
-    url: 'https://github.com/erickzhao'
-    image_url: 'https://github.com/erickzhao.png?size=96'
-  - name: sofianguy
-    url: 'https://github.com/sofianguy'
-    image_url: 'https://github.com/sofianguy.png?size=96'
-  - name: dsanders11
-    url: 'https://github.com/dsanders11'
-    image_url: 'https://github.com/dsanders11.png?size=96'
-  - name: vertedinde
-    url: 'https://github.com/vertedinde'
-    image_url: 'https://github.com/vertedinde.png?size=96'
+  - erickzhao
+  - sofianguy
+  - dsanders11
+  - VerteDinde
 slug: 2022-summer-of-code
 ---
 

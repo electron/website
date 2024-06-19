@@ -1,10 +1,7 @@
 ---
 title: What's new in Electron 0.37
 date: 2016-03-25T00:00:00.000Z
-authors:
-  name: zeke
-  url: 'https://github.com/zeke'
-  image_url: 'https://github.com/zeke.png?size=96'
+authors: zeke
 slug: electron-37
 tags: [release]
 ---

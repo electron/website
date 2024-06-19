@@ -1,10 +1,7 @@
 ---
 title: Electron 11.0.0
 date: 2020-11-17T00:00:00.000Z
-authors:
-  - name: VerteDinde
-    url: 'https://github.com/VerteDinde'
-    image_url: 'https://github.com/VerteDinde.png?size=96'
+authors: VerteDinde
 slug: electron-11-0
 tags: [release]
 ---

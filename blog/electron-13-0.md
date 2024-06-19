@@ -2,15 +2,9 @@
 title: Electron 13.0.0
 date: 2021-05-25T00:00:00.000Z
 authors:
-  - name: sofianguy
-    url: 'https://github.com/sofianguy'
-    image_url: 'https://github.com/sofianguy.png?size=96'
-  - name: georgexu99
-    url: 'https://github.com/georgexu99'
-    image_url: 'https://github.com/georgexu99.png?size=96'
-  - name: VerteDinde
-    url: 'https://github.com/VerteDinde'
-    image_url: 'https://github.com/VerteDinde.png?size=96'
+  - sofianguy
+  - georgexu99
+  - VerteDinde
 slug: electron-13-0
 tags: [release]
 ---

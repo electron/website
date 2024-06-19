@@ -1,10 +1,7 @@
 ---
 title: Electron 31.0.0
 date: 2024-06-11T00:00:00.000Z
-authors:
-  - name: VerteDinde
-    url: 'https://github.com/vertedinde'
-    image_url: 'https://github.com/vertedinde.png?size=96'
+authors: VerteDinde
 slug: electron-31-0
 tags: [release]
 ---

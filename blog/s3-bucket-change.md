@@ -1,10 +1,7 @@
 ---
 title: 'S3 Bucket Migration'
 date: 2022-05-06T00:00:00.000Z
-authors:
-  name: MarshallOfSound
-  url: 'https://github.com/MarshallOfSound'
-  image_url: 'https://github.com/MarshallOfSound.png?size=96'
+authors: MarshallOfSound
 ---
 
 Electron is changing its primary S3 bucket, you may need to update your build scripts

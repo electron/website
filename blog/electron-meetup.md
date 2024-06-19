@@ -1,10 +1,7 @@
 ---
 title: Electron Meetup at GitHub HQ
 date: 2015-09-17T00:00:00.000Z
-authors:
-  name: jlord
-  url: 'https://github.com/jlord'
-  image_url: 'https://github.com/jlord.png?size=96'
+authors: jlord
 slug: electron-meetup
 ---
 

@@ -1,10 +1,7 @@
 ---
 title: Maintainer Summit 2022 Recap
 date: 2022-10-13T00:00:00.000Z
-authors:
-  - name: erickzhao
-    url: 'https://github.com/erickzhao'
-    image_url: 'https://github.com/erickzhao.png?size=96'
+authors: erickzhao
 slug: maintainer-summit-2022-recap
 ---
 

@@ -1,10 +1,7 @@
 ---
 title: Electron 1.0
 date: 2016-05-11T00:00:00.000Z
-authors:
-  name: jlord
-  url: 'https://github.com/jlord'
-  image_url: 'https://github.com/jlord.png?size=96'
+authors: jlord
 slug: electron-1-0
 tags: [release]
 ---

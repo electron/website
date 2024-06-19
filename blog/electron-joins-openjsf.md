@@ -1,10 +1,7 @@
 ---
 title: Electron joins the OpenJS Foundation
 date: 2019-12-11T00:00:00.000Z
-authors:
-  - name: felixrieseberg
-    url: 'https://github.com/felixrieseberg'
-    image_url: 'https://github.com/felixrieseberg.png?size=96'
+authors: felixrieseberg
 slug: electron-joins-openjsf
 ---
 

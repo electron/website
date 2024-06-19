@@ -2,12 +2,8 @@
 title: Electron Governance
 date: 2019-03-18T00:00:00.000Z
 authors:
-  - name: ckerr
-    url: 'https://github.com/ckerr'
-    image_url: 'https://github.com/ckerr.png?size=96'
-  - name: sofianguy
-    url: 'https://github.com/sofianguy'
-    image_url: 'https://github.com/sofianguy.png?size=96'
+  - ckerr
+  - sofianguy
 slug: governance
 ---
 

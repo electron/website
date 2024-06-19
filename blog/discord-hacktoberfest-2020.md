@@ -1,10 +1,7 @@
 ---
 title: Community Discord Server and Hacktoberfest
 date: 2020-10-01T00:00:00.000Z
-authors:
-  - name: erickzhao
-    url: 'https://github.com/erickzhao'
-    image_url: 'https://github.com/erickzhao.png?size=96'
+authors: erickzhao
 slug: discord-hacktoberfest-2020
 ---
 

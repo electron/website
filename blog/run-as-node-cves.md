@@ -2,12 +2,8 @@
 title: Statement regarding "runAsNode" CVEs
 date: 2024-02-07T12:00:00.000Z
 authors:
-  - name: VerteDinde
-    url: 'https://github.com/VerteDinde'
-    image_url: 'https://github.com/VerteDinde.png?size=96'
-  - name: felixrieseberg
-    url: 'https://github.com/felixrieseberg'
-    image_url: 'https://github.com/felixrieseberg.png?size=96'
+  - VerteDinde
+  - felixrieseberg
 slug: statement-run-as-node-cves
 tags: [security]
 ---

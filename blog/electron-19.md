@@ -2,12 +2,8 @@
 title: Electron 19.0.0
 date: 2022-05-24T00:00:00.000Z
 authors:
-  - name: VerteDinde
-    url: 'https://github.com/VerteDinde'
-    image_url: 'https://github.com/VerteDinde.png?size=96'
-  - name: ckerr
-    url: 'https://github.com/ckerr'
-    image_url: 'https://github.com/ckerr.png?size=96'
+  - VerteDinde
+  - ckerr
 slug: electron-19-0
 tags: [release]
 ---

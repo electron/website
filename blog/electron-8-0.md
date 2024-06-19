@@ -2,12 +2,8 @@
 title: Electron 8.0.0
 date: 2020-02-04T00:00:00.000Z
 authors:
-  - name: jkleinsc
-    url: 'https://github.com/jkleinsc'
-    image_url: 'https://github.com/jkleinsc.png?size=96'
-  - name: sofianguy
-    url: 'https://github.com/sofianguy'
-    image_url: 'https://github.com/sofianguy.png?size=96'
+  - jkleinsc
+  - sofianguy
 slug: electron-8-0
 tags: [release]
 ---

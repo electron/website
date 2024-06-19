@@ -1,10 +1,7 @@
 ---
 title: Electron 3.0.0
 date: 2018-09-18T00:00:00.000Z
-authors:
-  name: codebytere
-  url: 'https://github.com/codebytere'
-  image_url: 'https://github.com/codebytere.png?size=96'
+authors: codebytere
 slug: electron-3-0
 tags: [release]
 ---

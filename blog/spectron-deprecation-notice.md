@@ -1,10 +1,7 @@
 ---
 title: Spectron Deprecation Notice
 date: 2021-12-01T00:00:00.000Z
-authors:
-  - name: vertedinde
-    url: 'https://github.com/vertedinde'
-    image_url: 'https://github.com/vertedinde.png?size=96'
+authors: VerteDinde
 slug: spectron-deprecation-notice
 ---
 

@@ -1,10 +1,7 @@
 ---
 title: Use V8 and Chromium Features in Electron
 date: 2016-01-07T00:00:00.000Z
-authors:
-  name: jlord
-  url: 'https://github.com/jlord'
-  image_url: 'https://github.com/jlord.png?size=96'
+authors: jlord
 slug: latest-v8-chromium-features
 ---
 

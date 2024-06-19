@@ -11,9 +11,7 @@ authors:
   - name: maxogden
     url: 'https://github.com/maxogden'
     image_url: 'https://github.com/maxogden.png?size=96'
-  - name: zeke
-    url: 'https://github.com/zeke'
-    image_url: 'https://github.com/zeke.png?size=96'
+  - zeke
 slug: dat
 ---
 
