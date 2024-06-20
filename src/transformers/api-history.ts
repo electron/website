@@ -5,6 +5,7 @@ import {
   InlineCode,
   Link,
   Node,
+  Paragraph,
   RootContentMap,
   TableRow,
 } from 'mdast';
@@ -17,6 +18,7 @@ import { Octokit, RestEndpointMethodTypes } from '@octokit/rest';
 import pMemoize from 'p-memoize';
 import semver from 'semver';
 import { parse as parseYaml } from 'yaml';
+import { fromMarkdown } from 'mdast-util-from-markdown';
 
 enum Change {
   ADDED = 'API ADDED',
@@ -292,7 +294,10 @@ async function getPRReleaseStatus(
             let pr: Backport['pr'] | null = null;
             let backportAvailableIn: ElectronRelease | null = null;
             if (backportComment) {
-              const prNo = parseInt(backportComment.body?.split('#')[1], 10);
+              const prNo = parseInt(
+                backportComment.body?.split('#')[1] ?? '',
+                10
+              );
               if (!Number.isNaN(prNo) && prNo != null) {
                 pr = await getPR(prNo);
               }
@@ -376,6 +381,14 @@ async function getPRReleaseStatus(
 async function generateTableRow(type: Change, prUrl: string, changes?: string) {
   const prNumber = prUrl.split('/').at(-1);
 
+  let changesParagraphAst: Paragraph | null = null;
+
+  if (changes != null) {
+    const changesAst = fromMarkdown(changes);
+    const [changesParagraph] = changesAst.children;
+    changesParagraphAst = changesParagraph as Paragraph;
+  }
+
   const releaseStatus = await getPRReleaseStatus(Number(prNumber));
   const allReleasePorts = [
     releaseStatus?.primary,
@@ -423,9 +436,8 @@ async function generateTableRow(type: Change, prUrl: string, changes?: string) {
       {
         type: 'tableCell',
         children: [
-          // TODO: Handle formatting for inline code in changes. Maybe support full markdown?
           ...(changes
-            ? [{ type: 'text', value: changes }]
+            ? changesParagraphAst!.children
             : [{ type: 'inlineCode', value: type }]),
         ],
       },
