@@ -13,7 +13,7 @@ import {
   MdxJsxExpressionAttribute,
   MdxJsxFlowElementData,
 } from 'mdast-util-mdx-jsx';
-import { Octokit } from '@octokit/rest';
+import { Octokit, RestEndpointMethodTypes } from '@octokit/rest';
 import pMemoize from 'p-memoize';
 import semver from 'semver';
 import { parse as parseYaml } from 'yaml';
@@ -30,11 +30,61 @@ type ApiHistory = {
   changes?: { 'pr-url': string; description: string }[];
 };
 
+// ! Typescript witchcraft to avoid adding `remark-mdx` as a dependency <https://mdxjs.com/packages/remark-mdx/#types>
+interface MdxJsxFlowElementWithSummary extends ParentWithMdxJsxFlowElement {
+  type: 'mdxJsxFlowElement';
+  name: string | null;
+  attributes: Array<MdxJsxAttribute | MdxJsxExpressionAttribute>;
+  children: Array<
+    | BlockContent
+    | DefinitionContent
+    | MdxJsxFlowElementWithSummary
+    | { type: 'text'; value: string }
+  >;
+  data?: MdxJsxFlowElementData | undefined;
+}
+interface RootContentMapWithMdxJsxFlowElement extends RootContentMap {
+  mdxJsxFlowElement: MdxJsxFlowElementWithSummary;
+}
+type RootContentWithMdxJsxFlowElement =
+  RootContentMapWithMdxJsxFlowElement[keyof RootContentMapWithMdxJsxFlowElement];
+interface ParentWithMdxJsxFlowElement extends Node {
+  children: Array<RootContentWithMdxJsxFlowElement>;
+}
+
+type ElectronRelease = {
+  version: string;
+  date: string;
+  node: string;
+  v8: string;
+  uv: string;
+  zlib: string;
+  openssl: string;
+  modules: string;
+  chrome: string;
+  files: string[];
+};
+
+type Backport = {
+  targetBranch: string; // e.g. 29-x-y
+  state: 'merged' | 'pending' | 'needs-manual' | 'in-flight' | 'released';
+  pr?: RestEndpointMethodTypes['pulls']['get']['response']['data'] | null;
+  availableIn?: ElectronRelease | null;
+};
+
+type PRReleaseStatus = {
+  primary?: {
+    pr?: RestEndpointMethodTypes['pulls']['get']['response']['data'] | null;
+    availableIn?: ElectronRelease | null;
+  } | null;
+  backports?: Backport[];
+};
+
 export default function attacher() {
   return transformer;
 }
 
-let octokit = null;
+let octokit: Octokit | null = null;
 
 // ? Probably need to get auth token from somewhere
 // This entire function including its comments is taken from https://github.com/electron/release-status/tree/6718e2627b614fca0bc96f48f9778ba45de8f9ba
@@ -69,7 +119,7 @@ const getOctokit = async () => {
 
 // This entire function including its comments is taken from https://github.com/electron/release-status/tree/6718e2627b614fca0bc96f48f9778ba45de8f9ba
 const compareTagToCommit = pMemoize(
-  async (tag, commitSha) => {
+  async (tag: string, commitSha: string) => {
     const compare = await (
       await getOctokit()
     ).repos.compareCommits({
@@ -82,13 +132,13 @@ const compareTagToCommit = pMemoize(
   },
   {
     cache: new ExpiryMap(60 * 60 * 24 * 1000),
-    cacheKey: (tag, commitSha) => `compare/${tag}/${commitSha}`,
+    cacheKey: ([tag, commitSha]) => `compare/${tag}/${commitSha}`,
   }
 );
 
 // This entire function including its comments is taken from https://github.com/electron/release-status/tree/6718e2627b614fca0bc96f48f9778ba45de8f9ba
 const getPR = pMemoize(
-  async (prNumber) => {
+  async (prNumber: number) => {
     try {
       return (
         await (
@@ -108,16 +158,19 @@ const getPR = pMemoize(
   },
   {
     cache: new ExpiryMap(30 * 1000),
-    cacheKey: (prNumber) => `pr/${prNumber}`,
+    cacheKey: ([prNumber]) => `pr/${prNumber}`,
   }
 );
 
 // This entire function including its comments is taken from https://github.com/electron/release-status/tree/6718e2627b614fca0bc96f48f9778ba45de8f9ba
 const getPRComments = pMemoize(
-  async (prNumber) => {
+  async (prNumber: number) => {
     const octo = await getOctokit();
     try {
-      return await octo.paginate(
+      // ! This is some TypeScript witchcraft that may not be fully correct
+      return await octo.paginate<
+        RestEndpointMethodTypes['issues']['listComments']['response']['data'][0]
+      >(
         octo.issues.listComments.endpoint.merge({
           owner: 'electron',
           repo: 'electron',
@@ -131,7 +184,7 @@ const getPRComments = pMemoize(
   },
   {
     cache: new ExpiryMap(60 * 1000),
-    cacheKey: (prNumber) => `pr-comments/${prNumber}`,
+    cacheKey: ([prNumber]) => `pr-comments/${prNumber}`,
   }
 );
 
@@ -139,7 +192,7 @@ const getPRComments = pMemoize(
 const getReleasesOrUpdate = pMemoize(
   async () => {
     const response = await fetch('https://electronjs.org/headers/index.json');
-    const releases = await response.json();
+    const releases = (await response.json()) as ElectronRelease[];
     return releases.sort((a, b) => semver.compare(b.version, a.version));
   },
   {
@@ -152,7 +205,9 @@ const getReleasesOrUpdate = pMemoize(
 // ? Maybe use GraphQL to only fetch what's needed
 // ? Need to handle rate limiting, caching, and how to limit no. of concurrent requests
 // This entire function including its comments is taken from https://github.com/electron/release-status/tree/6718e2627b614fca0bc96f48f9778ba45de8f9ba
-async function getPRReleaseStatus(prNumber) {
+async function getPRReleaseStatus(
+  prNumber: number
+): Promise<PRReleaseStatus | null> {
   const releases = [...(await getReleasesOrUpdate())].reverse();
   const [prInfo, comments] = await Promise.all([
     getPR(prNumber),
@@ -172,27 +227,29 @@ async function getPRReleaseStatus(prNumber) {
   // PRs merged before we renamed the default branch to main from master
   // will have a base.ref of master and a base.repo.default_branch of main.
   const primaryPRBeforeRename =
-    base.ref === 'master' && new Date(merged_at) < new Date('June 1 2021');
+    base.ref === 'master' &&
+    merged_at !== null &&
+    new Date(merged_at) < new Date('June 1 2021');
   if (primaryPRBeforeRename || base.ref === base.repo.default_branch) {
-    const backports = [];
-    let availableIn = null;
+    const backports: Promise<Backport>[] = [];
+    let availableIn: ElectronRelease | null = null;
 
     // We've been merged, let's find out if this is available in a nightly
     if (merged) {
       const allNightlies = releases.filter(
-        (r) => semver.parse(r.version).prerelease[0] === 'nightly'
+        (r) => semver.parse(r.version)?.prerelease[0] === 'nightly'
       );
       for (const nightly of allNightlies) {
         const dateParts = nightly.date.split('-').map((n) => parseInt(n, 10));
         const releaseDate = new Date(
-          dateParts[0],
-          dateParts[1] - 1,
-          dateParts[2] + 1
+          dateParts[0]!,
+          dateParts[1]! - 1,
+          dateParts[2]! + 1
         );
-        if (releaseDate > new Date(merged_at)) {
+        if (releaseDate > new Date(merged_at!)) {
           const comparison = await compareTagToCommit(
             `v${nightly.version}`,
-            merge_commit_sha
+            merge_commit_sha!
           );
           if (comparison.status === 'behind') {
             availableIn = nightly;
@@ -202,11 +259,11 @@ async function getPRReleaseStatus(prNumber) {
       }
     }
 
-    const tropComments = comments.filter((c) => c.user.login === 'trop[bot]');
+    const tropComments = comments.filter((c) => c.user?.login === 'trop[bot]');
 
     for (const label of prInfo.labels) {
-      let targetBranch = null;
-      let state = null;
+      let targetBranch: string | null = null;
+      let state: Backport['state'] | null = null;
 
       if (label.name.startsWith('merged/')) {
         targetBranch = label.name.substr('merged/'.length);
@@ -225,27 +282,29 @@ async function getPRReleaseStatus(prNumber) {
       if (targetBranch && state) {
         const backportComment = tropComments.find(
           (c) =>
-            (c.body.startsWith('I have automatically backported') ||
-              c.body.includes('has manually backported this PR ')) &&
-            c.body.includes(`"${targetBranch}"`)
+            (c.body?.startsWith('I have automatically backported') ||
+              c.body?.includes('has manually backported this PR ')) &&
+            c.body?.includes(`"${targetBranch}"`)
         );
 
         backports.push(
           (async () => {
-            let pr = null;
-            let backportAvailableIn;
+            let pr: Backport['pr'] | null = null;
+            let backportAvailableIn: ElectronRelease | null = null;
             if (backportComment) {
-              pr = await getPR(
-                parseInt(backportComment.body.split('#')[1], 10)
-              );
-              if (pr.merged) {
+              const prNo = parseInt(backportComment.body?.split('#')[1], 10);
+              if (!Number.isNaN(prNo) && prNo != null) {
+                pr = await getPR(prNo);
+              }
+              if (pr?.merged) {
                 state = 'merged';
 
                 const allInMajor = releases.filter((r) => {
                   const parsed = semver.parse(r.version);
                   return (
-                    parsed.major === parseInt(targetBranch.split('-')[0], 10) &&
-                    parsed.prerelease[0] !== 'nightly'
+                    parsed?.major ===
+                      parseInt(targetBranch.split('-')[0]!, 10) &&
+                    parsed?.prerelease[0] !== 'nightly'
                   );
                 });
                 for (const release of allInMajor) {
@@ -253,14 +312,14 @@ async function getPRReleaseStatus(prNumber) {
                     .split('-')
                     .map((n) => parseInt(n, 10));
                   const releaseDate = new Date(
-                    dateParts[0],
-                    dateParts[1] - 1,
-                    dateParts[2] + 1
+                    dateParts[0]!,
+                    dateParts[1]! - 1,
+                    dateParts[2]! + 1
                   );
-                  if (releaseDate > new Date(pr.merged_at)) {
+                  if (releaseDate > new Date(pr.merged_at!)) {
                     const comparison = await compareTagToCommit(
                       `v${release.version}`,
-                      pr.merge_commit_sha
+                      pr.merge_commit_sha!
                     );
                     if (comparison.status === 'behind') {
                       backportAvailableIn = release;
@@ -303,12 +362,12 @@ async function getPRReleaseStatus(prNumber) {
   // c.f. https://github.com/electron/trop/blob/master/src/utils/branch-util.ts#L62
   const backportPattern =
     /(?:^|\n)(?:manual |manually )?backport (?:of )?(?:#(\d+)|https:\/\/github.com\/.*\/pull\/(\d+))/gim;
-  const match = backportPattern.exec(prInfo.body);
+  const match = backportPattern.exec(prInfo.body ?? '');
 
   if (!match) return null;
   const parentPRNumber = match[1]
     ? parseInt(match[1], 10)
-    : parseInt(match[2], 10);
+    : parseInt(match[2]!, 10);
 
   return { ...(await getPRReleaseStatus(parentPRNumber)) };
 }
@@ -317,30 +376,31 @@ async function getPRReleaseStatus(prNumber) {
 async function generateTableRow(type: Change, prUrl: string, changes?: string) {
   const prNumber = prUrl.split('/').at(-1);
 
-  const releaseStatus = await getPRReleaseStatus(prNumber);
-
-  const primaryVersion = releaseStatus?.primary?.availableIn?.version;
-
-  const allPrVersions = [
-    ...(primaryVersion != null ? [primaryVersion] : []),
-    ...(releaseStatus?.backports?.map(
-      ({ availableIn }) => availableIn.version
-    ) ?? []),
+  const releaseStatus = await getPRReleaseStatus(Number(prNumber));
+  const allReleasePorts = [
+    releaseStatus?.primary,
+    ...(releaseStatus?.backports ?? []),
   ];
 
-  const formattedVersions = allPrVersions.flatMap((version, index, array) =>
-    array.length - 1 !== index
-      ? [
-          { type: 'inlineCode', value: version },
-          // Add <br> in between versions for spacing
-          {
-            type: 'mdxJsxTextElement',
-            name: 'br',
-            data: { _mdxExplicitJsx: true },
-          },
-        ]
-      : { type: 'inlineCode', value: version }
-  );
+  const formattedVersions = allReleasePorts.flatMap((port, index, array) => {
+    const version = port?.availableIn?.version;
+    if (version == null) return [];
+
+    const isNotLastPortInArray = index !== array.length - 1;
+    if (isNotLastPortInArray) {
+      return [
+        { type: 'inlineCode', value: version },
+        // Add <br> in between versions for spacing
+        {
+          type: 'mdxJsxTextElement',
+          name: 'br',
+          data: { _mdxExplicitJsx: true },
+        },
+      ];
+    }
+
+    return [{ type: 'inlineCode', value: version }];
+  });
 
   return {
     type: 'tableRow',
@@ -373,31 +433,9 @@ async function generateTableRow(type: Change, prUrl: string, changes?: string) {
   } as TableRow;
 }
 
-// ! Typescript witchcraft to avoid adding `remark-mdx` as a dependency <https://mdxjs.com/packages/remark-mdx/#types>
-interface MdxJsxFlowElementWithSummary extends ParentWithMdxJsxFlowElement {
-  type: 'mdxJsxFlowElement';
-  name: string | null;
-  attributes: Array<MdxJsxAttribute | MdxJsxExpressionAttribute>;
-  children: Array<
-    | BlockContent
-    | DefinitionContent
-    | MdxJsxFlowElementWithSummary
-    | { type: 'text'; value: string }
-  >;
-  data?: MdxJsxFlowElementData | undefined;
-}
-interface RootContentMapWithMdxJsxFlowElement extends RootContentMap {
-  mdxJsxFlowElement: MdxJsxFlowElementWithSummary;
-}
-type RootContentWithMdxJsxFlowElement =
-  RootContentMapWithMdxJsxFlowElement[keyof RootContentMapWithMdxJsxFlowElement];
-interface ParentWithMdxJsxFlowElement extends Node {
-  children: Array<RootContentWithMdxJsxFlowElement>;
-}
-
 async function transformer(tree: ParentWithMdxJsxFlowElement) {
   for (let nodeIdx = 0; nodeIdx < tree.children.length; nodeIdx++) {
-    const node = tree.children[nodeIdx];
+    const node = tree.children[nodeIdx]!;
 
     const isYamlHistoryCodeBlock =
       node.type === 'code' && node.lang === 'YAML' && node.meta === 'history';
@@ -427,12 +465,12 @@ async function transformer(tree: ParentWithMdxJsxFlowElement) {
     apiHistoryChangeRows.sort((a, b) => {
       const aPrNumber = parseInt(
         (
-          (a.children[1].children[0] as Link).children[0] as InlineCode
+          (a.children[1]!.children[0] as Link).children[0] as InlineCode
         ).value.slice(1)
       );
       const bPrNumber = parseInt(
         (
-          (b.children[1].children[0] as Link).children[0] as InlineCode
+          (b.children[1]!.children[0] as Link).children[0] as InlineCode
         ).value.slice(1)
       );
       return bPrNumber - aPrNumber;
@@ -452,7 +490,7 @@ async function transformer(tree: ParentWithMdxJsxFlowElement) {
         {
           type: 'mdxJsxFlowElement',
           name: 'summary',
-          attributes: [],
+          attributes: [] as MdxJsxAttribute[],
           children: [
             {
               type: 'text',
