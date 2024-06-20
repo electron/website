@@ -463,16 +463,22 @@ async function transformer(tree: ParentWithMdxJsxFlowElement) {
 
     // Sort by PR number, lower number on bottom of table
     apiHistoryChangeRows.sort((a, b) => {
+      const [, aPR] = a.children;
+      const [aLink] = aPR!.children;
+      const [aInlineCode] = (aLink as Link).children;
+
       const aPrNumber = parseInt(
-        (
-          (a.children[1]!.children[0] as Link).children[0] as InlineCode
-        ).value.slice(1)
+        (aInlineCode as InlineCode).value.slice(1) // Remove the #
       );
+
+      const [, bPR] = b.children;
+      const [bLink] = bPR!.children;
+      const [bInlineCode] = (bLink as Link).children;
+
       const bPrNumber = parseInt(
-        (
-          (b.children[1]!.children[0] as Link).children[0] as InlineCode
-        ).value.slice(1)
+        (bInlineCode as InlineCode).value.slice(1) // Remove the #
       );
+
       return bPrNumber - aPrNumber;
     });
 
