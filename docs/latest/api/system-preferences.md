@@ -9,7 +9,7 @@ hide_title: false
 
 > Get system preferences.
 
-Process: [Main](latest/glossary.md#main-process)
+Process: [Main](latest/glossary.md#main-process), [Utility](latest/glossary.md#utility-process)
 
 ```js
 const { systemPreferences } = require('electron')
