@@ -27,7 +27,9 @@
     "lint": "npx tsc --noEmit && prettier . --check && npm run lint:eslint && npm run lint:markdown",
     "lint:fix": "prettier . --write && npm run lint:eslint --fix && npm run lint:markdown --fix",
     "pre-build": "npx tsx ./scripts/pre-build.ts",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "heroku-cleanup": "npx patch-package",
+    "postinstall": "patch-package"
   },
   "dependencies": {
     "@docusaurus/core": "3.4.0",
