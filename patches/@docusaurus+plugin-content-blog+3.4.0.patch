@@ -1,0 +1,36 @@
+diff --git a/node_modules/@docusaurus/plugin-content-blog/lib/routes.js b/node_modules/@docusaurus/plugin-content-blog/lib/routes.js
+index 3400a26..98b1cd8 100644
+--- a/node_modules/@docusaurus/plugin-content-blog/lib/routes.js
++++ b/node_modules/@docusaurus/plugin-content-blog/lib/routes.js
+@@ -41,6 +41,7 @@ async function buildAllRoutes({ baseUrl, content, actions, options, aliasedSourc
+                 title: blogPost.metadata.title,
+                 permalink: blogPost.metadata.permalink,
+                 unlisted: blogPost.metadata.unlisted,
++                date: blogPost.metadata.date,
+             })),
+         };
+         const modulePath = await createData(`blog-post-list-prop-${pluginId}.json`, sidebar);
+diff --git a/node_modules/@docusaurus/plugin-content-blog/src/plugin-content-blog.d.ts b/node_modules/@docusaurus/plugin-content-blog/src/plugin-content-blog.d.ts
+index f4d4f13..f56deee 100644
+--- a/node_modules/@docusaurus/plugin-content-blog/src/plugin-content-blog.d.ts
++++ b/node_modules/@docusaurus/plugin-content-blog/src/plugin-content-blog.d.ts
+@@ -469,6 +469,7 @@ yarn workspace v1.22.19image` is a collocated image path, this entry will be the
+     title: string;
+     permalink: string;
+     unlisted: boolean;
++    date: Date | string;
+   };
+ 
+   export type BlogSidebar = {
+diff --git a/node_modules/@docusaurus/plugin-content-blog/src/routes.ts b/node_modules/@docusaurus/plugin-content-blog/src/routes.ts
+index a810ce1..2bf5cee 100644
+--- a/node_modules/@docusaurus/plugin-content-blog/src/routes.ts
++++ b/node_modules/@docusaurus/plugin-content-blog/src/routes.ts
+@@ -94,6 +94,7 @@ export async function buildAllRoutes({
+         title: blogPost.metadata.title,
+         permalink: blogPost.metadata.permalink,
+         unlisted: blogPost.metadata.unlisted,
++        date: blogPost.metadata.date
+       })),
+     };
+     const modulePath = await createData(
