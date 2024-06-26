@@ -11,6 +11,15 @@ guide in the Docusaurus documentation.
 
 ## List of Swizzled components
 
+### `BlogSidebar` (unsafe)
+
+To enhance the functionality of our blog sidebar, we are implementing a patch
+for Docusaurus. This patch allows us to extract the publication date of each
+blog post in the sidebar prop passed to `BlogSidebar` component. Utilizing this
+date, we can then group the posts by year, in both desktop and mobile.
+This improves the navigational experience for users by making it easier
+for them to find content from specific years.
+
 ### `DocSidebarItem` (unsafe)
 
 Electron has a lot of platform-specific APIs, and guides to go along with them.
