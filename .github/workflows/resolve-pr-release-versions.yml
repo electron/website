@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       max_release_count:
-        description: Max number of unprocessed releases to process (all if left blank)
+        description: Max number (<= 100) of unprocessed releases to process (all if left blank)
         required: false
         type: number
   schedule:
@@ -39,7 +39,6 @@ jobs:
 
             const BOOTSTRAP_DATA_URL = 'https://gist.githubusercontent.com/dsanders11/eb51a04d04a6a3e0710d88db5250e698/raw/fd960b6dea1152b55427407646044f1ba187e52b/data.json';
             const MIN_MAJOR = 10;
-            const RELEASE_PAGINATION_START = undefined;
             const RELEASE_MAX_PAGINATION_COUNT = 100;
             const NEW_RELEASES_QUERY = `query($endCursor: String, $count: Int!) {
               rateLimit {
@@ -120,7 +119,7 @@ jobs:
             }
 
             const filename = 'data.json';
-            let data = { endCursor: RELEASE_PAGINATION_START, data: {} };
+            let data = { endCursor: undefined, data: {} };
 
             try {
               data = JSON.parse(await fs.readFile(filename));
