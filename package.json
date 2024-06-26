@@ -86,6 +86,8 @@
     "make-dir": "^3.1.0",
     "mdast-util-frontmatter": "^2.0.1",
     "mdast-util-to-string": "^2.0.0",
+    "patch-package": "^8.0.0",
+    "postinstall-postinstall": "^2.1.0",
     "prettier": "^2.8.0",
     "remark": "^15.0.0",
     "remark-gfm": "^4.0.0",
