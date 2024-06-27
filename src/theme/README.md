@@ -13,9 +13,9 @@ guide in the Docusaurus documentation.
 
 ### `BlogSidebar` (unsafe)
 
-To enhance the functionality of our blog sidebar, we are implementing a patch
-for Docusaurus. This patch allows us to extract the publication date of each
-blog post in the sidebar prop passed to `BlogSidebar` component. Utilizing this
+To enhance the functionality of our blog sidebar, we [patched Docusaurus](https://github.com/electron/website/pull/587/files#diff-e196318ff66c78116a07aaa92f5eb7191cf888f36bd942e609a12ff75167f9ed)
+to extract the publication date of each blog post from its YAML frontmatter
+in the sidebar prop passed to `BlogSidebar` component. Utilizing this
 date, we can then group the posts by year, in both desktop and mobile.
 This improves the navigational experience for users by making it easier
 for them to find content from specific years.
