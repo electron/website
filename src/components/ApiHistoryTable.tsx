@@ -1,11 +1,10 @@
 import React from 'react';
 import { Details } from '@docusaurus/theme-common/Details';
-import { usePluginData } from '@docusaurus/useGlobalData';
 import {
+  ApiHistory,
   PrReleaseVersions,
-  PrReleaseVersionsPluginContent,
-} from '../plugins/pr-release-versions';
-import { ApiHistory } from '../transformers/api-history';
+  PrReleaseVersionsContainer,
+} from '../transformers/api-history';
 import ReactMarkdown from 'react-markdown';
 
 enum Change {
@@ -16,18 +15,19 @@ enum Change {
 
 interface ApiHistoryTableProps {
   apiHistoryJson: string;
+  prReleaseVersionsJson: string;
 }
 
 // TODO: Add styling based on type
 function generateTableRow(
-  versionsMap: PrReleaseVersionsPluginContent,
+  prReleaseVersions: PrReleaseVersionsContainer,
   type: Change,
   prUrl: string,
   changes?: string
 ) {
   const prNumber = prUrl.split('/').at(-1);
 
-  const releaseStatus = versionsMap.get(Number(prNumber));
+  const releaseStatus = prReleaseVersions[Number(prNumber)];
   // TODO: Sorting
   const allVersions = [
     releaseStatus?.release,
@@ -64,34 +64,33 @@ function generateTableRow(
 }
 
 const ApiHistoryTable = (props: ApiHistoryTableProps) => {
-  const { apiHistoryJson } = props;
-  const versionsObject = usePluginData('pr-release-versions-plugin') as {
-    [key: string]: PrReleaseVersions;
-  };
-  // ? This might be unnecessary
-  // We had to convert the Map into an Object in the plugin to serialize it, now we convert it back.
-  const versionsMap = new Map(
-    Object.entries(versionsObject).map(([k, v]) => [Number(k), v])
-  ) satisfies PrReleaseVersionsPluginContent;
+  const { apiHistoryJson, prReleaseVersionsJson } = props;
 
   const apiHistory = JSON.parse(apiHistoryJson) as ApiHistory;
+  const prReleaseVersions = JSON.parse(prReleaseVersionsJson) as {
+    [key: string]: PrReleaseVersions;
+  };
 
   // ? Maybe this is too much abstraction?
   // TODO: Sorting
   const apiHistoryChangeRows = [
     ...(apiHistory.deprecated?.map((deprecated) =>
-      generateTableRow(versionsMap, Change.DEPRECATED, deprecated['pr-url'])
+      generateTableRow(
+        prReleaseVersions,
+        Change.DEPRECATED,
+        deprecated['pr-url']
+      )
     ) ?? []),
     ...(apiHistory.changes?.map((change) =>
       generateTableRow(
-        versionsMap,
+        prReleaseVersions,
         Change.CHANGED,
         change['pr-url'],
         change['description']
       )
     ) ?? []),
     ...(apiHistory.added?.map((added) =>
-      generateTableRow(versionsMap, Change.ADDED, added['pr-url'])
+      generateTableRow(prReleaseVersions, Change.ADDED, added['pr-url'])
     ) ?? []),
   ];
 
