@@ -260,9 +260,7 @@
 // TODO: Test these on mobile
 details.api-history {
   transform: translateY(
-    calc(
-      var(--ifm-heading-vertical-rhythm-bottom) * var(--ifm-leading) * -0.5
-    )
+    calc(var(--ifm-heading-vertical-rhythm-bottom) * var(--ifm-leading) * -0.5)
   );
 
   summary {

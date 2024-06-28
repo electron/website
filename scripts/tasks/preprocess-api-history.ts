@@ -2,7 +2,7 @@ import globby from 'globby';
 import path from 'path';
 import { fromMarkdown } from 'mdast-util-from-markdown';
 import { visit } from 'unist-util-visit';
-import type { Code, Html, Root } from 'mdast';
+import type { Html, Root } from 'mdast';
 import type { Node, Literal } from 'unist';
 import Ajv, { JSONSchemaType, ValidateFunction } from 'ajv';
 import { readFile, writeFile } from 'fs/promises';

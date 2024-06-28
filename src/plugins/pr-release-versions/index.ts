@@ -51,7 +51,7 @@ module.exports = async function prReleaseVersionsPlugin() {
       }
 
       // ? Maybe log this?
-      if (!process.env.GH_TOKEN) return null;
+      if (!process.env.GH_TOKEN) return new Map();
 
       const fetchOptions = {
         method: 'GET',
@@ -90,7 +90,9 @@ module.exports = async function prReleaseVersionsPlugin() {
     },
     async contentLoaded({ content: versions, actions }) {
       const { setGlobalData } = actions;
-      setGlobalData(versions);
+
+      // Maps are not serializable, so we convert to an object
+      setGlobalData(Object.fromEntries(versions.entries()));
     },
   };
 
