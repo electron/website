@@ -13,7 +13,7 @@
     "i18n:glossary": "npx tsx scripts/update-crowdin-glossary.ts",
     "i18n:build": "docusaurus build",
     "docusaurus": "docusaurus",
-    "start": "nodemon -e ts --watch src/transformers --exec \"docusaurus start --no-open\"",
+    "start": "docusaurus start",
     "build": "docusaurus build --locale en",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
