@@ -31,7 +31,7 @@ jobs:
         if: ${{ inputs.branch == 'main' }}
         run: echo ${{ inputs.branch }}
       # This should be set up from earlier
-      - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # tag: v4.1.6
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # tag: v4.1.7
       - uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # tag: v4.0.2
         with:
           node-version: 20
