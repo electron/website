@@ -57,5 +57,5 @@ navigationHistory.goToOffset(2)
 
 
 Here's a full example that you can open with Electron Fiddle:
-```fiddle docs/latest/fiddles/native-ui/tray
+```fiddle docs/latest/fiddles/features/navigation-history
 ```
