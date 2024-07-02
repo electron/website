@@ -109,6 +109,7 @@ async function getAllPrReleaseVersions(): Promise<PrReleaseVersionsContainer> {
 // Most of this is copy-pasted from: <https://github.com/electron/website/blob/ac3bab3131fc0f5de563574189ad5eab956a60b9/src/transformers/js-code-blocks.ts>
 async function transformer(tree: Parent) {
   let needImport = false;
+  // TODO: Filter out unreleased versions using @electron/fiddle-core
   const allPrReleaseVersions = await getAllPrReleaseVersions();
   visitParents(tree, matchApiHistoryCodeBlock, maybeGenerateApiHistoryTable);
   visitParents(tree, 'mdxjsEsm', checkForApiHistoryTableImport);
