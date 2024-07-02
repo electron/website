@@ -45,7 +45,7 @@ Electron 31 upgrades Chromium from `124.0.6367.49` to `126.0.6478.36`, Node from
 - Extended `webContents.setWindowOpenHandler` to support manual creation of BrowserWindow. [#41432](https://github.com/electron/electron/pull/41432)
 - Implemented support for the web standard [File System API](https://developer.mozilla.org/en-US/docs/Web/API/File_System_API). [#41419](https://github.com/electron/electron/pull/41419)
 - Extended `WebContentsView` to accept pre-existing `WebContents` instances. [#42319](https://github.com/electron/electron/pull/42319)
-- Added a new instance property `navigationHistory` on webContents API with `navigationHistory.getEntryAtIndex` method, enabling applications to retrieve the URL and title of any navigation entry within the browsing history. [#41577](https://github.com/electron/electron/pull/41577) <span style={{fontSize: "small"}}>(Also in [29](https://github.com/electron/electron/pull/41661), [30](https://github.com/electron/electron/pull/41662))</span>
+- Added a new instance property `navigationHistory` on webContents API with `navigationHistory.getEntryAtIndex` method, enabling applications to retrieve the URL and title of any navigation entry within the browsing history. [#41577](https://github.com/electron/electron/pull/41577) <sup>(Also in [29](https://github.com/electron/electron/pull/41661), [30](https://github.com/electron/electron/pull/41662))</sup>
 
 ### Breaking Changes
 
