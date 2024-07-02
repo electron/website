@@ -1,0 +1,51 @@
+{
+  "title": "JSON schema for API history blocks in Electron documentation",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$comment": "If you change this schema, remember to edit the TypeScript interfaces in the linting script.",
+  "definitions": {
+    "changeSchema": {
+      "type": "object",
+      "properties": {
+        "pr-url": {
+          "type": "string",
+          "pattern": "^https://github.com/electron/electron/pull/\\d+$"
+        },
+        "breaking-changes-header": {
+          "type": "string",
+          "minLength": 3
+        },
+        "description": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 72
+        }
+      },
+      "required": [
+        "pr-url"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "type": "object",
+  "properties": {
+    "added": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/changeSchema"
+      }
+    },
+    "deprecated": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/changeSchema"
+      }
+    },
+    "changes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/changeSchema"
+      }
+    }
+  },
+  "additionalProperties": false
+}

@@ -8,6 +8,7 @@ import apiOptionsClass from './src/transformers/api-options-class';
 import apiStructurePreviews from './src/transformers/api-structure-previews';
 import jsCodeBlocks from './src/transformers/js-code-blocks';
 import fiddleEmbedder from './src/transformers/fiddle-embedder';
+import apiHistory from './src/transformers/api-history';
 
 const config: Config = {
   title: 'Electron',
@@ -219,6 +220,7 @@ const config: Config = {
             apiStructurePreviews,
             jsCodeBlocks,
             fiddleEmbedder,
+            apiHistory,
             [npm2yarn, { sync: true, converters: ['yarn'] }],
           ],
         },
