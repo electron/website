@@ -3,6 +3,7 @@ title: 10 years of Electron 🎉
 date: 2023-03-13T00:00:00.000Z
 authors: erickzhao
 slug: 10-years-of-electron
+tags: [community, news]
 ---
 
 # 10 Years of Electron 🎉

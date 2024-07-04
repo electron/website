@@ -6,6 +6,7 @@ authors:
     url: 'https://github.com/electron'
     image_url: 'https://github.com/electron.png?size=96'
 slug: webview2
+tags: [internals]
 ---
 
 Over the past weeks, we’ve received several questions about the differences between the new [WebView2](https://docs.microsoft.com/en-us/microsoft-edge/webview2/) and Electron.

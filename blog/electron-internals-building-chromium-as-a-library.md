@@ -3,6 +3,7 @@ title: 'Electron Internals: Building Chromium as a Library'
 date: 2017-03-03T00:00:00.000Z
 authors: zcbenz
 slug: electron-internals-building-chromium-as-a-library
+tags: [internals]
 ---
 
 Electron is based on Google's open-source Chromium, a project that is not

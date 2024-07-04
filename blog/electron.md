@@ -6,6 +6,7 @@ authors:
   url: 'https://github.com/kevinsawicki'
   image_url: 'https://github.com/kevinsawicki.png?size=96'
 slug: electron
+tags: [news]
 ---
 
 Atom Shell is now called Electron. You can learn more about Electron and what people are building with it at its new home [electronjs.org][electron].

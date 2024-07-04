@@ -6,6 +6,7 @@ authors:
   url: 'https://github.com/kevinsawicki'
   image_url: 'https://github.com/kevinsawicki.png?size=96'
 slug: certificate-transparency-fix
+tags: [news]
 ---
 
 Electron [1.4.12] contains an important patch that fixes an upstream Chrome

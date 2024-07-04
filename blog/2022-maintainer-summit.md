@@ -3,6 +3,7 @@ title: Maintainer Summit 2022 Recap
 date: 2022-10-13T00:00:00.000Z
 authors: erickzhao
 slug: maintainer-summit-2022-recap
+tags: [news]
 ---
 
 # Maintainer Summit 2022 Recap

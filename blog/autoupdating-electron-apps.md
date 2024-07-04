@@ -3,6 +3,7 @@ title: Easier AutoUpdating for Open-Source Apps
 date: 2018-05-01T00:00:00.000Z
 authors: zeke
 slug: autoupdating-electron-apps
+tags: [ecosystem]
 ---
 
 Today we're releasing a free, open-source, hosted

@@ -3,6 +3,7 @@ title: 'July 2016: New Apps and Meetups'
 date: 2016-08-04T00:00:00.000Z
 authors: jlord
 slug: july-2016-roundup
+tags: [community, showcase]
 ---
 
 We're starting a monthly roundup to highlight activity in the Electron community. Each roundup will feature things like new apps, upcoming meetups, tools, videos, etc.

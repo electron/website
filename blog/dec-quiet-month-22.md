@@ -6,6 +6,7 @@ authors:
   url: 'https://github.com/PlaineKevin'
   image_url: 'https://github.com/plainekevin.png?size=96'
 slug: a-quiet-place-22
+tags: [news]
 ---
 
 The Electron project will pause for the month of December 2022, then return to full speed in January 2023.

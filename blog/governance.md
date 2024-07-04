@@ -5,6 +5,7 @@ authors:
   - ckerr
   - sofianguy
 slug: governance
+tags: [news]
 ---
 
 As Electron grows in popularity for desktop applications, the team working on it has also grown: we have more fulltime maintainers who work for different companies, live in different timezones, and have different interests. We're introducing a governance structure so we can keep growing smoothly.

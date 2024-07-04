@@ -6,6 +6,7 @@ authors:
   url: 'https://github.com/groundwater'
   image_url: 'https://github.com/groundwater.png?size=96'
 slug: a-quiet-place-21
+tags: [news]
 ---
 
 The Electron project will pause for the month of December 2021, then return to full speed in January 2022.
