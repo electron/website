@@ -13,6 +13,7 @@ authors:
     image_url: 'https://github.com/maxogden.png?size=96'
   - zeke
 slug: dat
+tags: [community, showcase]
 ---
 
 This week's featured project is [Dat](https://datproject.org/), a

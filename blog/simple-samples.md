@@ -3,6 +3,7 @@ title: Electron Simple Samples
 date: 2017-01-19T00:00:00.000Z
 authors: zeke
 slug: simple-samples
+tags: [community]
 ---
 
 We recently hosted an Electron hackathon at GitHub HQ for members of [Hackbright Academy](https://hackbrightacademy.com), a coding school for women founded in San Francisco. To help attendees get a head start on their projects, our own [Kevin Sawicki](https://github.com/kevinsawicki) created a few sample Electron applications.

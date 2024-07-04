@@ -3,6 +3,7 @@ title: Community Discord Server and Hacktoberfest
 date: 2020-10-01T00:00:00.000Z
 authors: erickzhao
 slug: discord-hacktoberfest-2020
+tags: [community]
 ---
 
 Join us for community bonding and a month-long celebration of open-source.

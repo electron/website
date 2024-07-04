@@ -2,6 +2,7 @@
 title: 'S3 Bucket Migration'
 date: 2022-05-06T00:00:00.000Z
 authors: MarshallOfSound
+tags: [news]
 ---
 
 Electron is changing its primary S3 bucket, you may need to update your build scripts

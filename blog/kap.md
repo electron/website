@@ -10,6 +10,7 @@ authors:
     image_url: 'https://github.com/sindresorhus.png?size=96'
   - zeke
 slug: kap
+tags: [community, showcase]
 ---
 
 The Electron community is growing quickly, and people are creating powerful

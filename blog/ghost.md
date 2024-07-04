@@ -5,6 +5,7 @@ authors:
   - felixrieseberg
   - zeke
 slug: ghost
+tags: [community, showcase]
 ---
 
 This week we chatted with [Felix Rieseberg](https://felixrieseberg.com/), desktop engineer at [Slack](https://slack.com/) and maintainer of [Ghost Desktop](https://ghost.org/downloads/), an Electron client for the [Ghost](https://ghost.org/) publishing platform.

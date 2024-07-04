@@ -3,6 +3,7 @@ title: Electron's New Internationalized Website
 date: 2017-11-13T00:00:00.000Z
 authors: zeke
 slug: new-website
+tags: [website]
 ---
 
 Electron has a new website at [electronjs.org]! We've replaced

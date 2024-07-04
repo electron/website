@@ -3,6 +3,7 @@ title: API Changes Coming in Electron 1.0
 date: 2015-11-17T00:00:00.000Z
 authors: zcbenz
 slug: electron-api-changes
+tags: [release]
 ---
 
 Since the beginning of Electron, starting way back when it used to be called Atom-Shell, we have been experimenting with providing a nice cross-platform JavaScript API for Chromium's content module and native GUI components. The APIs started very organically, and over time we have made several changes to improve the initial designs.

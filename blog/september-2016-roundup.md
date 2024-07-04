@@ -6,6 +6,7 @@ authors:
   url: 'https://github.com/haacked'
   image_url: 'https://github.com/haacked.png?size=96'
 slug: september-2016-roundup
+tags: [community]
 ---
 
 Here are the new Electron apps and talks that were added to the site in September.

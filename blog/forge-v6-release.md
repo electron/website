@@ -7,6 +7,7 @@ authors:
   - erickzhao
 slug: forge-v6-release
 toc_max_heading_level: 3
+tags: [ecosystem]
 ---
 
 import Tabs from '@theme/Tabs';

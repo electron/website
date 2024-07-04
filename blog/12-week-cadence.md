@@ -3,6 +3,7 @@ title: New Electron Release Cadence
 date: 2019-05-13T00:00:00.000Z
 authors: sofianguy
 slug: 12-week-cadence
+tags: [news, release]
 ---
 
 :::info ⚡️ Update (2021-07-14): We're going even faster!

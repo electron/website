@@ -3,6 +3,7 @@ title: Electron Meetup at GitHub HQ
 date: 2015-09-17T00:00:00.000Z
 authors: jlord
 slug: electron-meetup
+tags: [community]
 ---
 
 Join us September 29th at GitHub's HQ for an Electron meetup hosted by Atom team members [@jlord](https://github.com/jlord) and [@kevinsawicki](https://github.com/kevinsawicki). There will be talks, food to snack on, and time to hangout and meet others doing cool things with Electron. We'll also have a bit of time to do lightning talks for those interested. Hope to see you there!
