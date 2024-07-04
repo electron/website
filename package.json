@@ -8,7 +8,7 @@
   },
   "scripts": {
     "crowdin": "crowdin",
-    "i18n:upload": "crowdin upload sources",
+    "i18n:upload": "crowdin upload sources --delete-obsolete",
     "i18n:download": "crowdin download --verbose && npx tsx scripts/prepare-i18n-content.ts",
     "i18n:glossary": "npx tsx scripts/update-crowdin-glossary.ts",
     "i18n:build": "docusaurus build",
