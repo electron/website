@@ -43,7 +43,7 @@ async function getAllPrReleaseVersions(): Promise<PrReleaseVersionsContainer> {
   }
 
   // TODO: Remove this
-  if (process.env.LOCAL_DEV === 'true') {
+  if (!process.env.GH_TOKEN) {
     const versions: PrReleaseVersionsContainer = {
       35658: {
         release: 'v30.0.0-nightly.20231214',
