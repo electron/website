@@ -3,6 +3,7 @@ title: 'Electron Internals: Using Node as a Library'
 date: 2016-08-08T00:00:00.000Z
 authors: zcbenz
 slug: electron-internals-using-node-as-a-library
+tags: [internals]
 ---
 
 This is the second post in an ongoing series explaining the internals of

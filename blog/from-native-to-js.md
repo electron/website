@@ -3,6 +3,7 @@ title: From native to JavaScript in Electron
 date: 2019-03-19T00:00:00.000Z
 authors: codebytere
 slug: from-native-to-js
+tags: [internals]
 ---
 
 How do Electron's features written in C++ or Objective-C get to JavaScript so they're available to an end-user?

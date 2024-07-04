@@ -6,6 +6,7 @@ authors:
   - VerteDinde
   - dsanders11
 slug: 2024-summer-of-code
+tags: [community]
 ---
 
 We are excited to announce that Electron has been accepted as a mentoring organization for

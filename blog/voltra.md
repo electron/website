@@ -10,6 +10,7 @@ authors:
     image_url: 'https://github.com/aprileelcich.png?size=96'
   - zeke
 slug: voltra
+tags: [community, showcase]
 ---
 
 This week we met with [Aprile Elcich](https://twitter.com/aprileelcich) and

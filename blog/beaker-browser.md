@@ -7,6 +7,7 @@ authors:
     image_url: 'https://github.com/pfrazee.png?size=96'
   - zeke
 slug: beaker-browser
+tags: [community, showcase]
 ---
 
 This week we caught up with [Paul Frazee](http://pfrazee.github.io/), creator

@@ -10,6 +10,7 @@ authors:
     image_url: 'https://github.com/watilde.png?size=96'
   - zeke
 slug: jasper
+tags: [community, showcase]
 ---
 
 This week we interviewed the creator of [Jasper], an Electron-based tool for

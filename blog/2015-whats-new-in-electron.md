@@ -3,6 +3,7 @@ title: What's New in Electron
 date: 2015-10-15T00:00:00.000Z
 authors: jlord
 slug: 2015-whats-new-in-electron
+tags: [release]
 ---
 
 There have been some interesting updates and talks given on Electron recently, here's a roundup.

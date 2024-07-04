@@ -3,6 +3,7 @@ title: 'New in Electron 2: In-App Purchases'
 date: 2018-04-04T00:00:00.000Z
 authors: zeke
 slug: in-app-purchases
+tags: [features]
 ---
 
 The new Electron 2.0 release line is [packed](https://github.com/electron/electron/releases/tag/v2.0.0-beta.1) with new features and fixes. One of the highlights from this new major version is a new

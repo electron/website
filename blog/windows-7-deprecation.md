@@ -3,6 +3,7 @@ title: Farewell, Windows 7/8/8.1
 date: 2022-11-29T00:00:00.000Z
 authors: VerteDinde
 slug: windows-7-to-8-1-deprecation-notice
+tags: [news]
 ---
 
 Electron will end support of Windows 7, Windows 8 and Windows 8.1 beginning in Electron 23.

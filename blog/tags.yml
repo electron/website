@@ -1,4 +1,29 @@
+community:
+  label: 'Community'
+  description: 'Community initiatives in Electron'
+ecosystem:
+  label: 'Ecosystem'
+  description: >
+    'Blog posts about Electron's package ecosystem'
+features:
+  label: 'Features'
+  description: 'Showcasing new features in Electron core'
+internals:
+  label: 'Electron Internals'
+  description: >
+    'Technical deep dives through Electron's source code'
+news:
+  label: 'Project News'
+  description: 'Important announcements about the Electron project'
 release:
+  label: 'Release'
   description: 'Blog posts about new Electron releases'
 security:
+  label: 'Security'
   description: 'Blog posts related to security'
+showcase:
+  label: 'Showcase'
+  description: 'Highlighting featured Electron use cases'
+website:
+  label: 'Website'
+  description: 'Updates on the electronjs.org website and docs'

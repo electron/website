@@ -7,6 +7,7 @@ authors:
     image_url: 'https://github.com/feross.png?size=96'
   - zeke
 slug: webtorrent
+tags: [community, showcase]
 ---
 
 This week we caught up with [@feross](https://github.com/feross) and [@dcposch](https://github.com/dcposch) to talk about WebTorrent, the web-powered torrent client that connects users together to form a distributed, decentralized browser-to-browser network.

@@ -7,6 +7,7 @@ authors:
   - dsanders11
   - VerteDinde
 slug: 2022-summer-of-code
+tags: [community]
 ---
 
 The Electron team is excited to announce that we will be participating in Google Summer of Code for the first time this year!

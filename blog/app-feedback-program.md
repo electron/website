@@ -3,6 +3,7 @@ title: Electron App Feedback Program
 date: 2018-10-02T00:00:00.000Z
 authors: sofianguy
 slug: app-feedback-program
+tags: [community]
 ---
 
 Electron is working on making its release cycles faster and more stable. To make that possible, we've started the App Feedback Program for large-scale Electron apps to test our beta releases and report app-specific issues to us. This helps us to prioritize work that will get applications upgraded to our next stable release sooner.

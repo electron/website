@@ -3,6 +3,7 @@ title: Electron's API Docs as Structured Data
 date: 2016-09-27T00:00:00.000Z
 authors: zeke
 slug: api-docs-json-schema
+tags: [website]
 ---
 
 Today we're announcing some improvements to Electron's documentation. Every new

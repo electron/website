@@ -3,6 +3,7 @@ title: New Electron Release Cadence
 date: 2021-07-14T00:00:00.000Z
 authors: VerteDinde
 slug: 8-week-cadence
+tags: [news, release]
 ---
 
 Beginning in September 2021, Electron will release a new major stable version every 8 weeks.

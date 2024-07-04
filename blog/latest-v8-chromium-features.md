@@ -3,6 +3,7 @@ title: Use V8 and Chromium Features in Electron
 date: 2016-01-07T00:00:00.000Z
 authors: jlord
 slug: latest-v8-chromium-features
+tags: [features]
 ---
 
 Building an Electron application means you only need to create one codebase and design for one browser, which is pretty handy. But because Electron stays up to date with [Node.js](http://nodejs.org) and [Chromium](https://www.chromium.org) as they release, you also get to make use of the great features they ship with. In some cases this eliminates dependencies you might have previously needed to include in a web app.
