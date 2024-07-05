@@ -49,7 +49,7 @@ const start = async (source: string): Promise<void> => {
       org: process.env.ORG || 'electron',
       repository: 'electron',
       destination: DOCS_FOLDER,
-      downloadMatch: 'docs',
+      downloadMatch: '/docs/',
     });
   } else if (existsSync(source)) {
     await copy({

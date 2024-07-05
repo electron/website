@@ -93,7 +93,7 @@ const downloadFromGitHub = async (
               stream.on('end', () => {
                 const content = Buffer.concat(chunks);
                 contents.push({
-                  filename: header.name.replace(`${downloadMatch}/`, ''),
+                  filename: header.name.replace(`${downloadMatch}`, ''),
                   slug: path.basename(header.name, '.md'),
                   content,
                 } satisfies Entry);
