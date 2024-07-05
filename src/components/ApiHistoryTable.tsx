@@ -7,6 +7,8 @@ import {
 } from '../transformers/api-history';
 import ReactMarkdown from 'react-markdown';
 
+import styles from './ApiHistoryTable.module.scss';
+
 enum Change {
   ADDED = 'API ADDED',
   CHANGED = 'API CHANGED',
@@ -57,6 +59,7 @@ function generateTableRow(
         </a>
       </td>
       <td>
+        {/* TODO: Set allowed markdown elements */}
         {changes ? <ReactMarkdown>{changes}</ReactMarkdown> : <pre>{type}</pre>}
       </td>
     </tr>
@@ -95,7 +98,10 @@ const ApiHistoryTable = (props: ApiHistoryTableProps) => {
   ];
 
   return (
-    <Details className="api-history" summary={<summary>History</summary>}>
+    <Details
+      className={styles['api-history']}
+      summary={<summary>History</summary>}
+    >
       <table>
         <tr>
           <th>Version(s)</th>
