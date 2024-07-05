@@ -1,21 +1,21 @@
 // TODO: Test these on mobile
 .api-history {
-    transform: translateY(
-      calc(var(--ifm-heading-vertical-rhythm-bottom) * var(--ifm-leading) * -0.5)
-    );
-  
-    summary {
-      width: fit-content;
-      font-weight: normal;
-      font-style: italic;
-  
-      &:hover {
-        cursor: pointer;
-      }
+  transform: translateY(
+    calc(var(--ifm-heading-vertical-rhythm-bottom) * var(--ifm-leading) * -0.5)
+  );
+
+  summary {
+    width: fit-content;
+    font-weight: normal;
+    font-style: italic;
+
+    &:hover {
+      cursor: pointer;
     }
-  
-    table {
-      margin-top: 0.5rem;
-      margin-bottom: 0;
-    }
+  }
+
+  table {
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+  }
 }

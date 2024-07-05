@@ -136,23 +136,23 @@ async function transformer(tree: Parent) {
 
     const apiHistory = parseYaml(node.value) as ApiHistory;
 
-    const versionsInHistory = [];
+    const prsInHistory = [];
 
     apiHistory.added?.forEach((added) => {
-      versionsInHistory.push(added['pr-url'].split('/').at(-1));
+      prsInHistory.push(added['pr-url'].split('/').at(-1));
     });
 
     apiHistory.changes?.forEach((change) => {
-      versionsInHistory.push(change['pr-url'].split('/').at(-1));
+      prsInHistory.push(change['pr-url'].split('/').at(-1));
     });
 
     apiHistory.deprecated?.forEach((deprecated) => {
-      versionsInHistory.push(deprecated['pr-url'].split('/').at(-1));
+      prsInHistory.push(deprecated['pr-url'].split('/').at(-1));
     });
 
     const relevantPrReleaseVersions = Object.fromEntries(
       Object.entries(allPrReleaseVersions).filter(([prNumber]) =>
-        versionsInHistory.includes(prNumber)
+        prsInHistory.includes(prNumber)
       )
     );
 
