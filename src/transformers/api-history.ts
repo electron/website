@@ -1,8 +1,10 @@
 import { Code, Node } from 'mdast';
 import { getJSXImport, isCode, isImport } from '../util/mdx-utils';
 import { ActionTuple, SKIP, visitParents } from 'unist-util-visit-parents';
+import { ElectronVersions, SemVer } from '@electron/fiddle-core';
 import { Parent } from 'unist';
 import { parse as parseYaml } from 'yaml';
+import semver from 'semver';
 import AdmZip from 'adm-zip';
 
 export type ApiHistory = {
@@ -30,7 +32,22 @@ function matchApiHistoryCodeBlock(node: Node): node is Code {
   return isCode(node) && node.lang === 'YAML' && node.meta === 'history';
 }
 
-let _allPrReleaseVersions: PrReleaseVersionsContainer = null;
+let _allElectronVersions: SemVer[];
+
+async function getAllElectronVersions(): Promise<SemVer[]> {
+  if (_allElectronVersions) {
+    return _allElectronVersions;
+  }
+
+  // TODO: Error handling
+  const { versions } = await ElectronVersions.create(undefined, {
+    ignoreCache: true,
+  });
+  _allElectronVersions = versions;
+  return _allElectronVersions;
+}
+
+let _allPrReleaseVersions: PrReleaseVersionsContainer;
 
 async function getAllPrReleaseVersions(): Promise<PrReleaseVersionsContainer> {
   if (_allPrReleaseVersions) {
@@ -83,7 +100,7 @@ async function getAllPrReleaseVersions(): Promise<PrReleaseVersionsContainer> {
     fetchOptions
   );
   const latestArtifact = (await artifactsListResponse.json()).artifacts
-    .filter(({ name }) => name === 'resolved-pr-versions')
+    .filter(({ name }: { name: string }) => name === 'resolved-pr-versions')
     .sort((a: { id: number }, b: { id: number }) => a.id > b.id)[0];
 
   // ? Maybe use streams/workers
@@ -95,7 +112,7 @@ async function getAllPrReleaseVersions(): Promise<PrReleaseVersionsContainer> {
 
   const zip = new AdmZip(buffer);
   const parsedData = JSON.parse(
-    zip.readAsText(zip.getEntries()[0])
+    zip.readAsText(zip.getEntries()[0]!)
   ) as PrReleaseArtifact;
 
   if (!parsedData?.data) {
@@ -109,7 +126,7 @@ async function getAllPrReleaseVersions(): Promise<PrReleaseVersionsContainer> {
 // Most of this is copy-pasted from: <https://github.com/electron/website/blob/ac3bab3131fc0f5de563574189ad5eab956a60b9/src/transformers/js-code-blocks.ts>
 async function transformer(tree: Parent) {
   let needImport = false;
-  // TODO: Filter out unreleased versions using @electron/fiddle-core
+  const allElectronVersions = await getAllElectronVersions();
   const allPrReleaseVersions = await getAllPrReleaseVersions();
   visitParents(tree, matchApiHistoryCodeBlock, maybeGenerateApiHistoryTable);
   visitParents(tree, 'mdxjsEsm', checkForApiHistoryTableImport);
@@ -132,22 +149,22 @@ async function transformer(tree: Parent) {
     ancestors: Parent[]
   ): ActionTuple | void {
     const parent = ancestors[0];
-    const idx = parent.children.indexOf(node);
+    const idx = parent!.children.indexOf(node);
 
     const apiHistory = parseYaml(node.value) as ApiHistory;
 
-    const prsInHistory = [];
+    const prsInHistory: Array<string> = [];
 
     apiHistory.added?.forEach((added) => {
-      prsInHistory.push(added['pr-url'].split('/').at(-1));
+      prsInHistory.push(added['pr-url'].split('/').at(-1)!);
     });
 
     apiHistory.changes?.forEach((change) => {
-      prsInHistory.push(change['pr-url'].split('/').at(-1));
+      prsInHistory.push(change['pr-url'].split('/').at(-1)!);
     });
 
     apiHistory.deprecated?.forEach((deprecated) => {
-      prsInHistory.push(deprecated['pr-url'].split('/').at(-1));
+      prsInHistory.push(deprecated['pr-url'].split('/').at(-1)!);
     });
 
     const relevantPrReleaseVersions = Object.fromEntries(
@@ -155,6 +172,62 @@ async function transformer(tree: Parent) {
         prsInHistory.includes(prNumber)
       )
     );
+
+    function findReleasedStableVersionContainingRelease(
+      release: SemVer
+    ): string | null {
+      let stableVersion: string;
+
+      if (release.prerelease.length > 0) {
+        stableVersion = semver.inc(release, 'patch')!;
+      } else {
+        stableVersion = release.version;
+      }
+
+      return (
+        allElectronVersions.find(({ version }) => version === stableVersion)
+          ?.version || null
+      );
+    }
+
+    const stableReleasedRelevantPrReleaseVersions = relevantPrReleaseVersions;
+
+    // If release is a prerelease, find the stable version containing the release and
+    //  update the release version to the stable version. Otherwise, set the release version to null.
+    //  Do the same for backports except remove the backport from the array instead of setting it to null.
+    for (const relevantPrNumber in stableReleasedRelevantPrReleaseVersions) {
+      const release =
+        stableReleasedRelevantPrReleaseVersions[relevantPrNumber]?.release;
+
+      if (release) {
+        const parsedRelease = semver.parse(release)!;
+        const releasedStableVersionContainingRelease =
+          findReleasedStableVersionContainingRelease(parsedRelease);
+        stableReleasedRelevantPrReleaseVersions[relevantPrNumber]!.release =
+          releasedStableVersionContainingRelease;
+      }
+
+      const backports =
+        stableReleasedRelevantPrReleaseVersions[relevantPrNumber]?.backports;
+
+      if (backports) {
+        for (const [index, backport] of backports.entries()) {
+          const parsedBackport = semver.parse(backport)!;
+          const releasedStableVersionContainingBackport =
+            findReleasedStableVersionContainingRelease(parsedBackport);
+
+          if (releasedStableVersionContainingBackport) {
+            stableReleasedRelevantPrReleaseVersions[
+              relevantPrNumber
+            ]!.backports[index] = releasedStableVersionContainingBackport;
+          } else {
+            stableReleasedRelevantPrReleaseVersions[
+              relevantPrNumber
+            ]!.backports.splice(index, 1);
+          }
+        }
+      }
+    }
 
     const apiHistoryTable = {
       type: 'mdxJsxFlowElement',
@@ -168,7 +241,7 @@ async function transformer(tree: Parent) {
         {
           type: 'mdxJsxAttribute',
           name: 'prReleaseVersionsJson',
-          value: JSON.stringify(relevantPrReleaseVersions),
+          value: JSON.stringify(stableReleasedRelevantPrReleaseVersions),
         },
       ],
       children: [],
@@ -177,7 +250,7 @@ async function transformer(tree: Parent) {
       },
     };
 
-    parent.children[idx] = apiHistoryTable;
+    parent!.children[idx] = apiHistoryTable;
     needImport = true;
 
     // Return an ActionTuple [Action, Index], where
