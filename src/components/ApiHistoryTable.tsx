@@ -27,8 +27,6 @@ function generateTableRow(
   prUrl: string,
   changes?: string
 ) {
-  const prNumber = prUrl.split('/').at(-1);
-
   const allVersions: Array<string> = [];
 
   const release = prReleaseVersions?.release;
@@ -40,31 +38,26 @@ function generateTableRow(
   // Sort by major version number e.g. 30.0.0 -> 30 in descending order i.e. 30, 29, ...
   allVersions.sort((a, b) => Number(b.split('.')[0]) - Number(a.split('.')[0]));
 
-  const formattedVersions = allVersions.map((version, index, array) => {
-    const isNotLastPortInArray = index !== array.length - 1;
-    if (isNotLastPortInArray) {
-      return (
-        <>
-          <pre key={version}>{version}</pre>
-          <br></br>
-        </>
-      );
-    }
-
-    return <pre key={version}>{version}</pre>;
+  const formattedVersions = allVersions.map((version) => {
+    return (
+      <a key={version} href={prUrl} target="_blank" rel="noopener noreferrer">
+        <pre>{version}</pre>
+      </a>
+    );
   });
 
   return (
     <tr>
       <td>{formattedVersions || <pre>None</pre>}</td>
       <td>
-        <a href={prUrl} target="_blank" rel="noopener noreferrer">
-          <pre>#{prNumber}</pre>
-        </a>
-      </td>
-      <td>
         {/* TODO: Set allowed markdown elements */}
-        {changes ? <ReactMarkdown>{changes}</ReactMarkdown> : <pre>{type}</pre>}
+        {changes ? (
+          <ReactMarkdown>{changes}</ReactMarkdown>
+        ) : (
+          <pre className={styles[type.toLowerCase().split(' ').join('-')]}>
+            {type}
+          </pre>
+        )}
       </td>
     </tr>
   );
@@ -112,18 +105,20 @@ const ApiHistoryTable = (props: ApiHistoryTableProps) => {
     }) ?? []),
   ];
 
+  // TODO: Remove PR column, just link to PR on version hover
   return (
     <Details
       className={styles['api-history']}
       summary={<summary>History</summary>}
     >
       <table>
-        <tr>
-          <th>Version(s)</th>
-          <th>PR</th>
-          <th>Changes</th>
-        </tr>
-        {apiHistoryChangeRows}
+        <thead>
+          <tr>
+            <th>Version(s)</th>
+            <th>Changes</th>
+          </tr>
+        </thead>
+        <tbody>{apiHistoryChangeRows}</tbody>
       </table>
     </Details>
   );
