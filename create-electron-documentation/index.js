@@ -1,9 +1,8 @@
 #!/usr/bin/env node
 //@ts-check
 
-const fs = require('fs').promises;
-const { existsSync } = require('fs');
-const path = require('path');
+const { promises: fs } = require('node:fs');
+const path = require('node:path');
 
 const loadContent = (route) => {
   const finalPath = path.join(__dirname, route);
@@ -60,24 +59,6 @@ const interpolate = (content, values) => {
 };
 
 /**
- * Naively creates all the necessary folders for the given `route`.
- * @param {string} route The route to create, has to be absolute and no filename
- */
-const mkdirp = async (route) => {
-  if (existsSync(route)) {
-    return;
-  }
-
-  const parent = path.dirname(route);
-
-  if (!existsSync(parent)) {
-    await mkdirp(parent);
-  }
-
-  await fs.mkdir(route);
-};
-
-/**
  * Writes the files interpolating the different values
  * @param {{content: string;destination: string;}[]} templates
  * @param {{key: string; value: string;}[]} information
@@ -93,8 +74,7 @@ const writeFiles = async (templates, information, docsRoot) => {
       interpolate(destination, information)
     );
 
-    await mkdirp(path.dirname(finalDestination));
-
+    await fs.mkdir(path.dirname(finalDestination), { recursive: true });
     await fs.writeFile(finalDestination, finalContent, 'utf-8');
 
     createdFiles.push(finalDestination);
