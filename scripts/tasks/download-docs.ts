@@ -1,7 +1,6 @@
 import fs from 'fs-extra';
 
 import path from 'path';
-import makeDir from 'make-dir';
 import tar from 'tar-stream';
 import got from 'got';
 import globby from 'globby';
@@ -55,8 +54,7 @@ const saveContents = async (files: Entry[], destination: string) => {
       continue;
     }
 
-    await makeDir(path.dirname(finalPath));
-
+    await fs.mkdir(path.dirname(finalPath), { recursive: true });
     await fs.writeFile(finalPath, content);
   }
 };
