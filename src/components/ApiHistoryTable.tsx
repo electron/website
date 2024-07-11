@@ -29,6 +29,9 @@ function generateTableRow(
     | NonNullable<ApiHistory['deprecated']>[0]
     | NonNullable<ApiHistory['changes']>[0]
 ) {
+  const prNumber = Number(change['pr-url'].split('/').at(-1));
+  const key = prNumber + '-' + type;
+
   const allVersions: Array<string> = [];
 
   const release = prReleaseVersions?.release;
@@ -65,7 +68,10 @@ function generateTableRow(
     );
   } else {
     changesJsx = (
-      <pre className={styles[type.toLowerCase().split(' ').join('-')]}>
+      <pre
+        key={key}
+        className={styles[type.toLowerCase().split(' ').join('-')]}
+      >
         {type}
       </pre>
     );
@@ -87,7 +93,7 @@ function generateTableRow(
   }
 
   return (
-    <tr>
+    <tr key={key}>
       <td>
         {formattedVersions.length !== 0 ? formattedVersions : <pre>None</pre>}
       </td>
