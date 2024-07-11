@@ -9,7 +9,7 @@ import AdmZip from 'adm-zip';
 
 export type ApiHistory = {
   added?: { 'pr-url': string }[];
-  deprecated?: { 'pr-url': string; 'breaking-changes-header': string }[];
+  deprecated?: { 'pr-url': string; 'breaking-changes-header'?: string }[];
   changes?: { 'pr-url': string; description: string }[];
 };
 

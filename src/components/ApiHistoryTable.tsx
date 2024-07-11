@@ -24,8 +24,10 @@ interface ApiHistoryTableProps {
 function generateTableRow(
   prReleaseVersions: PrReleaseVersions | undefined,
   type: Change,
-  prUrl: string,
-  changes?: string
+  change:
+    | NonNullable<ApiHistory['added']>[0]
+    | NonNullable<ApiHistory['deprecated']>[0]
+    | NonNullable<ApiHistory['changes']>[0]
 ) {
   const allVersions: Array<string> = [];
 
@@ -40,25 +42,56 @@ function generateTableRow(
 
   const formattedVersions = allVersions.map((version) => {
     return (
-      <a key={version} href={prUrl} target="_blank" rel="noopener noreferrer">
+      <a
+        key={version}
+        href={change['pr-url']}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <pre>{version}</pre>
       </a>
     );
   });
 
+  let changesJsx: JSX.Element | undefined;
+
+  if ('description' in change) {
+    changesJsx = (
+      <ReactMarkdown
+        allowedElements={['a', 'code', 'em', 'p', 'pre', 'strong']}
+      >
+        {change['description']}
+      </ReactMarkdown>
+    );
+  } else {
+    changesJsx = (
+      <pre className={styles[type.toLowerCase().split(' ').join('-')]}>
+        {type}
+      </pre>
+    );
+  }
+
+  if ('breaking-changes-header' in change) {
+    changesJsx = (
+      <a
+        href={
+          // ? Is this okay? Is there an existing function that should be used here to generate the URL?
+          '/docs/latest/breaking-changes#' + change['breaking-changes-header']
+        }
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {changesJsx}
+      </a>
+    );
+  }
+
   return (
     <tr>
-      <td>{formattedVersions || <pre>None</pre>}</td>
       <td>
-        {/* TODO: Set allowed markdown elements */}
-        {changes ? (
-          <ReactMarkdown>{changes}</ReactMarkdown>
-        ) : (
-          <pre className={styles[type.toLowerCase().split(' ').join('-')]}>
-            {type}
-          </pre>
-        )}
+        {formattedVersions.length !== 0 ? formattedVersions : <pre>None</pre>}
       </td>
+      <td>{changesJsx}</td>
     </tr>
   );
 }
@@ -83,7 +116,7 @@ const ApiHistoryTable = (props: ApiHistoryTableProps) => {
       return generateTableRow(
         prReleaseVersions[prNumber],
         Change.DEPRECATED,
-        deprecated['pr-url']
+        deprecated
       );
     }) ?? []),
     ...(apiHistory.changes?.map((change) => {
@@ -91,21 +124,15 @@ const ApiHistoryTable = (props: ApiHistoryTableProps) => {
       return generateTableRow(
         prReleaseVersions[prNumber],
         Change.CHANGED,
-        change['pr-url'],
-        change['description']
+        change
       );
     }) ?? []),
     ...(apiHistory.added?.map((added) => {
       const prNumber = Number(added['pr-url'].split('/').at(-1));
-      return generateTableRow(
-        prReleaseVersions[prNumber],
-        Change.ADDED,
-        added['pr-url']
-      );
+      return generateTableRow(prReleaseVersions[prNumber], Change.ADDED, added);
     }) ?? []),
   ];
 
-  // TODO: Remove PR column, just link to PR on version hover
   return (
     <Details
       className={styles['api-history']}

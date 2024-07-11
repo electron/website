@@ -1730,6 +1730,25 @@ Passing `null` will reset the position to default.
 Returns `Point | null` - The custom position for the traffic light buttons in
 frameless window, `null` will be returned when there is no custom position.
 
+{ /* TODO: Remove below before merge, this is just here for demonstrating API History. */ }
+
+#### `win.setTrafficLightPosition(position)` _macOS_
+
+```YAML history
+added:
+  - pr-url: https://github.com/electron/electron/pull/22533
+changes:
+  - pr-url: https://github.com/electron/electron/pull/26789
+    description: Made `trafficLightPosition` option work for `customButtonOnHover` window.
+deprecated:
+  - pr-url: https://github.com/electron/electron/pull/37094
+    breaking-changes-header: deprecated-browserwindowsettrafficlightpositionposition
+```
+
+* `position` [Point](structures/point.md)
+
+Set a custom position for the traffic light buttons. Can only be used with `titleBarStyle` set to `hidden`.
+
 #### `win.setTouchBar(touchBar)` _macOS_
 
 * `touchBar` TouchBar | null
