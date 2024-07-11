@@ -1,3 +1,4 @@
+import logger from '@docusaurus/logger';
 import { Code, Node } from 'mdast';
 import { getJSXImport, isCode, isImport } from '../util/mdx-utils';
 import { ActionTuple, SKIP, visitParents } from 'unist-util-visit-parents';
@@ -24,6 +25,10 @@ interface PrReleaseArtifact {
   endCursor: string;
 }
 
+type GithubArtifactsListResponse = {
+  artifacts: Array<{ id: number; name: string; archive_download_url: string }>;
+};
+
 export default function attacher() {
   return transformer;
 }
@@ -39,10 +44,12 @@ async function getAllElectronVersions(): Promise<SemVer[]> {
     return _allElectronVersions;
   }
 
-  // TODO: Error handling
   const { versions } = await ElectronVersions.create(undefined, {
     ignoreCache: true,
   });
+
+  if (versions == null) throw new Error('No Electron versions found.');
+
   _allElectronVersions = versions;
   return _allElectronVersions;
 }
@@ -52,11 +59,6 @@ let _allPrReleaseVersions: PrReleaseVersionsContainer;
 async function getAllPrReleaseVersions(): Promise<PrReleaseVersionsContainer> {
   if (_allPrReleaseVersions) {
     return _allPrReleaseVersions;
-  }
-
-  // TODO: Add error handling and logging
-  if (process.env.GITHUB_ACTIONS === 'true' && !process.env.GH_TOKEN) {
-    throw new Error('GH_TOKEN is required when running in GitHub Actions.');
   }
 
   // TODO: Remove this
@@ -80,8 +82,10 @@ async function getAllPrReleaseVersions(): Promise<PrReleaseVersionsContainer> {
     return _allPrReleaseVersions;
   }
 
-  // ? Maybe log this?
   if (!process.env.GH_TOKEN) {
+    logger.warn(
+      'No GitHub token found, skipping fetching PR release versions.'
+    );
     _allPrReleaseVersions = {};
     return _allPrReleaseVersions;
   }
@@ -99,21 +103,34 @@ async function getAllPrReleaseVersions(): Promise<PrReleaseVersionsContainer> {
     'https://api.github.com/repos/electron/website/actions/artifacts',
     fetchOptions
   );
-  const latestArtifact = (await artifactsListResponse.json()).artifacts
-    .filter(({ name }: { name: string }) => name === 'resolved-pr-versions')
-    .sort((a: { id: number }, b: { id: number }) => a.id > b.id)[0];
+
+  const latestArtifact = (
+    (await artifactsListResponse.json()) as GithubArtifactsListResponse
+  ).artifacts
+    ?.filter(({ name }) => name === 'resolved-pr-versions')
+    .sort((a, b) => b.id - a.id)[0];
+
+  if (!latestArtifact)
+    throw new Error('No resolved-pr-versions artifact found.');
 
   // ? Maybe use streams/workers
   const archiveDownloadResponse = await fetch(
     latestArtifact.archive_download_url,
     fetchOptions
   );
-  const buffer = Buffer.from(await archiveDownloadResponse.arrayBuffer());
+  const archiveDownloadResponseBuffer =
+    await archiveDownloadResponse.arrayBuffer();
+  const archiveDownloadBuffer = Buffer.from(archiveDownloadResponseBuffer);
 
-  const zip = new AdmZip(buffer);
-  const parsedData = JSON.parse(
-    zip.readAsText(zip.getEntries()[0]!)
-  ) as PrReleaseArtifact;
+  const zip = new AdmZip(archiveDownloadBuffer);
+  const zipEntries = zip.getEntries();
+  const firstZipEntry = zipEntries[0];
+
+  if (firstZipEntry == null)
+    throw new Error('No entries found in the artifact archive.');
+
+  const zipText = zip.readAsText(firstZipEntry);
+  const parsedData = JSON.parse(zipText) as PrReleaseArtifact;
 
   if (!parsedData?.data) {
     throw new Error('No data found in the artifact.');
@@ -125,138 +142,145 @@ async function getAllPrReleaseVersions(): Promise<PrReleaseVersionsContainer> {
 
 // Most of this is copy-pasted from: <https://github.com/electron/website/blob/ac3bab3131fc0f5de563574189ad5eab956a60b9/src/transformers/js-code-blocks.ts>
 async function transformer(tree: Parent) {
-  let needImport = false;
-  const allElectronVersions = await getAllElectronVersions();
-  const allPrReleaseVersions = await getAllPrReleaseVersions();
-  visitParents(tree, matchApiHistoryCodeBlock, maybeGenerateApiHistoryTable);
-  visitParents(tree, 'mdxjsEsm', checkForApiHistoryTableImport);
+  try {
+    let needImport = false;
+    const allElectronVersions = await getAllElectronVersions();
+    const allPrReleaseVersions = await getAllPrReleaseVersions();
+    visitParents(tree, matchApiHistoryCodeBlock, maybeGenerateApiHistoryTable);
+    visitParents(tree, 'mdxjsEsm', checkForApiHistoryTableImport);
 
-  if (needImport) {
-    tree.children.unshift(getJSXImport('ApiHistoryTable'));
-  }
-
-  function checkForApiHistoryTableImport(node: Node) {
-    if (
-      isImport(node) &&
-      node.value.includes('@site/src/components/ApiHistoryTable')
-    ) {
-      needImport = false;
+    if (needImport) {
+      tree.children.unshift(getJSXImport('ApiHistoryTable'));
     }
-  }
 
-  function maybeGenerateApiHistoryTable(
-    node: Code,
-    ancestors: Parent[]
-  ): ActionTuple | void {
-    const parent = ancestors[0];
-    const idx = parent!.children.indexOf(node);
-
-    const apiHistory = parseYaml(node.value) as ApiHistory;
-
-    const prsInHistory: Array<string> = [];
-
-    apiHistory.added?.forEach((added) => {
-      prsInHistory.push(added['pr-url'].split('/').at(-1)!);
-    });
-
-    apiHistory.changes?.forEach((change) => {
-      prsInHistory.push(change['pr-url'].split('/').at(-1)!);
-    });
-
-    apiHistory.deprecated?.forEach((deprecated) => {
-      prsInHistory.push(deprecated['pr-url'].split('/').at(-1)!);
-    });
-
-    const relevantPrReleaseVersions = Object.fromEntries(
-      Object.entries(allPrReleaseVersions).filter(([prNumber]) =>
-        prsInHistory.includes(prNumber)
-      )
-    );
-
-    function findReleasedStableVersionContainingRelease(
-      release: SemVer
-    ): string | null {
-      let stableVersion: string;
-
-      if (release.prerelease.length > 0) {
-        stableVersion = semver.inc(release, 'patch')!;
-      } else {
-        stableVersion = release.version;
+    // eslint-disable-next-line no-inner-declarations
+    function checkForApiHistoryTableImport(node: Node) {
+      if (
+        isImport(node) &&
+        node.value.includes('@site/src/components/ApiHistoryTable')
+      ) {
+        needImport = false;
       }
+    }
 
-      return (
-        allElectronVersions.find(({ version }) => version === stableVersion)
-          ?.version || null
+    // eslint-disable-next-line no-inner-declarations
+    function maybeGenerateApiHistoryTable(
+      node: Code,
+      ancestors: Parent[]
+    ): ActionTuple | void {
+      const parent = ancestors[0];
+      const idx = parent!.children.indexOf(node);
+
+      const apiHistory = parseYaml(node.value) as ApiHistory;
+
+      const prsInHistory: Array<string> = [];
+
+      apiHistory.added?.forEach((added) => {
+        prsInHistory.push(added['pr-url'].split('/').at(-1)!);
+      });
+
+      apiHistory.changes?.forEach((change) => {
+        prsInHistory.push(change['pr-url'].split('/').at(-1)!);
+      });
+
+      apiHistory.deprecated?.forEach((deprecated) => {
+        prsInHistory.push(deprecated['pr-url'].split('/').at(-1)!);
+      });
+
+      const relevantPrReleaseVersions = Object.fromEntries(
+        Object.entries(allPrReleaseVersions).filter(([prNumber]) =>
+          prsInHistory.includes(prNumber)
+        )
       );
-    }
 
-    const stableReleasedRelevantPrReleaseVersions = relevantPrReleaseVersions;
+      function findReleasedStableVersionContainingRelease(
+        release: SemVer
+      ): string | null {
+        let stableVersion: string;
 
-    // If release is a prerelease, find the stable version containing the release and
-    //  update the release version to the stable version. Otherwise, set the release version to null.
-    //  Do the same for backports except remove the backport from the array instead of setting it to null.
-    for (const relevantPrNumber in stableReleasedRelevantPrReleaseVersions) {
-      const release =
-        stableReleasedRelevantPrReleaseVersions[relevantPrNumber]?.release;
+        if (release.prerelease.length > 0) {
+          stableVersion = semver.inc(release, 'patch')!;
+        } else {
+          stableVersion = release.version;
+        }
 
-      if (release) {
-        const parsedRelease = semver.parse(release)!;
-        const releasedStableVersionContainingRelease =
-          findReleasedStableVersionContainingRelease(parsedRelease);
-        stableReleasedRelevantPrReleaseVersions[relevantPrNumber]!.release =
-          releasedStableVersionContainingRelease;
+        return (
+          allElectronVersions.find(({ version }) => version === stableVersion)
+            ?.version || null
+        );
       }
 
-      const backports =
-        stableReleasedRelevantPrReleaseVersions[relevantPrNumber]?.backports;
+      const stableReleasedRelevantPrReleaseVersions = relevantPrReleaseVersions;
 
-      if (backports) {
-        for (const [index, backport] of backports.entries()) {
-          const parsedBackport = semver.parse(backport)!;
-          const releasedStableVersionContainingBackport =
-            findReleasedStableVersionContainingRelease(parsedBackport);
+      // If release is a prerelease, find the stable version containing the release and
+      //  update the release version to the stable version. Otherwise, set the release version to null.
+      //  Do the same for backports except remove the backport from the array instead of setting it to null.
+      for (const relevantPrNumber in stableReleasedRelevantPrReleaseVersions) {
+        const release =
+          stableReleasedRelevantPrReleaseVersions[relevantPrNumber]?.release;
 
-          if (releasedStableVersionContainingBackport) {
-            stableReleasedRelevantPrReleaseVersions[
-              relevantPrNumber
-            ]!.backports[index] = releasedStableVersionContainingBackport;
-          } else {
-            stableReleasedRelevantPrReleaseVersions[
-              relevantPrNumber
-            ]!.backports.splice(index, 1);
+        if (release) {
+          const parsedRelease = semver.parse(release)!;
+          const releasedStableVersionContainingRelease =
+            findReleasedStableVersionContainingRelease(parsedRelease);
+          stableReleasedRelevantPrReleaseVersions[relevantPrNumber]!.release =
+            releasedStableVersionContainingRelease;
+        }
+
+        const backports =
+          stableReleasedRelevantPrReleaseVersions[relevantPrNumber]?.backports;
+
+        if (backports) {
+          for (const [index, backport] of backports.entries()) {
+            const parsedBackport = semver.parse(backport)!;
+            const releasedStableVersionContainingBackport =
+              findReleasedStableVersionContainingRelease(parsedBackport);
+
+            if (releasedStableVersionContainingBackport) {
+              stableReleasedRelevantPrReleaseVersions[
+                relevantPrNumber
+              ]!.backports[index] = releasedStableVersionContainingBackport;
+            } else {
+              stableReleasedRelevantPrReleaseVersions[
+                relevantPrNumber
+              ]!.backports.splice(index, 1);
+            }
           }
         }
       }
+
+      const apiHistoryTable = {
+        type: 'mdxJsxFlowElement',
+        name: 'ApiHistoryTable',
+        attributes: [
+          {
+            type: 'mdxJsxAttribute',
+            name: 'apiHistoryJson',
+            value: JSON.stringify(apiHistory),
+          },
+          {
+            type: 'mdxJsxAttribute',
+            name: 'prReleaseVersionsJson',
+            value: JSON.stringify(stableReleasedRelevantPrReleaseVersions),
+          },
+        ],
+        children: [],
+        data: {
+          _mdxExplicitJsx: true,
+        },
+      };
+
+      parent!.children[idx] = apiHistoryTable;
+      needImport = true;
+
+      // Return an ActionTuple [Action, Index], where
+      // Action SKIP means we want to skip visiting these new children
+      // Index is the index of the AST we want to continue parsing at.
+      // TODO: Check if this line needs to be changed for this use case
+      return [SKIP, idx + 1];
     }
-
-    const apiHistoryTable = {
-      type: 'mdxJsxFlowElement',
-      name: 'ApiHistoryTable',
-      attributes: [
-        {
-          type: 'mdxJsxAttribute',
-          name: 'apiHistoryJson',
-          value: JSON.stringify(apiHistory),
-        },
-        {
-          type: 'mdxJsxAttribute',
-          name: 'prReleaseVersionsJson',
-          value: JSON.stringify(stableReleasedRelevantPrReleaseVersions),
-        },
-      ],
-      children: [],
-      data: {
-        _mdxExplicitJsx: true,
-      },
-    };
-
-    parent!.children[idx] = apiHistoryTable;
-    needImport = true;
-
-    // Return an ActionTuple [Action, Index], where
-    // Action SKIP means we want to skip visiting these new children
-    // Index is the index of the AST we want to continue parsing at.
-    // TODO: Check if this line needs to be changed for this use case
-    return [SKIP, idx + 1];
+  } catch (error) {
+    logger.error(error);
+    throw error;
   }
 }
