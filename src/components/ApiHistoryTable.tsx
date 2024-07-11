@@ -51,7 +51,11 @@ function generateTableRow(
         target="_blank"
         rel="noopener noreferrer"
       >
-        <pre>{version}</pre>
+        {/* Semver shenanigans, feature backported to both ^7.1.0 and ^6.3.0 would not be present in 7.0.0 */}
+        <pre>
+          {release === version ? '>=' : '^'}
+          {version}
+        </pre>
       </a>
     );
   });
