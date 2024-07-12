@@ -141,7 +141,6 @@ async function getAllPrReleaseVersions(): Promise<PrReleaseVersionsContainer> {
   if (!latestArtifact)
     throw new Error('No resolved-pr-versions artifact found.');
 
-  // ? Maybe use streams/workers
   const archiveDownloadResponse = await fetch(
     latestArtifact.archive_download_url,
     fetchOptions
@@ -306,7 +305,6 @@ async function transformer(tree: Parent) {
       // Return an ActionTuple [Action, Index], where
       // Action SKIP means we want to skip visiting these new children
       // Index is the index of the AST we want to continue parsing at.
-      // TODO: Check if this line needs to be changed for this use case
       return [SKIP, idx + 1];
     }
   } catch (error) {

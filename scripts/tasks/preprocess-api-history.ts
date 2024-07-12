@@ -91,7 +91,6 @@ function findValidApiHistoryBlocks(
       codeBlock.lang?.toLowerCase() !== 'yaml' ||
       codeBlock.meta?.trim() !== 'history'
     ) {
-      // TODO: Better error message
       logger.warn(
         `Error parsing possible history block in ${logger.green(filePath)}`
       );

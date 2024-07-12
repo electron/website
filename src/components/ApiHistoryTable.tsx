@@ -20,7 +20,6 @@ interface ApiHistoryTableProps {
   prReleaseVersionsJson: string;
 }
 
-// TODO: Add styling based on type
 function generateTableRow(
   prReleaseVersions: PrReleaseVersions | undefined,
   type: Change,
