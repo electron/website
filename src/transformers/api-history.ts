@@ -8,6 +8,9 @@ import { parse as parseYaml } from 'yaml';
 import semver from 'semver';
 import AdmZip from 'adm-zip';
 
+const GH_ACTIONS_ARTIFACTS_URL =
+  'https://api.github.com/repos/electron/website/actions/artifacts';
+
 export type ApiHistory = {
   added?: { 'pr-url': string }[];
   deprecated?: { 'pr-url': string; 'breaking-changes-header'?: string }[];
@@ -28,6 +31,29 @@ interface PrReleaseArtifact {
 type GithubArtifactsListResponse = {
   artifacts: Array<{ id: number; name: string; archive_download_url: string }>;
 };
+
+function isObject(
+  value: unknown
+): value is Record<string | number | symbol, unknown> {
+  return typeof value === 'object' && value !== null && !Array.isArray(value);
+}
+
+function isGithubArtifactsListResponse(
+  value: unknown
+): value is GithubArtifactsListResponse {
+  return isObject(value) && 'artifacts' in value;
+}
+
+function isPrReleaseArtifact(value: unknown): value is PrReleaseArtifact {
+  return isObject(value) && 'data' in value && 'endCursor' in value;
+}
+
+function isApiHistory(value: unknown): value is ApiHistory {
+  return (
+    isObject(value) &&
+    ('added' in value || 'deprecated' in value || 'changes' in value)
+  );
+}
 
 export default function attacher() {
   return transformer;
@@ -100,14 +126,16 @@ async function getAllPrReleaseVersions(): Promise<PrReleaseVersionsContainer> {
   };
 
   const artifactsListResponse = await fetch(
-    'https://api.github.com/repos/electron/website/actions/artifacts',
+    GH_ACTIONS_ARTIFACTS_URL,
     fetchOptions
   );
+  const artifactsListResponseJson = await artifactsListResponse.json();
 
-  const latestArtifact = (
-    (await artifactsListResponse.json()) as GithubArtifactsListResponse
-  ).artifacts
-    ?.filter(({ name }) => name === 'resolved-pr-versions')
+  if (!isGithubArtifactsListResponse(artifactsListResponseJson))
+    throw new Error('Invalid GitHub artifacts list response.');
+
+  const latestArtifact = artifactsListResponseJson.artifacts
+    .filter(({ name }) => name === 'resolved-pr-versions')
     .sort((a, b) => b.id - a.id)[0];
 
   if (!latestArtifact)
@@ -130,11 +158,9 @@ async function getAllPrReleaseVersions(): Promise<PrReleaseVersionsContainer> {
     throw new Error('No entries found in the artifact archive.');
 
   const zipText = zip.readAsText(firstZipEntry);
-  const parsedData = JSON.parse(zipText) as PrReleaseArtifact;
-
-  if (!parsedData?.data) {
-    throw new Error('No data found in the artifact.');
-  }
+  const parsedData = JSON.parse(zipText);
+  if (!isPrReleaseArtifact(parsedData))
+    throw new Error('Invalid PR release artifact.');
 
   _allPrReleaseVersions = parsedData.data;
   return _allPrReleaseVersions;
@@ -171,7 +197,11 @@ async function transformer(tree: Parent) {
       const parent = ancestors[0];
       const idx = parent!.children.indexOf(node);
 
-      const apiHistory = parseYaml(node.value) as ApiHistory;
+      const apiHistory = parseYaml(node.value);
+      if (!isApiHistory(apiHistory)) {
+        logger.error('Invalid API history YAML');
+        throw new Error('Invalid API history YAML');
+      }
 
       const prsInHistory: Array<string> = [];
 
