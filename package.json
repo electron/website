@@ -8,7 +8,7 @@
   },
   "scripts": {
     "crowdin": "crowdin",
-    "i18n:upload": "crowdin upload sources",
+    "i18n:upload": "crowdin upload sources --delete-obsolete",
     "i18n:download": "crowdin download --verbose && npx tsx scripts/prepare-i18n-content.ts",
     "i18n:glossary": "npx tsx scripts/update-crowdin-glossary.ts",
     "i18n:build": "docusaurus build",
@@ -94,7 +94,6 @@
     "json5": "^2.2.2",
     "latest-version": "^5.1.0",
     "lint-staged": "^13.2.0",
-    "make-dir": "^3.1.0",
     "mdast-util-frontmatter": "^2.0.1",
     "mdast-util-to-string": "^2.0.0",
     "patch-package": "^8.0.0",

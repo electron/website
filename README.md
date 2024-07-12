@@ -9,7 +9,7 @@ It is built using [Docusaurus](https://docusaurus.io/), a modern static website 
 
 ## Installation
 
-The website currently builds using Node.js 16. If you're using `nvm`, you can set the correct
+The website currently builds using Node.js 20. If you're using `nvm`, you can set the correct
 version of Node.js with `nvm use`.
 
 To get started with a local version of the website, install dependencies with `yarn`. To get the
