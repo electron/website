@@ -3,49 +3,44 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$comment": "If you change this schema, remember to edit the TypeScript interfaces in the linting script.",
   "definitions": {
-    "changeSchema": {
+    "baseChangeSchema": {
       "type": "object",
       "properties": {
         "pr-url": {
-          "type": "string",
-          "pattern": "^https://github.com/electron/electron/pull/\\d+$"
+          "description": "URL to the 'root' GitHub Pull Request for the change (i.e. not a backport PR)",
+          "type": "string", "pattern": "^https://github.com/electron/electron/pull/\\d+$",
+          "examples": [ "https://github.com/electron/electron/pull/26789" ]
         },
         "breaking-changes-header": {
-          "type": "string",
-          "minLength": 3
+          "description": "Heading ID for the change in `electron/docs/breaking-changes.md`",
+          "type": "string", "minLength": 3,
+          "examples": [ "deprecated-browserwindowsettrafficlightpositionposition" ]
         },
         "description": {
-          "type": "string",
-          "minLength": 3,
-          "maxLength": 72
+          "description": "Short description of the change",
+          "type": "string", "minLength": 3, "maxLength": 120,
+          "examples": [ "Made `trafficLightPosition` option work for `customButtonOnHover`." ]
         }
       },
-      "required": [
-        "pr-url"
-      ],
+      "required": [ "pr-url" ],
       "additionalProperties": false
+    },
+    "addedChangeSchema": {
+      "allOf": [ { "$ref": "#/definitions/baseChangeSchema" } ]
+    },
+    "deprecatedChangeSchema": {
+      "$comment": "TODO: Make 'breaking-changes-header' required in the future.",
+      "allOf": [ { "$ref": "#/definitions/baseChangeSchema" } ]
+    },
+    "changesChangeSchema": {
+      "allOf": [ { "$ref": "#/definitions/baseChangeSchema" }, { "required": [ "description" ] } ]
     }
   },
   "type": "object",
   "properties": {
-    "added": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/changeSchema"
-      }
-    },
-    "deprecated": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/changeSchema"
-      }
-    },
-    "changes": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/changeSchema"
-      }
-    }
+    "added": { "type": "array", "minItems": 1, "maxItems": 1, "items": { "$ref": "#/definitions/addedChangeSchema" } },
+    "deprecated": { "type": "array", "minItems": 1, "maxItems": 1, "items": { "$ref": "#/definitions/deprecatedChangeSchema" } },
+    "changes": { "type": "array", "minItems": 1, "items": { "$ref": "#/definitions/changesChangeSchema" } }
   },
   "additionalProperties": false
 }
