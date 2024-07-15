@@ -60,7 +60,11 @@ export default function attacher() {
 }
 
 function matchApiHistoryCodeBlock(node: Node): node is Code {
-  return isCode(node) && node.lang === 'YAML' && node.meta === 'history';
+  return (
+    isCode(node) &&
+    node.lang?.toLowerCase() === 'yaml' &&
+    node.meta?.toLowerCase() === 'history'
+  );
 }
 
 let _allElectronVersions: SemVer[];
