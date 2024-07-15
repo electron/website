@@ -7,6 +7,7 @@ import {
   Link,
   Definition,
   Code,
+  Html,
 } from 'mdast';
 import { MdxjsEsm } from 'mdast-util-mdxjs-esm';
 import { Node } from 'unist';
@@ -46,6 +47,10 @@ export function isParagraph(node: Node): node is Paragraph {
 
 export function isText(node: PhrasingContent): node is Text {
   return node.type === 'text';
+}
+
+export function isHtml(node: Node): node is Html {
+  return node.type === 'html';
 }
 
 /**
