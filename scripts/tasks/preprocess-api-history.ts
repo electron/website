@@ -49,7 +49,7 @@ function findPossibleApiHistoryBlocks(tree: Root) {
     tree,
     (node: Node) =>
       node.type === 'html' &&
-      (node as LiteralString).value.toLowerCase().includes('```') &&
+      (node as LiteralString).value.includes('```') &&
       (node as LiteralString).value.toLowerCase().includes('yaml') &&
       (node as LiteralString).value.toLowerCase().includes('history'),
     (node) => {
