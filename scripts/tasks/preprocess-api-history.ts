@@ -30,7 +30,7 @@ interface LiteralString extends Literal {
 
 // Copied from here: <https://github.com/electron/website/blob/feat/api-history/scripts/tasks/add-frontmatter.ts#L16-L23>
 const getMarkdownFiles = async (startPath: string) => {
-  const filesPaths = await globby(path.posix.join(startPath, '**/*.md'));
+  const filesPaths = await globby(path.posix.join(startPath, 'api', '/*.md'));
 
   const files: Map<string, string> = new Map();
   for (const filePath of filesPaths) {
@@ -148,6 +148,7 @@ export const preprocessApiHistory = async (startPath: string) => {
   const files = await getMarkdownFiles(startPath);
 
   for (const [filePath, content] of files) {
+    if (!content.includes('<!--')) continue;
     const tree = fromMarkdown(content);
 
     const possibleHistoryBlocks = findPossibleApiHistoryBlocks(tree as Root);
