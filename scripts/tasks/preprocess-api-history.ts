@@ -73,6 +73,15 @@ function findValidApiHistoryBlocks(
       children: [htmlComment],
     } = fromHtml(possibleHistoryBlock.value);
 
+    if (htmlComment == null) {
+      logger.warn(
+        `Error parsing possible history block (found null/undefined htmlComment) in ${logger.green(
+          filePath
+        )}`
+      );
+      continue;
+    }
+
     if (htmlComment.type !== 'comment') {
       logger.warn(
         `Possible API History block is not in a HTML comment (${logger.green(
@@ -86,13 +95,24 @@ function findValidApiHistoryBlocks(
       children: [codeBlock],
     } = fromMarkdown(htmlComment.value);
 
+    if (codeBlock == null) {
+      logger.warn(
+        `Error parsing possible history block (found null/undefined codeBlock) in ${logger.green(
+          filePath
+        )}`
+      );
+      continue;
+    }
+
     if (
       codeBlock.type !== 'code' ||
       codeBlock.lang?.toLowerCase() !== 'yaml' ||
       codeBlock.meta?.trim() !== 'history'
     ) {
       logger.warn(
-        `Error parsing possible history block in ${logger.green(filePath)}`
+        `Error parsing possible history block (codeBlock wasn't code, yaml, or history) in ${logger.green(
+          filePath
+        )}`
       );
       continue;
     }
@@ -168,7 +188,7 @@ export const preprocessApiHistory = async (startPath: string) => {
       const apiHistoryRegexMatches =
         validHistoryBlock.value.match(apiHistoryRegex);
 
-      if (apiHistoryRegexMatches.length !== 2) {
+      if (apiHistoryRegexMatches?.length !== 2) {
         logger.warn(
           `Error extracting the API history block inside HTML comment in ${logger.green(
             filePath
@@ -179,17 +199,29 @@ export const preprocessApiHistory = async (startPath: string) => {
 
       const [, historyBlockWithoutTags] = apiHistoryRegexMatches;
 
+      if (
+        validHistoryBlock.position?.start.offset == null ||
+        validHistoryBlock.position?.end.offset == null
+      ) {
+        logger.warn(
+          `Error getting the start and end position of the API history block in ${logger.green(
+            filePath
+          )}`
+        );
+        continue;
+      }
+
       const start = newContent.substring(
         0,
-        validHistoryBlock.position!.start.offset + fileLengthDifference
+        validHistoryBlock.position.start.offset + fileLengthDifference
       );
       const end = newContent.substring(
-        validHistoryBlock.position!.end.offset + fileLengthDifference
+        validHistoryBlock.position.end.offset + fileLengthDifference
       );
 
       // Stripping the HTML comment tags of a history block will offset the position of the next history block
       fileLengthDifference +=
-        historyBlockWithoutTags.length - validHistoryBlock.value.length;
+        historyBlockWithoutTags!.length - validHistoryBlock.value.length;
 
       newContent = start + historyBlockWithoutTags + end;
     }
