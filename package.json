@@ -43,8 +43,6 @@
     "ajv": "^8.16.0",
     "clsx": "^1.1.1",
     "docusaurus-plugin-sass": "^0.2.1",
-    "dotenv": "^16.0.3",
-    "execa": "^5.0.0",
     "hast-util-from-html": "^2.0.1",
     "mdast-util-from-markdown": "^2.0.1",
     "prism-react-renderer": "^2.3.1",
