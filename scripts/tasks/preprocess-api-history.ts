@@ -148,7 +148,6 @@ function findValidApiHistoryBlocks(
 }
 
 export const preprocessApiHistory = async (startPath: string) => {
-  // ? Allow for a custom schema to be passed in.
   const schema = path.resolve(startPath, 'api-history.schema.json');
 
   let validateAgainstSchema: ValidateFunction<ApiHistory> | null = null;
