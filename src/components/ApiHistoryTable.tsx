@@ -23,7 +23,7 @@ interface ApiHistoryTableProps {
 function generateTableRow(
   prReleaseVersions: PrReleaseVersions | undefined,
   type: Change,
-  change: ApiHistory[keyof ApiHistory][0]
+  change: NonNullable<ApiHistory[keyof ApiHistory]>[0]
 ) {
   const prNumber = Number(change['pr-url'].split('/').at(-1));
   const key = prNumber + '-' + type;
