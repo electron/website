@@ -156,7 +156,7 @@ export const preprocessApiHistory = async (startPath: string) => {
 
   try {
     const ajv = new Ajv();
-    const ApiHistorySchemaFile = await readFile(schema, { encoding: 'utf-8' });
+    const ApiHistorySchemaFile = await readFile(schema, 'utf-8');
     const ApiHistorySchema = JSON.parse(
       ApiHistorySchemaFile
     ) as JSONSchemaType<ApiHistory>;
