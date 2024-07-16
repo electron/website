@@ -109,7 +109,7 @@ function findValidApiHistoryBlocks(
     if (
       codeBlock.type !== 'code' ||
       codeBlock.lang?.toLowerCase() !== 'yaml' ||
-      codeBlock.meta?.trim() !== 'history'
+      codeBlock.meta?.trim().toLowerCase() !== 'history'
     ) {
       logger.warn(
         `Error parsing possible history block (codeBlock wasn't code, yaml, or history) in ${logger.green(
