@@ -28,6 +28,8 @@ interface LiteralString extends Literal {
   value: string;
 }
 
+let hasWarned = false;
+
 // Copied from here: <https://github.com/electron/website/blob/feat/api-history/scripts/tasks/add-frontmatter.ts#L16-L23>
 const getMarkdownFiles = async (startPath: string) => {
   const filesPaths = await globby(path.posix.join(startPath, 'api', '/*.md'));
@@ -74,8 +76,9 @@ function findValidApiHistoryBlocks(
     } = fromHtml(possibleHistoryBlock.value);
 
     if (htmlComment == null) {
+      hasWarned = true;
       logger.warn(
-        `Error parsing possible history block (found null/undefined htmlComment) in ${logger.green(
+        `(Skipping block) Error parsing possible history block (found null/undefined htmlComment) in ${logger.green(
           filePath
         )}`
       );
@@ -83,8 +86,9 @@ function findValidApiHistoryBlocks(
     }
 
     if (htmlComment.type !== 'comment') {
+      hasWarned = true;
       logger.warn(
-        `Possible API History block is not in a HTML comment (${logger.green(
+        `(Skipping block) Possible API History block is not in a HTML comment (${logger.green(
           filePath
         )})`
       );
@@ -96,8 +100,9 @@ function findValidApiHistoryBlocks(
     } = fromMarkdown(htmlComment.value);
 
     if (codeBlock == null) {
+      hasWarned = true;
       logger.warn(
-        `Error parsing possible history block (found null/undefined codeBlock) in ${logger.green(
+        `(Skipping block) Error parsing possible history block (found null/undefined codeBlock) in ${logger.green(
           filePath
         )}`
       );
@@ -109,8 +114,9 @@ function findValidApiHistoryBlocks(
       codeBlock.lang?.toLowerCase() !== 'yaml' ||
       codeBlock.meta?.trim().toLowerCase() !== 'history'
     ) {
+      hasWarned = true;
       logger.warn(
-        `Error parsing possible history block (codeBlock wasn't code, yaml, or history) in ${logger.green(
+        `(Skipping block) Error parsing possible history block (codeBlock wasn't code, yaml, or history) in ${logger.green(
           filePath
         )}`
       );
@@ -122,8 +128,9 @@ function findValidApiHistoryBlocks(
     try {
       unsafeHistory = parseYaml(codeBlock.value);
     } catch (error) {
+      hasWarned = true;
       logger.warn(
-        `Error parsing YAML in possible history block (${logger.green(
+        `(Skipping block) Error parsing YAML in possible history block (${logger.green(
           filePath
         )})`
       );
@@ -133,8 +140,9 @@ function findValidApiHistoryBlocks(
     const isValid = validateAgainstSchema(unsafeHistory);
 
     if (!isValid) {
+      hasWarned = true;
       logger.warn(
-        `Error validating YAML in possible history block (${logger.green(
+        `(Skipping block) Error validating YAML in possible history block (${logger.green(
           filePath
         )})`
       );
@@ -188,8 +196,9 @@ export const preprocessApiHistory = async (startPath: string) => {
         validHistoryBlock.value.match(apiHistoryRegex);
 
       if (apiHistoryRegexMatches?.length !== 2) {
+        hasWarned = true;
         logger.warn(
-          `Error extracting the API history block inside HTML comment in ${logger.green(
+          `(Skipping block) Error extracting the API history block inside HTML comment in ${logger.green(
             filePath
           )}`
         );
@@ -202,8 +211,9 @@ export const preprocessApiHistory = async (startPath: string) => {
         validHistoryBlock.position?.start.offset == null ||
         validHistoryBlock.position?.end.offset == null
       ) {
+        hasWarned = true;
         logger.warn(
-          `Error getting the start and end position of the API history block in ${logger.green(
+          `(Skipping block) Error getting the start and end position of the API history block in ${logger.green(
             filePath
           )}`
         );
@@ -226,5 +236,12 @@ export const preprocessApiHistory = async (startPath: string) => {
     }
 
     await writeFile(filePath, newContent, 'utf-8');
+  }
+
+  if (hasWarned) {
+    logger.warn(
+      'Some API history blocks were skipped due to errors. ' +
+        'Run "lint-roller-markdown-api-history" from "electron/lint-roller" for more details.'
+    );
   }
 };
