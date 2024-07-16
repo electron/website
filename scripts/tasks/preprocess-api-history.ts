@@ -227,6 +227,6 @@ export const preprocessApiHistory = async (startPath: string) => {
       newContent = start + historyBlockWithoutTags + end;
     }
 
-    await writeFile(filePath, newContent, { encoding: 'utf-8' });
+    await writeFile(filePath, newContent, 'utf-8');
   }
 };
