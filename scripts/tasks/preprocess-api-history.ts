@@ -9,7 +9,6 @@ import { readFile, writeFile } from 'fs/promises';
 import { fromHtml } from 'hast-util-from-html';
 import logger from '@docusaurus/logger';
 import { parse as parseYaml } from 'yaml';
-import { isHtml } from '@site/src/util/mdx-utils';
 
 const apiHistoryRegex = /<!--[\s\S]*?(```[\s\S]*?```)[\s\S]*?-->/;
 
@@ -49,13 +48,12 @@ function findPossibleApiHistoryBlocks(tree: Root) {
   visit(
     tree,
     (node: Node) =>
-      isHtml(node) &&
+      node.type === 'html' &&
       (node as LiteralString).value.includes('```') &&
       (node as LiteralString).value.toLowerCase().includes('yaml') &&
       (node as LiteralString).value.toLowerCase().includes('history'),
     (node) => {
-      if (!isHtml(node)) return; // Should never happen, but TypeScript needs this check
-      codeBlocks.push(node);
+      codeBlocks.push(node as Html);
     }
   );
 
