@@ -371,11 +371,6 @@ export default function Home() {
                   href: 'https://figma.com/',
                 },
                 {
-                  name: 'Agora Flat',
-                  image: '/assets/apps/flat.svg',
-                  href: 'https://flat.whiteboard.agora.io/en/',
-                },
-                {
                   name: 'GitHub Desktop',
                   image: '/assets/apps/github-desktop.svg',
                   href: 'https://desktop.github.com/',
