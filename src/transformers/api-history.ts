@@ -79,7 +79,6 @@ async function getAllElectronVersions(): Promise<SemVer[]> {
     ignoreCache: true,
   });
 
-  if (versions == null) throw new Error('No Electron versions found.');
 
   _allElectronVersions = versions;
   return _allElectronVersions;
