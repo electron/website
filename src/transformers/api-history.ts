@@ -79,7 +79,6 @@ async function getAllElectronVersions(): Promise<SemVer[]> {
     ignoreCache: true,
   });
 
-
   _allElectronVersions = versions;
   return _allElectronVersions;
 }
