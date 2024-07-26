@@ -115,11 +115,7 @@ const ApiHistoryTable = (props: ApiHistoryTableProps) => {
   const generateChangeRows = (changeType, changes) => {
     return (changes ?? []).map((change) => {
       const prNumber = Number(change['pr-url'].split('/').at(-1));
-      return generateTableRow(
-        prReleaseVersions[prNumber],
-        changeType,
-        change
-      );
+      return generateTableRow(prReleaseVersions[prNumber], changeType, change);
     });
   };
 
