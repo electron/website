@@ -1,12 +1,13 @@
 import logger from '@docusaurus/logger';
-import { Code, Node } from 'mdast';
-import { getJSXImport, isCode, isImport } from '../util/mdx-utils';
-import { ActionTuple, SKIP, visitParents } from 'unist-util-visit-parents';
 import { ElectronVersions, SemVer } from '@electron/fiddle-core';
-import { Parent } from 'unist';
-import { parse as parseYaml } from 'yaml';
-import semver from 'semver';
 import AdmZip from 'adm-zip';
+import { Code, Node } from 'mdast';
+import semver from 'semver';
+import { Parent } from 'unist';
+import { ActionTuple, SKIP, visitParents } from 'unist-util-visit-parents';
+import { parse as parseYaml } from 'yaml';
+
+import { getJSXImport, isCode, isImport } from '../util/mdx-utils';
 
 const GH_ACTIONS_ARTIFACTS_URL =
   'https://api.github.com/repos/electron/website/actions/artifacts';
@@ -67,7 +68,7 @@ function matchApiHistoryCodeBlock(node: Node): node is Code {
   );
 }
 
-let _allElectronVersions: SemVer[];
+let _allElectronVersions: SemVer[] | undefined;
 
 async function getAllElectronVersions(): Promise<SemVer[]> {
   if (_allElectronVersions) {
@@ -84,7 +85,7 @@ async function getAllElectronVersions(): Promise<SemVer[]> {
   return _allElectronVersions;
 }
 
-let _allPrReleaseVersions: PrReleaseVersionsContainer;
+let _allPrReleaseVersions: PrReleaseVersionsContainer | undefined;
 
 async function getAllPrReleaseVersions(): Promise<PrReleaseVersionsContainer> {
   if (_allPrReleaseVersions) {
@@ -135,15 +136,17 @@ async function getAllPrReleaseVersions(): Promise<PrReleaseVersionsContainer> {
   );
   const artifactsListResponseJson = await artifactsListResponse.json();
 
-  if (!isGithubArtifactsListResponse(artifactsListResponseJson))
+  if (!isGithubArtifactsListResponse(artifactsListResponseJson)) {
     throw new Error('Invalid GitHub artifacts list response.');
+  }
 
   const latestArtifact = artifactsListResponseJson.artifacts
     .filter(({ name }) => name === 'resolved-pr-versions')
     .sort((a, b) => b.id - a.id)[0];
 
-  if (!latestArtifact)
+  if (!latestArtifact) {
     throw new Error('No resolved-pr-versions artifact found.');
+  }
 
   const archiveDownloadResponse = await fetch(
     latestArtifact.archive_download_url,
@@ -157,13 +160,15 @@ async function getAllPrReleaseVersions(): Promise<PrReleaseVersionsContainer> {
   const zipEntries = zip.getEntries();
   const firstZipEntry = zipEntries[0];
 
-  if (firstZipEntry == null)
+  if (firstZipEntry == null) {
     throw new Error('No entries found in the artifact archive.');
+  }
 
   const zipText = zip.readAsText(firstZipEntry);
   const parsedData = JSON.parse(zipText);
-  if (!isPrReleaseArtifact(parsedData))
+  if (!isPrReleaseArtifact(parsedData)) {
     throw new Error('Invalid PR release artifact.');
+  }
 
   _allPrReleaseVersions = parsedData.data;
   return _allPrReleaseVersions;

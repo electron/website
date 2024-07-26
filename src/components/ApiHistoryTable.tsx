@@ -1,12 +1,12 @@
-import React from 'react';
 import { Details } from '@docusaurus/theme-common/Details';
+import React from 'react';
+import ReactMarkdown from 'react-markdown';
+
 import {
   ApiHistory,
   PrReleaseVersions,
   PrReleaseVersionsContainer,
 } from '../transformers/api-history';
-import ReactMarkdown from 'react-markdown';
-
 import styles from './ApiHistoryTable.module.scss';
 
 enum Change {
@@ -81,7 +81,6 @@ function generateTableRow(
     changesJsx = (
       <a
         href={
-          // ? Is this okay? Is there an existing function that should be used here to generate the URL?
           '/docs/latest/breaking-changes#' + change['breaking-changes-header']
         }
         target="_blank"
@@ -111,32 +110,23 @@ const ApiHistoryTable = (props: ApiHistoryTableProps) => {
   ) as PrReleaseVersionsContainer;
 
   // ? Maybe this is too much abstraction?
-  // ? `added` and `deprecated` go on the ends, but is there any point in sorting `changes`?
-  //  How do you sort them? Given change X and change Y, X could have been merged into main before Y,
-  //  but Y could have been backported to a stable version before X.
   // ? Is it possible for neither the release or any of the backports for a change to be in a released stable version?
   //  In that case, there would be no point in generating a row for that change.
-  const apiHistoryChangeRows = [
-    ...(apiHistory.deprecated?.map((deprecated) => {
-      const prNumber = Number(deprecated['pr-url'].split('/').at(-1));
-      return generateTableRow(
-        prReleaseVersions[prNumber],
-        Change.DEPRECATED,
-        deprecated
-      );
-    }) ?? []),
-    ...(apiHistory.changes?.map((change) => {
+  const generateChangeRows = (changeType, changes) => {
+    return (changes ?? []).map((change) => {
       const prNumber = Number(change['pr-url'].split('/').at(-1));
       return generateTableRow(
         prReleaseVersions[prNumber],
-        Change.CHANGED,
+        changeType,
         change
       );
-    }) ?? []),
-    ...(apiHistory.added?.map((added) => {
-      const prNumber = Number(added['pr-url'].split('/').at(-1));
-      return generateTableRow(prReleaseVersions[prNumber], Change.ADDED, added);
-    }) ?? []),
+    });
+  };
+
+  const apiHistoryChangeRows = [
+    ...generateChangeRows(Change.DEPRECATED, apiHistory.deprecated),
+    ...generateChangeRows(Change.CHANGED, apiHistory.changes),
+    ...generateChangeRows(Change.ADDED, apiHistory.added),
   ];
 
   return (

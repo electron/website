@@ -1,13 +1,13 @@
-import globby from 'globby';
-import path from 'path';
-import { fromMarkdown } from 'mdast-util-from-markdown';
-import { visit } from 'unist-util-visit';
-import type { Html, Root } from 'mdast';
-import type { Node, Literal } from 'unist';
+import logger from '@docusaurus/logger';
 import Ajv, { JSONSchemaType, ValidateFunction } from 'ajv';
 import { readFile, writeFile } from 'fs/promises';
 import { fromHtml } from 'hast-util-from-html';
-import logger from '@docusaurus/logger';
+import globby from 'globby';
+import type { Html, Root } from 'mdast';
+import { fromMarkdown } from 'mdast-util-from-markdown';
+import path from 'path';
+import type { Node, Literal } from 'unist';
+import { visit } from 'unist-util-visit';
 import { parse as parseYaml } from 'yaml';
 
 const apiHistoryRegex = /<!--[\s\S]*?(```[\s\S]*?```)[\s\S]*?-->/;
@@ -239,9 +239,6 @@ export const preprocessApiHistory = async (startPath: string) => {
   }
 
   if (hasWarned) {
-    logger.warn(
-      'Some API history blocks were skipped due to errors. ' +
-        'Run "lint-roller-markdown-api-history" from "electron/lint-roller" for more details.'
-    );
+    logger.warn('Some API history blocks were skipped due to errors.');
   }
 };
