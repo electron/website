@@ -30,7 +30,6 @@ export default async function appsPlugin() {
     async loadContent() {
       const FAVS = new Set([
         '1password',
-        'agora-flat',
         'asana',
         'discord',
         'figma',
