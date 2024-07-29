@@ -97,6 +97,10 @@ async function getAllPrReleaseVersions(): Promise<PrReleaseVersionsContainer> {
         release: 'v30.0.0-nightly.20231214',
         backports: ['v29.0.0-alpha.9'],
       },
+      40330: {
+        release: 'v29.0.0-nightly.20231101',
+        backports: [] as string[],
+      },
       41391: {
         release: 'v31.0.0-alpha.1',
         backports: [] as string[],
