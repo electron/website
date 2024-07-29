@@ -33,7 +33,8 @@
       "allOf": [ { "$ref": "#/definitions/baseChangeSchema" } ]
     },
     "changesChangeSchema": {
-      "allOf": [ { "$ref": "#/definitions/baseChangeSchema" }, { "required": [ "description" ] } ]
+      "$comment": "Unlike RFC, added `'type': 'object'` to appease AJV strict mode",
+      "allOf": [ { "$ref": "#/definitions/baseChangeSchema" }, { "type": "object", "required": [ "description" ] } ]
     }
   },
   "type": "object",
