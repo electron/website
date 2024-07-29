@@ -7,6 +7,12 @@ hide_title: false
 
 # BrowserView
 
+```YAML history
+deprecated:
+  - pr-url: https://github.com/electron/electron/pull/35658
+    breaking-changes-header: behavior-changed-browserviewsetautoresize-behavior-on-macos
+```
+
 > **Note**
 > The `BrowserView` class is deprecated, and replaced by the new
 > [`WebContentsView`](latest/api/web-contents-view.md) class.
@@ -17,6 +23,12 @@ relative to its owning window. It is meant to be an alternative to the
 `webview` tag.
 
 ## Class: BrowserView
+
+```YAML history
+deprecated:
+  - pr-url: https://github.com/electron/electron/pull/35658
+    breaking-changes-header: behavior-changed-browserviewsetautoresize-behavior-on-macos
+```
 
 > Create and control views.
 
