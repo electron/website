@@ -43,8 +43,8 @@ You can read more about the [new UtilityProcess API in our docs here](https://ww
 
 **2023/02/16: An update on Windows Server 2012 support**
 
-Last month, Google announced that [Chrome 109 would continue to receive critical
-security fixes](https://support.google.com/chrome/a/thread/185534987) for
+Last month, Google announced that
+[Chrome 109 would continue to receive critical security fixes](https://support.google.com/chrome/a/thread/185534987) for
 Windows Server 2012 and Windows Server 2012 R2 until October 10, 2023.
 In accordance, Electron 22's (Chromium 108) planned end of life date will be extended from May 30, 2023 to October 10, 2023. The Electron team will continue to backport any security fixes that are part of this program to Electron 22 until October 10, 2023.
 
@@ -124,8 +124,8 @@ The `new-window` event of WebContents has been removed. It is replaced by [`webC
 #### Deprecated: BrowserWindow `scroll-touch-*` events
 
 The `scroll-touch-begin`, `scroll-touch-end` and `scroll-touch-edge` events on
-BrowserWindow are deprecated. Instead, use the newly available [`input-event`
-event](https://electronjs.org/docs/latest/api/web-contents#event-input-event) on WebContents.
+BrowserWindow are deprecated. Instead, use the newly available
+[`input-event` event](https://electronjs.org/docs/latest/api/web-contents#event-input-event) on WebContents.
 
 ```diff
 // Deprecated
