@@ -1,4 +1,3 @@
-import got from 'got';
 import { remark } from 'remark';
 import gfm from 'remark-gfm';
 import toString from 'mdast-util-to-string';
@@ -95,10 +94,10 @@ async function getWGInfo(workingGroup: string): Promise<WorkingGroup> {
  * README file in the `electron/governance` repo.
  */
 async function getGitHubREADME(wg: string) {
-  const res = await got(
+  const res = await fetch(
     `https://raw.githubusercontent.com/electron/governance/main/wg-${wg}/README.md`
   );
-  return res.body;
+  return res.text();
 }
 
 export { fetchData };
