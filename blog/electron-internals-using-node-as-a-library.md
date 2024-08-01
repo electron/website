@@ -84,8 +84,8 @@ hidden when building Node as a library and native modules will fail to load
 because they cannot find the symbols.
 
 So in order to make native modules work, the V8 and libuv symbols
-were exposed in Electron. For V8 this is done by [forcing all
-symbols in Chromium's configuration file to be exposed][v8-expose]. For libuv,
+were exposed in Electron. For V8 this is done by
+[forcing all symbols in Chromium's configuration file to be exposed][v8-expose]. For libuv,
 it is achieved by [setting the `BUILDING_UV_SHARED=1` definition][libuv-expose].
 
 ## Starting Node in your app
