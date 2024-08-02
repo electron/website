@@ -200,7 +200,13 @@ const config: Config = {
     path.resolve(__dirname, './src/plugins/releases/index.ts'),
     path.resolve(__dirname, './src/plugins/fiddle/index.ts'),
     path.resolve(__dirname, './src/plugins/governance/index.ts'),
-    path.resolve(__dirname, './src/plugins/pngquant/index.ts'),
+    [
+      '@docusaurus/plugin-google-gtag',
+      {
+        trackingID: 'UA-160365006-1',
+        anonymizeIP: true,
+      },
+    ],
   ],
   presets: [
     [
@@ -224,16 +230,13 @@ const config: Config = {
         },
         blog: {
           // See `node_modules/@docusaurus/plugin-content-blog/src/pluginOptionSchema.ts` for full undocumented options
-          blogSidebarCount: 'ALL',
+          blogSidebarCount: 50,
           blogSidebarTitle: 'Latest posts',
           blogTitle: `Electron's blog`,
           blogDescription: `Keep up to date with what's going on with the Electron project`,
         },
         theme: {
           customCss: [require.resolve('./src/css/custom.scss')],
-        },
-        googleAnalytics: {
-          trackingID: 'UA-160365006-1',
         },
       },
     ],
