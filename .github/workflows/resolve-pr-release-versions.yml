@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Restore previous run data
-        uses: dawidd6/action-download-artifact@09f2f74827fd3a8607589e5ad7f9398816f540fe # v3.1.4
+        uses: dawidd6/action-download-artifact@bf251b5aa9c2f7eeb574a96ee720e24f801b7c11 # v6
         with:
           name: resolved-pr-versions
           if_no_artifact_found: ignore
@@ -254,7 +254,7 @@ jobs:
             // Write to file to upload as artifact
             await fs.writeFile(filename, JSON.stringify(data));
       - name: Persist data
-        uses: actions/upload-artifact@65462800fd760344b1a7b4382951275a0abb4808 # v4.3.3
+        uses: actions/upload-artifact@0b2256b8c012f0828dc542b3febcab082c67f72b # v4.3.4
         if: ${{ !cancelled() }}
         with:
           name: resolved-pr-versions

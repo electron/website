@@ -1,8 +1,0 @@
-{
-  "extends": "@electron/lint-roller/configs/markdownlint.json",
-  "link-image-style": {
-    "shortcut": true
-  },
-  "no-alt-text": false,
-  "no-shortcut-reference-links": false
-}

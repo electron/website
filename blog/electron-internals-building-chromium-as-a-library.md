@@ -77,8 +77,7 @@ libchromiumcontent soon exceeded the limitation.
 
 The solution was to filter out unneeded symbols when generating the DLL file.
 It worked by [providing a `.def` file to the linker][libcc-def], and then using
-a script to [judge whether symbols under a namespace should be
-exported][libcc-filter].
+a script to [judge whether symbols under a namespace should be exported][libcc-filter].
 
 By taking this approach, though Chromium kept adding new exported symbols,
 libchromiumcontent could still generate shared library files by stripping more
@@ -147,9 +146,8 @@ so the intermediate static library files are no longer generated.
 This improvement however made great trouble to libchromiumcontent, because
 the intermediate static library files were actually needed by libchromiumcontent.
 
-The first try to solve this was to [patch `gn` to generate static library
-files][libcc-gn-hack], which solved the problem, but was far from a decent
-solution.
+The first try to solve this was to [patch `gn` to generate static library files][libcc-gn-hack],
+which solved the problem, but was far from a decent solution.
 
 The second try was made by [@alespergl](https://github.com/alespergl) to
 [produce custom static libraries from the list of object files][libcc-gn].
