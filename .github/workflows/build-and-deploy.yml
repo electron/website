@@ -17,6 +17,8 @@ jobs:
   build_and_deploy:
     name: Build and deploy the website
     runs-on: ubuntu-latest
+    permissions:
+      actions: read
     steps:
       - name: Set GIT_BRANCH
         run: echo "GIT_BRANCH=${GITHUB_REF##*/}" >> $GITHUB_ENV
@@ -59,7 +61,7 @@ jobs:
       - name: Build default locale site
         run: yarn build
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Publish "/assets" to Storage if version branch
         if: ${{ inputs.branch == 'version' }}
         uses: nick-invision/retry@7152eba30c6575329ac0576536151aca5a72780e # tag: v3.0.0
