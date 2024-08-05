@@ -36,11 +36,17 @@ function generateTableRow(
   const backports = prReleaseVersions?.backports;
   if (backports) allVersions.push(...backports);
 
-  // Sort by major version number e.g. 30.0.0 -> 30 in descending order i.e. 30, 29, ...
-  allVersions.sort((a, b) => Number(b.split('.')[0]) - Number(a.split('.')[0]));
+  // Sort by major version number e.g. 30.0.0 -> 30 in ascending order i.e. 29, 30, ...
+  allVersions.sort((a, b) => Number(a.split('.')[0]) - Number(b.split('.')[0]));
 
-  const formattedVersions = allVersions.map((version) => {
-    return (
+  const formattedVersions: JSX.Element[] = [];
+
+  for (const version of allVersions) {
+    const [, minor, patch] = version.split('.');
+    const isBackportMajor =
+      release !== version && minor === '0' && patch === '0';
+
+    const formattedVersion = (
       <a
         key={version}
         href={change['pr-url']}
@@ -49,12 +55,20 @@ function generateTableRow(
       >
         {/* Semver shenanigans, feature backported to both ^7.1.0 and ^6.3.0 would not be present in 7.0.0 */}
         <pre>
-          {release === version ? '>=' : '^'}
+          {release === version || isBackportMajor ? '>=' : '^'}
           {version}
         </pre>
       </a>
     );
-  });
+
+    formattedVersions.push(formattedVersion);
+
+    // If backport is a major (i.e. >=x.0.0), no need to include the release or any other backports
+    if (isBackportMajor) break;
+  }
+
+  // Reverse the order of the versions so that the latest version is first i.e. 30, 29, ...
+  formattedVersions.reverse();
 
   let changesJsx: JSX.Element | undefined;
 
