@@ -65,7 +65,7 @@ function findPossibleApiHistoryBlocks(tree: Root) {
 function findValidApiHistoryBlocks(
   possibleHistoryBlocks: Html[],
   filePath: string,
-  validateAgainstSchema: ValidateFunction<ApiHistory>
+  validateAgainstSchema?: ValidateFunction<ApiHistory>
 ) {
   const validHistoryBlocks: Html[] = [];
 
@@ -137,16 +137,18 @@ function findValidApiHistoryBlocks(
       continue;
     }
 
-    const isValid = validateAgainstSchema(unsafeHistory);
+    if (typeof validateAgainstSchema !== 'undefined') {
+      const isValid = validateAgainstSchema(unsafeHistory);
 
-    if (!isValid) {
-      hasWarned = true;
-      logger.warn(
-        `(Skipping block) Error validating YAML in possible history block (${logger.green(
-          filePath
-        )})`
-      );
-      continue;
+      if (!isValid) {
+        hasWarned = true;
+        logger.warn(
+          `(Skipping block) Error validating YAML in possible history block (${logger.green(
+            filePath
+          )})`
+        );
+        continue;
+      }
     }
 
     validHistoryBlocks.push(possibleHistoryBlock);
@@ -158,7 +160,7 @@ function findValidApiHistoryBlocks(
 export const preprocessApiHistory = async (startPath: string) => {
   const schema = path.resolve(startPath, 'api-history.schema.json');
 
-  let validateAgainstSchema: ValidateFunction<ApiHistory> | null = null;
+  let validateAgainstSchema: ValidateFunction<ApiHistory> | undefined;
 
   try {
     const ajv = new Ajv();
@@ -168,8 +170,9 @@ export const preprocessApiHistory = async (startPath: string) => {
     ) as JSONSchemaType<ApiHistory>;
     validateAgainstSchema = ajv.compile(ApiHistorySchema);
   } catch (error) {
-    logger.error(`Error reading API history schema:\n${error}`);
-    return;
+    logger.warn(
+      `Error reading API history schema, continuing without schema validation:\n${error}`
+    );
   }
 
   const files = await getMarkdownFiles(startPath);
