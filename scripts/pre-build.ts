@@ -14,6 +14,7 @@ import { addFrontmatterToAllDocs } from './tasks/add-frontmatter';
 import { createSidebar } from './tasks/create-sidebar';
 import { fixContent } from './tasks/md-fixers';
 import { copyNewContent } from './tasks/copy-new-content';
+import { preprocessApiHistory } from './tasks/preprocess-api-history';
 
 const DOCS_FOLDER = path.join(__dirname, '..', 'docs', 'latest');
 
@@ -64,6 +65,9 @@ const start = async (source: string): Promise<void> => {
 
   logger.info('Copying new content');
   await copyNewContent(DOCS_FOLDER);
+
+  logger.info('Finding, validating, and uncommenting API history blocks');
+  await preprocessApiHistory(DOCS_FOLDER);
 
   logger.info('Fixing markdown');
   await fixContent('docs', 'latest');
