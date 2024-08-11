@@ -25,8 +25,7 @@ function generateTableRow(
   type: Change,
   change: NonNullable<ApiHistory[keyof ApiHistory]>[0]
 ) {
-  const prNumber = Number(change['pr-url'].split('/').at(-1));
-  const key = prNumber + '-' + type;
+  const key = change['pr-url'] + '-' + type;
 
   const allVersions: Array<string> = [];
 
