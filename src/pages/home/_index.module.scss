@@ -1,8 +1,3 @@
-p {
-  line-height: 1.5;
-  font-size: 1.1rem;
-}
-
 summary {
   font-weight: bold;
 }
@@ -24,6 +19,11 @@ summary {
   h3 {
     font-size: 1.6em;
     font-weight: 700;
+  }
+
+  p {
+    line-height: 1.5;
+    font-size: 1.1rem;
   }
 
   @media (max-width: 1000px) {
