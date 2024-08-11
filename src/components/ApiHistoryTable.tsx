@@ -1,6 +1,7 @@
 import { Details } from '@docusaurus/theme-common/Details';
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
+import * as semver from 'semver';
 
 import {
   ApiHistory,
@@ -27,47 +28,30 @@ function generateTableRow(
 ) {
   const key = change['pr-url'] + '-' + type;
 
-  const allVersions: Array<string> = [];
+  // Map versions to semver syntax - use a caret unless it was released in
+  // an X.0.0 release, which gets >= since every release after that has it
+  const versionRanges: Array<string> = semver
+    .rsort(prReleaseVersions?.backports ?? [])
+    .map((version) => (version.endsWith('.0.0') ? '>=' : '^') + version);
 
+  // Only include the main release if it wasn't backported and released in
+  // an X.0.0 release. This consolidates ranges like >=30.0.0 || >=29.0.0
+  // into a single >=29.0.0 since that's more intuitive for developers.
   const release = prReleaseVersions?.release;
-  if (release) allVersions.push(release);
-
-  const backports = prReleaseVersions?.backports;
-  if (backports) allVersions.push(...backports);
-
-  // Sort by major version number e.g. 30.0.0 -> 30 in ascending order i.e. 29, 30, ...
-  allVersions.sort((a, b) => Number(a.split('.')[0]) - Number(b.split('.')[0]));
-
-  const formattedVersions: JSX.Element[] = [];
-
-  for (const version of allVersions) {
-    const [, minor, patch] = version.split('.');
-    const isBackportMajor =
-      release !== version && minor === '0' && patch === '0';
-
-    const formattedVersion = (
-      <a
-        key={version}
-        href={change['pr-url']}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {/* Semver shenanigans, feature backported to both ^7.1.0 and ^6.3.0 would not be present in 7.0.0 */}
-        <pre>
-          {release === version || isBackportMajor ? '>=' : '^'}
-          {version}
-        </pre>
-      </a>
-    );
-
-    formattedVersions.push(formattedVersion);
-
-    // If backport is a major (i.e. >=x.0.0), no need to include the release or any other backports
-    if (isBackportMajor) break;
+  if (release && !versionRanges.find((version) => version.startsWith('>='))) {
+    versionRanges.unshift(`>=${release}`);
   }
 
-  // Reverse the order of the versions so that the latest version is first i.e. 30, 29, ...
-  formattedVersions.reverse();
+  const formattedVersions = versionRanges.map((version) => (
+    <a
+      key={version}
+      href={change['pr-url']}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <pre>{version}</pre>
+    </a>
+  ));
 
   let changesJsx: JSX.Element | undefined;
 
