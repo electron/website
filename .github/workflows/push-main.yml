@@ -29,6 +29,8 @@ jobs:
 
   build-and-deploy:
     uses: electron/website/.github/workflows/build-and-deploy.yml@main
+    permissions:
+      actions: read
     with:
       branch: main
     secrets:
