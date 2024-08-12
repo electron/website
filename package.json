@@ -91,6 +91,7 @@
     "markdownlint-cli2": "^0.13.0",
     "mdast-util-from-markdown": "^2.0.1",
     "mdast-util-frontmatter": "^2.0.1",
+    "mdast-util-mdx": "^3.0.0",
     "mdast-util-to-string": "^2.0.0",
     "prettier": "^2.8.0",
     "remark": "^15.0.0",
