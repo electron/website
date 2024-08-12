@@ -226,7 +226,7 @@ const config: Config = {
         },
         blog: {
           // See `node_modules/@docusaurus/plugin-content-blog/src/pluginOptionSchema.ts` for full undocumented options
-          blogSidebarCount: 'ALL',
+          blogSidebarCount: 50,
           blogSidebarTitle: 'Latest posts',
           blogTitle: `Electron's blog`,
           blogDescription: `Keep up to date with what's going on with the Electron project`,
