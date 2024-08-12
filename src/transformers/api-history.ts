@@ -90,31 +90,6 @@ async function getAllPrReleaseVersions(): Promise<PrReleaseVersionsContainer> {
     return _allPrReleaseVersions;
   }
 
-  // TODO: Remove this
-  if (!process.env.GH_TOKEN) {
-    const versions: PrReleaseVersionsContainer = {
-      35658: {
-        release: 'v30.0.0-nightly.20231214',
-        backports: ['v29.0.0-alpha.9'],
-      },
-      40330: {
-        release: 'v29.0.0-nightly.20231101',
-        backports: [] as string[],
-      },
-      41391: {
-        release: 'v31.0.0-alpha.1',
-        backports: [] as string[],
-      },
-      42086: {
-        release: 'v32.0.0-nightly.20240531',
-        backports: ['v31.0.0'],
-      },
-    };
-
-    _allPrReleaseVersions = versions;
-    return _allPrReleaseVersions;
-  }
-
   if (!process.env.GH_TOKEN) {
     logger.warn(
       'No GitHub token found, skipping fetching PR release versions.'
