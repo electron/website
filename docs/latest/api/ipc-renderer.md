@@ -7,13 +7,6 @@ hide_title: false
 
 # ipcRenderer
 
-```YAML history
-changes:
-  - pr-url: https://github.com/electron/electron/pull/40330
-    description: "`ipcRenderer` can no longer be sent over the `contextBridge`"
-    breaking-changes-header: behavior-changed-ipcrenderer-can-no-longer-be-sent-over-the-contextbridge
-```
-
 > Communicate asynchronously from a renderer process to the main process.
 
 Process: [Renderer](latest/glossary.md#renderer-process)
