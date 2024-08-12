@@ -230,6 +230,8 @@ const config: Config = {
           blogSidebarTitle: 'Latest posts',
           blogTitle: `Electron's blog`,
           blogDescription: `Keep up to date with what's going on with the Electron project`,
+          onInlineAuthors: 'ignore',
+          onUntruncatedBlogPosts: 'ignore',
         },
         theme: {
           customCss: [require.resolve('./src/css/custom.scss')],
