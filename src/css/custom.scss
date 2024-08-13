@@ -266,7 +266,7 @@
 }
 
 // blog sidebar custom styles
-[aria-label*='Blog recent posts navigation'] {
+.plugin-blog [class*='sidebar_'] {
   padding: 0.5rem;
   & [class*='yearGroupHeading_'] {
     margin: 0.75rem 0 0.5rem;
