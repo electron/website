@@ -266,15 +266,12 @@
 }
 
 // blog sidebar custom styles
-[class*='BlogSidebar'] {
-  &[class*='yearGroupHeading_'] {
+[aria-label*='Blog recent posts navigation'] {
+  padding: 0.5rem;
+  & [class*='yearGroupHeading_'] {
     margin: 0.75rem 0 0.5rem;
     color: var(--subtle);
     border-bottom: 0.01rem solid var(--ifm-table-border-color);
     padding-bottom: 0.2rem;
-  }
-
-  &[class*='sidebar_'] {
-    padding: 0.5rem;
   }
 }
