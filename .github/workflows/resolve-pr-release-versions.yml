@@ -87,7 +87,7 @@ jobs:
                 }
             }`;
 
-            const maxReleaseCount = inputs.max_release_count || 0;
+            const maxReleaseCount = ${{inputs.max_release_count || 0}};
 
             if (maxReleaseCount > 100) {
                 core.error('max_release_count must be <= 100');
