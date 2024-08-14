@@ -141,8 +141,11 @@ jobs:
                   break;
                 }
                 const releaseCount = maxReleaseCount === 0 ? RELEASE_MAX_PAGINATION_COUNT : maxReleaseCount;
-                // Exclude lastProcessedRelease
-                const releases = allReleases.slice((lastProcessedReleaseIdx ?? -1) + 1, (lastProcessedReleaseIdx ?? -1) + 1 + releaseCount);
+                // Exclude the last processed release, equal to 0 if there is none so we can process from the start.
+                const idxAfterLastProcessedRelease = (lastProcessedReleaseIdx ?? -1) + 1;
+                // idxAfterLastProcessedRelease will be out of bounds if we've already processed the latest release,
+                //  but passing an out of bounds index to splice results in an empty array which is what we want.
+                const releases = allReleases.slice(idxAfterLastProcessedRelease, idxAfterLastProcessedRelease + releaseCount);
 
                 if (releases.length === 0) {
                   core.notice('No new releases to process');
@@ -247,7 +250,8 @@ jobs:
                   data.lastProcessedRelease = lastReleaseVersion;
                 }
 
-                if (((lastProcessedReleaseIdx ?? -1) + 1 + releaseCount) < allReleases.length && maxReleaseCount === 0) {
+                // Check if we haven't processed all releases yet
+                if ((idxAfterLastProcessedRelease + releaseCount) < allReleases.length && maxReleaseCount === 0) {
                   continue;
                 } else {
                   break;
