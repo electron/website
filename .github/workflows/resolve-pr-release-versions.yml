@@ -1,4 +1,4 @@
-name: Resolve PR Release Versions
+name: Resolve PR Release Versions Test # TODO: Change to Resolve PR Release Versions
 
 on:
   workflow_dispatch:
@@ -21,7 +21,7 @@ jobs:
       - name: Restore previous run data
         uses: dawidd6/action-download-artifact@bf251b5aa9c2f7eeb574a96ee720e24f801b7c11 # v6
         with:
-          name: resolved-pr-versions
+          name: resolved-pr-versions-test # TODO: Change to resolved-pr-versions
           if_no_artifact_found: ignore
           workflow_conclusion: 'completed'
           search_artifacts: true
@@ -35,220 +35,227 @@ jobs:
 
             // https://github.com/electron/trop/blob/a481299dfd522c7b5c5d10e2355ad9e7f0ce193e/src/utils/branch-util.ts#L90-L94
             const getBackportPattern = () =>
-              /(?:^|\n)(?:manual |manually )?backport (?:of )?(?:#(\d+)|https:\/\/github.com\/.*\/pull\/(\d+))/gim;
+                /(?:^|\n)(?:manual |manually )?backport (?:of )?(?:#(\d+)|https:\/\/github.com\/.*\/pull\/(\d+))/gim;
 
-            const BOOTSTRAP_DATA_URL = 'https://gist.githubusercontent.com/dsanders11/eb51a04d04a6a3e0710d88db5250e698/raw/fd960b6dea1152b55427407646044f1ba187e52b/data.json';
             const MIN_MAJOR = 10;
+            const PREVIOUS_RELEASE_COUNT = 4;
             const RELEASE_MAX_PAGINATION_COUNT = 100;
-            const NEW_RELEASES_QUERY = `query($endCursor: String, $count: Int!) {
-              rateLimit {
-                limit
-                remaining
-                used
-                resetAt
-              }
-              repository(owner: "electron", name: "electron") {
-                releases: refs(
-                  refPrefix: "refs/tags/",
-                  after: $endCursor,
-                  first: $count,
-                  orderBy: {field: TAG_COMMIT_DATE, direction: ASC}
-                ) {
-                  pageInfo {
-                    endCursor
-                    hasNextPage
-                  }
-                  nodes {
-                    name
-                  }
-                }
-              }
-            }`;
             const RELEASE_PRS_QUERY = `query($releaseHeadRef: String!, $previousRelease: String!, $endCursor: String) {
-              rateLimit {
+                rateLimit {
                 limit
                 remaining
                 used
                 resetAt
-              }
-              repository(owner: "electron", name: "electron") {
+                }
+                repository(owner: "electron", name: "electron") {
                 release: ref(qualifiedName: $previousRelease) {
-                  compare(headRef: $releaseHeadRef) {
+                    compare(headRef: $releaseHeadRef) {
                     commits(after: $endCursor, last: 100) {
-                      pageInfo {
+                        pageInfo {
                         endCursor
                         hasNextPage
-                      }
-                      nodes {
+                        }
+                        nodes {
                         url
                         author {
-                          user {
+                            user {
                             login
-                          }
+                            }
                         }
                         associatedPullRequests(first: 20) {
-                          pageInfo {
+                            pageInfo {
                             hasNextPage
-                          }
-                          nodes {
+                            }
+                            nodes {
                             labels(first: 20) {
-                              pageInfo {
+                                pageInfo {
                                 hasNextPage
-                              }
-                              nodes {
+                                }
+                                nodes {
                                 name
-                              }
+                                }
                             }
                             number
                             bodyText
                             state
-                          }
+                            }
                         }
-                      }
+                        }
                     }
-                  }
+                    }
                 }
-              }
+                }
             }`;
 
-            const maxReleaseCount = ${{ inputs.max_release_count || 0 }};
+            const maxReleaseCount = inputs.max_release_count || 0;
 
             if (maxReleaseCount > 100) {
-              core.error('max_release_count must be <= 100');
-              return;
+                core.error('max_release_count must be <= 100');
+                return;
             }
 
-            const filename = 'data.json';
-            let data = { endCursor: undefined, data: {} };
+            const filename = 'data-test.json';
+            let data = { lastProcessedRelease: undefined, data: {} };
 
             try {
-              data = JSON.parse(await fs.readFile(filename));
+                data = JSON.parse(await fs.readFile(filename, "utf-8"));
             } catch (err) {
-              if (err.code !== 'ENOENT') {
-                throw err;
-              } else {
-                core.debug('Previous data not found, bootstrapping');
-                const resp = await fetch(BOOTSTRAP_DATA_URL);
-                data = await resp.json();
-              }
+                if (err.code !== 'ENOENT') {
+                    throw err;
+                }
             }
 
             const { versions } = await ElectronVersions.create(undefined, { ignoreCache: true });
 
             try {
-              while (true) {
-                const { rateLimit: rateLimitA, repository: { releases } } = await github.graphql(NEW_RELEASES_QUERY, { endCursor: data.endCursor, count: maxReleaseCount === 0 ? RELEASE_MAX_PAGINATION_COUNT : maxReleaseCount });
-                core.debug(rateLimitA);
+                let minPreviousReleaseIdx = undefined;
 
-                if (releases.nodes.length === 0) {
-                  core.notice('No new releases to process');
-                  break;
+                const latestReleaseVersion = versions.at(-1)?.major
+                if (latestReleaseVersion != null) {
+                    const previousMinReleaseMajorVersion = latestReleaseVersion - PREVIOUS_RELEASE_COUNT;
+                    // ? Do we process the nightlies for the min version too?
+                    let _minPreviousReleaseIdx = versions.findIndex(({ version }) => version === previousMinReleaseMajorVersion + ".0.0");
+                    if (_minPreviousReleaseIdx !== -1) {
+                        minPreviousReleaseIdx = _minPreviousReleaseIdx;
+                    }
                 }
 
-                for (const { name: tagName } of releases.nodes) {
-                  const parsedVersion = semver.parse(tagName);
-
-                  if (parsedVersion === null) {
-                    core.error(`Could not parse version from ${tagName} - skipping`);
-                    continue;
-                  } else if (parsedVersion.major < MIN_MAJOR) {
-                    core.debug(`Skipping release ${tagName} as it's before major ${MIN_MAJOR}`);
-                    continue;
-                  }
-
-                  let idx = versions.findIndex(({ version }) => `v${version}` === tagName);
-                  if (idx === -1) {
-                    core.warning(`Could not find release ${tagName} - skipping`);
-                    continue;
-                  } else if (idx === 0) {
-                    core.error(`No previous release for ${tagName} - skipping`);
-                    continue;
-                  }
-                  let previousRelease = versions[--idx];
-
-                  let endCursor = undefined;
-                  while (true) {
-                    const { rateLimit: rateLimitB, repository: { release } } = await github.graphql(RELEASE_PRS_QUERY, { endCursor, releaseHeadRef: `tags/${tagName}`, previousRelease: `refs/tags/v${previousRelease}` });
-                    core.debug(rateLimitB);
-
-                    if (release === null) {
-                      // There are occasionally missing releases which made it into index.json, so
-                      // move on to the next previous release until we're back to a valid release
-                      core.warning(`${previousRelease} is a missing release - skipping`);
-                      previousRelease = versions[--idx];
-                      continue;
-                    }
-
-                    const { compare: { commits } } = release;
-
-                    for (const commit of commits.nodes) {
-                      if (commit.associatedPullRequests.pageInfo.hasNextPage) {
-                        core.error(`Commit (${commit.url}) had more than expected max associated PRs - skipping`);
-                        continue;
-                      }
-                      const prs = commit.associatedPullRequests.nodes.filter(node => node.state === 'MERGED');
-                      if (prs.length !== 1) {
-                        if (!['electron-bot', 'sudowoodo-release-bot[bot]'].includes(commit.author?.user?.login)) {
-                          core.warning(`Could not determine PR associated with ${commit.url} - skipping`);
-                        } else {
-                          core.debug(`${commit.author?.user?.login} commit, ${commit.url} - skipping`);
-                        }
-                        continue;
-                      }
-                      const pr = prs[0];
-                      if (pr.labels.pageInfo.hasNextPage) {
-                        core.error(`PR #${pr.number} had more than expected max labels - skipping`);
-                        continue;
-                      }
-
-                      //
-                      // We finally have a valid PR to process
-                      //
-
-                      // If it's a backport, include the version number in the root PR's backport list
-                      const backportPattern = getBackportPattern();
-                      const match = backportPattern.exec(pr.bodyText);
-                      if (match) {
-                        const rootPr = match[1] ? parseInt(match[1], 10) : parseInt(match[2], 10);
-
-                        data.data[rootPr] = data.data[rootPr] ?? { release: null, backports: [] };
-                        if (!data.data[rootPr].backports.includes(tagName)) {
-                          data.data[rootPr].backports.push(tagName);
-                        }
-                      } else {
-                        data.data[pr.number] = data.data[pr.number] ?? { release: null, backports: [] };
-                        if (data.data[pr.number].release !== null && data.data[pr.number].release !== tagName) {
-                          core.error(`PR #${pr.number} already has a different release version than expected (found ${data.data[pr.number].release} but expected ${tagName})`);
-                          continue;
-                        }
-                        data.data[pr.number].release = tagName;
-                      }
-                    }
-
-                    if (!commits.pageInfo.hasNextPage) {
-                      break;
+                if (minPreviousReleaseIdx == undefined) {
+                    // Maybe don't bother since anything below MIN_MAJOR will get skipped anyway?
+                    core.warning("Could not find minimum release, processing all releases after MIN_MAJOR instead")
+                    let minMajorIdx = versions.findIndex(({ version }) => version === MIN_MAJOR + ".0.0");
+                    if (minMajorIdx !== -1) {
+                        minPreviousReleaseIdx = minMajorIdx;
                     } else {
-                      endCursor = commits.pageInfo.endCursor;
+                        core.warning("Could not find MIN_MAJOR in all releases, processing all releases instead");
+                        minPreviousReleaseIdx = 0;
                     }
-                  }
                 }
 
-                // Only update this after all releases have been processed,
-                // and make sure it's not null which would happen if there
-                // were no new releases to process during the run
-                if (releases.pageInfo.endCursor !== null) {
-                  data.endCursor = releases.pageInfo.endCursor;
-                }
+                const allReleases = versions.slice(minPreviousReleaseIdx);
 
-                if (releases.pageInfo.hasNextPage && maxReleaseCount === 0) {
-                  continue;
-                } else {
-                  break;
+                while (true) {
+                    const lastProcessedReleaseIdx = data.lastProcessedRelease !== undefined ? allReleases.findIndex(({ version }) => version === data.lastProcessedRelease) : null
+                    if (lastProcessedReleaseIdx === -1) {
+                        core.error("Could not find the last processed release in all releases");
+                        break;
+                    }
+                    const releaseCount = maxReleaseCount === 0 ? RELEASE_MAX_PAGINATION_COUNT : maxReleaseCount;
+                    // Exclude lastProcessedRelease
+                    const releases = allReleases.slice((lastProcessedReleaseIdx ?? -1) + 1, (lastProcessedReleaseIdx ?? -1) + 1 + releaseCount);
+
+                    if (releases.length === 0) {
+                        core.notice('No new releases to process');
+                        break;
+                    }
+
+                    for (const { version: _tagName } of releases) {
+                        const tagName = 'v' + _tagName;
+                        const parsedVersion = semver.parse(tagName);
+
+                        if (parsedVersion === null) {
+                            core.error(`Could not parse version from ${tagName} - skipping`);
+                            continue;
+                        } else if (parsedVersion.major < MIN_MAJOR) {
+                            core.debug(`Skipping release ${tagName} as it's before major ${MIN_MAJOR}`);
+                            continue;
+                        }
+
+                        let idx = versions.findIndex(({ version }) => `v${version}` === tagName);
+                        if (idx === -1) {
+                            core.warning(`Could not find release ${tagName} - skipping`);
+                            continue;
+                        } else if (idx === 0) {
+                            core.error(`No previous release for ${tagName} - skipping`);
+                            continue;
+                        }
+                        let previousRelease = versions[--idx];
+
+                        let endCursor = undefined;
+                        while (true) {
+                            const { rateLimit: rateLimitB, repository: { release } } = await github.graphql(RELEASE_PRS_QUERY, { endCursor, releaseHeadRef: `tags/${tagName}`, previousRelease: `refs/tags/v${previousRelease}` });
+                            core.debug(rateLimitB);
+
+                            if (release === null) {
+                                // There are occasionally missing releases which made it into index.json, so
+                                // move on to the next previous release until we're back to a valid release
+                                core.warning(`${previousRelease} is a missing release - skipping`);
+                                previousRelease = versions[--idx];
+                                continue;
+                            }
+
+                            const { compare: { commits } } = release;
+
+                            for (const commit of commits.nodes) {
+                                if (commit.associatedPullRequests.pageInfo.hasNextPage) {
+                                    core.error(`Commit (${commit.url}) had more than expected max associated PRs - skipping`);
+                                    continue;
+                                }
+                                const prs = commit.associatedPullRequests.nodes.filter(node => node.state === 'MERGED');
+                                if (prs.length !== 1) {
+                                    if (!['electron-bot', 'sudowoodo-release-bot[bot]'].includes(commit.author?.user?.login)) {
+                                        core.warning(`Could not determine PR associated with ${commit.url} - skipping`);
+                                    } else {
+                                        core.debug(`${commit.author?.user?.login} commit, ${commit.url} - skipping`);
+                                    }
+                                    continue;
+                                }
+                                const pr = prs[0];
+                                if (pr.labels.pageInfo.hasNextPage) {
+                                    core.error(`PR #${pr.number} had more than expected max labels - skipping`);
+                                    continue;
+                                }
+
+                                //
+                                // We finally have a valid PR to process
+                                //
+
+                                // If it's a backport, include the version number in the root PR's backport list
+                                const backportPattern = getBackportPattern();
+                                const match = backportPattern.exec(pr.bodyText);
+                                if (match) {
+                                    const rootPr = match[1] ? parseInt(match[1], 10) : parseInt(match[2], 10);
+
+                                    data.data[rootPr] = data.data[rootPr] ?? { release: null, backports: [] };
+                                    if (!data.data[rootPr].backports.includes(tagName)) {
+                                        data.data[rootPr].backports.push(tagName);
+                                    }
+                                } else {
+                                    data.data[pr.number] = data.data[pr.number] ?? { release: null, backports: [] };
+                                    if (data.data[pr.number].release !== null && data.data[pr.number].release !== tagName) {
+                                        core.error(`PR #${pr.number} already has a different release version than expected (found ${data.data[pr.number].release} but expected ${tagName})`);
+                                        continue;
+                                    }
+                                    data.data[pr.number].release = tagName;
+                                }
+                            }
+
+                            if (!commits.pageInfo.hasNextPage) {
+                                break;
+                            } else {
+                                endCursor = commits.pageInfo.endCursor;
+                            }
+                        }
+                    }
+
+                    // Only update this after all releases have been processed,
+                    // and make sure it's not null which would happen if there
+                    // were no new releases to process during the run
+                    const lastReleaseVersion = releases.at(-1)?.version;
+                    if (lastReleaseVersion !== undefined) {
+                        // @ts-ignore
+                        data.lastProcessedRelease = lastReleaseVersion;
+                    }
+
+                    if (((lastProcessedReleaseIdx ?? -1) + 1 + releaseCount) < allReleases.length && maxReleaseCount === 0) {
+                        continue;
+                    } else {
+                        break;
+                    }
                 }
-              }
             } catch (error) {
-              if (error instanceof Error && error.stack) core.debug(error.stack);
-              core.setFailed(`Error while processing new releases: ${error}`);
+                if (error instanceof Error && error.stack) core.debug(error.stack);
+                core.setFailed(`Error while processing new releases: ${error}`);
             }
 
             // Write to file to upload as artifact
@@ -257,5 +264,5 @@ jobs:
         uses: actions/upload-artifact@0b2256b8c012f0828dc542b3febcab082c67f72b # v4.3.4
         if: ${{ !cancelled() }}
         with:
-          name: resolved-pr-versions
-          path: data.json
+          name: resolved-pr-versions-test # TODO: Change to resolved-pr-versions
+          path: data-test.json # TODO: Change to data.json
