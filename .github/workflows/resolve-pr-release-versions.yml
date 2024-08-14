@@ -94,7 +94,7 @@ jobs:
               return;
             }
 
-            const filename = 'data-test.json';
+            const filename = 'data-test.json'; // TODO: Change to data.json
             let data = { lastProcessedRelease: undefined, data: {} };
 
             try {
