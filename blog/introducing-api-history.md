@@ -21,9 +21,9 @@ Electron documentation and its functions, classes, etc. in a similar fashion to 
 use of a simple but powerful YAML schema in the API documentation Markdown files
 and displaying it nicely on the Electron documentation website.
 
-### Details
+## Details
 
-#### API history documentation system / YAML schema
+### API history documentation system / YAML schema
 
 The API history for a function/class/etc. is now placed directly after the
 Markdown header for that item in the form of a YAML code block encapsulated by
@@ -89,7 +89,7 @@ One large change is the removal of version numbers:
 We also didn't include removals in the API History, since when an API is removed
 from Electron, it is also removed from the documentation.
 
-#### JavaScript details
+### JavaScript details
 
 I originally planned to create a new `@electron/docs-api-history-tools`
 NPM package that would contain scripts for extracting, validating/linting and converting
@@ -130,7 +130,7 @@ relevant to them:
   - -> `electron/website` (`transformers/api-history.ts`)
   - -> `electron/website` (`ApiHistoryTable.tsx`)
 
-#### UI and styling for Electron documentation website
+### UI and styling for Electron documentation website
 
 I originally proposed a simple table to display the API History data:
 
@@ -147,13 +147,13 @@ of [SemVer](https://semver.org/) ranges, which were chosen to better communicate
 which versions a feature is present in (thanks Samuel Attard
 [(@MarshallOfSound)](https://github.com/MarshallOfSound) for the suggestion!).
 
-#### Usage/style Guide
+### Usage/style Guide
 
 I added a usage/style guide dedicated to writing API history documentation for
 new features. I described proper usages of the YAML schema in detail, provided
 typical/useful examples, etc.
 
-#### Migration Guide
+### Migration Guide
 
 Since existing API's have to be migrated to the new documentation system, I created
 a migration guide. It features the typical steps of what a developer has
