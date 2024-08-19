@@ -151,7 +151,8 @@ which versions a feature is present in (thanks Samuel Attard
 
 I added a usage/style guide dedicated to writing API history documentation for
 new features. I described proper usages of the YAML schema in detail, provided
-typical/useful examples, etc.
+typical/useful examples, etc. You can find it
+[here](https://github.com/electron/electron/blob/main/docs/styleguide.md#api-history).
 
 ### Migration Guide
 
