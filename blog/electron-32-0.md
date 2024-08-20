@@ -20,8 +20,8 @@ If you have any feedback, please share it with us on [Twitter](https://twitter.c
 
 - Added new API version history in our documentation, a feature created by @piotrpdev as part of Google Summer of Code. [#42982](https://github.com/electron/electron/pull/42982)
 - Removed nonstandard File.path extension from the Web File API. [#42053](https://github.com/electron/electron/pull/42053)
-- Aligned failure pathway in File System Access API with upstream when attempting to open a file or directory in a blocked path. [#42993](https://github.com/electron/electron/pull/42993)
-- Added the following existing navigation related APIs to `webcontents.navigationHistory`: `canGoBack`, `goBack`, `canGoForward`, `goForward`, `canGoToOffset`, `goToOffset`, `clear`. The previous navigation APIs are not deprecated. [#41752](https://github.com/electron/electron/pull/41752)
+- Aligned failure pathway in Web [File System API](https://developer.mozilla.org/en-US/docs/Web/API/File_System_API) with upstream when attempting to open a file or directory in a blocked path. [#42993](https://github.com/electron/electron/pull/42993)
+- Added the following existing navigation-related APIs to `webcontents.navigationHistory`: `canGoBack`, `goBack`, `canGoForward`, `goForward`, `canGoToOffset`, `goToOffset`, `clear`. The previous navigation APIs are not deprecated. [#41752](https://github.com/electron/electron/pull/41752)
 
 ### Stack Changes
 
@@ -36,10 +36,10 @@ Electron 32 upgrades Chromium from `126.0.6478.36` to `128.0.6613.36`, Node from
 
 ### New Features
 
-- Added support for responding to auth requests initiated from utility process. [#43317](https://github.com/electron/electron/pull/43317)
-- Added `cumulativeCPUUsage` to `AppMetrics` and `CPUUsage`. [#41819](https://github.com/electron/electron/pull/41819)
-- Added the following existing navigation related APIs to `webcontents.navigationHistory`: `canGoBack`, `goBack`, `canGoForward`, `goForward`, `canGoToOffset`, `goToOffset`, `clear`. [#41752](https://github.com/electron/electron/pull/41752)
-- Extended `WebContentsView` to accept pre-existing `webContents` object. [#42086](https://github.com/electron/electron/pull/42086)
+- Added support for responding to auth requests initiated from the utility process via the `app` module's [`'login'`](https://www.electronjs.org/docs/latest/api/app) event. [#43317](https://github.com/electron/electron/pull/43317)
+- Added the `cumulativeCPUUsage` property to the `CPUUsage` structure, which returns the total seconds of CPU time used since process startup. [#41819](https://github.com/electron/electron/pull/41819)
+- Added the following existing navigation related APIs to `webContents.navigationHistory`: `canGoBack`, `goBack`, `canGoForward`, `goForward`, `canGoToOffset`, `goToOffset`, `clear`. [#41752](https://github.com/electron/electron/pull/41752)
+- Extended `WebContentsView` to accept pre-existing `webContents` objects. [#42086](https://github.com/electron/electron/pull/42086)
 - Added a new property `prefersReducedTransparency` to `nativeTheme`, which indicates whether the user has chosen to reduce OS-level transparency via system accessibility settings. [#43137](https://github.com/electron/electron/pull/43137)
 - Aligned failure pathway in File System Access API with upstream when attempting to open a file or directory in a blocked path. [#42993](https://github.com/electron/electron/pull/42993)
 - Enabled the Windows Control Overlay API on Linux. [#42681](https://github.com/electron/electron/pull/42681)
@@ -49,7 +49,7 @@ Electron 32 upgrades Chromium from `126.0.6478.36` to `128.0.6613.36`, Node from
 
 #### Removed: `File.path`
 
-The nonstandard `path` property of the Web `File` object was added in an early version of Electron as a convenience method for working with native files when doing everything in the renderer was more common. However, it represents a deviation from the standard and poses a minor security risk as well, so beginning in Electron 32.0 it has been removed in favor of the [`webUtils.getPathForFile`](https://github.com/electron/electron/tree/main/docs/api/web-utils.md#webutilsgetpathforfilefile) method.
+The nonstandard `path` property of the Web [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File) object was added in an early version of Electron as a convenience method for working with native files when doing everything in the renderer was more common. However, it represents a deviation from the standard and poses a minor security risk as well, so beginning in Electron 32.0 it has been removed in favor of the [`webUtils.getPathForFile`](https://github.com/electron/electron/tree/main/docs/api/web-utils.md#webutilsgetpathforfilefile) method.
 
 ```js
 // Before (renderer)
@@ -77,7 +77,7 @@ contextBridge.exposeInMainWorld('electron', {
 
 #### Deprecated: `clearHistory`, `canGoBack`, `goBack`, `canGoForward`, `goForward`, `goToIndex`, `canGoToOffset`, `goToOffset` on `WebContents`
 
-The navigation-related APIs are now deprecated. These APIs have been moved to the `navigationHistory` property of `WebContents` to provide a more structured and intuitive interface for managing navigation history.
+Navigation-related APIs on `WebContents` instances are now deprecated. These APIs have been moved to the `navigationHistory` property of `WebContents` to provide a more structured and intuitive interface for managing navigation history.
 
 ```js
 // Deprecated
