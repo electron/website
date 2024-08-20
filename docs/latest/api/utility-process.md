@@ -43,6 +43,8 @@ Process: [Main](latest/glossary.md#main-process)<br />
     `com.apple.security.cs.allow-unsigned-executable-memory` entitlements. This will allow the utility process
     to load unsigned libraries. Unless you specifically need this capability, it is best to leave this disabled.
     Default is `false`.
+  * `respondToAuthRequestsFromMainProcess` boolean (optional) - With this flag, all HTTP 401 and 407 network
+    requests created via the [net module](latest/api/net.md) will allow responding to them via the [`app#login`](latest/api/app.md#event-login) event in the main process instead of the default [`login`](latest/api/client-request.md#event-login) event on the [`ClientRequest`](latest/api/client-request.md) object.
 
 Returns [`UtilityProcess`](latest/api/utility-process.md#class-utilityprocess)
 
