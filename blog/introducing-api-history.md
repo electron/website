@@ -20,6 +20,7 @@ Electron documentation and its functions, classes, etc. in a similar fashion to 
 use of a simple but powerful YAML schema in the API documentation Markdown files
 and displaying it nicely on the Electron documentation website.
 
+<!--truncate-->
 ## Details
 
 ### API history documentation system / YAML schema
@@ -75,7 +76,7 @@ One large change is the removal of version numbers:
 > the proposal, which came up during discussion when we were reviewing proposals.
 > [...]
 >
-> [we] decided that the approach with the least drawbacks would be to only
+> [we] decided that the approach with the [fewest] drawbacks would be to only
 > use PR URLs (the root PRs to main) instead of hardcoded version strings as in
 > the proposal.
 >
@@ -88,10 +89,10 @@ One large change is the removal of version numbers:
 We also didn't include removals in the API History, since when an API is removed
 from Electron, it is also removed from the documentation.
 
-### JavaScript details
+### JavaScript implementation
 
 I originally planned to create a new `@electron/docs-api-history-tools`
-NPM package that would contain scripts for extracting, validating/linting and converting
+npm package that would contain scripts for extracting, validating/linting and converting
 the API history in the documentation files.
 
 About a week before the coding period began, and after some discussion with my
@@ -120,14 +121,14 @@ Instead, we divided those various tools across the Electron repos that were most
 relevant to them:
 
 - `yaml-api-history-schema.json`
-  - -> `electron/electron` (`api-history.schema.json`)
+  - -> `electron/electron` ([`api-history.schema.json`](https://github.com/electron/electron/blob/main/docs/api-history.schema.json))
 - `lint-yaml-api-history.ts`
-  - -> `electron/lint-roller` (`lint-markdown-api-history.ts`)
+  - -> `electron/lint-roller` ([`lint-markdown-api-history.ts`](https://github.com/electron/lint-roller/blob/3d87b7ba8f99868a28648297f31a1587945045ab/bin/lint-markdown-api-history.ts#L4))
 - `extract-yaml-api-history.ts`
-  - -> `electron/website` (`preprocess-api-history.ts`)
+  - -> `electron/website` ([`preprocess-api-history.ts`](https://github.com/electron/website/blob/f7e9446dd7d04b3369e9454f7c95f638fa061f1e/scripts/tasks/preprocess-api-history.ts#L4))
 - `yaml-api-history-to-markdown.ts`
-  - -> `electron/website` (`transformers/api-history.ts`)
-  - -> `electron/website` (`ApiHistoryTable.tsx`)
+  - -> `electron/website` ([`transformers/api-history.ts`](https://github.com/electron/website/blob/f7e9446dd7d04b3369e9454f7c95f638fa061f1e/src/transformers/api-history.ts))
+  - -> `electron/website` ([`ApiHistoryTable.tsx`](https://github.com/electron/website/blob/f7e9446dd7d04b3369e9454f7c95f638fa061f1e/src/components/ApiHistoryTable.tsx))
 
 ### UI and styling for Electron documentation website
 
@@ -146,16 +147,16 @@ of [SemVer](https://semver.org/) ranges, which were chosen to better communicate
 which versions a feature is present in (thanks Samuel Attard
 [(@MarshallOfSound)](https://github.com/MarshallOfSound) for the suggestion!).
 
-### Usage/style Guide
+### Usage/style guide
 
 I added a usage/style guide dedicated to writing API history documentation for
 new features. I described proper usages of the YAML schema in detail, provided
 typical/useful examples, etc. You can find it
 [here](https://github.com/electron/electron/blob/main/docs/styleguide.md#api-history).
 
-### Migration Guide
+### Migration guide
 
-Since existing API's have to be migrated to the new documentation system, I created
+Since existing APIs have to be migrated to the new documentation system, I created
 a migration guide. It features the typical steps of what a developer has
 to do when migrating old APIs: looking through breaking changes, browsing through
 the past releases, maybe looking through old commits, etc.
@@ -166,7 +167,7 @@ Sadly, I couldn't think of a way to automate this effectively. This would probab
 be a great task for an AI/ML engineer; however, I don't possess those skills and
 was too afraid of accidentally introducing [hallucinations](<https://en.wikipedia.org/wiki/Hallucination_(artificial_intelligence)>)
 into the API history. Even if automated, the information would still probably have
-to be verified by a human in the end :/. This task will probably have to be done
+to be verified by a human in the end 😕. This task will probably have to be done
 manually, on a file-by-file basis,
 [just like it was done for the Node.js documentation](https://github.com/nodejs/node/issues/6578).
 
@@ -177,11 +178,10 @@ manually, on a file-by-file basis,
   - A comprehensive YAML schema for documenting API history which includes support
     for:
     - [x] Additions
-    - [x] Depreciations
+    - [x] Deprecations
     - [x] Changes
     - [x] Links to relevant pull requests
     - [x] Backports
-    - [x] etc.
   - [x] Proposed in: [electron/rfc#6][rfc]
   - [x] Implemented/Used in: [electron/electron#42982][electron]
   - [x] Used in: [electron/website#594][website]
@@ -216,7 +216,6 @@ manually, on a file-by-file basis,
     documentation website.
     - [x] Uses styling that follows the rest of the website's design.
     - [x] Responsive, accessible, and generally well written HTML, CSS, and JS.
-    - [x] etc.
   - [x] Implemented/Used in: [electron/website#594][website]
 
 - `styleguide.md`
@@ -225,7 +224,6 @@ manually, on a file-by-file basis,
     - [x] Easy to understand
     - [x] Well written
     - [x] Includes examples
-    - [x] etc.
   - [x] Implemented/Used in: [electron/electron#42982][electron]
 
 - `api-history-migration-guide.md`
@@ -233,7 +231,6 @@ manually, on a file-by-file basis,
     - [x] Easy to understand
     - [x] Well written
     - [x] Includes examples
-    - [x] etc.
   - [x] Implemented/Used in: [electron/electron#42982][electron]
 
 ## Conclusion
