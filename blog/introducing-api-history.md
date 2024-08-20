@@ -6,16 +6,15 @@ slug: introducing-api-history
 tags: [community]
 ---
 
-New breaking changes in Electron APIs will now be displayed under those APIs in the docs.
+Historical changes to Electron APIs will now be detailed in the docs.
 
 ---
 
-## What is API History?
 
 Hi 👋, I'm Peter, the 2024 [Google Summer of Code (GSoC)](https://summerofcode.withgoogle.com/)
 contributor to Electron.
 
-Over the course of the GSoC program I implemented an API history feature for the
+Over the course of the GSoC program, I implemented an API history feature for the
 Electron documentation and its functions, classes, etc. in a similar fashion to the
 [Node.js documentation](https://nodejs.org/en/docs): by allowing the
 use of a simple but powerful YAML schema in the API documentation Markdown files
