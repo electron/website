@@ -21,7 +21,7 @@ If you have any feedback, please share it with us on [Twitter](https://twitter.c
 - Added new API version history in our documentation, a feature created by @piotrpdev as part of Google Summer of Code. [#42982](https://github.com/electron/electron/pull/42982)
 - Removed nonstandard File.path extension from the Web File API. [#42053](https://github.com/electron/electron/pull/42053)
 - Aligned failure pathway in Web [File System API](https://developer.mozilla.org/en-US/docs/Web/API/File_System_API) with upstream when attempting to open a file or directory in a blocked path. [#42993](https://github.com/electron/electron/pull/42993)
-- Added the following existing navigation-related APIs to `webcontents.navigationHistory`: `canGoBack`, `goBack`, `canGoForward`, `goForward`, `canGoToOffset`, `goToOffset`, `clear`. The previous navigation APIs are not deprecated. [#41752](https://github.com/electron/electron/pull/41752)
+- Added the following existing navigation-related APIs to `webcontents.navigationHistory`: `canGoBack`, `goBack`, `canGoForward`, `goForward`, `canGoToOffset`, `goToOffset`, `clear`. The previous navigation APIs are now deprecated. [#41752](https://github.com/electron/electron/pull/41752)
 
 ### Stack Changes
 
@@ -43,7 +43,7 @@ Electron 32 upgrades Chromium from `126.0.6478.36` to `128.0.6613.36`, Node from
 - Added a new property `prefersReducedTransparency` to `nativeTheme`, which indicates whether the user has chosen to reduce OS-level transparency via system accessibility settings. [#43137](https://github.com/electron/electron/pull/43137)
 - Aligned failure pathway in File System Access API with upstream when attempting to open a file or directory in a blocked path. [#42993](https://github.com/electron/electron/pull/42993)
 - Enabled the Windows Control Overlay API on Linux. [#42681](https://github.com/electron/electron/pull/42681)
-- Enabled `zstd` compression in net http requests. [#43300](https://github.com/electron/electron/pull/43300)
+- Enabled `zstd` compression in network requests. [#43300](https://github.com/electron/electron/pull/43300)
 
 ### Breaking Changes
 
