@@ -26,7 +26,7 @@ and displaying it nicely on the Electron documentation website.
 
 In the Markdown API documentation, the history for a function/class/etc. is now placed directly after the
 header for that item in the form of a YAML code block encapsulated by
-a HTML comment.
+an HTML comment.
 
 ````yaml
 #### `win.setTrafficLightPosition(position)` _macOS_
