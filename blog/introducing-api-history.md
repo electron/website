@@ -1,7 +1,7 @@
 ---
 title: Introducing API History (GSoC 2024)
 date: 2024-08-20T00:00:00.000Z
-authors: piotrpdev # Maybe don't use global author?
+authors: piotrpdev
 slug: introducing-api-history
 tags: [community]
 ---
