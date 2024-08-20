@@ -189,6 +189,7 @@ module.exports = {
             'latest/development/patches',
             'latest/development/source-code-directory-structure',
             'latest/development/testing',
+            'latest/development/api-history-migration-guide',
           ],
         },
         {
