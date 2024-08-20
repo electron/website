@@ -147,6 +147,11 @@ of [SemVer](https://semver.org/) ranges, which were chosen to better communicate
 which versions a feature is present in (thanks Samuel Attard
 [(@MarshallOfSound)](https://github.com/MarshallOfSound) for the suggestion!).
 
+This is important because changes are frequently backported across supported
+Electron release lines e.g. a fix may make it into Electron v32.0.0, v31.1.0 and v30.2.0.
+This means it is not present in v31.0.0 which a user might mistakenly deduce based
+on the fact it is present in a v30.x.x release.
+
 ### Usage/style guide
 
 I added a usage/style guide dedicated to writing API history documentation for
