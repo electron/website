@@ -10,7 +10,6 @@ Historical changes to Electron APIs will now be detailed in the docs.
 
 ---
 
-
 Hi 👋, I'm Peter, the 2024 [Google Summer of Code (GSoC)](https://summerofcode.withgoogle.com/)
 contributor to Electron.
 
@@ -21,6 +20,7 @@ use of a simple but powerful YAML schema in the API documentation Markdown files
 and displaying it nicely on the Electron documentation website.
 
 <!--truncate-->
+
 ## Details
 
 ### API history documentation system / YAML schema
@@ -157,7 +157,7 @@ on the fact it is present in a v30.x.x release.
 I added a usage/style guide dedicated to writing API history documentation for
 new features. I described proper usages of the YAML schema in detail, provided
 typical/useful examples, etc. You can find it
-[here](https://github.com/electron/electron/blob/main/docs/styleguide.md#api-history).
+[here](../docs/latest/styleguide.md#api-history).
 
 ### Migration guide
 
