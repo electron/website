@@ -24,8 +24,8 @@ and displaying it nicely on the Electron documentation website.
 
 ### API history documentation system / YAML schema
 
-The API history for a function/class/etc. is now placed directly after the
-Markdown header for that item in the form of a YAML code block encapsulated by
+In the Markdown API documentation, the history for a function/class/etc. is now placed directly after the
+header for that item in the form of a YAML code block encapsulated by
 a HTML comment.
 
 ````yaml
