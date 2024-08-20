@@ -183,6 +183,7 @@ module.exports = {
           type: 'category',
           label: 'Development Guides',
           items: [
+            'latest/development/api-history-migration-guide',
             'latest/development/clang-tidy',
             'latest/development/coding-style',
             'latest/development/creating-api',
@@ -273,11 +274,7 @@ module.exports = {
     {
       type: 'category',
       label: 'Custom DOM Elements',
-      items: [
-        'latest/api/file-object',
-        'latest/api/webview-tag',
-        'latest/api/window-open',
-      ],
+      items: ['latest/api/webview-tag', 'latest/api/window-open'],
     },
     {
       type: 'category',

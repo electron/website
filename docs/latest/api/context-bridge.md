@@ -1,11 +1,18 @@
 ---
 title: "contextBridge"
-description: "Create a safe, bi-directional, synchronous bridge across isolated contexts"
+description: "YAML history changes: - pr-url: https://github.com/electron/electron/pull/40330 description: \"ipcRenderer can no longer be sent over the contextBridge\" breaking-changes-header: behavior-changed-ipcrenderer-can-no-longer-be-sent-over-the-contextbridge"
 slug: context-bridge
 hide_title: false
 ---
 
 # contextBridge
+
+```YAML history
+changes:
+  - pr-url: https://github.com/electron/electron/pull/40330
+    description: "`ipcRenderer` can no longer be sent over the `contextBridge`"
+    breaking-changes-header: behavior-changed-ipcrenderer-can-no-longer-be-sent-over-the-contextbridge
+```
 
 > Create a safe, bi-directional, synchronous bridge across isolated contexts
 
@@ -136,7 +143,7 @@ has been included below for completeness:
 | `Object` | Complex | ✅ | ✅ | Keys must be supported using only "Simple" types in this table.  Values must be supported in this table.  Prototype modifications are dropped.  Sending custom classes will copy values but not the prototype. |
 | `Array` | Complex | ✅ | ✅ | Same limitations as the `Object` type |
 | `Error` | Complex | ✅ | ✅ | Errors that are thrown are also copied, this can result in the message and stack trace of the error changing slightly due to being thrown in a different context, and any custom properties on the Error object [will be lost](https://github.com/electron/electron/issues/25596) |
-| `Promise` | Complex | ✅ | ✅ | N/A
+| `Promise` | Complex | ✅ | ✅ | N/A |
 | `Function` | Complex | ✅ | ✅ | Prototype modifications are dropped.  Sending classes or constructors will not work. |
 | [Cloneable Types](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm) | Simple | ✅ | ✅ | See the linked document on cloneable types |
 | `Element` | Complex | ✅ | ✅ | Prototype modifications are dropped.  Sending custom elements will not work. |
