@@ -17,9 +17,9 @@ See [`Menu`](latest/api/menu.md) for examples.
 
 * `options` Object
   * `click` Function (optional) - Will be called with
-    `click(menuItem, browserWindow, event)` when the menu item is clicked.
+    `click(menuItem, window, event)` when the menu item is clicked.
     * `menuItem` MenuItem
-    * `browserWindow` [BrowserWindow](latest/api/browser-window.md) | undefined - This will not be defined if no window is open.
+    * `window` [BaseWindow](latest/api/base-window.md) | undefined - This will not be defined if no window is open.
     * `event` [KeyboardEvent](latest/api/structures/keyboard-event.md)
   * `role` string (optional) - Can be `undo`, `redo`, `cut`, `copy`, `paste`, `pasteAndMatchStyle`, `delete`, `selectAll`, `reload`, `forceReload`, `toggleDevTools`, `resetZoom`, `zoomIn`, `zoomOut`, `toggleSpellChecker`, `togglefullscreen`, `window`, `minimize`, `close`, `help`, `about`, `services`, `hide`, `hideOthers`, `unhide`, `quit`, `showSubstitutions`, `toggleSmartQuotes`, `toggleSmartDashes`, `toggleTextReplacement`, `startSpeaking`, `stopSpeaking`, `zoom`, `front`, `appMenu`, `fileMenu`, `editMenu`, `viewMenu`, `shareMenu`, `recentDocuments`, `toggleTabBar`, `selectNextTab`, `selectPreviousTab`, `showAllTabs`, `mergeAllWindows`, `clearRecentDocuments`, `moveTabToNewWindow` or `windowMenu` - Define the action of the menu item, when specified the
     `click` property will be ignored. See [roles](#roles).
@@ -153,7 +153,7 @@ A `Function` that is fired when the MenuItem receives a click event.
 It can be called with `menuItem.click(event, focusedWindow, focusedWebContents)`.
 
 * `event` [KeyboardEvent](latest/api/structures/keyboard-event.md)
-* `focusedWindow` [BrowserWindow](latest/api/browser-window.md)
+* `focusedWindow` [BaseWindow](latest/api/browser-window.md)
 * `focusedWebContents` [WebContents](latest/api/web-contents.md)
 
 #### `menuItem.submenu`
