@@ -175,6 +175,10 @@ It creates a new `BaseWindow` with native properties as set by the `options`.
       title bar and a full size content window, the traffic light buttons will
       display when being hovered over in the top left of the window.
       **Note:** This option is currently experimental.
+  * `titleBarOverlay` Object | Boolean (optional) -  When using a frameless window in conjunction with `win.setWindowButtonVisibility(true)` on macOS or using a `titleBarStyle` so that the standard window controls ("traffic lights" on macOS) are visible, this property enables the Window Controls Overlay [JavaScript APIs][overlay-javascript-apis] and [CSS Environment Variables][overlay-css-env-vars]. Specifying `true` will result in an overlay with default system colors. Default is `false`.
+    * `color` String (optional) _Windows_ _Linux_ - The CSS color of the Window Controls Overlay when enabled. Default is the system color.
+    * `symbolColor` String (optional) _Windows_ - The CSS color of the symbols on the Window Controls Overlay when enabled. Default is the system color.
+    * `height` Integer (optional) - The height of the title bar and Window Controls Overlay in pixels. Default is system height.
   * `trafficLightPosition` [Point](latest/api/structures/point.md) (optional) _macOS_ -
     Set a custom position for the traffic light buttons in frameless windows.
   * `roundedCorners` boolean (optional) _macOS_ - Whether frameless window
@@ -1551,3 +1555,6 @@ On Linux, the `symbolColor` is automatically calculated to have minimum accessib
 [vibrancy-docs]: https://developer.apple.com/documentation/appkit/nsvisualeffectview?preferredLanguage=objc
 [window-levels]: https://developer.apple.com/documentation/appkit/nswindow/level
 [event-emitter]: https://nodejs.org/api/events.html#events_class_eventemitter
+
+[overlay-css-env-vars]: https://github.com/WICG/window-controls-overlay/blob/main/explainer.md#css-environment-variables
+[overlay-javascript-apis]: https://github.com/WICG/window-controls-overlay/blob/main/explainer.md#javascript-apis
