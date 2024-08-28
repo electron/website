@@ -57,7 +57,10 @@ async function transformer(tree: Parent, file: VFile) {
     }
 
     // Temporarily remove this node, toMarkdown chokes on it
-    if (tree.children[tree.children.length - 1].type === 'mdxjsEsm') {
+    if (
+      tree.children.length > 0 &&
+      tree.children[tree.children.length - 1].type === 'mdxjsEsm'
+    ) {
       exportsNode = tree.children.pop();
     }
 
