@@ -39,7 +39,7 @@ jobs:
           yarn pre-build ${{ github.event.client_payload.sha || github.event.inputs.sha }} ${{ github.event.client_payload.branch || github.event.inputs.branch }}
           git add .
       - name: Push changes
-        uses: dsanders11/github-app-commit-action@5c7daabae956f8143277417996b26a173439e1b7 # v1.4.1
+        uses: dsanders11/github-app-commit-action@43de6da2f4d927e997c0784c7a0b61bd19ad6aac # v1.5.0
         with:
           message: 'chore: update ref to docs (🤖)'
           token: ${{ steps.generate-token.outputs.token }}
