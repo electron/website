@@ -201,6 +201,7 @@ const config: Config = {
     path.resolve(__dirname, './src/plugins/releases/index.ts'),
     path.resolve(__dirname, './src/plugins/fiddle/index.ts'),
     path.resolve(__dirname, './src/plugins/governance/index.ts'),
+    path.resolve(__dirname, './src/plugins/pngquant/index.ts'),
   ],
   presets: [
     [
