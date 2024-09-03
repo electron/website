@@ -34,6 +34,12 @@
   --electron-inline-code: var(--electron-color-secondary-mid);
   --ifm-navbar-item-padding-horizontal: 8px;
 
+  --api-history-added: var(--ifm-color-success-lighter);
+  --api-history-deprecated: var(--ifm-color-danger-light);
+  // These have better contrast if desired
+  // --api-history-added: var(--ifm-color-success-light);
+  // --api-history-deprecated: var(--ifm-color-danger-dark);
+
   // docusaurus variables
   --ifm-hover-overlay: rgba(162, 236, 251, 0.2);
   --ifm-link-color: var(--electron-color-mid);
@@ -90,6 +96,8 @@
   // custom vars
   --electron-heading: var(--ifm-color-primary-lightest);
   --electron-inline-code: var(--electron-color-secondary-light);
+  --api-history-added: var(--ifm-color-success-darker);
+  --api-history-deprecated: var(--ifm-color-danger-darkest);
 }
 
 .hero {
@@ -255,4 +263,15 @@
 // fix https://github.com/electron/website/issues/539
 .navbar__logo {
   width: 2rem;
+}
+
+// blog sidebar custom styles
+.plugin-blog [class*='sidebar_'] {
+  padding: 0.5rem;
+  & [class*='yearGroupHeading_'] {
+    margin: 0.75rem 0 0.5rem;
+    color: var(--subtle);
+    border-bottom: 0.01rem solid var(--ifm-table-border-color);
+    padding-bottom: 0.2rem;
+  }
 }

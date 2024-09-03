@@ -1,11 +1,17 @@
 ---
 title: "BrowserView"
-description: "**Note**  The BrowserView class is deprecated, and replaced by the new  WebContentsView class."
+description: "YAML history deprecated: - pr-url: https://github.com/electron/electron/pull/35658 breaking-changes-header: deprecated-browserview"
 slug: browser-view
 hide_title: false
 ---
 
 # BrowserView
+
+```YAML history
+deprecated:
+  - pr-url: https://github.com/electron/electron/pull/35658
+    breaking-changes-header: deprecated-browserview
+```
 
 > **Note**
 > The `BrowserView` class is deprecated, and replaced by the new
@@ -17,6 +23,12 @@ relative to its owning window. It is meant to be an alternative to the
 `webview` tag.
 
 ## Class: BrowserView
+
+```YAML history
+deprecated:
+  - pr-url: https://github.com/electron/electron/pull/35658
+    breaking-changes-header: deprecated-browserview
+```
 
 > Create and control views.
 
@@ -46,6 +58,12 @@ app.whenReady().then(() => {
 ```
 
 ### `new BrowserView([options])` _Experimental_ _Deprecated_
+
+```YAML history
+deprecated:
+  - pr-url: https://github.com/electron/electron/pull/35658
+    breaking-changes-header: deprecated-browserview
+```
 
 * `options` Object (optional)
   * `webPreferences` [WebPreferences](latest/api/structures/web-preferences.md) (optional) - Settings of web page's features.
@@ -200,6 +218,12 @@ Objects created with `new BrowserView` have the following properties:
 
 #### `view.webContents` _Experimental_ _Deprecated_
 
+```YAML history
+deprecated:
+  - pr-url: https://github.com/electron/electron/pull/35658
+    breaking-changes-header: deprecated-browserview
+```
+
 A [`WebContents`](latest/api/web-contents.md) object owned by this view.
 
 ### Instance Methods
@@ -207,6 +231,16 @@ A [`WebContents`](latest/api/web-contents.md) object owned by this view.
 Objects created with `new BrowserView` have the following instance methods:
 
 #### `view.setAutoResize(options)` _Experimental_ _Deprecated_
+
+```YAML history
+changes:
+  - pr-url: https://github.com/electron/electron/pull/35658
+    description: "Standardized auto-resizing behavior across all platforms"
+    breaking-changes-header: behavior-changed-browserviewsetautoresize-behavior-on-macos
+deprecated:
+  - pr-url: https://github.com/electron/electron/pull/35658
+    breaking-changes-header: deprecated-browserview
+```
 
 * `options` Object
   * `width` boolean (optional) - If `true`, the view's width will grow and shrink together
@@ -220,17 +254,35 @@ Objects created with `new BrowserView` have the following instance methods:
 
 #### `view.setBounds(bounds)` _Experimental_ _Deprecated_
 
+```YAML history
+deprecated:
+  - pr-url: https://github.com/electron/electron/pull/35658
+    breaking-changes-header: deprecated-browserview
+```
+
 * `bounds` [Rectangle](latest/api/structures/rectangle.md)
 
 Resizes and moves the view to the supplied bounds relative to the window.
 
 #### `view.getBounds()` _Experimental_ _Deprecated_
 
+```YAML history
+deprecated:
+  - pr-url: https://github.com/electron/electron/pull/35658
+    breaking-changes-header: deprecated-browserview
+```
+
 Returns [`Rectangle`](latest/api/structures/rectangle.md)
 
 The `bounds` of this BrowserView instance as `Object`.
 
 #### `view.setBackgroundColor(color)` _Experimental_ _Deprecated_
+
+```YAML history
+deprecated:
+  - pr-url: https://github.com/electron/electron/pull/35658
+    breaking-changes-header: deprecated-browserview
+```
 
 * `color` string - Color in Hex, RGB, ARGB, HSL, HSLA or named CSS color format. The alpha channel is
   optional for the hex type.

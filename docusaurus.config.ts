@@ -8,6 +8,7 @@ import apiOptionsClass from './src/transformers/api-options-class';
 import apiStructurePreviews from './src/transformers/api-structure-previews';
 import jsCodeBlocks from './src/transformers/js-code-blocks';
 import fiddleEmbedder from './src/transformers/fiddle-embedder';
+import apiHistory from './src/transformers/api-history';
 
 const config: Config = {
   title: 'Electron',
@@ -155,8 +156,8 @@ const config: Config = {
               href: 'https://discordapp.com/invite/APGC3k5yaH',
             },
             {
-              label: 'Twitter',
-              href: 'https://twitter.com/electronjs',
+              label: 'X',
+              href: 'https://x.com/electronjs',
             },
             {
               html: '<a href="https://social.lfx.dev/@electronjs" target="_blank" rel="me" class="footer__link-item">Mastodon<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" style="margin-left: 0.3rem;"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a>',
@@ -225,6 +226,7 @@ const config: Config = {
             apiStructurePreviews,
             jsCodeBlocks,
             fiddleEmbedder,
+            apiHistory,
             [npm2yarn, { sync: true, converters: ['yarn'] }],
           ],
         },
@@ -234,6 +236,8 @@ const config: Config = {
           blogSidebarTitle: 'Latest posts',
           blogTitle: `Electron's blog`,
           blogDescription: `Keep up to date with what's going on with the Electron project`,
+          onInlineAuthors: 'ignore',
+          onUntruncatedBlogPosts: 'ignore',
         },
         theme: {
           customCss: [require.resolve('./src/css/custom.scss')],

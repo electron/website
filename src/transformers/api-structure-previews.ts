@@ -7,6 +7,7 @@ import type { InlineCode, Link, LinkReference, Nodes, Text } from 'mdast';
 import { gfmTableToMarkdown } from 'mdast-util-gfm-table';
 import { frontmatterToMarkdown } from 'mdast-util-frontmatter';
 import { toMarkdown } from 'mdast-util-to-markdown';
+import { mdxToMarkdown } from 'mdast-util-mdx';
 import { MdxJsxFlowElement } from 'mdast-util-mdx-jsx';
 import type { VFile } from 'vfile';
 import {
@@ -56,14 +57,21 @@ async function transformer(tree: Parent, file: VFile) {
     }
 
     // Temporarily remove this node, toMarkdown chokes on it
-    if (tree.children[tree.children.length - 1].type === 'mdxjsEsm') {
+    if (
+      tree.children.length > 0 &&
+      tree.children[tree.children.length - 1].type === 'mdxjsEsm'
+    ) {
       exportsNode = tree.children.pop();
     }
 
     // It's not ideal to go from the parsed Markdown back to text
     // just to be parsed again to be rendered, but it is what it is
     const content = toMarkdown(tree as Nodes, {
-      extensions: [gfmTableToMarkdown(), frontmatterToMarkdown(['yaml'])],
+      extensions: [
+        gfmTableToMarkdown(),
+        frontmatterToMarkdown(['yaml']),
+        mdxToMarkdown(),
+      ],
     });
 
     // Put the node back, because we need it
