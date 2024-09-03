@@ -236,8 +236,9 @@ const config: Config = {
         theme: {
           customCss: [require.resolve('./src/css/custom.scss')],
         },
-        googleAnalytics: {
+        gtag: {
           trackingID: 'UA-160365006-1',
+          anonymizeIP: true,
         },
       },
     ],
