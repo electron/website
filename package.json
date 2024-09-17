@@ -87,7 +87,7 @@
     "json5": "^2.2.2",
     "latest-version": "^5.1.0",
     "lint-staged": "^13.2.0",
-    "markdownlint-cli2": "^0.14.0",
+    "markdownlint-cli2": "^0.13.0",
     "mdast-util-from-markdown": "^2.0.1",
     "mdast-util-frontmatter": "^2.0.1",
     "mdast-util-mdx": "^3.0.0",
