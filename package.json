@@ -123,5 +123,8 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
+  },
+  "resolutions": {
+    "markdownlint-cli2/micromatch": "4.0.8"
   }
 }
