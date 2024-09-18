@@ -125,7 +125,8 @@
     }
   },
   "resolutions": {
-    "http-cache-semantics": "4.1.1"
+    "http-cache-semantics": "4.1.1",
+    "markdownlint-cli2/micromatch": "4.0.8"
   },
   "packageManager": "yarn@1.22.19"
 }
