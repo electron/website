@@ -63,6 +63,7 @@ module.exports = {
         },
         'latest/tutorial/multithreading',
         'latest/tutorial/native-file-drag-drop',
+        'latest/tutorial/navigation-history',
         'latest/tutorial/notifications',
         'latest/tutorial/offscreen-rendering',
         'latest/tutorial/online-offline-events',
