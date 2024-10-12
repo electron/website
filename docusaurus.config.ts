@@ -229,6 +229,8 @@ const config: Config = {
         },
         blog: {
           // See `node_modules/@docusaurus/plugin-content-blog/src/pluginOptionSchema.ts` for full undocumented options
+          path: 'blog',
+          beforeDefaultRemarkPlugins: [remarkGithubAdmonitionsToDirectives],
           blogSidebarCount: 'ALL',
           blogSidebarTitle: 'Latest posts',
           blogTitle: `Electron's blog`,
