@@ -2,6 +2,7 @@ import path from 'path';
 import { Config } from '@docusaurus/types';
 import npm2yarn from '@docusaurus/remark-plugin-npm2yarn';
 import { themes as prismThemes } from 'prism-react-renderer';
+import remarkGithubAdmonitionsToDirectives from 'remark-github-admonitions-to-directives';
 
 import apiLabels from './src/transformers/api-labels';
 import apiOptionsClass from './src/transformers/api-options-class';
@@ -208,6 +209,8 @@ const config: Config = {
       '@docusaurus/preset-classic',
       {
         docs: {
+          path: 'docs',
+          beforeDefaultRemarkPlugins: [remarkGithubAdmonitionsToDirectives],
           sidebarPath: require.resolve('./sidebars.js'),
           routeBasePath: '/docs/',
           editUrl: ({ docPath }) => {

@@ -2,13 +2,22 @@ module.exports = {
   docs: [
     {
       type: 'category',
-      label: 'Get Started',
+      label: 'Get Started with amr',
       items: [
         'latest/tutorial/introduction',
         'latest/tutorial/quick-start',
         'latest/tutorial/installation',
       ],
     },
+    // {
+    //   type: 'category',
+    //   label: 'Get Started',
+    //   items: [
+    //     'latest/tutorial/introduction',
+    //     'latest/tutorial/quick-start',
+    //     'latest/tutorial/installation',
+    //   ],
+    // },
     {
       type: 'category',
       label: 'Tutorial',
