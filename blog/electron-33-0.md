@@ -19,7 +19,9 @@ If you have any feedback, please share it with us on [Twitter](https://twitter.c
 
 ### Highlights
 
-FIXME
+- Added an event to help unlock cryptographic devices when a PIN is needed. [#41205](https://github.com/electron/electron/pull/41205) 
+- Extended `navigationHistory` API with 2 new functions for better history management. [#42014](https://github.com/electron/electron/pull/42014)
+- Improved native theme transparency checking. [#42862](https://github.com/electron/electron/pull/42862)
 
 ### Stack Changes
 
@@ -41,6 +43,13 @@ Electron 33 upgrades Chromium from `128.0.6613.36` to `130.0.6723.44`, Node from
 * Extended `navigationHistory` API with 2 new functions for better history management. [#42014](https://github.com/electron/electron/pull/42014)
 
 ### Breaking Changes
+
+#### Removed: macOS 10.15 support
+
+macOS 10.15 (Catalina) is no longer supported by [Chromium](https://chromium-review.googlesource.com/c/chromium/src/+/5734361).
+
+Older versions of Electron will continue to run on Catalina, but macOS 11 (Big Sur)
+or later will be required to run Electron v33.0.0 and higher.
 
 #### Behavior Changed: custom protocol URL handling on Windows
 
@@ -78,13 +87,6 @@ created with `respondToAuthRequestsFromMainProcess` option.
 #### Deprecated: `textured` option in `BrowserWindowConstructorOption.type`
 
 The `textured` option of `type` in `BrowserWindowConstructorOptions` has been deprecated with no replacement. This option relied on the [`NSWindowStyleMaskTexturedBackground`](https://developer.apple.com/documentation/appkit/nswindowstylemask/nswindowstylemasktexturedbackground) style mask on macOS, which has been deprecated with no alternative.
-
-#### Removed: macOS 10.15 support
-
-macOS 10.15 (Catalina) is no longer supported by [Chromium](https://chromium-review.googlesource.com/c/chromium/src/+/5734361).
-
-Older versions of Electron will continue to run on Catalina, but macOS 11 (Big Sur)
-or later will be required to run Electron v33.0.0 and higher.
 
 #### Deprecated: `systemPreferences.accessibilityDisplayShouldReduceTransparency`
 
