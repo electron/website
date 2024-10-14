@@ -35,14 +35,10 @@ Electron 33 upgrades Chromium from `128.0.6613.36` to `130.0.6723.44`, Node from
 
 ### New Features
 
-* Added the event `client-certificate-request-password` to app. It is dispatched when a PIN is needed to unlock a cryptographic device. [#41205](https://github.com/electron/electron/pull/41205) 
-* Added error event in utility process to support diagnostic reports on V8 fatal errors. [#43997](https://github.com/electron/electron/pull/43997) 
-* Added `View.setBorderRadius(radius)` for customizing the border radius of views—with compatibility for `WebContentsView`. [#42320](https://github.com/electron/electron/pull/42320) 
-* Added Linux support for the Windows Control Overlay API. [#41769](https://github.com/electron/electron/pull/41769) <span style="font-size:small;">(Also in [30](https://github.com/electron/electron/pull/42683), [31](https://github.com/electron/electron/pull/42682), [32](https://github.com/electron/electron/pull/42681))</span>
-* Added support for the macOS system picker in `desktopCapturer` and `setDisplayMediaRequestHandler`. [#43680](https://github.com/electron/electron/pull/43680) <span style="font-size:small;">(Also in [32](https://github.com/electron/electron/pull/43679))</span>
-* Added `DownloadItem.getCurrentBytesPerSecond()`, `DownloadItem.getPercentComplete()`, `DownloadItem.getEndTime()`. [#42805](https://github.com/electron/electron/pull/42805) <span style="font-size:small;">(Also in [30](https://github.com/electron/electron/pull/42914), [31](https://github.com/electron/electron/pull/42915), [32](https://github.com/electron/electron/pull/42913))</span>
-* Added a new property `prefersReducedTransparency` to `nativeTheme`, which indicates whether the user has chosen to reduce OS-level transparency via system accessibility settings. [#42862](https://github.com/electron/electron/pull/42862) <span style="font-size:small;">(Also in [30](https://github.com/electron/electron/pull/43138), [31](https://github.com/electron/electron/pull/43137), [32](https://github.com/electron/electron/pull/43024))</span>
-* Added support for responding to auth requests initiated from utility process via `app#login` event. [#42631](https://github.com/electron/electron/pull/42631) <span style="font-size:small;">(Also in [32](https://github.com/electron/electron/pull/43317))</span>
+* Added the event `client-certificate-request-password` to app. It is dispatched when a PIN is needed to unlock a cryptographic device. [#41205](https://github.com/electron/electron/pull/41205)
+* Added error event in utility process to support diagnostic reports on V8 fatal errors. [#43997](https://github.com/electron/electron/pull/43997)
+* Added `View.setBorderRadius(radius)` for customizing the border radius of views—with compatibility for `WebContentsView`. [#42320](https://github.com/electron/electron/pull/42320)
+* Extended `navigationHistory` API with 2 new functions for better history management. [#42014](https://github.com/electron/electron/pull/42014)
 
 ### Breaking Changes
 
