@@ -88,7 +88,7 @@ mainWindow.loadURL('other://index.html');
 #### Behavior Changed: `webContents` property on `login` on `app`
 
 The `webContents` property in the `login` event from `app` will be `null`
-when the event is triggered for requests from the [utility process](api/utility-process.md)
+when the event is triggered for requests from the [utility process](https://www.electronjs.org/docs/latest/api/utility-process)
 created with `respondToAuthRequestsFromMainProcess` option.
 
 #### Deprecated: `textured` option in `BrowserWindowConstructorOption.type`
