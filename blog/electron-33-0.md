@@ -18,7 +18,7 @@ If you have any feedback, please share it with us on [Twitter](https://twitter.c
 
 ### Highlights
 
-- Added an event to help unlock cryptographic devices when a PIN is needed. [#41205](https://github.com/electron/electron/pull/41205)
+- Added a handler, `app.setClientCertRequestPasswordHandler(handler)`, to help unlock cryptographic devices when a PIN is needed. [#41205](https://github.com/electron/electron/pull/41205)
 - Extended `navigationHistory` API with 2 new functions for better history management. [#42014](https://github.com/electron/electron/pull/42014)
 - Improved native theme transparency checking. [#42862](https://github.com/electron/electron/pull/42862)
 
@@ -36,7 +36,7 @@ Electron 33 upgrades Chromium from `128.0.6613.36` to `130.0.6723.44`, Node from
 
 ### New Features
 
-- Added the event `client-certificate-request-password` to app. It is dispatched when a PIN is needed to unlock a cryptographic device. [#41205](https://github.com/electron/electron/pull/41205)
+- Added a handler, `app.setClientCertRequestPasswordHandler(handler)`, to help unlock cryptographic devices when a PIN is needed. [#41205](https://github.com/electron/electron/pull/41205)
 - Added error event in utility process to support diagnostic reports on V8 fatal errors. [#43997](https://github.com/electron/electron/pull/43997)
 - Added `View.setBorderRadius(radius)` for customizing the border radius of views—with compatibility for `WebContentsView`. [#42320](https://github.com/electron/electron/pull/42320)
 - Extended `navigationHistory` API with 2 new functions for better history management. [#42014](https://github.com/electron/electron/pull/42014)
