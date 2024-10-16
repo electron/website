@@ -50,6 +50,10 @@ macOS 10.15 (Catalina) is no longer supported by [Chromium](https://chromium-rev
 Older versions of Electron will continue to run on Catalina, but macOS 11 (Big Sur)
 or later will be required to run Electron v33.0.0 and higher.
 
+#### Node is built with c++20
+
+Both [V8](https://chromium-review.googlesource.com/c/v8/v8/+/5587859) and [Node.js](https://github.com/nodejs/node/pull/45427) now require C++20, so native node modules should be built with `--std=c++20` rather than `--std=c++17`.
+
 #### Behavior Changed: custom protocol URL handling on Windows
 
 Due to changes made in Chromium to support [Non-Special Scheme URLs](http://bit.ly/url-non-special), custom protocol URLs that use Windows file paths will no longer work correctly with the deprecated `protocol.registerFileProtocol` and the `baseURLForDataURL` property on `BrowserWindow.loadURL`, `WebContents.loadURL`, and `<webview>.loadURL`. `protocol.handle` will also not work with these types of URLs but this is not a change since it has always worked that way.
