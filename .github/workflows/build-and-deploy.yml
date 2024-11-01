@@ -38,7 +38,7 @@ jobs:
         with:
           node-version: 20
       - name: Install dependencies
-        uses: bahmutov/npm-install@e5c7e14408aa6089501de32bd16123b41738047e # tag: v1.10.2
+        uses: bahmutov/npm-install@dc9579d3dfb9c0e7a1f56c194eefcb8e2c9f0da5 # tag: v1.10.3
       - name: Lint
         run: yarn lint
         env:
