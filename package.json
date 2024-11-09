@@ -27,7 +27,7 @@
     "lint": "npx tsc --noEmit && prettier . --check && npm run lint:eslint && npm run lint:markdown",
     "lint:fix": "prettier . --write && npm run lint:eslint --fix && npm run lint:markdown --fix",
     "pre-build": "npx tsx ./scripts/pre-build.ts",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "dependencies": {
     "@docusaurus/core": "3.6.1",
@@ -80,13 +80,13 @@
     "gray-matter": "^4.0.3",
     "gunzip-maybe": "^1.4.2",
     "hast-util-from-html": "^2.0.1",
-    "husky": "^8.0.0",
+    "husky": "^9.1.6",
     "image-minimizer-webpack-plugin": "^4.0.2",
     "imagemin": "^9.0.0",
     "imagemin-pngquant": "^10.0.0",
     "json5": "^2.2.2",
     "latest-version": "^5.1.0",
-    "lint-staged": "^13.2.0",
+    "lint-staged": "^15.2.10",
     "markdownlint-cli2": "^0.13.0",
     "mdast-util-from-markdown": "^2.0.1",
     "mdast-util-frontmatter": "^2.0.1",
@@ -118,11 +118,6 @@
       "prettier --write",
       "eslint --fix"
     ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   },
   "resolutions": {
     "http-cache-semantics": "4.1.1",
