@@ -4,7 +4,7 @@
   "private": true,
   "license": "Apache-2.0",
   "engines": {
-    "node": "20"
+    "node": ">=20.16.0"
   },
   "scripts": {
     "crowdin": "crowdin",
@@ -56,7 +56,7 @@
     "@docusaurus/tsconfig": "3.6.1",
     "@docusaurus/types": "3.6.1",
     "@electron/docs-parser": "^1.0.1",
-    "@electron/lint-roller": "^2.3.0",
+    "@electron/lint-roller": "^3.0.0",
     "@tsconfig/docusaurus": "^2.0.3",
     "@types/adm-zip": "^0.5.5",
     "@types/fs-extra": "^9.0.13",
