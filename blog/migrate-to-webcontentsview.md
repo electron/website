@@ -32,54 +32,54 @@ For the most part, each instance where your app instantiates new BrowserViews ca
 
 ### 3. Migrate each usage of `BrowserView`
 
-1.  Migrate the instantiation. This should be fairly straight forward because [WebContentsView](https://www.electronjs.org/docs/latest/api/web-contents-view#new-webcontentsviewoptions) and [BrowserView’s](https://www.electronjs.org/docs/latest/api/browser-view#new-browserviewoptions-experimental-deprecated) constructors have essentially the same shape. Both accept [WebPreferences](https://www.electronjs.org/docs/latest/api/structures/web-preferences) via the `webPreferences` param.
+1. Migrate the instantiation. This should be fairly straight forward because [WebContentsView](https://www.electronjs.org/docs/latest/api/web-contents-view#new-webcontentsviewoptions) and [BrowserView’s](https://www.electronjs.org/docs/latest/api/browser-view#new-browserviewoptions-experimental-deprecated) constructors have essentially the same shape. Both accept [WebPreferences](https://www.electronjs.org/docs/latest/api/structures/web-preferences) via the `webPreferences` param.
 
-```diff
-- this.tabBar = new BrowserView({
-+ this.tabBar = new WebContentsView({
-```
+   ```diff
+   - this.tabBar = new BrowserView({
+   + this.tabBar = new WebContentsView({
+   ```
 
-2.  Migrate where the `BrowserView` gets added to its parent window.
+2. Migrate where the `BrowserView` gets added to its parent window.
 
-```diff
-- this.browserWindow.addBrowserView(this.tabBar)
-+ this.browserWindow.contentView.addChildView(this.tabBar);
-```
+   ```diff
+   - this.browserWindow.addBrowserView(this.tabBar)
+   + this.browserWindow.contentView.addChildView(this.tabBar);
+   ```
 
-3.  Migrate `BrowserView` instance method calls on the parent window.
+3. Migrate `BrowserView` instance method calls on the parent window.
 
-| Old Method              | New Method                                                         | Notes                                                              |
-| ----------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
-| `win.setBrowserView`    | `win.contentView.removeChildView` + `win.contentView.addChildView` |                                                                    |
-| `win.getBrowserView`    | `win.contentView.children`                                         |                                                                    |
-| `win.removeBrowserView` | `win.contentView.removeChildView`                                  |                                                                    |
-| `win.setTopBrowserView` | `win.contentView.addChildView`                                     | Calling `addChildView` on an existing view reorders it to the top. |
-| `win.getBrowserViews`   | `win.contentView.children`                                         |                                                                    |
+   | Old Method              | New Method                                                         | Notes                                                              |
+   | ----------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
+   | `win.setBrowserView`    | `win.contentView.removeChildView` + `win.contentView.addChildView` |                                                                    |
+   | `win.getBrowserView`    | `win.contentView.children`                                         |                                                                    |
+   | `win.removeBrowserView` | `win.contentView.removeChildView`                                  |                                                                    |
+   | `win.setTopBrowserView` | `win.contentView.addChildView`                                     | Calling `addChildView` on an existing view reorders it to the top. |
+   | `win.getBrowserViews`   | `win.contentView.children`                                         |                                                                    |
 
 4. Migrate the `setAutoResize` instance method to a resize listener.
 
-```diff
-- this.browserView.setAutoResize({
--   vertical: true,
-- })
+   ```diff
+   - this.browserView.setAutoResize({
+   -   vertical: true,
+   - })
 
-+ this.browserWindow.on('resize', () => {
-+   if (!this.browserWindow || !this.webContentsView) {
-+     return;
-+   }
-+   const bounds = this.browserWindow.getBounds();
-+   this.webContentsView.setBounds({
-+     x: 0,
-+     y: 0,
-+     width: bounds.width,
-+     height: bounds.height,
-+    });
-+  });
-```
+   + this.browserWindow.on('resize', () => {
+   +   if (!this.browserWindow || !this.webContentsView) {
+   +     return;
+   +   }
+   +   const bounds = this.browserWindow.getBounds();
+   +   this.webContentsView.setBounds({
+   +     x: 0,
+   +     y: 0,
+   +     width: bounds.width,
+   +     height: bounds.height,
+   +    });
+   +  });
+   ```
 
-:::tip
-All existing usage of `browserView.webContents` and instance methods `browserView.setBounds`, `browserView.getBounds` , and `browserView.setBackgroundColor` do not need to be migrated and should work with a `WebContentsView` instance out of the box!
-:::
+   :::tip
+   All existing usage of `browserView.webContents` and instance methods `browserView.setBounds`, `browserView.getBounds` , and `browserView.setBackgroundColor` do not need to be migrated and should work with a `WebContentsView` instance out of the box!
+   :::
 
 ### 4. Test and commit your changes
 
