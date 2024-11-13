@@ -1,16 +1,17 @@
 name: 'Update i18n deploy'
 
 on:
-  schedule:
-    - cron: '0 0,12 * * *'
-  workflow_dispatch:
+  pull_request:
+  # schedule:
+  #   - cron: '0 0,12 * * *'
+  # workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
-  deploy:
-    name: 'Build and deploy localized site'
+  prepare:
+    name: 'Setup'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # tag: v4.2.2
@@ -22,7 +23,7 @@ jobs:
       - name: Install dependencies
         uses: bahmutov/npm-install@dc9579d3dfb9c0e7a1f56c194eefcb8e2c9f0da5 # tag: v1.10.3
 
-      - name: Download crowdin translation
+      - name: Download Crowdin translations
         run: yarn i18n:download
         env:
           CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
@@ -32,19 +33,44 @@ jobs:
         env:
           CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
 
-      # TODO: figure out if this can be re-enabled?
-      # - name: Download cache
-      #   run: ./scripts/bin/azcopy copy "https://electronwebsite.blob.core.windows.net/%24web/*?$SAS" "./build" --recursive
-      #   env:
-      #     SAS: ${{ secrets.SAS }}
-
       - name: Add Docusaurus problem matcher
         run: echo "::add-matcher::.github/problem-matchers/docusaurus.json"
 
+      - uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882 # tag: v4.4.3
+        with:
+          path: |
+            i18n
+            node—modules
+
+  build:
+    needs: prepare
+    name: 'Build localized website'
+    runs-on: ubuntu-latest
+    # strategy:
+    #   matrix:
+    #     locales: ['de', 'es', 'fr', 'ja', 'pt', 'ru', 'zh'] # should match with config.i18n.locales in docusaurus.config.ts
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # tag: v4.2.2
+
+      - uses: actions/setup-node@0a44ba7841725637a19e28fa30b79a866c81b0a6 # tag: v4.0.4
+        with:
+          node-version: 20
+      - uses: actions/download-artifact@v4
       - name: Build
         run: yarn i18n:build
 
-      - name: Deploy
-        run: ./scripts/bin/azcopy copy "./build/*" "https://electronwebsite.blob.core.windows.net/%24web?$SAS" --recursive
-        env:
-          SAS: ${{ secrets.SAS }}
+  # deploy:
+  #   needs: build
+  #   name: 'Step 3'
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # tag: v4.2.2
+
+  #     - uses: actions/setup-node@0a44ba7841725637a19e28fa30b79a866c81b0a6 # tag: v4.0.4
+  #       with:
+  #         node-version: 20
+
+  #     - name: Deploy
+  #       run: ./scripts/bin/azcopy copy "./build/*" "https://electronwebsite.blob.core.windows.net/%24web?$SAS" --recursive
+  #       env:
+  #         SAS: ${{ secrets.SAS }}
