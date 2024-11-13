@@ -26,14 +26,14 @@ jobs:
         id: generate-token
         with:
           creds: ${{ secrets.DOCS_UPDATER_GH_APP_CREDS }}
-      - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # tag: v4.2.0
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # tag: v4.2.2
         with:
           token: ${{ steps.generate-token.outputs.token }}
       - uses: actions/setup-node@0a44ba7841725637a19e28fa30b79a866c81b0a6 # tag: v4.0.4
         with:
           node-version: 20
       - name: Install dependencies
-        uses: bahmutov/npm-install@e5c7e14408aa6089501de32bd16123b41738047e # tag: v1.10.2
+        uses: bahmutov/npm-install@dc9579d3dfb9c0e7a1f56c194eefcb8e2c9f0da5 # tag: v1.10.3
       - name: Prebuild
         run: |
           yarn pre-build ${{ github.event.client_payload.sha || github.event.inputs.sha }} ${{ github.event.client_payload.branch || github.event.inputs.branch }}
