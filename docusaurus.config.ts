@@ -2,6 +2,11 @@ import path from 'path';
 import { Config } from '@docusaurus/types';
 import npm2yarn from '@docusaurus/remark-plugin-npm2yarn';
 import { themes as prismThemes } from 'prism-react-renderer';
+import remarkGithubAdmonitionsToDirectives, {
+  DEFAULT_MAPPING,
+  DirectiveName,
+  GithubAlertType,
+} from 'remark-github-admonitions-to-directives';
 
 import apiLabels from './src/transformers/api-labels';
 import apiOptionsClass from './src/transformers/api-options-class';
@@ -208,6 +213,18 @@ const config: Config = {
       '@docusaurus/preset-classic',
       {
         docs: {
+          path: 'docs',
+          beforeDefaultRemarkPlugins: [
+            [
+              remarkGithubAdmonitionsToDirectives,
+              {
+                mapping: {
+                  ...DEFAULT_MAPPING,
+                  [GithubAlertType.NOTE]: DirectiveName.INFO,
+                },
+              },
+            ],
+          ],
           sidebarPath: require.resolve('./sidebars.js'),
           routeBasePath: '/docs/',
           editUrl: ({ docPath }) => {
@@ -226,6 +243,8 @@ const config: Config = {
         },
         blog: {
           // See `node_modules/@docusaurus/plugin-content-blog/src/pluginOptionSchema.ts` for full undocumented options
+          path: 'blog',
+          beforeDefaultRemarkPlugins: [remarkGithubAdmonitionsToDirectives],
           blogSidebarCount: 'ALL',
           blogSidebarTitle: 'Latest posts',
           blogTitle: `Electron's blog`,
