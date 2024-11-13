@@ -40,7 +40,6 @@ jobs:
         with:
           path: |
             i18n
-            node—modules
 
   build:
     needs: prepare
@@ -55,6 +54,9 @@ jobs:
       - uses: actions/setup-node@0a44ba7841725637a19e28fa30b79a866c81b0a6 # tag: v4.0.4
         with:
           node-version: 20
+      - name: Install dependencies
+        uses: bahmutov/npm-install@dc9579d3dfb9c0e7a1f56c194eefcb8e2c9f0da5 # tag: v1.10.3
+
       - uses: actions/download-artifact@v4
       - name: Build
         run: yarn i18n:build
