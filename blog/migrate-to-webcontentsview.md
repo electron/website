@@ -19,7 +19,7 @@ Developers familiar with BrowserWindows and BrowserViews should note that `Brows
 ### 1. Upgrade Electron to 30.0.0 or higher
 
 :::warning
-Electron releases may contain breaking changes that affect your application. It’s a good idea to test and land the Electron upgrade on your app _first_ before proceeding with the rest of this migration. A list of breaking changes can be found in the release notes for each major version on the Electron Blog.
+Electron releases may contain breaking changes that affect your application. It’s a good idea to test and land the Electron upgrade on your app _first_ before proceeding with the rest of this migration. A list of breaking changes for each Electron major version can be found [here](https://www.electronjs.org/docs/latest/breaking-changes) as well as in the release notes for each major version on the Electron Blog.
 :::
 
 ### 2. Familiarize yourself with where your application uses BrowserViews
@@ -82,5 +82,7 @@ For the most part, each instance where your app instantiates new BrowserViews ca
    :::
 
 ### 4. Test and commit your changes
+
+Running into issues? Check the [WebContentsView](https://github.com/electron/electron/labels/component%2FWebContentsView) tag on Electron's issue tracker to see if the issue you're encountering has been reported. If you don't see your issue there, feel free to add a new bug report. Including testcase gists will help us better triage your issue!
 
 Congrats, you’ve migrated onto WebContentsViews! 🎉
