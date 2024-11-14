@@ -32,7 +32,7 @@ For the most part, each instance where your app instantiates new BrowserViews ca
 
 ### 3. Migrate each usage of `BrowserView`
 
-1. Migrate the instantiation. This should be fairly straight forward because [WebContentsView](https://www.electronjs.org/docs/latest/api/web-contents-view#new-webcontentsviewoptions) and [BrowserView’s](https://www.electronjs.org/docs/latest/api/browser-view#new-browserviewoptions-experimental-deprecated) constructors have essentially the same shape. Both accept [WebPreferences](https://www.electronjs.org/docs/latest/api/structures/web-preferences) via the `webPreferences` param.
+1. Migrate the instantiation. This should be fairly straightforward because [WebContentsView](https://www.electronjs.org/docs/latest/api/web-contents-view#new-webcontentsviewoptions) and [BrowserView’s](https://www.electronjs.org/docs/latest/api/browser-view#new-browserviewoptions-experimental-deprecated) constructors have essentially the same shape. Both accept [WebPreferences](https://www.electronjs.org/docs/latest/api/structures/web-preferences) via the `webPreferences` param.
 
    ```diff
    - this.tabBar = new BrowserView({
