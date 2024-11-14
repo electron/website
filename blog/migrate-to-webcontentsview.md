@@ -19,7 +19,7 @@ Developers familiar with BrowserWindows and BrowserViews should note that `Brows
 ### 1. Upgrade Electron to 30.0.0 or higher
 
 :::warning
-Electron releases may contain breaking changes that affect your application. It’s a good idea to test and land the electron upgrade on your app _first_ before proceeding with the rest of this migration. A list of breaking changes can be found in the release notes for each major version on the Electron Blog.
+Electron releases may contain breaking changes that affect your application. It’s a good idea to test and land the Electron upgrade on your app _first_ before proceeding with the rest of this migration. A list of breaking changes can be found in the release notes for each major version on the Electron Blog.
 :::
 
 ### 2. Familiarize yourself with where your application uses BrowserViews
