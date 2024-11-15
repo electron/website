@@ -56,7 +56,7 @@ hide_title: false
 * `show` boolean (optional) - Whether window should be shown when created. Default is
   `true`.
 * `frame` boolean (optional) - Specify `false` to create a
-  [frameless window](latest/tutorial/window-customization.md#create-frameless-windows). Default is `true`.
+  [frameless window](latest/tutorial/custom-window-styles.md#frameless-windows). Default is `true`.
 * `parent` BaseWindow (optional) - Specify parent window. Default is `null`.
 * `modal` boolean (optional) - Whether this is a modal window. This only works when the
   window is a child window. Default is `false`.
@@ -77,7 +77,7 @@ hide_title: false
   is only implemented on Windows and macOS.
 * `darkTheme` boolean (optional) - Forces using dark theme for the window, only works on
   some GTK+3 desktop environments. Default is `false`.
-* `transparent` boolean (optional) - Makes the window [transparent](latest/tutorial/window-customization.md#create-transparent-windows).
+* `transparent` boolean (optional) - Makes the window [transparent](latest/tutorial/custom-window-styles.md#transparent-windows).
   Default is `false`. On Windows, does not work unless the window is frameless.
 * `type` string (optional) - The type of window, default is normal window. See more about
   this below.
@@ -150,8 +150,7 @@ Possible values are:
     -webkit-app-region: drag. This type is commonly used for splash screens.
   * The `notification` type creates a window that behaves like a system notification.
 * On macOS, possible types are `desktop`, `textured`, `panel`.
-  * The `textured` type adds metal gradient appearance
-    (`NSWindowStyleMaskTexturedBackground`).
+  * The `textured` type adds metal gradient appearance. This option is **deprecated**.
   * The `desktop` type places the window at the desktop background window level
     (`kCGDesktopWindowLevel - 1`). Note that desktop window will not receive
     focus, keyboard or mouse events, but you can use `globalShortcut` to receive

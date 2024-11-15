@@ -423,7 +423,7 @@ Returns:
     * `launch-failed` - Process never successfully launched
     * `integrity-failure` - Windows code integrity checks failed
   * `exitCode` number - The exit code for the process
-      (e.g. status from waitpid if on posix, from GetExitCodeProcess on Windows).
+      (e.g. status from waitpid if on POSIX, from GetExitCodeProcess on Windows).
   * `serviceName` string (optional) - The non-localized name of the process.
   * `name` string (optional) - The name of the process.
     Examples for utility: `Audio Service`, `Content Decryption Module Service`, `Network Service`, `Video Capture`, etc.
@@ -1496,6 +1496,38 @@ This method can only be called after app is ready.
 * `url` URL
 
 Returns `Promise<string>` - Resolves with the proxy information for `url` that will be used when attempting to make requests using [Net](latest/api/net.md) in the [utility process](latest/glossary.md#utility-process).
+
+### `app.setClientCertRequestPasswordHandler(handler)`  _Linux_
+
+* `handler` Function\<Promise\<string\>\>
+  * `clientCertRequestParams` Object
+    * `hostname` string - the hostname of the site requiring a client certificate
+    * `tokenName` string - the token (or slot) name of the cryptographic device
+    * `isRetry` boolean - whether there have been previous failed attempts at prompting the password
+
+  Returns `Promise<string>` - Resolves with the password
+
+The handler is called when a password is needed to unlock a client certificate for
+`hostname`.
+
+```js
+const { app } = require('electron')
+
+async function passwordPromptUI (text) {
+  return new Promise((resolve, reject) => {
+    // display UI to prompt user for password
+    // ...
+    // ...
+    resolve('the password')
+  })
+}
+
+app.setClientCertRequestPasswordHandler(async ({ hostname, tokenName, isRetry }) => {
+  const text = `Please sign in to ${tokenName} to authenticate to ${hostname} with your certificate`
+  const password = await passwordPromptUI(text)
+  return password
+})
+```
 
 ## Properties
 
