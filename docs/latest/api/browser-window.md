@@ -240,10 +240,14 @@ It creates a new `BrowserWindow` with native properties as set by the `options`.
       [browserWindow](latest/api/browser-window.md) has disabled `backgroundThrottling` then
       frames will be drawn and swapped for the whole window and other
       [webContents](latest/api/web-contents.md) displayed by it. Defaults to `true`.
-    * `offscreen` boolean (optional) - Whether to enable offscreen rendering for the browser
+    * `offscreen` Object | boolean (optional) - Whether to enable offscreen rendering for the browser
       window. Defaults to `false`. See the
       [offscreen rendering tutorial](latest/tutorial/offscreen-rendering.md) for
       more details.
+      * `useSharedTexture` boolean (optional) _Experimental_ - Whether to use GPU shared texture for accelerated
+         paint event. Defaults to `false`. See the
+        [offscreen rendering tutorial](latest/tutorial/offscreen-rendering.md) for
+        more details.
     * `contextIsolation` boolean (optional) - Whether to run Electron APIs and
       the specified `preload` script in a separate JavaScript context. Defaults
       to `true`. The context that the `preload` script runs in will only have

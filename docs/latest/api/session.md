@@ -275,7 +275,8 @@ Returns:
 * `event` Event
 * `details` Object
   * `deviceList` [HIDDevice[]](latest/api/structures/hid-device.md)
-  * `frame` [WebFrameMain](latest/api/web-frame-main.md)
+  * `frame` [WebFrameMain](latest/api/web-frame-main.md) | null - The frame initiating this event.
+      May be `null` if accessed after the frame has either navigated or been destroyed.
 * `callback` Function
   * `deviceId` string | null (optional)
 
@@ -339,7 +340,8 @@ Returns:
 * `event` Event
 * `details` Object
   * `device` [HIDDevice](latest/api/structures/hid-device.md)
-  * `frame` [WebFrameMain](latest/api/web-frame-main.md)
+  * `frame` [WebFrameMain](latest/api/web-frame-main.md) | null - The frame initiating this event.
+      May be `null` if accessed after the frame has either navigated or been destroyed.
 
 Emitted after `navigator.hid.requestDevice` has been called and
 `select-hid-device` has fired if a new device becomes available before
@@ -354,7 +356,8 @@ Returns:
 * `event` Event
 * `details` Object
   * `device` [HIDDevice](latest/api/structures/hid-device.md)
-  * `frame` [WebFrameMain](latest/api/web-frame-main.md)
+  * `frame` [WebFrameMain](latest/api/web-frame-main.md) | null - The frame initiating this event.
+      May be `null` if accessed after the frame has either navigated or been destroyed.
 
 Emitted after `navigator.hid.requestDevice` has been called and
 `select-hid-device` has fired if a device has been removed before the callback
@@ -480,7 +483,8 @@ Returns:
 * `event` Event
 * `details` Object
   * `port` [SerialPort](latest/api/structures/serial-port.md)
-  * `frame` [WebFrameMain](latest/api/web-frame-main.md)
+  * `frame` [WebFrameMain](latest/api/web-frame-main.md) | null - The frame initiating this event.
+      May be `null` if accessed after the frame has either navigated or been destroyed.
   * `origin` string - The origin that the device has been revoked from.
 
 Emitted after `SerialPort.forget()` has been called.  This event can be used
@@ -502,7 +506,7 @@ app.whenReady().then(() => {
 })
 ```
 
-```js
+```js @ts-nocheck
 // Renderer Process
 
 const portConnect = async () => {
@@ -524,7 +528,8 @@ Returns:
 * `event` Event
 * `details` Object
   * `deviceList` [USBDevice[]](latest/api/structures/usb-device.md)
-  * `frame` [WebFrameMain](latest/api/web-frame-main.md)
+  * `frame` [WebFrameMain](latest/api/web-frame-main.md) | null - The frame initiating this event.
+      May be `null` if accessed after the frame has either navigated or been destroyed.
 * `callback` Function
   * `deviceId` string (optional)
 
@@ -964,7 +969,8 @@ session.fromPartition('some-partition').setPermissionCheckHandler((webContents, 
 
 * `handler` Function | null
   * `request` Object
-    * `frame` [WebFrameMain](latest/api/web-frame-main.md) - Frame that is requesting access to media.
+    * `frame` [WebFrameMain](latest/api/web-frame-main.md) | null - Frame that is requesting access to media.
+      May be `null` if accessed after the frame has either navigated or been destroyed.
     * `securityOrigin` String - Origin of the page making the request.
     * `videoRequested` Boolean - true if the web content requested a video stream.
     * `audioRequested` Boolean - true if the web content requested an audio stream.
@@ -1165,7 +1171,8 @@ app.whenReady().then(() => {
         pin displayed on the device.
       * `providePin`
         This prompt is requesting that a pin be provided for the device.
-    * `frame` [WebFrameMain](latest/api/web-frame-main.md)
+    * `frame` [WebFrameMain](latest/api/web-frame-main.md) | null - The frame initiating this handler.
+      May be `null` if accessed after the frame has either navigated or been destroyed.
     * `pin` string (optional) - The pin value to verify if `pairingKind` is `confirmPin`.
   * `callback` Function
     * `response` Object
