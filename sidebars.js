@@ -89,6 +89,7 @@ module.exports = {
         {
           type: 'category',
           label: 'Window Customization',
+          link: { type: 'doc', id: 'latest/tutorial/window-customization' },
           items: [
             'latest/tutorial/custom-title-bar',
             'latest/tutorial/custom-window-interactions',
