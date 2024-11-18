@@ -15,6 +15,9 @@ import InstallSteps from './_components/InstallSteps';
 import Feature from './_components/Feature';
 import TechnologiesGrid from './_components/TechnologiesGrid';
 import CodeWindow from './_components/CodeWindow';
+import FeaturedAppsCarousel from './_components/FeaturedAppsCarousel';
+
+import { FEATURED_APPS, FEATURED_LOGOS } from './featured-apps';
 
 export default function Home() {
   const { siteConfig } = useDocusaurusContext();
@@ -69,6 +72,7 @@ export default function Home() {
               </div>
             </div>
           </div>
+          <FeaturedAppsCarousel list={FEATURED_LOGOS} />
           <div className={clsx(styles.section)}>
             <div style={{ textAlign: 'center', marginBottom: '6rem' }}>
               <h2>Desktop development made easy</h2>
@@ -343,122 +347,7 @@ export default function Home() {
               Thousands of organizations spanning all industries use Electron to
               build cross-platform software.
             </p>
-            <AppsGrid
-              list={[
-                {
-                  name: '1Password',
-                  image: '/assets/apps/1password.svg',
-                  href: 'https://1password.com/',
-                },
-                {
-                  name: 'Asana',
-                  image: '/assets/apps/asana.svg',
-                  href: 'https://asana.com/',
-                },
-                {
-                  name: 'Discord',
-                  image: '/assets/apps/discord.svg',
-                  href: 'https://discord.com/',
-                },
-                {
-                  name: 'Dropbox',
-                  image: '/assets/apps/dropbox.svg',
-                  href: 'https://dropbox.com/',
-                },
-                {
-                  name: 'Figma',
-                  image: '/assets/apps/figma.svg',
-                  href: 'https://figma.com/',
-                },
-                {
-                  name: 'GitHub Desktop',
-                  image: '/assets/apps/github-desktop.svg',
-                  href: 'https://desktop.github.com/',
-                },
-                {
-                  name: 'itch',
-                  image: '/assets/apps/itchio.svg',
-                  href: 'https://itch.io/app',
-                },
-                {
-                  name: 'Loom',
-                  image: '/assets/apps/loom.svg',
-                  href: 'https://www.loom.com/',
-                },
-                {
-                  name: 'MongoDB Compass',
-                  image: '/assets/apps/mongodb.svg',
-                  href: 'https://www.mongodb.com/products/compass',
-                },
-                {
-                  name: 'Notion',
-                  image: '/assets/apps/notion.svg',
-                  href: 'https://www.notion.so/',
-                },
-                {
-                  name: 'Obsidian',
-                  image: '/assets/apps/obsidian.svg',
-                  href: 'https://obsidian.md/',
-                },
-                {
-                  name: 'Polypane',
-                  image: '/assets/apps/polypane.svg',
-                  href: 'https://polypane.app/',
-                },
-                {
-                  name: 'Postman',
-                  image: '/assets/apps/postman.svg',
-                  href: 'https://postman.com/',
-                },
-                {
-                  name: 'Signal',
-                  image: '/assets/apps/signal.svg',
-                  href: 'https://signal.org/en/',
-                },
-                {
-                  name: 'Skype',
-                  image: '/assets/apps/skype.svg',
-                  href: 'https://skype.com/',
-                },
-                {
-                  name: 'Slack',
-                  image: '/assets/apps/slack.svg',
-                  href: 'https://slack.com/',
-                },
-                {
-                  name: 'Splice',
-                  image: '/assets/apps/splice.svg',
-                  isMonochrome: true,
-                  href: 'https://splice.com/',
-                },
-                {
-                  name: 'Microsoft Teams',
-                  image: '/assets/apps/teams.svg',
-                  href: 'https://microsoft.com/en-ca/microsoft-teams/group-chat-software/',
-                },
-                {
-                  name: 'Tidal',
-                  image: '/assets/apps/tidal.svg',
-                  href: 'https://tidal.com',
-                  isMonochrome: true,
-                },
-                {
-                  name: 'Trello',
-                  image: '/assets/apps/trello.svg',
-                  href: 'https://trello.com/',
-                },
-                {
-                  name: 'Twitch',
-                  image: '/assets/apps/twitch.svg',
-                  href: 'https://www.twitch.tv/',
-                },
-                {
-                  name: 'VS Code',
-                  image: '/assets/apps/vscode.svg',
-                  href: 'https://code.visualstudio.com/',
-                },
-              ]}
-            />
+            <AppsGrid list={FEATURED_APPS} />
           </div>
         </div>
       </main>

@@ -1,0 +1,74 @@
+h2 {
+  font-size: 2.5em;
+  font-weight: 900;
+}
+
+.carouselContainer {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: 2rem 0;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 5%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  &::before {
+    left: 0;
+    background: linear-gradient(to right, #fff 0%, transparent 100%);
+
+    [data-theme='dark'] & {
+      background: linear-gradient(to right, var(--ifm-background-color) 0%, transparent 100%);
+    }
+  }
+
+  &::after {
+    right: 0;
+    background: linear-gradient(to left, #fff 0%, transparent 100%);
+
+    [data-theme='dark'] & {
+      background: linear-gradient(to left, var(--ifm-background-color) 0%, transparent 100%);
+    }
+  }
+}
+ 
+.carouselTrack {
+  display: flex;
+  animation: scroll 30s linear infinite;
+  
+  &:hover {
+    animation-play-state: paused;
+  }
+}
+
+.customerLogo {
+  flex-shrink: 0;
+  padding: 0 2rem;
+  
+  img {
+    height: 2.5rem;
+    width: auto;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+    
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    // Move the track left by 50% since we duplicated the items
+    transform: translateX(-50%);
+  }
+}
