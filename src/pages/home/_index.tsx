@@ -457,11 +457,6 @@ export default function Home() {
                   image: '/assets/apps/vscode.svg',
                   href: 'https://code.visualstudio.com/',
                 },
-                {
-                  name: 'WordPress Desktop',
-                  image: '/assets/apps/wordpress.svg',
-                  href: 'https://apps.wordpress.com/desktop/',
-                },
               ]}
             />
           </div>
