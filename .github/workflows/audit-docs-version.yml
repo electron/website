@@ -1,0 +1,61 @@
+name: Audit Docs Version
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 17 * * *'
+
+permissions: {}
+
+jobs:
+  audit_docs_version:
+    name: Audit Docs Version
+    runs-on: ubuntu-latest
+    steps:
+      - run: npm install @electron/fiddle-core
+      - name: Confirm latest version
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
+        with:
+          script: |
+            const { setTimeout } = await import('node:timers/promises');
+            const { ElectronVersions } = await import('${{ github.workspace }}/node_modules/@electron/fiddle-core/dist/index.js');
+
+            const DOCS_SHA_REGEX = /<meta name="docs-sha" content="(\w+)">/m;
+            const DELTA_THRESHOLD_MS = 1000*60*20;
+
+            const resp = await fetch('https://electronjs.org');
+
+            if (!resp.ok) {
+              core.setFailed('Could not fetch website');
+              return;
+            }
+
+            const latestDocsSHA = (await resp.text()).match(DOCS_SHA_REGEX)?.[1];
+
+            const versions = await ElectronVersions.create(undefined, { ignoreCache: true });
+
+            const { data } = await github.rest.repos.getBranch({
+              owner: 'electron',
+              repo: 'electron',
+              branch: `${versions.latestStable.major}-x-y`,
+            });
+
+            const { date } = data.commit.commit.committer;
+            const delta = Date.now() - new Date(date).getTime();
+
+            // If the commit happened recently, wait a bit for the site
+            // to deploy before checking so we don't get a false positive
+            if (delta < DELTA_THRESHOLD_MS) {
+              await setTimeout(DELTA_THRESHOLD_MS - delta);
+            }
+
+            if (data.commit.sha !== latestDocsSHA) {
+              core.summary.addRaw('🚨 Docs are NOT up-to-date');
+
+              // Set this as failed so it's easy to scan runs to find failures
+              process.exitCode = 1;
+            } else {
+              core.summary.addRaw('🎉 Docs are up-to-date');
+            }
+
+            await core.summary.write();

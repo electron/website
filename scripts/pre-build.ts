@@ -3,9 +3,10 @@
  * right places, and transform it to make it ready to
  * be used by docusaurus.
  */
+import { existsSync } from 'fs';
+import fs from 'fs/promises';
 import path from 'path';
 
-import { existsSync, remove } from 'fs-extra';
 import latestVersion from 'latest-version';
 import logger from '@docusaurus/logger';
 
@@ -26,7 +27,7 @@ const DOCS_FOLDER = path.join(__dirname, '..', 'docs', 'latest');
 const start = async (source: string): Promise<void> => {
   logger.info(`Running ${logger.green('electronjs.org')} pre-build scripts...`);
   logger.info(`Deleting previous content at ${logger.green(DOCS_FOLDER)}`);
-  await remove(DOCS_FOLDER);
+  await fs.rm(DOCS_FOLDER, { recursive: true, force: true });
 
   const localElectron =
     source && (source.includes('/') || source.includes('\\'));
@@ -52,6 +53,8 @@ const start = async (source: string): Promise<void> => {
       destination: DOCS_FOLDER,
       downloadMatch: '/docs/',
     });
+
+    await fs.writeFile(path.join(DOCS_FOLDER, '.sha'), source);
   } else if (existsSync(source)) {
     await copy({
       target: source,
