@@ -34,13 +34,16 @@ jobs:
 
             const versions = await ElectronVersions.create(undefined, { ignoreCache: true });
 
-            const { data } = await github.rest.repos.getBranch({
+            const { data } = await github.rest.repos.listCommits({
               owner: 'electron',
               repo: 'electron',
-              branch: `${versions.latestStable.major}-x-y`,
+              sha: `${versions.latestStable.major}-x-y`,
+              path: 'docs/',
+              per_page: 1
             });
+            const commit = data[0];
 
-            const { date } = data.commit.commit.committer;
+            const { date } = commit.commit.committer;
             const delta = Date.now() - new Date(date).getTime();
 
             // If the commit happened recently, wait a bit for the site
@@ -49,7 +52,8 @@ jobs:
               await setTimeout(DELTA_THRESHOLD_MS - delta);
             }
 
-            if (data.commit.sha !== latestDocsSHA) {
+            if (commit.sha !== latestDocsSHA) {
+              console.log(`Got ${latestDocsSHA}, expected ${commit.sha}`);
               core.summary.addRaw('🚨 Docs are NOT up-to-date');
 
               // Set this as failed so it's easy to scan runs to find failures
