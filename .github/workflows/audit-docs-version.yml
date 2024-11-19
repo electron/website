@@ -23,7 +23,7 @@ jobs:
             const DOCS_SHA_REGEX = /<meta name="docs-sha" content="(\w+)">/m;
             const DELTA_THRESHOLD_MS = 1000*60*20;
 
-            const resp = await fetch('https:/.electronjs.org', {
+            const resp = await fetch('https://electronjs.org', {
               headers: {
                 'Cache-Control': 'no-cache'
               }
