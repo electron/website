@@ -131,7 +131,7 @@ To check which version of Node.js is running in your app, you can access the glo
 [homebrew]: https://brew.sh/
 [mdn-guide]: https://developer.mozilla.org/en-US/docs/Learn/
 [node]: https://nodejs.org/
-[node-guide]: https://nodejs.dev/en/learn/
+[node-guide]: https://nodejs.dev/en/learn/getting-started/introduction-to-nodejs
 [node-download]: https://nodejs.org/en/download/
 [nvm]: https://github.com/nvm-sh/nvm
 [`process.versions`]: https://nodejs.org/api/process.html#processversions
