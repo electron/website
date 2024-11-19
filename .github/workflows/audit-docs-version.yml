@@ -24,9 +24,9 @@ jobs:
             const DELTA_THRESHOLD_MS = 1000*60*20;
 
             const resp = await fetch('https://electronjs.org', {
-              cache: 'no-store',
+              // cache: 'no-store',
               headers: {
-                'Cache-Control': 'no-cache'
+                'Cache-Control': 'no-store'
               }
             });
 
@@ -55,6 +55,7 @@ jobs:
             }
 
             if (data.commit.sha !== latestDocsSHA) {
+              console.log(`Got ${latestDocsSHA}, expected ${data.commit.sha}`);
               core.summary.addRaw('🚨 Docs are NOT up-to-date');
 
               // Set this as failed so it's easy to scan runs to find failures
