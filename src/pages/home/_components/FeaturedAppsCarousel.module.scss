@@ -24,7 +24,11 @@ h2 {
     background: linear-gradient(to right, #fff 0%, transparent 100%);
 
     [data-theme='dark'] & {
-      background: linear-gradient(to right, var(--ifm-background-color) 0%, transparent 100%);
+      background: linear-gradient(
+        to right,
+        var(--ifm-background-color) 0%,
+        transparent 100%
+      );
     }
   }
 
@@ -33,15 +37,19 @@ h2 {
     background: linear-gradient(to left, #fff 0%, transparent 100%);
 
     [data-theme='dark'] & {
-      background: linear-gradient(to left, var(--ifm-background-color) 0%, transparent 100%);
+      background: linear-gradient(
+        to left,
+        var(--ifm-background-color) 0%,
+        transparent 100%
+      );
     }
   }
 }
- 
+
 .carouselTrack {
   display: flex;
   animation: scroll 30s linear infinite;
-  
+
   &:hover {
     animation-play-state: paused;
   }
@@ -50,13 +58,13 @@ h2 {
 .customerLogo {
   flex-shrink: 0;
   padding: 0 2rem;
-  
+
   img {
     height: 2.5rem;
     width: auto;
     opacity: 0.7;
     transition: opacity 0.3s ease;
-    
+
     &:hover {
       opacity: 1;
     }
