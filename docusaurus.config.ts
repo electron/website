@@ -1,4 +1,6 @@
+import fs from 'fs';
 import path from 'path';
+
 import { Config } from '@docusaurus/types';
 import npm2yarn from '@docusaurus/remark-plugin-npm2yarn';
 import { themes as prismThemes } from 'prism-react-renderer';
@@ -15,6 +17,17 @@ import jsCodeBlocks from './src/transformers/js-code-blocks';
 import fiddleEmbedder from './src/transformers/fiddle-embedder';
 import apiHistory from './src/transformers/api-history';
 
+let docsSHA = undefined;
+
+try {
+  docsSHA = fs.readFileSync(
+    path.resolve(__dirname, './docs/latest/.sha'),
+    'utf-8'
+  );
+} catch {
+  console.warn('No .sha file found in docs/latest directory');
+}
+
 const config: Config = {
   title: 'Electron',
   tagline: 'Build cross-platform desktop apps with JavaScript, HTML, and CSS',
@@ -24,6 +37,17 @@ const config: Config = {
   favicon: 'assets/img/favicon.ico',
   organizationName: 'electron',
   projectName: 'electron',
+  headTags: docsSHA
+    ? [
+        {
+          tagName: 'meta',
+          attributes: {
+            name: 'docs-sha',
+            content: docsSHA,
+          },
+        },
+      ]
+    : [],
   markdown: {
     mermaid: true,
   },
