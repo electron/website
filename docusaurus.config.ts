@@ -185,6 +185,10 @@ const config: Config = {
               href: 'https://discordapp.com/invite/APGC3k5yaH',
             },
             {
+              label: 'Bluesky',
+              href: 'https://bsky.app/profile/electronjs.org',
+            },
+            {
               label: 'X',
               href: 'https://x.com/electronjs',
             },
