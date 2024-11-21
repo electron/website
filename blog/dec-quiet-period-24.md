@@ -1,5 +1,5 @@
 ---
-title: December Quiet Month (Dec'23)
+title: December Quiet Month (Dec'24)
 date: 2024-11-22T00:00:00.000Z
 authors:
   - name: mlaurencin
