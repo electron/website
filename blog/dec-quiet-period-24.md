@@ -24,7 +24,7 @@ The Electron project will pause for the month of December 2024, then return to f
 
 ## What will be different in December
 
-1. Final stable branch releases of Electron 31, 32, and 33 will occur the week of December 1st. There will be no additional planned releases in December.
+1. 2024's last stable branch releases for the year, which includes Electron 31, 32, and 33, will occur the week of December 1st. There will be no additional planned releases in December.
 2. No Nightly and Alpha releases for the last two weeks of December.
 3. With few exceptions, no pull request reviews or merges.
 4. No issue tracker updates on any repositories.
