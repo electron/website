@@ -1,6 +1,7 @@
-import fs from 'fs';
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
 
+import logger from '@docusaurus/logger';
 import { Config } from '@docusaurus/types';
 import npm2yarn from '@docusaurus/remark-plugin-npm2yarn';
 import { themes as prismThemes } from 'prism-react-renderer';
@@ -25,7 +26,7 @@ try {
     'utf-8'
   );
 } catch {
-  console.warn('No .sha file found in docs/latest directory');
+  logger.warn('No .sha file found in docs/latest directory');
 }
 
 const config: Config = {
