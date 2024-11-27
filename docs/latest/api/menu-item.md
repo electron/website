@@ -9,9 +9,9 @@ hide_title: false
 
 > Add items to native application menus and context menus.
 
-Process: [Main](latest/glossary.md#main-process)
+Process: [Main](../glossary.md#main-process)
 
-See [`Menu`](latest/api/menu.md) for examples.
+See [`Menu`](menu.md) for examples.
 
 ### `new MenuItem(options)`
 
@@ -19,8 +19,8 @@ See [`Menu`](latest/api/menu.md) for examples.
   * `click` Function (optional) - Will be called with
     `click(menuItem, window, event)` when the menu item is clicked.
     * `menuItem` MenuItem
-    * `window` [BaseWindow](latest/api/base-window.md) | undefined - This will not be defined if no window is open.
-    * `event` [KeyboardEvent](latest/api/structures/keyboard-event.md)
+    * `window` [BaseWindow](base-window.md) | undefined - This will not be defined if no window is open.
+    * `event` [KeyboardEvent](structures/keyboard-event.md)
   * `role` string (optional) - Can be `undo`, `redo`, `cut`, `copy`, `paste`, `pasteAndMatchStyle`, `delete`, `selectAll`, `reload`, `forceReload`, `toggleDevTools`, `resetZoom`, `zoomIn`, `zoomOut`, `toggleSpellChecker`, `togglefullscreen`, `window`, `minimize`, `close`, `help`, `about`, `services`, `hide`, `hideOthers`, `unhide`, `quit`, `showSubstitutions`, `toggleSmartQuotes`, `toggleSmartDashes`, `toggleTextReplacement`, `startSpeaking`, `stopSpeaking`, `zoom`, `front`, `appMenu`, `fileMenu`, `editMenu`, `viewMenu`, `shareMenu`, `recentDocuments`, `toggleTabBar`, `selectNextTab`, `selectPreviousTab`, `showAllTabs`, `mergeAllWindows`, `clearRecentDocuments`, `moveTabToNewWindow` or `windowMenu` - Define the action of the menu item, when specified the
     `click` property will be ignored. See [roles](#roles).
   * `type` string (optional) - Can be `normal`, `separator`, `submenu`, `checkbox` or
@@ -28,8 +28,8 @@ See [`Menu`](latest/api/menu.md) for examples.
   * `label` string (optional)
   * `sublabel` string (optional)
   * `toolTip` string (optional) _macOS_ - Hover text for this menu item.
-  * `accelerator` [Accelerator](latest/api/accelerator.md) (optional)
-  * `icon` ([NativeImage](latest/api/native-image.md) | string) (optional)
+  * `accelerator` [Accelerator](accelerator.md) (optional)
+  * `icon` ([NativeImage](native-image.md) | string) (optional)
   * `enabled` boolean (optional) - If false, the menu item will be greyed out and
     unclickable.
   * `acceleratorWorksWhenHidden` boolean (optional) _macOS_ - default is `true`, and when `false` will prevent the accelerator from triggering the item if the item is not visible.
@@ -39,9 +39,9 @@ See [`Menu`](latest/api/menu.md) for examples.
   * `registerAccelerator` boolean (optional) _Linux_ _Windows_ - If false, the accelerator won't be registered
     with the system, but it will still be displayed. Defaults to true.
   * `sharingItem` SharingItem (optional) _macOS_ - The item to share when the `role` is `shareMenu`.
-  * `submenu` (MenuItemConstructorOptions[] | [Menu](latest/api/menu.md)) (optional) - Should be specified
+  * `submenu` (MenuItemConstructorOptions[] | [Menu](menu.md)) (optional) - Should be specified
     for `submenu` type menu items. If `submenu` is specified, the `type: 'submenu'` can be omitted.
-    If the value is not a [`Menu`](latest/api/menu.md) then it will be automatically converted to one using
+    If the value is not a [`Menu`](menu.md) then it will be automatically converted to one using
     `Menu.buildFromTemplate`.
   * `id` string (optional) - Unique within a single menu. If defined then it can be used
     as a reference to this item by the position attribute.
@@ -152,9 +152,9 @@ A `string` indicating the item's visible label.
 A `Function` that is fired when the MenuItem receives a click event.
 It can be called with `menuItem.click(event, focusedWindow, focusedWebContents)`.
 
-* `event` [KeyboardEvent](latest/api/structures/keyboard-event.md)
-* `focusedWindow` [BaseWindow](latest/api/browser-window.md)
-* `focusedWebContents` [WebContents](latest/api/web-contents.md)
+* `event` [KeyboardEvent](structures/keyboard-event.md)
+* `focusedWindow` [BaseWindow](browser-window.md)
+* `focusedWebContents` [WebContents](web-contents.md)
 
 #### `menuItem.submenu`
 

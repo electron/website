@@ -12,7 +12,7 @@ hide_title: false
   Default is `false`.
 * `nodeIntegrationInWorker` boolean (optional) - Whether node integration is
   enabled in web workers. Default is `false`. More about this can be found
-  in [Multithreading](latest/tutorial/multithreading.md).
+  in [Multithreading](../../tutorial/multithreading.md).
 * `nodeIntegrationInSubFrames` boolean (optional) - Experimental option for
   enabling Node.js support in sub-frames such as iframes and child windows. All your preloads will load for
   every iframe, you can use `process.isMainFrame` to determine if you are
@@ -23,13 +23,13 @@ hide_title: false
   be the absolute file path to the script.
   When node integration is turned off, the preload script can reintroduce
   Node global symbols back to the global scope. See example
-  [here](latest/api/context-bridge.md#exposing-node-global-symbols).
+  [here](../context-bridge.md#exposing-node-global-symbols).
 * `sandbox` boolean (optional) - If set, this will sandbox the renderer
   associated with the window, making it compatible with the Chromium
   OS-level sandbox and disabling the Node.js engine. This is not the same as
   the `nodeIntegration` option and the APIs available to the preload script
-  are more limited. Read more about the option [here](latest/tutorial/sandbox.md).
-* `session` [Session](latest/api/session.md#class-session) (optional) - Sets the session used by the
+  are more limited. Read more about the option [here](../../tutorial/sandbox.md).
+* `session` [Session](../session.md#class-session) (optional) - Sets the session used by the
   page. Instead of passing the Session object directly, you can also choose to
   use the `partition` option instead, which accepts a partition string. When
   both `session` and `partition` are provided, `session` will be preferred.
@@ -81,18 +81,18 @@ hide_title: false
 * `defaultEncoding` string (optional) - Defaults to `ISO-8859-1`.
 * `backgroundThrottling` boolean (optional) - Whether to throttle animations and timers
   when the page becomes background. This also affects the
-  [Page Visibility API](latest/api/browser-window.md#page-visibility). When at least one
-  [webContents](latest/api/web-contents.md) displayed in a single
-  [browserWindow](latest/api/browser-window.md) has disabled `backgroundThrottling` then
+  [Page Visibility API](../browser-window.md#page-visibility). When at least one
+  [webContents](../web-contents.md) displayed in a single
+  [browserWindow](../browser-window.md) has disabled `backgroundThrottling` then
   frames will be drawn and swapped for the whole window and other
-  [webContents](latest/api/web-contents.md) displayed by it. Defaults to `true`.
+  [webContents](../web-contents.md) displayed by it. Defaults to `true`.
 * `offscreen` Object | boolean (optional) - Whether to enable offscreen rendering for the browser
   window. Defaults to `false`. See the
-  [offscreen rendering tutorial](latest/tutorial/offscreen-rendering.md) for
+  [offscreen rendering tutorial](../../tutorial/offscreen-rendering.md) for
   more details.
   * `useSharedTexture` boolean (optional) _Experimental_ - Whether to use GPU shared texture for accelerated
      paint event. Defaults to `false`. See the
-    [offscreen rendering tutorial](latest/tutorial/offscreen-rendering.md) for
+    [offscreen rendering tutorial](../../tutorial/offscreen-rendering.md) for
     more details.
 * `contextIsolation` boolean (optional) - Whether to run Electron APIs and
   the specified `preload` script in a separate JavaScript context. Defaults
@@ -107,12 +107,12 @@ hide_title: false
   [Chrome Content Scripts][chrome-content-scripts].  You can access this
   context in the dev tools by selecting the 'Electron Isolated Context'
   entry in the combo box at the top of the Console tab.
-* `webviewTag` boolean (optional) - Whether to enable the [`<webview>` tag](latest/api/webview-tag.md).
+* `webviewTag` boolean (optional) - Whether to enable the [`<webview>` tag](../webview-tag.md).
   Defaults to `false`. **Note:** The
   `preload` script configured for the `<webview>` will have node integration
   enabled when it is executed so you should ensure remote/untrusted content
   is not able to create a `<webview>` tag with a possibly malicious `preload`
-  script. You can use the `will-attach-webview` event on [webContents](latest/api/web-contents.md)
+  script. You can use the `will-attach-webview` event on [webContents](../web-contents.md)
   to strip away the `preload` script and to validate or alter the
   `<webview>`'s initial settings.
 * `additionalArguments` string[] (optional) - A list of strings that will be appended

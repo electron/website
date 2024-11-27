@@ -9,7 +9,7 @@ hide_title: false
 
 > Make HTTP/HTTPS requests.
 
-Process: [Main](latest/glossary.md#main-process), [Utility](latest/glossary.md#utility-process)<br />
+Process: [Main](../glossary.md#main-process), [Utility](../glossary.md#utility-process)<br />
 _This class is not exported from the `'electron'` module. It is only available as a return value of other methods in the Electron API._
 
 `ClientRequest` implements the [Writable Stream](https://nodejs.org/api/stream.html#stream_writable_streams)
@@ -26,9 +26,9 @@ following properties:
     form with the protocol scheme specified as http or https.
   * `headers` Record\<string, string | string[]\> (optional) - Headers to be sent
     with the request.
-  * `session` Session (optional) - The [`Session`](latest/api/session.md) instance with
+  * `session` Session (optional) - The [`Session`](session.md) instance with
     which the request is associated.
-  * `partition` string (optional) - The name of the [`partition`](latest/api/session.md)
+  * `partition` string (optional) - The name of the [`partition`](session.md)
     with which the request is associated. Defaults to the empty string. The
     `session` option supersedes `partition`. Thus if a `session` is explicitly
     specified, `partition` is ignored.
@@ -90,7 +90,7 @@ const request = net.request({
 
 Returns:
 
-* `response` [IncomingMessage](latest/api/incoming-message.md) - An object representing the HTTP response message.
+* `response` [IncomingMessage](incoming-message.md) - An object representing the HTTP response message.
 
 #### Event: 'login'
 

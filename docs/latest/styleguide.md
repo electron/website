@@ -202,7 +202,7 @@ required[, optional]
 More detailed information on each of the arguments is noted in an unordered list
 below the method. The type of argument is notated by either JavaScript primitives
 (e.g. `string`, `Promise`, or `Object`), a custom API structure like Electron's
-[`Cookie`](latest/api/structures/cookie.md), or the wildcard `any`.
+[`Cookie`](api/structures/cookie.md), or the wildcard `any`.
 
 If the argument is of type `Array`, use `[]` shorthand with the type of value
 inside the array (for example,`any[]` or `string[]`).
@@ -278,7 +278,7 @@ deprecated:
 ```
 -->
 
-* `position` [Point](latest/api/structures/point.md)
+* `position` [Point](structures/point.md)
 
 Set a custom position for the traffic light buttons. Can only be used with `titleBarStyle` set to `hidden`.
 `````
@@ -297,7 +297,7 @@ The purpose of the API History block is to describe when/where/how/why an API wa
 Each API change listed in the block should include a link to the
 PR where that change was made along with an optional short description of the
 change. If applicable, include the [heading id](https://gist.github.com/asabaylus/3071099)
-for that change from the [breaking changes documentation](latest/breaking-changes.md).
+for that change from the [breaking changes documentation](./breaking-changes.md).
 
 The [API History linting script][api-history-linting-script] (`lint:api-history`)
 validates API History blocks in the Electron documentation against the schema and
@@ -392,7 +392,7 @@ changes:
 ```
 -->
 
-Process: [Renderer](latest/glossary.md#renderer-process)
+Process: [Renderer](../glossary.md#renderer-process)
 `````
 
 Notice how an API History block wasn't added under:
@@ -418,5 +418,5 @@ See [electron/i18n](https://github.com/electron/i18n#readme)
 [api-history-schema-rfc]: https://github.com/electron/rfcs/blob/f36e0a8483e1ea844710890a8a7a1bd58ecbac05/text/0004-api-history-schema.md
 [api-history-linting-script]: https://github.com/electron/lint-roller/blob/3030970136ec6b41028ef973f944d3e5cad68e1c/bin/lint-markdown-api-history.ts
 [api-history-tests]: https://github.com/electron/lint-roller/blob/main/tests/lint-roller-markdown-api-history.spec.ts
-[api-history-cross-origin]: latest/breaking-changes.md#behavior-changed-cross-origin-iframes-now-use-permission-policy-to-access-features
-[api-history-ipc-renderer]: latest/breaking-changes.md#behavior-changed-ipcrenderer-can-no-longer-be-sent-over-the-contextbridge
+[api-history-cross-origin]: https://github.com/electron/electron/blob/f508f6b6b570481a2b61d8c4f8c1951f492e4309/docs/breaking-changes.md#behavior-changed-cross-origin-iframes-now-use-permission-policy-to-access-features
+[api-history-ipc-renderer]: https://github.com/electron/electron/blob/f508f6b6b570481a2b61d8c4f8c1951f492e4309/docs/breaking-changes.md#behavior-changed-ipcrenderer-can-no-longer-be-sent-over-the-contextbridge

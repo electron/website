@@ -9,10 +9,10 @@ hide_title: false
 
 > Control web pages and iframes.
 
-Process: [Main](latest/glossary.md#main-process)
+Process: [Main](../glossary.md#main-process)
 
 The `webFrameMain` module can be used to lookup frames across existing
-[`WebContents`](latest/api/web-contents.md) instances. Navigation events are the common
+[`WebContents`](web-contents.md) instances. Navigation events are the common
 use case.
 
 ```js
@@ -34,7 +34,7 @@ win.webContents.on(
 ```
 
 You can also access frames of existing pages by using the `mainFrame` property
-of [`WebContents`](latest/api/web-contents.md).
+of [`WebContents`](web-contents.md).
 
 ```js
 const { BrowserWindow } = require('electron')
@@ -75,7 +75,7 @@ or `undefined` if there is no WebFrameMain associated with the given IDs.
 
 ## Class: WebFrameMain
 
-Process: [Main](latest/glossary.md#main-process)<br />
+Process: [Main](../glossary.md#main-process)<br />
 _This class is not exported from the `'electron'` module. It is only available as a return value of other methods in the Electron API._
 
 ### Instance Events
@@ -119,7 +119,7 @@ just like [`postMessage`][], so prototype chains will not be included.
 Sending Functions, Promises, Symbols, WeakMaps, or WeakSets will throw an exception.
 
 The renderer process can handle the message by listening to `channel` with the
-[`ipcRenderer`](latest/api/ipc-renderer.md) module.
+[`ipcRenderer`](ipc-renderer.md) module.
 
 #### `frame.postMessage(channel, message, [transfer])`
 
@@ -153,7 +153,7 @@ ipcRenderer.on('port', (e, msg) => {
 
 #### `frame.ipc` _Readonly_
 
-An [`IpcMain`](latest/api/ipc-main.md) instance scoped to the frame.
+An [`IpcMain`](ipc-main.md) instance scoped to the frame.
 
 IPC messages sent with `ipcRenderer.send`, `ipcRenderer.sendSync` or
 `ipcRenderer.postMessage` will be delivered in the following order:
@@ -173,7 +173,7 @@ first one that is defined will be called, the rest will be ignored.
 In most cases, only the main frame of a WebContents can send or receive IPC
 messages. However, if the `nodeIntegrationInSubFrames` option is enabled, it is
 possible for child frames to send and receive IPC messages also. The
-[`WebContents.ipc`](latest/api/web-contents.md#contentsipc-readonly) interface may be more
+[`WebContents.ipc`](web-contents.md#contentsipc-readonly) interface may be more
 convenient when `nodeIntegrationInSubFrames` is not enabled.
 
 #### `frame.url` _Readonly_
@@ -240,7 +240,7 @@ have the same `routingId`.
 
 A `string` representing the [visibility state](https://developer.mozilla.org/en-US/docs/Web/API/Document/visibilityState) of the frame.
 
-See also how the [Page Visibility API](latest/api/browser-window.md#page-visibility) is affected by other Electron APIs.
+See also how the [Page Visibility API](browser-window.md#page-visibility) is affected by other Electron APIs.
 
 #### `frame.detached` _Readonly_
 
@@ -250,5 +250,5 @@ newly navigated page replaced it in the frame tree.
 
 [SCA]: https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm
 [`postMessage`]: https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage
-[`MessagePortMain`]: latest/api/message-port-main.md
+[`MessagePortMain`]: message-port-main.md
 [unload]: https://developer.mozilla.org/en-US/docs/Web/API/Window/unload_event

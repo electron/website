@@ -9,7 +9,7 @@ hide_title: false
 
 > Create and control browser windows.
 
-Process: [Main](latest/glossary.md#main-process)
+Process: [Main](../glossary.md#main-process)
 
 This module cannot be used until the `ready` event of the `app`
 module is emitted.
@@ -30,7 +30,7 @@ win.loadFile('index.html')
 ## Window customization
 
 The `BrowserWindow` class exposes various ways to modify the look and behavior of
-your app's windows. For more details, see the [Window Customization](latest/tutorial/window-customization.md)
+your app's windows. For more details, see the [Window Customization](../tutorial/window-customization.md)
 tutorial.
 
 ## Showing the window gracefully
@@ -86,7 +86,7 @@ win.setBackgroundColor('#ff00a3')
 win.setBackgroundColor('blueviolet')
 ```
 
-For more information about these color types see valid options in [win.setBackgroundColor](latest/api/browser-window.md#winsetbackgroundcolorbackgroundcolor).
+For more information about these color types see valid options in [win.setBackgroundColor](browser-window.md#winsetbackgroundcolorbackgroundcolor).
 
 ## Parent and child windows
 
@@ -151,7 +151,7 @@ state is `hidden` in order to minimize power consumption.
 
 > Create and control browser windows.
 
-Process: [Main](latest/glossary.md#main-process)
+Process: [Main](../glossary.md#main-process)
 
 `BrowserWindow` is an [EventEmitter][event-emitter].
 
@@ -159,157 +159,7 @@ It creates a new `BrowserWindow` with native properties as set by the `options`.
 
 ### `new BrowserWindow([options])`
 
-* `options` [BrowserWindowConstructorOptions](latest/api/structures/browser-window-options.md) (optional)
-  * `webPreferences` [WebPreferences](latest/api/structures/web-preferences.md) (optional) - Settings of web page's features.
-    * `devTools` boolean (optional) - Whether to enable DevTools. If it is set to `false`, can not use `BrowserWindow.webContents.openDevTools()` to open DevTools. Default is `true`.
-    * `nodeIntegration` boolean (optional) - Whether node integration is enabled.
-      Default is `false`.
-    * `nodeIntegrationInWorker` boolean (optional) - Whether node integration is
-      enabled in web workers. Default is `false`. More about this can be found
-      in [Multithreading](latest/tutorial/multithreading.md).
-    * `nodeIntegrationInSubFrames` boolean (optional) - Experimental option for
-      enabling Node.js support in sub-frames such as iframes and child windows. All your preloads will load for
-      every iframe, you can use `process.isMainFrame` to determine if you are
-      in the main frame or not.
-    * `preload` string (optional) - Specifies a script that will be loaded before other
-      scripts run in the page. This script will always have access to node APIs
-      no matter whether node integration is turned on or off. The value should
-      be the absolute file path to the script.
-      When node integration is turned off, the preload script can reintroduce
-      Node global symbols back to the global scope. See example
-      [here](latest/api/context-bridge.md#exposing-node-global-symbols).
-    * `sandbox` boolean (optional) - If set, this will sandbox the renderer
-      associated with the window, making it compatible with the Chromium
-      OS-level sandbox and disabling the Node.js engine. This is not the same as
-      the `nodeIntegration` option and the APIs available to the preload script
-      are more limited. Read more about the option [here](latest/tutorial/sandbox.md).
-    * `session` [Session](latest/api/session.md#class-session) (optional) - Sets the session used by the
-      page. Instead of passing the Session object directly, you can also choose to
-      use the `partition` option instead, which accepts a partition string. When
-      both `session` and `partition` are provided, `session` will be preferred.
-      Default is the default session.
-    * `partition` string (optional) - Sets the session used by the page according to the
-      session's partition string. If `partition` starts with `persist:`, the page
-      will use a persistent session available to all pages in the app with the
-      same `partition`. If there is no `persist:` prefix, the page will use an
-      in-memory session. By assigning the same `partition`, multiple pages can share
-      the same session. Default is the default session.
-    * `zoomFactor` number (optional) - The default zoom factor of the page, `3.0` represents
-      `300%`. Default is `1.0`.
-    * `javascript` boolean (optional) - Enables JavaScript support. Default is `true`.
-    * `webSecurity` boolean (optional) - When `false`, it will disable the
-      same-origin policy (usually using testing websites by people), and set
-      `allowRunningInsecureContent` to `true` if this options has not been set
-      by user. Default is `true`.
-    * `allowRunningInsecureContent` boolean (optional) - Allow an https page to run
-      JavaScript, CSS or plugins from http URLs. Default is `false`.
-    * `images` boolean (optional) - Enables image support. Default is `true`.
-    * `imageAnimationPolicy` string (optional) - Specifies how to run image animations (E.g. GIFs).  Can be `animate`, `animateOnce` or `noAnimation`.  Default is `animate`.
-    * `textAreasAreResizable` boolean (optional) - Make TextArea elements resizable. Default
-      is `true`.
-    * `webgl` boolean (optional) - Enables WebGL support. Default is `true`.
-    * `plugins` boolean (optional) - Whether plugins should be enabled. Default is `false`.
-    * `experimentalFeatures` boolean (optional) - Enables Chromium's experimental features.
-      Default is `false`.
-    * `scrollBounce` boolean (optional) _macOS_ - Enables scroll bounce
-      (rubber banding) effect on macOS. Default is `false`.
-    * `enableBlinkFeatures` string (optional) - A list of feature strings separated by `,`, like
-      `CSSVariables,KeyboardEventKey` to enable. The full list of supported feature
-      strings can be found in the [RuntimeEnabledFeatures.json5][runtime-enabled-features]
-      file.
-    * `disableBlinkFeatures` string (optional) - A list of feature strings separated by `,`,
-      like `CSSVariables,KeyboardEventKey` to disable. The full list of supported
-      feature strings can be found in the
-      [RuntimeEnabledFeatures.json5][runtime-enabled-features] file.
-    * `defaultFontFamily` Object (optional) - Sets the default font for the font-family.
-      * `standard` string (optional) - Defaults to `Times New Roman`.
-      * `serif` string (optional) - Defaults to `Times New Roman`.
-      * `sansSerif` string (optional) - Defaults to `Arial`.
-      * `monospace` string (optional) - Defaults to `Courier New`.
-      * `cursive` string (optional) - Defaults to `Script`.
-      * `fantasy` string (optional) - Defaults to `Impact`.
-      * `math` string (optional) - Defaults to `Latin Modern Math`.
-    * `defaultFontSize` Integer (optional) - Defaults to `16`.
-    * `defaultMonospaceFontSize` Integer (optional) - Defaults to `13`.
-    * `minimumFontSize` Integer (optional) - Defaults to `0`.
-    * `defaultEncoding` string (optional) - Defaults to `ISO-8859-1`.
-    * `backgroundThrottling` boolean (optional) - Whether to throttle animations and timers
-      when the page becomes background. This also affects the
-      [Page Visibility API](latest/api/browser-window.md#page-visibility). When at least one
-      [webContents](latest/api/web-contents.md) displayed in a single
-      [browserWindow](latest/api/browser-window.md) has disabled `backgroundThrottling` then
-      frames will be drawn and swapped for the whole window and other
-      [webContents](latest/api/web-contents.md) displayed by it. Defaults to `true`.
-    * `offscreen` Object | boolean (optional) - Whether to enable offscreen rendering for the browser
-      window. Defaults to `false`. See the
-      [offscreen rendering tutorial](latest/tutorial/offscreen-rendering.md) for
-      more details.
-      * `useSharedTexture` boolean (optional) _Experimental_ - Whether to use GPU shared texture for accelerated
-         paint event. Defaults to `false`. See the
-        [offscreen rendering tutorial](latest/tutorial/offscreen-rendering.md) for
-        more details.
-    * `contextIsolation` boolean (optional) - Whether to run Electron APIs and
-      the specified `preload` script in a separate JavaScript context. Defaults
-      to `true`. The context that the `preload` script runs in will only have
-      access to its own dedicated `document` and `window` globals, as well as
-      its own set of JavaScript builtins (`Array`, `Object`, `JSON`, etc.),
-      which are all invisible to the loaded content. The Electron API will only
-      be available in the `preload` script and not the loaded page. This option
-      should be used when loading potentially untrusted remote content to ensure
-      the loaded content cannot tamper with the `preload` script and any
-      Electron APIs being used.  This option uses the same technique used by
-      [Chrome Content Scripts][chrome-content-scripts].  You can access this
-      context in the dev tools by selecting the 'Electron Isolated Context'
-      entry in the combo box at the top of the Console tab.
-    * `webviewTag` boolean (optional) - Whether to enable the [`<webview>` tag](latest/api/webview-tag.md).
-      Defaults to `false`. **Note:** The
-      `preload` script configured for the `<webview>` will have node integration
-      enabled when it is executed so you should ensure remote/untrusted content
-      is not able to create a `<webview>` tag with a possibly malicious `preload`
-      script. You can use the `will-attach-webview` event on [webContents](latest/api/web-contents.md)
-      to strip away the `preload` script and to validate or alter the
-      `<webview>`'s initial settings.
-    * `additionalArguments` string[] (optional) - A list of strings that will be appended
-      to `process.argv` in the renderer process of this app.  Useful for passing small
-      bits of data down to renderer process preload scripts.
-    * `safeDialogs` boolean (optional) - Whether to enable browser style
-      consecutive dialog protection. Default is `false`.
-    * `safeDialogsMessage` string (optional) - The message to display when
-      consecutive dialog protection is triggered. If not defined the default
-      message would be used, note that currently the default message is in
-      English and not localized.
-    * `disableDialogs` boolean (optional) - Whether to disable dialogs
-      completely. Overrides `safeDialogs`. Default is `false`.
-    * `navigateOnDragDrop` boolean (optional) - Whether dragging and dropping a
-      file or link onto the page causes a navigation. Default is `false`.
-    * `autoplayPolicy` string (optional) - Autoplay policy to apply to
-      content in the window, can be `no-user-gesture-required`,
-      `user-gesture-required`, `document-user-activation-required`. Defaults to
-      `no-user-gesture-required`.
-    * `disableHtmlFullscreenWindowResize` boolean (optional) - Whether to
-      prevent the window from resizing when entering HTML Fullscreen. Default
-      is `false`.
-    * `accessibleTitle` string (optional) - An alternative title string provided only
-      to accessibility tools such as screen readers. This string is not directly
-      visible to users.
-    * `spellcheck` boolean (optional) - Whether to enable the builtin spellchecker.
-      Default is `true`.
-    * `enableWebSQL` boolean (optional) - Whether to enable the [WebSQL api](https://www.w3.org/TR/webdatabase/).
-      Default is `true`.
-    * `v8CacheOptions` string (optional) - Enforces the v8 code caching policy
-      used by blink. Accepted values are
-      * `none` - Disables code caching
-      * `code` - Heuristic based code caching
-      * `bypassHeatCheck` - Bypass code caching heuristics but with lazy compilation
-      * `bypassHeatCheckAndEagerCompile` - Same as above except compilation is eager.
-      Default policy is `code`.
-    * `enablePreferredSizeMode` boolean (optional) - Whether to enable
-      preferred size mode. The preferred size is the minimum size needed to
-      contain the layout of the document—without requiring scrolling. Enabling
-      this will cause the `preferred-size-changed` event to be emitted on the
-      `WebContents` when the preferred size changes. Default is `false`.
-    * `transparent` boolean (optional) - Whether to enable background transparency for the guest page. Default is `true`. **Note:** The guest page's text and background colors are derived from the [color scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme) of its root element. When transparency is enabled, the text color will still change accordingly but the background will remain transparent.
-  * `paintWhenInitiallyHidden` boolean (optional) - Whether the renderer should be active when `show` is `false` and it has just been created.  In order for `document.visibilityState` to work correctly on first load with `show: false` you should set this to `false`.  Setting this to `false` will cause the `ready-to-show` event to not fire.  Default is `true`.
+* `options` [BrowserWindowConstructorOptions](structures/browser-window-options.md?inline) (optional)
 
 ### Instance Events
 
@@ -422,7 +272,7 @@ Emitted when the window is restored from a minimized state.
 Returns:
 
 * `event` Event
-* `newBounds` [Rectangle](latest/api/structures/rectangle.md) - Size the window is being resized to.
+* `newBounds` [Rectangle](structures/rectangle.md) - Size the window is being resized to.
 * `details` Object
   * `edge` (string) - The edge of the window being dragged for resizing. Can be `bottom`, `left`, `right`, `top-left`, `top-right`, `bottom-left` or `bottom-right`.
 
@@ -452,7 +302,7 @@ This is usually emitted when the window has been resized manually. On macOS, res
 Returns:
 
 * `event` Event
-* `newBounds` [Rectangle](latest/api/structures/rectangle.md) - Location the window is being moved to.
+* `newBounds` [Rectangle](structures/rectangle.md) - Location the window is being moved to.
 
 Emitted before the window is moved. On Windows, calling `event.preventDefault()` will prevent the window from being moved.
 
@@ -569,7 +419,7 @@ Emitted when the native new tab button is clicked.
 Returns:
 
 * `event` Event
-* `point` [Point](latest/api/structures/point.md) - The screen coordinates the context menu was triggered at
+* `point` [Point](structures/point.md) - The screen coordinates the context menu was triggered at
 
 Emitted when the system context menu is triggered on the window, this is
 normally only triggered when the user right clicks on the non-client area
@@ -592,18 +442,18 @@ Returns `BrowserWindow | null` - The window that is focused in this application,
 
 #### `BrowserWindow.fromWebContents(webContents)`
 
-* `webContents` [WebContents](latest/api/web-contents.md)
+* `webContents` [WebContents](web-contents.md)
 
 Returns `BrowserWindow | null` - The window that owns the given `webContents`
 or `null` if the contents are not owned by a window.
 
 #### `BrowserWindow.fromBrowserView(browserView)` _Deprecated_
 
-* `browserView` [BrowserView](latest/api/browser-view.md)
+* `browserView` [BrowserView](browser-view.md)
 
 > **Note**
 > The `BrowserView` class is deprecated, and replaced by the new
-> [`WebContentsView`](latest/api/web-contents-view.md) class.
+> [`WebContentsView`](web-contents-view.md) class.
 
 Returns `BrowserWindow | null` - The window that owns the given `browserView`. If the given view is not attached to any window, returns `null`.
 
@@ -629,7 +479,7 @@ win.loadURL('https://github.com')
 A `WebContents` object this window owns. All web page related events and
 operations will be done via it.
 
-See the [`webContents` documentation](latest/api/web-contents.md) for its methods and
+See the [`webContents` documentation](web-contents.md) for its methods and
 events.
 
 #### `win.id` _Readonly_
@@ -841,13 +691,13 @@ Returns `boolean` - Whether the window is minimized.
 
 Sets whether the window should be in fullscreen mode.
 
-**Note:** On macOS, fullscreen transitions take place asynchronously. If further actions depend on the fullscreen state, use the ['enter-full-screen'](latest/api/browser-window.md#event-enter-full-screen) or ['leave-full-screen'](latest/api/browser-window.md#event-leave-full-screen) events.
+**Note:** On macOS, fullscreen transitions take place asynchronously. If further actions depend on the fullscreen state, use the ['enter-full-screen'](browser-window.md#event-enter-full-screen) or ['leave-full-screen'](browser-window.md#event-leave-full-screen) events.
 
 #### `win.isFullScreen()`
 
 Returns `boolean` - Whether the window is in fullscreen mode.
 
-**Note:** On macOS, fullscreen transitions take place asynchronously. When querying for a BrowserWindow's fullscreen status, you should ensure that either the ['enter-full-screen'](latest/api/browser-window.md#event-enter-full-screen) or ['leave-full-screen'](latest/api/browser-window.md#event-leave-full-screen) events have been emitted.
+**Note:** On macOS, fullscreen transitions take place asynchronously. When querying for a BrowserWindow's fullscreen status, you should ensure that either the ['enter-full-screen'](browser-window.md#event-enter-full-screen) or ['leave-full-screen'](browser-window.md#event-leave-full-screen) events have been emitted.
 
 #### `win.setSimpleFullScreen(flag)` _macOS_
 
@@ -869,7 +719,7 @@ Returns `boolean` - Whether the window is in normal state (not maximized, not mi
 
 * `aspectRatio` Float - The aspect ratio to maintain for some portion of the
 content view.
-* `extraSize` [Size](latest/api/structures/size.md) (optional) _macOS_ - The extra size not to be included while
+* `extraSize` [Size](structures/size.md) (optional) _macOS_ - The extra size not to be included while
 maintaining the aspect ratio.
 
 This will make a window maintain an aspect ratio. The extra size allows a
@@ -938,7 +788,7 @@ Closes the currently open [Quick Look][quick-look] panel.
 
 #### `win.setBounds(bounds[, animate])`
 
-* `bounds` Partial\<[Rectangle](latest/api/structures/rectangle.md)\>
+* `bounds` Partial\<[Rectangle](structures/rectangle.md)\>
 * `animate` boolean (optional) _macOS_
 
 Resizes and moves the window to the supplied bounds. Any properties that are not supplied will default to their current values.
@@ -957,13 +807,13 @@ win.setBounds({ width: 100 })
 console.log(win.getBounds())
 ```
 
-**Note:** On macOS, the y-coordinate value cannot be smaller than the [Tray](latest/tutorial/tray.md) height. The tray height has changed over time and depends on the operating system, but is between 20-40px. Passing a value lower than the tray height will result in a window that is flush to the tray.
+**Note:** On macOS, the y-coordinate value cannot be smaller than the [Tray](tray.md) height. The tray height has changed over time and depends on the operating system, but is between 20-40px. Passing a value lower than the tray height will result in a window that is flush to the tray.
 
 #### `win.getBounds()`
 
-Returns [`Rectangle`](latest/api/structures/rectangle.md) - The `bounds` of the window as `Object`.
+Returns [`Rectangle`](structures/rectangle.md) - The `bounds` of the window as `Object`.
 
-**Note:** On macOS, the y-coordinate value returned will be at minimum the [Tray](latest/tutorial/tray.md) height. For example, calling `win.setBounds({ x: 25, y: 20, width: 800, height: 600 })` with a tray height of 38 means that `win.getBounds()` will return `{ x: 25, y: 38, width: 800, height: 600 }`.
+**Note:** On macOS, the y-coordinate value returned will be at minimum the [Tray](tray.md) height. For example, calling `win.setBounds({ x: 25, y: 20, width: 800, height: 600 })` with a tray height of 38 means that `win.getBounds()` will return `{ x: 25, y: 38, width: 800, height: 600 }`.
 
 #### `win.getBackgroundColor()`
 
@@ -975,7 +825,7 @@ See [Setting `backgroundColor`](#setting-the-backgroundcolor-property).
 
 #### `win.setContentBounds(bounds[, animate])`
 
-* `bounds` [Rectangle](latest/api/structures/rectangle.md)
+* `bounds` [Rectangle](structures/rectangle.md)
 * `animate` boolean (optional) _macOS_
 
 Resizes and moves the window's client area (e.g. the web page) to
@@ -983,13 +833,13 @@ the supplied bounds.
 
 #### `win.getContentBounds()`
 
-Returns [`Rectangle`](latest/api/structures/rectangle.md) - The `bounds` of the window's client area as `Object`.
+Returns [`Rectangle`](structures/rectangle.md) - The `bounds` of the window's client area as `Object`.
 
 #### `win.getNormalBounds()`
 
-Returns [`Rectangle`](latest/api/structures/rectangle.md) - Contains the window bounds of the normal state
+Returns [`Rectangle`](structures/rectangle.md) - Contains the window bounds of the normal state
 
-**Note:** whatever the current state of the window : maximized, minimized or in fullscreen, this function always returns the position and size of the window in normal state. In normal state, getBounds and getNormalBounds returns the same [`Rectangle`](latest/api/structures/rectangle.md).
+**Note:** whatever the current state of the window : maximized, minimized or in fullscreen, this function always returns the position and size of the window in normal state. In normal state, getBounds and getNormalBounds returns the same [`Rectangle`](structures/rectangle.md).
 
 #### `win.setEnabled(enable)`
 
@@ -1316,12 +1166,12 @@ Returns `boolean` - Whether the window's document has been edited.
 
 #### `win.capturePage([rect, opts])`
 
-* `rect` [Rectangle](latest/api/structures/rectangle.md) (optional) - The bounds to capture
+* `rect` [Rectangle](structures/rectangle.md) (optional) - The bounds to capture
 * `opts` Object (optional)
   * `stayHidden` boolean (optional) -  Keep the page hidden instead of visible. Default is `false`.
   * `stayAwake` boolean (optional) -  Keep the system awake instead of allowing it to sleep. Default is `false`.
 
-Returns `Promise<NativeImage>` - Resolves with a [NativeImage](latest/api/native-image.md)
+Returns `Promise<NativeImage>` - Resolves with a [NativeImage](native-image.md)
 
 Captures a snapshot of the page within `rect`. Omitting `rect` will capture the whole visible page. If the page is not visible, `rect` may be empty. The page is considered visible when its browser window is hidden and the capturer count is non-zero. If you would like the page to stay hidden, you should ensure that `stayHidden` is set to true.
 
@@ -1329,17 +1179,17 @@ Captures a snapshot of the page within `rect`. Omitting `rect` will capture the 
 
 * `url` string
 * `options` Object (optional)
-  * `httpReferrer` (string | [Referrer](latest/api/structures/referrer.md)) (optional) - An HTTP Referrer URL.
+  * `httpReferrer` (string | [Referrer](structures/referrer.md)) (optional) - An HTTP Referrer URL.
   * `userAgent` string (optional) - A user agent originating the request.
   * `extraHeaders` string (optional) - Extra headers separated by "\n"
-  * `postData` ([UploadRawData](latest/api/structures/upload-raw-data.md) | [UploadFile](latest/api/structures/upload-file.md))[] (optional)
+  * `postData` ([UploadRawData](structures/upload-raw-data.md) | [UploadFile](structures/upload-file.md))[] (optional)
   * `baseURLForDataURL` string (optional) - Base URL (with trailing path separator) for files to be loaded by the data URL. This is needed only if the specified `url` is a data URL and needs to load other files.
 
 Returns `Promise<void>` - the promise will resolve when the page has finished loading
-(see [`did-finish-load`](latest/api/web-contents.md#event-did-finish-load)), and rejects
-if the page fails to load (see [`did-fail-load`](latest/api/web-contents.md#event-did-fail-load)).
+(see [`did-finish-load`](web-contents.md#event-did-finish-load)), and rejects
+if the page fails to load (see [`did-fail-load`](web-contents.md#event-did-fail-load)).
 
-Same as [`webContents.loadURL(url[, options])`](latest/api/web-contents.md#contentsloadurlurl-options).
+Same as [`webContents.loadURL(url[, options])`](web-contents.md#contentsloadurlurl-options).
 
 The `url` can be a remote address (e.g. `http://`) or a path to a local
 HTML file using the `file://` protocol.
@@ -1386,8 +1236,8 @@ win.loadURL('http://localhost:8000/post', {
   * `hash` string (optional) - Passed to `url.format()`.
 
 Returns `Promise<void>` - the promise will resolve when the page has finished loading
-(see [`did-finish-load`](latest/api/web-contents.md#event-did-finish-load)), and rejects
-if the page fails to load (see [`did-fail-load`](latest/api/web-contents.md#event-did-fail-load)).
+(see [`did-finish-load`](web-contents.md#event-did-finish-load)), and rejects
+if the page fails to load (see [`did-fail-load`](web-contents.md#event-did-fail-load)).
 
 Same as `webContents.loadFile`, `filePath` should be a path to an HTML
 file relative to the root of your application.  See the `webContents` docs
@@ -1428,7 +1278,7 @@ mode set (but with a value within the valid range), `normal` will be assumed.
 
 #### `win.setOverlayIcon(overlay, description)` _Windows_
 
-* `overlay` [NativeImage](latest/api/native-image.md) | null - the icon to display on the bottom
+* `overlay` [NativeImage](native-image.md) | null - the icon to display on the bottom
 right corner of the taskbar icon. If this parameter is `null`, the overlay is
 cleared
 * `description` string - a description that will be provided to Accessibility
@@ -1468,7 +1318,7 @@ Linux, always returns 1.
 
 #### `win.setShape(rects)` _Windows_ _Linux_ _Experimental_
 
-* `rects` [Rectangle[]](latest/api/structures/rectangle.md) - Sets a shape on the window.
+* `rects` [Rectangle[]](structures/rectangle.md) - Sets a shape on the window.
   Passing an empty list reverts the window to being rectangular.
 
 Setting a window shape determines the area within the window where the system
@@ -1479,7 +1329,7 @@ whatever is behind the window.
 
 #### `win.setThumbarButtons(buttons)` _Windows_
 
-* `buttons` [ThumbarButton[]](latest/api/structures/thumbar-button.md)
+* `buttons` [ThumbarButton[]](structures/thumbar-button.md)
 
 Returns `boolean` - Whether the buttons were added successfully
 
@@ -1495,7 +1345,7 @@ array to clean the buttons.
 The `buttons` is an array of `Button` objects:
 
 * `Button` Object
-  * `icon` [NativeImage](latest/api/native-image.md) - The icon showing in thumbnail
+  * `icon` [NativeImage](native-image.md) - The icon showing in thumbnail
     toolbar.
   * `click` Function
   * `tooltip` string (optional) - The text of the button's tooltip.
@@ -1517,7 +1367,7 @@ The `flags` is an array that can include following `string`s:
 
 #### `win.setThumbnailClip(region)` _Windows_
 
-* `region` [Rectangle](latest/api/structures/rectangle.md) - Region of the window
+* `region` [Rectangle](structures/rectangle.md) - Region of the window
 
 Sets the region of the window to show as the thumbnail image displayed when
 hovering over the window in the taskbar. You can reset the thumbnail to be
@@ -1553,7 +1403,7 @@ Same as `webContents.showDefinitionForSelection()`.
 
 #### `win.setIcon(icon)` _Windows_ _Linux_
 
-* `icon` [NativeImage](latest/api/native-image.md) | string
+* `icon` [NativeImage](native-image.md) | string
 
 Changes window icon.
 
@@ -1729,7 +1579,7 @@ See the [Windows documentation](https://learn.microsoft.com/en-us/windows/win32/
 
 #### `win.setWindowButtonPosition(position)` _macOS_
 
-* `position` [Point](latest/api/structures/point.md) | null
+* `position` [Point](structures/point.md) | null
 
 Set a custom position for the traffic light buttons in frameless window.
 Passing `null` will reset the position to default.
@@ -1752,13 +1602,13 @@ removed in future Electron releases.
 
 #### `win.setBrowserView(browserView)` _Experimental_ _Deprecated_
 
-* `browserView` [BrowserView](latest/api/browser-view.md) | null - Attach `browserView` to `win`.
+* `browserView` [BrowserView](browser-view.md) | null - Attach `browserView` to `win`.
 If there are other `BrowserView`s attached, they will be removed from
 this window.
 
 > **Note**
 > The `BrowserView` class is deprecated, and replaced by the new
-> [`WebContentsView`](latest/api/web-contents-view.md) class.
+> [`WebContentsView`](web-contents-view.md) class.
 
 #### `win.getBrowserView()` _Experimental_ _Deprecated_
 
@@ -1767,36 +1617,36 @@ if one is not attached. Throws an error if multiple `BrowserView`s are attached.
 
 > **Note**
 > The `BrowserView` class is deprecated, and replaced by the new
-> [`WebContentsView`](latest/api/web-contents-view.md) class.
+> [`WebContentsView`](web-contents-view.md) class.
 
 #### `win.addBrowserView(browserView)` _Experimental_ _Deprecated_
 
-* `browserView` [BrowserView](latest/api/browser-view.md)
+* `browserView` [BrowserView](browser-view.md)
 
 Replacement API for setBrowserView supporting work with multi browser views.
 
 > **Note**
 > The `BrowserView` class is deprecated, and replaced by the new
-> [`WebContentsView`](latest/api/web-contents-view.md) class.
+> [`WebContentsView`](web-contents-view.md) class.
 
 #### `win.removeBrowserView(browserView)` _Experimental_ _Deprecated_
 
-* `browserView` [BrowserView](latest/api/browser-view.md)
+* `browserView` [BrowserView](browser-view.md)
 
 > **Note**
 > The `BrowserView` class is deprecated, and replaced by the new
-> [`WebContentsView`](latest/api/web-contents-view.md) class.
+> [`WebContentsView`](web-contents-view.md) class.
 
 #### `win.setTopBrowserView(browserView)` _Experimental_ _Deprecated_
 
-* `browserView` [BrowserView](latest/api/browser-view.md)
+* `browserView` [BrowserView](browser-view.md)
 
 Raises `browserView` above other `BrowserView`s attached to `win`.
 Throws an error if `browserView` is not attached to `win`.
 
 > **Note**
 > The `BrowserView` class is deprecated, and replaced by the new
-> [`WebContentsView`](latest/api/web-contents-view.md) class.
+> [`WebContentsView`](web-contents-view.md) class.
 
 #### `win.getBrowserViews()` _Experimental_ _Deprecated_
 
@@ -1805,7 +1655,7 @@ with `addBrowserView` or `setBrowserView`. The top-most BrowserView is the last 
 
 > **Note**
 > The `BrowserView` class is deprecated, and replaced by the new
-> [`WebContentsView`](latest/api/web-contents-view.md) class.
+> [`WebContentsView`](web-contents-view.md) class.
 
 #### `win.setTitleBarOverlay(options)` _Windows_ _Linux_
 
@@ -1823,6 +1673,3 @@ On Linux, the `symbolColor` is automatically calculated to have minimum accessib
 [vibrancy-docs]: https://developer.apple.com/documentation/appkit/nsvisualeffectview?preferredLanguage=objc
 [window-levels]: https://developer.apple.com/documentation/appkit/nswindow/level
 [event-emitter]: https://nodejs.org/api/events.html#events_class_eventemitter
-
-[chrome-content-scripts]: https://developer.chrome.com/extensions/content_scripts#execution-environment
-[runtime-enabled-features]: https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/platform/runtime_enabled_features.json5

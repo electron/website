@@ -180,7 +180,7 @@ If you need to force a re-download of the asset and the SHASUM file set the
 `force_no_cache` environment variable to `true`.
 
 [npm]: https://docs.npmjs.com
-[versioning]: latest/tutorial/electron-versioning.md
+[versioning]: ./electron-versioning.md
 [npx]: https://docs.npmjs.com/cli/v7/commands/npx
 [releases]: https://github.com/electron/electron/releases
 [proxy-env-10]: https://github.com/gajus/global-agent/blob/v2.1.5/README.md#environment-variables

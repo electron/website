@@ -113,4 +113,4 @@ when using [Mission Control](https://support.apple.com/en-us/HT204100):
 
 ![Mission Control Progress Bar](../images/mission-control-progress-bar.png)
 
-[setprogressbar]: latest/api/browser-window.md#winsetprogressbarprogress-options
+[setprogressbar]: ../api/browser-window.md#winsetprogressbarprogress-options

@@ -9,7 +9,7 @@ hide_title: false
 
 > Customize the rendering of the current web page.
 
-Process: [Renderer](latest/glossary.md#renderer-process)
+Process: [Renderer](../glossary.md#renderer-process)
 
 `webFrame` export of the Electron module is an instance of the `WebFrame`
 class representing the current frame. Sub-frames can be retrieved by
@@ -71,7 +71,7 @@ Sets the maximum and minimum pinch-to-zoom level.
 
 > **NOTE**: Visual zoom only applies to pinch-to-zoom behavior. Cmd+/-/0 zoom shortcuts are
 > controlled by the 'zoomIn', 'zoomOut', and 'resetZoom' MenuItem roles in the application
-> Menu. To disable shortcuts, manually [define the Menu](latest/api/menu.md#examples) and omit zoom roles
+> Menu. To disable shortcuts, manually [define the Menu](./menu.md#examples) and omit zoom roles
 > from the definition.
 
 ### `webFrame.setSpellCheckProvider(language, provider)`
@@ -168,7 +168,7 @@ this limitation.
             in, `0` is the default main world (where content runs), `999` is the
             world used by Electron's `contextIsolation` feature. Accepts values
             in the range 1..536870911.
-* `scripts` [WebSource[]](latest/api/structures/web-source.md)
+* `scripts` [WebSource[]](structures/web-source.md)
 * `userGesture` boolean (optional) - Default is `false`.
 * `callback` Function (optional) - Called after script has been executed. Unless
   the frame is suspended (e.g. showing a modal alert), execution will be
@@ -202,12 +202,12 @@ Note: If the `csp` is specified, then the `securityOrigin` also has to be specif
 
 Returns `Object`:
 
-* `images` [MemoryUsageDetails](latest/api/structures/memory-usage-details.md)
-* `scripts` [MemoryUsageDetails](latest/api/structures/memory-usage-details.md)
-* `cssStyleSheets` [MemoryUsageDetails](latest/api/structures/memory-usage-details.md)
-* `xslStyleSheets` [MemoryUsageDetails](latest/api/structures/memory-usage-details.md)
-* `fonts` [MemoryUsageDetails](latest/api/structures/memory-usage-details.md)
-* `other` [MemoryUsageDetails](latest/api/structures/memory-usage-details.md)
+* `images` [MemoryUsageDetails](structures/memory-usage-details.md)
+* `scripts` [MemoryUsageDetails](structures/memory-usage-details.md)
+* `cssStyleSheets` [MemoryUsageDetails](structures/memory-usage-details.md)
+* `xslStyleSheets` [MemoryUsageDetails](structures/memory-usage-details.md)
+* `fonts` [MemoryUsageDetails](structures/memory-usage-details.md)
+* `other` [MemoryUsageDetails](structures/memory-usage-details.md)
 
 Returns an object describing usage information of Blink's internal memory
 caches.

@@ -17,4 +17,4 @@ hide_title: false
   * `productIdentifier` string - The identifier of the purchased product.
   * `quantity` Integer  - The quantity purchased.
   * `applicationUsername` string - An opaque identifier for the user’s account on your system.
-  * `paymentDiscount` [PaymentDiscount](latest/api/structures/payment-discount.md) (optional) - The details of the discount offer to apply to the payment.
+  * `paymentDiscount` [PaymentDiscount](payment-discount.md) (optional) - The details of the discount offer to apply to the payment.

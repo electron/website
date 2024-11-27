@@ -9,7 +9,7 @@ hide_title: false
 
 > Create a button in the touch bar for native macOS applications
 
-Process: [Main](latest/glossary.md#main-process)<br />
+Process: [Main](../glossary.md#main-process)<br />
 _This class is not exported from the `'electron'` module. It is only available as a return value of other methods in the Electron API._
 
 ### `new TouchBarButton(options)`
@@ -19,7 +19,7 @@ _This class is not exported from the `'electron'` module. It is only available a
   * `accessibilityLabel` string (optional) - A short description of the button for use by screenreaders like VoiceOver.
   * `backgroundColor` string (optional) - Button background color in hex format,
     i.e `#ABCDEF`.
-  * `icon` [NativeImage](latest/api/native-image.md) | string (optional) - Button icon.
+  * `icon` [NativeImage](native-image.md) | string (optional) - Button icon.
   * `iconPosition` string (optional) - Can be `left`, `right` or `overlay`. Defaults to `overlay`.
   * `click` Function (optional) - Function to call when the button is clicked.
   * `enabled` boolean (optional) - Whether the button is in an enabled state.  Default is `true`.

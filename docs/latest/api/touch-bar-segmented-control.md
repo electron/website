@@ -9,7 +9,7 @@ hide_title: false
 
 > Create a segmented control (a button group) where one button has a selected state
 
-Process: [Main](latest/glossary.md#main-process)<br />
+Process: [Main](../glossary.md#main-process)<br />
 _This class is not exported from the `'electron'` module. It is only available as a return value of other methods in the Electron API._
 
 ### `new TouchBarSegmentedControl(options)`
@@ -33,7 +33,7 @@ _This class is not exported from the `'electron'` module. It is only available a
     * `single` - Default. One item selected at a time, selecting one deselects the previously selected item. Maps to `NSSegmentSwitchTrackingSelectOne`.
     * `multiple` - Multiple items can be selected at a time. Maps to `NSSegmentSwitchTrackingSelectAny`.
     * `buttons` - Make the segments act as buttons, each segment can be pressed and released but never marked as active. Maps to `NSSegmentSwitchTrackingMomentary`.
-  * `segments` [SegmentedControlSegment[]](latest/api/structures/segmented-control-segment.md) - An array of segments to place in this control.
+  * `segments` [SegmentedControlSegment[]](structures/segmented-control-segment.md) - An array of segments to place in this control.
   * `selectedIndex` Integer (optional) - The index of the currently selected segment, will update automatically with user interaction. When the mode is `multiple` it will be the last selected item.
   * `change` Function (optional) - Called when the user selects a new segment.
     * `selectedIndex` Integer - The index of the segment the user selected.

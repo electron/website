@@ -9,7 +9,7 @@ hide_title: false
 
 > Query and receive events from a sessions active service workers.
 
-Process: [Main](latest/glossary.md#main-process)<br />
+Process: [Main](../glossary.md#main-process)<br />
 _This class is not exported from the `'electron'` module. It is only available as a return value of other methods in the Electron API._
 
 Instances of the `ServiceWorkers` class are accessed by using `serviceWorkers` property of
@@ -69,12 +69,12 @@ The following methods are available on instances of `ServiceWorkers`:
 
 #### `serviceWorkers.getAllRunning()`
 
-Returns `Record<number, ServiceWorkerInfo>` - A [ServiceWorkerInfo](latest/api/structures/service-worker-info.md) object where the keys are the service worker version ID and the values are the information about that service worker.
+Returns `Record<number, ServiceWorkerInfo>` - A [ServiceWorkerInfo](structures/service-worker-info.md) object where the keys are the service worker version ID and the values are the information about that service worker.
 
 #### `serviceWorkers.getFromVersionID(versionId)`
 
 * `versionId` number
 
-Returns [`ServiceWorkerInfo`](latest/api/structures/service-worker-info.md) - Information about this service worker
+Returns [`ServiceWorkerInfo`](structures/service-worker-info.md) - Information about this service worker
 
 If the service worker does not exist or is not running this method will throw an exception.

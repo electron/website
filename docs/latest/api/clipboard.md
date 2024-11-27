@@ -9,7 +9,7 @@ hide_title: false
 
 > Perform copy and paste operations on the system clipboard.
 
-Process: [Main](latest/glossary.md#main-process), [Renderer](latest/glossary.md#renderer-process) (non-sandboxed only)
+Process: [Main](../glossary.md#main-process), [Renderer](../glossary.md#renderer-process) (non-sandboxed only)
 
 On Linux, there is also a `selection` clipboard. To manipulate it
 you need to pass `selection` to each method:
@@ -90,11 +90,11 @@ clipboard.writeHTML('<b>Hi</b>')
 
 * `type` string (optional) - Can be `selection` or `clipboard`; default is 'clipboard'. `selection` is only available on Linux.
 
-Returns [`NativeImage`](latest/api/native-image.md) - The image content in the clipboard.
+Returns [`NativeImage`](native-image.md) - The image content in the clipboard.
 
 ### `clipboard.writeImage(image[, type])`
 
-* `image` [NativeImage](latest/api/native-image.md)
+* `image` [NativeImage](native-image.md)
 * `type` string (optional) - Can be `selection` or `clipboard`; default is 'clipboard'. `selection` is only available on Linux.
 
 Writes `image` to the clipboard.
@@ -254,7 +254,7 @@ clipboard.writeBuffer('public/utf8-plain-text', buffer)
 * `data` Object
   * `text` string (optional)
   * `html` string (optional)
-  * `image` [NativeImage](latest/api/native-image.md) (optional)
+  * `image` [NativeImage](native-image.md) (optional)
   * `rtf` string (optional)
   * `bookmark` string (optional) - The title of the URL at `text`.
 * `type` string (optional) - Can be `selection` or `clipboard`; default is 'clipboard'. `selection` is only available on Linux.

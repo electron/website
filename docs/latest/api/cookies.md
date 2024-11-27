@@ -9,7 +9,7 @@ hide_title: false
 
 > Query and modify a session's cookies.
 
-Process: [Main](latest/glossary.md#main-process)<br />
+Process: [Main](../glossary.md#main-process)<br />
 _This class is not exported from the `'electron'` module. It is only available as a return value of other methods in the Electron API._
 
 Instances of the `Cookies` class are accessed by using `cookies` property of
@@ -56,7 +56,7 @@ The following events are available on instances of `Cookies`:
 Returns:
 
 * `event` Event
-* `cookie` [Cookie](latest/api/structures/cookie.md) - The cookie that was changed.
+* `cookie` [Cookie](structures/cookie.md) - The cookie that was changed.
 * `cause` string - The cause of the change with one of the following values:
   * `explicit` - The cookie was changed directly by a consumer's action.
   * `overwrite` - The cookie was automatically removed due to an insert

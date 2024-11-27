@@ -9,7 +9,7 @@ hide_title: false
 
 > Block the system from entering low-power (sleep) mode.
 
-Process: [Main](latest/glossary.md#main-process)
+Process: [Main](../glossary.md#main-process)
 
 For example:
 

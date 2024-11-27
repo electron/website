@@ -9,7 +9,7 @@ hide_title: false
 
 > Manipulate the command line arguments for your app that Chromium reads
 
-Process: [Main](latest/glossary.md#main-process)<br />
+Process: [Main](../glossary.md#main-process)<br />
 _This class is not exported from the `'electron'` module. It is only available as a return value of other methods in the Electron API._
 
 The following example shows how to check if the `--disable-gpu` flag is set.
@@ -20,7 +20,7 @@ app.commandLine.hasSwitch('disable-gpu')
 ```
 
 For more information on what kinds of flags and switches you can use, check
-out the [Command Line Switches](latest/api/command-line-switches.md)
+out the [Command Line Switches](./command-line-switches.md)
 document.
 
 ### Instance Methods

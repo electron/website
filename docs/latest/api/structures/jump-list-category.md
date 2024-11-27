@@ -19,7 +19,7 @@ hide_title: false
   * `custom` - Displays tasks or file links, `name` must be set by the app.
 * `name` string (optional) - Must be set if `type` is `custom`, otherwise it should be
   omitted.
-* `items` JumpListItem[] (optional) - Array of [`JumpListItem`](latest/api/structures/jump-list-item.md) objects if `type` is `tasks` or
+* `items` JumpListItem[] (optional) - Array of [`JumpListItem`](jump-list-item.md) objects if `type` is `tasks` or
   `custom`, otherwise it should be omitted.
 
 **Note:** If a `JumpListCategory` object has neither the `type` nor the `name`

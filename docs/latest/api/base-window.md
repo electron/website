@@ -9,12 +9,12 @@ hide_title: false
 
 > Create and control windows.
 
-Process: [Main](latest/glossary.md#main-process)
+Process: [Main](../glossary.md#main-process)
 
 > **Note**
 > `BaseWindow` provides a flexible way to compose multiple web views in a
 > single window. For windows with only a single, full-size web view, the
-> [`BrowserWindow`](latest/api/browser-window.md) class may be a simpler option.
+> [`BrowserWindow`](browser-window.md) class may be a simpler option.
 
 This module cannot be used until the `ready` event of the `app`
 module is emitted.
@@ -75,7 +75,7 @@ const child = new BaseWindow({ parent, modal: true })
 
 > Create and control windows.
 
-Process: [Main](latest/glossary.md#main-process)
+Process: [Main](../glossary.md#main-process)
 
 `BaseWindow` is an [EventEmitter][event-emitter].
 
@@ -83,160 +83,7 @@ It creates a new `BaseWindow` with native properties as set by the `options`.
 
 ### `new BaseWindow([options])`
 
-* `options` [BaseWindowConstructorOptions](latest/api/structures/base-window-options.md) (optional)
-  * `width` Integer (optional) - Window's width in pixels. Default is `800`.
-  * `height` Integer (optional) - Window's height in pixels. Default is `600`.
-  * `x` Integer (optional) - (**required** if y is used) Window's left offset from screen.
-    Default is to center the window.
-  * `y` Integer (optional) - (**required** if x is used) Window's top offset from screen.
-    Default is to center the window.
-  * `useContentSize` boolean (optional) - The `width` and `height` would be used as web
-    page's size, which means the actual window's size will include window
-    frame's size and be slightly larger. Default is `false`.
-  * `center` boolean (optional) - Show window in the center of the screen. Default is `false`.
-  * `minWidth` Integer (optional) - Window's minimum width. Default is `0`.
-  * `minHeight` Integer (optional) - Window's minimum height. Default is `0`.
-  * `maxWidth` Integer (optional) - Window's maximum width. Default is no limit.
-  * `maxHeight` Integer (optional) - Window's maximum height. Default is no limit.
-  * `resizable` boolean (optional) - Whether window is resizable. Default is `true`.
-  * `movable` boolean (optional) _macOS_ _Windows_ - Whether window is
-    movable. This is not implemented on Linux. Default is `true`.
-  * `minimizable` boolean (optional) _macOS_ _Windows_ - Whether window is
-    minimizable. This is not implemented on Linux. Default is `true`.
-  * `maximizable` boolean (optional) _macOS_ _Windows_ - Whether window is
-    maximizable. This is not implemented on Linux. Default is `true`.
-  * `closable` boolean (optional) _macOS_ _Windows_ - Whether window is
-    closable. This is not implemented on Linux. Default is `true`.
-  * `focusable` boolean (optional) - Whether the window can be focused. Default is
-    `true`. On Windows setting `focusable: false` also implies setting
-    `skipTaskbar: true`. On Linux setting `focusable: false` makes the window
-    stop interacting with wm, so the window will always stay on top in all
-    workspaces.
-  * `alwaysOnTop` boolean (optional) - Whether the window should always stay on top of
-    other windows. Default is `false`.
-  * `fullscreen` boolean (optional) - Whether the window should show in fullscreen. When
-    explicitly set to `false` the fullscreen button will be hidden or disabled
-    on macOS. Default is `false`.
-  * `fullscreenable` boolean (optional) - Whether the window can be put into fullscreen
-    mode. On macOS, also whether the maximize/zoom button should toggle full
-    screen mode or maximize window. Default is `true`.
-  * `simpleFullscreen` boolean (optional) _macOS_ - Use pre-Lion fullscreen on
-    macOS. Default is `false`.
-  * `skipTaskbar` boolean (optional) _macOS_ _Windows_ - Whether to show the window in taskbar.
-    Default is `false`.
-  * `hiddenInMissionControl` boolean (optional) _macOS_ - Whether window should be hidden when the user toggles into mission control.
-  * `kiosk` boolean (optional) - Whether the window is in kiosk mode. Default is `false`.
-  * `title` string (optional) - Default window title. Default is `"Electron"`. If the HTML tag `<title>` is defined in the HTML file loaded by `loadURL()`, this property will be ignored.
-  * `icon` ([NativeImage](latest/api/native-image.md) | string) (optional) - The window icon. On Windows it is
-    recommended to use `ICO` icons to get best visual effects, you can also
-    leave it undefined so the executable's icon will be used.
-  * `show` boolean (optional) - Whether window should be shown when created. Default is
-    `true`.
-  * `frame` boolean (optional) - Specify `false` to create a
-    [frameless window](latest/tutorial/custom-window-styles.md#frameless-windows). Default is `true`.
-  * `parent` BaseWindow (optional) - Specify parent window. Default is `null`.
-  * `modal` boolean (optional) - Whether this is a modal window. This only works when the
-    window is a child window. Default is `false`.
-  * `acceptFirstMouse` boolean (optional) _macOS_ - Whether clicking an
-    inactive window will also click through to the web contents. Default is
-    `false` on macOS. This option is not configurable on other platforms.
-  * `disableAutoHideCursor` boolean (optional) - Whether to hide cursor when typing.
-    Default is `false`.
-  * `autoHideMenuBar` boolean (optional) - Auto hide the menu bar unless the `Alt`
-    key is pressed. Default is `false`.
-  * `enableLargerThanScreen` boolean (optional) _macOS_ - Enable the window to
-    be resized larger than screen. Only relevant for macOS, as other OSes
-    allow larger-than-screen windows by default. Default is `false`.
-  * `backgroundColor` string (optional) - The window's background color in Hex, RGB, RGBA, HSL, HSLA or named CSS color format. Alpha in #AARRGGBB format is supported if `transparent` is set to `true`. Default is `#FFF` (white). See [win.setBackgroundColor](latest/api/browser-window.md#winsetbackgroundcolorbackgroundcolor) for more information.
-  * `hasShadow` boolean (optional) - Whether window should have a shadow. Default is `true`.
-  * `opacity` number (optional) _macOS_ _Windows_ - Set the initial opacity of
-    the window, between 0.0 (fully transparent) and 1.0 (fully opaque). This
-    is only implemented on Windows and macOS.
-  * `darkTheme` boolean (optional) - Forces using dark theme for the window, only works on
-    some GTK+3 desktop environments. Default is `false`.
-  * `transparent` boolean (optional) - Makes the window [transparent](latest/tutorial/custom-window-styles.md#transparent-windows).
-    Default is `false`. On Windows, does not work unless the window is frameless.
-  * `type` string (optional) - The type of window, default is normal window. See more about
-    this below.
-  * `visualEffectState` string (optional) _macOS_ - Specify how the material
-    appearance should reflect window activity state on macOS. Must be used
-    with the `vibrancy` property. Possible values are:
-    * `followWindow` - The backdrop should automatically appear active when the window is active, and inactive when it is not. This is the default.
-    * `active` - The backdrop should always appear active.
-    * `inactive` - The backdrop should always appear inactive.
-  * `titleBarStyle` string (optional) - The style of window title bar.
-    Default is `default`. Possible values are:
-    * `default` - Results in the standard title bar for macOS or Windows respectively.
-    * `hidden` - Results in a hidden title bar and a full size content window. On macOS, the window still has the standard window controls (“traffic lights”) in the top left. On Windows and Linux, when combined with `titleBarOverlay: true` it will activate the Window Controls Overlay (see `titleBarOverlay` for more information), otherwise no window controls will be shown.
-    * `hiddenInset` _macOS_ - Results in a hidden title bar
-      with an alternative look where the traffic light buttons are slightly
-      more inset from the window edge.
-    * `customButtonsOnHover` _macOS_ - Results in a hidden
-      title bar and a full size content window, the traffic light buttons will
-      display when being hovered over in the top left of the window.
-      **Note:** This option is currently experimental.
-  * `titleBarOverlay` Object | Boolean (optional) -  When using a frameless window in conjunction with `win.setWindowButtonVisibility(true)` on macOS or using a `titleBarStyle` so that the standard window controls ("traffic lights" on macOS) are visible, this property enables the Window Controls Overlay [JavaScript APIs][overlay-javascript-apis] and [CSS Environment Variables][overlay-css-env-vars]. Specifying `true` will result in an overlay with default system colors. Default is `false`.
-    * `color` String (optional) _Windows_ _Linux_ - The CSS color of the Window Controls Overlay when enabled. Default is the system color.
-    * `symbolColor` String (optional) _Windows_ - The CSS color of the symbols on the Window Controls Overlay when enabled. Default is the system color.
-    * `height` Integer (optional) - The height of the title bar and Window Controls Overlay in pixels. Default is system height.
-  * `trafficLightPosition` [Point](latest/api/structures/point.md) (optional) _macOS_ -
-    Set a custom position for the traffic light buttons in frameless windows.
-  * `roundedCorners` boolean (optional) _macOS_ - Whether frameless window
-    should have rounded corners on macOS. Default is `true`. Setting this property
-    to `false` will prevent the window from being fullscreenable.
-  * `thickFrame` boolean (optional) - Use `WS_THICKFRAME` style for frameless windows on
-    Windows, which adds standard window frame. Setting it to `false` will remove
-    window shadow and window animations. Default is `true`.
-  * `vibrancy` string (optional) _macOS_ - Add a type of vibrancy effect to
-    the window, only on macOS. Can be `appearance-based`, `titlebar`, `selection`,
-    `menu`, `popover`, `sidebar`, `header`, `sheet`, `window`, `hud`, `fullscreen-ui`,
-    `tooltip`, `content`, `under-window`, or `under-page`.
-  * `backgroundMaterial` string (optional) _Windows_ - Set the window's
-    system-drawn background material, including behind the non-client area.
-    Can be `auto`, `none`, `mica`, `acrylic` or `tabbed`. See [win.setBackgroundMaterial](latest/api/browser-window.md#winsetbackgroundmaterialmaterial-windows) for more information.
-  * `zoomToPageWidth` boolean (optional) _macOS_ - Controls the behavior on
-    macOS when option-clicking the green stoplight button on the toolbar or by
-    clicking the Window > Zoom menu item. If `true`, the window will grow to
-    the preferred width of the web page when zoomed, `false` will cause it to
-    zoom to the width of the screen. This will also affect the behavior when
-    calling `maximize()` directly. Default is `false`.
-  * `tabbingIdentifier` string (optional) _macOS_ - Tab group name, allows
-    opening the window as a native tab. Windows with the same
-    tabbing identifier will be grouped together. This also adds a native new
-    tab button to your window's tab bar and allows your `app` and window to
-    receive the `new-window-for-tab` event.
-
-When setting minimum or maximum window size with `minWidth`/`maxWidth`/
-`minHeight`/`maxHeight`, it only constrains the users. It won't prevent you from
-passing a size that does not follow size constraints to `setBounds`/`setSize` or
-to the constructor of `BrowserWindow`.
-
-The possible values and behaviors of the `type` option are platform dependent.
-Possible values are:
-
-* On Linux, possible types are `desktop`, `dock`, `toolbar`, `splash`,
-  `notification`.
-  * The `desktop` type places the window at the desktop background window level
-    (kCGDesktopWindowLevel - 1). However, note that a desktop window will not
-    receive focus, keyboard, or mouse events. You can still use globalShortcut to
-    receive input sparingly.
-  * The `dock` type creates a dock-like window behavior.
-  * The `toolbar` type creates a window with a toolbar appearance.
-  * The `splash` type behaves in a specific way. It is not
-    draggable, even if the CSS styling of the window's body contains
-    -webkit-app-region: drag. This type is commonly used for splash screens.
-  * The `notification` type creates a window that behaves like a system notification.
-* On macOS, possible types are `desktop`, `textured`, `panel`.
-  * The `textured` type adds metal gradient appearance. This option is **deprecated**.
-  * The `desktop` type places the window at the desktop background window level
-    (`kCGDesktopWindowLevel - 1`). Note that desktop window will not receive
-    focus, keyboard or mouse events, but you can use `globalShortcut` to receive
-    input sparingly.
-  * The `panel` type enables the window to float on top of full-screened apps
-    by adding the `NSWindowStyleMaskNonactivatingPanel` style mask,normally
-    reserved for NSPanel, at runtime. Also, the window will appear on all
-    spaces (desktops).
-* On Windows, possible type is `toolbar`.
+* `options` [BaseWindowConstructorOptions](structures/base-window-options.md?inline) (optional)
 
 ### Instance Events
 
@@ -329,7 +176,7 @@ Emitted when the window is restored from a minimized state.
 Returns:
 
 * `event` Event
-* `newBounds` [Rectangle](latest/api/structures/rectangle.md) - Size the window is being resized to.
+* `newBounds` [Rectangle](structures/rectangle.md) - Size the window is being resized to.
 * `details` Object
   * `edge` (string) - The edge of the window being dragged for resizing. Can be `bottom`, `left`, `right`, `top-left`, `top-right`, `bottom-left` or `bottom-right`.
 
@@ -359,7 +206,7 @@ This is usually emitted when the window has been resized manually. On macOS, res
 Returns:
 
 * `event` Event
-* `newBounds` [Rectangle](latest/api/structures/rectangle.md) - Location the window is being moved to.
+* `newBounds` [Rectangle](structures/rectangle.md) - Location the window is being moved to.
 
 Emitted before the window is moved. On Windows, calling `event.preventDefault()` will prevent the window from being moved.
 
@@ -468,7 +315,7 @@ Emitted when the native new tab button is clicked.
 Returns:
 
 * `event` Event
-* `point` [Point](latest/api/structures/point.md) - The screen coordinates the context menu was triggered at
+* `point` [Point](structures/point.md) - The screen coordinates the context menu was triggered at
 
 Emitted when the system context menu is triggered on the window, this is
 normally only triggered when the user right clicks on the non-client area
@@ -641,13 +488,13 @@ labeled as such.
 
 #### `win.setContentView(view)`
 
-* `view` [View](latest/api/view.md)
+* `view` [View](view.md)
 
 Sets the content view of the window.
 
 #### `win.getContentView()`
 
-Returns [`View`](latest/api/view.md) - The content view of the window.
+Returns [`View`](view.md) - The content view of the window.
 
 #### `win.destroy()`
 
@@ -729,7 +576,7 @@ Returns `boolean` - Whether the window is minimized.
 
 Sets whether the window should be in fullscreen mode.
 
-**Note:** On macOS, fullscreen transitions take place asynchronously. If further actions depend on the fullscreen state, use the ['enter-full-screen'](latest/api/base-window.md#event-enter-full-screen) or ['leave-full-screen'](latest/api/base-window.md#event-leave-full-screen) events.
+**Note:** On macOS, fullscreen transitions take place asynchronously. If further actions depend on the fullscreen state, use the ['enter-full-screen'](base-window.md#event-enter-full-screen) or ['leave-full-screen'](base-window.md#event-leave-full-screen) events.
 
 #### `win.isFullScreen()`
 
@@ -755,7 +602,7 @@ Returns `boolean` - Whether the window is in normal state (not maximized, not mi
 
 * `aspectRatio` Float - The aspect ratio to maintain for some portion of the
 content view.
-* `extraSize` [Size](latest/api/structures/size.md) (optional) _macOS_ - The extra size not to be included while
+* `extraSize` [Size](structures/size.md) (optional) _macOS_ - The extra size not to be included while
 maintaining the aspect ratio.
 
 This will make a window maintain an aspect ratio. The extra size allows a
@@ -805,7 +652,7 @@ Examples of valid `backgroundColor` values:
   * Similar to CSS Color Module Level 3 keywords, but case-sensitive.
     * e.g. `blueviolet` or `red`
 
-Sets the background color of the window. See [Setting `backgroundColor`](latest/api/browser-window.md#setting-the-backgroundcolor-property).
+Sets the background color of the window. See [Setting `backgroundColor`](browser-window.md#setting-the-backgroundcolor-property).
 
 #### `win.previewFile(path[, displayName])` _macOS_
 
@@ -824,7 +671,7 @@ Closes the currently open [Quick Look][quick-look] panel.
 
 #### `win.setBounds(bounds[, animate])`
 
-* `bounds` Partial\<[Rectangle](latest/api/structures/rectangle.md)\>
+* `bounds` Partial\<[Rectangle](structures/rectangle.md)\>
 * `animate` boolean (optional) _macOS_
 
 Resizes and moves the window to the supplied bounds. Any properties that are not supplied will default to their current values.
@@ -843,25 +690,25 @@ win.setBounds({ width: 100 })
 console.log(win.getBounds())
 ```
 
-**Note:** On macOS, the y-coordinate value cannot be smaller than the [Tray](latest/tutorial/tray.md) height. The tray height has changed over time and depends on the operating system, but is between 20-40px. Passing a value lower than the tray height will result in a window that is flush to the tray.
+**Note:** On macOS, the y-coordinate value cannot be smaller than the [Tray](tray.md) height. The tray height has changed over time and depends on the operating system, but is between 20-40px. Passing a value lower than the tray height will result in a window that is flush to the tray.
 
 #### `win.getBounds()`
 
-Returns [`Rectangle`](latest/api/structures/rectangle.md) - The `bounds` of the window as `Object`.
+Returns [`Rectangle`](structures/rectangle.md) - The `bounds` of the window as `Object`.
 
-**Note:** On macOS, the y-coordinate value returned will be at minimum the [Tray](latest/tutorial/tray.md) height. For example, calling `win.setBounds({ x: 25, y: 20, width: 800, height: 600 })` with a tray height of 38 means that `win.getBounds()` will return `{ x: 25, y: 38, width: 800, height: 600 }`.
+**Note:** On macOS, the y-coordinate value returned will be at minimum the [Tray](tray.md) height. For example, calling `win.setBounds({ x: 25, y: 20, width: 800, height: 600 })` with a tray height of 38 means that `win.getBounds()` will return `{ x: 25, y: 38, width: 800, height: 600 }`.
 
 #### `win.getBackgroundColor()`
 
 Returns `string` - Gets the background color of the window in Hex (`#RRGGBB`) format.
 
-See [Setting `backgroundColor`](latest/api/browser-window.md#setting-the-backgroundcolor-property).
+See [Setting `backgroundColor`](browser-window.md#setting-the-backgroundcolor-property).
 
 **Note:** The alpha value is _not_ returned alongside the red, green, and blue values.
 
 #### `win.setContentBounds(bounds[, animate])`
 
-* `bounds` [Rectangle](latest/api/structures/rectangle.md)
+* `bounds` [Rectangle](structures/rectangle.md)
 * `animate` boolean (optional) _macOS_
 
 Resizes and moves the window's client area (e.g. the web page) to
@@ -869,13 +716,13 @@ the supplied bounds.
 
 #### `win.getContentBounds()`
 
-Returns [`Rectangle`](latest/api/structures/rectangle.md) - The `bounds` of the window's client area as `Object`.
+Returns [`Rectangle`](structures/rectangle.md) - The `bounds` of the window's client area as `Object`.
 
 #### `win.getNormalBounds()`
 
-Returns [`Rectangle`](latest/api/structures/rectangle.md) - Contains the window bounds of the normal state
+Returns [`Rectangle`](structures/rectangle.md) - Contains the window bounds of the normal state
 
-**Note:** whatever the current state of the window : maximized, minimized or in fullscreen, this function always returns the position and size of the window in normal state. In normal state, getBounds and getNormalBounds returns the same [`Rectangle`](latest/api/structures/rectangle.md).
+**Note:** whatever the current state of the window : maximized, minimized or in fullscreen, this function always returns the position and size of the window in normal state. In normal state, getBounds and getNormalBounds returns the same [`Rectangle`](structures/rectangle.md).
 
 #### `win.setEnabled(enable)`
 
@@ -1229,7 +1076,7 @@ mode set (but with a value within the valid range), `normal` will be assumed.
 
 #### `win.setOverlayIcon(overlay, description)` _Windows_
 
-* `overlay` [NativeImage](latest/api/native-image.md) | null - the icon to display on the bottom
+* `overlay` [NativeImage](native-image.md) | null - the icon to display on the bottom
 right corner of the taskbar icon. If this parameter is `null`, the overlay is
 cleared
 * `description` string - a description that will be provided to Accessibility
@@ -1269,7 +1116,7 @@ Linux, always returns 1.
 
 #### `win.setShape(rects)` _Windows_ _Linux_ _Experimental_
 
-* `rects` [Rectangle[]](latest/api/structures/rectangle.md) - Sets a shape on the window.
+* `rects` [Rectangle[]](structures/rectangle.md) - Sets a shape on the window.
   Passing an empty list reverts the window to being rectangular.
 
 Setting a window shape determines the area within the window where the system
@@ -1280,7 +1127,7 @@ whatever is behind the window.
 
 #### `win.setThumbarButtons(buttons)` _Windows_
 
-* `buttons` [ThumbarButton[]](latest/api/structures/thumbar-button.md)
+* `buttons` [ThumbarButton[]](structures/thumbar-button.md)
 
 Returns `boolean` - Whether the buttons were added successfully
 
@@ -1296,7 +1143,7 @@ array to clean the buttons.
 The `buttons` is an array of `Button` objects:
 
 * `Button` Object
-  * `icon` [NativeImage](latest/api/native-image.md) - The icon showing in thumbnail
+  * `icon` [NativeImage](native-image.md) - The icon showing in thumbnail
     toolbar.
   * `click` Function
   * `tooltip` string (optional) - The text of the button's tooltip.
@@ -1318,7 +1165,7 @@ The `flags` is an array that can include following `string`s:
 
 #### `win.setThumbnailClip(region)` _Windows_
 
-* `region` [Rectangle](latest/api/structures/rectangle.md) - Region of the window
+* `region` [Rectangle](structures/rectangle.md) - Region of the window
 
 Sets the region of the window to show as the thumbnail image displayed when
 hovering over the window in the taskbar. You can reset the thumbnail to be
@@ -1350,7 +1197,7 @@ together. If one of those properties is not set, then neither will be used.
 
 #### `win.setIcon(icon)` _Windows_ _Linux_
 
-* `icon` [NativeImage](latest/api/native-image.md) | string
+* `icon` [NativeImage](native-image.md) | string
 
 Changes window icon.
 
@@ -1526,7 +1373,7 @@ See the [Windows documentation](https://learn.microsoft.com/en-us/windows/win32/
 
 #### `win.setWindowButtonPosition(position)` _macOS_
 
-* `position` [Point](latest/api/structures/point.md) | null
+* `position` [Point](structures/point.md) | null
 
 Set a custom position for the traffic light buttons in frameless window.
 Passing `null` will reset the position to default.
@@ -1562,6 +1409,3 @@ On Linux, the `symbolColor` is automatically calculated to have minimum accessib
 [vibrancy-docs]: https://developer.apple.com/documentation/appkit/nsvisualeffectview?preferredLanguage=objc
 [window-levels]: https://developer.apple.com/documentation/appkit/nswindow/level
 [event-emitter]: https://nodejs.org/api/events.html#events_class_eventemitter
-
-[overlay-css-env-vars]: https://github.com/WICG/window-controls-overlay/blob/main/explainer.md#css-environment-variables
-[overlay-javascript-apis]: https://github.com/WICG/window-controls-overlay/blob/main/explainer.md#javascript-apis

@@ -242,14 +242,14 @@ main process modules from `electron/main`.
 const { app, BrowserWindow } = require('electron/main')
 ```
 
-For more information, see the [Process Model docs](latest/tutorial/process-model.md#process-specific-module-aliases-typescript).
+For more information, see the [Process Model docs](../tutorial/process-model.md#process-specific-module-aliases-typescript).
 </details>
 
 :::info ES Modules in Electron
 
 [ECMAScript modules](https://nodejs.org/api/esm.html) (i.e. using `import` to load a module)
 are supported in Electron as of Electron 28. You can find more information about the
-state of ESM in Electron and how to use them in our app in [our ESM guide](latest/tutorial/esm.md).
+state of ESM in Electron and how to use them in our app in [our ESM guide](../tutorial/esm.md).
 
 :::
 
@@ -462,34 +462,34 @@ privileged APIs and how to communicate between processes.
 
 <!-- Links -->
 
-[activate]: latest/api/app.md#event-activate-macos
-[app]: latest/api/app.md
-[app-quit]: latest/api/app.md#appquit
-[app-ready]: latest/api/app.md#event-ready
-[app-when-ready]: latest/api/app.md#appwhenready
-[application debugging]: latest/tutorial/application-debugging.md
-[browser-window]: latest/api/browser-window.md
+[activate]: ../api/app.md#event-activate-macos
+[app]: ../api/app.md
+[app-quit]: ../api/app.md#appquit
+[app-ready]: ../api/app.md#event-ready
+[app-when-ready]: ../api/app.md#appwhenready
+[application debugging]: ./application-debugging.md
+[browser-window]: ../api/browser-window.md
 [compound task]: https://code.visualstudio.com/Docs/editor/tasks#_compound-tasks
-[devtools extension]: latest/tutorial/devtools-extension.md
+[devtools extension]: ./devtools-extension.md
 [event emitters]: https://nodejs.org/api/events.html#events
 [gitignore]: https://git-scm.com/docs/gitignore
 [gitignore-template]: https://github.com/github/gitignore/blob/main/Node.gitignore
-[installation]: latest/tutorial/installation.md
+[installation]: ./installation.md
 [node-platform]: https://nodejs.org/api/process.html#process_process_platform
 [package-json-main]: https://docs.npmjs.com/cli/v7/configuring-npm/package-json#main
 [package-scripts]: https://docs.npmjs.com/cli/v7/using-npm/scripts
-[process-model]: latest/tutorial/process-model.md
+[process-model]: process-model.md
 [react]: https://reactjs.org
-[repl]: latest/tutorial/repl.md
+[repl]: ./repl.md
 [webpack]: https://webpack.js.org
-[window-all-closed]: latest/api/app.md#event-window-all-closed
+[window-all-closed]: ../api/app.md#event-window-all-closed
 [wsl]: https://learn.microsoft.com/en-us/windows/wsl/about#what-is-wsl-2
 
 <!-- Tutorial links -->
 
-[prerequisites]: latest/tutorial/tutorial-1-prerequisites.md
-[building your first app]: latest/tutorial/tutorial-2-first-app.md
-[preload]: latest/tutorial/tutorial-3-preload.md
-[features]: latest/tutorial/tutorial-4-adding-features.md
-[packaging]: latest/tutorial/tutorial-5-packaging.md
-[updates]: latest/tutorial/tutorial-6-publishing-updating.md
+[prerequisites]: tutorial-1-prerequisites.md
+[building your first app]: tutorial-2-first-app.md
+[preload]: tutorial-3-preload.md
+[features]: tutorial-4-adding-features.md
+[packaging]: tutorial-5-packaging.md
+[updates]: tutorial-6-publishing-updating.md

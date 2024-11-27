@@ -223,7 +223,7 @@ includes V8 5.9, Chrome 58 includes V8 5.8, etc.
 
 - [v8.dev](https://v8.dev/)
 - [nodejs.org/api/v8.html](https://nodejs.org/api/v8.html)
-- [docs/development/v8-development.md](latest/development/v8-development.md)
+- [docs/development/v8-development.md](development/v8-development.md)
 
 ### webview
 
@@ -236,14 +236,14 @@ embedded content.
 
 [addons]: https://nodejs.org/api/addons.html
 [asar]: https://github.com/electron/asar
-[autoupdater]: latest/api/auto-updater.md
-[code signing]: latest/tutorial/code-signing.md
-[context isolation]: latest/tutorial/context-isolation.md
-[mac app store submission guide]: latest/tutorial/mac-app-store-submission-guide.md
+[autoupdater]: api/auto-updater.md
+[code signing]: tutorial/code-signing.md
+[context isolation]: tutorial/context-isolation.md
+[mac app store submission guide]: tutorial/mac-app-store-submission-guide.md
 [main]: #main-process
 [msi]: https://learn.microsoft.com/en-us/windows/win32/msi/windows-installer-portal
-[Native Node Modules]: latest/tutorial/using-native-node-modules.md
-[offscreen rendering]: latest/tutorial/offscreen-rendering.md
-[process sandboxing]: latest/tutorial/sandbox.md
+[Native Node Modules]: tutorial/using-native-node-modules.md
+[offscreen rendering]: tutorial/offscreen-rendering.md
+[process sandboxing]: tutorial/sandbox.md
 [renderer]: #renderer-process
-[UtilityProcess]: latest/api/utility-process.md
+[UtilityProcess]: api/utility-process.md

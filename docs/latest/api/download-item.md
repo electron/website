@@ -9,7 +9,7 @@ hide_title: false
 
 > Control file downloads from remote sources.
 
-Process: [Main](latest/glossary.md#main-process)<br />
+Process: [Main](../glossary.md#main-process)<br />
 _This class is not exported from the `'electron'` module. It is only available as a return value of other methods in the Electron API._
 
 `DownloadItem` is an [EventEmitter][event-emitter] that represents a download item in Electron.
@@ -100,7 +100,7 @@ save dialog.
 #### `downloadItem.setSaveDialogOptions(options)`
 
 * `options` SaveDialogOptions - Set the save file dialog options. This object has the same
-properties as the `options` parameter of [`dialog.showSaveDialog()`](latest/api/dialog.md).
+properties as the `options` parameter of [`dialog.showSaveDialog()`](dialog.md).
 
 This API allows the user to set custom options for the save dialog that opens
 for the download item by default.

@@ -18,8 +18,8 @@ Examples:
 * `CommandOrControl+A`
 * `CommandOrControl+Shift+Z`
 
-Shortcuts are registered with the [`globalShortcut`](latest/api/global-shortcut.md) module
-using the [`register`](latest/api/global-shortcut.md#globalshortcutregisteraccelerator-callback)
+Shortcuts are registered with the [`globalShortcut`](global-shortcut.md) module
+using the [`register`](global-shortcut.md#globalshortcutregisteraccelerator-callback)
 method, i.e.
 
 ```js

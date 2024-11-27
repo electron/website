@@ -46,9 +46,9 @@ with Electron.
 
 <!-- Link labels -->
 
-[application-packaging]: latest/tutorial/application-distribution.md
-[code-signing]: latest/tutorial/code-signing.md
-[mac-app]: latest/tutorial/mac-app-store-submission-guide.md
-[windows-store]: latest/tutorial/windows-store-guide.md
-[snapcraft]: latest/tutorial/snapcraft.md
-[updates]: latest/tutorial/updates.md
+[application-packaging]: ./application-distribution.md
+[code-signing]: ./code-signing.md
+[mac-app]: ./mac-app-store-submission-guide.md
+[windows-store]: ./windows-store-guide.md
+[snapcraft]: ./snapcraft.md
+[updates]: ./updates.md

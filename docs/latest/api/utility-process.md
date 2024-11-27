@@ -11,7 +11,7 @@ hide_title: false
 Node.js and Message ports enabled. It provides the equivalent of [`child_process.fork`][] API from Node.js
 but instead uses [Services API][] from Chromium to launch the child process.
 
-Process: [Main](latest/glossary.md#main-process)<br />
+Process: [Main](../glossary.md#main-process)<br />
 
 ## Methods
 
@@ -34,8 +34,8 @@ Process: [Main](latest/glossary.md#main-process)<br />
     * `ignore`: equivalent to \['ignore', 'ignore', 'ignore']
     * `inherit`: equivalent to \['ignore', 'inherit', 'inherit'] (the default)
   * `serviceName` string (optional) - Name of the process that will appear in `name` property of
-    [`ProcessMetric`](latest/api/structures/process-metric.md) returned by [`app.getAppMetrics`](latest/api/app.md#appgetappmetrics)
-    and [`child-process-gone` event of `app`](latest/api/app.md#event-child-process-gone).
+    [`ProcessMetric`](structures/process-metric.md) returned by [`app.getAppMetrics`](app.md#appgetappmetrics)
+    and [`child-process-gone` event of `app`](app.md#event-child-process-gone).
     Default is `Node Utility Process`.
   * `allowLoadingUnsignedLibraries` boolean (optional) _macOS_ - With this flag, the utility process will be
     launched via the `Electron Helper (Plugin).app` helper executable on macOS, which can be
@@ -44,9 +44,9 @@ Process: [Main](latest/glossary.md#main-process)<br />
     to load unsigned libraries. Unless you specifically need this capability, it is best to leave this disabled.
     Default is `false`.
   * `respondToAuthRequestsFromMainProcess` boolean (optional) - With this flag, all HTTP 401 and 407 network
-    requests created via the [net module](latest/api/net.md) will allow responding to them via the [`app#login`](latest/api/app.md#event-login) event in the main process instead of the default [`login`](latest/api/client-request.md#event-login) event on the [`ClientRequest`](latest/api/client-request.md) object.
+    requests created via the [net module](net.md) will allow responding to them via the [`app#login`](app.md#event-login) event in the main process instead of the default [`login`](client-request.md#event-login) event on the [`ClientRequest`](client-request.md) object.
 
-Returns [`UtilityProcess`](latest/api/utility-process.md#class-utilityprocess)
+Returns [`UtilityProcess`](utility-process.md#class-utilityprocess)
 
 ## Class: UtilityProcess
 
@@ -168,11 +168,11 @@ Returns:
 
 * `message` any
 
-Emitted when the child process sends a message using [`process.parentPort.postMessage()`](latest/api/process.md#processparentport).
+Emitted when the child process sends a message using [`process.parentPort.postMessage()`](process.md#processparentport).
 
 [`child_process.fork`]: https://nodejs.org/dist/latest-v16.x/docs/api/child_process.html#child_processforkmodulepath-args-options
 [Services API]: https://chromium.googlesource.com/chromium/src/+/main/docs/mojo_and_services.md
 [stdio]: https://nodejs.org/dist/latest/docs/api/child_process.html#optionsstdio
 [event-emitter]: https://nodejs.org/api/events.html#events_class_eventemitter
-[`MessagePortMain`]: latest/api/message-port-main.md
+[`MessagePortMain`]: message-port-main.md
 [`Node.js diagnostic report`]: https://nodejs.org/docs/latest/api/report.html#diagnostic-report

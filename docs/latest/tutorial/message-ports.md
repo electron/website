@@ -379,10 +379,10 @@ window.onmessage = (event) => {
 </script>
 ```
 
-[context isolation]: latest/tutorial/context-isolation.md
-[`ipcRenderer.postMessage`]: latest/api/ipc-renderer.md#ipcrendererpostmessagechannel-message-transfer
-[`WebContents.postMessage`]: latest/api/web-contents.md#contentspostmessagechannel-message-transfer
-[`MessagePortMain`]: latest/api/message-port-main.md
-[`MessageChannelMain`]: latest/api/message-channel-main.md
+[context isolation]: context-isolation.md
+[`ipcRenderer.postMessage`]: ../api/ipc-renderer.md#ipcrendererpostmessagechannel-message-transfer
+[`WebContents.postMessage`]: ../api/web-contents.md#contentspostmessagechannel-message-transfer
+[`MessagePortMain`]: ../api/message-port-main.md
+[`MessageChannelMain`]: ../api/message-channel-main.md
 [`MessagePort`]: https://developer.mozilla.org/en-US/docs/Web/API/MessagePort
 [Channel Messaging API]: https://developer.mozilla.org/en-US/docs/Web/API/Channel_Messaging_API

@@ -10,7 +10,7 @@ hide_title: false
 Electron frequently releases major versions alongside every other Chromium release.
 This document focuses on the release cadence and version support policy.
 For a more in-depth guide on our git branches and how Electron uses semantic versions,
-check out our [Electron Versioning](latest/tutorial/electron-versioning.md) doc.
+check out our [Electron Versioning](./electron-versioning.md) doc.
 
 ## Timeline
 

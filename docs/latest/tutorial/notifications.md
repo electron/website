@@ -11,7 +11,7 @@ Each operating system has its own mechanism to display notifications to users. E
 APIs are cross-platform, but are different for each process type.
 
 If you want to use a renderer process API in the main process or vice-versa, consider using
-[inter-process communication](latest/tutorial/ipc.md).
+[inter-process communication](./ipc.md).
 
 ## Usage
 
@@ -19,7 +19,7 @@ Below are two examples showing how to display notifications for each process typ
 
 ### Show notifications in the main process
 
-Main process notifications are displayed using Electron's [Notification module](latest/api/notification.md).
+Main process notifications are displayed using Electron's [Notification module](../api/notification.md).
 Notification objects created using this module do not appear unless their `show()` instance
 method is called.
 
@@ -170,7 +170,7 @@ including Cinnamon, Enlightenment, Unity, GNOME, and KDE.
 
 [notification-spec]: https://specifications.freedesktop.org/notification-spec/notification-spec-latest.html
 [app-user-model-id]: https://learn.microsoft.com/en-us/windows/win32/shell/appids
-[set-app-user-model-id]: latest/api/app.md#appsetappusermodelidid-windows
+[set-app-user-model-id]: ../api/app.md#appsetappusermodelidid-windows
 [squirrel-events]: https://github.com/electron/windows-installer/blob/main/README.md#handling-squirrel-events
 [toast-activator-clsid]: https://learn.microsoft.com/en-us/windows/win32/properties/props-system-appusermodel-toastactivatorclsid
 [apple-notification-guidelines]: https://developer.apple.com/design/human-interface-guidelines/notifications

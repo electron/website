@@ -240,7 +240,7 @@ See the [Windows Store Guide][].
 [`electron-wix-msi`]: https://github.com/electron-userland/electron-wix-msi
 [xcode]: https://developer.apple.com/xcode
 [signing certificates]: https://developer.apple.com/support/certificates/
-[mac app store guide]: latest/tutorial/mac-app-store-submission-guide.md
-[windows store guide]: latest/tutorial/windows-store-guide.md
+[mac app store guide]: ./mac-app-store-submission-guide.md
+[windows store guide]: ./windows-store-guide.md
 [maker-squirrel]: https://www.electronforge.io/config/makers/squirrel.windows
 [maker-msi]: https://www.electronforge.io/config/makers/wix-msi

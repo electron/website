@@ -11,7 +11,7 @@ hide_title: false
 
 > Create native application menus and context menus.
 
-Process: [Main](latest/glossary.md#main-process)
+Process: [Main](../glossary.md#main-process)
 
 ### `new Menu()`
 
@@ -56,7 +56,7 @@ be dynamically modified.
 
 Sends the `action` to the first responder of application. This is used for
 emulating default macOS menu behaviors. Usually you would use the
-[`role`](latest/api/menu-item.md#roles) property of a [`MenuItem`](latest/api/menu-item.md).
+[`role`](menu-item.md#roles) property of a [`MenuItem`](menu-item.md).
 
 See the [macOS Cocoa Event Handling Guide](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/EventOverview/EventArchitecture/EventArchitecture.html#//apple_ref/doc/uid/10000060i-CH3-SW7)
 for more information on macOS' native actions.
@@ -68,7 +68,7 @@ for more information on macOS' native actions.
 Returns `Menu`
 
 Generally, the `template` is an array of `options` for constructing a
-[MenuItem](latest/api/menu-item.md). The usage can be referenced above.
+[MenuItem](menu-item.md). The usage can be referenced above.
 
 You can also attach other fields to the element of the `template` and they will become properties of the constructed menu items.
 
@@ -79,7 +79,7 @@ The `menu` object has the following instance methods:
 #### `menu.popup([options])`
 
 * `options` Object (optional)
-  * `window` [BrowserWindow](latest/api/browser-window.md) (optional) - Default is the focused window.
+  * `window` [BrowserWindow](browser-window.md) (optional) - Default is the focused window.
   * `x` number (optional) - Default is the current mouse cursor position.
     Must be declared if `y` is declared.
   * `y` number (optional) - Default is the current mouse cursor position.
@@ -93,17 +93,17 @@ The `menu` object has the following instance methods:
     Can be `none`, `mouse`, `keyboard`, `touch`, `touchMenu`, `longPress`, `longTap`, `touchHandle`, `stylus`, `adjustSelection`, or `adjustSelectionReset`.
   * `callback` Function (optional) - Called when menu is closed.
 
-Pops up this menu as a context menu in the [`BrowserWindow`](latest/api/browser-window.md).
+Pops up this menu as a context menu in the [`BrowserWindow`](browser-window.md).
 
 #### `menu.closePopup([browserWindow])`
 
-* `browserWindow` [BrowserWindow](latest/api/browser-window.md) (optional) - Default is the focused window.
+* `browserWindow` [BrowserWindow](browser-window.md) (optional) - Default is the focused window.
 
 Closes the context menu in the `browserWindow`.
 
 #### `menu.append(menuItem)`
 
-* `menuItem` [MenuItem](latest/api/menu-item.md)
+* `menuItem` [MenuItem](menu-item.md)
 
 Appends the `menuItem` to the menu.
 
@@ -116,7 +116,7 @@ Returns `MenuItem | null` the item with the specified `id`
 #### `menu.insert(pos, menuItem)`
 
 * `pos` Integer
-* `menuItem` [MenuItem](latest/api/menu-item.md)
+* `menuItem` [MenuItem](menu-item.md)
 
 Inserts the `menuItem` to the `pos` position of the menu.
 
@@ -151,7 +151,7 @@ Emitted when a popup is closed either manually or with `menu.closePopup()`.
 
 A `MenuItem[]` array containing the menu's items.
 
-Each `Menu` consists of multiple [`MenuItem`](latest/api/menu-item.md)s and each `MenuItem`
+Each `Menu` consists of multiple [`MenuItem`](menu-item.md)s and each `MenuItem`
 can have a submenu.
 
 ## Examples
@@ -422,4 +422,4 @@ Menu:
 ```
 
 [AboutInformationPropertyListFiles]: https://developer.apple.com/library/ios/documentation/general/Reference/InfoPlistKeyReference/Articles/AboutInformationPropertyListFiles.html
-[setMenu]: latest/api/browser-window.md#winsetmenumenu-linux-windows
+[setMenu]: browser-window.md#winsetmenumenu-linux-windows

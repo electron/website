@@ -9,7 +9,7 @@ hide_title: false
 
 > A utility layer to interact with Web API objects (Files, Blobs, etc.)
 
-Process: [Renderer](latest/glossary.md#renderer-process)
+Process: [Renderer](../glossary.md#renderer-process)
 
 ## Methods
 

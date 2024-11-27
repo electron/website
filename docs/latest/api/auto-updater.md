@@ -9,9 +9,9 @@ hide_title: false
 
 > Enable apps to automatically update themselves.
 
-Process: [Main](latest/glossary.md#main-process)
+Process: [Main](../glossary.md#main-process)
 
-**See also: [A detailed guide about how to implement updates in your application](latest/tutorial/updates.md).**
+**See also: [A detailed guide about how to implement updates in your application](../tutorial/updates.md).**
 
 `autoUpdater` is an [EventEmitter][event-emitter].
 

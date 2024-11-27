@@ -22,5 +22,5 @@ in the examples of the documents in this section.
 
 :::
 
-[`BaseWindow`]: latest/api/base-window.md
-[`BrowserWindow`]: latest/api/browser-window.md
+[`BaseWindow`]: ../api/base-window.md
+[`BrowserWindow`]: ../api/browser-window.md

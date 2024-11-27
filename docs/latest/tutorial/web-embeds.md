@@ -27,13 +27,13 @@ and only allow the capabilities you want to support.
 ### WebViews
 
 > Important Note:
-[we do not recommend you to use WebViews](latest/api/webview-tag.md#warning),
+[we do not recommend you to use WebViews](../api/webview-tag.md#warning),
 as this tag undergoes dramatic architectural changes that may affect stability
 of your application. Consider switching to alternatives, like `iframe` and
-Electron's [`WebContentsView`](latest/api/web-contents-view.md), or an architecture
+Electron's [`WebContentsView`](../api/web-contents-view.md), or an architecture
 that avoids embedded content by design.
 
-[WebViews](latest/api/webview-tag.md) are based on Chromium's WebViews and are not
+[WebViews](../api/webview-tag.md) are based on Chromium's WebViews and are not
 explicitly supported by Electron. We do not guarantee that the WebView API will
 remain available in future versions of Electron. To use `<webview>` tags, you
 will need to set `webviewTag` to `true` in the `webPreferences` of your
@@ -51,10 +51,10 @@ and handling various events.
 
 ### WebContentsView
 
-[`WebContentsView`](latest/api/web-contents-view.md)s are not a part of the
+[`WebContentsView`](../api/web-contents-view.md)s are not a part of the
 DOM—instead, they are created, controlled, positioned, and sized by your
 Main process. Using `WebContentsView`, you can combine and layer many pages
-together in the same [`BaseWindow`](latest/api/base-window.md).
+together in the same [`BaseWindow`](../api/base-window.md).
 
 `WebContentsView`s offer the greatest control over their contents, since they
 implement the `webContents` similarly to how `BrowserWindow` does it. However,

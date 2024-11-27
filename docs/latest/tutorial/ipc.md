@@ -584,18 +584,18 @@ backed by C++ classes (e.g. `process.env`, some members of `Stream`), and Electr
 backed by C++ classes (e.g. `WebContents`, `BrowserWindow` and `WebFrame`) are not serializable
 with Structured Clone.
 
-[context isolation tutorial]: latest/tutorial/context-isolation.md
-[security reasons]: latest/tutorial/context-isolation.md#security-considerations
-[`ipcMain`]: latest/api/ipc-main.md
-[`ipcMain.handle`]: latest/api/ipc-main.md#ipcmainhandlechannel-listener
-[`ipcMain.on`]: latest/api/ipc-main.md
-[IpcMainEvent]: latest/api/structures/ipc-main-event.md
-[`ipcRenderer`]: latest/api/ipc-renderer.md
-[`ipcRenderer.invoke`]: latest/api/ipc-renderer.md#ipcrendererinvokechannel-args
-[`ipcRenderer.send`]: latest/api/ipc-renderer.md
-[MessagePort]: latest/tutorial/message-ports.md
-[preload script]: latest/tutorial/process-model.md#preload-scripts
-[process model docs]: latest/tutorial/process-model.md
+[context isolation tutorial]: context-isolation.md
+[security reasons]: ./context-isolation.md#security-considerations
+[`ipcMain`]: ../api/ipc-main.md
+[`ipcMain.handle`]: ../api/ipc-main.md#ipcmainhandlechannel-listener
+[`ipcMain.on`]: ../api/ipc-main.md
+[IpcMainEvent]: ../api/structures/ipc-main-event.md
+[`ipcRenderer`]: ../api/ipc-renderer.md
+[`ipcRenderer.invoke`]: ../api/ipc-renderer.md#ipcrendererinvokechannel-args
+[`ipcRenderer.send`]: ../api/ipc-renderer.md
+[MessagePort]: ./message-ports.md
+[preload script]: process-model.md#preload-scripts
+[process model docs]: process-model.md
 [sca]: https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm
-[`WebContents`]: latest/api/web-contents.md
-[webcontents-send]: latest/api/web-contents.md#contentssendchannel-args
+[`WebContents`]: ../api/web-contents.md
+[webcontents-send]: ../api/web-contents.md#contentssendchannel-args

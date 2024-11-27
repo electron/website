@@ -9,7 +9,7 @@ hide_title: false
 
 > Allows access to simple encryption and decryption of strings for storage on the local machine.
 
-Process: [Main](latest/glossary.md#main-process)
+Process: [Main](../glossary.md#main-process)
 
 This module adds extra protection to data being stored on disk by using OS-provided cryptography systems. Current
 security semantics for each platform are outlined below.

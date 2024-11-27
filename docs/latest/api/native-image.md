@@ -9,7 +9,7 @@ hide_title: false
 
 > Create tray, dock, and application icons using PNG or JPG files.
 
-Process: [Main](latest/glossary.md#main-process), [Renderer](latest/glossary.md#renderer-process)
+Process: [Main](../glossary.md#main-process), [Renderer](../glossary.md#renderer-process)
 
 The `nativeImage` module provides a unified interface for manipulating
 system images. These can be handy if you want to provide multiple scaled
@@ -18,7 +18,7 @@ versions of the same icon or take advantage of macOS [template images][template-
 Electron APIs that take image files accept either file paths or
 `NativeImage` instances. An empty and transparent image will be used when `null` is passed.
 
-For example, when creating a [Tray](latest/tutorial/tray.md) or setting a [BrowserWindow](latest/api/browser-window.md)'s
+For example, when creating a [Tray](../api/tray.md) or setting a [BrowserWindow](../api/browser-window.md)'s
 icon, you can either pass an image file path as a string:
 
 ```js title='Main Process'
@@ -137,9 +137,9 @@ Creates an empty `NativeImage` instance.
 ### `nativeImage.createThumbnailFromPath(path, size)` _macOS_ _Windows_
 
 * `path` string - path to a file that we intend to construct a thumbnail out of.
-* `size` [Size](latest/api/structures/size.md) - the desired width and height (positive numbers) of the thumbnail.
+* `size` [Size](structures/size.md) - the desired width and height (positive numbers) of the thumbnail.
 
-Returns `Promise<NativeImage>` - fulfilled with the file's thumbnail preview image, which is a [NativeImage](latest/api/native-image.md).
+Returns `Promise<NativeImage>` - fulfilled with the file's thumbnail preview image, which is a [NativeImage](native-image.md).
 
 Note: The Windows implementation will ignore `size.height` and scale the height according to `size.width`.
 
@@ -234,7 +234,7 @@ where `SYSTEM_IMAGE_NAME` should be replaced with any value from [this list](htt
 
 > Natively wrap images such as tray, dock, and application icons.
 
-Process: [Main](latest/glossary.md#main-process), [Renderer](latest/glossary.md#renderer-process)<br />
+Process: [Main](../glossary.md#main-process), [Renderer](../glossary.md#renderer-process)<br />
 _This class is not exported from the `'electron'` module. It is only available as a return value of other methods in the Electron API._
 
 ### Instance Methods
@@ -304,7 +304,7 @@ Returns `boolean` - Whether the image is empty.
 
 * `scaleFactor` Number (optional) - Defaults to 1.0.
 
-Returns [`Size`](latest/api/structures/size.md).
+Returns [`Size`](structures/size.md).
 
 If `scaleFactor` is passed, this will return the size corresponding to the image representation most closely matching the passed value.
 
@@ -320,7 +320,7 @@ Returns `boolean` - Whether the image is a macOS [template image][template-image
 
 #### `image.crop(rect)`
 
-* `rect` [Rectangle](latest/api/structures/rectangle.md) - The area of the image to crop.
+* `rect` [Rectangle](structures/rectangle.md) - The area of the image to crop.
 
 Returns `NativeImage` - The cropped image.
 

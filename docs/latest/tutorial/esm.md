@@ -53,7 +53,7 @@ doc for more details.
 ES Modules are loaded **asynchronously**. This means that only side effects
 from the main process entry point's imports will execute before the `ready` event.
 
-This is important because certain Electron APIs (e.g. [`app.setPath`](latest/api/app.md#appsetpathname-path))
+This is important because certain Electron APIs (e.g. [`app.setPath`](../api/app.md#appsetpathname-path))
 need to be called **before** the app's `ready` event is emitted.
 
 With top-level `await` available in Node.js ESM, make sure to `await` every Promise that you need to
@@ -145,7 +145,7 @@ Sandboxed preload scripts are run as plain JavaScript without an ESM context. If
 use external modules, we recommend using a bundler for your preload code. Loading the
 `electron` API is still done via `require('electron')`.
 
-For more information on sandboxing, see the [Process Sandboxing](latest/tutorial/sandbox.md) docs.
+For more information on sandboxing, see the [Process Sandboxing](./sandbox.md) docs.
 
 #### Unsandboxed ESM preload scripts will run after page load on pages with no content
 

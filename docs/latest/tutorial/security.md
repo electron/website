@@ -14,7 +14,7 @@ see [SECURITY.md](https://github.com/electron/electron/blob/main/SECURITY.md).
 
 For upstream Chromium vulnerabilities: Electron keeps up to date with alternating
 Chromium releases. For more information, see the
-[Electron Release Timelines](latest/tutorial/electron-timelines.md) document.
+[Electron Release Timelines](../tutorial/electron-timelines.md) document.
 
 :::
 
@@ -232,7 +232,7 @@ mainWindow.loadURL('https://example.com')
 When disabling Node.js integration, you can still expose APIs to your website that
 do consume Node.js modules or features. Preload scripts continue to have access
 to `require` and other Node.js features, allowing developers to expose a custom
-API to remotely loaded content via the [contextBridge API](latest/api/context-bridge.md).
+API to remotely loaded content via the [contextBridge API](../api/context-bridge.md).
 
 ### 3. Enable Context Isolation
 
@@ -256,7 +256,7 @@ and prevent the use of Node primitives `contextIsolation` **must** also be used.
 :::info
 
 For more information on what `contextIsolation` is and how to enable it please
-see our dedicated [Context Isolation](latest/tutorial/context-isolation.md) document.
+see our dedicated [Context Isolation](context-isolation.md) document.
 
 :::
 
@@ -271,7 +271,7 @@ content in an unsandboxed process, including the main process, is not advised.
 :::info
 
 For more information on what Process Sandboxing is and how to enable it please
-see our dedicated [Process Sandboxing](latest/tutorial/sandbox.md) document.
+see our dedicated [Process Sandboxing](sandbox.md) document.
 
 :::
 
@@ -390,7 +390,7 @@ Content-Security-Policy: script-src 'self' https://apis.example.com
 
 Electron respects the [`Content-Security-Policy` HTTP header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy)
 which can be set using Electron's
-[`webRequest.onHeadersReceived`](latest/api/web-request.md#webrequestonheadersreceivedfilter-listener)
+[`webRequest.onHeadersReceived`](../api/web-request.md#webrequestonheadersreceivedfilter-listener)
 handler:
 
 ```js title='main.js (Main Process)'
@@ -803,14 +803,14 @@ set of files.
 
 #### How?
 
-Follow the [`protocol.handle`](latest/api/protocol.md#protocolhandlescheme-handler) examples to
+Follow the [`protocol.handle`](../api/protocol.md#protocolhandlescheme-handler) examples to
 learn how to serve files / content from a custom protocol.
 
 ### 19. Check which fuses you can change
 
 Electron ships with a number of options that can be useful but a large portion of
 applications probably don't need. In order to avoid having to build your own version of
-Electron, these can be turned off or on using [Fuses](latest/tutorial/fuses.md).
+Electron, these can be turned off or on using [Fuses](./fuses.md).
 
 #### Why?
 
@@ -826,14 +826,14 @@ that your application might have the rights for.
 We've made a module, [`@electron/fuses`](https://npmjs.com/package/@electron/fuses), to make
 flipping these fuses easy. Check out the README of that module for more details on usage and
 potential error cases, and refer to
-[How do I flip the fuses?](latest/tutorial/fuses.md#how-do-i-flip-the-fuses) in our documentation.
+[How do I flip the fuses?](./fuses.md#how-do-i-flip-the-fuses) in our documentation.
 
-[breaking-changes]: latest/breaking-changes.md
-[browser-window]: latest/api/browser-window.md
-[webview-tag]: latest/api/webview-tag.md
-[web-contents-view]: latest/api/web-contents-view.md
+[breaking-changes]: ../breaking-changes.md
+[browser-window]: ../api/browser-window.md
+[webview-tag]: ../api/webview-tag.md
+[web-contents-view]: ../api/web-contents-view.md
 [responsible-disclosure]: https://en.wikipedia.org/wiki/Responsible_disclosure
-[web-contents]: latest/api/web-contents.md
-[window-open-handler]: latest/api/web-contents.md#contentssetwindowopenhandlerhandler
-[will-navigate]: latest/api/web-contents.md#event-will-navigate
-[open-external]: latest/api/shell.md#shellopenexternalurl-options
+[web-contents]: ../api/web-contents.md
+[window-open-handler]: ../api/web-contents.md#contentssetwindowopenhandlerhandler
+[will-navigate]: ../api/web-contents.md#event-will-navigate
+[open-external]: ../api/shell.md#shellopenexternalurl-options

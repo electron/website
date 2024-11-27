@@ -21,7 +21,7 @@ but it also happens to support some other extension capabilities.
 
 Electron only supports loading unpacked extensions (i.e., `.crx` files do not
 work). Extensions are installed per-`session`. To load an extension, call
-[`ses.loadExtension`](latest/api/session.md#sesloadextensionpath-options):
+[`ses.loadExtension`](session.md#sesloadextensionpath-options):
 
 ```js
 const { session } = require('electron')
@@ -37,7 +37,7 @@ not call `loadExtension` when the app runs, the extension will not be loaded.
 Note that loading extensions is only supported in persistent sessions.
 Attempting to load an extension into an in-memory session will throw an error.
 
-See the [`session`](latest/api/session.md) documentation for more information about
+See the [`session`](session.md) documentation for more information about
 loading, unloading, and querying active extensions.
 
 ## Supported Extensions APIs
@@ -177,6 +177,6 @@ See [official documentation](https://developer.chrome.com/docs/extensions/refere
 
 All features of this API are supported.
 
-> **NOTE:** Electron's [`webRequest`](latest/api/web-request.md) module takes precedence over `chrome.webRequest` if there are conflicting handlers.
+> **NOTE:** Electron's [`webRequest`](web-request.md) module takes precedence over `chrome.webRequest` if there are conflicting handlers.
 
 See [official documentation](https://developer.chrome.com/docs/extensions/reference/webRequest) for more information.

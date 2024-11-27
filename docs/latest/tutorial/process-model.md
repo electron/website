@@ -11,7 +11,7 @@ Electron inherits its multi-process architecture from Chromium, which makes the 
 architecturally very similar to a modern web browser. This guide will expand on the
 concepts applied in the [Tutorial][tutorial].
 
-[tutorial]: latest/tutorial/tutorial-1-prerequisites.md
+[tutorial]: ./tutorial-1-prerequisites.md
 
 ## Why not a single process?
 
@@ -74,9 +74,9 @@ add handlers for various user events (for example, minimizing or maximizing your
 When a `BrowserWindow` instance is destroyed, its corresponding renderer process gets
 terminated as well.
 
-[browser-window]: latest/api/browser-window.md
-[web-embed]: latest/tutorial/web-embeds.md
-[web-contents]: latest/api/web-contents.md
+[browser-window]: ../api/browser-window.md
+[web-embed]: ../tutorial/web-embeds.md
+[web-contents]: ../api/web-contents.md
 [event-emitter]: https://nodejs.org/api/events.html#events_class_eventemitter
 
 ### Application lifecycle
@@ -96,8 +96,8 @@ app.on('window-all-closed', () => {
 })
 ```
 
-[app]: latest/api/app.md
-[quick-start-lifecycle]: latest/tutorial/quick-start.md#manage-your-windows-lifecycle
+[app]: ../api/app.md
+[quick-start-lifecycle]: ../tutorial/quick-start.md#manage-your-windows-lifecycle
 
 ### Native APIs
 
@@ -248,7 +248,7 @@ const { shell } = require('electron/common')
 [window-mdn]: https://developer.mozilla.org/en-US/docs/Web/API/Window
 [`MessagePort`]: https://developer.mozilla.org/en-US/docs/Web/API/MessagePort
 [`child_process.fork`]: https://nodejs.org/dist/latest-v16.x/docs/api/child_process.html#child_processforkmodulepath-args-options
-[context-isolation]: latest/tutorial/context-isolation.md
-[context-bridge]: latest/api/context-bridge.md
-[ipcrenderer]: latest/api/ipc-renderer.md
-[UtilityProcess]: latest/api/utility-process.md
+[context-isolation]: ./context-isolation.md
+[context-bridge]: ../api/context-bridge.md
+[ipcrenderer]: ../api/ipc-renderer.md
+[UtilityProcess]: ../api/utility-process.md

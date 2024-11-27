@@ -111,4 +111,4 @@ window.addEventListener('DOMContentLoaded', () => {
 This makes the web page click-through when over the `#clickThroughElement` element,
 and returns to normal outside it.
 
-[ignore-mouse-events]: latest/api/browser-window.md#winsetignoremouseeventsignore-options
+[ignore-mouse-events]: ../api/browser-window.md#winsetignoremouseeventsignore-options

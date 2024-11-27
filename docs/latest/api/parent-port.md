@@ -9,7 +9,7 @@ hide_title: false
 
 > Interface for communication with parent process.
 
-Process: [Utility](latest/glossary.md#utility-process)
+Process: [Utility](../glossary.md#utility-process)
 
 `parentPort` is an [EventEmitter][event-emitter].
 _This object is not exported from the `'electron'` module. It is only available as a property of the process object in the Electron API._

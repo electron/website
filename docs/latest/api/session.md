@@ -9,12 +9,12 @@ hide_title: false
 
 > Manage browser sessions, cookies, cache, proxy settings, etc.
 
-Process: [Main](latest/glossary.md#main-process)
+Process: [Main](../glossary.md#main-process)
 
 The `session` module can be used to create new `Session` objects.
 
 You can also access the `session` of existing pages by using the `session`
-property of [`WebContents`](latest/api/web-contents.md), or from the `session` module.
+property of [`WebContents`](web-contents.md), or from the `session` module.
 
 ```js
 const { BrowserWindow } = require('electron')
@@ -77,7 +77,7 @@ A `Session` object, the default session object of the app.
 
 > Get and set properties of a session.
 
-Process: [Main](latest/glossary.md#main-process)<br />
+Process: [Main](../glossary.md#main-process)<br />
 _This class is not exported from the `'electron'` module. It is only available as a return value of other methods in the Electron API._
 
 You can create a `Session` object in the `session` module:
@@ -97,8 +97,8 @@ The following events are available on instances of `Session`:
 Returns:
 
 * `event` Event
-* `item` [DownloadItem](latest/api/download-item.md)
-* `webContents` [WebContents](latest/api/web-contents.md)
+* `item` [DownloadItem](download-item.md)
+* `webContents` [WebContents](web-contents.md)
 
 Emitted when Electron is about to download `item` in `webContents`.
 
@@ -120,7 +120,7 @@ session.defaultSession.on('will-download', (event, item, webContents) => {
 Returns:
 
 * `event` Event
-* `extension` [Extension](latest/api/structures/extension.md)
+* `extension` [Extension](structures/extension.md)
 
 Emitted after an extension is loaded. This occurs whenever an extension is
 added to the "enabled" set of extensions. This includes:
@@ -135,7 +135,7 @@ added to the "enabled" set of extensions. This includes:
 Returns:
 
 * `event` Event
-* `extension` [Extension](latest/api/structures/extension.md)
+* `extension` [Extension](structures/extension.md)
 
 Emitted after an extension is unloaded. This occurs when
 `Session.removeExtension` is called.
@@ -145,7 +145,7 @@ Emitted after an extension is unloaded. This occurs when
 Returns:
 
 * `event` Event
-* `extension` [Extension](latest/api/structures/extension.md)
+* `extension` [Extension](structures/extension.md)
 
 Emitted after an extension is loaded and all necessary browser state is
 initialized to support the start of the extension's background page.
@@ -274,8 +274,8 @@ Returns:
 
 * `event` Event
 * `details` Object
-  * `deviceList` [HIDDevice[]](latest/api/structures/hid-device.md)
-  * `frame` [WebFrameMain](latest/api/web-frame-main.md) | null - The frame initiating this event.
+  * `deviceList` [HIDDevice[]](structures/hid-device.md)
+  * `frame` [WebFrameMain](web-frame-main.md) | null - The frame initiating this event.
       May be `null` if accessed after the frame has either navigated or been destroyed.
 * `callback` Function
   * `deviceId` string | null (optional)
@@ -339,8 +339,8 @@ Returns:
 
 * `event` Event
 * `details` Object
-  * `device` [HIDDevice](latest/api/structures/hid-device.md)
-  * `frame` [WebFrameMain](latest/api/web-frame-main.md) | null - The frame initiating this event.
+  * `device` [HIDDevice](structures/hid-device.md)
+  * `frame` [WebFrameMain](web-frame-main.md) | null - The frame initiating this event.
       May be `null` if accessed after the frame has either navigated or been destroyed.
 
 Emitted after `navigator.hid.requestDevice` has been called and
@@ -355,8 +355,8 @@ Returns:
 
 * `event` Event
 * `details` Object
-  * `device` [HIDDevice](latest/api/structures/hid-device.md)
-  * `frame` [WebFrameMain](latest/api/web-frame-main.md) | null - The frame initiating this event.
+  * `device` [HIDDevice](structures/hid-device.md)
+  * `frame` [WebFrameMain](web-frame-main.md) | null - The frame initiating this event.
       May be `null` if accessed after the frame has either navigated or been destroyed.
 
 Emitted after `navigator.hid.requestDevice` has been called and
@@ -371,7 +371,7 @@ Returns:
 
 * `event` Event
 * `details` Object
-  * `device` [HIDDevice](latest/api/structures/hid-device.md)
+  * `device` [HIDDevice](structures/hid-device.md)
   * `origin` string (optional) - The origin that the device has been revoked from.
 
 Emitted after `HIDDevice.forget()` has been called.  This event can be used
@@ -383,8 +383,8 @@ to help maintain persistent storage of permissions when
 Returns:
 
 * `event` Event
-* `portList` [SerialPort[]](latest/api/structures/serial-port.md)
-* `webContents` [WebContents](latest/api/web-contents.md)
+* `portList` [SerialPort[]](structures/serial-port.md)
+* `webContents` [WebContents](web-contents.md)
 * `callback` Function
   * `portId` string
 
@@ -453,8 +453,8 @@ app.whenReady().then(() => {
 Returns:
 
 * `event` Event
-* `port` [SerialPort](latest/api/structures/serial-port.md)
-* `webContents` [WebContents](latest/api/web-contents.md)
+* `port` [SerialPort](structures/serial-port.md)
+* `webContents` [WebContents](web-contents.md)
 
 Emitted after `navigator.serial.requestPort` has been called and
 `select-serial-port` has fired if a new serial port becomes available before
@@ -467,8 +467,8 @@ with the newly added port.
 Returns:
 
 * `event` Event
-* `port` [SerialPort](latest/api/structures/serial-port.md)
-* `webContents` [WebContents](latest/api/web-contents.md)
+* `port` [SerialPort](structures/serial-port.md)
+* `webContents` [WebContents](web-contents.md)
 
 Emitted after `navigator.serial.requestPort` has been called and
 `select-serial-port` has fired if a serial port has been removed before the
@@ -482,8 +482,8 @@ Returns:
 
 * `event` Event
 * `details` Object
-  * `port` [SerialPort](latest/api/structures/serial-port.md)
-  * `frame` [WebFrameMain](latest/api/web-frame-main.md) | null - The frame initiating this event.
+  * `port` [SerialPort](structures/serial-port.md)
+  * `frame` [WebFrameMain](web-frame-main.md) | null - The frame initiating this event.
       May be `null` if accessed after the frame has either navigated or been destroyed.
   * `origin` string - The origin that the device has been revoked from.
 
@@ -527,8 +527,8 @@ Returns:
 
 * `event` Event
 * `details` Object
-  * `deviceList` [USBDevice[]](latest/api/structures/usb-device.md)
-  * `frame` [WebFrameMain](latest/api/web-frame-main.md) | null - The frame initiating this event.
+  * `deviceList` [USBDevice[]](structures/usb-device.md)
+  * `frame` [WebFrameMain](web-frame-main.md) | null - The frame initiating this event.
       May be `null` if accessed after the frame has either navigated or been destroyed.
 * `callback` Function
   * `deviceId` string (optional)
@@ -596,8 +596,8 @@ app.whenReady().then(() => {
 Returns:
 
 * `event` Event
-* `device` [USBDevice](latest/api/structures/usb-device.md)
-* `webContents` [WebContents](latest/api/web-contents.md)
+* `device` [USBDevice](structures/usb-device.md)
+* `webContents` [WebContents](web-contents.md)
 
 Emitted after `navigator.usb.requestDevice` has been called and
 `select-usb-device` has fired if a new device becomes available before
@@ -610,8 +610,8 @@ with the newly added device.
 Returns:
 
 * `event` Event
-* `device` [USBDevice](latest/api/structures/usb-device.md)
-* `webContents` [WebContents](latest/api/web-contents.md)
+* `device` [USBDevice](structures/usb-device.md)
+* `webContents` [WebContents](web-contents.md)
 
 Emitted after `navigator.usb.requestDevice` has been called and
 `select-usb-device` has fired if a device has been removed before the callback
@@ -625,7 +625,7 @@ Returns:
 
 * `event` Event
 * `details` Object
-  * `device` [USBDevice](latest/api/structures/usb-device.md)
+  * `device` [USBDevice](structures/usb-device.md)
   * `origin` string (optional) - The origin that the device has been revoked from.
 
 Emitted after `USBDevice.forget()` has been called.  This event can be used
@@ -666,7 +666,7 @@ Writes any unwritten DOMStorage data to disk.
 
 #### `ses.setProxy(config)`
 
-* `config` [ProxyConfig](latest/api/structures/proxy-config.md)
+* `config` [ProxyConfig](structures/proxy-config.md)
 
 Returns `Promise<void>` - Resolves when the proxy setting process is complete.
 
@@ -708,7 +708,7 @@ pooled sockets using previous proxy from being reused by future requests.
     * `allow` (default)
     * `disable`
 
-Returns [`Promise<ResolvedHost>`](latest/api/structures/resolved-host.md) - Resolves with the resolved IP addresses for the `host`.
+Returns [`Promise<ResolvedHost>`](structures/resolved-host.md) - Resolves with the resolved IP addresses for the `host`.
 
 #### `ses.resolveProxy(url)`
 
@@ -792,7 +792,7 @@ async function example () {
 }
 ```
 
-See also [`net.fetch()`](latest/api/net.md#netfetchinput-init), a convenience method which
+See also [`net.fetch()`](net.md#netfetchinput-init), a convenience method which
 issues requests from the [default session](#sessiondefaultsession).
 
 See the MDN documentation for
@@ -806,11 +806,11 @@ Limitations:
 * The `.type` and `.url` values of the returned `Response` object are
   incorrect.
 
-By default, requests made with `net.fetch` can be made to [custom protocols](latest/api/protocol.md)
-as well as `file:`, and will trigger [webRequest](latest/api/web-request.md) handlers if present.
+By default, requests made with `net.fetch` can be made to [custom protocols](protocol.md)
+as well as `file:`, and will trigger [webRequest](web-request.md) handlers if present.
 When the non-standard `bypassCustomProtocolHandlers` option is set in RequestInit,
 custom protocol handlers will not be called for this request. This allows forwarding an
-intercepted request to the built-in handler. [webRequest](latest/api/web-request.md)
+intercepted request to the built-in handler. [webRequest](web-request.md)
 handlers will still be triggered when bypassing custom protocols.
 
 ```js
@@ -833,8 +833,8 @@ the original network configuration.
 * `proc` Function | null
   * `request` Object
     * `hostname` string
-    * `certificate` [Certificate](latest/api/structures/certificate.md)
-    * `validatedCertificate` [Certificate](latest/api/structures/certificate.md)
+    * `certificate` [Certificate](structures/certificate.md)
+    * `validatedCertificate` [Certificate](structures/certificate.md)
     * `isIssuedByKnownRoot` boolean - `true` if Chromium recognises the root CA as a standard root. If it isn't then it's probably the case that this certificate was generated by a MITM proxy whose root has been installed locally (for example, by a corporate proxy). This should not be trusted if the `verificationResult` is not `OK`.
     * `verificationResult` string - `OK` if the certificate is trusted, otherwise an error like `CERT_REVOKED`.
     * `errorCode` Integer - Error code.
@@ -873,7 +873,7 @@ win.webContents.session.setCertificateVerifyProc((request, callback) => {
 #### `ses.setPermissionRequestHandler(handler)`
 
 * `handler` Function | null
-  * `webContents` [WebContents](latest/api/web-contents.md) - WebContents requesting the permission.  Please note that if the request comes from a subframe you should use `requestingUrl` to check the request origin.
+  * `webContents` [WebContents](web-contents.md) - WebContents requesting the permission.  Please note that if the request comes from a subframe you should use `requestingUrl` to check the request origin.
   * `permission` string - The type of requested permission.
     * `clipboard-read` - Request access to read from the clipboard.
     * `clipboard-sanitized-write` - Request access to write to the clipboard.
@@ -897,7 +897,7 @@ win.webContents.session.setCertificateVerifyProc((request, callback) => {
     * `fileSystem` - Request access to read, write, and file management capabilities using the [File System API](https://developer.mozilla.org/en-US/docs/Web/API/File_System_API).
   * `callback` Function
     * `permissionGranted` boolean - Allow or deny the permission.
-  * `details` [PermissionRequest](latest/api/structures/permission-request.md)  | [FilesystemPermissionRequest](latest/api/structures/filesystem-permission-request.md) | [MediaAccessPermissionRequest](latest/api/structures/media-access-permission-request.md) | [OpenExternalPermissionRequest](latest/api/structures/open-external-permission-request.md) - Additional information about the permission being requested.
+  * `details` [PermissionRequest](structures/permission-request.md)  | [FilesystemPermissionRequest](structures/filesystem-permission-request.md) | [MediaAccessPermissionRequest](structures/media-access-permission-request.md) | [OpenExternalPermissionRequest](structures/open-external-permission-request.md) - Additional information about the permission being requested.
 
 Sets the handler which can be used to respond to permission requests for the `session`.
 Calling `callback(true)` will allow the permission and `callback(false)` will reject it.
@@ -919,7 +919,7 @@ session.fromPartition('some-partition').setPermissionRequestHandler((webContents
 #### `ses.setPermissionCheckHandler(handler)`
 
 * `handler` Function\<boolean> | null
-  * `webContents` ([WebContents](latest/api/web-contents.md) | null) - WebContents checking the permission.  Please note that if the request comes from a subframe you should use `requestingUrl` to check the request origin.  All cross origin sub frames making permission checks will pass a `null` webContents to this handler, while certain other permission checks such as `notifications` checks will always pass `null`.  You should use `embeddingOrigin` and `requestingOrigin` to determine what origin the owning frame and the requesting frame are on respectively.
+  * `webContents` ([WebContents](web-contents.md) | null) - WebContents checking the permission.  Please note that if the request comes from a subframe you should use `requestingUrl` to check the request origin.  All cross origin sub frames making permission checks will pass a `null` webContents to this handler, while certain other permission checks such as `notifications` checks will always pass `null`.  You should use `embeddingOrigin` and `requestingOrigin` to determine what origin the owning frame and the requesting frame are on respectively.
   * `permission` string - Type of permission check.
     * `clipboard-read` - Request access to read from the clipboard.
     * `clipboard-sanitized-write` - Request access to write to the clipboard.
@@ -969,7 +969,7 @@ session.fromPartition('some-partition').setPermissionCheckHandler((webContents, 
 
 * `handler` Function | null
   * `request` Object
-    * `frame` [WebFrameMain](latest/api/web-frame-main.md) | null - Frame that is requesting access to media.
+    * `frame` [WebFrameMain](web-frame-main.md) | null - Frame that is requesting access to media.
       May be `null` if accessed after the frame has either navigated or been destroyed.
     * `securityOrigin` String - Origin of the page making the request.
     * `videoRequested` Boolean - true if the web content requested a video stream.
@@ -977,19 +977,19 @@ session.fromPartition('some-partition').setPermissionCheckHandler((webContents, 
     * `userGesture` Boolean - Whether a user gesture was active when this request was triggered.
   * `callback` Function
     * `streams` Object
-      * `video` Object | [WebFrameMain](latest/api/web-frame-main.md) (optional)
+      * `video` Object | [WebFrameMain](web-frame-main.md) (optional)
         * `id` String - The id of the stream being granted. This will usually
-          come from a [DesktopCapturerSource](latest/api/structures/desktop-capturer-source.md)
+          come from a [DesktopCapturerSource](structures/desktop-capturer-source.md)
           object.
         * `name` String - The name of the stream being granted. This will
-          usually come from a [DesktopCapturerSource](latest/api/structures/desktop-capturer-source.md)
+          usually come from a [DesktopCapturerSource](structures/desktop-capturer-source.md)
           object.
-      * `audio` String | [WebFrameMain](latest/api/web-frame-main.md) (optional) - If
+      * `audio` String | [WebFrameMain](web-frame-main.md) (optional) - If
         a string is specified, can be `loopback` or `loopbackWithMute`.
         Specifying a loopback device will capture system audio, and is
         currently only supported on Windows. If a WebFrameMain is specified,
         will capture audio from that frame.
-      * `enableLocalEcho` Boolean (optional) - If `audio` is a [WebFrameMain](latest/api/web-frame-main.md)
+      * `enableLocalEcho` Boolean (optional) - If `audio` is a [WebFrameMain](web-frame-main.md)
          and this is set to `true`, then local playback of audio will not be muted (e.g. using `MediaRecorder`
          to record `WebFrameMain` with this flag set to `true` will allow audio to pass through to the speakers
          while recording). Default is `false`.
@@ -998,7 +998,7 @@ session.fromPartition('some-partition').setPermissionCheckHandler((webContents, 
 
 This handler will be called when web content requests access to display media
 via the `navigator.mediaDevices.getDisplayMedia` API. Use the
-[desktopCapturer](latest/api/desktop-capturer.md) API to choose which stream(s) to grant
+[desktopCapturer](desktop-capturer.md) API to choose which stream(s) to grant
 access to.
 
 `useSystemPicker` allows an application to use the system picker instead of providing a specific video source from `getSources`.
@@ -1020,7 +1020,7 @@ session.defaultSession.setDisplayMediaRequestHandler((request, callback) => {
 }, { useSystemPicker: true })
 ```
 
-Passing a [WebFrameMain](latest/api/web-frame-main.md) object as a video or audio stream
+Passing a [WebFrameMain](web-frame-main.md) object as a video or audio stream
 will capture the video or audio stream from that frame.
 
 ```js
@@ -1040,7 +1040,7 @@ Passing `null` instead of a function resets the handler to its default state.
   * `details` Object
     * `deviceType` string - The type of device that permission is being requested on, can be `hid`, `serial`, or `usb`.
     * `origin` string - The origin URL of the device permission check.
-    * `device` [HIDDevice](latest/api/structures/hid-device.md) | [SerialPort](latest/api/structures/serial-port.md) | [USBDevice](latest/api/structures/usb-device.md) - the device that permission is being requested for.
+    * `device` [HIDDevice](structures/hid-device.md) | [SerialPort](structures/serial-port.md) | [USBDevice](structures/usb-device.md) - the device that permission is being requested for.
 
 Sets the handler which can be used to respond to device permission checks for the `session`.
 Returning `true` will allow the device to be permitted and `false` will reject it.
@@ -1171,7 +1171,7 @@ app.whenReady().then(() => {
         pin displayed on the device.
       * `providePin`
         This prompt is requesting that a pin be provided for the device.
-    * `frame` [WebFrameMain](latest/api/web-frame-main.md) | null - The frame initiating this handler.
+    * `frame` [WebFrameMain](web-frame-main.md) | null - The frame initiating this handler.
       May be `null` if accessed after the frame has either navigated or been destroyed.
     * `pin` string (optional) - The pin value to verify if `pairingKind` is `confirmPin`.
   * `callback` Function
@@ -1306,11 +1306,11 @@ Returns `Promise<Buffer>` - resolves with blob data.
   * `headers` Record\<string, string\> (optional) - HTTP request headers.
 
 Initiates a download of the resource at `url`.
-The API will generate a [DownloadItem](latest/api/download-item.md) that can be accessed
+The API will generate a [DownloadItem](download-item.md) that can be accessed
 with the [will-download](#event-will-download) event.
 
 **Note:** This does not perform any security checks that relate to a page's origin,
-unlike [`webContents.downloadURL`](latest/api/web-contents.md#contentsdownloadurlurl-options).
+unlike [`webContents.downloadURL`](web-contents.md#contentsdownloadurlurl-options).
 
 #### `ses.createInterruptedDownload(options)`
 
@@ -1326,10 +1326,10 @@ unlike [`webContents.downloadURL`](latest/api/web-contents.md#contentsdownloadur
     number of seconds since UNIX epoch.
 
 Allows resuming `cancelled` or `interrupted` downloads from previous `Session`.
-The API will generate a [DownloadItem](latest/api/download-item.md) that can be accessed with the [will-download](#event-will-download)
-event. The [DownloadItem](latest/api/download-item.md) will not have any `WebContents` associated with it and
+The API will generate a [DownloadItem](download-item.md) that can be accessed with the [will-download](#event-will-download)
+event. The [DownloadItem](download-item.md) will not have any `WebContents` associated with it and
 the initial state will be `interrupted`. The download will start only when the
-`resume` API is called on the [DownloadItem](latest/api/download-item.md).
+`resume` API is called on the [DownloadItem](download-item.md).
 
 #### `ses.clearAuthCache()`
 
@@ -1450,7 +1450,7 @@ requests an API that Electron does not support) then they will be logged to the
 console.
 
 Note that Electron does not support the full range of Chrome extensions APIs.
-See [Supported Extensions APIs](latest/api/extensions.md#supported-extensions-apis) for
+See [Supported Extensions APIs](extensions.md#supported-extensions-apis) for
 more details on what is supported.
 
 Note that in previous versions of Electron, extensions that were loaded would
@@ -1562,19 +1562,19 @@ session is persisted on disk.  For in memory sessions this returns `null`.
 
 #### `ses.cookies` _Readonly_
 
-A [`Cookies`](latest/api/cookies.md) object for this session.
+A [`Cookies`](cookies.md) object for this session.
 
 #### `ses.serviceWorkers` _Readonly_
 
-A [`ServiceWorkers`](latest/api/service-workers.md) object for this session.
+A [`ServiceWorkers`](service-workers.md) object for this session.
 
 #### `ses.webRequest` _Readonly_
 
-A [`WebRequest`](latest/api/web-request.md) object for this session.
+A [`WebRequest`](web-request.md) object for this session.
 
 #### `ses.protocol` _Readonly_
 
-A [`Protocol`](latest/api/protocol.md) object for this session.
+A [`Protocol`](protocol.md) object for this session.
 
 ```js
 const { app, session } = require('electron')
@@ -1593,7 +1593,7 @@ app.whenReady().then(() => {
 
 #### `ses.netLog` _Readonly_
 
-A [`NetLog`](latest/api/net-log.md) object for this session.
+A [`NetLog`](net-log.md) object for this session.
 
 ```js
 const { app, session } = require('electron')

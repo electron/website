@@ -9,7 +9,7 @@ hide_title: false
 
 > Extensions to process object.
 
-Process: [Main](latest/glossary.md#main-process), [Renderer](latest/glossary.md#renderer-process)
+Process: [Main](../glossary.md#main-process), [Renderer](../glossary.md#renderer-process)
 
 Electron's `process` object is extended from the
 [Node.js `process` object](https://nodejs.org/api/process.html).
@@ -58,7 +58,7 @@ beginning to load the web page or the main script.
 A `boolean`. When the app is started by being passed as parameter to the default Electron executable, this
 property is `true` in the main process, otherwise it is `undefined`.
 For example when running the app with `electron .`, it is `true`,
-even if the app is packaged ([`isPackaged`](latest/api/app.md#appispackaged-readonly)) is `true`.
+even if the app is packaged ([`isPackaged`](app.md#appispackaged-readonly)) is `true`.
 This can be useful to determine how many arguments will need to be sliced off from `process.argv`.
 
 ### `process.isMainFrame` _Readonly_
@@ -146,7 +146,7 @@ This property is only available in the renderer process.
 
 ### `process.parentPort`
 
-A [`Electron.ParentPort`](latest/api/parent-port.md) property if this is a [`UtilityProcess`](latest/api/utility-process.md)
+A [`Electron.ParentPort`](parent-port.md) property if this is a [`UtilityProcess`](utility-process.md)
 (or `null` otherwise) allowing communication with the parent process.
 
 ## Methods
@@ -166,7 +166,7 @@ The time is represented as number of milliseconds since epoch. It returns null i
 
 ### `process.getCPUUsage()`
 
-Returns [`CPUUsage`](latest/api/structures/cpu-usage.md)
+Returns [`CPUUsage`](structures/cpu-usage.md)
 
 ### `process.getHeapStatistics()`
 
@@ -197,7 +197,7 @@ Note that all values are reported in Kilobytes.
 
 ### `process.getProcessMemoryInfo()`
 
-Returns `Promise<ProcessMemoryInfo>` - Resolves with a [ProcessMemoryInfo](latest/api/structures/process-memory-info.md)
+Returns `Promise<ProcessMemoryInfo>` - Resolves with a [ProcessMemoryInfo](structures/process-memory-info.md)
 
 Returns an object giving memory usage statistics about the current process. Note
 that all statistics are reported in Kilobytes.

@@ -218,8 +218,8 @@ rest of our docs and happy developing! If you have questions, please stop by our
 
 :::
 
-[autoupdater]: latest/api/auto-updater.md
-[code-signed]: latest/tutorial/code-signing.md
+[autoupdater]: ../api/auto-updater.md
+[code-signed]: ./code-signing.md
 [discord server]: https://discord.gg/electronjs
 [electron fiddle]: https://www.electronjs.org/fiddle
 [fiddle-build]: https://github.com/electron/fiddle/blob/main/.circleci/config.yml
@@ -233,13 +233,13 @@ rest of our docs and happy developing! If you have questions, please stop by our
 [publisher]: https://www.electronforge.io/config/publishers
 [`publishergithubconfig`]: https://js.electronforge.io/interfaces/_electron_forge_publisher_github.PublisherGitHubConfig.html
 [`update-electron-app`]: https://github.com/electron/update-electron-app
-[update-server]: latest/tutorial/updates.md
+[update-server]: ./updates.md
 
 <!-- Tutorial links -->
 
-[prerequisites]: latest/tutorial/tutorial-1-prerequisites.md
-[building your first app]: latest/tutorial/tutorial-2-first-app.md
-[preload]: latest/tutorial/tutorial-3-preload.md
-[features]: latest/tutorial/tutorial-4-adding-features.md
-[packaging]: latest/tutorial/tutorial-5-packaging.md
-[updates]: latest/tutorial/tutorial-6-publishing-updating.md
+[prerequisites]: tutorial-1-prerequisites.md
+[building your first app]: tutorial-2-first-app.md
+[preload]: tutorial-3-preload.md
+[features]: tutorial-4-adding-features.md
+[packaging]: tutorial-5-packaging.md
+[updates]: tutorial-6-publishing-updating.md

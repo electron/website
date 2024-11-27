@@ -51,6 +51,6 @@ the illusion of a circular window.
 * On _macOS_:
   * The native window shadow will not be shown on a transparent window.
 
-[`BaseWindowContructorOptions`]: latest/api/structures/base-window-options.md
+[`BaseWindowContructorOptions`]: ../api/structures/base-window-options.md
 [`blur()`]: https://developer.mozilla.org/en-US/docs/Web/CSS/filter-function/blur()
 [chrome]: https://developer.mozilla.org/en-US/docs/Glossary/Chrome
