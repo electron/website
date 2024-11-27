@@ -1,5 +1,6 @@
 import logger from '@docusaurus/logger';
 import { visitParents } from 'unist-util-visit-parents';
+import { remove } from 'unist-util-remove';
 import fs from 'fs';
 import path from 'path';
 import { Node, Parent } from 'unist';
@@ -38,7 +39,6 @@ async function transformer(tree: Parent, file: VFile) {
   // API structure there will be a promise resolver in the map and
   // the other docs will be awaiting the associated promise.
   if (file.path.includes('/api/structures/')) {
-    let exportsNode: Node | undefined;
     let relativePath = `/${path.relative(file.cwd, file.path)}`;
 
     const isTranslatedDoc = relativePath.startsWith('/i18n/');
@@ -52,18 +52,7 @@ async function transformer(tree: Parent, file: VFile) {
       relativePath = `/${locale}/docs/${docPath}`;
     }
 
-    // Temporarily remove this node, toMarkdown chokes on it
-    if (
-      tree.children.length > 0 &&
-      tree.children[tree.children.length - 1].type === 'mdxjsEsm'
-    ) {
-      exportsNode = tree.children.pop();
-    }
-
-    // Put the node back, because we need it
-    if (exportsNode) {
-      tree.children.unshift(exportsNode);
-    }
+    remove(tree, 'heading');
 
     if (fileContent.has(relativePath)) {
       const { resolve } = fileContent.get(relativePath);
@@ -115,12 +104,19 @@ function replaceLinkWithPreview(node: Link | LinkReference) {
   // depending on if the node is a direct link or a reference-style link,
   // we get its URL differently.
   let relativeStructureUrl: string;
+  let isInline = false;
   if (isLink(node)) {
     relativeStructureUrl = node.url;
   } else if (isLinkReference(node)) {
     relativeStructureUrl = structureDefinitions.get(node.identifier);
   } else {
     return;
+  }
+
+  if (relativeStructureUrl.endsWith('?inline')) {
+    relativeStructureUrl = relativeStructureUrl.split('?inline')[0];
+    isInline = true;
+    console.log({ isInline });
   }
 
   const relativeStructurePath = `${relativeStructureUrl}.md`;
@@ -213,6 +209,31 @@ function replaceLinkWithPreview(node: Link | LinkReference) {
               type: 'mdxJsxAttribute',
               name: 'content',
               value: JSON.stringify(content),
+            },
+            {
+              type: 'mdxJsxAttribute',
+              name: 'inline',
+              value: {
+                type: 'mdxJsxAttributeValueExpression',
+                value: String(isInline),
+                data: {
+                  estree: {
+                    type: 'Program',
+                    body: [
+                      {
+                        type: 'ExpressionStatement',
+                        expression: {
+                          type: 'Literal',
+                          value: isInline,
+                          raw: String(isInline),
+                        },
+                      },
+                    ],
+                    sourceType: 'module',
+                    comments: [],
+                  },
+                },
+              },
             },
           ];
         })

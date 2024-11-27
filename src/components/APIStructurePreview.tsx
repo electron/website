@@ -10,6 +10,7 @@ interface PreviewProps {
   content: string;
   title: string;
   url: string;
+  inline: boolean;
 }
 
 /**
@@ -70,6 +71,11 @@ function APIStructurePreview(props: PreviewProps) {
   }, []);
 
   return (
+    // <div
+    //   dangerouslySetInnerHTML={{
+    //     __html: toHtml(toHast(JSON.parse(props.content))),
+    //   }}
+    // ></div>
     <a
       aria-describedby="structures-tooltip" // for accessibility purposes
       href={props.url}
