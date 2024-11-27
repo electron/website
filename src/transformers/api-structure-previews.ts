@@ -1,6 +1,6 @@
 import logger from '@docusaurus/logger';
 import { visitParents } from 'unist-util-visit-parents';
-import { remove } from 'unist-util-remove';
+import { filter } from 'unist-util-filter';
 import fs from 'fs';
 import path from 'path';
 import { Node, Parent } from 'unist';
@@ -22,8 +22,6 @@ const fileContent = new Map<
 >();
 const structureDefinitions = new Map<string, string>();
 const modifiers = new Set<Promise<void>>();
-
-const EXCLUDE_LIST = ['browser-window-options', 'web-preferences'];
 
 export default function attacher() {
   return transformer;
@@ -52,8 +50,6 @@ async function transformer(tree: Parent, file: VFile) {
       relativePath = `/${locale}/docs/${docPath}`;
     }
 
-    remove(tree, 'heading');
-
     if (fileContent.has(relativePath)) {
       const { resolve } = fileContent.get(relativePath);
       if (resolve) resolve(tree);
@@ -68,8 +64,8 @@ async function transformer(tree: Parent, file: VFile) {
   const importNode = getJSXImport('APIStructurePreview');
   if (modifiers.size) {
     tree.children.unshift(importNode);
-    await Promise.all(Array.from(modifiers));
   }
+  await Promise.all(Array.from(modifiers));
 }
 
 /**
@@ -84,9 +80,7 @@ const checkLinksandDefinitions = (node: Node): node is Link => {
     structureDefinitions.set(node.identifier, node.url);
   }
   if (isLink(node) && node.url.includes('/api/structures/')) {
-    return EXCLUDE_LIST.every(
-      (excludedFile) => !node.url.endsWith(`/api/structures/${excludedFile}`)
-    );
+    return true;
   }
 
   return false;
@@ -100,7 +94,7 @@ function isStructureLinkReference(node: Node): node is LinkReference {
   return isLinkReference(node) && structureDefinitions.has(node.identifier);
 }
 
-function replaceLinkWithPreview(node: Link | LinkReference) {
+function replaceLinkWithPreview(node: Link | LinkReference, parents: Parent[]) {
   // depending on if the node is a direct link or a reference-style link,
   // we get its URL differently.
   let relativeStructureUrl: string;
@@ -116,7 +110,6 @@ function replaceLinkWithPreview(node: Link | LinkReference) {
   if (relativeStructureUrl.endsWith('?inline')) {
     relativeStructureUrl = relativeStructureUrl.split('?inline')[0];
     isInline = true;
-    console.log({ isInline });
   }
 
   const relativeStructurePath = `${relativeStructureUrl}.md`;
@@ -173,8 +166,6 @@ function replaceLinkWithPreview(node: Link | LinkReference) {
 
   const { promise } = fileContent.get(relativeStructurePath);
 
-  // replace the raw link file with our JSX component.
-  // See src/components/APIStructurePreview.jsx for implementation.
   if (
     (Array.isArray(node.children) &&
       node.children.length > 0 &&
@@ -186,56 +177,45 @@ function replaceLinkWithPreview(node: Link | LinkReference) {
         .then((content) => {
           const title = (node.children[0] as Text | InlineCode).value;
 
-          // replace the Link node with an MDX element in-place
-          const previewNode = node as unknown as MdxJsxFlowElement;
-          previewNode.type = 'mdxJsxFlowElement';
-          previewNode.name = 'APIStructurePreview';
-          previewNode.children = [];
-          previewNode.data = {
-            _mdxExplicitJsx: true,
-          };
-          previewNode.attributes = [
-            {
-              type: 'mdxJsxAttribute',
-              name: 'url',
-              value: `${relativeStructureUrl}`,
-            },
-            {
-              type: 'mdxJsxAttribute',
-              name: 'title',
-              value: title,
-            },
-            {
-              type: 'mdxJsxAttribute',
-              name: 'content',
-              value: JSON.stringify(content),
-            },
-            {
-              type: 'mdxJsxAttribute',
-              name: 'inline',
-              value: {
-                type: 'mdxJsxAttributeValueExpression',
-                value: String(isInline),
-                data: {
-                  estree: {
-                    type: 'Program',
-                    body: [
-                      {
-                        type: 'ExpressionStatement',
-                        expression: {
-                          type: 'Literal',
-                          value: isInline,
-                          raw: String(isInline),
-                        },
-                      },
-                    ],
-                    sourceType: 'module',
-                    comments: [],
-                  },
-                },
+          if (isInline) {
+            const siblings = parents[parents.length - 1].children;
+            const filtered = filter(
+              content,
+              (node) => node.type !== 'mdxjsEsm' && node.type !== 'heading'
+            );
+            visitParents(
+              filtered,
+              checkLinksandDefinitions,
+              replaceLinkWithPreview
+            );
+            siblings.push(filtered);
+          } else {
+            // replace the Link node with an MDX element in-place
+            const previewNode = node as unknown as MdxJsxFlowElement;
+            previewNode.type = 'mdxJsxFlowElement';
+            previewNode.name = 'APIStructurePreview';
+            previewNode.children = [];
+            previewNode.data = {
+              _mdxExplicitJsx: true,
+            };
+            previewNode.attributes = [
+              {
+                type: 'mdxJsxAttribute',
+                name: 'url',
+                value: `${relativeStructureUrl}`,
               },
-            },
-          ];
+              {
+                type: 'mdxJsxAttribute',
+                name: 'title',
+                value: title,
+              },
+              {
+                type: 'mdxJsxAttribute',
+                name: 'content',
+                value: JSON.stringify(content),
+              },
+            ];
+          }
         })
         .catch((err) => {
           logger.error(err);
