@@ -1,9 +1,9 @@
 import clsx from 'clsx';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import ReactMarkdown from 'react-markdown';
 import usePortal from 'react-useportal';
+import { toHtml } from 'hast-util-to-html';
+import { toHast } from 'mdast-util-to-hast';
 
-import apiLabels from '../transformers/api-labels';
 import styles from './APIStructurePreview.module.scss';
 
 interface PreviewProps {
@@ -94,23 +94,23 @@ interface CardProps {
   position: React.CSSProperties;
 }
 
-const Card = (props: CardProps) => (
-  <article
-    ref={props.innerRef}
-    id="structures-tooltip"
-    role="tooltip"
-    className={clsx('alert', 'alert--info', 'shadow--md', styles.card)}
-    style={props.position}
-  >
-    <div className="card__body">
-      <ReactMarkdown
-        allowedElements={['h1', 'ul', 'li', 'code', 'a', 'em']}
-        remarkPlugins={[apiLabels]}
-      >
-        {decodeURIComponent(props.content)}
-      </ReactMarkdown>
-    </div>
-  </article>
-);
+const Card = (props: CardProps) => {
+  return (
+    <article
+      ref={props.innerRef}
+      id="structures-tooltip"
+      role="tooltip"
+      className={clsx('alert', 'alert--info', 'shadow--md', styles.card)}
+      style={props.position}
+    >
+      <div
+        className="card__body"
+        dangerouslySetInnerHTML={{
+          __html: toHtml(toHast(JSON.parse(props.content))),
+        }}
+      ></div>
+    </article>
+  );
+};
 
 export default APIStructurePreview;

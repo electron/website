@@ -3,11 +3,7 @@ import { visitParents } from 'unist-util-visit-parents';
 import fs from 'fs';
 import path from 'path';
 import { Node, Parent } from 'unist';
-import type { InlineCode, Link, LinkReference, Nodes, Text } from 'mdast';
-import { gfmTableToMarkdown } from 'mdast-util-gfm-table';
-import { frontmatterToMarkdown } from 'mdast-util-frontmatter';
-import { toMarkdown } from 'mdast-util-to-markdown';
-import { mdxToMarkdown } from 'mdast-util-mdx';
+import type { InlineCode, Link, LinkReference, Text } from 'mdast';
 import { MdxJsxFlowElement } from 'mdast-util-mdx-jsx';
 import type { VFile } from 'vfile';
 import {
@@ -21,7 +17,7 @@ import {
 
 const fileContent = new Map<
   string,
-  { promise: Promise<string>; resolve?: (value: string) => void }
+  { promise: Promise<Parent>; resolve?: (value: Parent) => void }
 >();
 const structureDefinitions = new Map<string, string>();
 const modifiers = new Set<Promise<void>>();
@@ -64,16 +60,6 @@ async function transformer(tree: Parent, file: VFile) {
       exportsNode = tree.children.pop();
     }
 
-    // It's not ideal to go from the parsed Markdown back to text
-    // just to be parsed again to be rendered, but it is what it is
-    const content = toMarkdown(tree as Nodes, {
-      extensions: [
-        gfmTableToMarkdown(),
-        frontmatterToMarkdown(['yaml']),
-        mdxToMarkdown(),
-      ],
-    });
-
     // Put the node back, because we need it
     if (exportsNode) {
       tree.children.unshift(exportsNode);
@@ -81,9 +67,9 @@ async function transformer(tree: Parent, file: VFile) {
 
     if (fileContent.has(relativePath)) {
       const { resolve } = fileContent.get(relativePath);
-      if (resolve) resolve(content);
+      if (resolve) resolve(tree);
     } else {
-      fileContent.set(relativePath, { promise: Promise.resolve(content) });
+      fileContent.set(relativePath, { promise: Promise.resolve(tree) });
     }
   }
   structureDefinitions.clear();
@@ -142,7 +128,7 @@ function replaceLinkWithPreview(node: Link | LinkReference) {
   // No file content promise available, so add one and then wait
   // on it being resolved when the structure doc is processed
   if (!fileContent.has(relativeStructurePath)) {
-    let resolve: (value: string) => void;
+    let resolve: (value: Parent) => void;
     let reject: (err: Error) => void;
 
     // Set a timeout as a backstop so we don't deadlock forever if something
@@ -178,8 +164,8 @@ function replaceLinkWithPreview(node: Link | LinkReference) {
       );
     }, 60000);
 
-    const promise = new Promise<string>((resolve_, reject_) => {
-      resolve = (value: string) => {
+    const promise = new Promise<Parent>((resolve_, reject_) => {
+      resolve = (value: Parent) => {
         clearTimeout(timeoutId);
         resolve_(value);
       };
@@ -226,7 +212,7 @@ function replaceLinkWithPreview(node: Link | LinkReference) {
             {
               type: 'mdxJsxAttribute',
               name: 'content',
-              value: encodeURIComponent(content),
+              value: JSON.stringify(content),
             },
           ];
         })
