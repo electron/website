@@ -53,8 +53,7 @@ const start = async (source: string): Promise<void> => {
       destination: DOCS_FOLDER,
       downloadMatch: '/docs/',
     });
-
-    await fs.writeFile(path.join(DOCS_FOLDER, '.sha'), source);
+    await fs.writeFile(path.join(DOCS_FOLDER, '.sha'), target);
   } else if (existsSync(source)) {
     await copy({
       target: source,
