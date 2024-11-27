@@ -1,6 +1,8 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
+
 import globby from 'globby';
-import path from 'path';
-import fs from 'fs-extra';
+
 /*
   To make `/docs/latest` have content we need to set the
   slug of a particular page to `/latest/`. `START_PAGE` is how we

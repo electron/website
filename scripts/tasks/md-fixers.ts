@@ -1,7 +1,6 @@
-//@ts-check
+import fs from 'node:fs/promises';
+import path from 'node:path';
 
-import fs from 'fs-extra';
-import path from 'path';
 import globby from 'globby';
 
 import logger from '@docusaurus/logger';

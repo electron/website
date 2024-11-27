@@ -1,6 +1,6 @@
-import fs from 'fs-extra';
-import path from 'path';
-import assert from 'assert';
+import assert from 'node:assert';
+import fs from 'node:fs/promises';
+import path from 'node:path';
 
 import { Glossaries, UploadStorage } from '@crowdin/crowdin-api-client';
 import logger from '@docusaurus/logger';
@@ -118,7 +118,7 @@ async function collectElectronAPI() {
 async function collectElectronGlossary() {
   // Generate a Markdown AST from remark
   const source = path.join(__dirname, '..', 'docs', 'latest', 'glossary.md');
-  const md = fs.readFileSync(source, 'utf8');
+  const md = await fs.readFile(source, 'utf8');
   const syntaxTree = unified().use(remarkParse).parse(md);
 
   // visit each top-level child of the syntax tree.

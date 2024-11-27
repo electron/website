@@ -3,8 +3,9 @@
  * right places, and transform it to make it ready to
  * be used by docusaurus.
  */
-import path from 'path';
-import fs from 'fs-extra';
+import fs from 'node:fs/promises';
+import path from 'node:path';
+
 import logger from '@docusaurus/logger';
 
 import { addFrontmatterToAllDocs } from './tasks/add-frontmatter';
@@ -27,9 +28,10 @@ const start = async () => {
 
     logger.info(`Copying static assets to ${logger.green(locale)}`);
     for (const staticResource of staticResources) {
-      await fs.copy(
+      await fs.cp(
         path.join(DOCS_FOLDER, staticResource),
-        path.join(localeDocs, 'latest', staticResource)
+        path.join(localeDocs, 'latest', staticResource),
+        { recursive: true }
       );
     }
 

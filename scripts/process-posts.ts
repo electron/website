@@ -5,9 +5,9 @@
  * This should not happen very frequently as we want to move the blog content
  * to this repo, but until that happens this file should remain here.
  */
-import path from 'path';
+import fs from 'node:fs/promises';
+import path from 'node:path';
 
-import fs from 'fs-extra';
 import globby from 'globby';
 import frontmatter from 'gray-matter';
 
