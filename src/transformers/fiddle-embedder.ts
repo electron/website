@@ -1,9 +1,10 @@
+import fs from 'node:fs';
+import path from 'node:path';
+
 import { Node, Parent } from 'unist';
 import { Code } from 'mdast';
 import { MdxJsxFlowElement } from 'mdast-util-mdx-jsx';
 import { visitParents, ActionTuple, SKIP } from 'unist-util-visit-parents';
-import path from 'path';
-import fs from 'fs-extra';
 import latestVersion from 'latest-version';
 import { getJSXImport, isCode, isImport } from '../util/mdx-utils';
 
