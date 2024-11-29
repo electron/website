@@ -14653,13 +14653,6 @@ unist-util-filter@^5.0.1:
     unist-util-is "^6.0.0"
     unist-util-visit-parents "^6.0.0"
 
-unist-util-inspect@^8.1.0:
-  version "8.1.0"
-  resolved "https://registry.yarnpkg.com/unist-util-inspect/-/unist-util-inspect-8.1.0.tgz#ff2729b543c483041b3c29cbe04c5460a406ee25"
-  integrity sha512-mOlg8Mp33pR0eeFpo5d2902ojqFFOKMMG2hF8bmH7ZlhnmjFgh0NI3/ZDwdaBJNbvrS7LZFVrBVtIE9KZ9s7vQ==
-  dependencies:
-    "@types/unist" "^3.0.0"
-
 unist-util-is@^5.0.0:
   version "5.2.1"
   resolved "https://registry.yarnpkg.com/unist-util-is/-/unist-util-is-5.2.1.tgz#b74960e145c18dcb6226bc57933597f5486deae9"

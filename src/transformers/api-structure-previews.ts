@@ -1,8 +1,9 @@
+import fs from 'node:fs';
+import path from 'node:path';
+
 import logger from '@docusaurus/logger';
 import { visitParents } from 'unist-util-visit-parents';
 import { filter } from 'unist-util-filter';
-import fs from 'node:fs';
-import path from 'node:path';
 import { Node, Parent } from 'unist';
 import type { InlineCode, Link, LinkReference, Text } from 'mdast';
 import { MdxJsxFlowElement } from 'mdast-util-mdx-jsx';
@@ -23,16 +24,23 @@ const fileContent = new Map<
 
 const EXCLUDE_LIST = ['browser-window-options', 'web-preferences'];
 
+/**
+ * `attacher` runs once for the entire plugin's lifetime.
+ */
 export default function attacher() {
   return transformer;
 }
 
+/**
+ * The `transformer` function scope is instantiated once per file
+ * processed by this MDX plugin.
+ */
 async function transformer(tree: Parent, file: VFile) {
   const structureDefinitions = new Map<string, string>();
   const mutations = new Set<Promise<void>>();
   /**
    * This function is the test function for the first pass of the tree visitor.
-   * Any values returning 'true' will run replaceLinkWithPreview().
+   * Any values returning 'true' will run {@link replaceLinkWithPreview}.
    *
    * As a side effect, this function also puts all reference-style links (definitions)
    * for API structures into a Map, which will be used on the second pass.
@@ -52,7 +60,7 @@ async function transformer(tree: Parent, file: VFile) {
 
   /**
    * This function is the test function from the second pass of the tree visitor.
-   * Any values returning 'true' will run replaceLinkWithPreview().
+   * Any values returning 'true' will run {@link replaceLinkWithPreview}.
    */
   function isStructureLinkReference(node: Node): node is LinkReference {
     return isLinkReference(node) && structureDefinitions.has(node.identifier);
@@ -74,6 +82,7 @@ async function transformer(tree: Parent, file: VFile) {
       return;
     }
 
+    // ?inline links will be inlined instead of rendered as a hover preview
     if (relativeStructureUrl.endsWith('?inline')) {
       relativeStructureUrl = relativeStructureUrl.split('?inline')[0];
       isInline = true;
@@ -143,6 +152,8 @@ async function transformer(tree: Parent, file: VFile) {
         targetStructure
           .then((structureContent) => {
             if (isInline) {
+              // if ?inline, we put the structure content as the last sibling
+              // of the current node in the tree
               const siblings = parents[parents.length - 1].children;
               const filtered = filter(
                 structureContent,
@@ -186,10 +197,26 @@ async function transformer(tree: Parent, file: VFile) {
       );
     }
   }
+  // The order of operations here is important. For each document,
+  // we visit the entire AST first and find API structure link nodes
+  // that we need to mutate. Then, we wait for all dependent structure
+  // link contents to be resolved and processed before resolving the
+  // current file.
+
+  // In practice, this matters when we have a chain of inlined structures.
+  // For example:
+  // - BrowserWindowConstructorOptions inlines WebPreferences
+  // - BrowserWindow inlines BrowserWindowConstructorOptions
+  // This means that BrowserWindowConstructorOptions needs to wait for
+  // WebPreferences to be processed before its own contents can be added
+  // to `fileContents`. Otherwise, the BrowserWindow API docs will
+  // not have WebPreferences inlined.
   visitParents(tree, checkLinksandDefinitions, replaceLinkWithPreview);
   visitParents(tree, isStructureLinkReference, replaceLinkWithPreview);
   await Promise.all(Array.from(mutations));
 
+  // After the entire tree for the current document is correctly
+  // mutated, save the mutated tree into `fileContent`.
   if (file.path.includes('/api/structures/')) {
     let relativePath = `/${path.relative(file.cwd, file.path)}`;
 
@@ -204,6 +231,10 @@ async function transformer(tree: Parent, file: VFile) {
       relativePath = `/${locale}/docs/${docPath}`;
     }
 
+    // If `fileContent` already contains this document, it means that
+    // a document has requested the contents of this file already and has
+    // passed a Promise.resolve callback. This will resolve the pending
+    // Promise.
     if (fileContent.has(relativePath)) {
       const { resolve } = fileContent.get(relativePath);
       if (resolve) resolve(tree);
@@ -211,6 +242,7 @@ async function transformer(tree: Parent, file: VFile) {
       fileContent.set(relativePath, { promise: Promise.resolve(tree) });
     }
   }
+
   const importNode = getJSXImport('APIStructurePreview');
   if (mutations.size) {
     tree.children.unshift(importNode);
