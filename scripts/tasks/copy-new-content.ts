@@ -1,5 +1,5 @@
-import fs from 'fs-extra';
-import path from 'path';
+import fs from 'node:fs/promises';
+import path from 'node:path';
 
 const newContent = new Map([['how-to-examples.md', 'tutorial/examples.md']]);
 

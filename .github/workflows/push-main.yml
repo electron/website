@@ -18,11 +18,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # tag: v4.2.2
-      - uses: actions/setup-node@0a44ba7841725637a19e28fa30b79a866c81b0a6 # tag: v4.0.4
+      - uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # tag: v4.1.0
         with:
           node-version: 20
       - name: Install dependencies
-        uses: bahmutov/npm-install@dc9579d3dfb9c0e7a1f56c194eefcb8e2c9f0da5 # tag: v1.10.3
+        uses: bahmutov/npm-install@438a933ce1059e4e2b39e3d2a42c5067070dd444 # tag: v1.10.4
       - name: Upload sources to Crowdin
         run: 'yarn i18n:upload'
         env:
@@ -42,11 +42,11 @@ jobs:
         run: ls -ln
       # This should be set up from earlier
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # tag: v4.2.2
-      - uses: actions/setup-node@0a44ba7841725637a19e28fa30b79a866c81b0a6 # tag: v4.0.4
+      - uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # tag: v4.1.0
         with:
           node-version: 20
       - name: Install dependencies
-        uses: bahmutov/npm-install@dc9579d3dfb9c0e7a1f56c194eefcb8e2c9f0da5 # tag: v1.10.3
+        uses: bahmutov/npm-install@438a933ce1059e4e2b39e3d2a42c5067070dd444 # tag: v1.10.4
       - name: Lint
         run: yarn lint
         env:

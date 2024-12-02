@@ -1,4 +1,6 @@
-import fs from 'fs-extra';
+import fs from 'node:fs';
+import path from 'node:path';
+
 import json5 from 'json5';
 import globby from 'globby';
 import type {
@@ -7,7 +9,6 @@ import type {
 } from '@docusaurus/plugin-content-docs/src/sidebars/types.js';
 import logger from '@docusaurus/logger';
 import prettier from 'prettier';
-import path from 'path';
 
 const IGNORE_LIST = [
   'README',
@@ -173,12 +174,12 @@ export const createSidebar = async (root: string, destination: string) => {
     const prettierConfig = await prettier.resolveConfig(
       path.resolve(__dirname, '..', '..', '.prettierrc')
     );
-    const formattedSidebarString = prettier.format(
+    const formattedSidebarString = await prettier.format(
       sidebarString,
       prettierConfig
     );
 
-    await fs.writeFile(destination, formattedSidebarString, 'utf-8');
+    fs.writeFileSync(destination, formattedSidebarString, 'utf-8');
   } else {
     logger.info(`No new documents found`);
   }

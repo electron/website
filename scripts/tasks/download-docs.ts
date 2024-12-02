@@ -1,8 +1,7 @@
-import path from 'path';
-import stream from 'stream';
-import type { ReadableStream } from 'stream/web';
-
-import fs from 'fs-extra';
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import stream from 'node:stream';
+import type { ReadableStream } from 'node:stream/web';
 
 import tar from 'tar-stream';
 import globby from 'globby';
