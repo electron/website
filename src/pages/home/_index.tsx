@@ -17,7 +17,7 @@ import TechnologiesGrid from './_components/TechnologiesGrid';
 import CodeWindow from './_components/CodeWindow';
 import FeaturedAppsCarousel from './_components/FeaturedAppsCarousel';
 
-import { FEATURED_APPS, FEATURED_LOGOS } from './featured-apps';
+import { FEATURED_APPS, FEATURED_LOGOS } from '../../util/featured-apps';
 
 export default function Home() {
   const { siteConfig } = useDocusaurusContext();

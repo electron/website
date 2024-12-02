@@ -2,7 +2,7 @@ import React from 'react';
 import clsx from 'clsx';
 import styles from './FeaturedAppsCarousel.module.scss';
 import { useColorMode } from '@docusaurus/theme-common';
-import type { FeaturedApp } from '../featured-apps';
+import type { FeaturedApp } from '../../../util/featured-apps';
 
 interface FeaturedAppsCarouselProps {
   list: FeaturedApp[];
