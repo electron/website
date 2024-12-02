@@ -10,6 +10,8 @@ on:
         description: The SHA of the `electron/electron` commit
         required: true
 
+concurrency: update-docs
+
 permissions: {}
 
 jobs:
