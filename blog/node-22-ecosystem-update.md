@@ -14,7 +14,7 @@ In early 2025, Electron’s npm ecosystem repos (under the `@electron/` and `@el
 
 In the past, packages in Electron’s npm ecosystem (Forge, Packager, etc) have supported Node versions for as long as possible, even after a version has reached its End-Of-Life (EOL) date. This is done to make sure we don’t fragment the ecosystem—we understand that many projects depend on older versions of Node, and we don’t want to risk stranding those projects unless there was a pressing reason to upgrade.
 
-Over time, maintenance of this policy has become increasingly difficult for a few reasons:
+Over time, using Node.js 14 as our minimum version has become increasingly difficult for a few reasons:
 
 - Lack of official Node.js 14 macOS ARM64 builds requires us to maintain CI infrastructure workarounds to provide full test coverage.
 - `engines` requirements for upstream package dependencies have moved forward, making it increasingly difficult to resolve supply chain security issues with dependency bumps.
