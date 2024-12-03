@@ -38,6 +38,10 @@ For the most part, each instance where your app instantiates new BrowserViews ca
    - this.tabBar = new BrowserView({
    + this.tabBar = new WebContentsView({
    ```
+   1a. `WebContentsView` instantiates with a white background, compared to `BrowserView` which defaults to a transparent background, if you took advantage of this default, you may need to manually set the background color
+      ```js
+      this.webContentsView.setBackgroundColor("#00000000");
+      ```
 
 2. Migrate where the `BrowserView` gets added to its parent window.
 
