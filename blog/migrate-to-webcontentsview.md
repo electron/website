@@ -42,8 +42,7 @@ For the most part, each instance where your app instantiates new BrowserViews ca
    :::info
 
    By default, `WebContentsView` instantiates with a white background, while `BrowserView` instantiates with a transparent background.
-   If you used to use the default transparent background setting with your `BrowserView` instances, you will need to set the
-   background colour manually with a RGBA hex value with the alpha (opaqueness) channel set to `00`.
+   To get a transparent background in `WebContentsView`, set its background color to an RGBA hex value with an alpha (opaqueness) channel set to `00`:
 
    ```diff
    + this.webContentsView.setBackgroundColor("#00000000");
