@@ -15,6 +15,7 @@ export default function DocSidebarItemLink({
   onItemClick,
   activePath,
   level,
+  index,
   ...props
 }: Props): JSX.Element {
   const { href, label, className, autoAddBaseUrl, customProps } = item;
