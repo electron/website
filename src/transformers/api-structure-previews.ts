@@ -85,6 +85,9 @@ async function transformer(tree: Parent, file: VFile) {
     // ?inline links will be inlined instead of rendered as a hover preview
     if (relativeStructureUrl.endsWith('?inline')) {
       relativeStructureUrl = relativeStructureUrl.split('?inline')[0];
+      if (isLink(node)) {
+        node.url = relativeStructureUrl;
+      }
       isInline = true;
     }
 
