@@ -3,6 +3,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import usePortal from 'react-useportal';
 import { toHtml } from 'hast-util-to-html';
 import { toHast } from 'mdast-util-to-hast';
+import { sanitize } from 'hast-util-sanitize';
 
 import styles from './APIStructurePreview.module.scss';
 
@@ -106,7 +107,7 @@ const Card = (props: CardProps) => {
       <div
         className="card__body"
         dangerouslySetInnerHTML={{
-          __html: toHtml(toHast(JSON.parse(props.content))),
+          __html: toHtml(sanitize(toHast(JSON.parse(props.content)))),
         }}
       ></div>
     </article>

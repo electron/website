@@ -79,6 +79,7 @@
     "gray-matter": "^4.0.3",
     "gunzip-maybe": "^1.4.2",
     "hast-util-from-html": "^2.0.1",
+    "hast-util-sanitize": "^5.0.2",
     "hast-util-to-html": "^9.0.3",
     "husky": "^9.1.6",
     "image-minimizer-webpack-plugin": "^4.0.2",
