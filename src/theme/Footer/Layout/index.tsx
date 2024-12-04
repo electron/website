@@ -33,21 +33,25 @@ export default function FooterLayout({
                 Hosting and infrastructure graciously provided by
               </div>
               <div className={styles.logoCluster}>
-                <img src="/assets/third-parties/azure.png" />
+                <img src="/assets/third-parties/azure.png" alt="Azure Logo" />
                 <img
                   src="/assets/third-parties/heroku_dark.png"
+                  alt="Heroku Logo"
                   className={styles.darkOnly}
                 />
                 <img
                   src="/assets/third-parties/heroku_light.png"
+                  alt="Heroku Logo"
                   className={styles.lightOnly}
                 />
                 <img
                   src="/assets/third-parties/datadog_dark.png"
+                  alt="DataDog Logo"
                   className={styles.darkOnly}
                 />
                 <img
                   src="/assets/third-parties/datadog_light.png"
+                  alt="DataDog Logo"
                   className={styles.lightOnly}
                 />
               </div>
