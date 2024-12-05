@@ -5,7 +5,14 @@ import logger from '@docusaurus/logger';
 import { visitParents } from 'unist-util-visit-parents';
 import { filter } from 'unist-util-filter';
 import { Node, Parent } from 'unist';
-import type { InlineCode, Link, LinkReference, Text } from 'mdast';
+import type {
+  Heading,
+  InlineCode,
+  Link,
+  LinkReference,
+  Root,
+  Text,
+} from 'mdast';
 import { MdxJsxFlowElement } from 'mdast-util-mdx-jsx';
 import type { VFile } from 'vfile';
 import {
@@ -16,6 +23,8 @@ import {
   isLinkReference,
   isText,
 } from '../util/mdx-utils';
+import { toHast } from 'mdast-util-to-hast';
+import { defaultSchema, sanitize } from 'hast-util-sanitize';
 
 const fileContent = new Map<
   string,
@@ -160,10 +169,21 @@ async function transformer(tree: Parent, file: VFile) {
               const siblings = parents[parents.length - 1].children;
               const filtered = filter(
                 structureContent,
-                (node) => node.type !== 'mdxjsEsm' && node.type !== 'heading'
+                (node) => node.type !== 'heading'
               );
               siblings.push(filtered);
             } else {
+              // This schema option allows `className` on all elements for API labeling
+              const HAST = sanitize(toHast(structureContent as Root), {
+                ...defaultSchema,
+                attributes: {
+                  ...defaultSchema.attributes,
+                  '*': [
+                    ...(defaultSchema.attributes['*'] || []),
+                    'className', // Allow className on all elements
+                  ],
+                },
+              });
               // replace the Link node with an MDX element in-place
               const title = (node.children[0] as Text | InlineCode).value;
               const previewNode = node as unknown as MdxJsxFlowElement;
@@ -187,7 +207,7 @@ async function transformer(tree: Parent, file: VFile) {
                 {
                   type: 'mdxJsxAttribute',
                   name: 'content',
-                  value: JSON.stringify(structureContent),
+                  value: JSON.stringify(HAST),
                 },
               ];
             }
@@ -234,15 +254,26 @@ async function transformer(tree: Parent, file: VFile) {
       relativePath = `/${locale}/docs/${docPath}`;
     }
 
+    // For each structure, we want the <h1> heading (title of the structure)
+    // and all content up until the next heading, which would be the base
+    // info for the structure (props + comments) by our conventions.
+    const filteredTree = filter(tree, (node) => node.type !== 'mdxjsEsm');
+    const headingIndex = filteredTree.children.findIndex(
+      (node) => node.type === 'heading' && (node as Heading).depth > 1
+    );
+    if (headingIndex > 0) {
+      filteredTree.children = filteredTree.children.slice(0, headingIndex);
+    }
+
     // If `fileContent` already contains this document, it means that
     // a document has requested the contents of this file already and has
     // passed a Promise.resolve callback. This will resolve the pending
     // Promise.
     if (fileContent.has(relativePath)) {
       const { resolve } = fileContent.get(relativePath);
-      if (resolve) resolve(tree);
+      if (resolve) resolve(filteredTree);
     } else {
-      fileContent.set(relativePath, { promise: Promise.resolve(tree) });
+      fileContent.set(relativePath, { promise: Promise.resolve(filteredTree) });
     }
   }
 

@@ -107,7 +107,7 @@ const Card = (props: CardProps) => {
       <div
         className="card__body"
         dangerouslySetInnerHTML={{
-          __html: toHtml(sanitize(toHast(JSON.parse(props.content)))),
+          __html: toHtml(JSON.parse(props.content)),
         }}
       ></div>
     </article>
