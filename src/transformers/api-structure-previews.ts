@@ -202,7 +202,7 @@ async function transformer(tree: Parent, file: VFile) {
               });
 
               // replace the Link node with an MDX element in-place
-              const title = (node.children[0] as Text | InlineCode).value;
+              const title = toString(node);
               const previewNode = node as unknown as MdxJsxFlowElement;
               previewNode.type = 'mdxJsxFlowElement';
               previewNode.name = 'APIStructurePreview';
