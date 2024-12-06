@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 import logger from '@docusaurus/logger';
+import { h } from 'hastscript';
 import { visitParents } from 'unist-util-visit-parents';
 import { filter } from 'unist-util-filter';
 import { Node, Parent } from 'unist';
@@ -173,8 +174,22 @@ async function transformer(tree: Parent, file: VFile) {
               );
               siblings.push(filtered);
             } else {
-              // This schema option allows `className` on all elements for API labeling
-              const HAST = sanitize(toHast(structureContent as Root), {
+              const HAST = toHast(structureContent as Root, {
+                unknownHandler: (_, node) => {
+                  if (
+                    node.name === 'APIStructurePreview' &&
+                    node?.data?._originalLink
+                  ) {
+                    const { _originalLink } = node.data;
+                    return h('a', { href: _originalLink.url }, [
+                      _originalLink.text,
+                    ]);
+                  }
+                  return undefined;
+                },
+              });
+
+              const sanitized = sanitize(HAST, {
                 ...defaultSchema,
                 attributes: {
                   ...defaultSchema.attributes,
@@ -184,6 +199,7 @@ async function transformer(tree: Parent, file: VFile) {
                   ],
                 },
               });
+
               // replace the Link node with an MDX element in-place
               const title = (node.children[0] as Text | InlineCode).value;
               const previewNode = node as unknown as MdxJsxFlowElement;
@@ -192,6 +208,10 @@ async function transformer(tree: Parent, file: VFile) {
               previewNode.children = [];
               previewNode.data = {
                 _mdxExplicitJsx: true,
+                _originalLink: {
+                  url: relativeStructureUrl,
+                  text: title,
+                },
               };
               previewNode.attributes = [
                 {
@@ -207,7 +227,7 @@ async function transformer(tree: Parent, file: VFile) {
                 {
                   type: 'mdxJsxAttribute',
                   name: 'content',
-                  value: JSON.stringify(HAST),
+                  value: JSON.stringify(sanitized),
                 },
               ];
             }
