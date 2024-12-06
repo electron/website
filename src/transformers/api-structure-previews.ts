@@ -26,6 +26,7 @@ import {
 } from '../util/mdx-utils';
 import { toHast } from 'mdast-util-to-hast';
 import { defaultSchema, sanitize } from 'hast-util-sanitize';
+import { toString } from 'mdast-util-to-string';
 
 const fileContent = new Map<
   string,
@@ -166,18 +167,26 @@ async function transformer(tree: Parent, file: VFile) {
             if (isInline) {
               // we inline the structure content as the last sibling of the current node
               const siblings = parents[parents.length - 1].children;
-              siblings.push(structureContent);
+              const filtered = filter(
+                structureContent,
+                (node) => node.type !== 'heading'
+              );
+              siblings.push(filtered);
             } else {
               const HAST = toHast(structureContent as Root, {
-                unknownHandler: (_, node) => {
-                  if (
-                    node.name === 'APIStructurePreview' &&
-                    node?.data?._originalLink
-                  ) {
-                    const { href, text } = node.data._originalLink;
-                    return h('a', { href }, [text]);
-                  }
-                  return undefined;
+                handlers: {
+                  mdxJsxFlowElement: (_, node) => {
+                    if (
+                      node.name === 'APIStructurePreview' &&
+                      node?.data?._originalLink
+                    ) {
+                      const { href, text } = node.data._originalLink;
+                      return h('a', { href }, [text]);
+                    } else if (node.name === 'header') {
+                      const text = toString(node);
+                      return h('h1', [text]);
+                    }
+                  },
                 },
               });
 

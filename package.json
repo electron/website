@@ -94,7 +94,7 @@
     "mdast-util-frontmatter": "^2.0.1",
     "mdast-util-mdx": "^3.0.0",
     "mdast-util-to-hast": "^13.2.0",
-    "mdast-util-to-string": "^2.0.0",
+    "mdast-util-to-string": "^4.0.0",
     "prettier": "^2.8.0",
     "remark": "^15.0.0",
     "remark-gfm": "^4.0.0",
