@@ -403,6 +403,8 @@ module.exports = {
         'latest/api/structures/web-request-filter',
         'latest/api/structures/web-source',
         'latest/api/structures/window-open-handler-response',
+        'latest/api/structures/shared-dictionary-info',
+        'latest/api/structures/shared-dictionary-usage-info',
       ],
     },
   ],
