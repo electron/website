@@ -6,23 +6,14 @@ import { h } from 'hastscript';
 import { visitParents } from 'unist-util-visit-parents';
 import { filter } from 'unist-util-filter';
 import { Node, Parent } from 'unist';
-import type {
-  Heading,
-  InlineCode,
-  Link,
-  LinkReference,
-  Root,
-  Text,
-} from 'mdast';
+import type { Heading, Link, LinkReference, Root } from 'mdast';
 import { MdxJsxFlowElement } from 'mdast-util-mdx-jsx';
 import type { VFile } from 'vfile';
 import {
   getJSXImport,
   isDefinition,
-  isInlineCode,
   isLink,
   isLinkReference,
-  isText,
 } from '../util/mdx-utils';
 import { toHast } from 'mdast-util-to-hast';
 import { defaultSchema, sanitize } from 'hast-util-sanitize';
@@ -155,12 +146,7 @@ async function transformer(tree: Parent, file: VFile) {
 
     const { promise: targetStructure } = fileContent.get(relativeStructurePath);
 
-    if (
-      (Array.isArray(node.children) &&
-        node.children.length > 0 &&
-        isText(node.children[0])) ||
-      isInlineCode(node.children[0])
-    ) {
+    if (toString(node).length > 0) {
       mutationPromises.add(
         targetStructure
           .then((structureContent) => {

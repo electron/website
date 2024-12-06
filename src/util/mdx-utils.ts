@@ -23,10 +23,6 @@ export function isImport(node: Node): node is MdxjsEsm {
   return node.type === 'mdxjsEsm';
 }
 
-export function isInlineCode(node: Node): node is InlineCode {
-  return node.type === 'inlineCode';
-}
-
 export function isLink(node: Node): node is Link {
   return node.type === 'link';
 }
