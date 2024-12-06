@@ -47,7 +47,7 @@ export default function attacher() {
  */
 async function transformer(tree: Parent, file: VFile) {
   const structureDefinitions = new Map<string, string>();
-  const mutations = new Set<Promise<void>>();
+  const mutationPromises = new Set<Promise<void>>();
   /**
    * This function is the test function for the first pass of the tree visitor.
    * Any values returning 'true' will run {@link replaceLinkWithPreview}.
@@ -64,7 +64,6 @@ async function transformer(tree: Parent, file: VFile) {
         (excludedFile) => !node.url.endsWith(`/api/structures/${excludedFile}`)
       );
     }
-
     return false;
   };
 
@@ -140,7 +139,7 @@ async function transformer(tree: Parent, file: VFile) {
             `Timed out waiting for API structure content from ${relativeStructurePath}`
           )
         );
-      }, 60000000);
+      }, 60_000);
 
       const promise = new Promise<Parent>((resolve_, reject_) => {
         resolve = (value: Parent) => {
@@ -161,18 +160,13 @@ async function transformer(tree: Parent, file: VFile) {
         isText(node.children[0])) ||
       isInlineCode(node.children[0])
     ) {
-      mutations.add(
+      mutationPromises.add(
         targetStructure
           .then((structureContent) => {
             if (isInline) {
-              // if ?inline, we put the structure content as the last sibling
-              // of the current node in the tree
+              // we inline the structure content as the last sibling of the current node
               const siblings = parents[parents.length - 1].children;
-              const filtered = filter(
-                structureContent,
-                (node) => node.type !== 'heading'
-              );
-              siblings.push(filtered);
+              siblings.push(structureContent);
             } else {
               const HAST = toHast(structureContent as Root, {
                 unknownHandler: (_, node) => {
@@ -180,10 +174,8 @@ async function transformer(tree: Parent, file: VFile) {
                     node.name === 'APIStructurePreview' &&
                     node?.data?._originalLink
                   ) {
-                    const { _originalLink } = node.data;
-                    return h('a', { href: _originalLink.url }, [
-                      _originalLink.text,
-                    ]);
+                    const { href, text } = node.data._originalLink;
+                    return h('a', { href }, [text]);
                   }
                   return undefined;
                 },
@@ -209,7 +201,7 @@ async function transformer(tree: Parent, file: VFile) {
               previewNode.data = {
                 _mdxExplicitJsx: true,
                 _originalLink: {
-                  url: relativeStructureUrl,
+                  href: relativeStructureUrl,
                   text: title,
                 },
               };
@@ -256,7 +248,7 @@ async function transformer(tree: Parent, file: VFile) {
   // not have WebPreferences inlined.
   visitParents(tree, checkLinksandDefinitions, replaceLinkWithPreview);
   visitParents(tree, isStructureLinkReference, replaceLinkWithPreview);
-  await Promise.all(Array.from(mutations));
+  await Promise.all(Array.from(mutationPromises));
 
   // After the entire tree for the current document is correctly
   // mutated, save the mutated tree into `fileContent`.
@@ -298,7 +290,7 @@ async function transformer(tree: Parent, file: VFile) {
   }
 
   const importNode = getJSXImport('APIStructurePreview');
-  if (mutations.size) {
+  if (mutationPromises.size > 0) {
     tree.children.unshift(importNode);
   }
 }
