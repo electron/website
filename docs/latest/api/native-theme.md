@@ -9,7 +9,7 @@ hide_title: false
 
 > Read and respond to changes in Chromium's native color theme.
 
-Process: [Main](latest/glossary.md#main-process)
+Process: [Main](../glossary.md#main-process)
 
 ## Events
 

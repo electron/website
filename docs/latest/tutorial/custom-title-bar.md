@@ -179,9 +179,9 @@ color and dimension values from a renderer using a set of readonly
 :::
 
 [Add native window controls]: #add-native-window-controls-windows-linux
-[`BaseWindowContructorOptions`]: latest/api/structures/base-window-options.md
+[`BaseWindowContructorOptions`]: ../api/structures/base-window-options.md
 [chrome]: https://developer.mozilla.org/en-US/docs/Glossary/Chrome
-[Custom draggable regions]: latest/tutorial/custom-window-interactions.md#custom-draggable-regions
+[Custom draggable regions]: ./custom-window-interactions.md#custom-draggable-regions
 [Custom traffic lights]: #custom-traffic-lights-macos
 [Custom window controls]: #custom-window-controls
 [overlay-css-env-vars]: https://github.com/WICG/window-controls-overlay/blob/main/explainer.md#css-environment-variables

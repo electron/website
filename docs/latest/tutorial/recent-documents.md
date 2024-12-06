@@ -113,7 +113,7 @@ following code snippet to your menu template:
 }
 ```
 
-Make sure the application menu is added after the [`'ready'`](latest/api/app.md#event-ready)
+Make sure the application menu is added after the [`'ready'`](../api/app.md#event-ready)
 event and not before, or the menu item will be disabled:
 
 ```js
@@ -136,7 +136,7 @@ of `app` module will be emitted for it.
 
 [jumplist-image]: https://cloud.githubusercontent.com/assets/2289/23446924/11a27b98-fdfc-11e6-8485-cc3b1e86b80a.png
 [dock-menu-image]: https://cloud.githubusercontent.com/assets/639601/5069610/2aa80758-6e97-11e4-8cfb-c1a414a10774.png
-[addrecentdocument]: latest/api/app.md#appaddrecentdocumentpath-macos-windows
-[clearrecentdocuments]: latest/api/app.md#appclearrecentdocuments-macos-windows
+[addrecentdocument]: ../api/app.md#appaddrecentdocumentpath-macos-windows
+[clearrecentdocuments]: ../api/app.md#appclearrecentdocuments-macos-windows
 [app-registration]: https://learn.microsoft.com/en-us/windows/win32/shell/app-registration
 [menu-item-image]: https://user-images.githubusercontent.com/3168941/33003655-ea601c3a-cd70-11e7-97fa-7c062149cfb1.png

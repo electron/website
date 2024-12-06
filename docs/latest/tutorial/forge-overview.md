@@ -67,10 +67,10 @@ and want to start on packaging and distribution, start from [step 5][] of the tu
   template and submit a new issue.
 
 [Electron Forge Docs]: https://www.electronforge.io/
-[step 5]: latest/tutorial/tutorial-5-packaging.md
+[step 5]: ./tutorial-5-packaging.md
 [(package)]: https://www.electronforge.io/cli#package
 [(make)]: https://www.electronforge.io/cli#make
 [(publish)]: https://www.electronforge.io/cli#publish
 [GitHub issue tracker]: https://github.com/electron/forge/issues
 [discord]: https://discord.gg/APGC3k5yaH
-[tutorial]: latest/tutorial/tutorial-1-prerequisites.md
+[tutorial]: ./tutorial-1-prerequisites.md

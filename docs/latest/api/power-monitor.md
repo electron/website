@@ -9,7 +9,7 @@ hide_title: false
 
 > Monitor power state changes.
 
-Process: [Main](latest/glossary.md#main-process)
+Process: [Main](../glossary.md#main-process)
 
 ## Events
 

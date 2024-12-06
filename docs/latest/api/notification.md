@@ -9,12 +9,12 @@ hide_title: false
 
 > Create OS desktop notifications
 
-Process: [Main](latest/glossary.md#main-process)
+Process: [Main](../glossary.md#main-process)
 
 :::info Renderer process notifications
 
 If you want to show notifications from a renderer process you should use the
-[web Notifications API](latest/tutorial/notifications.md)
+[web Notifications API](../tutorial/notifications.md)
 
 :::
 
@@ -22,7 +22,7 @@ If you want to show notifications from a renderer process you should use the
 
 > Create OS desktop notifications
 
-Process: [Main](latest/glossary.md#main-process)
+Process: [Main](../glossary.md#main-process)
 
 `Notification` is an [EventEmitter][event-emitter].
 
@@ -43,13 +43,13 @@ Returns `boolean` - Whether or not desktop notifications are supported on the cu
   * `subtitle` string (optional) _macOS_ - A subtitle for the notification, which will be displayed below the title.
   * `body` string (optional) - The body text of the notification, which will be displayed below the title or subtitle.
   * `silent` boolean (optional) - Whether or not to suppress the OS notification noise when showing the notification.
-  * `icon` (string | [NativeImage](latest/api/native-image.md)) (optional) - An icon to use in the notification. If a string is passed, it must be a valid path to a local icon file.
+  * `icon` (string | [NativeImage](native-image.md)) (optional) - An icon to use in the notification. If a string is passed, it must be a valid path to a local icon file.
   * `hasReply` boolean (optional) _macOS_ - Whether or not to add an inline reply option to the notification.
   * `timeoutType` string (optional) _Linux_ _Windows_ - The timeout duration of the notification. Can be 'default' or 'never'.
   * `replyPlaceholder` string (optional) _macOS_ - The placeholder to write in the inline reply input field.
   * `sound` string (optional) _macOS_ - The name of the sound file to play when the notification is shown.
   * `urgency` string (optional) _Linux_ - The urgency level of the notification. Can be 'normal', 'critical', or 'low'.
-  * `actions` [NotificationAction[]](latest/api/structures/notification-action.md) (optional) _macOS_ - Actions to add to the notification. Please read the available actions and limitations in the `NotificationAction` documentation.
+  * `actions` [NotificationAction[]](structures/notification-action.md) (optional) _macOS_ - Actions to add to the notification. Please read the available actions and limitations in the `NotificationAction` documentation.
   * `closeButtonText` string (optional) _macOS_ - A custom title for the close button of an alert. An empty string will cause the default localized text to be used.
   * `toastXml` string (optional) _Windows_ - A custom description of the Notification on Windows superseding all properties above. Provides full customization of design and behavior of the notification.
 
@@ -186,7 +186,7 @@ If `timeoutType` is set to 'never', the notification never expires. It stays ope
 
 #### `notification.actions`
 
-A [`NotificationAction[]`](latest/api/structures/notification-action.md) property representing the actions of the notification.
+A [`NotificationAction[]`](structures/notification-action.md) property representing the actions of the notification.
 
 #### `notification.toastXml` _Windows_
 

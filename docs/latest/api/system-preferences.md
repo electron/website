@@ -9,7 +9,7 @@ hide_title: false
 
 > Get system preferences.
 
-Process: [Main](latest/glossary.md#main-process), [Utility](latest/glossary.md#utility-process)
+Process: [Main](../glossary.md#main-process), [Utility](../glossary.md#utility-process)
 
 ```js
 const { systemPreferences } = require('electron')
@@ -154,7 +154,7 @@ Add the specified defaults to your application's `NSUserDefaults`.
 * `type` Type - Can be `string`, `boolean`, `integer`, `float`, `double`,
   `url`, `array` or `dictionary`.
 
-Returns [`UserDefaultTypes[Type]`](latest/api/structures/user-default-types.md) - The value of `key` in `NSUserDefaults`.
+Returns [`UserDefaultTypes[Type]`](structures/user-default-types.md) - The value of `key` in `NSUserDefaults`.
 
 Some popular `key` and `type`s are:
 
@@ -392,7 +392,7 @@ It will always return `granted` for `screen` and for all media types on older ve
 
 Returns `Promise<boolean>` - A promise that resolves with `true` if consent was granted and `false` if it was denied. If an invalid `mediaType` is passed, the promise will be rejected. If an access request was denied and later is changed through the System Preferences pane, a restart of the app will be required for the new permissions to take effect. If access has already been requested and denied, it _must_ be changed through the preference pane; an alert will not pop up and the promise will resolve with the existing access status.
 
-**Important:** In order to properly leverage this API, you [must set](https://developer.apple.com/documentation/avfoundation/cameras_and_media_capture/requesting_authorization_for_media_capture_on_macos?language=objc) the `NSMicrophoneUsageDescription` and `NSCameraUsageDescription` strings in your app's `Info.plist` file. The values for these keys will be used to populate the permission dialogs so that the user will be properly informed as to the purpose of the permission request. See [Electron Application Distribution](latest/tutorial/application-distribution.md#rebranding-with-downloaded-binaries) for more information about how to set these in the context of Electron.
+**Important:** In order to properly leverage this API, you [must set](https://developer.apple.com/documentation/avfoundation/cameras_and_media_capture/requesting_authorization_for_media_capture_on_macos?language=objc) the `NSMicrophoneUsageDescription` and `NSCameraUsageDescription` strings in your app's `Info.plist` file. The values for these keys will be used to populate the permission dialogs so that the user will be properly informed as to the purpose of the permission request. See [Electron Application Distribution](../tutorial/application-distribution.md#rebranding-with-downloaded-binaries) for more information about how to set these in the context of Electron.
 
 This user consent was not required until macOS 10.14 Mojave, so this method will always return `true` if your system is running 10.13 High Sierra.
 
@@ -412,7 +412,7 @@ Returns an object with system animation settings.
 
 A `boolean` property which determines whether the app avoids using semitransparent backgrounds. This maps to [NSWorkspace.accessibilityDisplayShouldReduceTransparency](https://developer.apple.com/documentation/appkit/nsworkspace/1533006-accessibilitydisplayshouldreduce)
 
-**Deprecated:** Use the new [`nativeTheme.prefersReducedTransparency`](latest/api/native-theme.md#nativethemeprefersreducedtransparency-readonly) API.
+**Deprecated:** Use the new [`nativeTheme.prefersReducedTransparency`](native-theme.md#nativethemeprefersreducedtransparency-readonly) API.
 
 ### `systemPreferences.effectiveAppearance` _macOS_ _Readonly_
 

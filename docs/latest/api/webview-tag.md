@@ -13,20 +13,20 @@ Electron's `webview` tag is based on [Chromium's `webview`][chrome-webview], whi
 is undergoing dramatic architectural changes. This impacts the stability of `webviews`,
 including rendering, navigation, and event routing. We currently recommend to
 not use the `webview` tag and to consider alternatives, like `iframe`, a
-[`WebContentsView`](latest/api/web-contents-view.md), or an architecture that avoids
+[`WebContentsView`](web-contents-view.md), or an architecture that avoids
 embedded content altogether.
 
 ## Enabling
 
 By default the `webview` tag is disabled in Electron >= 5.  You need to enable the tag by
 setting the `webviewTag` webPreferences option when constructing your `BrowserWindow`. For
-more information see the [BrowserWindow constructor docs](latest/api/browser-window.md).
+more information see the [BrowserWindow constructor docs](browser-window.md).
 
 ## Overview
 
 > Display external web content in an isolated frame and process.
 
-Process: [Renderer](latest/glossary.md#renderer-process)<br />
+Process: [Renderer](../glossary.md#renderer-process)<br />
 _This class is not exported from the `'electron'` module. It is only available as a return value of other methods in the Electron API._
 
 Use the `webview` tag to embed 'guest' content (such as web pages) in your
@@ -228,7 +228,7 @@ windows. Popups are disabled by default.
 ```
 
 A `string` which is a comma separated list of strings which specifies the web preferences to be set on the webview.
-The full list of supported preference strings can be found in [BrowserWindow](latest/api/browser-window.md#new-browserwindowoptions).
+The full list of supported preference strings can be found in [BrowserWindow](browser-window.md#new-browserwindowoptions).
 
 The string follows the same format as the features string in `window.open`.
 A name by itself is given a `true` boolean value.
@@ -274,16 +274,16 @@ webview.addEventListener('dom-ready', () => {
 
 * `url` URL
 * `options` Object (optional)
-  * `httpReferrer` (string | [Referrer](latest/api/structures/referrer.md)) (optional) - An HTTP Referrer url.
+  * `httpReferrer` (string | [Referrer](structures/referrer.md)) (optional) - An HTTP Referrer url.
   * `userAgent` string (optional) - A user agent originating the request.
   * `extraHeaders` string (optional) - Extra headers separated by "\n"
-  * `postData` ([UploadRawData](latest/api/structures/upload-raw-data.md) | [UploadFile](latest/api/structures/upload-file.md))[] (optional)
+  * `postData` ([UploadRawData](structures/upload-raw-data.md) | [UploadFile](structures/upload-file.md))[] (optional)
   * `baseURLForDataURL` string (optional) - Base url (with trailing path separator) for files to be loaded by the data url. This is needed only if the specified `url` is a data url and needs to load other files.
 
 Returns `Promise<void>` - The promise will resolve when the page has finished loading
-(see [`did-finish-load`](latest/api/webview-tag.md#event-did-finish-load)), and rejects
+(see [`did-finish-load`](webview-tag.md#event-did-finish-load)), and rejects
 if the page fails to load (see
-[`did-fail-load`](latest/api/webview-tag.md#event-did-fail-load)).
+[`did-fail-load`](webview-tag.md#event-did-fail-load)).
 
 Loads the `url` in the webview, the `url` must contain the protocol prefix,
 e.g. the `http://` or `file://`.
@@ -515,7 +515,7 @@ Scrolls to the bottom of the current `<webview>`.
 
 Adjusts the current text selection starting and ending points in the focused frame by the given amounts. A negative amount moves the selection towards the beginning of the document, and a positive amount moves the selection towards the end of the document.
 
-See [`webContents.adjustSelection`](latest/api/web-contents.md#contentsadjustselectionoptions) for
+See [`webContents.adjustSelection`](web-contents.md#contentsadjustselectionoptions) for
 examples.
 
 ### `<webview>.replace(text)`
@@ -550,7 +550,7 @@ Inserts `text` to the focused element.
 Returns `Integer` - The request id used for the request.
 
 Starts a request to find all matches for the `text` in the web page. The result of the request
-can be obtained by subscribing to [`found-in-page`](latest/api/webview-tag.md#event-found-in-page) event.
+can be obtained by subscribing to [`found-in-page`](webview-tag.md#event-found-in-page) event.
 
 ### `<webview>.stopFindInPage(action)`
 
@@ -624,9 +624,9 @@ Prints `webview`'s web page as PDF, Same as `webContents.printToPDF(options)`.
 
 ### `<webview>.capturePage([rect])`
 
-* `rect` [Rectangle](latest/api/structures/rectangle.md) (optional) - The area of the page to be captured.
+* `rect` [Rectangle](structures/rectangle.md) (optional) - The area of the page to be captured.
 
-Returns `Promise<NativeImage>` - Resolves with a [NativeImage](latest/api/native-image.md)
+Returns `Promise<NativeImage>` - Resolves with a [NativeImage](native-image.md)
 
 Captures a snapshot of the page within `rect`. Omitting `rect` will capture the whole visible page.
 
@@ -639,9 +639,9 @@ Returns `Promise<void>`
 
 Send an asynchronous message to renderer process via `channel`, you can also
 send arbitrary arguments. The renderer process can handle the message by
-listening to the `channel` event with the [`ipcRenderer`](latest/api/ipc-renderer.md) module.
+listening to the `channel` event with the [`ipcRenderer`](ipc-renderer.md) module.
 
-See [webContents.send](latest/api/web-contents.md#contentssendchannel-args) for
+See [webContents.send](web-contents.md#contentssendchannel-args) for
 examples.
 
 ### `<webview>.sendToFrame(frameId, channel, ...args)`
@@ -654,20 +654,20 @@ Returns `Promise<void>`
 
 Send an asynchronous message to renderer process via `channel`, you can also
 send arbitrary arguments. The renderer process can handle the message by
-listening to the `channel` event with the [`ipcRenderer`](latest/api/ipc-renderer.md) module.
+listening to the `channel` event with the [`ipcRenderer`](ipc-renderer.md) module.
 
-See [webContents.sendToFrame](latest/api/web-contents.md#contentssendtoframeframeid-channel-args) for
+See [webContents.sendToFrame](web-contents.md#contentssendtoframeframeid-channel-args) for
 examples.
 
 ### `<webview>.sendInputEvent(event)`
 
-* `event`  [MouseInputEvent](latest/api/structures/mouse-input-event.md) | [MouseWheelInputEvent](latest/api/structures/mouse-wheel-input-event.md) | [KeyboardInputEvent](latest/api/structures/keyboard-input-event.md)
+* `event`  [MouseInputEvent](structures/mouse-input-event.md) | [MouseWheelInputEvent](structures/mouse-wheel-input-event.md) | [KeyboardInputEvent](structures/keyboard-input-event.md)
 
 Returns `Promise<void>`
 
 Sends an input `event` to the page.
 
-See [webContents.sendInputEvent](latest/api/web-contents.md#contentssendinputeventinputevent)
+See [webContents.sendInputEvent](web-contents.md#contentssendinputeventinputevent)
 for detailed description of `event` object.
 
 ### `<webview>.setZoomFactor(factor)`
@@ -999,7 +999,7 @@ ipcRenderer.on('ping', () => {
 
 Returns:
 
-* `details` [RenderProcessGoneDetails](latest/api/structures/render-process-gone-details.md)
+* `details` [RenderProcessGoneDetails](structures/render-process-gone-details.md)
 
 Fired when the renderer process unexpectedly disappears. This is normally
 because it was crashed or killed.
@@ -1107,9 +1107,9 @@ Returns:
     invoked on.
   * `suggestedFilename` string - Suggested filename to be used when saving file through 'Save
     Link As' option of context menu.
-  * `selectionRect` [Rectangle](latest/api/structures/rectangle.md) - Rect representing the coordinates in the document space of the selection.
+  * `selectionRect` [Rectangle](structures/rectangle.md) - Rect representing the coordinates in the document space of the selection.
   * `selectionStartOffset` number - Start position of the selection text.
-  * `referrerPolicy` [Referrer](latest/api/structures/referrer.md) - The referrer policy of the frame on which the menu is invoked.
+  * `referrerPolicy` [Referrer](structures/referrer.md) - The referrer policy of the frame on which the menu is invoked.
   * `misspelledWord` string - The misspelled word under the cursor, if any.
   * `dictionarySuggestions` string[] - An array of suggested words to show the
     user to replace the `misspelledWord`.  Only available if there is a misspelled

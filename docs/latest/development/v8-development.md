@@ -15,4 +15,4 @@ hide_title: false
 * [Optimizing compiler](https://v8.dev/docs/turbofan)
 * [V8 GDB Debugging](https://v8.dev/docs/gdb-jit)
 
-See also [Chromium Development](latest/development/chromium-development.md)
+See also [Chromium Development](chromium-development.md)

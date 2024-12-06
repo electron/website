@@ -67,12 +67,12 @@ Now you can use `LLDB` for breakpoint debugging.
 ## Platform-Specific Debugging
 <!-- TODO(@codebytere): add debugging file for Linux-->
 
-- [macOS Debugging](latest/development/debugging-on-macos.md)
-  - [Debugging with Xcode](latest/development/debugging-with-xcode.md)
-- [Windows Debugging](latest/development/debugging-on-windows.md)
+- [macOS Debugging](debugging-on-macos.md)
+  - [Debugging with Xcode](debugging-with-xcode.md)
+- [Windows Debugging](debugging-on-windows.md)
 
 ## Debugging with the Symbol Server
 
 Debug symbols allow you to have better debugging sessions. They have information about the functions contained in executables and dynamic libraries and provide you with information to get clean call stacks. A Symbol Server allows the debugger to load the correct symbols, binaries and sources automatically without forcing users to download large debugging files.
 
-For more information about how to set up a symbol server for Electron, see [debugging with a symbol server](latest/development/debugging-with-symbol-server.md).
+For more information about how to set up a symbol server for Electron, see [debugging with a symbol server](debugging-with-symbol-server.md).

@@ -55,7 +55,7 @@ Stabilization branches are branches that run parallel to `main`, taking in only 
 
 Since Electron 8, stabilization branches are always **major** version lines, and named against the following template `$MAJOR-x-y` e.g. `8-x-y`.  Prior to that we used **minor** version lines and named them as `$MAJOR-$MINOR-x` e.g. `2-0-x`.
 
-We allow for multiple stabilization branches to exist simultaneously, one for each supported version. For more details on which versions are supported, see our [Electron Releases](latest/tutorial/electron-timelines.md) doc.
+We allow for multiple stabilization branches to exist simultaneously, one for each supported version. For more details on which versions are supported, see our [Electron Releases](./electron-timelines.md) doc.
 
 ![Multiple Stability Branches](../images/versioning-sketch-2.png)
 

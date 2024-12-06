@@ -37,4 +37,4 @@ You will need to use a debugger that supports the V8 inspector protocol.
 
 - Connect Chrome by visiting `chrome://inspect` and selecting to inspect the
   launched Electron app present there.
-- [Debugging in VSCode](latest/tutorial/debugging-vscode.md)
+- [Debugging in VSCode](debugging-vscode.md)

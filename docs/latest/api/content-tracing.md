@@ -9,7 +9,7 @@ hide_title: false
 
 > Collect tracing data from Chromium to find performance bottlenecks and slow operations.
 
-Process: [Main](latest/glossary.md#main-process)
+Process: [Main](../glossary.md#main-process)
 
 This module does not include a web interface. To view recorded traces, use
 [trace viewer][], available at `chrome://tracing` in Chrome.
@@ -50,7 +50,7 @@ are reached. See also the
 
 ### `contentTracing.startRecording(options)`
 
-* `options` ([TraceConfig](latest/api/structures/trace-config.md) | [TraceCategoriesAndOptions](latest/api/structures/trace-categories-and-options.md))
+* `options` ([TraceConfig](structures/trace-config.md) | [TraceCategoriesAndOptions](structures/trace-categories-and-options.md))
 
 Returns `Promise<void>` - resolved once all child processes have acknowledged the `startRecording` request.
 

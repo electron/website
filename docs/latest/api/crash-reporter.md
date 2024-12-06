@@ -9,7 +9,7 @@ hide_title: false
 
 > Submit crash reports to a remote server.
 
-Process: [Main](latest/glossary.md#main-process), [Renderer](latest/glossary.md#renderer-process)
+Process: [Main](../glossary.md#main-process), [Renderer](../glossary.md#renderer-process)
 
 The following is an example of setting up Electron to automatically submit
 crash reports to a remote server:
@@ -107,7 +107,7 @@ longer than the maximum length will be truncated.
 
 ### `crashReporter.getLastCrashReport()`
 
-Returns [`CrashReport | null`](latest/api/structures/crash-report.md) - The date and ID of the
+Returns [`CrashReport | null`](structures/crash-report.md) - The date and ID of the
 last crash report. Only crash reports that have been uploaded will be returned;
 even if a crash report is present on disk it will not be returned until it is
 uploaded. In the case that there are no uploaded reports, `null` is returned.
@@ -116,7 +116,7 @@ uploaded. In the case that there are no uploaded reports, `null` is returned.
 
 ### `crashReporter.getUploadedReports()`
 
-Returns [`CrashReport[]`](latest/api/structures/crash-report.md):
+Returns [`CrashReport[]`](structures/crash-report.md):
 
 Returns all uploaded crash reports. Each report contains the date and uploaded
 ID.

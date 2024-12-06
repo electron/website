@@ -9,7 +9,7 @@ hide_title: false
 
 > In-app purchases on Mac App Store.
 
-Process: [Main](latest/glossary.md#main-process)
+Process: [Main](../glossary.md#main-process)
 
 ## Events
 
@@ -22,7 +22,7 @@ Emitted when one or more transactions have been updated.
 Returns:
 
 * `event` Event
-* `transactions` Transaction[] - Array of [`Transaction`](latest/api/structures/transaction.md) objects.
+* `transactions` Transaction[] - Array of [`Transaction`](structures/transaction.md) objects.
 
 ## Methods
 
@@ -43,7 +43,7 @@ You should listen for the `transactions-updated` event as soon as possible and c
 
 * `productIDs` string[] - The identifiers of the products to get.
 
-Returns `Promise<Product[]>` - Resolves with an array of [`Product`](latest/api/structures/product.md) objects.
+Returns `Promise<Product[]>` - Resolves with an array of [`Product`](structures/product.md) objects.
 
 Retrieves the product descriptions.
 

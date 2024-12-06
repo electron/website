@@ -12,13 +12,13 @@ used to share information from the current context to apps, social media
 accounts, and other services.
 
 For including the share menu as a submenu of other menus, please use the
-`shareMenu` role of [`MenuItem`](latest/api/menu-item.md).
+`shareMenu` role of [`MenuItem`](menu-item.md).
 
 ## Class: ShareMenu
 
 > Create share menu on macOS.
 
-Process: [Main](latest/glossary.md#main-process)
+Process: [Main](../glossary.md#main-process)
 
 ### `new ShareMenu(sharingItem)`
 
@@ -33,7 +33,7 @@ The `shareMenu` object has the following instance methods:
 #### `shareMenu.popup([options])`
 
 * `options` PopupOptions (optional)
-  * `browserWindow` [BrowserWindow](latest/api/browser-window.md) (optional) - Default is the focused window.
+  * `browserWindow` [BrowserWindow](browser-window.md) (optional) - Default is the focused window.
   * `x` number (optional) - Default is the current mouse cursor position.
     Must be declared if `y` is declared.
   * `y` number (optional) - Default is the current mouse cursor position.
@@ -43,11 +43,11 @@ The `shareMenu` object has the following instance methods:
     is -1.
   * `callback` Function (optional) - Called when menu is closed.
 
-Pops up this menu as a context menu in the [`BrowserWindow`](latest/api/browser-window.md).
+Pops up this menu as a context menu in the [`BrowserWindow`](browser-window.md).
 
 #### `shareMenu.closePopup([browserWindow])`
 
-* `browserWindow` [BrowserWindow](latest/api/browser-window.md) (optional) - Default is the focused window.
+* `browserWindow` [BrowserWindow](browser-window.md) (optional) - Default is the focused window.
 
 Closes the context menu in the `browserWindow`.
 

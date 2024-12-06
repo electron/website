@@ -11,13 +11,13 @@ hide_title: false
 
 > Create TouchBar layouts for native macOS applications
 
-Process: [Main](latest/glossary.md#main-process)
+Process: [Main](../glossary.md#main-process)
 
 ### `new TouchBar(options)`
 
 * `options` Object
-  * `items` ([TouchBarButton](latest/api/touch-bar-button.md) | [TouchBarColorPicker](latest/api/touch-bar-color-picker.md) | [TouchBarGroup](latest/api/touch-bar-group.md) | [TouchBarLabel](latest/api/touch-bar-label.md) | [TouchBarPopover](latest/api/touch-bar-popover.md) | [TouchBarScrubber](latest/api/touch-bar-scrubber.md) | [TouchBarSegmentedControl](latest/api/touch-bar-segmented-control.md) | [TouchBarSlider](latest/api/touch-bar-slider.md) | [TouchBarSpacer](latest/api/touch-bar-spacer.md))[] (optional)
-  * `escapeItem` ([TouchBarButton](latest/api/touch-bar-button.md) | [TouchBarColorPicker](latest/api/touch-bar-color-picker.md) | [TouchBarGroup](latest/api/touch-bar-group.md) | [TouchBarLabel](latest/api/touch-bar-label.md) | [TouchBarPopover](latest/api/touch-bar-popover.md) | [TouchBarScrubber](latest/api/touch-bar-scrubber.md) | [TouchBarSegmentedControl](latest/api/touch-bar-segmented-control.md) | [TouchBarSlider](latest/api/touch-bar-slider.md) | [TouchBarSpacer](latest/api/touch-bar-spacer.md) | null) (optional)
+  * `items` ([TouchBarButton](touch-bar-button.md) | [TouchBarColorPicker](touch-bar-color-picker.md) | [TouchBarGroup](touch-bar-group.md) | [TouchBarLabel](touch-bar-label.md) | [TouchBarPopover](touch-bar-popover.md) | [TouchBarScrubber](touch-bar-scrubber.md) | [TouchBarSegmentedControl](touch-bar-segmented-control.md) | [TouchBarSlider](touch-bar-slider.md) | [TouchBarSpacer](touch-bar-spacer.md))[] (optional)
+  * `escapeItem` ([TouchBarButton](touch-bar-button.md) | [TouchBarColorPicker](touch-bar-color-picker.md) | [TouchBarGroup](touch-bar-group.md) | [TouchBarLabel](touch-bar-label.md) | [TouchBarPopover](touch-bar-popover.md) | [TouchBarScrubber](touch-bar-scrubber.md) | [TouchBarSegmentedControl](touch-bar-segmented-control.md) | [TouchBarSlider](touch-bar-slider.md) | [TouchBarSpacer](touch-bar-spacer.md) | null) (optional)
 
 Creates a new touch bar with the specified items. Use
 `BrowserWindow.setTouchBar` to add the `TouchBar` to a window.
@@ -33,43 +33,43 @@ to test Touch Bar usage in your app.
 
 #### `TouchBarButton`
 
-A [`typeof TouchBarButton`](latest/api/touch-bar-button.md) reference to the `TouchBarButton` class.
+A [`typeof TouchBarButton`](./touch-bar-button.md) reference to the `TouchBarButton` class.
 
 #### `TouchBarColorPicker`
 
-A [`typeof TouchBarColorPicker`](latest/api/touch-bar-color-picker.md) reference to the `TouchBarColorPicker` class.
+A [`typeof TouchBarColorPicker`](./touch-bar-color-picker.md) reference to the `TouchBarColorPicker` class.
 
 #### `TouchBarGroup`
 
-A [`typeof TouchBarGroup`](latest/api/touch-bar-group.md) reference to the `TouchBarGroup` class.
+A [`typeof TouchBarGroup`](./touch-bar-group.md) reference to the `TouchBarGroup` class.
 
 #### `TouchBarLabel`
 
-A [`typeof TouchBarLabel`](latest/api/touch-bar-label.md) reference to the `TouchBarLabel` class.
+A [`typeof TouchBarLabel`](./touch-bar-label.md) reference to the `TouchBarLabel` class.
 
 #### `TouchBarPopover`
 
-A [`typeof TouchBarPopover`](latest/api/touch-bar-popover.md) reference to the `TouchBarPopover` class.
+A [`typeof TouchBarPopover`](./touch-bar-popover.md) reference to the `TouchBarPopover` class.
 
 #### `TouchBarScrubber`
 
-A [`typeof TouchBarScrubber`](latest/api/touch-bar-scrubber.md) reference to the `TouchBarScrubber` class.
+A [`typeof TouchBarScrubber`](./touch-bar-scrubber.md) reference to the `TouchBarScrubber` class.
 
 #### `TouchBarSegmentedControl`
 
-A [`typeof TouchBarSegmentedControl`](latest/api/touch-bar-segmented-control.md) reference to the `TouchBarSegmentedControl` class.
+A [`typeof TouchBarSegmentedControl`](./touch-bar-segmented-control.md) reference to the `TouchBarSegmentedControl` class.
 
 #### `TouchBarSlider`
 
-A [`typeof TouchBarSlider`](latest/api/touch-bar-slider.md) reference to the `TouchBarSlider` class.
+A [`typeof TouchBarSlider`](./touch-bar-slider.md) reference to the `TouchBarSlider` class.
 
 #### `TouchBarSpacer`
 
-A [`typeof TouchBarSpacer`](latest/api/touch-bar-spacer.md) reference to the `TouchBarSpacer` class.
+A [`typeof TouchBarSpacer`](./touch-bar-spacer.md) reference to the `TouchBarSpacer` class.
 
 #### `TouchBarOtherItemsProxy`
 
-A [`typeof TouchBarOtherItemsProxy`](latest/api/touch-bar-other-items-proxy.md) reference to the `TouchBarOtherItemsProxy` class.
+A [`typeof TouchBarOtherItemsProxy`](./touch-bar-other-items-proxy.md) reference to the `TouchBarOtherItemsProxy` class.
 
 ### Instance Properties
 

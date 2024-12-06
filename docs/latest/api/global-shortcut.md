@@ -9,7 +9,7 @@ hide_title: false
 
 > Detect keyboard events when the application does not have keyboard focus.
 
-Process: [Main](latest/glossary.md#main-process)
+Process: [Main](../glossary.md#main-process)
 
 The `globalShortcut` module can register/unregister a global keyboard shortcut
 with the operating system so that you can customize the operations for various
@@ -51,7 +51,7 @@ The `globalShortcut` module has the following methods:
 
 ### `globalShortcut.register(accelerator, callback)`
 
-* `accelerator` [Accelerator](latest/api/accelerator.md)
+* `accelerator` [Accelerator](accelerator.md)
 * `callback` Function
 
 Returns `boolean` - Whether or not the shortcut was registered successfully.
@@ -73,7 +73,7 @@ the app has been authorized as a [trusted accessibility client](https://develope
 
 ### `globalShortcut.registerAll(accelerators, callback)`
 
-* `accelerators` [Accelerator](latest/api/accelerator.md)[] - an array of [Accelerator](latest/api/accelerator.md)s.
+* `accelerators` [Accelerator](accelerator.md)[] - an array of [Accelerator](accelerator.md)s.
 * `callback` Function
 
 Registers a global shortcut of all `accelerator` items in `accelerators`. The `callback` is called when any of the registered shortcuts are pressed by the user.
@@ -92,7 +92,7 @@ the app has been authorized as a [trusted accessibility client](https://develope
 
 ### `globalShortcut.isRegistered(accelerator)`
 
-* `accelerator` [Accelerator](latest/api/accelerator.md)
+* `accelerator` [Accelerator](accelerator.md)
 
 Returns `boolean` - Whether this application has registered `accelerator`.
 
@@ -102,7 +102,7 @@ don't want applications to fight for global shortcuts.
 
 ### `globalShortcut.unregister(accelerator)`
 
-* `accelerator` [Accelerator](latest/api/accelerator.md)
+* `accelerator` [Accelerator](accelerator.md)
 
 Unregisters the global shortcut of `accelerator`.
 

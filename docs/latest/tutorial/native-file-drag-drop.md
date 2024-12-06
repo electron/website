@@ -16,7 +16,7 @@ supports dragging files and content out from web content into the operating
 system's world.
 
 To implement this feature in your app, you need to call the
-[`webContents.startDrag(item)`](latest/api/web-contents.md#contentsstartdragitem)
+[`webContents.startDrag(item)`](../api/web-contents.md#contentsstartdragitem)
 API in response to the `ondragstart` event.
 
 ## Example
@@ -120,4 +120,4 @@ the item is a Markdown file located in the root of the project:
 
 ![Drag and drop](../images/drag-and-drop.gif)
 
-[`contextBridge`]: latest/api/context-bridge.md
+[`contextBridge`]: ../api/context-bridge.md

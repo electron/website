@@ -9,7 +9,7 @@ hide_title: false
 
 Follow the guidelines below for building **Electron itself** on Linux, for the purposes of creating custom Electron binaries. For bundling and distributing your app code with the prebuilt Electron binaries, see the [application distribution][application-distribution] guide.
 
-[application-distribution]: latest/tutorial/application-distribution.md
+[application-distribution]: ../tutorial/application-distribution.md
 
 ## Prerequisites
 
@@ -98,7 +98,7 @@ $ gn gen out/Testing --args='import(...) target_cpu="arm"'
 
 ## Building
 
-See [Build Instructions: GN](latest/development/build-instructions-gn.md)
+See [Build Instructions: GN](build-instructions-gn.md)
 
 ## Troubleshooting
 

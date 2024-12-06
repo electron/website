@@ -27,7 +27,7 @@ for renderer-created windows.
 BrowserWindow constructor options are set by, in increasing precedence
 order: parsed options from the `features` string from `window.open()`,
 security-related webPreferences inherited from the parent, and options given by
-[`webContents.setWindowOpenHandler`](latest/api/web-contents.md#contentssetwindowopenhandlerhandler).
+[`webContents.setWindowOpenHandler`](web-contents.md#contentssetwindowopenhandlerhandler).
 Note that `webContents.setWindowOpenHandler` has final say and full privilege
 because it is invoked in the main process.
 
@@ -40,12 +40,12 @@ because it is invoked in the main process.
 Returns [`Window`](https://developer.mozilla.org/en-US/docs/Web/API/Window) | null
 
 `features` is a comma-separated key-value list, following the standard format of
-the browser. Electron will parse [`BrowserWindowConstructorOptions`](latest/api/structures/browser-window-options.md) out of this
+the browser. Electron will parse [`BrowserWindowConstructorOptions`](structures/browser-window-options.md) out of this
 list where possible, for convenience. For full control and better ergonomics,
 consider using `webContents.setWindowOpenHandler` to customize the
 BrowserWindow creation.
 
-A subset of [`WebPreferences`](latest/api/structures/web-preferences.md) can be set directly,
+A subset of [`WebPreferences`](structures/web-preferences.md) can be set directly,
 unnested, from the features string: `zoomFactor`, `nodeIntegration`, `preload`,
 `javascript`, `contextIsolation`, and `webviewTag`.
 
@@ -67,7 +67,7 @@ window.open('https://github.com', '_blank', 'top=500,left=200,frame=false,nodeIn
   `features` will be passed to any registered `webContents`'s
   `did-create-window` event handler in the `options` argument.
 * `frameName` follows the specification of `target` located in the [native documentation](https://developer.mozilla.org/en-US/docs/Web/API/Window/open#parameters).
-* When opening `about:blank`, the child window's [`WebPreferences`](latest/api/structures/web-preferences.md) will be copied
+* When opening `about:blank`, the child window's [`WebPreferences`](structures/web-preferences.md) will be copied
   from the parent window, and there is no way to override it because Chromium
   skips browser side navigation in this case.
 
@@ -75,7 +75,7 @@ To customize or cancel the creation of the window, you can optionally set an
 override handler with `webContents.setWindowOpenHandler()` from the main
 process. Returning `{ action: 'deny' }` cancels the window. Returning `{
 action: 'allow', overrideBrowserWindowOptions: { ... } }` will allow opening
-the window and setting the [`BrowserWindowConstructorOptions`](latest/api/structures/browser-window-options.md) to be used when
+the window and setting the [`BrowserWindowConstructorOptions`](structures/browser-window-options.md) to be used when
 creating the window. Note that this is more powerful than passing options
 through the feature string, as the renderer has more limited privileges in
 deciding security preferences than the main process.

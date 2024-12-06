@@ -7,7 +7,7 @@ hide_title: false
 
 # pushNotifications
 
-Process: [Main](latest/glossary.md#main-process)
+Process: [Main](../glossary.md#main-process)
 
 > Register for and receive notifications from remote push notification services
 

@@ -9,7 +9,7 @@ hide_title: false
 
 > A collection of resources for learning about Chromium and tracking its development.
 
-See also [V8 Development](latest/development/v8-development.md)
+See also [V8 Development](v8-development.md)
 
 ## Contributing to Chromium
 

@@ -9,7 +9,7 @@ hide_title: false
 
 > Logging network events for a session.
 
-Process: [Main](latest/glossary.md#main-process)
+Process: [Main](../glossary.md#main-process)
 
 ```js
 const { app, netLog } = require('electron')
@@ -22,7 +22,7 @@ app.whenReady().then(async () => {
 })
 ```
 
-See [`--log-net-log`](latest/api/command-line-switches.md#--log-net-logpath) to log network events throughout the app's lifecycle.
+See [`--log-net-log`](command-line-switches.md#--log-net-logpath) to log network events throughout the app's lifecycle.
 
 **Note:** All methods unless specified can only be used after the `ready` event
 of the `app` module gets emitted.

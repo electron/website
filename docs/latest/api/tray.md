@@ -11,7 +11,7 @@ hide_title: false
 
 > Add icons and context menus to the system's notification area.
 
-Process: [Main](latest/glossary.md#main-process)
+Process: [Main](../glossary.md#main-process)
 
 `Tray` is an [EventEmitter][event-emitter].
 
@@ -67,7 +67,7 @@ app.whenReady().then(() => {
 
 **MacOS**
 
-* Icons passed to the Tray constructor should be [Template Images](latest/api/native-image.md#template-image-macos).
+* Icons passed to the Tray constructor should be [Template Images](native-image.md#template-image-macos).
 * To make sure your icon isn't grainy on retina monitors, be sure your `@2x` image is 144dpi.
 * If you are bundling your application (e.g., with webpack for development), be sure that the file names are not being mangled or hashed. The filename needs to end in Template, and the `@2x` image needs to have the same filename as the standard image, or MacOS will not magically invert your image's colors or use the high density image.
 * 16x16 (72dpi) and 32x32@2x (144dpi) work well for most icons.
@@ -78,7 +78,7 @@ app.whenReady().then(() => {
 
 ### `new Tray(image, [guid])`
 
-* `image` ([NativeImage](latest/api/native-image.md) | string)
+* `image` ([NativeImage](native-image.md) | string)
 * `guid` string (optional) _Windows_ - Assigns a GUID to the tray icon. If the executable is signed and the signature contains an organization in the subject line then the GUID is permanently associated with that signature. OS level settings like the position of the tray icon in the system tray will persist even if the path to the executable changes. If the executable is not code-signed then the GUID is permanently associated with the path to the executable. Changing the path to the executable will break the creation of the tray icon and a new GUID must be used. However, it is highly recommended to use the GUID parameter only in conjunction with code-signed executable. If an App defines multiple tray icons then each icon must use a separate GUID.
 
 Creates a new tray icon associated with the `image`.
@@ -91,9 +91,9 @@ The `Tray` module emits the following events:
 
 Returns:
 
-* `event` [KeyboardEvent](latest/api/structures/keyboard-event.md)
-* `bounds` [Rectangle](latest/api/structures/rectangle.md) - The bounds of tray icon.
-* `position` [Point](latest/api/structures/point.md) - The position of the event.
+* `event` [KeyboardEvent](structures/keyboard-event.md)
+* `bounds` [Rectangle](structures/rectangle.md) - The bounds of tray icon.
+* `position` [Point](structures/point.md) - The position of the event.
 
 Emitted when the tray icon is clicked.
 
@@ -104,8 +104,8 @@ activation, which might not necessarily be left mouse click.
 
 Returns:
 
-* `event` [KeyboardEvent](latest/api/structures/keyboard-event.md)
-* `bounds` [Rectangle](latest/api/structures/rectangle.md) - The bounds of tray icon.
+* `event` [KeyboardEvent](structures/keyboard-event.md)
+* `bounds` [Rectangle](structures/rectangle.md) - The bounds of tray icon.
 
 Emitted when the tray icon is right clicked.
 
@@ -113,8 +113,8 @@ Emitted when the tray icon is right clicked.
 
 Returns:
 
-* `event` [KeyboardEvent](latest/api/structures/keyboard-event.md)
-* `bounds` [Rectangle](latest/api/structures/rectangle.md) - The bounds of tray icon.
+* `event` [KeyboardEvent](structures/keyboard-event.md)
+* `bounds` [Rectangle](structures/rectangle.md) - The bounds of tray icon.
 
 Emitted when the tray icon is double clicked.
 
@@ -122,8 +122,8 @@ Emitted when the tray icon is double clicked.
 
 Returns:
 
-* `event` [KeyboardEvent](latest/api/structures/keyboard-event.md)
-* `bounds` [Rectangle](latest/api/structures/rectangle.md) - The bounds of tray icon.
+* `event` [KeyboardEvent](structures/keyboard-event.md)
+* `bounds` [Rectangle](structures/rectangle.md) - The bounds of tray icon.
 
 Emitted when the tray icon is middle clicked.
 
@@ -178,8 +178,8 @@ Emitted when a drag operation ends on the tray or ends at another location.
 
 Returns:
 
-* `event` [KeyboardEvent](latest/api/structures/keyboard-event.md)
-* `position` [Point](latest/api/structures/point.md) - The position of the event.
+* `event` [KeyboardEvent](structures/keyboard-event.md)
+* `position` [Point](structures/point.md) - The position of the event.
 
 Emitted when the mouse is released from clicking the tray icon.
 
@@ -189,8 +189,8 @@ Note: This will not be emitted if you have set a context menu for your Tray usin
 
 Returns:
 
-* `event` [KeyboardEvent](latest/api/structures/keyboard-event.md)
-* `position` [Point](latest/api/structures/point.md) - The position of the event.
+* `event` [KeyboardEvent](structures/keyboard-event.md)
+* `position` [Point](structures/point.md) - The position of the event.
 
 Emitted when the mouse clicks the tray icon.
 
@@ -198,8 +198,8 @@ Emitted when the mouse clicks the tray icon.
 
 Returns:
 
-* `event` [KeyboardEvent](latest/api/structures/keyboard-event.md)
-* `position` [Point](latest/api/structures/point.md) - The position of the event.
+* `event` [KeyboardEvent](structures/keyboard-event.md)
+* `position` [Point](structures/point.md) - The position of the event.
 
 Emitted when the mouse enters the tray icon.
 
@@ -207,8 +207,8 @@ Emitted when the mouse enters the tray icon.
 
 Returns:
 
-* `event` [KeyboardEvent](latest/api/structures/keyboard-event.md)
-* `position` [Point](latest/api/structures/point.md) - The position of the event.
+* `event` [KeyboardEvent](structures/keyboard-event.md)
+* `position` [Point](structures/point.md) - The position of the event.
 
 Emitted when the mouse exits the tray icon.
 
@@ -216,8 +216,8 @@ Emitted when the mouse exits the tray icon.
 
 Returns:
 
-* `event` [KeyboardEvent](latest/api/structures/keyboard-event.md)
-* `position` [Point](latest/api/structures/point.md) - The position of the event.
+* `event` [KeyboardEvent](structures/keyboard-event.md)
+* `position` [Point](structures/point.md) - The position of the event.
 
 Emitted when the mouse moves in the tray icon.
 
@@ -231,13 +231,13 @@ Destroys the tray icon immediately.
 
 #### `tray.setImage(image)`
 
-* `image` ([NativeImage](latest/api/native-image.md) | string)
+* `image` ([NativeImage](native-image.md) | string)
 
 Sets the `image` associated with this tray icon.
 
 #### `tray.setPressedImage(image)` _macOS_
 
-* `image` ([NativeImage](latest/api/native-image.md) | string)
+* `image` ([NativeImage](native-image.md) | string)
 
 Sets the `image` associated with this tray icon when pressed on macOS.
 
@@ -275,7 +275,7 @@ Returns `boolean` - Whether double click events will be ignored.
 #### `tray.displayBalloon(options)` _Windows_
 
 * `options` Object
-  * `icon` ([NativeImage](latest/api/native-image.md) | string) (optional) - Icon to use when `iconType` is `custom`.
+  * `icon` ([NativeImage](native-image.md) | string) (optional) - Icon to use when `iconType` is `custom`.
   * `iconType` string (optional) - Can be `none`, `info`, `warning`, `error` or `custom`. Default is `custom`.
   * `title` string
   * `content` string
@@ -303,7 +303,7 @@ use `tray.focus()` to return focus to the notification area.
 #### `tray.popUpContextMenu([menu, position])` _macOS_ _Windows_
 
 * `menu` Menu (optional)
-* `position` [Point](latest/api/structures/point.md) (optional) - The pop up position.
+* `position` [Point](structures/point.md) (optional) - The pop up position.
 
 Pops up the context menu of the tray icon. When `menu` is passed, the `menu` will
 be shown instead of the tray icon's context menu.
@@ -322,7 +322,7 @@ Sets the context menu for this icon.
 
 #### `tray.getBounds()` _macOS_ _Windows_
 
-Returns [`Rectangle`](latest/api/structures/rectangle.md)
+Returns [`Rectangle`](structures/rectangle.md)
 
 The `bounds` of this tray icon as `Object`.
 

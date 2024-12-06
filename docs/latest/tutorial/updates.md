@@ -8,7 +8,7 @@ hide_title: false
 There are several ways to provide automatic updates to your Electron application.
 The easiest and officially supported one is taking advantage of the built-in
 [Squirrel](https://github.com/Squirrel) framework and
-Electron's [autoUpdater](latest/api/auto-updater.md) module.
+Electron's [autoUpdater](../api/auto-updater.md) module.
 
 ## Using cloud object storage (serverless)
 
@@ -127,7 +127,7 @@ for Electron apps that meet the following criteria:
 - App runs on macOS or Windows
 - App has a public GitHub repository
 - Builds are published to [GitHub Releases][gh-releases]
-- Builds are [code-signed](latest/tutorial/code-signing.md) **(macOS only)**
+- Builds are [code-signed](./code-signing.md) **(macOS only)**
 
 The easiest way to use this service is by installing [update-electron-app][],
 a Node.js module preconfigured for use with update.electronjs.org.
@@ -175,7 +175,7 @@ Depending on your needs, you can choose from one of these:
   to minify server cost.
 
 Once you've deployed your update server, you can instrument your app code to receive and
-apply the updates with Electron's [autoUpdater](latest/api/auto-updater.md) module.
+apply the updates with Electron's [autoUpdater](../api/auto-updater.md) module.
 
 ### Step 2: Receiving updates in your app
 
@@ -185,7 +185,7 @@ vary for different server software, but it works like described when using [Haze
 :::warning Check your execution environment!
 
 Please ensure that the code below will only be executed in your packaged app, and not in development.
-You can use the [app.isPackaged](latest/api/app.md#appispackaged-readonly) API to check the environment.
+You can use the [app.isPackaged](../api/app.md#appispackaged-readonly) API to check the environment.
 
 :::
 
@@ -194,7 +194,7 @@ const { app, autoUpdater, dialog } = require('electron')
 ```
 
 Next, construct the URL of the update server feed and tell
-[autoUpdater](latest/api/auto-updater.md) about it:
+[autoUpdater](../api/auto-updater.md) about it:
 
 ```js title='main.js'
 const server = 'https://your-deployment-url.com'
@@ -211,7 +211,7 @@ setInterval(() => {
 }, 60000)
 ```
 
-Once your application is [packaged](latest/tutorial/application-distribution.md),
+Once your application is [packaged](./application-distribution.md),
 it will receive an update for each new [GitHub Release][gh-releases] that you
 publish.
 
@@ -219,7 +219,7 @@ publish.
 
 Now that you've configured the basic update mechanism for your application, you
 need to ensure that the user will get notified when there's an update. This
-can be achieved using the [autoUpdater API events](latest/api/auto-updater.md#events):
+can be achieved using the [autoUpdater API events](../api/auto-updater.md#events):
 
 ```js title="main.js" @ts-expect-error=[11]
 autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
@@ -239,7 +239,7 @@ autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
 ```
 
 Also make sure that errors are
-[being handled](latest/api/auto-updater.md#event-error). Here's an example
+[being handled](../api/auto-updater.md#event-error). Here's an example
 for logging them to `stderr`:
 
 ```js title="main.js"

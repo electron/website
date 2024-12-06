@@ -64,13 +64,13 @@ into end users' hands.
 
 [discord]: https://discord.gg/electronjs
 [github]: https://github.com/electron/website/issues/new
-[how-to]: latest/tutorial/examples.md
+[how-to]: ./examples.md
 
 <!-- Tutorial links -->
 
-[prerequisites]: latest/tutorial/tutorial-1-prerequisites.md
-[building your first app]: latest/tutorial/tutorial-2-first-app.md
-[preload]: latest/tutorial/tutorial-3-preload.md
-[features]: latest/tutorial/tutorial-4-adding-features.md
-[packaging]: latest/tutorial/tutorial-5-packaging.md
-[updates]: latest/tutorial/tutorial-6-publishing-updating.md
+[prerequisites]: tutorial-1-prerequisites.md
+[building your first app]: tutorial-2-first-app.md
+[preload]: tutorial-3-preload.md
+[features]: tutorial-4-adding-features.md
+[packaging]: tutorial-5-packaging.md
+[updates]: tutorial-6-publishing-updating.md

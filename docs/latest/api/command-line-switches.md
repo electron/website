@@ -313,11 +313,11 @@ Set the default value of the `verbatim` parameter in the Node.js [`dns.lookup()`
 
 The default is `verbatim` and `dns.setDefaultResultOrder()` have higher priority than `--dns-result-order`.
 
-[app]: latest/api/app.md
-[append-switch]: latest/api/command-line.md#commandlineappendswitchswitch-value
-[debugging-main-process]: latest/tutorial/debugging-main-process.md
+[app]: app.md
+[append-switch]: command-line.md#commandlineappendswitchswitch-value
+[debugging-main-process]: ../tutorial/debugging-main-process.md
 [logging]: https://source.chromium.org/chromium/chromium/src/+/main:base/logging.h
 [node-cli]: https://nodejs.org/api/cli.html
 [play-silent-audio]: https://github.com/atom/atom/pull/9485/files
-[ready]: latest/api/app.md#event-ready
+[ready]: app.md#event-ready
 [severities]: https://source.chromium.org/chromium/chromium/src/+/main:base/logging.h?q=logging::LogSeverity&ss=chromium

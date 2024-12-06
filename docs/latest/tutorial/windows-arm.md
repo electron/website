@@ -15,7 +15,7 @@ If your app doesn't use any native modules, then it's really easy to create an A
 
 1. Make sure that your app's `node_modules` directory is empty.
 2. Using a _Command Prompt_, run `set npm_config_arch=arm64` before running `npm install`/`yarn install` as usual.
-3. [If you have Electron installed as a development dependency](latest/tutorial/quick-start.md#prerequisites), npm will download and unpack the arm64 version. You can then package and distribute your app as normal.
+3. [If you have Electron installed as a development dependency](quick-start.md#prerequisites), npm will download and unpack the arm64 version. You can then package and distribute your app as normal.
 
 ## General considerations
 
@@ -100,10 +100,10 @@ Debugging native modules can be done with Visual Studio 2017 (running on your de
 1. Launch your app `.exe` on the target device via the _Command Prompt_ (passing `--inspect-brk` to pause it before any native modules are loaded).
 2. Launch Visual Studio 2017 on your development machine.
 3. Connect to the target device by selecting _Debug > Attach to Process..._ and enter the device's IP address and the port number displayed by the Visual Studio Remote Debugger tool.
-4. Click _Refresh_ and select the [appropriate Electron process to attach](latest/development/debugging-on-windows.md).
+4. Click _Refresh_ and select the [appropriate Electron process to attach](../development/debugging-on-windows.md).
 5. You may need to make sure that any symbols for native modules in your app are loaded correctly. To configure this, head to _Debug > Options..._ in Visual Studio 2017, and add the folders containing your `.pdb` symbols under _Debugging > Symbols_.
-6. Once attached, set any appropriate breakpoints and resume JavaScript execution using Chrome's [remote tools for Node](latest/tutorial/debugging-main-process.md).
+6. Once attached, set any appropriate breakpoints and resume JavaScript execution using Chrome's [remote tools for Node](debugging-main-process.md).
 
 ## Getting additional help
 
-If you encounter a problem with this documentation, or if your app works when compiled for x86 but not for arm64, please [file an issue](latest/development/issues.md) with "Windows on Arm" in the title.
+If you encounter a problem with this documentation, or if your app works when compiled for x86 but not for arm64, please [file an issue](../development/issues.md) with "Windows on Arm" in the title.

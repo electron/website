@@ -16,7 +16,7 @@ changes:
 
 > Create a safe, bi-directional, synchronous bridge across isolated contexts
 
-Process: [Renderer](latest/glossary.md#renderer-process)
+Process: [Renderer](../glossary.md#renderer-process)
 
 An example of exposing an API to a renderer from an isolated preload script is given below:
 
@@ -49,7 +49,7 @@ page you load in your renderer executes code in this world.
 
 When `contextIsolation` is enabled in your `webPreferences` (this is the default behavior since Electron 12.0.0), your `preload` scripts run in an
 "Isolated World".  You can read more about context isolation and what it affects in the
-[security](latest/tutorial/security.md#3-enable-context-isolation) docs.
+[security](../tutorial/security.md#3-enable-context-isolation) docs.
 
 ## Methods
 

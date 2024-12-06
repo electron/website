@@ -102,11 +102,11 @@ If the extension works on Chrome but not on Electron, file a bug in Electron's
 of the extension is not working as expected.
 
 [devtools-extension]: https://developer.chrome.com/extensions/devtools
-[session]: latest/api/session.md
+[session]: ../api/session.md
 [react-devtools]: https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi
-[load-extension]: latest/api/session.md#sesloadextensionpath-options
-[extension-structure]: latest/api/structures/extension.md
-[remove-extension]: latest/api/session.md#sesremoveextensionextensionid
+[load-extension]: ../api/session.md#sesloadextensionpath-options
+[extension-structure]: ../api/structures/extension.md
+[remove-extension]: ../api/session.md#sesremoveextensionextensionid
 [electron-devtools-installer]: https://github.com/MarshallOfSound/electron-devtools-installer
-[supported-extension-apis]: latest/api/extensions.md
+[supported-extension-apis]: ../api/extensions.md
 [issue-tracker]: https://github.com/electron/electron/issues

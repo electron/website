@@ -6,7 +6,7 @@ hide_title: false
 ---
 
 ASAR integrity is an experimental feature that validates the contents of your app's
-[ASAR archives](latest/tutorial/asar-archives.md) at runtime.
+[ASAR archives](./asar-archives.md) at runtime.
 
 ## Version support
 
@@ -45,7 +45,7 @@ If no hash is present or if there is a mismatch in the hashes, the app will forc
 
 ASAR integrity checking is currently disabled by default in Electron and can
 be enabled on build time by toggling the `EnableEmbeddedAsarIntegrityValidation`
-[Electron fuse](latest/tutorial/fuses.md).
+[Electron fuse](fuses.md).
 
 When enabling this fuse, you typically also want to enable the `onlyLoadAppFromAsar` fuse.
 Otherwise, the validity checking can be bypassed via the Electron app code search path.

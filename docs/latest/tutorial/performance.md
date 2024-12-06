@@ -336,7 +336,7 @@ own version of standard web platform features.
 
 Operate under the assumption that polyfills in current versions of Electron
 are unnecessary. If you have doubts, check [caniuse.com](https://caniuse.com/)
-and check if the [version of Chromium used in your Electron version](latest/api/process.md#processversionschrome-readonly)
+and check if the [version of Chromium used in your Electron version](../api/process.md#processversionschrome-readonly)
 supports the feature you desire.
 
 In addition, carefully examine the libraries you use. Are they really necessary?
@@ -432,12 +432,12 @@ If you build your own menu or use a frameless window without native menu, you sh
 
 Call `Menu.setApplicationMenu(null)` before `app.on("ready")`. This will prevent Electron from setting a default menu. See also https://github.com/electron/electron/issues/35512 for a related discussion.
 
-[security]: latest/tutorial/security.md
+[security]: ./security.md
 [chrome-devtools-tutorial]: https://developer.chrome.com/docs/devtools/performance/
 [worker-threads]: https://nodejs.org/api/worker_threads.html
 [web-workers]: https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers
 [request-idle-callback]: https://developer.mozilla.org/en-US/docs/Web/API/Window/requestIdleCallback
-[multithreading]: latest/tutorial/multithreading.md
+[multithreading]: ./multithreading.md
 [jquery-need]: https://youmightnotneedjquery.com/
 [service-workers]: https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API
 [webpack]: https://webpack.js.org/

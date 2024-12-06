@@ -9,7 +9,7 @@ hide_title: false
 
 > Control your app in the macOS dock
 
-Process: [Main](latest/glossary.md#main-process)<br />
+Process: [Main](../glossary.md#main-process)<br />
 _This class is not exported from the `'electron'` module. It is only available as a return value of other methods in the Electron API._
 
 The following example shows how to bounce your icon on the dock.
@@ -73,7 +73,7 @@ Returns `boolean` - Whether the dock icon is visible.
 
 #### `dock.setMenu(menu)` _macOS_
 
-* `menu` [Menu](latest/api/menu.md)
+* `menu` [Menu](menu.md)
 
 Sets the application's [dock menu][dock-menu].
 
@@ -83,7 +83,7 @@ Returns `Menu | null` - The application's [dock menu][dock-menu].
 
 #### `dock.setIcon(image)` _macOS_
 
-* `image` ([NativeImage](latest/api/native-image.md) | string)
+* `image` ([NativeImage](native-image.md) | string)
 
 Sets the `image` associated with this dock icon.
 

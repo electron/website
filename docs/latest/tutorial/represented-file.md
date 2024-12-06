@@ -67,5 +67,5 @@ In this guide, this is the current user's home directory:
 ![Represented file](../images/represented-file.png)
 
 [represented-image]: https://cloud.githubusercontent.com/assets/639601/5082061/670a949a-6f14-11e4-987a-9aaa04b23c1d.png
-[setrepresentedfilename]: latest/api/browser-window.md#winsetrepresentedfilenamefilename-macos
-[setdocumentedited]: latest/api/browser-window.md#winsetdocumenteditededited-macos
+[setrepresentedfilename]: ../api/browser-window.md#winsetrepresentedfilenamefilename-macos
+[setdocumentedited]: ../api/browser-window.md#winsetdocumenteditededited-macos

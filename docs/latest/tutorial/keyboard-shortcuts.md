@@ -21,7 +21,7 @@ To configure a local keyboard shortcut, you need to specify an [`accelerator`][]
 property when creating a [MenuItem][] within the [Menu][] module.
 
 Starting with a working application from the
-[Quick Start Guide](latest/tutorial/quick-start.md), update the `main.js` to be:
+[Quick Start Guide](quick-start.md), update the `main.js` to be:
 
 ```fiddle docs/latest/fiddles/features/keyboard-shortcuts/local
 const { app, BrowserWindow, Menu, MenuItem } = require('electron/main')
@@ -82,7 +82,7 @@ module to detect keyboard events even when the application does not have
 keyboard focus.
 
 Starting with a working application from the
-[Quick Start Guide](latest/tutorial/quick-start.md), update the `main.js` to be:
+[Quick Start Guide](quick-start.md), update the `main.js` to be:
 
 ```fiddle docs/latest/fiddles/features/keyboard-shortcuts/global
 const { app, BrowserWindow, globalShortcut } = require('electron/main')
@@ -146,12 +146,12 @@ called on them.
 
 #### Intercepting events in the main process
 
-The [`before-input-event`](latest/api/web-contents.md#event-before-input-event) event
+The [`before-input-event`](../api/web-contents.md#event-before-input-event) event
 is emitted before dispatching `keydown` and `keyup` events in the page. It can
 be used to catch and handle custom shortcuts that are not visible in the menu.
 
 Starting with a working application from the
-[Quick Start Guide](latest/tutorial/quick-start.md), update the `main.js` file with the
+[Quick Start Guide](quick-start.md), update the `main.js` file with the
 following lines:
 
 ```fiddle docs/latest/fiddles/features/keyboard-shortcuts/interception-from-main
@@ -206,11 +206,11 @@ Mousetrap.bind('up up down down left right left right b a enter', () => {
 })
 ```
 
-[Menu]: latest/api/menu.md
-[MenuItem]: latest/api/menu-item.md
-[globalShortcut]: latest/api/global-shortcut.md
-[`accelerator`]: latest/api/accelerator.md
-[BrowserWindow]: latest/api/browser-window.md
+[Menu]: ../api/menu.md
+[MenuItem]: ../api/menu-item.md
+[globalShortcut]: ../api/global-shortcut.md
+[`accelerator`]: ../api/accelerator.md
+[BrowserWindow]: ../api/browser-window.md
 [mousetrap]: https://github.com/ccampbell/mousetrap
 [dom-events]: https://developer.mozilla.org/en-US/docs/Web/Events
 [addEventListener-api]: https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener

@@ -99,7 +99,7 @@ npm start
 > Note: This script tells Electron to run on your project's root folder. At this stage,
 > your app will immediately throw an error telling you that it cannot find an app to run.
 
-[advanced-installation]: latest/tutorial/installation.md
+[advanced-installation]: ./installation.md
 [package-scripts]: https://docs.npmjs.com/cli/v7/using-npm/scripts
 
 ### Run the main process
@@ -198,11 +198,11 @@ app.whenReady().then(() => {
 > Note: At this point, your Electron application should successfully
 > open a window that displays your web page!
 
-[app]: latest/api/app.md
-[browser-window]: latest/api/browser-window.md
+[app]: ../api/app.md
+[browser-window]: ../api/browser-window.md
 [commonjs]: https://nodejs.org/docs/latest/api/modules.html#modules_modules_commonjs_modules
-[app-ready]: latest/api/app.md#event-ready
-[app-when-ready]: latest/api/app.md#appwhenready
+[app-ready]: ../api/app.md#event-ready
+[app-when-ready]: ../api/app.md#appwhenready
 
 ### Manage your window's lifecycle
 
@@ -228,8 +228,8 @@ app.on('window-all-closed', () => {
 ```
 
 [node-platform]: https://nodejs.org/api/process.html#process_process_platform
-[window-all-closed]: latest/api/app.md#event-window-all-closed
-[app-quit]: latest/api/app.md#appquit
+[window-all-closed]: ../api/app.md#event-window-all-closed
+[app-quit]: ../api/app.md#appquit
 
 #### Open a window if none are open (macOS)
 
@@ -244,7 +244,7 @@ Because windows cannot be created before the `ready` event, you should only list
 `activate` events after your app is initialized. Do this by attaching your event listener
 from within your existing `whenReady()` callback.
 
-[activate]: latest/api/app.md#event-activate-macos
+[activate]: ../api/app.md#event-activate-macos
 
 ```js @ts-type={createWindow:()=>void}
 app.whenReady().then(() => {
@@ -326,7 +326,7 @@ There are two Node.js concepts that are used here:
 We use a path relative to the currently executing JavaScript file so that your relative
 path will work in both development and packaged mode.
 
-[Process Model]: latest/tutorial/process-model.md
+[Process Model]: ./process-model.md
 [dirname]: https://nodejs.org/api/modules.html#modules_dirname
 [path-join]: https://nodejs.org/api/path.html#path_path_join_paths
 

@@ -42,7 +42,7 @@ communication (IPC).
 
 :::note
 
-For more info on inter-process communication, check out our [IPC guide](latest/tutorial/ipc.md).
+For more info on inter-process communication, check out our [IPC guide](./ipc.md).
 
 :::
 
@@ -67,7 +67,7 @@ but can only import a subset of Electron and Node's built-in modules:
 In addition, the preload script also polyfills certain Node.js primitives as globals:
 
 * [`Buffer`](https://nodejs.org/api/buffer.html)
-* [`process`](latest/api/process.md)
+* [`process`](../api/process.md)
 * [`clearImmediate`](https://nodejs.org/api/timers.html#timers_clearimmediate_immediate)
 * [`setImmediate`](https://nodejs.org/api/timers.html#timers_setimmediate_callback_args)
 
@@ -175,11 +175,11 @@ backported. Your best chance at staying secure is to be on the latest stable
 version of Electron.
 
 [sandbox]: https://chromium.googlesource.com/chromium/src/+/main/docs/design/sandbox.md
-[browser-window]: latest/api/browser-window.md
-[enable-sandbox]: latest/api/app.md#appenablesandbox
-[no-sandbox]: latest/api/command-line-switches.md#--no-sandbox
+[browser-window]: ../api/browser-window.md
+[enable-sandbox]: ../api/app.md#appenablesandbox
+[no-sandbox]: ../api/command-line-switches.md#--no-sandbox
 [commonjs]: https://nodejs.org/api/modules.html#modules_modules_commonjs_modules
 [webpack]: https://webpack.js.org/
 [parcel]: https://parceljs.org/
-[context-isolation]: latest/tutorial/context-isolation.md
+[context-isolation]: ./context-isolation.md
 [beaker]: https://github.com/beakerbrowser/beaker

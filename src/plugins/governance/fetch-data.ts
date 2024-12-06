@@ -1,6 +1,6 @@
 import { remark } from 'remark';
 import gfm from 'remark-gfm';
-import toString from 'mdast-util-to-string';
+import { toString } from 'mdast-util-to-string';
 import { Node, Parent } from 'unist';
 import { Table, Link } from 'mdast';
 

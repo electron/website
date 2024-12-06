@@ -9,7 +9,7 @@ hide_title: false
 
 > A View that displays a WebContents.
 
-Process: [Main](latest/glossary.md#main-process)
+Process: [Main](../glossary.md#main-process)
 
 This module cannot be used until the `ready` event of the `app`
 module is emitted.
@@ -33,24 +33,24 @@ view2.setBounds({ x: 400, y: 0, width: 400, height: 400 })
 
 > A View that displays a WebContents.
 
-Process: [Main](latest/glossary.md#main-process)
+Process: [Main](../glossary.md#main-process)
 
-`WebContentsView` inherits from [`View`](latest/api/view.md).
+`WebContentsView` inherits from [`View`](view.md).
 
 `WebContentsView` is an [EventEmitter][event-emitter].
 
 ### `new WebContentsView([options])`
 
 * `options` Object (optional)
-  * `webPreferences` [WebPreferences](latest/api/structures/web-preferences.md) (optional) - Settings of web page's features.
-  * `webContents` [WebContents](latest/api/web-contents.md) (optional) - If present, the given WebContents will be adopted by the WebContentsView. A WebContents may only be presented in one WebContentsView at a time.
+  * `webPreferences` [WebPreferences](structures/web-preferences.md) (optional) - Settings of web page's features.
+  * `webContents` [WebContents](web-contents.md) (optional) - If present, the given WebContents will be adopted by the WebContentsView. A WebContents may only be presented in one WebContentsView at a time.
 
 Creates a WebContentsView.
 
 ### Instance Properties
 
 Objects created with `new WebContentsView` have the following properties, in
-addition to those inherited from [View](latest/api/view.md):
+addition to those inherited from [View](view.md):
 
 #### `view.webContents` _Readonly_
 

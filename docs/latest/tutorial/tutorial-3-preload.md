@@ -50,9 +50,9 @@ function that only has access to a limited set of APIs.
 | ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Electron modules   | Renderer process modules                                                                                                                                                                                                                                       |
 | Node.js modules    | [`events`](https://nodejs.org/api/events.html), [`timers`](https://nodejs.org/api/timers.html), [`url`](https://nodejs.org/api/url.html)                                                                                                                       |
-| Polyfilled globals | [`Buffer`](https://nodejs.org/api/buffer.html), [`process`](latest/api/process.md), [`clearImmediate`](https://nodejs.org/api/timers.html#timers_clearimmediate_immediate), [`setImmediate`](https://nodejs.org/api/timers.html#timers_setimmediate_callback_args) |
+| Polyfilled globals | [`Buffer`](https://nodejs.org/api/buffer.html), [`process`](../api/process.md), [`clearImmediate`](https://nodejs.org/api/timers.html#timers_clearimmediate_immediate), [`setImmediate`](https://nodejs.org/api/timers.html#timers_setimmediate_callback_args) |
 
-For more information, check out the [Process Sandboxing](latest/tutorial/sandbox.md) guide.
+For more information, check out the [Process Sandboxing](./sandbox.md) guide.
 
 :::
 
@@ -257,20 +257,20 @@ functionality to your app, then teaching you distributing your app to users.
 <!-- Links -->
 
 [content-script]: https://developer.chrome.com/docs/extensions/mv3/content_scripts/
-[contextbridge]: latest/api/context-bridge.md
+[contextbridge]: ../api/context-bridge.md
 [`document.getelementbyid`]: https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById
 [dirname]: https://nodejs.org/api/modules.html#modules_dirname
 [global]: https://developer.mozilla.org/en-US/docs/Glossary/Global_object
-[ipc]: latest/tutorial/ipc.md
-[modules]: latest/api/app.md
+[ipc]: ./ipc.md
+[modules]: ../api/app.md
 [node-api]: https://nodejs.org/dist/latest/docs/api/
 [path-join]: https://nodejs.org/api/path.html#path_path_join_paths
 
 <!-- Tutorial links -->
 
-[prerequisites]: latest/tutorial/tutorial-1-prerequisites.md
-[building your first app]: latest/tutorial/tutorial-2-first-app.md
-[preload]: latest/tutorial/tutorial-3-preload.md
-[features]: latest/tutorial/tutorial-4-adding-features.md
-[packaging]: latest/tutorial/tutorial-5-packaging.md
-[updates]: latest/tutorial/tutorial-6-publishing-updating.md
+[prerequisites]: tutorial-1-prerequisites.md
+[building your first app]: tutorial-2-first-app.md
+[preload]: tutorial-3-preload.md
+[features]: tutorial-4-adding-features.md
+[packaging]: tutorial-5-packaging.md
+[updates]: tutorial-6-publishing-updating.md

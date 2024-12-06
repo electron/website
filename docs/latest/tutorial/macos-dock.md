@@ -20,7 +20,7 @@ want to open the whole app window for.
 ![Dock Menu][dock-menu-image]
 
 To set your custom dock menu, you need to use the
-[`app.dock.setMenu`](latest/api/dock.md#docksetmenumenu-macos) API,
+[`app.dock.setMenu`](../api/dock.md#docksetmenumenu-macos) API,
 which is only available on macOS.
 
 ```fiddle docs/latest/fiddles/features/macos-dock-menu
@@ -74,5 +74,5 @@ You should see the custom menu you just defined:
 ![macOS dock menu](../images/macos-dock-menu.png)
 
 [dock-menu-image]: https://cloud.githubusercontent.com/assets/639601/5069962/6032658a-6e9c-11e4-9953-aa84006bdfff.png
-[recent-documents]: latest/tutorial/recent-documents.md
-[progress-bar]: latest/tutorial/progress-bar.md
+[recent-documents]: ./recent-documents.md
+[progress-bar]: ./progress-bar.md

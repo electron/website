@@ -9,7 +9,7 @@ hide_title: false
 
 > Register a custom protocol and intercept existing protocol requests.
 
-Process: [Main](latest/glossary.md#main-process)
+Process: [Main](../glossary.md#main-process)
 
 An example of implementing a protocol that has the same effect as the
 `file://` protocol:
@@ -32,7 +32,7 @@ of the `app` module gets emitted.
 
 ## Using `protocol` with a custom `partition` or `session`
 
-A protocol is registered to a specific Electron [`session`](latest/api/session.md)
+A protocol is registered to a specific Electron [`session`](./session.md)
 object. If you don't specify a session, then your `protocol` will be applied to
 the default session that Electron uses. However, if you define a `partition` or
 `session` on your `browserWindow`'s `webPreferences`, then that window will use
@@ -66,7 +66,7 @@ The `protocol` module has the following methods:
 
 ### `protocol.registerSchemesAsPrivileged(customSchemes)`
 
-* `customSchemes` [CustomScheme[]](latest/api/structures/custom-scheme.md)
+* `customSchemes` [CustomScheme[]](structures/custom-scheme.md)
 
 **Note:** This method can only be used before the `ready` event of the `app`
 module gets emitted and can be called only once.
@@ -205,9 +205,9 @@ deprecated:
 
 * `scheme` string
 * `handler` Function
-  * `request` [ProtocolRequest](latest/api/structures/protocol-request.md)
+  * `request` [ProtocolRequest](structures/protocol-request.md)
   * `callback` Function
-    * `response` (string | [ProtocolResponse](latest/api/structures/protocol-response.md))
+    * `response` (string | [ProtocolResponse](structures/protocol-response.md))
 
 Returns `boolean` - Whether the protocol was successfully registered
 
@@ -233,9 +233,9 @@ deprecated:
 
 * `scheme` string
 * `handler` Function
-  * `request` [ProtocolRequest](latest/api/structures/protocol-request.md)
+  * `request` [ProtocolRequest](structures/protocol-request.md)
   * `callback` Function
-    * `response` (Buffer | [ProtocolResponse](latest/api/structures/protocol-response.md))
+    * `response` (Buffer | [ProtocolResponse](structures/protocol-response.md))
 
 Returns `boolean` - Whether the protocol was successfully registered
 
@@ -264,9 +264,9 @@ deprecated:
 
 * `scheme` string
 * `handler` Function
-  * `request` [ProtocolRequest](latest/api/structures/protocol-request.md)
+  * `request` [ProtocolRequest](structures/protocol-request.md)
   * `callback` Function
-    * `response` (string | [ProtocolResponse](latest/api/structures/protocol-response.md))
+    * `response` (string | [ProtocolResponse](structures/protocol-response.md))
 
 Returns `boolean` - Whether the protocol was successfully registered
 
@@ -287,9 +287,9 @@ deprecated:
 
 * `scheme` string
 * `handler` Function
-  * `request` [ProtocolRequest](latest/api/structures/protocol-request.md)
+  * `request` [ProtocolRequest](structures/protocol-request.md)
   * `callback` Function
-    * `response` [ProtocolResponse](latest/api/structures/protocol-response.md)
+    * `response` [ProtocolResponse](structures/protocol-response.md)
 
 Returns `boolean` - Whether the protocol was successfully registered
 
@@ -309,9 +309,9 @@ deprecated:
 
 * `scheme` string
 * `handler` Function
-  * `request` [ProtocolRequest](latest/api/structures/protocol-request.md)
+  * `request` [ProtocolRequest](structures/protocol-request.md)
   * `callback` Function
-    * `response` (ReadableStream | [ProtocolResponse](latest/api/structures/protocol-response.md))
+    * `response` (ReadableStream | [ProtocolResponse](structures/protocol-response.md))
 
 Returns `boolean` - Whether the protocol was successfully registered
 
@@ -393,9 +393,9 @@ deprecated:
 
 * `scheme` string
 * `handler` Function
-  * `request` [ProtocolRequest](latest/api/structures/protocol-request.md)
+  * `request` [ProtocolRequest](structures/protocol-request.md)
   * `callback` Function
-    * `response` (string | [ProtocolResponse](latest/api/structures/protocol-response.md))
+    * `response` (string | [ProtocolResponse](structures/protocol-response.md))
 
 Returns `boolean` - Whether the protocol was successfully intercepted
 
@@ -413,9 +413,9 @@ deprecated:
 
 * `scheme` string
 * `handler` Function
-  * `request` [ProtocolRequest](latest/api/structures/protocol-request.md)
+  * `request` [ProtocolRequest](structures/protocol-request.md)
   * `callback` Function
-    * `response` (string | [ProtocolResponse](latest/api/structures/protocol-response.md))
+    * `response` (string | [ProtocolResponse](structures/protocol-response.md))
 
 Returns `boolean` - Whether the protocol was successfully intercepted
 
@@ -433,9 +433,9 @@ deprecated:
 
 * `scheme` string
 * `handler` Function
-  * `request` [ProtocolRequest](latest/api/structures/protocol-request.md)
+  * `request` [ProtocolRequest](structures/protocol-request.md)
   * `callback` Function
-    * `response` (Buffer | [ProtocolResponse](latest/api/structures/protocol-response.md))
+    * `response` (Buffer | [ProtocolResponse](structures/protocol-response.md))
 
 Returns `boolean` - Whether the protocol was successfully intercepted
 
@@ -453,9 +453,9 @@ deprecated:
 
 * `scheme` string
 * `handler` Function
-  * `request` [ProtocolRequest](latest/api/structures/protocol-request.md)
+  * `request` [ProtocolRequest](structures/protocol-request.md)
   * `callback` Function
-    * `response` [ProtocolResponse](latest/api/structures/protocol-response.md)
+    * `response` [ProtocolResponse](structures/protocol-response.md)
 
 Returns `boolean` - Whether the protocol was successfully intercepted
 
@@ -473,9 +473,9 @@ deprecated:
 
 * `scheme` string
 * `handler` Function
-  * `request` [ProtocolRequest](latest/api/structures/protocol-request.md)
+  * `request` [ProtocolRequest](structures/protocol-request.md)
   * `callback` Function
-    * `response` (ReadableStream | [ProtocolResponse](latest/api/structures/protocol-response.md))
+    * `response` (ReadableStream | [ProtocolResponse](structures/protocol-response.md))
 
 Returns `boolean` - Whether the protocol was successfully intercepted
 

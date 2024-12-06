@@ -31,7 +31,7 @@ depends on the amount of work involved with upgrading.
 Only the stable channel of Chrome is used. If an important fix is in beta or dev
 channel, we will back-port it.
 
-For more information, please see the [security introduction](latest/tutorial/security.md).
+For more information, please see the [security introduction](tutorial/security.md).
 
 ## When will Electron upgrade to latest Node.js?
 
@@ -52,10 +52,10 @@ use HTML5 APIs which are already available in browsers. Good candidates are
 
 Alternatively, you can use the IPC primitives that are provided by Electron. To
 share data between the main and renderer processes, you can use the
-[`ipcMain`](latest/api/ipc-main.md) and [`ipcRenderer`](latest/api/ipc-renderer.md) modules.
+[`ipcMain`](api/ipc-main.md) and [`ipcRenderer`](api/ipc-renderer.md) modules.
 To communicate directly between web pages, you can send a
 [`MessagePort`][message-port] from one to the other, possibly via the main process
-using [`ipcRenderer.postMessage()`](latest/api/ipc-renderer.md#ipcrendererpostmessagechannel-message-transfer).
+using [`ipcRenderer.postMessage()`](api/ipc-renderer.md#ipcrendererpostmessagechannel-message-transfer).
 Subsequent communication over message ports is direct and does not detour through
 the main process.
 
@@ -166,4 +166,4 @@ Notice that just setting the background in the CSS does not have the desired eff
 [session-storage]: https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage
 [indexed-db]: https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API
 [message-port]: https://developer.mozilla.org/en-US/docs/Web/API/MessagePort
-[browser-window]: latest/api/browser-window.md
+[browser-window]: api/browser-window.md

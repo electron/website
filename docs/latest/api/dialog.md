@@ -9,7 +9,7 @@ hide_title: false
 
 > Display native system dialogs for opening and saving files, alerting, etc.
 
-Process: [Main](latest/glossary.md#main-process)
+Process: [Main](../glossary.md#main-process)
 
 An example of showing a dialog to select multiple files:
 
@@ -24,13 +24,13 @@ The `dialog` module has the following methods:
 
 ### `dialog.showOpenDialogSync([window, ]options)`
 
-* `window` [BaseWindow](latest/api/base-window.md) (optional)
+* `window` [BaseWindow](base-window.md) (optional)
 * `options` Object
   * `title` string (optional)
   * `defaultPath` string (optional)
   * `buttonLabel` string (optional) - Custom label for the confirmation button, when
     left empty the default label will be used.
-  * `filters` [FileFilter[]](latest/api/structures/file-filter.md) (optional)
+  * `filters` [FileFilter[]](structures/file-filter.md) (optional)
   * `properties` string[]&#32;(optional) - Contains which features the dialog should
     use. The following values are supported:
     * `openFile` - Allow files to be selected.
@@ -87,13 +87,13 @@ dialog.showOpenDialogSync(mainWindow, {
 
 ### `dialog.showOpenDialog([window, ]options)`
 
-* `window` [BaseWindow](latest/api/base-window.md) (optional)
+* `window` [BaseWindow](base-window.md) (optional)
 * `options` Object
   * `title` string (optional)
   * `defaultPath` string (optional)
   * `buttonLabel` string (optional) - Custom label for the confirmation button, when
     left empty the default label will be used.
-  * `filters` [FileFilter[]](latest/api/structures/file-filter.md) (optional)
+  * `filters` [FileFilter[]](structures/file-filter.md) (optional)
   * `properties` string[]&#32;(optional) - Contains which features the dialog should
     use. The following values are supported:
     * `openFile` - Allow files to be selected.
@@ -159,14 +159,14 @@ dialog.showOpenDialog(mainWindow, {
 
 ### `dialog.showSaveDialogSync([window, ]options)`
 
-* `window` [BaseWindow](latest/api/base-window.md) (optional)
+* `window` [BaseWindow](base-window.md) (optional)
 * `options` Object
   * `title` string (optional) - The dialog title. Cannot be displayed on some _Linux_ desktop environments.
   * `defaultPath` string (optional) - Absolute directory path, absolute file
     path, or file name to use by default.
   * `buttonLabel` string (optional) - Custom label for the confirmation button, when
     left empty the default label will be used.
-  * `filters` [FileFilter[]](latest/api/structures/file-filter.md) (optional)
+  * `filters` [FileFilter[]](structures/file-filter.md) (optional)
   * `message` string (optional) _macOS_ - Message to display above text fields.
   * `nameFieldLabel` string (optional) _macOS_ - Custom label for the text
     displayed in front of the filename text field.
@@ -190,14 +190,14 @@ The `filters` specifies an array of file types that can be displayed, see
 
 ### `dialog.showSaveDialog([window, ]options)`
 
-* `window` [BaseWindow](latest/api/base-window.md) (optional)
+* `window` [BaseWindow](base-window.md) (optional)
 * `options` Object
   * `title` string (optional) - The dialog title. Cannot be displayed on some _Linux_ desktop environments.
   * `defaultPath` string (optional) - Absolute directory path, absolute file
     path, or file name to use by default.
   * `buttonLabel` string (optional) - Custom label for the confirmation button, when
     left empty the default label will be used.
-  * `filters` [FileFilter[]](latest/api/structures/file-filter.md) (optional)
+  * `filters` [FileFilter[]](structures/file-filter.md) (optional)
   * `message` string (optional) _macOS_ - Message to display above text fields.
   * `nameFieldLabel` string (optional) _macOS_ - Custom label for the text
     displayed in front of the filename text field.
@@ -227,7 +227,7 @@ expanding and collapsing the dialog.
 
 ### `dialog.showMessageBoxSync([wndow, ]options)`
 
-* `window` [BaseWindow](latest/api/base-window.md) (optional)
+* `window` [BaseWindow](base-window.md) (optional)
 * `options` Object
   * `message` string - Content of the message box.
   * `type` string (optional) - Can be `none`, `info`, `error`, `question` or
@@ -240,7 +240,7 @@ expanding and collapsing the dialog.
     be selected by default when the message box opens.
   * `title` string (optional) - Title of the message box, some platforms will not show it.
   * `detail` string (optional) - Extra information of the message.
-  * `icon` ([NativeImage](latest/api/native-image.md) | string) (optional)
+  * `icon` ([NativeImage](native-image.md) | string) (optional)
   * `textWidth` Integer (optional) _macOS_ - Custom width of the text in the message box.
   * `cancelId` Integer (optional) - The index of the button to be used to cancel the dialog, via
     the `Esc` key. By default this is assigned to the first button with "cancel" or "no" as the
@@ -270,7 +270,7 @@ If `window` is not shown dialog will not be attached to it. In such case it will
 
 ### `dialog.showMessageBox([window, ]options)`
 
-* `window` [BaseWindow](latest/api/base-window.md) (optional)
+* `window` [BaseWindow](base-window.md) (optional)
 * `options` Object
   * `message` string - Content of the message box.
   * `type` string (optional) - Can be `none`, `info`, `error`, `question` or
@@ -292,7 +292,7 @@ If `window` is not shown dialog will not be attached to it. In such case it will
     include a checkbox with the given label.
   * `checkboxChecked` boolean (optional) - Initial checked state of the
     checkbox. `false` by default.
-  * `icon` ([NativeImage](latest/api/native-image.md) | string) (optional)
+  * `icon` ([NativeImage](native-image.md) | string) (optional)
   * `textWidth` Integer (optional) _macOS_ - Custom width of the text in the message box.
   * `cancelId` Integer (optional) - The index of the button to be used to cancel the dialog, via
     the `Esc` key. By default this is assigned to the first button with "cancel" or "no" as the
@@ -336,9 +336,9 @@ and no GUI dialog will appear.
 
 ### `dialog.showCertificateTrustDialog([window, ]options)` _macOS_ _Windows_
 
-* `window` [BaseWindow](latest/api/base-window.md) (optional)
+* `window` [BaseWindow](base-window.md) (optional)
 * `options` Object
-  * `certificate` [Certificate](latest/api/structures/certificate.md) - The certificate to trust/import.
+  * `certificate` [Certificate](structures/certificate.md) - The certificate to trust/import.
   * `message` string - The message to display to the user.
 
 Returns `Promise<void>` - resolves when the certificate trust dialog is shown.
@@ -369,7 +369,7 @@ On Windows the options are more limited, due to the Win32 APIs used:
 ## Sheets
 
 On macOS, dialogs are presented as sheets attached to a window if you provide
-a [`BaseWindow`](latest/api/base-window.md) reference in the `window` parameter, or modals if no
+a [`BaseWindow`](base-window.md) reference in the `window` parameter, or modals if no
 window is provided.
 
 You can call `BaseWindow.getCurrentWindow().setSheetOffset(offset)` to change

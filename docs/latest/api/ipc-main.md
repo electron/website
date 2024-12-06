@@ -9,7 +9,7 @@ hide_title: false
 
 > Communicate asynchronously from the main process to renderer processes.
 
-Process: [Main](latest/glossary.md#main-process)
+Process: [Main](../glossary.md#main-process)
 
 The `ipcMain` module is an [Event Emitter][event-emitter]. When used in the main
 process, it handles asynchronous and synchronous messages sent from a renderer
@@ -140,8 +140,8 @@ Handles a single `invoke`able IPC message, then removes the listener. See
 
 Removes any handler for `channel`, if present.
 
-[IPC tutorial]: latest/tutorial/ipc.md
+[IPC tutorial]: ../tutorial/ipc.md
 [event-emitter]: https://nodejs.org/api/events.html#events_class_eventemitter
-[web-contents-send]: latest/api/web-contents.md#contentssendchannel-args
-[ipc-main-event]:latest/api/structures/ipc-main-event.md
-[ipc-main-invoke-event]:latest/api/structures/ipc-main-invoke-event.md
+[web-contents-send]: ../api/web-contents.md#contentssendchannel-args
+[ipc-main-event]:../api/structures/ipc-main-event.md
+[ipc-main-invoke-event]:../api/structures/ipc-main-invoke-event.md

@@ -9,15 +9,15 @@ hide_title: false
 
 Follow the guidelines below for building **Electron itself**, for the purposes of creating custom Electron binaries. For bundling and distributing your app code with the prebuilt Electron binaries, see the [application distribution][application-distribution] guide.
 
-[application-distribution]: latest/tutorial/application-distribution.md
+[application-distribution]: ../tutorial/application-distribution.md
 
 ## Platform prerequisites
 
 Check the build prerequisites for your platform before proceeding
 
-* [macOS](latest/development/build-instructions-macos.md#prerequisites)
-* [Linux](latest/development/build-instructions-linux.md#prerequisites)
-* [Windows](latest/development/build-instructions-windows.md#prerequisites)
+* [macOS](build-instructions-macos.md#prerequisites)
+* [Linux](build-instructions-linux.md#prerequisites)
+* [Windows](build-instructions-windows.md#prerequisites)
 
 ## Build Tools
 
@@ -264,7 +264,7 @@ under `src/` directory.
 $ ninja -C out/Testing electron:node_headers
 ```
 
-You can now [run the tests](latest/development/testing.md#unit-tests).
+You can now [run the tests](testing.md#unit-tests).
 
 If you're debugging something, it can be helpful to pass some extra flags to
 the Electron binary:

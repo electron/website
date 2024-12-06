@@ -9,13 +9,13 @@ hide_title: false
 
 > Create a scrubber (a scrollable selector)
 
-Process: [Main](latest/glossary.md#main-process)<br />
+Process: [Main](../glossary.md#main-process)<br />
 _This class is not exported from the `'electron'` module. It is only available as a return value of other methods in the Electron API._
 
 ### `new TouchBarScrubber(options)`
 
 * `options` Object
-  * `items` [ScrubberItem[]](latest/api/structures/scrubber-item.md) - An array of items to place in this scrubber.
+  * `items` [ScrubberItem[]](structures/scrubber-item.md) - An array of items to place in this scrubber.
   * `select` Function (optional) - Called when the user taps an item that was not the last tapped item.
     * `selectedIndex` Integer - The index of the item the user selected.
   * `highlight` Function (optional) - Called when the user taps any item.

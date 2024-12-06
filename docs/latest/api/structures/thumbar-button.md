@@ -7,7 +7,7 @@ hide_title: false
 
 # ThumbarButton Object
 
-* `icon` [NativeImage](latest/api/native-image.md) - The icon showing in thumbnail
+* `icon` [NativeImage](../native-image.md) - The icon showing in thumbnail
   toolbar.
 * `click` Function
 * `tooltip` string (optional) - The text of the button's tooltip.

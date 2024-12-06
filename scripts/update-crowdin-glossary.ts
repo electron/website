@@ -13,7 +13,7 @@ import {
 } from '@electron/docs-parser';
 import * as dotenv from 'dotenv';
 import latestVersion from 'latest-version';
-import toString from 'mdast-util-to-string';
+import { toString } from 'mdast-util-to-string';
 import remarkParse from 'remark-parse';
 import { unified } from 'unified';
 

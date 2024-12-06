@@ -9,7 +9,7 @@ hide_title: false
 
 > Create and layout native views.
 
-Process: [Main](latest/glossary.md#main-process)
+Process: [Main](../glossary.md#main-process)
 
 This module cannot be used until the `ready` event of the `app`
 module is emitted.
@@ -28,7 +28,7 @@ win.contentView.addChildView(view)
 
 > A basic native view.
 
-Process: [Main](latest/glossary.md#main-process)
+Process: [Main](../glossary.md#main-process)
 
 `View` is an [EventEmitter][event-emitter].
 
@@ -66,11 +66,11 @@ If the view passed as a parameter is not a child of this view, this method is a 
 
 #### `view.setBounds(bounds)`
 
-* `bounds` [Rectangle](latest/api/structures/rectangle.md) - New bounds of the View.
+* `bounds` [Rectangle](structures/rectangle.md) - New bounds of the View.
 
 #### `view.getBounds()`
 
-Returns [`Rectangle`](latest/api/structures/rectangle.md) - The bounds of this View, relative to its parent.
+Returns [`Rectangle`](structures/rectangle.md) - The bounds of this View, relative to its parent.
 
 #### `view.setBackgroundColor(color)`
 

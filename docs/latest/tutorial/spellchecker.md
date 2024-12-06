@@ -39,7 +39,7 @@ By default the spellchecker will enable the language matching the current OS loc
 
 ## How do I put the results of the spellchecker in my context menu?
 
-All the required information to generate a context menu is provided in the [`context-menu`](latest/api/web-contents.md#event-context-menu) event on each `webContents` instance.  A small example
+All the required information to generate a context menu is provided in the [`context-menu`](../api/web-contents.md#event-context-menu) event on each `webContents` instance.  A small example
 of how to make a context menu with this information is provided below.
 
 ```js @ts-type={myWindow:Electron.BrowserWindow}
@@ -78,4 +78,4 @@ Although the spellchecker itself does not send any typings, words or user input 
 myWindow.webContents.session.setSpellCheckerDictionaryDownloadURL('https://example.com/dictionaries/')
 ```
 
-Check out the docs for [`session.setSpellCheckerDictionaryDownloadURL`](latest/api/session.md#sessetspellcheckerdictionarydownloadurlurl) for more information on where to get the dictionary files from and how you need to host them.
+Check out the docs for [`session.setSpellCheckerDictionaryDownloadURL`](../api/session.md#sessetspellcheckerdictionarydownloadurlurl) for more information on where to get the dictionary files from and how you need to host them.

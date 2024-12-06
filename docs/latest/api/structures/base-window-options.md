@@ -50,13 +50,13 @@ hide_title: false
 * `hiddenInMissionControl` boolean (optional) _macOS_ - Whether window should be hidden when the user toggles into mission control.
 * `kiosk` boolean (optional) - Whether the window is in kiosk mode. Default is `false`.
 * `title` string (optional) - Default window title. Default is `"Electron"`. If the HTML tag `<title>` is defined in the HTML file loaded by `loadURL()`, this property will be ignored.
-* `icon` ([NativeImage](latest/api/native-image.md) | string) (optional) - The window icon. On Windows it is
+* `icon` ([NativeImage](../native-image.md) | string) (optional) - The window icon. On Windows it is
   recommended to use `ICO` icons to get best visual effects, you can also
   leave it undefined so the executable's icon will be used.
 * `show` boolean (optional) - Whether window should be shown when created. Default is
   `true`.
 * `frame` boolean (optional) - Specify `false` to create a
-  [frameless window](latest/tutorial/custom-window-styles.md#frameless-windows). Default is `true`.
+  [frameless window](../../tutorial/custom-window-styles.md#frameless-windows). Default is `true`.
 * `parent` BaseWindow (optional) - Specify parent window. Default is `null`.
 * `modal` boolean (optional) - Whether this is a modal window. This only works when the
   window is a child window. Default is `false`.
@@ -70,14 +70,14 @@ hide_title: false
 * `enableLargerThanScreen` boolean (optional) _macOS_ - Enable the window to
   be resized larger than screen. Only relevant for macOS, as other OSes
   allow larger-than-screen windows by default. Default is `false`.
-* `backgroundColor` string (optional) - The window's background color in Hex, RGB, RGBA, HSL, HSLA or named CSS color format. Alpha in #AARRGGBB format is supported if `transparent` is set to `true`. Default is `#FFF` (white). See [win.setBackgroundColor](latest/api/browser-window.md#winsetbackgroundcolorbackgroundcolor) for more information.
+* `backgroundColor` string (optional) - The window's background color in Hex, RGB, RGBA, HSL, HSLA or named CSS color format. Alpha in #AARRGGBB format is supported if `transparent` is set to `true`. Default is `#FFF` (white). See [win.setBackgroundColor](../browser-window.md#winsetbackgroundcolorbackgroundcolor) for more information.
 * `hasShadow` boolean (optional) - Whether window should have a shadow. Default is `true`.
 * `opacity` number (optional) _macOS_ _Windows_ - Set the initial opacity of
   the window, between 0.0 (fully transparent) and 1.0 (fully opaque). This
   is only implemented on Windows and macOS.
 * `darkTheme` boolean (optional) - Forces using dark theme for the window, only works on
   some GTK+3 desktop environments. Default is `false`.
-* `transparent` boolean (optional) - Makes the window [transparent](latest/tutorial/custom-window-styles.md#transparent-windows).
+* `transparent` boolean (optional) - Makes the window [transparent](../../tutorial/custom-window-styles.md#transparent-windows).
   Default is `false`. On Windows, does not work unless the window is frameless.
 * `type` string (optional) - The type of window, default is normal window. See more about
   this below.
@@ -102,7 +102,7 @@ hide_title: false
   * `color` String (optional) _Windows_ _Linux_ - The CSS color of the Window Controls Overlay when enabled. Default is the system color.
   * `symbolColor` String (optional) _Windows_ - The CSS color of the symbols on the Window Controls Overlay when enabled. Default is the system color.
   * `height` Integer (optional) - The height of the title bar and Window Controls Overlay in pixels. Default is system height.
-* `trafficLightPosition` [Point](latest/api/structures/point.md) (optional) _macOS_ -
+* `trafficLightPosition` [Point](point.md) (optional) _macOS_ -
   Set a custom position for the traffic light buttons in frameless windows.
 * `roundedCorners` boolean (optional) _macOS_ - Whether frameless window
   should have rounded corners on macOS. Default is `true`. Setting this property
@@ -116,7 +116,7 @@ hide_title: false
   `tooltip`, `content`, `under-window`, or `under-page`.
 * `backgroundMaterial` string (optional) _Windows_ - Set the window's
   system-drawn background material, including behind the non-client area.
-  Can be `auto`, `none`, `mica`, `acrylic` or `tabbed`. See [win.setBackgroundMaterial](latest/api/browser-window.md#winsetbackgroundmaterialmaterial-windows) for more information.
+  Can be `auto`, `none`, `mica`, `acrylic` or `tabbed`. See [win.setBackgroundMaterial](../browser-window.md#winsetbackgroundmaterialmaterial-windows) for more information.
 * `zoomToPageWidth` boolean (optional) _macOS_ - Controls the behavior on
   macOS when option-clicking the green stoplight button on the toolbar or by
   clicking the Window > Zoom menu item. If `true`, the window will grow to

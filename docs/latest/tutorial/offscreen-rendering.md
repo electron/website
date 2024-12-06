@@ -25,7 +25,7 @@ the dirty area is passed to the `paint` event to be more efficient.
 losses with no benefits.
 * When nothing is happening on a webpage, no frames are generated.
 * An offscreen window is always created as a
-[Frameless Window](latest/tutorial/window-customization.md).
+[Frameless Window](../tutorial/window-customization.md).
 
 ### Rendering Modes
 
@@ -108,4 +108,4 @@ app.on('window-all-closed', () => {
 After launching the Electron application, navigate to your application's
 working folder, where you'll find the rendered image.
 
-[disablehardwareacceleration]: latest/api/app.md#appdisablehardwareacceleration
+[disablehardwareacceleration]: ../api/app.md#appdisablehardwareacceleration

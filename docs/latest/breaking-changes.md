@@ -7,7 +7,7 @@ hide_title: false
 
 # Breaking Changes
 
-Breaking changes will be documented here, and deprecation warnings added to JS code where possible, at least [one major version](latest/tutorial/electron-versioning.md#semver) before the change is made.
+Breaking changes will be documented here, and deprecation warnings added to JS code where possible, at least [one major version](tutorial/electron-versioning.md#semver) before the change is made.
 
 ### Types of Breaking Changes
 
@@ -79,7 +79,7 @@ mainWindow.loadURL('other://index.html')
 ### Behavior Changed: `webContents` property on `login` on `app`
 
 The `webContents` property in the `login` event from `app` will be `null`
-when the event is triggered for requests from the [utility process](latest/api/utility-process.md)
+when the event is triggered for requests from the [utility process](api/utility-process.md)
 created with `respondToAuthRequestsFromMainProcess` option.
 
 ### Deprecated: `textured` option in `BrowserWindowConstructorOption.type`
@@ -109,7 +109,7 @@ const prefersReducedTransparency = nativeTheme.prefersReducedTransparency
 
 ### Removed: `File.path`
 
-The nonstandard `path` property of the Web `File` object was added in an early version of Electron as a convenience method for working with native files when doing everything in the renderer was more common. However, it represents a deviation from the standard and poses a minor security risk as well, so beginning in Electron 32.0 it has been removed in favor of the [`webUtils.getPathForFile`](latest/api/web-utils.md#webutilsgetpathforfilefile) method.
+The nonstandard `path` property of the Web `File` object was added in an early version of Electron as a convenience method for working with native files when doing everything in the renderer was more common. However, it represents a deviation from the standard and poses a minor security risk as well, so beginning in Electron 32.0 it has been removed in favor of the [`webUtils.getPathForFile`](api/web-utils.md#webutilsgetpathforfilefile) method.
 
 ```js
 // Before (renderer)
@@ -199,7 +199,7 @@ This switch was never formally documented but it's removal is being noted here r
 
 ### Behavior Changed: `BrowserView.setAutoResize` behavior on macOS
 
-In Electron 30, BrowserView is now a wrapper around the new [WebContentsView](latest/api/web-contents-view.md) API.
+In Electron 30, BrowserView is now a wrapper around the new [WebContentsView](api/web-contents-view.md) API.
 
 Previously, the `setAutoResize` function of the `BrowserView` API was backed by [autoresizing](https://developer.apple.com/documentation/appkit/nsview/1483281-autoresizingmask?language=objc) on macOS, and by a custom algorithm on Windows and Linux.
 For simple use cases such as making a BrowserView fill the entire window, the behavior of these two approaches was identical.
@@ -211,10 +211,10 @@ If so, that logic will no longer be needed in Electron 30 as autoresizing behavi
 
 ### Deprecated: `BrowserView`
 
-The [`BrowserView`](latest/api/browser-view.md) class has been deprecated and
-replaced by the new [`WebContentsView`](latest/api/web-contents-view.md) class.
+The [`BrowserView`](./api/browser-view.md) class has been deprecated and
+replaced by the new [`WebContentsView`](./api/web-contents-view.md) class.
 
-`BrowserView` related methods in [`BrowserWindow`](latest/api/browser-window.md) have
+`BrowserView` related methods in [`BrowserWindow`](./api/browser-window.md) have
 also been deprecated:
 
 ```js
@@ -340,7 +340,7 @@ if (ret === null) {
 
 ### Removed: `ipcRenderer.sendTo()`
 
-The `ipcRenderer.sendTo()` API has been removed. It should be replaced by setting up a [`MessageChannel`](latest/tutorial/message-ports.md#setting-up-a-messagechannel-between-two-renderers) between the renderers.
+The `ipcRenderer.sendTo()` API has been removed. It should be replaced by setting up a [`MessageChannel`](tutorial/message-ports.md#setting-up-a-messagechannel-between-two-renderers) between the renderers.
 
 The `senderId` and `senderIsMainFrame` properties of `IpcRendererEvent` have been removed as well.
 
@@ -414,7 +414,7 @@ or later will be required to run Electron v27.0.0 and higher.
 
 ### Deprecated: `ipcRenderer.sendTo()`
 
-The `ipcRenderer.sendTo()` API has been deprecated. It should be replaced by setting up a [`MessageChannel`](latest/tutorial/message-ports.md#setting-up-a-messagechannel-between-two-renderers) between the renderers.
+The `ipcRenderer.sendTo()` API has been deprecated. It should be replaced by setting up a [`MessageChannel`](tutorial/message-ports.md#setting-up-a-messagechannel-between-two-renderers) between the renderers.
 
 The `senderId` and `senderIsMainFrame` properties of `IpcRendererEvent` have been deprecated as well.
 
@@ -557,7 +557,7 @@ systemPreferences.getColor('selected-content-background')
 ### Deprecated: `protocol.{un,}{register,intercept}{Buffer,String,Stream,File,Http}Protocol` and `protocol.isProtocol{Registered,Intercepted}`
 
 The `protocol.register*Protocol` and `protocol.intercept*Protocol` methods have
-been replaced with [`protocol.handle`](latest/api/protocol.md#protocolhandlescheme-handler).
+been replaced with [`protocol.handle`](api/protocol.md#protocolhandlescheme-handler).
 
 The new method can either register a new protocol or intercept an existing
 protocol, and responses can be of any type.
@@ -696,7 +696,7 @@ Older versions of Electron will continue to run on these operating systems, but 
 
 The deprecated `scroll-touch-begin`, `scroll-touch-end` and `scroll-touch-edge`
 events on BrowserWindow have been removed. Instead, use the newly available
-[`input-event` event](latest/api/web-contents.md#event-input-event) on WebContents.
+[`input-event` event](api/web-contents.md#event-input-event) on WebContents.
 
 ```js
 // Removed in Electron 23.0
@@ -804,7 +804,7 @@ w.capturePage().then(image => {
 
 ### Removed: WebContents `new-window` event
 
-The `new-window` event of WebContents has been removed. It is replaced by [`webContents.setWindowOpenHandler()`](latest/api/web-contents.md#contentssetwindowopenhandlerhandler).
+The `new-window` event of WebContents has been removed. It is replaced by [`webContents.setWindowOpenHandler()`](api/web-contents.md#contentssetwindowopenhandlerhandler).
 
 ```js
 // Removed in Electron 22
@@ -855,7 +855,7 @@ document.getElementById('webview').addEventListener('new-window', () => {
 
 The `scroll-touch-begin`, `scroll-touch-end` and `scroll-touch-edge` events on
 BrowserWindow are deprecated. Instead, use the newly available
-[`input-event` event](latest/api/web-contents.md#event-input-event) on WebContents.
+[`input-event` event](api/web-contents.md#event-input-event) on WebContents.
 
 ```js
 // Deprecated
@@ -972,7 +972,7 @@ requires unsafe mode), so Electron is unable to support this feature on Linux.
 
 The handler invoked when `session.setDevicePermissionHandler(handler)` is used
 has a change to its arguments.  This handler no longer is passed a frame
-[`WebFrameMain`](latest/api/web-frame-main.md), but instead is passed the `origin`, which
+[`WebFrameMain`](api/web-frame-main.md), but instead is passed the `origin`, which
 is the origin that is checking for device permission.
 
 ## Planned Breaking API Changes (19.0)
@@ -991,7 +991,7 @@ Prior to Electron 15, `window.open` was by default shimmed to use
 to open synchronously scriptable child windows, among other incompatibilities.
 Since Electron 15, `nativeWindowOpen` has been enabled by default.
 
-See the documentation for [window.open in Electron](latest/api/window-open.md)
+See the documentation for [window.open in Electron](api/window-open.md)
 for more details.
 
 ## Planned Breaking API Changes (17.0)
@@ -1034,7 +1034,7 @@ Prior to Electron 15, `window.open` was by default shimmed to use
 to open synchronously scriptable child windows, among other incompatibilities.
 Since Electron 15, `nativeWindowOpen` has been enabled by default.
 
-See the documentation for [window.open in Electron](latest/api/window-open.md)
+See the documentation for [window.open in Electron](api/window-open.md)
 for more details.
 
 ## Planned Breaking API Changes (16.0)
@@ -1070,7 +1070,7 @@ Prior to Electron 15, `window.open` was by default shimmed to use
 to open synchronously scriptable child windows, among other incompatibilities.
 `nativeWindowOpen` is no longer experimental, and is now the default.
 
-See the documentation for [window.open in Electron](latest/api/window-open.md)
+See the documentation for [window.open in Electron](api/window-open.md)
 for more details.
 
 ### Deprecated: `app.runningUnderRosettaTranslation`
@@ -1125,7 +1125,7 @@ For more detailed information see [#18397](https://github.com/electron/electron/
 
 The optional parameter `frameName` will no longer set the title of the window. This now follows the specification described by the [native documentation](https://developer.mozilla.org/en-US/docs/Web/API/Window/open#parameters) under the corresponding parameter `windowName`.
 
-If you were using this parameter to set the title of a window, you can instead use [win.setTitle(title)](latest/api/browser-window.md#winsettitletitle).
+If you were using this parameter to set the title of a window, you can instead use [win.setTitle(title)](api/browser-window.md#winsettitletitle).
 
 ### Removed: `worldSafeExecuteJavaScript`
 
@@ -1133,7 +1133,7 @@ In Electron 14, `worldSafeExecuteJavaScript` will be removed.  There is no alter
 ensure your code works with this property enabled.  It has been enabled by default since Electron
 12.
 
-You will be affected by this change if you use either `webFrame.executeJavaScript` or `webFrame.executeJavaScriptInIsolatedWorld`. You will need to ensure that values returned by either of those methods are supported by the [Context Bridge API](latest/api/context-bridge.md#parameter--error--return-type-support) as these methods use the same value passing semantics.
+You will be affected by this change if you use either `webFrame.executeJavaScript` or `webFrame.executeJavaScriptInIsolatedWorld`. You will need to ensure that values returned by either of those methods are supported by the [Context Bridge API](api/context-bridge.md#parameter--error--return-type-support) as these methods use the same value passing semantics.
 
 ### Removed: BrowserWindowConstructorOptions inheriting from parent windows
 
@@ -1292,7 +1292,7 @@ nativeTheme.shouldUseHighContrastColors
 
 ### Deprecated: WebContents `new-window` event
 
-The `new-window` event of WebContents has been deprecated. It is replaced by [`webContents.setWindowOpenHandler()`](latest/api/web-contents.md#contentssetwindowopenhandlerhandler).
+The `new-window` event of WebContents has been deprecated. It is replaced by [`webContents.setWindowOpenHandler()`](api/web-contents.md#contentssetwindowopenhandlerhandler).
 
 ```js
 // Deprecated in Electron 13
@@ -1328,7 +1328,7 @@ value.
 In Electron 12, `contextIsolation` will be enabled by default.  To restore
 the previous behavior, `contextIsolation: false` must be specified in WebPreferences.
 
-We [recommend having contextIsolation enabled](latest/tutorial/security.md#3-enable-context-isolation) for the security of your application.
+We [recommend having contextIsolation enabled](tutorial/security.md#3-enable-context-isolation) for the security of your application.
 
 Another implication is that `require()` cannot be used in the renderer process unless
 `nodeIntegration` is `true` and `contextIsolation` is `false`.
@@ -1889,7 +1889,7 @@ In Electron 7, this now returns a `FileList` with a `File` object for:
 
 Note that `webkitdirectory` no longer exposes the path to the selected folder.
 If you require the path to the selected folder rather than the folder contents,
-see the `dialog.showOpenDialog` API ([link](latest/api/dialog.md#dialogshowopendialogwindow-options)).
+see the `dialog.showOpenDialog` API ([link](api/dialog.md#dialogshowopendialogwindow-options)).
 
 ### API Changed: Callback-based versions of promisified APIs
 
@@ -2155,7 +2155,7 @@ When building native modules for windows, the `win_delay_load_hook` variable in
 the module's `binding.gyp` must be true (which is the default). If this hook is
 not present, then the native module will fail to load on Windows, with an error
 message like `Cannot find module`.
-See the [native module guide](latest/tutorial/using-native-node-modules.md) for more.
+See the [native module guide](./tutorial/using-native-node-modules.md) for more.
 
 ### Removed: IA32 Linux support
 

@@ -20,7 +20,7 @@ with breakpoints inside Electron's source code.
 
 * **A debug build of Electron**: The easiest way is usually building it
   yourself, using the tools and prerequisites listed in the
-  [build instructions for Windows](latest/development/build-instructions-windows.md). While you can
+  [build instructions for Windows](build-instructions-windows.md). While you can
   attach to and debug Electron as you can download it directly, you will
   find that it is heavily optimized, making debugging substantially more
   difficult: The debugger will not be able to show you the content of all
@@ -29,7 +29,7 @@ with breakpoints inside Electron's source code.
 
 * **Visual Studio with C++ Tools**: The free community editions of Visual
   Studio 2013 and Visual Studio 2015 both work. Once installed,
-  [configure Visual Studio to use Electron's Symbol server](latest/development/debugging-with-symbol-server.md).
+  [configure Visual Studio to use Electron's Symbol server](debugging-with-symbol-server.md).
   It will enable Visual Studio to gain a better understanding of what happens
   inside Electron, making it easier to present variables in a human-readable
   format.

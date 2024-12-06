@@ -23,7 +23,7 @@ Fuses are the solution to this problem, at a high level they are "magic bits" in
 
 **@electron/fuses:** `FuseV1Options.RunAsNode`
 
-The runAsNode fuse toggles whether the `ELECTRON_RUN_AS_NODE` environment variable is respected or not.  Please note that if this fuse is disabled then `process.fork` in the main process will not function as expected as it depends on this environment variable to function. Instead, we recommend that you use [Utility Processes](latest/api/utility-process.md), which work for many use cases where you need a standalone Node.js process (like a Sqlite server process or similar scenarios).
+The runAsNode fuse toggles whether the `ELECTRON_RUN_AS_NODE` environment variable is respected or not.  Please note that if this fuse is disabled then `process.fork` in the main process will not function as expected as it depends on this environment variable to function. Instead, we recommend that you use [Utility Processes](../api/utility-process.md), which work for many use cases where you need a standalone Node.js process (like a Sqlite server process or similar scenarios).
 
 ### `cookieEncryption`
 
@@ -57,7 +57,7 @@ The nodeCliInspect fuse toggles whether the `--inspect`, `--inspect-brk`, etc. f
 
 The embeddedAsarIntegrityValidation fuse toggles an experimental feature on macOS that validates the content of the `app.asar` file when it is loaded.  This feature is designed to have a minimal performance impact but may marginally slow down file reads from inside the `app.asar` archive.
 
-For more information on how to use asar integrity validation please read the [Asar Integrity](latest/tutorial/asar-integrity.md) documentation.
+For more information on how to use asar integrity validation please read the [Asar Integrity](asar-integrity.md) documentation.
 
 ### `onlyLoadAppFromAsar`
 
@@ -85,7 +85,7 @@ Using separate snapshots for renderer processes and the main process can improve
 
 **@electron/fuses:** `FuseV1Options.GrantFileProtocolExtraPrivileges`
 
-The grantFileProtocolExtraPrivileges fuse changes whether pages loaded from the `file://` protocol are given privileges beyond what they would receive in a traditional web browser.  This behavior was core to Electron apps in original versions of Electron but is no longer required as apps should be [serving local files from custom protocols](latest/tutorial/security.md#18-avoid-usage-of-the-file-protocol-and-prefer-usage-of-custom-protocols) now instead.  If you aren't serving pages from `file://` you should disable this fuse.
+The grantFileProtocolExtraPrivileges fuse changes whether pages loaded from the `file://` protocol are given privileges beyond what they would receive in a traditional web browser.  This behavior was core to Electron apps in original versions of Electron but is no longer required as apps should be [serving local files from custom protocols](./security.md#18-avoid-usage-of-the-file-protocol-and-prefer-usage-of-custom-protocols) now instead.  If you aren't serving pages from `file://` you should disable this fuse.
 
 The extra privileges granted to the `file://` protocol by this fuse are incompletely documented below:
 
