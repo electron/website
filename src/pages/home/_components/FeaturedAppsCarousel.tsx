@@ -11,8 +11,12 @@ interface FeaturedAppsCarouselProps {
 export default function FeaturedAppsCarousel({
   list,
 }: FeaturedAppsCarouselProps) {
+  const [isDarkTheme, setIsDarkTheme] = React.useState(false);
   const { colorMode } = useColorMode();
-  const isDarkTheme = colorMode === 'dark';
+
+  React.useEffect(() => {
+    setIsDarkTheme(colorMode === 'dark');
+  }, [colorMode]);
 
   return (
     <div className={clsx(styles.section)}>
