@@ -14,6 +14,8 @@ module.exports = {
     'no-newline-in-links': true,
     'no-shortcut-reference-links': false,
   },
-  customRules: ['@electron/lint-roller/markdownlint-rules/'],
+  customRules: [
+    './node_modules/@electron/lint-roller/markdownlint-rules/index.mjs',
+  ],
   ignores: fs.readFileSync('.markdownlintignore', 'utf-8').trim().split(os.EOL),
 };
