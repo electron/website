@@ -51,16 +51,16 @@ jobs:
         run: yarn lint
         env:
           CI: true
-      # FIXME: this is stalling
-      # - name: Download cache
-      #   uses: nick-invision/retry@7152eba30c6575329ac0576536151aca5a72780e  # tag: v3.0.0
-      #   with:
-      #     timeout_seconds: 300
-      #     max_attempts: 3
-      #     retry_on: error
-      #     command: ./scripts/bin/azcopy copy "https://electronwebsite.blob.core.windows.net/%24web/*?$SAS" "./build" --recursive
-      #   env:
-      #     SAS: ${{ secrets.SAS }}
+      - name: Docusaurus Cache
+        uses: actions/cache@1bd1e32a3bdc45362d1e726936510720a7c30a57 # tag: v4.2.0
+        with:
+          path: |
+            ${{ github.workspace }}/.docusaurus
+            ${{ github.workspace }}/**/.cache
+          key: |
+            ${{ runner.os }}-docusaurus-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+          restore-keys: |
+            ${{ runner.os }}-docusaurus-${{ hashFiles('**/yarn.lock') }}
       - name: Add Docusaurus problem matcher
         run: echo "::add-matcher::.github/problem-matchers/docusaurus.json"
       - name: Build default locale site
