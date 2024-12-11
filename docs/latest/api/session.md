@@ -35,7 +35,7 @@ The `session` module has the following methods:
 * `partition` string
 * `options` Object (optional)
   * `cache` boolean - Whether to enable cache. Default is `true` unless the
-    [`--disable-http-cache` switch](latest/api/command-line-switches.md#--disable-http-cache) is used.
+    [`--disable-http-cache` switch](command-line-switches.md#--disable-http-cache) is used.
 
 Returns `Session` - A session instance from `partition` string. When there is an existing
 `Session` with the same `partition`, it will be returned; otherwise a new
@@ -55,7 +55,7 @@ of an existing `Session` object.
 * `path` string
 * `options` Object (optional)
   * `cache` boolean - Whether to enable cache. Default is `true` unless the
-    [`--disable-http-cache` switch](latest/api/command-line-switches.md#--disable-http-cache) is used.
+    [`--disable-http-cache` switch](command-line-switches.md#--disable-http-cache) is used.
 
 Returns `Session` - A session instance from the absolute path as specified by the `path`
 string. When there is an existing `Session` with the same absolute path, it

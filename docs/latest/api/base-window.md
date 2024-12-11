@@ -73,8 +73,8 @@ const child = new BaseWindow({ parent, modal: true })
 
 ## Resource management
 
-When you add a [`WebContentsView`](latest/api/web-contents-view.md) to a `BaseWindow` and the `BaseWindow`
-is closed, the [`webContents`](latest/api/web-contents.md) of the `WebContentsView` are not destroyed
+When you add a [`WebContentsView`](web-contents-view.md) to a `BaseWindow` and the `BaseWindow`
+is closed, the [`webContents`](web-contents.md) of the `WebContentsView` are not destroyed
 automatically.
 
 It is your responsibility to close the `webContents` when you no longer need them, e.g. when
@@ -93,7 +93,7 @@ win.on('closed', () => {
 })
 ```
 
-Unlike with a [`BrowserWindow`](latest/api/browser-window.md), if you don't explicitly close the
+Unlike with a [`BrowserWindow`](browser-window.md), if you don't explicitly close the
 `webContents`, you'll encounter memory leaks.
 
 ## Class: BaseWindow
