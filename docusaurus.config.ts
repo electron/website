@@ -3,6 +3,7 @@ import path from 'node:path';
 
 import logger from '@docusaurus/logger';
 import { Config } from '@docusaurus/types';
+import type * as Preset from '@docusaurus/preset-classic';
 import npm2yarn from '@docusaurus/remark-plugin-npm2yarn';
 import { themes as prismThemes } from 'prism-react-renderer';
 import remarkGithubAdmonitionsToDirectives, {
@@ -228,7 +229,7 @@ const config: Config = {
       indexName: 'electronjs',
       contextualSearch: true,
     },
-  },
+  } satisfies Preset.ThemeConfig,
   plugins: [
     'docusaurus-plugin-sass',
     path.resolve(__dirname, './src/plugins/apps/index.ts'),
@@ -288,7 +289,7 @@ const config: Config = {
           trackingID: 'UA-160365006-1',
           anonymizeIP: true,
         },
-      },
+      } satisfies Preset.Options,
     ],
   ],
   webpack: {
