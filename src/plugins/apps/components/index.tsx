@@ -42,7 +42,7 @@ export default function AppsPage({ apps, categories }: AppsPluginContent) {
         className={clsx(
           'dropdown__link',
           activeSort === sort && 'dropdown__link--active',
-          styles.sortDropdownItem
+          styles.sortDropdownItem,
         )}
         onClick={() => setActiveSort(sort)}
       >
@@ -59,7 +59,7 @@ export default function AppsPage({ apps, categories }: AppsPluginContent) {
         className={clsx(
           'pills__item',
           styles.pillFilter,
-          activeCategory && activeCategory[0] === name && 'pills__item--active'
+          activeCategory && activeCategory[0] === name && 'pills__item--active',
         )}
         onClick={() => setActiveCategory(filter)}
       >
@@ -81,7 +81,7 @@ export default function AppsPage({ apps, categories }: AppsPluginContent) {
           styles.dropdownFilterItem,
           Array.isArray(activeCategory) &&
             activeCategory[0] === name &&
-            'dropdown__link--active'
+            'dropdown__link--active',
         )}
         onClick={() => setActiveCategory(filter)}
       >
@@ -96,7 +96,7 @@ export default function AppsPage({ apps, categories }: AppsPluginContent) {
   const currentFavs = sortedApps.filter(
     (app) =>
       app.isFavorite &&
-      (!Array.isArray(activeCategory) || app.category === activeCategory[0])
+      (!Array.isArray(activeCategory) || app.category === activeCategory[0]),
   );
 
   return (
@@ -112,7 +112,7 @@ export default function AppsPage({ apps, categories }: AppsPluginContent) {
             className={clsx(
               'container',
               'margin-bottom--sm',
-              styles.sortAndSearchContainer
+              styles.sortAndSearchContainer,
             )}
           >
             <div className="dropdown dropdown--hoverable">
@@ -139,7 +139,7 @@ export default function AppsPage({ apps, categories }: AppsPluginContent) {
               className={clsx(
                 'pills__item',
                 styles.pillFilter,
-                activeCategory === null && 'pills__item--active'
+                activeCategory === null && 'pills__item--active',
               )}
               onClick={() => setActiveCategory(null)}
             >
@@ -152,7 +152,7 @@ export default function AppsPage({ apps, categories }: AppsPluginContent) {
           <ul
             className={clsx(
               'dropdown dropdown--hoverable',
-              styles.dropdownFilter
+              styles.dropdownFilter,
             )}
           >
             <button className="button button--electron button--block">
@@ -163,7 +163,7 @@ export default function AppsPage({ apps, categories }: AppsPluginContent) {
                 className={clsx(
                   'dropdown__link',
                   styles.dropdownFilterItem,
-                  activeCategory === null && 'dropdown__link--active'
+                  activeCategory === null && 'dropdown__link--active',
                 )}
                 onClick={() => setActiveCategory(null)}
               >
@@ -181,7 +181,7 @@ export default function AppsPage({ apps, categories }: AppsPluginContent) {
               styles.favsContainer,
               'container',
               'shadow--tl',
-              'margin-bottom--xl'
+              'margin-bottom--xl',
             )}
           >
             <h2 className={styles.sectionHeader}>Favorites ❤️</h2>
@@ -209,12 +209,12 @@ export default function AppsPage({ apps, categories }: AppsPluginContent) {
             styles.appCardContainer,
             styles.allContainer,
             'container',
-            'margin-bottom--xl'
+            'margin-bottom--xl',
           )}
         >
           {sortedApps
             .filter(
-              (app) => !activeCategory || app.category === activeCategory[0]
+              (app) => !activeCategory || app.category === activeCategory[0],
             )
             .map((app) => {
               return (

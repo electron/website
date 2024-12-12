@@ -9,7 +9,7 @@ module.exports = async function fiddleVersionPlugin() {
         'https://github.com/electron/fiddle/releases/latest',
         {
           method: 'GET',
-        }
+        },
       );
 
       return response.url;

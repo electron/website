@@ -24,7 +24,7 @@ let docsSHA = undefined;
 try {
   docsSHA = fs.readFileSync(
     path.resolve(__dirname, './docs/latest/.sha'),
-    'utf-8'
+    'utf-8',
   );
 } catch {
   logger.warn('No .sha file found in docs/latest directory');

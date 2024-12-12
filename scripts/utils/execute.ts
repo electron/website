@@ -64,7 +64,7 @@ export const execute = (command: string, options?: Options) => {
   console.log(
     `${options && options.cwd ? options.cwd : process.cwd()}${
       path.sep
-    }${command}`
+    }${command}`,
   );
 
   const args = command.split(' ');

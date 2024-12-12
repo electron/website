@@ -67,7 +67,7 @@ protocol.registerFileProtocol('other', () => {
 const mainWindow = new BrowserWindow();
 mainWindow.loadURL(
   'data:text/html,<script src="loaded-from-dataurl.js"></script>',
-  { baseURLForDataURL: 'other://C:\\myapp' }
+  { baseURLForDataURL: 'other://C:\\myapp' },
 );
 mainWindow.loadURL('other://C:\\myapp\\index.html');
 
@@ -78,13 +78,13 @@ protocol.handle(other, (req) => {
   const srcPath = 'C:\\myapp\\';
   const reqURL = new URL(req.url);
   return net.fetch(
-    nodeUrl.pathToFileURL(path.join(srcPath, reqURL.pathname)).toString()
+    nodeUrl.pathToFileURL(path.join(srcPath, reqURL.pathname)).toString(),
   );
 });
 
 mainWindow.loadURL(
   'data:text/html,<script src="loaded-from-dataurl.js"></script>',
-  { baseURLForDataURL: 'other://' }
+  { baseURLForDataURL: 'other://' },
 );
 mainWindow.loadURL('other://index.html');
 ```

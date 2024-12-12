@@ -70,7 +70,7 @@ async function getWGInfo(workingGroup: string): Promise<WorkingGroup> {
 
       const member = row.children[1].children[1].url.replace(
         'https://github.com/',
-        ''
+        '',
       );
       const status = toString(row.children[2].children[0]);
 
@@ -81,7 +81,7 @@ async function getWGInfo(workingGroup: string): Promise<WorkingGroup> {
       }
       return acc;
     },
-    { chair: undefined, members: [] }
+    { chair: undefined, members: [] },
   );
 
   const { chair, members } = wgMembers;
@@ -95,7 +95,7 @@ async function getWGInfo(workingGroup: string): Promise<WorkingGroup> {
  */
 async function getGitHubREADME(wg: string) {
   const res = await fetch(
-    `https://raw.githubusercontent.com/electron/governance/main/wg-${wg}/README.md`
+    `https://raw.githubusercontent.com/electron/governance/main/wg-${wg}/README.md`,
   );
   return res.text();
 }

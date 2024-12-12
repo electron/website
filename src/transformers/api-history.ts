@@ -34,13 +34,13 @@ type GithubArtifactsListResponse = {
 };
 
 function isObject(
-  value: unknown
+  value: unknown,
 ): value is Record<string | number | symbol, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
 }
 
 function isGithubArtifactsListResponse(
-  value: unknown
+  value: unknown,
 ): value is GithubArtifactsListResponse {
   return isObject(value) && 'artifacts' in value;
 }
@@ -92,7 +92,7 @@ async function getAllPrReleaseVersions(): Promise<PrReleaseVersionsContainer> {
 
   if (!process.env.GH_TOKEN) {
     logger.warn(
-      'No GitHub token found, skipping fetching PR release versions.'
+      'No GitHub token found, skipping fetching PR release versions.',
     );
     _allPrReleaseVersions = {};
     return _allPrReleaseVersions;
@@ -109,7 +109,7 @@ async function getAllPrReleaseVersions(): Promise<PrReleaseVersionsContainer> {
 
   const artifactsListResponse = await fetch(
     GH_ACTIONS_ARTIFACTS_URL,
-    fetchOptions
+    fetchOptions,
   );
   const artifactsListResponseJson = await artifactsListResponse.json();
 
@@ -127,7 +127,7 @@ async function getAllPrReleaseVersions(): Promise<PrReleaseVersionsContainer> {
 
   const archiveDownloadResponse = await fetch(
     latestArtifact.archive_download_url,
-    fetchOptions
+    fetchOptions,
   );
   const archiveDownloadResponseBuffer =
     await archiveDownloadResponse.arrayBuffer();
@@ -177,7 +177,7 @@ async function transformer(tree: Parent) {
     // eslint-disable-next-line no-inner-declarations
     function maybeGenerateApiHistoryTable(
       node: Code,
-      ancestors: Parent[]
+      ancestors: Parent[],
     ): ActionTuple | void {
       const parent = ancestors[0];
       const idx = parent!.children.indexOf(node);
@@ -204,12 +204,12 @@ async function transformer(tree: Parent) {
 
       const relevantPrReleaseVersions = Object.fromEntries(
         Object.entries(allPrReleaseVersions).filter(([prNumber]) =>
-          prsInHistory.includes(prNumber)
-        )
+          prsInHistory.includes(prNumber),
+        ),
       );
 
       function findReleasedStableVersionContainingRelease(
-        release: SemVer
+        release: SemVer,
       ): string | null {
         let stableVersion: string;
 

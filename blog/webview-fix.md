@@ -39,7 +39,7 @@ app.on('web-contents-created', (event, win) => {
       options.webPreferences.nodeIntegrationInWorker = false;
       options.webPreferences.webviewTag = false;
       delete options.webPreferences.preload;
-    }
+    },
   );
 });
 

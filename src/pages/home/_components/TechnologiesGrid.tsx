@@ -27,7 +27,7 @@ export default function TechnologiesGrid({ list }: TechnologiesGridProps) {
             className={clsx(
               'avatar__photo avatar__photo--sm',
               styles.techImage,
-              isDarkTheme && item.isMonochrome && styles.darkModeInvert
+              isDarkTheme && item.isMonochrome && styles.darkModeInvert,
             )}
             src={item.image}
             alt=""

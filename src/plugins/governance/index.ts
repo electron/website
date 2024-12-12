@@ -10,7 +10,7 @@ module.exports = function governancePlugin() {
     async contentLoaded({ content, actions }) {
       const governanceJSON = await actions.createData(
         `governance.json`,
-        JSON.stringify(content)
+        JSON.stringify(content),
       );
       actions.addRoute({
         path: '/governance',

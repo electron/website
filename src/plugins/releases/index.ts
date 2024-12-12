@@ -28,17 +28,17 @@ module.exports = async function releasesPlugin() {
       }
       // sort all versions by semver (descending)
       const releases = ((await req.json()) as ReleaseInfo[]).sort((a, b) =>
-        semver.compare(b.version, a.version)
+        semver.compare(b.version, a.version),
       );
       // stable releases won't have a prerelease tag
       const stable = releases.find((release) => !release.version.includes('-'));
       // the highest semver prerelease will be the latest alpha or beta
       const prerelease = releases.find(
         (release) =>
-          release.version.includes('beta') || release.version.includes('alpha')
+          release.version.includes('beta') || release.version.includes('alpha'),
       );
       const nightly = releases.find((release) =>
-        release.version.includes('nightly')
+        release.version.includes('nightly'),
       );
       return { stable, prerelease, nightly };
     },

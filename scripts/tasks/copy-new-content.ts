@@ -11,7 +11,7 @@ export const copyNewContent = async (destination: string) => {
   for (const [source, target] of newContent) {
     await fs.copyFile(
       path.join(__dirname, source),
-      path.join(destination, target)
+      path.join(destination, target),
     );
   }
 };

@@ -40,7 +40,7 @@ async function transformer(tree: Parent) {
 
   function maybeGenerateJsCodeBlock(
     node: Code,
-    ancestors: Parent[]
+    ancestors: Parent[],
   ): ActionTuple | void {
     const parent = ancestors[0];
     const idx = parent.children.indexOf(node);

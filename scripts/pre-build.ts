@@ -37,10 +37,10 @@ const start = async (source: string): Promise<void> => {
     const stableBranch = version.replace(/\.\d+\.\d+/, '-x-y');
     logger.info(
       `Fetching ${logger.green(
-        `electron`
+        `electron`,
       )} information from npm: \n\t Latest version: ${logger.green(
-        version
-      )} \n\t Stable branch: ${logger.green(stableBranch)}`
+        version,
+      )} \n\t Stable branch: ${logger.green(stableBranch)}`,
     );
 
     const target = source || stableBranch;

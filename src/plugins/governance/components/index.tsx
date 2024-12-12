@@ -58,7 +58,7 @@ const GroupCard = ({ group }: { group: WorkingGroup }) => {
             className={clsx(
               'avatar__photo',
               'avatar__photo--sm',
-              styles.cardIcon
+              styles.cardIcon,
             )}
           >
             {group.name.slice(0, 1)}
@@ -91,7 +91,7 @@ const GroupCard = ({ group }: { group: WorkingGroup }) => {
         <div
           className={clsx(
             styles.cardList,
-            hasExpand && (expanded ? styles.expanded : styles.unexpanded)
+            hasExpand && (expanded ? styles.expanded : styles.unexpanded),
           )}
         >
           {group.chair && <Member user={group.chair} isChair />}
@@ -104,7 +104,7 @@ const GroupCard = ({ group }: { group: WorkingGroup }) => {
         <button
           className={clsx(
             'button button--outline button--block',
-            !hasExpand && styles.hidden
+            !hasExpand && styles.hidden,
           )}
           onClick={() => setExpanded(!expanded)}
         >

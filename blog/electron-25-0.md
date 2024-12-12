@@ -55,7 +55,7 @@ protocol.registerBufferProtocol('some-protocol', () => {
 protocol.handle('some-protocol', () => {
   return new Response(
     Buffer.from('<h5>Response</h5>'), // Could also be a string or ReadableStream.
-    { headers: { 'content-type': 'text/html' } }
+    { headers: { 'content-type': 'text/html' } },
   );
 });
 ```

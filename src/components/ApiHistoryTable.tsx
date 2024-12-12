@@ -24,7 +24,7 @@ interface ApiHistoryTableProps {
 function generateTableRow(
   prReleaseVersions: PrReleaseVersions | undefined,
   type: Change,
-  change: NonNullable<ApiHistory[keyof ApiHistory]>[0]
+  change: NonNullable<ApiHistory[keyof ApiHistory]>[0],
 ) {
   const key = change['pr-url'] + '-' + type;
 
@@ -103,7 +103,7 @@ const ApiHistoryTable = (props: ApiHistoryTableProps) => {
 
   const apiHistory = JSON.parse(apiHistoryJson) as ApiHistory;
   const prReleaseVersions = JSON.parse(
-    prReleaseVersionsJson
+    prReleaseVersionsJson,
   ) as PrReleaseVersionsContainer;
 
   // ? Maybe this is too much abstraction?

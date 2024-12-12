@@ -48,7 +48,7 @@ const capitalize = (title: string) => {
 const findCategoryForDocument = (
   categoryName: string,
   sidebars: Sidebars,
-  defaultTopLevel: string
+  defaultTopLevel: string,
 ) => {
   const topLevelIds = Object.keys(sidebars);
 
@@ -160,7 +160,7 @@ export const createSidebar = async (root: string, destination: string) => {
     const category = findCategoryForDocument(
       categoryId,
       sidebars,
-      defaultTopLevel
+      defaultTopLevel,
     );
 
     category.items.push(document.replace('.md', ''));
@@ -172,11 +172,11 @@ export const createSidebar = async (root: string, destination: string) => {
 
     // run it through our linter
     const prettierConfig = await prettier.resolveConfig(
-      path.resolve(__dirname, '..', '..', '.prettierrc')
+      path.resolve(__dirname, '..', '..', '.prettierrc'),
     );
     const formattedSidebarString = await prettier.format(
       sidebarString,
-      prettierConfig
+      prettierConfig,
     );
 
     fs.writeFileSync(destination, formattedSidebarString, 'utf-8');

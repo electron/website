@@ -31,8 +31,8 @@ ${files.join('\n')}`);
   if (localeModified) {
     logger.error(
       logger.red(
-        'Contents in "/i18n/en/" have been modified. Please add the changes to your commit'
-      )
+        'Contents in "/i18n/en/" have been modified. Please add the changes to your commit',
+      ),
     );
     process.exit(1);
   }
