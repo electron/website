@@ -56,7 +56,7 @@ const config: Config = {
   themes: ['@docusaurus/theme-mermaid'],
   i18n: {
     defaultLocale: 'en',
-    locales: ['en', 'de', 'es', 'fr', 'ja', 'pt', 'ru', 'zh'],
+    locales: ['en', 'de', 'es', 'fr', 'ja', 'ko', 'pt', 'ru', 'zh'],
     path: 'i18n',
     localeConfigs: {},
   },
