@@ -32,7 +32,7 @@ function isClass(
     | ModuleDocumentationContainer
     | ClassDocumentationContainer
     | StructureDocumentationContainer
-    | ElementDocumentationContainer
+    | ElementDocumentationContainer,
 ): api is ClassDocumentationContainer {
   return api.type === 'Class';
 }
@@ -46,7 +46,7 @@ function collectGlobals() {
     if (Object.keys(glossary.entries).includes(term)) return;
     glossary.set(
       term,
-      'This is a JavaScript built-in and should usually not be translated.'
+      'This is a JavaScript built-in and should usually not be translated.',
     );
   }
 }
@@ -63,7 +63,7 @@ async function collectElectronAPI() {
   for (const api of apis) {
     glossary.set(
       api.name,
-      `This is an Electron ${api.type} and should usually not be translated.`
+      `This is an Electron ${api.type} and should usually not be translated.`,
     );
   }
 
@@ -76,7 +76,7 @@ async function collectElectronAPI() {
         if (Object.keys(glossary.entries).includes(term)) continue;
         glossary.set(
           term,
-          'This is an Electron instance method and should usually not be translated.'
+          'This is an Electron instance method and should usually not be translated.',
         );
       }
 
@@ -86,7 +86,7 @@ async function collectElectronAPI() {
         if (Object.keys(glossary.entries).includes(term)) continue;
         glossary.set(
           term,
-          'This is an Electron instance property and should usually not be translated.'
+          'This is an Electron instance property and should usually not be translated.',
         );
       }
 
@@ -104,7 +104,7 @@ async function collectElectronAPI() {
         }
         glossary.set(
           term,
-          'This is an Electron instance event and should usually not be translated.'
+          'This is an Electron instance event and should usually not be translated.',
         );
       }
     }
@@ -146,11 +146,11 @@ async function main() {
   await collectElectronGlossary();
 
   logger.info(
-    `There are ${logger.green(glossary.size)} glossary entries to upload`
+    `There are ${logger.green(glossary.size)} glossary entries to upload`,
   );
   assert(
     glossary.size > 500,
-    'There should be at least 500 values in the Electron glossary'
+    'There should be at least 500 values in the Electron glossary',
   );
   logger.info('Converting glossary to CSV format');
   const csv = convertToCSV(Array.from(glossary));
@@ -160,7 +160,7 @@ async function main() {
 
     if (!process.env.CROWDIN_PERSONAL_TOKEN) {
       logger.error(
-        `Missing ${logger.red('CROWDIN_PERSONAL_TOKEN')} environment variable`
+        `Missing ${logger.red('CROWDIN_PERSONAL_TOKEN')} environment variable`,
       );
     }
     const glossaries = new Glossaries({
@@ -175,7 +175,7 @@ async function main() {
     logger.info('Uploading glossary.csv to Crowdin server storage');
     const response = await uploadStorage.addStorage(
       `glossary-${Date.now()}.csv`,
-      csv
+      csv,
     );
     const { id } = response.data;
 
@@ -189,7 +189,7 @@ async function main() {
       },
     });
     logger.info(
-      `✨ Done! See https://crowdin.com/resources/glossaries/${GLOSSARY_ID} for output.`
+      `✨ Done! See https://crowdin.com/resources/glossaries/${GLOSSARY_ID} for output.`,
     );
   } else {
     logger.info('Dry run triggered, logging CSV output');

@@ -53,7 +53,7 @@ async function transformer(tree: Parent, file: VFile) {
     }
     if (isLink(node) && node.url.includes('/api/structures/')) {
       return EXCLUDE_LIST.every(
-        (excludedFile) => !node.url.endsWith(`/api/structures/${excludedFile}`)
+        (excludedFile) => !node.url.endsWith(`/api/structures/${excludedFile}`),
       );
     }
     return false;
@@ -69,7 +69,7 @@ async function transformer(tree: Parent, file: VFile) {
 
   function replaceLinkWithPreview(
     node: Link | LinkReference,
-    parents: Parent[]
+    parents: Parent[],
   ) {
     // depending on if the node is a direct link or a reference-style link,
     // we get its URL differently.
@@ -112,7 +112,7 @@ async function transformer(tree: Parent, file: VFile) {
           // If we're running locally we might not have translations downloaded
           // so if we don't find it locally just supply the default locale
           const [_fullPath, locale, docPath] = relativeStructurePath.match(
-            /\/([a-z][a-z])\/docs\/(.*)/
+            /\/([a-z][a-z])\/docs\/(.*)/,
           );
           const defaultLocalePath = `/docs/${docPath}`;
           const localeDir = path.join(__dirname, '..', '..', 'i18n', locale);
@@ -128,8 +128,8 @@ async function transformer(tree: Parent, file: VFile) {
 
         reject(
           new Error(
-            `Timed out waiting for API structure content from ${relativeStructurePath}`
-          )
+            `Timed out waiting for API structure content from ${relativeStructurePath}`,
+          ),
         );
       }, 60_000);
 
@@ -155,7 +155,7 @@ async function transformer(tree: Parent, file: VFile) {
               const siblings = parents[parents.length - 1].children;
               const filtered = filter(
                 structureContent,
-                (node) => node.type !== 'heading'
+                (node) => node.type !== 'heading',
               );
               siblings.push(filtered);
             } else {
@@ -236,7 +236,7 @@ async function transformer(tree: Parent, file: VFile) {
             logger.error(err);
             // NOTE - if build starts failing, comment the throw out
             throw err;
-          })
+          }),
       );
     }
   }
@@ -269,7 +269,7 @@ async function transformer(tree: Parent, file: VFile) {
     // /i18n/de/docusaurus-plugin-content-docs/current/latest/api/structures/object.md
     if (isTranslatedDoc) {
       const [_fullPath, locale, docPath] = relativePath.match(
-        /\/i18n\/([a-z][a-z])\/docusaurus-plugin-content-docs\/current\/(.*)/
+        /\/i18n\/([a-z][a-z])\/docusaurus-plugin-content-docs\/current\/(.*)/,
       );
       relativePath = `/${locale}/docs/${docPath}`;
     }
@@ -279,7 +279,7 @@ async function transformer(tree: Parent, file: VFile) {
     // info for the structure (props + comments) by our conventions.
     const filteredTree = filter(tree, (node) => node.type !== 'mdxjsEsm');
     const headingIndex = filteredTree.children.findIndex(
-      (node) => node.type === 'heading' && (node as Heading).depth > 1
+      (node) => node.type === 'heading' && (node as Heading).depth > 1,
     );
     if (headingIndex > 0) {
       filteredTree.children = filteredTree.children.slice(0, headingIndex);

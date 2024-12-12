@@ -93,7 +93,7 @@ export default function FiddlePage() {
                 key={format}
                 className={clsx(
                   styles.responsiveButtonGroup,
-                  'button--sm margin-bottom--md'
+                  'button--sm margin-bottom--md',
                 )}
               >
                 {Object.entries(archmap).map(([arch, link]) => (
@@ -339,7 +339,7 @@ export default function FiddlePage() {
                         ))}
                       </div>
                     </div>
-                  )
+                  ),
                 )}
               </div>
             </div>

@@ -65,7 +65,7 @@ const saveContents = async (files: Entry[], destination: string) => {
  * @param options
  */
 const downloadFromGitHub = async (
-  options: DownloadOptions
+  options: DownloadOptions,
 ): Promise<Entry[]> => {
   const { org, repository, target, downloadMatch = '' } = options;
 
@@ -109,7 +109,7 @@ const downloadFromGitHub = async (
             })
             .on('finish', () => {
               resolve(contents);
-            })
+            }),
         );
     });
   });

@@ -47,7 +47,7 @@ module.exports = function myPlugin() {
       // saves to the `.docusaurus/` cache.
       const myFile = await actions.createData(
         `my-file.json`,
-        JSON.stringify(content) // content from above
+        JSON.stringify(content), // content from above
       );
       // adds the page as a route
       actions.addRoute({
