@@ -97,7 +97,7 @@ Pops up this menu as a context menu in the [`BaseWindow`](base-window.md).
 
 #### `menu.closePopup([window])`
 
-* `browserWindow` [BaseWindow](base-window.md) (optional) - Default is the focused window.
+* `window` [BaseWindow](base-window.md) (optional) - Default is the focused window.
 
 Closes the context menu in the `window`.
 

@@ -3,31 +3,12 @@ import path from 'node:path';
 
 import globby from 'globby';
 
-/**
- * RegExp use to match the old markdown format for fiddle
- * in `fiddleTransformer`.
- */
-const fiddleRegex = /^```javascript fiddle='docs\/(\S+)?'$/;
 const fiddlePathFixRegex = /```fiddle docs\//;
 
-/**
- * Updates the markdown fiddle format from:
- * ```
- * ```javascript fiddle='docs/fiddles/screen/fit-screen'
- * ```
- * To
- * ```
- * ```fiddle docs/latest/fiddles/example
- * ```
- * @param line
- */
 const fiddleTransformer = (line: string) => {
-  const matches = fiddleRegex.exec(line);
   const hasNewPath = fiddlePathFixRegex.test(line);
 
-  if (matches) {
-    return `\`\`\`fiddle docs/latest/${matches[1]}`;
-  } else if (hasNewPath) {
+  if (hasNewPath) {
     return (
       line
         .replace(fiddlePathFixRegex, '```fiddle docs/latest/')
@@ -144,16 +125,6 @@ export const fixContent = async (root: string, version = 'latest') => {
   const files = await globby(`${version}/**/*.md`, {
     cwd: root,
   });
-
-  /**
-   * Filenames in Electron docs are usually unique so best effort
-   * consist on using the filename (basename) to identify the right
-   * place where it should point.
-   */
-  const linksMaps = new Map();
-  for (const filePath of files) {
-    linksMaps.set(path.basename(filePath), filePath);
-  }
 
   for (const filePath of files) {
     const fullFilePath = path.join(root, filePath);

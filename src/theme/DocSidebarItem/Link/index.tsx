@@ -15,7 +15,7 @@ export default function DocSidebarItemLink({
   onItemClick,
   activePath,
   level,
-  index,
+  index, // eslint-disable-line @typescript-eslint/no-unused-vars
   ...props
 }: Props): JSX.Element {
   const { href, label, className, autoAddBaseUrl, customProps } = item;
