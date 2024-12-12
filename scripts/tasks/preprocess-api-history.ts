@@ -56,7 +56,7 @@ function findPossibleApiHistoryBlocks(tree: Root) {
       (node as LiteralString).value.toLowerCase().includes('history'),
     (node) => {
       codeBlocks.push(node as Html);
-    }
+    },
   );
 
   return codeBlocks;
@@ -65,7 +65,7 @@ function findPossibleApiHistoryBlocks(tree: Root) {
 function findValidApiHistoryBlocks(
   possibleHistoryBlocks: Html[],
   filePath: string,
-  validateAgainstSchema?: ValidateFunction<ApiHistory>
+  validateAgainstSchema?: ValidateFunction<ApiHistory>,
 ) {
   const validHistoryBlocks: Html[] = [];
 
@@ -79,8 +79,8 @@ function findValidApiHistoryBlocks(
       hasWarned = true;
       logger.warn(
         `(Skipping block) Error parsing possible history block (found null/undefined htmlComment) in ${logger.green(
-          filePath
-        )}`
+          filePath,
+        )}`,
       );
       continue;
     }
@@ -89,8 +89,8 @@ function findValidApiHistoryBlocks(
       hasWarned = true;
       logger.warn(
         `(Skipping block) Possible API History block is not in a HTML comment (${logger.green(
-          filePath
-        )})`
+          filePath,
+        )})`,
       );
       continue;
     }
@@ -103,8 +103,8 @@ function findValidApiHistoryBlocks(
       hasWarned = true;
       logger.warn(
         `(Skipping block) Error parsing possible history block (found null/undefined codeBlock) in ${logger.green(
-          filePath
-        )}`
+          filePath,
+        )}`,
       );
       continue;
     }
@@ -117,8 +117,8 @@ function findValidApiHistoryBlocks(
       hasWarned = true;
       logger.warn(
         `(Skipping block) Error parsing possible history block (codeBlock wasn't code, yaml, or history) in ${logger.green(
-          filePath
-        )}`
+          filePath,
+        )}`,
       );
       continue;
     }
@@ -131,8 +131,8 @@ function findValidApiHistoryBlocks(
       hasWarned = true;
       logger.warn(
         `(Skipping block) Error parsing YAML in possible history block (${logger.green(
-          filePath
-        )})`
+          filePath,
+        )})`,
       );
       continue;
     }
@@ -144,8 +144,8 @@ function findValidApiHistoryBlocks(
         hasWarned = true;
         logger.warn(
           `(Skipping block) Error validating YAML in possible history block (${logger.green(
-            filePath
-          )})`
+            filePath,
+          )})`,
         );
         continue;
       }
@@ -166,12 +166,12 @@ export const preprocessApiHistory = async (startPath: string) => {
     const ajv = new Ajv();
     const ApiHistorySchemaFile = await readFile(schema, 'utf-8');
     const ApiHistorySchema = JSON.parse(
-      ApiHistorySchemaFile
+      ApiHistorySchemaFile,
     ) as JSONSchemaType<ApiHistory>;
     validateAgainstSchema = ajv.compile(ApiHistorySchema);
   } catch (error) {
     logger.warn(
-      `Error reading API history schema, continuing without schema validation:\n${error}`
+      `Error reading API history schema, continuing without schema validation:\n${error}`,
     );
   }
 
@@ -185,7 +185,7 @@ export const preprocessApiHistory = async (startPath: string) => {
     const validHistoryBlocks = findValidApiHistoryBlocks(
       possibleHistoryBlocks,
       filePath,
-      validateAgainstSchema
+      validateAgainstSchema,
     );
 
     if (validHistoryBlocks.length === 0) continue;
@@ -202,8 +202,8 @@ export const preprocessApiHistory = async (startPath: string) => {
         hasWarned = true;
         logger.warn(
           `(Skipping block) Error extracting the API history block inside HTML comment in ${logger.green(
-            filePath
-          )}`
+            filePath,
+          )}`,
         );
         continue;
       }
@@ -217,18 +217,18 @@ export const preprocessApiHistory = async (startPath: string) => {
         hasWarned = true;
         logger.warn(
           `(Skipping block) Error getting the start and end position of the API history block in ${logger.green(
-            filePath
-          )}`
+            filePath,
+          )}`,
         );
         continue;
       }
 
       const start = newContent.substring(
         0,
-        validHistoryBlock.position.start.offset + fileLengthDifference
+        validHistoryBlock.position.start.offset + fileLengthDifference,
       );
       const end = newContent.substring(
-        validHistoryBlock.position.end.offset + fileLengthDifference
+        validHistoryBlock.position.end.offset + fileLengthDifference,
       );
 
       // Stripping the HTML comment tags of a history block will offset the position of the next history block

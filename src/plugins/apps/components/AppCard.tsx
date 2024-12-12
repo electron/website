@@ -21,7 +21,7 @@ export default function AppCard({
       className={clsx(
         styles.appCard,
         'card shadow--md',
-        isFavorite && styles.appCardFav
+        isFavorite && styles.appCardFav,
       )}
     >
       <div className={styles.forceLight}>

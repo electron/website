@@ -9,7 +9,7 @@ import { ReleasesPluginContent } from '../../../plugins/releases';
 export default function InstallSteps() {
   const [channel, setChannel] = useState('stable');
   const { stable, prerelease, nightly } = usePluginData(
-    'releases-plugin'
+    'releases-plugin',
   ) as ReleasesPluginContent;
   const releaseInfo = {
     stable: {
@@ -43,7 +43,7 @@ export default function InstallSteps() {
         <li
           className={clsx(
             'pills__item',
-            channel === 'stable' && 'pills__item--active'
+            channel === 'stable' && 'pills__item--active',
           )}
           onClick={() => setChannel('stable')}
         >
@@ -52,7 +52,7 @@ export default function InstallSteps() {
         <li
           className={clsx(
             'pills__item',
-            channel === 'prerelease' && 'pills__item--active'
+            channel === 'prerelease' && 'pills__item--active',
           )}
           onClick={() => setChannel('prerelease')}
         >
@@ -61,7 +61,7 @@ export default function InstallSteps() {
         <li
           className={clsx(
             'pills__item',
-            channel === 'nightly' && 'pills__item--active'
+            channel === 'nightly' && 'pills__item--active',
           )}
           onClick={() => setChannel('nightly')}
         >

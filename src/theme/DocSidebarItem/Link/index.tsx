@@ -27,7 +27,7 @@ export default function DocSidebarItemLink({
         ThemeClassNames.docs.docSidebarItemLink,
         ThemeClassNames.docs.docSidebarItemLinkLevel(level),
         'menu__list-item',
-        className
+        className,
       )}
       key={label}
     >
@@ -38,7 +38,7 @@ export default function DocSidebarItemLink({
           !isInternalLink && styles.menuExternalLink,
           {
             'menu__link--active': isActive,
-          }
+          },
         )}
         autoAddBaseUrl={autoAddBaseUrl}
         aria-current={isActive ? 'page' : undefined}

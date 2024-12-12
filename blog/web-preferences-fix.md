@@ -46,12 +46,12 @@ const enforceInheritance = (topWebContents) => {
         }
         Object.assign(
           options.webPreferences,
-          topWebContents.getLastWebPreferences()
+          topWebContents.getLastWebPreferences(),
         );
         if (options.webContents) {
           handle(options.webContents);
         }
-      }
+      },
     );
   };
   handle(topWebContents);

@@ -32,7 +32,7 @@ export default function AppsGrid({ list }: AppsGridProps) {
                 className={clsx(
                   'avatar__photo',
                   styles.appLogo,
-                  isDarkTheme && item.isMonochrome && styles.darkModeInvert
+                  isDarkTheme && item.isMonochrome && styles.darkModeInvert,
                 )}
                 src={item.image}
                 alt={''}

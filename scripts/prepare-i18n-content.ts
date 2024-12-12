@@ -22,7 +22,7 @@ const start = async () => {
       'i18n',
       locale,
       'docusaurus-plugin-content-docs',
-      'current'
+      'current',
     );
     const staticResources = ['fiddles', 'images'];
 
@@ -31,7 +31,7 @@ const start = async () => {
       await fs.cp(
         path.join(DOCS_FOLDER, staticResource),
         path.join(localeDocs, 'latest', staticResource),
-        { recursive: true }
+        { recursive: true },
       );
     }
 

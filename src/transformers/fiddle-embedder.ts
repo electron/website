@@ -63,7 +63,7 @@ async function transformer(tree: Parent) {
 
   function generateFiddleEmbed(
     node: Code,
-    ancestors: Parent[]
+    ancestors: Parent[],
   ): ActionTuple | void {
     const parent = ancestors[0];
     // Supported formats are fiddle='<folder>|<option>|option'
@@ -83,7 +83,7 @@ async function transformer(tree: Parent) {
   }
 
   function parseFiddleEmbedOptions(
-    optStrings: string[]
+    optStrings: string[],
   ): Partial<FiddleEmbedOptions> {
     // If there are optional parameters, parse them out to pass to the getFiddleAST method.
     return optStrings.reduce((opts, option) => {
@@ -103,7 +103,7 @@ async function transformer(tree: Parent) {
   function createFiddleAST(
     dir: string,
     version: string,
-    { focus = 'main.js' }: Partial<FiddleEmbedOptions>
+    { focus = 'main.js' }: Partial<FiddleEmbedOptions>,
   ) {
     const files = {};
     const children = [];
@@ -116,8 +116,8 @@ async function transformer(tree: Parent) {
     if (!fileNames.includes(focus)) {
       throw new Error(
         `Provided focus (${focus}) is not an available file in this fiddle (${dir}). Available files are [${fileNames.join(
-          ', '
-        )}]`
+          ', ',
+        )}]`,
       );
     }
 
