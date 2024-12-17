@@ -70,37 +70,37 @@ function Community() {
           The Electron community spans the globe, and English is not
           everyone&apos;s first language. Find documentation in your language on
           this website, or join one of the language communities below:
-          <ul>
-            <li>
-              <a href="https://discord.gg/eZTKXHBKpK">electron-zh</a>{' '}
-              <i>(Chinese)</i>
-            </li>
-            <li>
-              <a href="https://telegram.me/electron_ru">electron-ru</a>{' '}
-              <i>(Russian)</i>
-            </li>
-            <li>
-              <a href="https://electron-br.slack.com/">electron-br</a>{' '}
-              <i>(Brazilian Portuguese)</i>
-            </li>
-            <li>
-              <a href="https://electron-jp.slack.com/">electron-jp</a>{' '}
-              <i>(Japanese)</i>
-            </li>
-            <li>
-              <a href="https://electron-tr.herokuapp.com/">electron-tr</a>{' '}
-              <i>(Turkish)</i>
-            </li>
-            <li>
-              <a href="https://electron-id.slack.com/">electron-id</a>{' '}
-              <i>(Indonesian)</i>
-            </li>
-            <li>
-              <a href="https://electronpl.github.io/">electron-pl</a>{' '}
-              <i>(Polish)</i>
-            </li>
-          </ul>
         </p>
+        <ul>
+          <li>
+            <a href="https://discord.gg/eZTKXHBKpK">electron-zh</a>{' '}
+            <i>(Chinese)</i>
+          </li>
+          <li>
+            <a href="https://telegram.me/electron_ru">electron-ru</a>{' '}
+            <i>(Russian)</i>
+          </li>
+          <li>
+            <a href="https://electron-br.slack.com/">electron-br</a>{' '}
+            <i>(Brazilian Portuguese)</i>
+          </li>
+          <li>
+            <a href="https://electron-jp.slack.com/">electron-jp</a>{' '}
+            <i>(Japanese)</i>
+          </li>
+          <li>
+            <a href="https://electron-tr.herokuapp.com/">electron-tr</a>{' '}
+            <i>(Turkish)</i>
+          </li>
+          <li>
+            <a href="https://electron-id.slack.com/">electron-id</a>{' '}
+            <i>(Indonesian)</i>
+          </li>
+          <li>
+            <a href="https://electronpl.github.io/">electron-pl</a>{' '}
+            <i>(Polish)</i>
+          </li>
+        </ul>
       </div>
     </Layout>
   );
