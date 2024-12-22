@@ -138,10 +138,9 @@ export const FEATURED_APPS: FeaturedApp[] = [
     href: 'https://splice.com/',
   },
   {
-    name: 'Tidal',
-    image: '/assets/apps/tidal.svg',
-    href: 'https://tidal.com',
-    isMonochrome: true,
+    name: 'Screen Studio',
+    image: '/assets/apps/screen-studio.png',
+    href: 'https://screen.studio',
   },
   {
     name: 'Trello',
