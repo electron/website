@@ -1,6 +1,6 @@
 ---
 title: Moving our Ecosystem to Node 22
-date: 2024-12-02T00:00:00.000Z
+date: 2025-01-07T00:00:00.000Z
 authors: VerteDinde
 slug: ecosystem-node-22
 tags: [community, ecosystem]
