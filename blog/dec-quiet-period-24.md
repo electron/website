@@ -11,21 +11,8 @@ tags: [news]
 
 The Electron project will pause for the month of December 2024, then return to full speed in January 2025.
 
-<div style={{
-   position: "relative",
-   paddingBottom: "54%",
-   height: 0,
-   overflow: "hidden",
-   maxWidth: "100%",
-   height: "auto"
-}}>
-    <iframe src="https://giphy.com/embed/3otPoSDQczp1s9kVAQ" width="480" height="259" frameBorder="0" class="giphy-embed" allowFullScreen style={{
-      position: "absolute",
-      top: 0,
-      left: 0,
-      width: "100%",
-      height: "100%"
-    }}></iframe>
+<div style={{ width: "100%", height: 0, paddingBottom: "54%", position: "relative" }}>
+  <iframe src="https://giphy.com/embed/3otPoSDQczp1s9kVAQ" width="100%" height="100%" style={{ position: "absolute" }} frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 </div>
 <p><a href="https://giphy.com/gifs/filmeditor-disney-pixar-3otPoSDQczp1s9kVAQ">via GIPHY</a></p>
 
