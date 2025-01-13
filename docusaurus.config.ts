@@ -83,6 +83,12 @@ const config: Config = {
       },
       items: [
         {
+          label: 'Why Electron',
+          type: 'doc',
+          docId: 'latest/why-electron',
+          position: 'left',
+        },
+        {
           label: 'Docs',
           type: 'doc',
           docId: 'latest/tutorial/introduction',
@@ -143,7 +149,7 @@ const config: Config = {
           items: [
             {
               label: 'Getting Started',
-              to: '/docs/latest/',
+              to: '/w/',
             },
             {
               label: 'API Reference',
