@@ -1,12 +1,12 @@
 ---
 title: Electron 34.0.0
 date: 2025-01-14T00:00:00.000Z
-authors: vertedinde
+authors: VerteDinde
 slug: electron-34-0
 tags: [release]
 ---
 
-Electron 34.0.0 has been released! It includes upgrades to Chromium 132.0.6834.83, V8 13.2, and Node 20.18.0.
+Electron 34.0.0 has been released! It includes upgrades to Chromium 132.0.6834.83, V8 13.2, and Node 20.18.1.
 
 ---
 
@@ -26,11 +26,11 @@ If you have any feedback, please share it with us on [Bluesky](https://bsky.app/
 - Chromium `132.0.6834.83`
   - [New in 131](https://developer.chrome.com/blog/new-in-chrome-131/)
   - [New in 132](https://developer.chrome.com/blog/new-in-chrome-132/)
-- Node `20.18.0`
-  - [Node 20.18.0 blog post](https://nodejs.org/en/blog/release/v20.18.0/)
+- Node `20.18.1`
+  - [Node 20.18.1 blog post](https://nodejs.org/en/blog/release/v20.18.1/)
 - V8 `13.2`
 
-Electron 34 upgrades Chromium from `130.0.6723.44` to `130.0.6723.44`, kept Node at `20.18.0`, and upgraded V8 from `13.0` to `13.2`.
+Electron 34 upgrades Chromium from `130.0.6723.44` to `130.0.6723.44`, Node from `20.18.0` to `20.18.1`, and V8 from `13.0` to `13.2`.
 
 ### New Features
 
