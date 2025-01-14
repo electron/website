@@ -30,7 +30,7 @@ If you have any feedback, please share it with us on [Bluesky](https://bsky.app/
   - [Node 20.18.1 blog post](https://nodejs.org/en/blog/release/v20.18.1/)
 - V8 `13.2`
 
-Electron 34 upgrades Chromium from `130.0.6723.44` to `130.0.6723.44`, Node from `20.18.0` to `20.18.1`, and V8 from `13.0` to `13.2`.
+Electron 34 upgrades Chromium from `130.0.6723.44` to `132.0.6834.83`, Node from `20.18.0` to `20.18.1`, and V8 from `13.0` to `13.2`.
 
 ### New Features
 
