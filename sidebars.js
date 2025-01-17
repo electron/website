@@ -5,6 +5,7 @@ module.exports = {
       label: 'Get Started',
       items: [
         'latest/tutorial/introduction',
+        'latest/why-electron',
         {
           type: 'category',
           label: 'Tutorial',
