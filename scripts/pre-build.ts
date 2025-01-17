@@ -12,7 +12,6 @@ import logger from '@docusaurus/logger';
 
 import { copy, download } from './tasks/download-docs';
 import { addFrontmatterToAllDocs } from './tasks/add-frontmatter';
-import { createSidebar } from './tasks/create-sidebar';
 import { fixContent } from './tasks/md-fixers';
 import { copyNewContent } from './tasks/copy-new-content';
 import { preprocessApiHistory } from './tasks/preprocess-api-history';
@@ -76,9 +75,6 @@ const start = async (source: string): Promise<void> => {
 
   logger.info('Adding automatic frontmatter');
   await addFrontmatterToAllDocs(DOCS_FOLDER);
-
-  logger.info('Updating website sidebar');
-  await createSidebar('docs', path.join(process.cwd(), 'sidebars.js'));
 };
 
 start(process.argv[2]);
