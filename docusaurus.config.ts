@@ -120,13 +120,14 @@ const config: Config = {
           position: 'right',
         },
         {
-          href: 'https://github.com/electron/electron',
-          label: 'GitHub',
+          type: 'localeDropdown',
           position: 'right',
         },
         {
-          type: 'localeDropdown',
+          href: 'https://github.com/electron/electron',
           position: 'right',
+          className: 'header-github-link',
+          'aria-label': 'GitHub repository',
         },
       ],
     },
