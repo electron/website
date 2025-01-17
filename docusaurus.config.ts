@@ -83,12 +83,6 @@ const config: Config = {
       },
       items: [
         {
-          label: 'Why Electron',
-          type: 'doc',
-          docId: 'latest/why-electron',
-          position: 'left',
-        },
-        {
           label: 'Docs',
           type: 'doc',
           docId: 'latest/tutorial/introduction',
@@ -119,6 +113,12 @@ const config: Config = {
             { to: 'apps', label: 'Showcase' },
             { to: 'community', label: 'Resources' },
           ],
+        },
+        {
+          label: 'Why Electron',
+          type: 'doc',
+          docId: 'latest/why-electron',
+          position: 'left',
         },
         {
           href: 'https://releases.electronjs.org',
