@@ -114,7 +114,7 @@
     ]
   },
   "lint-staged": {
-    "*.{html,json,md,yml}": "prettier --write",
+    "*.{html,json,md,yml,css,scss}": "prettier --write",
     "*.{js,jsx,ts,tsx}": [
       "prettier --write",
       "eslint --fix"
