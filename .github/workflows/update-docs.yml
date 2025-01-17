@@ -30,7 +30,7 @@ jobs:
             core.setOutput('major', latestStable.major);
   update-docs:
     runs-on: ubuntu-latest
-    environment: docs-updater
+    # environment: docs-updater
     needs: get-latest-stable
     if: ${{ startsWith(github.event.inputs.version, format('v{0}', needs.get-latest-stable.outputs.major)) }}
     steps:
