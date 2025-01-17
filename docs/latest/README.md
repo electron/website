@@ -28,7 +28,6 @@ an issue:
 ### Getting started
 
 * [Introduction](tutorial/introduction.md)
-* [Quick Start](tutorial/quick-start.md)
 * [Process Model](tutorial/process-model.md)
 
 ### Learning the basics
