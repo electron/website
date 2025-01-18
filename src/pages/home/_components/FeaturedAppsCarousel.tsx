@@ -21,7 +21,7 @@ export default function FeaturedAppsCarousel({
   return (
     <div className={clsx(styles.section)}>
       <div style={{ textAlign: 'center', marginBottom: '6rem' }}>
-        <h2>Trusted by best-in-class apps</h2>
+        <h2 className={styles.heading}>Trusted by best-in-class apps</h2>
         <p>
           {
             'Popular consumer and rock-solid enterprise apps use Electron to power their desktop experiences.'
