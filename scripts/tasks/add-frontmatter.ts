@@ -1,8 +1,6 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-import globby from 'globby';
-
 /*
   To make `/docs/latest` have content we need to set the
   slug of a particular page to `/latest/`. `START_PAGE` is how we
@@ -16,10 +14,10 @@ const START_PAGE = 'tutorial/introduction.md';
  * @returns A Map of file paths and their corresponding file contents
  */
 const getMarkdownFiles = async (startPath: string) => {
-  const filesPaths = await globby(path.posix.join(startPath, '**/*.md'));
+  const filesPaths = fs.glob(path.posix.join(startPath, '**/*.md'));
 
   const files = new Map();
-  for (const filePath of filesPaths) {
+  for await (const filePath of filesPaths) {
     const content = await fs.readFile(filePath, 'utf-8');
     files.set(filePath, content);
   }

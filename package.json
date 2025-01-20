@@ -75,7 +75,6 @@
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-react": "^7.28.0",
     "execa": "^5.0.0",
-    "globby": "^11.0.3",
     "gray-matter": "^4.0.3",
     "gunzip-maybe": "^1.4.2",
     "hast-util-from-html": "^2.0.1",
