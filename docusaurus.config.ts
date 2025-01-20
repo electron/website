@@ -61,6 +61,14 @@ const config: Config = {
     localeConfigs: {},
   },
   themeConfig: {
+    announcementBar: {
+      id: 'node22_upgrade',
+      content:
+        'Soon, <strong><code>@electron</code></strong> packages on npm will require Node.js 22 LTS. <a href="https://www.electronjs.org/blog/ecosystem-node-22/">Read more on our blog.</a>',
+      isCloseable: true,
+      textColor: '#1b1c26',
+      backgroundColor: '#9feaf9',
+    },
     colorMode: {
       //Default to light or dark depending on system theme.
       respectPrefersColorScheme: true,
