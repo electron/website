@@ -46,19 +46,19 @@ module.exports = {
         {
           type: 'doc',
           id: 'latest/tutorial/in-app-purchases',
-          customProps: { tags: ['mac'] },
+          customProps: { platforms: ['mac'] },
         },
         'latest/tutorial/keyboard-shortcuts',
         'latest/tutorial/launch-app-from-url-in-another-app',
         {
           type: 'doc',
           id: 'latest/tutorial/linux-desktop-actions',
-          customProps: { tags: ['linux'] },
+          customProps: { platforms: ['linux'] },
         },
         {
           type: 'doc',
           id: 'latest/tutorial/macos-dock',
-          customProps: { tags: ['mac'] },
+          customProps: { platforms: ['mac'] },
         },
         'latest/tutorial/multithreading',
         'latest/tutorial/native-file-drag-drop',
@@ -70,12 +70,12 @@ module.exports = {
         {
           type: 'doc',
           id: 'latest/tutorial/recent-documents',
-          customProps: { tags: ['mac', 'windows'] },
+          customProps: { platforms: ['mac', 'windows'] },
         },
         {
           type: 'doc',
           id: 'latest/tutorial/represented-file',
-          customProps: { tags: ['mac'] },
+          customProps: { platforms: ['mac'] },
         },
         'latest/tutorial/spellchecker',
         'latest/tutorial/tray',
@@ -83,7 +83,7 @@ module.exports = {
         {
           type: 'doc',
           id: 'latest/tutorial/windows-taskbar',
-          customProps: { tags: ['windows'] },
+          customProps: { platforms: ['windows'] },
         },
         {
           type: 'category',
@@ -228,7 +228,11 @@ module.exports = {
         'latest/api/app',
         'latest/api/auto-updater',
         'latest/api/base-window',
-        'latest/api/browser-view',
+        {
+          type: 'doc',
+          id: 'latest/api/browser-view',
+          customProps: { deprecated: true },
+        },
         'latest/api/browser-window',
         'latest/api/clipboard',
         'latest/api/content-tracing',

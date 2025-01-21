@@ -24,9 +24,10 @@ passed in, so we must Swizzle.
 
 See: https://docusaurus.io/docs/sidebar#passing-custom-props
 
-The `customProps` object will accept a `tags` property of type
-`Array<'mac'|'windows'|'linux'>`. These will be rendered as SVG icons that are
-stored as static assets in `static/assets/img/`.
+The `customProps` object will accept:
+
+A `platforms` property of type `Array<'mac'|'windows'|'linux'>`.
+These will be rendered as SVG icons that are stored as static assets in `static/assets/img/`.
 
 ```js
 // sidebars.js
@@ -34,7 +35,21 @@ stored as static assets in `static/assets/img/`.
   type: 'doc',
   id: 'doc1',
   customProps: {
-    tags: ['mac', 'windows', 'linux']
+    platforms: ['mac', 'windows', 'linux']
+  },
+};
+```
+
+A `deprecated` property of type `boolean`. This will mark a specific API as deprecated in the
+sidebar if the entire module is deprecated.
+
+```js
+// sidebars.js
+{
+  type: 'doc',
+  id: 'doc2',
+  customProps: {
+    deprecated: true
   },
 };
 ```
