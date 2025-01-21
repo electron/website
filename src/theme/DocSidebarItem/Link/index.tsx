@@ -53,18 +53,29 @@ export default function DocSidebarItemLink({
 
         {
           // BEGIN SWIZZLED CODE
-          isStringArray(customProps?.tags) && (
-            <ul className={styles.tagContainer}>
-              {customProps.tags.map((tag) => (
-                <li
-                  className={clsx('badge', styles.badge, styles[tag])}
-                  key={tag}
-                >
-                  <TagContent platform={tag} />
-                </li>
-              ))}
-            </ul>
-          )
+        }
+        {isStringArray(customProps?.platforms) && (
+          <ul className={styles.tagContainer}>
+            {customProps.platforms.map((tag) => (
+              <li
+                className={clsx('badge', styles.badge, styles[tag])}
+                key={tag}
+              >
+                <TagContent platform={tag} />
+              </li>
+            ))}
+          </ul>
+        )}
+
+        {customProps?.deprecated && (
+          <ul className={styles.tagContainer}>
+            <li className={clsx('badge', styles.badge2, styles.deprecated)}>
+              Deprecated
+            </li>
+          </ul>
+        )}
+
+        {
           // END SWIZZLED CODE
         }
       </Link>
