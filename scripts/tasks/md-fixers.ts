@@ -1,8 +1,6 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-import globby from 'globby';
-
 const fiddlePathFixRegex = /```fiddle docs\//;
 
 const fiddleTransformer = (line: string) => {
@@ -122,11 +120,11 @@ const fixReturnLines = (content: string) => {
  * @param version
  */
 export const fixContent = async (root: string, version = 'latest') => {
-  const files = await globby(`${version}/**/*.md`, {
+  const files = fs.glob(`${version}/**/*.md`, {
     cwd: root,
   });
 
-  for (const filePath of files) {
+  for await (const filePath of files) {
     const fullFilePath = path.join(root, filePath);
     const content = await fs.readFile(fullFilePath, 'utf-8');
 

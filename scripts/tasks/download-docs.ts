@@ -4,7 +4,6 @@ import stream from 'node:stream';
 import type { ReadableStream } from 'node:stream/web';
 
 import tar from 'tar-stream';
-import globby from 'globby';
 
 interface DownloadOptions {
   /** The GitHub organization to download the contents from */
@@ -144,13 +143,13 @@ export const copy = async ({
   destination,
   copyMatch = '.',
 }: CopyOptions) => {
-  const filesPaths = await globby(`${copyMatch}/**/*`, {
+  const filesPaths = fs.glob(`${copyMatch}/**/*`, {
     cwd: target,
   });
 
   const contents = [];
 
-  for (const filePath of filesPaths) {
+  for await (const filePath of filesPaths) {
     const content = {
       filename: filePath.replace(`${copyMatch}/`, ''),
       content: await fs.readFile(path.join(target, filePath)),

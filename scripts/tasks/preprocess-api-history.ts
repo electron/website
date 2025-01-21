@@ -1,8 +1,9 @@
+import fs from 'node:fs/promises';
+
 import logger from '@docusaurus/logger';
 import Ajv, { JSONSchemaType, ValidateFunction } from 'ajv';
 import { readFile, writeFile } from 'fs/promises';
 import { fromHtml } from 'hast-util-from-html';
-import globby from 'globby';
 import type { Html, Root } from 'mdast';
 import { fromMarkdown } from 'mdast-util-from-markdown';
 import path from 'path';
@@ -32,10 +33,10 @@ let hasWarned = false;
 
 // Copied from here: <https://github.com/electron/website/blob/feat/api-history/scripts/tasks/add-frontmatter.ts#L16-L23>
 const getMarkdownFiles = async (startPath: string) => {
-  const filesPaths = await globby(path.posix.join(startPath, 'api', '/*.md'));
+  const filesPaths = fs.glob(path.posix.join(startPath, 'api', '/*.md'));
 
   const files: Map<string, string> = new Map();
-  for (const filePath of filesPaths) {
+  for await (const filePath of filesPaths) {
     const content = await readFile(filePath, 'utf-8');
     files.set(filePath, content);
   }
