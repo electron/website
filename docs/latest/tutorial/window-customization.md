@@ -1,9 +1,11 @@
 ---
 title: "Window Customization"
-description: "The BrowserWindow module is the foundation of your Electron application, and it exposes many APIs that let you customize the look and behavior of your app’s windows. This section covers how to implement various use cases for window customization on macOS, Windows, and Linux."
+description: "import DocCardList from '@theme/DocCardList';"
 slug: window-customization
 hide_title: false
 ---
+
+import DocCardList from '@theme/DocCardList';
 
 # Window Customization
 
@@ -12,15 +14,15 @@ it exposes many APIs that let you customize the look and behavior of your app’
 This section covers how to implement various use cases for window customization on macOS,
 Windows, and Linux.
 
-:::info
+> [!NOTE]
+> `BrowserWindow` is a subclass of the [`BaseWindow`][] module. Both modules allow
+> you to create and manage application windows in Electron, with the main difference
+> being that `BrowserWindow` supports a single, full size web view while `BaseWindow`
+> supports composing many web views. `BaseWindow` can be used interchangeably with `BrowserWindow`
+> in the examples of the documents in this section.
 
-`BrowserWindow` is a subclass of the [`BaseWindow`][] module. Both modules allow
-you to create and manage application windows in Electron, with the main difference
-being that `BrowserWindow` supports a single, full size web view while `BaseWindow`
-supports composing many web views. `BaseWindow` can be used interchangeably with `BrowserWindow`
-in the examples of the documents in this section.
-
-:::
+ <!-- markdownlint-disable-next-line MD033 -->
+<DocCardList />
 
 [`BaseWindow`]: ../api/base-window.md
 [`BrowserWindow`]: ../api/browser-window.md
