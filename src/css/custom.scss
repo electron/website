@@ -107,10 +107,10 @@
   }
 }
 
-.theme-doc-markdown {
-  max-width: 700px;
-  margin: 0 auto;
-  margin-top: 2rem;
+@media (min-width: 1440px) {
+  .container {
+    max-width: var(--ifm-container-width);
+  }
 }
 
 .navbar {
