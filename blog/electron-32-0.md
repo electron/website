@@ -100,6 +100,10 @@ win.webContents.navigationHistory.canGoToOffset();
 win.webContents.navigationHistory.goToOffset(index);
 ```
 
+#### Behavior changed: Directory `databases` in `userData` will be deleted
+
+If you have a directory called `databases` in the directory returned by `app.getPath('userData')`, it will be deleted when Electron 32 is first run. The `databases` directory was used by WebSQL, which was removed in Electron 31. Chromium now performs a cleanup that deletes this directory. See [issue #45396](https://github.com/electron/electron/issues/45396).
+
 ## End of Support for 29.x.y
 
 Electron 29.x.y has reached end-of-support as per the project's [support policy](https://www.electronjs.org/docs/latest/tutorial/electron-timelines#version-support-policy). Developers and applications are encouraged to upgrade to a newer version of Electron.
