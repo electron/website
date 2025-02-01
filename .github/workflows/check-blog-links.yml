@@ -23,7 +23,7 @@ jobs:
         run: yarn install
       - name: Check for changed blog posts
         id: check-for-changed-blog-posts
-        uses: tj-actions/changed-files@bab30c2299617f6615ec02a68b9a40d10bd21366 # v45.0.5
+        uses: tj-actions/changed-files@d6e91a2266cdb9d62096cebf1e8546899c6aa18f # v45.0.6
         with:
           files: blog/*.md
       - name: Check blog post links
