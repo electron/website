@@ -52,7 +52,7 @@ or later will be required to run Electron v33.0.0 and higher.
 
 #### Behavior Changed: Native modules now require C++20
 
-Due to changes made upstream, both [V8](https://chromium-review.googlesource.com/c/v8/v8/+/5587859) and [Node.js](https://github.com/nodejs/node/pull/45427) now require C++20 as a minimum version. Developers using native node modules should build their modiles with `--std=c++20` rather than `--std=c++17`. Images using gcc9 or lower may need to update to gcc10 in order to compile. See [#43555](https://github.com/electron/electron/pull/43555) for more details.
+Due to changes made upstream, both [V8](https://chromium-review.googlesource.com/c/v8/v8/+/5587859) and [Node.js](https://github.com/nodejs/node/pull/45427) now require C++20 as a minimum version. Developers using native node modules should build their modules with `--std=c++20` rather than `--std=c++17`. Images using gcc9 or lower may need to update to gcc10 in order to compile. See [#43555](https://github.com/electron/electron/pull/43555) for more details.
 
 #### Behavior Changed: custom protocol URL handling on Windows
 
