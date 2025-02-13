@@ -5,23 +5,23 @@
   text-decoration-line: underline;
   text-decoration-style: dotted;
   text-underline-offset: 4px;
-  margin-right: 16px;
+  margin-right: 20px;
   position: relative;
   overflow: visible;
 
   &::after {
     content: 'i';
     color: var(--tooltip-color);
-    border: 1px solid var(--tooltip-color);
-    border-radius: 20px;
-    width: 1.6em;
-    max-height: 55%; // this value should be (1 / line-height) of .markdown p (see custom.scss)
-    font-size: 50%;
+    border: 1.3px solid var(--tooltip-color);
+    border-radius: 30px;
+    width: 1.3em;
+    max-height: 50%;
+    font-size: 70%;
+    font-weight: bolder;
     text-align: center;
     position: absolute;
     left: calc(100% + 0.1em);
-    top: 0.5em;
-    margin: 2px;
+    top: 0.6em;
     display: flex;
     align-items: center;
     justify-content: center;
