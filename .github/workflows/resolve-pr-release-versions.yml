@@ -21,7 +21,7 @@ jobs:
       - name: Restore previous run data
         uses: dawidd6/action-download-artifact@20319c5641d495c8a52e688b7dc5fada6c3a9fbc # v8
         with:
-          name: resolved-pr-versions
+          name: resolved-pr-versions-test # TODO: Change to resolved-pr-versions
           if_no_artifact_found: ignore
           workflow_conclusion: 'completed'
           search_artifacts: true
@@ -37,33 +37,9 @@ jobs:
             const getBackportPattern = () =>
               /(?:^|\n)(?:manual |manually )?backport (?:of )?(?:#(\d+)|https:\/\/github.com\/.*\/pull\/(\d+))/gim;
 
-            const BOOTSTRAP_DATA_URL = 'https://gist.githubusercontent.com/dsanders11/eb51a04d04a6a3e0710d88db5250e698/raw/fd960b6dea1152b55427407646044f1ba187e52b/data.json';
             const MIN_MAJOR = 10;
+            const PREVIOUS_RELEASE_COUNT = 4;
             const RELEASE_MAX_PAGINATION_COUNT = 100;
-            const NEW_RELEASES_QUERY = `query($endCursor: String, $count: Int!) {
-              rateLimit {
-                limit
-                remaining
-                used
-                resetAt
-              }
-              repository(owner: "electron", name: "electron") {
-                releases: refs(
-                  refPrefix: "refs/tags/",
-                  after: $endCursor,
-                  first: $count,
-                  orderBy: {field: TAG_COMMIT_DATE, direction: ASC}
-                ) {
-                  pageInfo {
-                    endCursor
-                    hasNextPage
-                  }
-                  nodes {
-                    name
-                  }
-                }
-              }
-            }`;
             const RELEASE_PRS_QUERY = `query($releaseHeadRef: String!, $previousRelease: String!, $endCursor: String) {
               rateLimit {
                 limit
@@ -118,34 +94,66 @@ jobs:
               return;
             }
 
-            const filename = 'data.json';
-            let data = { endCursor: undefined, data: {} };
+            const filename = 'data-test.json'; // TODO: Change to data.json
+            let data = { lastProcessedRelease: undefined, data: {} };
 
             try {
-              data = JSON.parse(await fs.readFile(filename));
+              data = JSON.parse(await fs.readFile(filename, "utf-8"));
             } catch (err) {
               if (err.code !== 'ENOENT') {
                 throw err;
-              } else {
-                core.debug('Previous data not found, bootstrapping');
-                const resp = await fetch(BOOTSTRAP_DATA_URL);
-                data = await resp.json();
               }
             }
 
             const { versions } = await ElectronVersions.create(undefined, { ignoreCache: true });
 
             try {
-              while (true) {
-                const { rateLimit: rateLimitA, repository: { releases } } = await github.graphql(NEW_RELEASES_QUERY, { endCursor: data.endCursor, count: maxReleaseCount === 0 ? RELEASE_MAX_PAGINATION_COUNT : maxReleaseCount });
-                core.debug(rateLimitA);
+              let minPreviousReleaseIdx = undefined;
 
-                if (releases.nodes.length === 0) {
+              const latestReleaseVersion = versions.at(-1)?.major
+              if (latestReleaseVersion != null) {
+                const previousMinReleaseMajorVersion = latestReleaseVersion - PREVIOUS_RELEASE_COUNT;
+                // ? Do we process the nightlies for the min version too?
+                let _minPreviousReleaseIdx = versions.findIndex(({ version }) => version === previousMinReleaseMajorVersion + ".0.0");
+                if (_minPreviousReleaseIdx !== -1) {
+                  minPreviousReleaseIdx = _minPreviousReleaseIdx;
+                }
+              }
+
+              if (minPreviousReleaseIdx == undefined) {
+                // Maybe don't bother since anything below MIN_MAJOR will get skipped anyway?
+                core.warning("Could not find minimum release, processing all releases after MIN_MAJOR instead")
+                let minMajorIdx = versions.findIndex(({ version }) => version === MIN_MAJOR + ".0.0");
+                if (minMajorIdx !== -1) {
+                  minPreviousReleaseIdx = minMajorIdx;
+                } else {
+                  core.warning("Could not find MIN_MAJOR in all releases, processing all releases instead");
+                  minPreviousReleaseIdx = 0;
+                }
+              }
+
+              const allReleases = versions.slice(minPreviousReleaseIdx);
+
+              while (true) {
+                const lastProcessedReleaseIdx = data.lastProcessedRelease !== undefined ? allReleases.findIndex(({ version }) => version === data.lastProcessedRelease) : null
+                if (lastProcessedReleaseIdx === -1) {
+                  core.error("Could not find the last processed release in all releases");
+                  break;
+                }
+                const releaseCount = maxReleaseCount === 0 ? RELEASE_MAX_PAGINATION_COUNT : maxReleaseCount;
+                // Exclude the last processed release, equal to 0 if there is none so we can process from the start.
+                const idxAfterLastProcessedRelease = (lastProcessedReleaseIdx ?? -1) + 1;
+                // idxAfterLastProcessedRelease will be out of bounds if we've already processed the latest release,
+                //  but passing an out of bounds index to splice results in an empty array which is what we want.
+                const releases = allReleases.slice(idxAfterLastProcessedRelease, idxAfterLastProcessedRelease + releaseCount);
+
+                if (releases.length === 0) {
                   core.notice('No new releases to process');
                   break;
                 }
 
-                for (const { name: tagName } of releases.nodes) {
+                for (const { version: _tagName } of releases) {
+                  const tagName = 'v' + _tagName;
                   const parsedVersion = semver.parse(tagName);
 
                   if (parsedVersion === null) {
@@ -236,11 +244,14 @@ jobs:
                 // Only update this after all releases have been processed,
                 // and make sure it's not null which would happen if there
                 // were no new releases to process during the run
-                if (releases.pageInfo.endCursor !== null) {
-                  data.endCursor = releases.pageInfo.endCursor;
+                const lastReleaseVersion = releases.at(-1)?.version;
+                if (lastReleaseVersion !== undefined) {
+                  // @ts-ignore
+                  data.lastProcessedRelease = lastReleaseVersion;
                 }
 
-                if (releases.pageInfo.hasNextPage && maxReleaseCount === 0) {
+                // Check if we haven't processed all releases yet
+                if ((idxAfterLastProcessedRelease + releaseCount) < allReleases.length && maxReleaseCount === 0) {
                   continue;
                 } else {
                   break;
@@ -257,5 +268,5 @@ jobs:
         uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08 # v4.6.0
         if: ${{ !cancelled() }}
         with:
-          name: resolved-pr-versions
-          path: data.json
+          name: resolved-pr-versions-test # TODO: Change to resolved-pr-versions
+          path: data-test.json # TODO: Change to data.json
