@@ -122,6 +122,11 @@ export const FEATURED_APPS: FeaturedApp[] = [
     href: 'https://obsidian.md/',
   },
   {
+    name: 'OOMOL Studio',
+    image: '/assets/apps/oomol-studio.svg',
+    href: 'https://oomol.com/',
+  },
+  {
     name: 'Polypane',
     image: '/assets/apps/polypane.svg',
     href: 'https://polypane.app/',
