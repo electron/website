@@ -20,7 +20,7 @@ jobs:
           node-version-file: '.nvmrc'
 
       - name: Install dependencies
-        uses: bahmutov/npm-install@ec9e87262db2a1be2ca3ceb2d506c413a220542c # tag: v1.10.5
+        uses: bahmutov/npm-install@7639f1c46981fc8c8d64ec6be729b7ddbd7ddc52 # tag: v1.10.7
 
       - name: Download crowdin translation
         run: yarn i18n:download
