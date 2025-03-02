@@ -179,10 +179,14 @@
     --ifm-h5-font-size: 0.8rem;
   }
 
-  // We want this to only apply to inline code, so don't apply
-  // this color to ``` code blocks nor any headings.
   :not(pre):not(h2):not(h3):not(h4):not(h5):not(h6) > code {
     border: none;
+    vertical-align: middle; // Aligns the code with the middle of the text
+    line-height: normal; // Ensures the line height doesn't affect alignment
+    font-size: 0.9em; // Adjust font size if necessary
+    background-color: #f5f5f5; // Optional: Improve readability
+    padding: 2px 4px; // Optional: Add padding for better appearance
+    border-radius: 3px; // Optional: Add rounded corners
   }
 
   // don't apply --electron-inline-code colors to admonitions
