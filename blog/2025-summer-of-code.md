@@ -55,7 +55,7 @@ we recommend reading Google’s [Contributor Guide](https://google.github.io/gso
 
 ## Crafting your proposal
 
-Interested in collaborating with Electron? First, check out the [seven project idea drafts](https://electronhq.notion.site/Electron-Google-Summer-of-Code-2025-Ideas-List-1851459d1bd1811894dad8b48a68596d)we have prepared. All listed ideas are open for proposals.
+Interested in collaborating with Electron? First, check out the [seven project idea drafts](https://electronhq.notion.site/Electron-Google-Summer-of-Code-2025-Ideas-List-1851459d1bd1811894dad8b48a68596d) we have prepared. All listed ideas are open for proposals.
 
 If you have a unique idea not on the list, we are open to considering it, but ensure your proposal is detailed and thoroughly outlined. When in doubt, we recommend sticking with our listed ideas.
 
