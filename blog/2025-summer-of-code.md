@@ -1,6 +1,6 @@
 ---
 title: Google Summer of Code 2025
-date: 2025-02-27T00:00:00.000Z
+date: 2025-03-03T00:00:00.000Z
 authors:
   - erickzhao
   - VerteDinde
