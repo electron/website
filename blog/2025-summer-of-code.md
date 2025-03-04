@@ -107,11 +107,11 @@ Applications open on **March 24th, 2025** and close on **April 8th, 2025**.
 
 :::info Past project proposals
 
-📚 For GSOC 2024, [@piotrpdev](https://github.com/piotrpdev),
+📚 For GSoC 2024, [@piotrpdev](https://github.com/piotrpdev),
 worked on adding API History to the Electron core documentation. To see what Piotr worked on during
 his summer with Electron, read his report in the [2024 GSoC program archives](https://summerofcode.withgoogle.com/archive/2024/organizations/electron).
 
-🔐 For GSOC 2022, [@aryanshridhar](https://github.com/aryanshridhar) worked on enabling Context Isolation
+🔐 For GSoC 2022, [@aryanshridhar](https://github.com/aryanshridhar) worked on enabling Context Isolation
 in Electron Fiddle. If you want to see what Aryan worked on during his summer with Electron,
 you can read his report in the [2022 GSoC program archives](https://summerofcode.withgoogle.com/archive/2022/organizations/electron).
 
