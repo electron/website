@@ -62,7 +62,7 @@ practice with our codebases, but is not mandatory for proposal submissions. A we
 should be able to demonstrate your understanding of the code without needing to refer to past
 contributions.
 
-Here are a few tips if you are eager to contribute to Electron before submitting your
+Here are a few tips if you are looking to contribute to Electron before submitting your
 proposal:
 
 1. Please provide descriptive issue or PR descriptions when submitting contributions. Regardless of
