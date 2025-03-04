@@ -36,7 +36,22 @@ Electron 35 upgrades Chromium from `132.0.6834.83` to `134.0.6998.23`, Node from
 
 ### New Features
 
--
+- Added APIs to manage shared dictionaries for compression efficiency using Brotli or ZStandard. The new APIs are `session.getSharedDictionaryUsageInfo()`, `session.getSharedDictionaryInfo(options)`, `session.clearSharedDictionaryCache()`, and `session.clearSharedDictionaryCacheForIsolationKey(options)`. [#44750](https://github.com/electron/electron/pull/44750)
+- Added `NSPrefersDisplaySafeAreaCompatibilityMode` = `false` to Info.plist to remove "Scale to fit below built-in camera." from app options. [#45357](https://github.com/electron/electron/pull/45357)
+- Added `ServiceWorkerMain` class to interact with service workers in the main process. [#45341](https://github.com/electron/electron/pull/45341)
+  - Added `running-status-changed` event on `ServiceWorkers` to indicate when a service worker's running status has changed.
+  - Added `startWorkerForScope` on `ServiceWorkers` to start a worker that may have been previously stopped.
+- Added `WebFrameMain.collectJavaScriptCallStack()` for accessing the JavaScript call stack of unresponsive renderers. [#44204](https://github.com/electron/electron/pull/44204)
+- Added `contextBridge.executeInMainWorld` to safely execute code across world boundaries. [#45330](https://github.com/electron/electron/pull/45330) 
+- Added `frame` to 'console-message' event. [#43617](https://github.com/electron/electron/pull/43617)
+- Added `query-session-end` event and improved `session-end` events on Windows. [#44598](https://github.com/electron/electron/pull/44598) 
+- Added `view.getVisible()`. [#45409](https://github.com/electron/electron/pull/45409)
+- Added `webContents.navigationHistory.restore(index, entries)` API that allows restoration of navigation history. [#45583](https://github.com/electron/electron/pull/45583)
+- Added optional animation parameter to BrowserWindow.setVibrancy. [#35987](https://github.com/electron/electron/pull/35987) 
+- Added permission support for `document.executeCommand("paste")`. [#45471](https://github.com/electron/electron/pull/45471) 
+- Added support for `roundedCorners` BrowserWindow constructor option on Windows. [#45740](https://github.com/electron/electron/pull/45740)
+- Added support for service worker preload scripts. [#45408](https://github.com/electron/electron/pull/45408)
+- Support Portal's globalShortcuts. Electron must be run with --enable-features=GlobalShortcutsPortal in order to have the feature working. [#45297](https://github.com/electron/electron/pull/45297)
 
 ### Breaking Changes
 
