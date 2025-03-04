@@ -7,6 +7,7 @@ hide_title: false
 
 # IpcMainEvent Object extends `Event`
 
+* `type` String - Possible values include `frame`
 * `processId` Integer - The internal ID of the renderer process that sent this message
 * `frameId` Integer - The ID of the renderer frame that sent this message
 * `returnValue` any - Set this to the value to be returned in a synchronous message
