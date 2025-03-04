@@ -40,7 +40,7 @@ Electron 35 upgrades Chromium from `132.0.6834.83` to `134.0.6998.23`, Node from
 
 ### Breaking Changes
 
-### Removed:`isDefault` and `status` properties on `PrinterInfo`
+### Removed: `isDefault` and `status` properties on `PrinterInfo`
 
 These properties have been removed from the PrinterInfo Object
 because they have been removed from upstream Chromium.
