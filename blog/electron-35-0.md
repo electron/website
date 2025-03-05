@@ -142,7 +142,7 @@ https://learn.microsoft.com/en-us/windows/win32/dwm/composition-ovw#disabling-dw
 
 Electron 32.x.y has reached end-of-support as per the project's [support policy](https://www.electronjs.org/docs/latest/tutorial/electron-timelines#version-support-policy). Developers and applications are encouraged to upgrade to a newer version of Electron.
 
-| E35 (Apr'25) | E36 (Jun'25) | E37 (Aug'25) |
+| E35 (Mar'25) | E36 (Apr'25) | E37 (Jun'25) |
 | ------------ | ------------ | ------------ |
 | 35.x.y       | 36.x.y       | 37.x.y       |
 | 34.x.y       | 35.x.y       | 36.x.y       |
