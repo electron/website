@@ -8,7 +8,7 @@ slug: electron-35-0
 tags: [release]
 ---
 
-Electron 35.0.0 has been released! It includes upgrades to Chromium 134.0.6998.23, V8 13.5, and Node 22.14.0.
+Electron 35.0.0 has been released! It includes upgrades to Chromium 134.0.6998.44, V8 13.5, and Node 22.14.0.
 
 ---
 
@@ -25,14 +25,14 @@ If you have any feedback, please share it with us on [Bluesky](https://bsky.app/
 
 ### Stack Changes
 
-- Chromium `134.0.6998.23`
+- Chromium `134.0.6998.44`
   - [New in 134](https://developer.chrome.com/blog/new-in-chrome-134/)
   - [New in 133](https://developer.chrome.com/blog/new-in-chrome-133/)
 - Node `22.14.0`
   - [Node 22.14.0 blog post](https://nodejs.org/en/blog/release/v22.14.0/)
 - V8 `13.5`
 
-Electron 35 upgrades Chromium from `132.0.6834.83` to `134.0.6998.23`, Node from `20.18.1` to `22.14.0`, and V8 from `13.2` to `13.5`.
+Electron 35 upgrades Chromium from `132.0.6834.83` to `134.0.6998.44`, Node from `20.18.1` to `22.14.0`, and V8 from `13.2` to `13.5`.
 
 ### New Features
 
@@ -57,7 +57,7 @@ Electron 35 upgrades Chromium from `132.0.6834.83` to `134.0.6998.23`, Node from
 
 ### Removed: `isDefault` and `status` properties on `PrinterInfo`
 
-These properties have been removed from the PrinterInfo Object
+These properties have been removed from the `PrinterInfo` object
 because they have been removed from upstream Chromium.
 
 ### Deprecated: `getFromVersionID` on `session.serviceWorkers`
