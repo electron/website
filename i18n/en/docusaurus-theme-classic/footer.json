@@ -55,10 +55,6 @@
     "message": "Discord",
     "description": "The label of footer link with label=Discord linking to https://discordapp.com/invite/APGC3k5yaH"
   },
-  "link.item.label.Twitter": {
-    "message": "Twitter",
-    "description": "The label of footer link with label=Twitter linking to https://twitter.com/electronjs"
-  },
   "link.item.label.Stack Overflow": {
     "message": "Stack Overflow",
     "description": "The label of footer link with label=Stack Overflow linking to https://stackoverflow.com/questions/tagged/electron"
@@ -72,11 +68,23 @@
     "description": "The label of footer link with label=Open Collective linking to https://opencollective.com/electron"
   },
   "copyright": {
-    "message": "Copyright © 2023 OpenJS Foundation and Electron contributors.",
+    "message": "Copyright © 2025 OpenJS Foundation and Electron contributors.",
     "description": "The footer copyright"
   },
   "logo.alt": {
     "message": "OpenJS Foundation Logo",
     "description": "The alt text of footer logo"
+  },
+  "link.item.label.Bluesky": {
+    "message": "Bluesky",
+    "description": "The label of footer link with label=Bluesky linking to https://bsky.app/profile/electronjs.org"
+  },
+  "link.item.label.X": {
+    "message": "X",
+    "description": "The label of footer link with label=X linking to https://x.com/electronjs"
+  },
+  "link.item.label.Infrastructure Dashboard": {
+    "message": "Infrastructure Dashboard",
+    "description": "The label of footer link with label=Infrastructure Dashboard linking to https://p.datadoghq.com/sb/c44e1df0-85d7-11ee-94c9-da7ad0900002-c245f7ef47d0d0c32abecdc0938c2a85"
   }
 }
