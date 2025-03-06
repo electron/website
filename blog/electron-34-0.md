@@ -20,7 +20,7 @@ If you have any feedback, please share it with us on [Bluesky](https://bsky.app/
 
 HTTP compression allows data to be compressed by a web server before being received by the browser. Modern versions of Chromium support Brotli and Zstandard, which are newer compression algorithms that perform better for text files than older schemes such as gzip.
 
-Custom shared dictionaries to further improve the efficiency of Brotli and Zstandard compression. See the [Chrome for Developers blog on shared dictionaries](https://developer.chrome.com/blog/shared-dictionary-compression) for more information.
+Custom shared dictionaries further improve the efficiency of Brotli and Zstandard compression. See the [Chrome for Developers blog on shared dictionaries](https://developer.chrome.com/blog/shared-dictionary-compression) for more information.
 
 [@felixrieseberg](https://github.com/felixrieseberg) added the following APIs in [#44950](https://github.com/electron/electron/pull/44950) to manage shared dictionaries at the Session level:
 
