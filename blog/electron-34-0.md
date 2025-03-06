@@ -16,10 +16,44 @@ If you have any feedback, please share it with us on [Bluesky](https://bsky.app/
 
 ## Notable Changes
 
-### Highlights
+### HTTP Compression Shared Dictionary Management APIs
 
-- Added `WebFrameMain.collectJavaScriptCallStack()` for accessing the JavaScript call stack of unresponsive renderers. [#44938](https://github.com/electron/electron/pull/44938)
-- Added APIs to manage shared dictionaries for compression efficiency using Brotli or ZStandard. The new APIs are `session.getSharedDictionaryUsageInfo()`, `session.getSharedDictionaryInfo(options)`, `session.clearSharedDictionaryCache()`, and `session.clearSharedDictionaryCacheForIsolationKey(options)`. [#44950](https://github.com/electron/electron/pull/44950)
+HTTP compression allows data to be compressed by a web server before being received by the browser. Modern versions of Chromium support Brotli and Zstandard, which are newer compression algorithms that perform better for text files than older schemes such as gzip.
+
+Custom shared dictionaries further improve the efficiency of Brotli and Zstandard compression. See the [Chrome for Developers blog on shared dictionaries](https://developer.chrome.com/blog/shared-dictionary-compression) for more information.
+
+[@felixrieseberg](https://github.com/felixrieseberg) added the following APIs in [#44950](https://github.com/electron/electron/pull/44950) to manage shared dictionaries at the Session level:
+
+- `session.getSharedDictionaryUsageInfo()`
+- `session.getSharedDictionaryInfo(options)`
+- `session.clearSharedDictionaryCache()`
+- `session.clearSharedDictionaryCacheForIsolationKey(options)`
+
+### Unresponsive Renderer JavaScript Call Stacks
+
+Electron's [`unresponsive`](https://www.electronjs.org/docs/latest/api/web-contents#event-unresponsive) event occurs whenever a renderer process hangs for an excessive period of time. The new `WebFrameMain.collectJavaScriptCallStack()` API added by [@samuelmaddock](https://github.com/samuelmaddock) in [#44204](https://github.com/electron/electron/pull/44204) allows you to collect the JavaScript call stack from the associated `WebFrameMain` object (`webContnets.mainFrame`).
+
+This API can be useful to determine why the frame is unresponsive in cases where there's long-running JavaScript events causing the process to hang. For more information, see the [proposed web standard Crash Reporting API](https://wicg.github.io/crash-reporting/).
+
+```js title='Main Process'
+const { app } = require('electron');
+
+app.commandLine.appendSwitch(
+  'enable-features',
+  'DocumentPolicyIncludeJSCallStacksInCrashReports',
+);
+
+app.on('web-contents-created', (_, webContents) => {
+  webContents.on('unresponsive', async () => {
+    // Interrupt execution and collect call stack from unresponsive renderer
+    const callStack = await webContents.mainFrame.collectJavaScriptCallStack();
+    console.log('Renderer unresponsive\n', callStack);
+  });
+});
+```
+
+> [!WARNING]
+> This API requires the `'Document-Policy': 'include-js-call-stacks-in-crash-reports'` header to be enabled. See [#45356](https://github.com/electron/electron/issues/45356) for more details.
 
 ### Stack Changes
 
