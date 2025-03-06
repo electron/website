@@ -18,42 +18,6 @@ If you have any feedback, please share it with us on [Bluesky](https://bsky.app/
 
 ## Notable Changes
 
-### HTTP Compression Shared Dictionary Management APIs
-
-HTTP compression allows data to be compressed by a web server before being received by the browser. Modern versions of Chromium support Brotli and Zstandard, which are newer compression algorithms that perform better for text files than older schemes such as gzip.
-
-Custom shared dictionaries to further improve the efficiency of Brotli and Zstandard compression. See the [Chrome for Developers blog on shared dictionaries](https://developer.chrome.com/blog/shared-dictionary-compression) for more information.
-
-[@felixrieseberg](https://github.com/felixrieseberg) added the following APIs in [#44950](https://github.com/electron/electron/pull/44950) to manage shared dictionaries at the Session level:
-
-- `session.getSharedDictionaryUsageInfo()`
-- `session.getSharedDictionaryInfo(options)`
-- `session.clearSharedDictionaryCache()`
-- `session.clearSharedDictionaryCacheForIsolationKey(options)`
-
-### Unresponsive Renderer JavaScript Call Stacks
-
-Electron's [`unresponsive`](https://www.electronjs.org/docs/latest/api/web-contents#event-unresponsive) event occurs whenever a renderer process hangs for an excessive period of time. The new `WebFrameMain.collectJavaScriptCallStack()` API added by [@samuelmaddock](https://github.com/samuelmaddock) in [#44204](https://github.com/electron/electron/pull/44204) allows you to collect the JavaScript call stack from the associated WebFrameMain object (`webContnets.mainFrame`).
-
-This API can be useful to determine why the frame is unresponsive in cases where there's long-running JavaScript events causing the process to hang. For more information, see the [proposed web standard Crash Reporting API](https://wicg.github.io/crash-reporting/).
-
-```js title='Main Process'
-const { app } = require('electron');
-
-app.commandLine.appendSwitch(
-  'enable-features',
-  'DocumentPolicyIncludeJSCallStacksInCrashReports',
-);
-
-app.on('web-contents-created', (_, webContents) => {
-  webContents.on('unresponsive', async () => {
-    // Interrupt execution and collect call stack from unresponsive renderer
-    const callStack = await webContents.mainFrame.collectJavaScriptCallStack();
-    console.log('Renderer unresponsive\n', callStack);
-  });
-});
-```
-
 ### Service Worker Preload Scripts for Improved Extensions Support
 
 Originally proposed in [RFC #8](https://github.com/electron/rfcs/blob/main/text/0008-preload-realm.md) by [@samuelmaddock](https://github.com/samuelmaddock), Electron 35 adds the ability to attach a preload script to [Service Workers](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API). With Chrome's Manifest V3 Extensions routing a lot of work through [extension service workers](https://developer.chrome.com/docs/extensions/develop/concepts/service-workers), this feature fills in a gap in Electron's support for modern Chrome extensions.
@@ -91,20 +55,18 @@ Electron 35 upgrades Chromium from `132.0.6834.83` to `134.0.6998.44`, Node from
 
 ### New Features
 
-- Added APIs to manage shared dictionaries for compression efficiency using Brotli or ZStandard. The new APIs are `session.getSharedDictionaryUsageInfo()`, `session.getSharedDictionaryInfo(options)`, `session.clearSharedDictionaryCache()`, and `session.clearSharedDictionaryCacheForIsolationKey(options)`. [#44750](https://github.com/electron/electron/pull/44750)
-- Added `NSPrefersDisplaySafeAreaCompatibilityMode` = `false` to `Info.plist` to remove "Scale to fit below built-in camera." from app options. [#45357](https://github.com/electron/electron/pull/45357)
+- Added `NSPrefersDisplaySafeAreaCompatibilityMode` = `false` to `Info.plist` to remove "Scale to fit below built-in camera." from app options. [#45357](https://github.com/electron/electron/pull/45357) <sup>(Also in [v34.1.0](https://github.com/electron/electron/pull/45469))</sup>
 - Added `ServiceWorkerMain` class to interact with service workers in the main process. [#45341](https://github.com/electron/electron/pull/45341)
   - Added `running-status-changed` event on `ServiceWorkers` to indicate when a service worker's running status has changed.
   - Added `startWorkerForScope` on `ServiceWorkers` to start a worker that may have been previously stopped.
-- Added `WebFrameMain.collectJavaScriptCallStack()` for accessing the JavaScript call stack of unresponsive renderers. [#44204](https://github.com/electron/electron/pull/44204)
-- Added `contextBridge.executeInMainWorld` to safely execute code across world boundaries. [#45330](https://github.com/electron/electron/pull/45330)
+- Added experimental `contextBridge.executeInMainWorld` to safely execute code across world boundaries. [#45330](https://github.com/electron/electron/pull/45330)
 - Added `frame` to `'console-message'` event. [#43617](https://github.com/electron/electron/pull/43617)
 - Added `query-session-end` event and improved `session-end` events on Windows. [#44598](https://github.com/electron/electron/pull/44598)
 - Added `view.getVisible()`. [#45409](https://github.com/electron/electron/pull/45409)
 - Added `webContents.navigationHistory.restore(index, entries)` API that allows restoration of navigation history. [#45583](https://github.com/electron/electron/pull/45583)
 - Added optional animation parameter to `BrowserWindow.setVibrancy`. [#35987](https://github.com/electron/electron/pull/35987)
-- Added permission support for `document.executeCommand("paste")`. [#45471](https://github.com/electron/electron/pull/45471)
-- Added support for `roundedCorners` BrowserWindow constructor option on Windows. [#45740](https://github.com/electron/electron/pull/45740)
+- Added permission support for `document.executeCommand("paste")`. [#45471](https://github.com/electron/electron/pull/45471) <sup>(Also in [v34.1.0](https://github.com/electron/electron/pull/45472))</sup>
+- Added support for `roundedCorners` BrowserWindow constructor option on Windows. [#45740](https://github.com/electron/electron/pull/45740) <sup>(Also in [v34.3.0](https://github.com/electron/electron/pull/45739))</sup>
 - Added support for service worker preload scripts. [#45408](https://github.com/electron/electron/pull/45408)
 - Support Portal's `globalShortcuts`. Electron must be run with `--enable-features=GlobalShortcutsPortal` in order to have the feature working. [#45297](https://github.com/electron/electron/pull/45297)
 
