@@ -31,7 +31,7 @@ Custom shared dictionaries further improve the efficiency of Brotli and Zstandar
 
 ### Unresponsive Renderer JavaScript Call Stacks
 
-Electron's [`unresponsive`](https://www.electronjs.org/docs/latest/api/web-contents#event-unresponsive) event occurs whenever a renderer process hangs for an excessive period of time. The new `WebFrameMain.collectJavaScriptCallStack()` API added by [@samuelmaddock](https://github.com/samuelmaddock) in [#44204](https://github.com/electron/electron/pull/44204) allows you to collect the JavaScript call stack from the associated WebFrameMain object (`webContnets.mainFrame`).
+Electron's [`unresponsive`](https://www.electronjs.org/docs/latest/api/web-contents#event-unresponsive) event occurs whenever a renderer process hangs for an excessive period of time. The new `WebFrameMain.collectJavaScriptCallStack()` API added by [@samuelmaddock](https://github.com/samuelmaddock) in [#44204](https://github.com/electron/electron/pull/44204) allows you to collect the JavaScript call stack from the associated `WebFrameMain` object (`webContnets.mainFrame`).
 
 This API can be useful to determine why the frame is unresponsive in cases where there's long-running JavaScript events causing the process to hang. For more information, see the [proposed web standard Crash Reporting API](https://wicg.github.io/crash-reporting/).
 
