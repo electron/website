@@ -94,5 +94,9 @@
   "sidebar.api.category.API Structures": {
     "message": "API Structures",
     "description": "The label for category API Structures in sidebar api"
+  },
+  "sidebar.docs.category.Window Customization": {
+    "message": "Window Customization",
+    "description": "The label for category Window Customization in sidebar docs"
   }
 }

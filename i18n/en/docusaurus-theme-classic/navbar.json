@@ -31,10 +31,6 @@
     "message": "Releases",
     "description": "Navbar item with label Releases"
   },
-  "item.label.GitHub": {
-    "message": "GitHub",
-    "description": "Navbar item with label GitHub"
-  },
   "item.label.Electron Forge": {
     "message": "Electron Forge",
     "description": "Navbar item with label Electron Forge"
@@ -54,5 +50,9 @@
   "item.label.Resources": {
     "message": "Resources",
     "description": "Navbar item with label Resources"
+  },
+  "item.label.Why Electron": {
+    "message": "Why Electron",
+    "description": "Navbar item with label Why Electron"
   }
 }

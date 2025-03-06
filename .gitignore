@@ -6,7 +6,7 @@ node_modules
 .tmp/
 build/
 content/
-i18n/
+i18n/*
 !i18n/en/
 !i18n/README.md
 docs/v**
