@@ -198,6 +198,7 @@ module.exports = {
             'latest/development/creating-api',
             'latest/development/patches',
             'latest/development/source-code-directory-structure',
+            'latest/development/style-guide',
             'latest/development/testing',
           ],
         },
