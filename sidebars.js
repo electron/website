@@ -108,8 +108,19 @@ module.exports = {
         'latest/tutorial/boilerplates-and-clis',
         'latest/tutorial/esm',
         'latest/tutorial/fuses',
-        'latest/tutorial/using-native-node-modules',
         'latest/tutorial/windows-arm',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Native Node Modules',
+      items: [
+        'latest/tutorial/using-native-node-modules',
+        {
+          type: 'category',
+          label: 'Tutorial: Native Code and Electron',
+          items: ['latest/tutorial/native-code-and-electron'],
+        },
       ],
     },
     {
