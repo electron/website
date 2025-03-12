@@ -2,6 +2,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import stream from 'node:stream';
 import type { ReadableStream } from 'node:stream/web';
+import { createGunzip } from 'node:zlib';
 
 import tar from 'tar-stream';
 
@@ -73,13 +74,19 @@ const downloadFromGitHub = async (
   const contents = [];
 
   return new Promise((resolve) => {
-    fetch(tarballUrl).then(({ body }) => {
+    fetch(tarballUrl).then((response) => {
+      if (!response.ok) {
+        throw new Error(
+          `Failed to fetch ${tarballUrl}: ${response.statusText}`,
+        );
+      }
+
       // Type assertion is necessary because of a SNAFU with @types/node
       // and the built-in fetch types. See this discussion for more info:
       // https://github.com/DefinitelyTyped/DefinitelyTyped/discussions/65542
-      stream.Readable.fromWeb(body as ReadableStream<Uint8Array>)
-        // eslint-disable-next-line @typescript-eslint/no-var-requires
-        .pipe(require('gunzip-maybe')())
+      stream.Readable.fromWeb(response.body as ReadableStream<Uint8Array>)
+        // We know the response is a tarball so we don't need to check before gunzipping
+        .pipe(createGunzip())
         .pipe(
           tar
             .extract()
