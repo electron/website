@@ -1,0 +1,27 @@
+name: Check Blog Links
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - blog/*.md
+
+jobs:
+  check-blog-links:
+    name: Check Blog Links
+    permissions:
+      contents: read
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Setup Node.js
+        uses: actions/setup-node@1d0ff469b7ec7b3cb9d8673fde0c81c44821de2a # v4.2.0
+        with:
+          node-version-file: '.nvmrc'
+      - name: Install dependencies
+        run: yarn install
+      - name: Check blog post links
+        run: |
+          BLOG_POSTS=$(gh api repos/electron/website/pulls/${{ github.event.pull_request.number }}/files --jq '.[] | select((.filename | startswith("blog/")) and (.status != "removed")) | .filename')
+          echo $BLOG_POSTS | xargs npx lint-roller-markdown-links --ignore-path .markdownlintignore --fetch-external-links
