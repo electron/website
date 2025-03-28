@@ -10,6 +10,7 @@
 /* We maintain separate colours for light and dark mode */
 :root {
   // modified base colors
+  --ifm-background-color: #fff;
   --ifm-color-primary: var(--electron-color-mid);
   --ifm-color-primary-dark: #000885;
   --ifm-color-primary-darker: #000047;
@@ -98,6 +99,11 @@
   --electron-inline-code: var(--electron-color-secondary-light);
   --api-history-added: var(--ifm-color-success-darker);
   --api-history-deprecated: var(--ifm-color-danger-darkest);
+}
+
+html {
+  // transition for background-color when theme is changed
+  transition: background-color 0.5s ease;
 }
 
 .hero {
