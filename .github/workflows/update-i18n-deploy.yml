@@ -18,7 +18,7 @@ jobs:
       - uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e # tag: v4.3.0
         with:
           node-version-file: '.nvmrc'
-
+          cache: 'yarn'
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
