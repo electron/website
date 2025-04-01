@@ -22,7 +22,7 @@ jobs:
         with:
           node-version-file: '.nvmrc'
       - name: Install dependencies
-        uses: bahmutov/npm-install@6cee6086f1bf4467050e9a51e94bfb71b44cbc39 # tag: v1.10.8
+        run: yarn install --frozen-lockfile
       - name: Upload sources to Crowdin
         run: 'yarn i18n:upload'
         env:
@@ -45,8 +45,8 @@ jobs:
       - uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e # tag: v4.3.0
         with:
           node-version-file: '.nvmrc'
-      - name: Install dependencies
-        uses: bahmutov/npm-install@6cee6086f1bf4467050e9a51e94bfb71b44cbc39 # tag: v1.10.8
+      - name: Install
+        run: yarn install --frozen-lockfile
       - name: Lint
         run: yarn lint
         env:

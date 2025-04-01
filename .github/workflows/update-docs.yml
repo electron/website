@@ -31,7 +31,7 @@ jobs:
         with:
           node-version-file: '.nvmrc'
       - name: Install dependencies
-        uses: bahmutov/npm-install@6cee6086f1bf4467050e9a51e94bfb71b44cbc39 # tag: v1.10.8
+        run: yarn install --frozen-lockfile
       - name: Prebuild
         run: |
           yarn pre-build ${{ github.event.client_payload.sha || github.event.inputs.sha }}
