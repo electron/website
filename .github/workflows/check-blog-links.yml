@@ -19,8 +19,9 @@ jobs:
         uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e # v4.3.0
         with:
           node-version-file: '.nvmrc'
+          cache: 'yarn'
       - name: Install dependencies
-        run: yarn install
+        run: yarn install --frozen-lockfile
       - name: Check blog post links
         run: |
           BLOG_POSTS=$(gh api repos/electron/website/pulls/${{ github.event.pull_request.number }}/files --jq '.[] | select((.filename | startswith("blog/")) and (.status != "removed")) | .filename')
