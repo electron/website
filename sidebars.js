@@ -119,7 +119,10 @@ module.exports = {
         {
           type: 'category',
           label: 'Tutorial: Native Code and Electron',
-          items: ['latest/tutorial/native-code-and-electron'],
+          items: [
+            'latest/tutorial/native-code-and-electron',
+            'latest/tutorial/native-code-and-electron-cpp-win32',
+          ],
         },
       ],
     },
