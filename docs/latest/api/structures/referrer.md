@@ -1,7 +1,7 @@
 ---
 title: "Referrer Object"
 description: ""
-slug: referrer
+slug: /referrer
 hide_title: false
 ---
 

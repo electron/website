@@ -1,7 +1,7 @@
 ---
 title: "GPUFeatureStatus Object"
 description: ""
-slug: gpu-feature-status
+slug: /gpu-feature-status
 hide_title: false
 ---
 

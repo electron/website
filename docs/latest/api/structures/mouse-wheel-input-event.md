@@ -1,7 +1,7 @@
 ---
 title: "MouseWheelInputEvent Object extends `MouseInputEvent`"
 description: ""
-slug: mouse-wheel-input-event
+slug: /mouse-wheel-input-event
 hide_title: false
 ---
 

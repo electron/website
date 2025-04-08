@@ -1,7 +1,7 @@
 ---
 title: "WebRequestFilter Object"
 description: ""
-slug: web-request-filter
+slug: /web-request-filter
 hide_title: false
 ---
 

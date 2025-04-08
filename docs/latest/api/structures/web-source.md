@@ -1,7 +1,7 @@
 ---
 title: "WebSource Object"
 description: ""
-slug: web-source
+slug: /web-source
 hide_title: false
 ---
 

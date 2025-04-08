@@ -1,7 +1,7 @@
 ---
 title: "KeyboardEvent Object"
 description: ""
-slug: keyboard-event
+slug: /keyboard-event
 hide_title: false
 ---
 

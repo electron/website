@@ -1,7 +1,7 @@
 ---
 title: "Point Object"
 description: ""
-slug: point
+slug: /point
 hide_title: false
 ---
 

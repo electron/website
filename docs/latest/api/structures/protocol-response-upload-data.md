@@ -1,7 +1,7 @@
 ---
 title: "ProtocolResponseUploadData Object"
 description: ""
-slug: protocol-response-upload-data
+slug: /protocol-response-upload-data
 hide_title: false
 ---
 

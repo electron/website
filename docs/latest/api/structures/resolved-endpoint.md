@@ -1,7 +1,7 @@
 ---
 title: "ResolvedEndpoint Object"
 description: ""
-slug: resolved-endpoint
+slug: /resolved-endpoint
 hide_title: false
 ---
 

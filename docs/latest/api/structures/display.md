@@ -1,7 +1,7 @@
 ---
 title: "Display Object"
 description: ""
-slug: display
+slug: /display
 hide_title: false
 ---
 

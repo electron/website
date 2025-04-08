@@ -1,7 +1,7 @@
 ---
 title: "InputEvent Object"
 description: ""
-slug: input-event
+slug: /input-event
 hide_title: false
 ---
 

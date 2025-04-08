@@ -1,7 +1,7 @@
 ---
 title: "KeyboardInputEvent Object extends `InputEvent`"
 description: ""
-slug: keyboard-input-event
+slug: /keyboard-input-event
 hide_title: false
 ---
 

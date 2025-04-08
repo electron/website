@@ -1,7 +1,7 @@
 ---
 title: "OpenExternalPermissionRequest Object extends `PermissionRequest`"
 description: ""
-slug: open-external-permission-request
+slug: /open-external-permission-request
 hide_title: false
 ---
 

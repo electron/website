@@ -1,7 +1,7 @@
 ---
 title: "OffscreenSharedTexture Object"
 description: ""
-slug: offscreen-shared-texture
+slug: /offscreen-shared-texture
 hide_title: false
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "ProcessMetric Object"
 description: ""
-slug: process-metric
+slug: /process-metric
 hide_title: false
 ---
 

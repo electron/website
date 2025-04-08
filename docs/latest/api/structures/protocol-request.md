@@ -1,7 +1,7 @@
 ---
 title: "ProtocolRequest Object"
 description: ""
-slug: protocol-request
+slug: /protocol-request
 hide_title: false
 ---
 

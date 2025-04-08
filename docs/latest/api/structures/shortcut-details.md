@@ -1,7 +1,7 @@
 ---
 title: "ShortcutDetails Object"
 description: ""
-slug: shortcut-details
+slug: /shortcut-details
 hide_title: false
 ---
 

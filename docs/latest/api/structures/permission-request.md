@@ -1,7 +1,7 @@
 ---
 title: "PermissionRequest Object"
 description: ""
-slug: permission-request
+slug: /permission-request
 hide_title: false
 ---
 

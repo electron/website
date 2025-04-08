@@ -1,7 +1,7 @@
 ---
 title: "ProcessMemoryInfo Object"
 description: ""
-slug: process-memory-info
+slug: /process-memory-info
 hide_title: false
 ---
 

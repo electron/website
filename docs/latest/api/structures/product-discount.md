@@ -1,7 +1,7 @@
 ---
 title: "ProductDiscount Object"
 description: ""
-slug: product-discount
+slug: /product-discount
 hide_title: false
 ---
 

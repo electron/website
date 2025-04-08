@@ -1,7 +1,7 @@
 ---
 title: "MemoryInfo Object"
 description: ""
-slug: memory-info
+slug: /memory-info
 hide_title: false
 ---
 

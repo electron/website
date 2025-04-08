@@ -1,7 +1,7 @@
 ---
 title: "USBDevice Object"
 description: ""
-slug: usb-device
+slug: /usb-device
 hide_title: false
 ---
 

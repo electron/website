@@ -1,7 +1,7 @@
 ---
 title: "WindowOpenHandlerResponse Object"
 description: ""
-slug: window-open-handler-response
+slug: /window-open-handler-response
 hide_title: false
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "NavigationEntry Object"
 description: ""
-slug: navigation-entry
+slug: /navigation-entry
 hide_title: false
 ---
 

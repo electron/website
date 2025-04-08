@@ -1,7 +1,7 @@
 ---
 title: "PostBody Object"
 description: ""
-slug: post-body
+slug: /post-body
 hide_title: false
 ---
 

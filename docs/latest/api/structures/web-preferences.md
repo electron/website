@@ -1,7 +1,7 @@
 ---
 title: "WebPreferences Object"
 description: ""
-slug: web-preferences
+slug: /web-preferences
 hide_title: false
 ---
 

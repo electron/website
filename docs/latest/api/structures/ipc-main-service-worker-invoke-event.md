@@ -1,7 +1,7 @@
 ---
 title: "IpcMainServiceWorkerInvokeEvent Object extends `Event`"
 description: ""
-slug: ipc-main-service-worker-invoke-event
+slug: /ipc-main-service-worker-invoke-event
 hide_title: false
 ---
 

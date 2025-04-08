@@ -1,7 +1,7 @@
 ---
 title: "PreloadScriptRegistration Object"
 description: ""
-slug: preload-script-registration
+slug: /preload-script-registration
 hide_title: false
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "CustomScheme Object"
 description: ""
-slug: custom-scheme
+slug: /custom-scheme
 hide_title: false
 ---
 

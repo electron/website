@@ -1,7 +1,7 @@
 ---
 title: "UploadFile Object"
 description: ""
-slug: upload-file
+slug: /upload-file
 hide_title: false
 ---
 

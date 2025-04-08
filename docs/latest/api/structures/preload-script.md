@@ -1,7 +1,7 @@
 ---
 title: "PreloadScript Object"
 description: ""
-slug: preload-script
+slug: /preload-script
 hide_title: false
 ---
 

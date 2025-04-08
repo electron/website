@@ -1,7 +1,7 @@
 ---
 title: "SharedWorkerInfo Object"
 description: ""
-slug: shared-worker-info
+slug: /shared-worker-info
 hide_title: false
 ---
 

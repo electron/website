@@ -1,7 +1,7 @@
 ---
 title: "MimeTypedBuffer Object"
 description: ""
-slug: mime-typed-buffer
+slug: /mime-typed-buffer
 hide_title: false
 ---
 

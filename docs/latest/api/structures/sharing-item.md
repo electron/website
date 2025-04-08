@@ -1,7 +1,7 @@
 ---
 title: "SharingItem Object"
 description: ""
-slug: sharing-item
+slug: /sharing-item
 hide_title: false
 ---
 

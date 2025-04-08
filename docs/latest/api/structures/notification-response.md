@@ -1,7 +1,7 @@
 ---
 title: "NotificationResponse Object"
 description: ""
-slug: notification-response
+slug: /notification-response
 hide_title: false
 ---
 

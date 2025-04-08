@@ -1,7 +1,7 @@
 ---
 title: "Rectangle Object"
 description: ""
-slug: rectangle
+slug: /rectangle
 hide_title: false
 ---
 

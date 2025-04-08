@@ -1,7 +1,7 @@
 ---
 title: "Task Object"
 description: ""
-slug: task
+slug: /task
 hide_title: false
 ---
 

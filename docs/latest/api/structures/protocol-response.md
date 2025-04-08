@@ -1,7 +1,7 @@
 ---
 title: "ProtocolResponse Object"
 description: ""
-slug: protocol-response
+slug: /protocol-response
 hide_title: false
 ---
 

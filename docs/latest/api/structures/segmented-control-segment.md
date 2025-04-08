@@ -1,7 +1,7 @@
 ---
 title: "SegmentedControlSegment Object"
 description: ""
-slug: segmented-control-segment
+slug: /segmented-control-segment
 hide_title: false
 ---
 

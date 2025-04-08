@@ -1,7 +1,7 @@
 ---
 title: "SharedDictionaryInfo Object"
 description: ""
-slug: shared-dictionary-info
+slug: /shared-dictionary-info
 hide_title: false
 ---
 

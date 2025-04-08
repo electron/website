@@ -1,7 +1,7 @@
 ---
 title: "IpcRendererEvent Object extends `Event`"
 description: ""
-slug: ipc-renderer-event
+slug: /ipc-renderer-event
 hide_title: false
 ---
 

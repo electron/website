@@ -1,7 +1,7 @@
 ---
 title: "MemoryUsageDetails Object"
 description: ""
-slug: memory-usage-details
+slug: /memory-usage-details
 hide_title: false
 ---
 

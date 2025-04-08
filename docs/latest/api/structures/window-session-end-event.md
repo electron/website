@@ -1,7 +1,7 @@
 ---
 title: "WindowSessionEndEvent Object extends `Event`"
 description: ""
-slug: window-session-end-event
+slug: /window-session-end-event
 hide_title: false
 ---
 

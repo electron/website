@@ -1,7 +1,7 @@
 ---
 title: "UserDefaultTypes Object"
 description: ""
-slug: user-default-types
+slug: /user-default-types
 hide_title: false
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "Cookie Object"
 description: ""
-slug: cookie
+slug: /cookie
 hide_title: false
 ---
 

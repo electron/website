@@ -1,7 +1,7 @@
 ---
 title: "SerialPort Object"
 description: ""
-slug: serial-port
+slug: /serial-port
 hide_title: false
 ---
 

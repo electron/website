@@ -1,7 +1,7 @@
 ---
 title: "MediaAccessPermissionRequest Object extends `PermissionRequest`"
 description: ""
-slug: media-access-permission-request
+slug: /media-access-permission-request
 hide_title: false
 ---
 

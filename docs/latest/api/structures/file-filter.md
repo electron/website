@@ -1,7 +1,7 @@
 ---
 title: "FileFilter Object"
 description: ""
-slug: file-filter
+slug: /file-filter
 hide_title: false
 ---
 

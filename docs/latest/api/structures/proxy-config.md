@@ -1,7 +1,7 @@
 ---
 title: "ProxyConfig Object"
 description: ""
-slug: proxy-config
+slug: /proxy-config
 hide_title: false
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "JumpListCategory Object"
 description: ""
-slug: jump-list-category
+slug: /jump-list-category
 hide_title: false
 ---
 

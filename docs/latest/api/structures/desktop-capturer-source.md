@@ -1,7 +1,7 @@
 ---
 title: "DesktopCapturerSource Object"
 description: ""
-slug: desktop-capturer-source
+slug: /desktop-capturer-source
 hide_title: false
 ---
 

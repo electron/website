@@ -1,7 +1,7 @@
 ---
 title: "TraceConfig Object"
 description: ""
-slug: trace-config
+slug: /trace-config
 hide_title: false
 ---
 

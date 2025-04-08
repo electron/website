@@ -1,7 +1,7 @@
 ---
 title: "ProductSubscriptionPeriod Object"
 description: ""
-slug: product-subscription-period
+slug: /product-subscription-period
 hide_title: false
 ---
 

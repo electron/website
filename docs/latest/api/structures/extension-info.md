@@ -1,7 +1,7 @@
 ---
 title: "ExtensionInfo Object"
 description: ""
-slug: extension-info
+slug: /extension-info
 hide_title: false
 ---
 

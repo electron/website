@@ -1,7 +1,7 @@
 ---
 title: "FilePathWithHeaders Object"
 description: ""
-slug: file-path-with-headers
+slug: /file-path-with-headers
 hide_title: false
 ---
 

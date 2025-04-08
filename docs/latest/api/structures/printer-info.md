@@ -1,7 +1,7 @@
 ---
 title: "PrinterInfo Object"
 description: ""
-slug: printer-info
+slug: /printer-info
 hide_title: false
 ---
 

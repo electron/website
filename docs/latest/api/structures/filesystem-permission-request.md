@@ -1,7 +1,7 @@
 ---
 title: "FilesystemPermissionRequest Object extends `PermissionRequest`"
 description: ""
-slug: filesystem-permission-request
+slug: /filesystem-permission-request
 hide_title: false
 ---
 

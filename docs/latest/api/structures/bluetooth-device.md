@@ -1,7 +1,7 @@
 ---
 title: "BluetoothDevice Object"
 description: ""
-slug: bluetooth-device
+slug: /bluetooth-device
 hide_title: false
 ---
 

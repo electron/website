@@ -1,7 +1,7 @@
 ---
 title: "Size Object"
 description: ""
-slug: size
+slug: /size
 hide_title: false
 ---
 

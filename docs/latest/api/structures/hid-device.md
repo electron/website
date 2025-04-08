@@ -1,7 +1,7 @@
 ---
 title: "HIDDevice Object"
 description: ""
-slug: hid-device
+slug: /hid-device
 hide_title: false
 ---
 

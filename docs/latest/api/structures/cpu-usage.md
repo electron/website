@@ -1,7 +1,7 @@
 ---
 title: "CPUUsage Object"
 description: ""
-slug: cpu-usage
+slug: /cpu-usage
 hide_title: false
 ---
 

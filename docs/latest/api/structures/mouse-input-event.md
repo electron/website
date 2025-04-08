@@ -1,7 +1,7 @@
 ---
 title: "MouseInputEvent Object extends `InputEvent`"
 description: ""
-slug: mouse-input-event
+slug: /mouse-input-event
 hide_title: false
 ---
 

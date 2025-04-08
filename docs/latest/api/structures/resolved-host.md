@@ -1,7 +1,7 @@
 ---
 title: "ResolvedHost Object"
 description: ""
-slug: resolved-host
+slug: /resolved-host
 hide_title: false
 ---
 

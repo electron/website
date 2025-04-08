@@ -1,7 +1,7 @@
 ---
 title: "BrowserWindowConstructorOptions Object extends `BaseWindowConstructorOptions`"
 description: ""
-slug: browser-window-options
+slug: /browser-window-options
 hide_title: false
 ---
 

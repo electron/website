@@ -1,7 +1,7 @@
 ---
 title: "Certificate Object"
 description: ""
-slug: certificate
+slug: /certificate
 hide_title: false
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "ThumbarButton Object"
 description: ""
-slug: thumbar-button
+slug: /thumbar-button
 hide_title: false
 ---
 

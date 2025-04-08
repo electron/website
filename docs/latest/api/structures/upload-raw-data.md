@@ -1,7 +1,7 @@
 ---
 title: "UploadRawData Object"
 description: ""
-slug: upload-raw-data
+slug: /upload-raw-data
 hide_title: false
 ---
 

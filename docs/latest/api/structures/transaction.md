@@ -1,7 +1,7 @@
 ---
 title: "Transaction Object"
 description: ""
-slug: transaction
+slug: /transaction
 hide_title: false
 ---
 

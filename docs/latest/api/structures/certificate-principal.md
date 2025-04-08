@@ -1,7 +1,7 @@
 ---
 title: "CertificatePrincipal Object"
 description: ""
-slug: certificate-principal
+slug: /certificate-principal
 hide_title: false
 ---
 

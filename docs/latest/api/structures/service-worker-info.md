@@ -1,7 +1,7 @@
 ---
 title: "ServiceWorkerInfo Object"
 description: ""
-slug: service-worker-info
+slug: /service-worker-info
 hide_title: false
 ---
 

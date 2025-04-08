@@ -1,7 +1,7 @@
 ---
 title: "TraceCategoriesAndOptions Object"
 description: ""
-slug: trace-categories-and-options
+slug: /trace-categories-and-options
 hide_title: false
 ---
 

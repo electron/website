@@ -1,7 +1,7 @@
 ---
 title: "RenderProcessGoneDetails Object"
 description: ""
-slug: render-process-gone-details
+slug: /render-process-gone-details
 hide_title: false
 ---
 

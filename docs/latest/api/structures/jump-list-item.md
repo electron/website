@@ -1,7 +1,7 @@
 ---
 title: "JumpListItem Object"
 description: ""
-slug: jump-list-item
+slug: /jump-list-item
 hide_title: false
 ---
 

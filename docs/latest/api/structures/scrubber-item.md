@@ -1,7 +1,7 @@
 ---
 title: "ScrubberItem Object"
 description: ""
-slug: scrubber-item
+slug: /scrubber-item
 hide_title: false
 ---
 

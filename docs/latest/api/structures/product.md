@@ -1,7 +1,7 @@
 ---
 title: "Product Object"
 description: ""
-slug: product
+slug: /product
 hide_title: false
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "NotificationAction Object"
 description: ""
-slug: notification-action
+slug: /notification-action
 hide_title: false
 ---
 
