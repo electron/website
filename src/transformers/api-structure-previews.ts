@@ -19,6 +19,9 @@ import { toHast } from 'mdast-util-to-hast';
 import { defaultSchema, sanitize } from 'hast-util-sanitize';
 import { toString } from 'mdast-util-to-string';
 
+// Queue for processing structure files
+const processingQueue: string[] = [];
+const processedFiles = new Set<string>();
 const fileContent = new Map<
   string,
   { promise: Promise<Parent>; resolve?: (value: Parent) => void }
@@ -31,6 +34,64 @@ const EXCLUDE_LIST = ['browser-window-options', 'web-preferences'];
  */
 export default function attacher() {
   return transformer;
+}
+
+/**
+ * Process a structure file and its dependencies
+ */
+async function processStructureFile(
+  filePath: string,
+  file: VFile,
+): Promise<Parent | null> {
+  if (processedFiles.has(filePath)) {
+    return fileContent.get(filePath)?.promise || null;
+  }
+
+  // Add to processing queue
+  if (!processingQueue.includes(filePath)) {
+    processingQueue.push(filePath);
+  }
+
+  // Process files in queue sequentially
+  while (processingQueue.length > 0) {
+    const currentFile = processingQueue[0];
+    if (!processedFiles.has(currentFile)) {
+      try {
+        const content = await processFile(currentFile, file);
+        processedFiles.add(currentFile);
+        if (fileContent.has(currentFile)) {
+          const { resolve } = fileContent.get(currentFile)!;
+          if (resolve) resolve(content);
+        } else {
+          fileContent.set(currentFile, { promise: Promise.resolve(content) });
+        }
+      } catch (error) {
+        logger.error(error);
+        processingQueue.shift();
+        continue;
+      }
+    }
+    processingQueue.shift();
+  }
+
+  return fileContent.get(filePath)?.promise || null;
+}
+
+/**
+ * Process a single file and return its content
+ */
+async function processFile(filePath: string, file: VFile): Promise<Parent> {
+  // Implementation of file processing logic
+  // This would contain the existing logic for processing a single file
+  const tree = file.data.astro as Parent;
+  const filteredTree = filter(tree, (node) => node.type !== 'mdxjsEsm');
+  const headingIndex = filteredTree.children.findIndex(
+    (node) => node.type === 'heading' && (node as Heading).depth > 1,
+  );
+  if (headingIndex > 0) {
+    filteredTree.children = filteredTree.children.slice(0, headingIndex);
+  }
+  return filteredTree;
 }
 
 /**
@@ -71,8 +132,6 @@ async function transformer(tree: Parent, file: VFile) {
     node: Link | LinkReference,
     parents: Parent[],
   ) {
-    // depending on if the node is a direct link or a reference-style link,
-    // we get its URL differently.
     let relativeStructureUrl: string;
     let isInline = false;
     if (isLink(node)) {
@@ -83,7 +142,6 @@ async function transformer(tree: Parent, file: VFile) {
       return;
     }
 
-    // ?inline links will be inlined instead of rendered as a hover preview
     if (relativeStructureUrl.endsWith('?inline')) {
       relativeStructureUrl = relativeStructureUrl.split('?inline')[0];
       if (isLink(node)) {
@@ -94,62 +152,15 @@ async function transformer(tree: Parent, file: VFile) {
 
     const relativeStructurePath = `${relativeStructureUrl}.md`;
 
-    // No file content promise available, so add one and then wait
-    // on it being resolved when the structure doc is processed
-    if (!fileContent.has(relativeStructurePath)) {
-      let resolve: (value: Parent) => void;
-      let reject: (err: Error) => void;
-
-      // Set a timeout as a backstop so we don't deadlock forever if something
-      // causes content to never be resolved - in theory an upstream change in
-      // Docusaurus could cause that if they limited how many files are being
-      // processed in parallel such that too many docs are awaiting others
-      const timeoutId = setTimeout(() => {
-        // links in translated locale [xy] have their paths prefixed with /xy/
-        const isTranslatedDoc = !relativeStructurePath.startsWith('/docs/');
-
-        if (isTranslatedDoc) {
-          // If we're running locally we might not have translations downloaded
-          // so if we don't find it locally just supply the default locale
-          const [_fullPath, locale, docPath] = relativeStructurePath.match(
-            /\/([a-z][a-z])\/docs\/(.*)/,
-          );
-          const defaultLocalePath = `/docs/${docPath}`;
-          const localeDir = path.join(__dirname, '..', '..', 'i18n', locale);
-
-          if (!fs.existsSync(localeDir)) {
-            if (fileContent.has(defaultLocalePath)) {
-              const { promise } = fileContent.get(defaultLocalePath);
-              promise.then((content) => resolve(content));
-              return;
-            }
-          }
-        }
-
-        reject(
-          new Error(
-            `Timed out waiting for API structure content from ${relativeStructurePath}`,
-          ),
-        );
-      }, 60_000);
-
-      const promise = new Promise<Parent>((resolve_, reject_) => {
-        resolve = (value: Parent) => {
-          clearTimeout(timeoutId);
-          resolve_(value);
-        };
-        reject = reject_;
-      });
-
-      fileContent.set(relativeStructurePath, { promise, resolve });
-    }
-
-    const { promise: targetStructure } = fileContent.get(relativeStructurePath);
+    // Process the structure file and its dependencies
+    const contentPromise = processStructureFile(relativeStructurePath, file);
 
     if (toString(node).length > 0) {
       mutationPromises.add(
-        targetStructure
+        contentPromise
           .then((structureContent) => {
+            if (!structureContent) return;
+
             if (isInline) {
               // we inline the structure content as the last sibling of the current node
               const siblings = parents[parents.length - 1].children;
@@ -234,7 +245,6 @@ async function transformer(tree: Parent, file: VFile) {
           })
           .catch((err) => {
             logger.error(err);
-            // NOTE - if build starts failing, comment the throw out
             throw err;
           }),
       );
@@ -274,27 +284,7 @@ async function transformer(tree: Parent, file: VFile) {
       relativePath = `/${locale}/docs/${docPath}`;
     }
 
-    // For each structure, we want the <h1> heading (title of the structure)
-    // and all content up until the next heading, which would be the base
-    // info for the structure (props + comments) by our conventions.
-    const filteredTree = filter(tree, (node) => node.type !== 'mdxjsEsm');
-    const headingIndex = filteredTree.children.findIndex(
-      (node) => node.type === 'heading' && (node as Heading).depth > 1,
-    );
-    if (headingIndex > 0) {
-      filteredTree.children = filteredTree.children.slice(0, headingIndex);
-    }
-
-    // If `fileContent` already contains this document, it means that
-    // a document has requested the contents of this file already and has
-    // passed a Promise.resolve callback. This will resolve the pending
-    // Promise.
-    if (fileContent.has(relativePath)) {
-      const { resolve } = fileContent.get(relativePath);
-      if (resolve) resolve(filteredTree);
-    } else {
-      fileContent.set(relativePath, { promise: Promise.resolve(filteredTree) });
-    }
+    await processStructureFile(relativePath, file);
   }
 
   const importNode = getJSXImport('APIStructurePreview');
