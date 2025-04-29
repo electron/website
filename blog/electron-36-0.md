@@ -48,29 +48,16 @@ Electron 36 upgrades Chromium from `134.0.6998.23` to `136.0.7103.48`, and V8 fr
 ### New Features
 
 - Added `BrowserWindow.isSnapped()` to indicate whether a given window has been arranged via Snap. [#46226](https://github.com/electron/electron/pull/46226)
-- Added `ServiceWorkerMain` class to interact with service workers in the main process.
-  - Added `fromVersionID` on `ServiceWorkers` to get an instance of `ServiceWorkerMain`.
-  - Added `running-status-changed` event on `ServiceWorkers` to indicate when a service worker's running status has changed.
-  - Added `startWorkerForScope` on `ServiceWorkers` to start a worker that may have been previously stopped. [#45232](https://github.com/electron/electron/pull/45232) <span style="font-size:small;">(Also in [35](https://github.com/electron/electron/pull/45341))</span>
 - Added `WebContents.focusedFrame` to get the focused frame.
   - Fixed `WebContents.opener` to specify potential `null` type. [#45667](https://github.com/electron/electron/pull/45667)
-- Added `contextBridge.executeInMainWorld` to safely execute code across world boundaries. [#45229](https://github.com/electron/electron/pull/45229) <span style="font-size:small;">(Also in [35](https://github.com/electron/electron/pull/45330))</span>
 - Added `ffmpeg.dll` to delay load configuration. [#46173](https://github.com/electron/electron/pull/46173) <span style="font-size:small;">(Also in [34](https://github.com/electron/electron/pull/46174), [35](https://github.com/electron/electron/pull/46172))</span>
 - Added `nativeTheme.shouldUseDarkColorsForSystemIntegratedUI` to distinguish system and app theme. [#46598](https://github.com/electron/electron/pull/46598) <span style="font-size:small;">(Also in [35](https://github.com/electron/electron/pull/46599))</span>
-- Added `view.getVisible()`. [#44999](https://github.com/electron/electron/pull/44999) <span style="font-size:small;">(Also in [34](https://github.com/electron/electron/pull/45410), [35](https://github.com/electron/electron/pull/45409))</span>
-- Added `webContents.navigationHistory.restore(index, entries)` API that allows restoration of navigation history. [#45433](https://github.com/electron/electron/pull/45433) <span style="font-size:small;">(Also in [34](https://github.com/electron/electron/pull/45584), [35](https://github.com/electron/electron/pull/45583))</span>
-- Added excludeUrls to webRequest filter and deprecated the use of empty arrays in `urls` property. [#44692](https://github.com/electron/electron/pull/44692) <span style="font-size:small;">(Also in [35](https://github.com/electron/electron/pull/45678))</span>
-- Added permission support for `document.executeCommand("paste")`. [#45377](https://github.com/electron/electron/pull/45377) <span style="font-size:small;">(Also in [33](https://github.com/electron/electron/pull/45473), [34](https://github.com/electron/electron/pull/45472), [35](https://github.com/electron/electron/pull/45471))</span>
+- Added `excludeUrls` to `webRequest` filter and deprecated the use of empty arrays in `urls` property. [#44692](https://github.com/electron/electron/pull/44692) <span style="font-size:small;">(Also in [35](https://github.com/electron/electron/pull/45678))</span>
 - Added support for Autofill, Writing Tools and Services macOS level menu items in context menus via the new `frame` option in `menu.popup`. [#46350](https://github.com/electron/electron/pull/46350)
-- Added support for `roundedCorners` BrowserWindow constructor option on Windows. [#45594](https://github.com/electron/electron/pull/45594) <span style="font-size:small;">(Also in [34](https://github.com/electron/electron/pull/45739), [35](https://github.com/electron/electron/pull/45740))</span>
 - Added support for `system-context-menu` on Linux. [#46399](https://github.com/electron/electron/pull/46399)
-- Added support for service worker preload scripts. [#44411](https://github.com/electron/electron/pull/44411) <span style="font-size:small;">(Also in [35](https://github.com/electron/electron/pull/45408))</span>
-- Redesigned preload script APIs by introducing `registerPreloadScript`, `unregisterPreloadScript`, `getPreloadScripts` on `Session`.
-  - Deprecated `getPreloads` and `setPreloads` on `Session`. [#45230](https://github.com/electron/electron/pull/45230) <span style="font-size:small;">(Also in [35](https://github.com/electron/electron/pull/45329))</span>
-- Removed 240 FPS limit when use shared texture OSR. [#45669](https://github.com/electron/electron/pull/45669) <span style="font-size:small;">(Also in [35](https://github.com/electron/electron/pull/45781))</span>
-- Support Portal's globalShortcuts. Electron must be run with --enable-features=GlobalShortcutsPortal in order to have the feature working. [#45171](https://github.com/electron/electron/pull/45171) <span style="font-size:small;">(Also in [35](https://github.com/electron/electron/pull/45297))</span>
 - Improved ASAR integrity checks on Windows. [#46537](https://github.com/electron/electron/pull/46537)
 - Improved performance of desktopCapturer.getSources when not requesting thumbnails on macOS. [#46251](https://github.com/electron/electron/pull/46251) <span style="font-size:small;">(Also in [34](https://github.com/electron/electron/pull/46250), [35](https://github.com/electron/electron/pull/46249))</span>
+- Removed 240 FPS limit when use shared texture OSR. [#45669](https://github.com/electron/electron/pull/45669) <span style="font-size:small;">(Also in [35](https://github.com/electron/electron/pull/45781))</span>
 
 ### Breaking Changes
 
@@ -118,109 +105,12 @@ The same can be done with the [`app.commandLine.appendSwitch`](https://www.elect
 
 If you were using `app.commandLine` to control the behavior of the main process, you should do this via `process.argv`.
 
-### Removed: `systemPreferences.isAeroGlassEnabled()`
-
-The `systemPreferences.isAeroGlassEnabled()` function has been removed without replacement.
-It has been always returning `true` since Electron 23, which only supports Windows 10+, where DWM composition can no longer be disabled.
-
-https://learn.microsoft.com/en-us/windows/win32/dwm/composition-ovw#disabling-dwm-composition-windows7-and-earlier
-
-### Removed:`isDefault` and `status` properties on `PrinterInfo`
-
-These properties have been removed from the PrinterInfo Object
-because they have been removed from upstream Chromium.
-
 ### Removed: `quota` type `syncable` in `Session.clearStorageData(options)`
 
 When calling `Session.clearStorageData(options)`, the `options.quota` type
 `syncable` is no longer supported because it has been
 [removed](https://chromium-review.googlesource.com/c/chromium/src/+/6309405)
 from upstream Chromium.
-
----
-
-### Removed: `isDefault` and `status` properties on `PrinterInfo`
-
-These properties have been removed from the PrinterInfo Object
-because they have been removed from upstream Chromium.
-
-### Deprecated: `getFromVersionID` on `session.serviceWorkers`
-
-The `session.serviceWorkers.fromVersionID(versionId)` API has been deprecated
-in favor of `session.serviceWorkers.getInfoFromVersionID(versionId)`. This was
-changed to make it more clear which object is returned with the introduction
-of the `session.serviceWorkers.getWorkerFromVersionID(versionId)` API.
-
-```js
-// Deprecated
-session.serviceWorkers.fromVersionID(versionId);
-
-// Replace with
-session.serviceWorkers.getInfoFromVersionID(versionId);
-```
-
-### Deprecated: `setPreloads`, `getPreloads` on `Session`
-
-`registerPreloadScript`, `unregisterPreloadScript`, and `getPreloadScripts` are introduced as a
-replacement for the deprecated methods. These new APIs allow third-party libraries to register
-preload scripts without replacing existing scripts. Also, the new `type` option allows for
-additional preload targets beyond `frame`.
-
-```js
-// Deprecated
-session.setPreloads([path.join(__dirname, 'preload.js')]);
-
-// Replace with:
-session.registerPreloadScript({
-  type: 'frame',
-  id: 'app-preload',
-  filePath: path.join(__dirname, 'preload.js'),
-});
-```
-
-### Deprecated: `level`, `message`, `line`, and `sourceId` arguments in `console-message` event on `WebContents`
-
-The `console-message` event on `WebContents` has been updated to provide details on the `Event`
-argument.
-
-```js
-// Deprecated
-webContents.on(
-  'console-message',
-  (event, level, message, line, sourceId) => {},
-);
-
-// Replace with:
-webContents.on(
-  'console-message',
-  ({ level, message, lineNumber, sourceId, frame }) => {},
-);
-```
-
-Additionally, `level` is now a string with possible values of `info`, `warning`, `error`, and `debug`.
-
-### Behavior Changed: `urls` property of `WebRequestFilter`.
-
-Previously, an empty urls array was interpreted as including all URLs. To explicitly include all URLs, developers should now use the `<all_urls>` pattern, which is a [designated URL pattern](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Match_patterns#all_urls) that matches every possible URL. This change clarifies the intent and ensures more predictable behavior.
-
-```js
-// Deprecated
-const deprecatedFilter = {
-  urls: [],
-};
-
-// Replace with
-const newFilter = {
-  urls: ['<all_urls>'],
-};
-```
-
-### Deprecated: `systemPreferences.isAeroGlassEnabled()`
-
-The `systemPreferences.isAeroGlassEnabled()` function has been deprecated without replacement.
-It has been always returning `true` since Electron 23, which only supports Windows 10+, where DWM composition can no longer be disabled.
-
-https://learn.microsoft.com/en-us/windows/win32/dwm/composition-ovw#disabling-dwm-composition-windows7-and-earlier
 
 ## End of Support for 33.x.y
 
