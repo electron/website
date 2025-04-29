@@ -23,6 +23,8 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
       - name: Check blog post links
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           BLOG_POSTS=$(gh api repos/electron/website/pulls/${{ github.event.pull_request.number }}/files --jq '.[] | select((.filename | startswith("blog/")) and (.status != "removed")) | .filename')
           echo $BLOG_POSTS | xargs npx lint-roller-markdown-links --ignore-path .markdownlintignore --fetch-external-links
