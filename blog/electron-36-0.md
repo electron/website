@@ -17,12 +17,22 @@ If you have any feedback, please share it with us on [Bluesky](https://bsky.app/
 
 ## Notable Changes
 
-### Highlights
+### Native macOS Context Menu Support
 
-- Add support for MacOS Autofill, Writing Tools (e.g., spelling, grammar), and Services
-  - Electron apps can now hook into AppKit's native context menus via the newly exposed `frame` option in `menu.popup`.
-- Added ServiceWorkerMain class to interact with service workers in the main process.
-  - Developers can now start serviceworkers with `startWorkerForScope()`, retrieve service worker instances with `fromVersionID()`, and listen for lifecycle events like `runnning-status-changed`
+Electron 36 enhances the `menu.popup` API by extending the `options` object to include `frame`. This feature enables integration with macOS system-level features like Writing Tools (spelling and grammar), Autofill, and Services menu items.
+
+```ts
+import { BrowserWindow, Menu, WebFrameMain } from 'electron';
+
+const currentWindow: Electron.BrowserWindow = BrowserWindow.getFocusedWindow();
+const focusedFrame = currentWindow.webContents.focusedFrame;
+const menu = Menu.buildFromTemplate([{ label: 'Copy', role: 'copy' }]);
+
+menu.popup({
+  window: currentWindow,
+  frame: focusedFrame,
+});
+```
 
 ### Stack Changes
 
