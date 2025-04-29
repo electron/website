@@ -19,7 +19,12 @@ This document uses the following convention to categorize breaking changes:
 * **Deprecated:** An API was marked as deprecated. The API will continue to function, but will emit a deprecation warning, and will be removed in a future release.
 * **Removed:** An API or feature was removed, and is no longer supported by Electron.
 
-## Planned Breaking API Changes (35.0)
+## Planned Breaking API Changes (37.0)
+
+### Behavior Changed: `BrowserWindow.IsVisibleOnAllWorkspaces()` on Linux
+
+`BrowserWindow.IsVisibleOnAllWorkspaces()` will now return false on Linux if the
+window is not currently visible.
 
 ### Behavior Changes: `app.commandLine`
 
@@ -28,6 +33,83 @@ This document uses the following convention to categorize breaking changes:
 `app.commandLine` was only meant to handle chromium switches (which aren't case-sensitive) and switches passed via `app.commandLine` will not be passed down to any of the child processes.
 
 If you were using `app.commandLine` to control the behavior of the  main process, you should do this via `process.argv`.
+
+### Deprecated: `NativeImage.getBitmap()`
+
+`NativeImage.toBitmap()` returns a newly-allocated copy of the bitmap. `NativeImage.getBitmap()` was originally an alternative function that returned the original instead of a copy. This changed when sandboxing was introduced, so both return a copy and are functionally equivalent.
+
+Client code should call `NativeImage.toBitmap()` instead:
+
+```js
+// Deprecated
+bitmap = image.getBitmap()
+// Use this instead
+bitmap = image.toBitmap()
+```
+
+## Planned Breaking API Changes (36.0)
+
+### Removed:`isDefault` and `status` properties on `PrinterInfo`
+
+These properties have been removed from the PrinterInfo Object
+because they have been removed from upstream Chromium.
+
+### Removed: `quota` type `syncable` in `Session.clearStorageData(options)`
+
+When calling `Session.clearStorageData(options)`, the `options.quota` type
+`syncable` is no longer supported because it has been
+[removed](https://chromium-review.googlesource.com/c/chromium/src/+/6309405)
+from upstream Chromium.
+
+### Deprecated: `quota` property in `Session.clearStorageData(options)`
+
+When calling `Session.clearStorageData(options)`, the `options.quota`
+property is deprecated. Since the `syncable` type was removed, there
+is only type left -- `'temporary'` -- so specifying it is unnecessary.
+
+### Deprecated: `null` value for `session` property in `ProtocolResponse`
+
+Previously, setting the ProtocolResponse.session property to `null`
+Would create a random independent session. This is no longer supported.
+
+Using single-purpose sessions here is discouraged due to overhead costs;
+however, old code that needs to preserve this behavior can emulate it by
+creating a random session with `session.fromPartition(some_random_string)`
+and then using it in `ProtocolResponse.session`.
+
+### Deprecated: Extension methods and events on `session`
+
+`session.loadExtension`, `session.removeExtension`, `session.getExtension`,
+`session.getAllExtensions`, 'extension-loaded' event, 'extension-unloaded'
+event, and 'extension-ready' events have all moved to the new
+`session.extensions` class.
+
+### Removed: `systemPreferences.isAeroGlassEnabled()`
+
+The `systemPreferences.isAeroGlassEnabled()` function has been removed without replacement.
+It has been always returning `true` since Electron 23, which only supports Windows 10+, where DWM composition can no longer be disabled.
+
+https://learn.microsoft.com/en-us/windows/win32/dwm/composition-ovw#disabling-dwm-composition-windows7-and-earlier
+
+### Changed: GTK 4 is default when running GNOME
+
+After an [upstream change](https://chromium-review.googlesource.com/c/chromium/src/+/6310469), GTK 4 is now the default when running GNOME.
+
+In rare cases, this may cause some applications or configurations to [error](https://github.com/electron/electron/issues/46538) with the following message:
+
+```stderr
+Gtk-ERROR **: 11:30:38.382: GTK 2/3 symbols detected. Using GTK 2/3 and GTK 4 in the same process is not supported
+```
+
+Affected users can work around this by specifying the `gtk-version` command-line flag:
+
+```shell
+$ electron --gtk-version=3   # or --gtk-version=2
+```
+
+The same can be done with the [`app.commandLine.appendSwitch`](https://www.electronjs.org/docs/latest/api/command-line#commandlineappendswitchswitch-value) function.
+
+## Planned Breaking API Changes (35.0)
 
 ### Behavior Changed: Dialog API's `defaultPath` option on Linux
 
@@ -38,6 +120,21 @@ backend is version 4 or higher. The `--xdg-portal-required-version`
 [command-line switch](/api/command-line-switches.md#--xdg-portal-required-versionversion)
 can be used to force a required version for your application.
 See [#44426](https://github.com/electron/electron/pull/44426) for more details.
+
+### Deprecated: `getFromVersionID` on `session.serviceWorkers`
+
+The `session.serviceWorkers.fromVersionID(versionId)` API has been deprecated
+in favor of `session.serviceWorkers.getInfoFromVersionID(versionId)`. This was
+changed to make it more clear which object is returned with the introduction
+of the `session.serviceWorkers.getWorkerFromVersionID(versionId)` API.
+
+```js
+// Deprecated
+session.serviceWorkers.fromVersionID(versionId)
+
+// Replace with
+session.serviceWorkers.getInfoFromVersionID(versionId)
+```
 
 ### Deprecated: `setPreloads`, `getPreloads` on `Session`
 
@@ -56,21 +153,6 @@ session.registerPreloadScript({
   id: 'app-preload',
   filePath: path.join(__dirname, 'preload.js')
 })
-```
-
-### Deprecated: `getFromVersionID` on `session.serviceWorkers`
-
-The `session.serviceWorkers.fromVersionID(versionId)` API has been deprecated
-in favor of `session.serviceWorkers.getInfoFromVersionID(versionId)`. This was
-changed to make it more clear which object is returned with the introduction
-of the `session.serviceWorkers.getWorkerFromVersionID(versionId)` API.
-
-```js
-// Deprecated
-session.serviceWorkers.fromVersionID(versionId)
-
-// Replace with
-session.serviceWorkers.getInfoFromVersionID(versionId)
 ```
 
 ### Deprecated: `level`, `message`, `line`, and `sourceId` arguments in `console-message` event on `WebContents`

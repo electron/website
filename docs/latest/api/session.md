@@ -658,7 +658,7 @@ Clears the session’s HTTP cache.
     `shadercache`, `websql`, `serviceworkers`, `cachestorage`. If not
     specified, clear all storage types.
   * `quotas` string[] (optional) - The types of quotas to clear, can be
-    `temporary`, `syncable`. If not specified, clear all quotas.
+    `temporary`. If not specified, clear all quotas.
 
 Returns `Promise<void>` - resolves when the storage data has been cleared.
 
@@ -1492,7 +1492,7 @@ will not work on non-persistent (in-memory) sessions.
 
 **Note:** On macOS and Windows 10 this word will be removed from the OS custom dictionary as well
 
-#### `ses.loadExtension(path[, options])`
+#### `ses.loadExtension(path[, options])` _Deprecated_
 
 * `path` string - Path to a directory containing an unpacked Chrome extension
 * `options` Object (optional)
@@ -1539,7 +1539,9 @@ is emitted.
 **Note:** Loading extensions into in-memory (non-persistent) sessions is not
 supported and will throw an error.
 
-#### `ses.removeExtension(extensionId)`
+**Deprecated:** Use the new `ses.extensions.loadExtension` API.
+
+#### `ses.removeExtension(extensionId)` _Deprecated_
 
 * `extensionId` string - ID of extension to remove
 
@@ -1548,7 +1550,9 @@ Unloads an extension.
 **Note:** This API cannot be called before the `ready` event of the `app` module
 is emitted.
 
-#### `ses.getExtension(extensionId)`
+**Deprecated:** Use the new `ses.extensions.removeExtension` API.
+
+#### `ses.getExtension(extensionId)` _Deprecated_
 
 * `extensionId` string - ID of extension to query
 
@@ -1557,12 +1561,16 @@ Returns `Extension | null` - The loaded extension with the given ID.
 **Note:** This API cannot be called before the `ready` event of the `app` module
 is emitted.
 
-#### `ses.getAllExtensions()`
+**Deprecated:** Use the new `ses.extensions.getExtension` API.
+
+#### `ses.getAllExtensions()` _Deprecated_
 
 Returns `Extension[]` - A list of all loaded extensions.
 
 **Note:** This API cannot be called before the `ready` event of the `app` module
 is emitted.
+
+**Deprecated:** Use the new `ses.extensions.getAllExtensions` API.
 
 #### `ses.getStoragePath()`
 
@@ -1625,6 +1633,10 @@ session is persisted on disk.  For in memory sessions this returns `null`.
 #### `ses.cookies` _Readonly_
 
 A [`Cookies`](cookies.md) object for this session.
+
+#### `ses.extensions` _Readonly_
+
+A [`Extensions`](extensions-api.md) object for this session.
 
 #### `ses.serviceWorkers` _Readonly_
 

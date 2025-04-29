@@ -349,12 +349,12 @@ Emitted when the window has closed a sheet.
 
 Emitted when the native new tab button is clicked.
 
-#### Event: 'system-context-menu' _Windows_
+#### Event: 'system-context-menu' _Windows_ _Linux_
 
 Returns:
 
 * `event` Event
-* `point` [Point](structures/point.md) - The screen coordinates the context menu was triggered at
+* `point` [Point](structures/point.md) - The screen coordinates where the context menu was triggered.
 
 Emitted when the system context menu is triggered on the window, this is
 normally only triggered when the user right clicks on the non-client area
@@ -362,6 +362,8 @@ of your window.  This is the window titlebar or any area you have declared
 as `-webkit-app-region: drag` in a frameless window.
 
 Calling `event.preventDefault()` will prevent the menu from being displayed.
+
+To convert `point` to DIP, use [`screen.screenToDipPoint(point)`](./screen.md#screenscreentodippointpoint-windows).
 
 ### Static Methods
 
@@ -517,6 +519,10 @@ Menu.setApplicationMenu(menu)
 A `string` property that defines an alternative title provided only to
 accessibility tools such as screen readers. This string is not directly
 visible to users.
+
+#### `win.snapped` _Windows_ _Readonly_
+
+A `boolean` property that indicates whether the window is arranged via [Snap.](https://support.microsoft.com/en-us/windows/snap-your-windows-885a9b1e-a983-a3b1-16cd-c531795e6241)
 
 ### Instance Methods
 
@@ -1268,6 +1274,13 @@ Sets whether the menu bar should be visible. If the menu bar is auto-hide, users
 #### `win.isMenuBarVisible()` _Windows_ _Linux_
 
 Returns `boolean` - Whether the menu bar is visible.
+
+#### `win.isSnapped()` _Windows_
+
+Returns `boolean` - whether the window is arranged via [Snap.](https://support.microsoft.com/en-us/windows/snap-your-windows-885a9b1e-a983-a3b1-16cd-c531795e6241)
+
+The window is snapped via buttons shown when the mouse is hovered over window
+maximize button, or by dragging it to the edges of the screen.
 
 #### `win.setVisibleOnAllWorkspaces(visible[, options])` _macOS_ _Linux_
 
