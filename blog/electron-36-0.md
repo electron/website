@@ -56,7 +56,7 @@ Electron 36 upgrades Chromium from `134.0.6998.23` to `136.0.7103.48`, and V8 fr
 - Added support for Autofill, Writing Tools and Services macOS level menu items in context menus via the new `frame` option in `menu.popup`. [#46350](https://github.com/electron/electron/pull/46350)
 - Added support for `system-context-menu` on Linux. [#46399](https://github.com/electron/electron/pull/46399)
 - Improved ASAR integrity checks on Windows. [#46537](https://github.com/electron/electron/pull/46537)
-- Improved performance of desktopCapturer.getSources when not requesting thumbnails on macOS. [#46251](https://github.com/electron/electron/pull/46251) <span style="font-size:small;">(Also in [34](https://github.com/electron/electron/pull/46250), [35](https://github.com/electron/electron/pull/46249))</span>
+- Improved performance of `desktopCapturer.getSources` when not requesting thumbnails on macOS. [#46251](https://github.com/electron/electron/pull/46251) <span style="font-size:small;">(Also in [34](https://github.com/electron/electron/pull/46250), [35](https://github.com/electron/electron/pull/46249))</span>
 - Removed 240 FPS limit when use shared texture OSR. [#45669](https://github.com/electron/electron/pull/45669) <span style="font-size:small;">(Also in [35](https://github.com/electron/electron/pull/45781))</span>
 
 ### Breaking Changes
@@ -79,9 +79,9 @@ When calling `Session.clearStorageData(options)`, the `options.quota`
 property is deprecated. Since the `syncable` type was removed, there
 is only type left -- `'temporary'` -- so specifying it is unnecessary.
 
-### Behavior Changed: GTK 4 is default when running GNOME
+### Behavior Changed: GTK 4 is the default when running on GNOME
 
-After an [upstream change](https://chromium-review.googlesource.com/c/chromium/src/+/6310469), GTK 4 is now the default when running GNOME.
+After an [upstream change](https://chromium-review.googlesource.com/c/chromium/src/+/6310469), GTK 4 is now the default when running on GNOME.
 
 In rare cases, this may cause some applications or configurations to [error](https://github.com/electron/electron/issues/46538) with the following message:
 
@@ -99,7 +99,7 @@ The same can be done with the [`app.commandLine.appendSwitch`](https://www.elect
 
 ### Behavior Changed: `app.commandLine`
 
-`app.commandLine` will convert upper-cases switches and arguments to lowercase.
+`app.commandLine` will convert uppercases switches and arguments to lowercase.
 
 `app.commandLine` was only meant to handle chromium switches (which aren't case-sensitive) and switches passed via `app.commandLine` will not be passed down to any of the child processes.
 
