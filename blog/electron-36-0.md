@@ -70,8 +70,8 @@ The two functions both return a newly-allocated copy of the bitmap and are funct
 
 `session.loadExtension`, `session.removeExtension`, `session.getExtension`,
 `session.getAllExtensions`, `extension-loaded` event, `extension-unloaded`
-event, and `extension-ready` events have all moved to the new
-`session.extensions` class.
+event, and `extension-ready` events have all moved to the new `Extensions`
+object accessible via the `session.extensions` instance property.
 
 ### Removed: `quota` type `syncable` in `session.clearStorageData(options)`
 
