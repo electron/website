@@ -50,14 +50,14 @@ Electron 36 upgrades Chromium from `134.0.6998.23` to `136.0.7103.48`, and V8 fr
 - Added `BrowserWindow.isSnapped()` to indicate whether a given window has been arranged via Snap on Windows. [#46226](https://github.com/electron/electron/pull/46226)
 - Added `WebContents.focusedFrame` to get the focused frame.
 - Fixed `WebContents.opener` to specify potential `null` type. [#45667](https://github.com/electron/electron/pull/45667)
-- Added `ffmpeg.dll` to delay load configuration. [#46173](https://github.com/electron/electron/pull/46173) <span style={{fontSize: "small"}}>(Also in [34](https://github.com/electron/electron/pull/46174), [35](https://github.com/electron/electron/pull/46172))</span>
-- Added `nativeTheme.shouldUseDarkColorsForSystemIntegratedUI` to distinguish system and app theme. [#46598](https://github.com/electron/electron/pull/46598) <span style={{fontSize: "small"}}>(Also in [35](https://github.com/electron/electron/pull/46599))</span>
-- Added `excludeUrls` to `webRequest` filter and deprecated the use of empty arrays in `urls` property. [#44692](https://github.com/electron/electron/pull/44692) <span style={{fontSize: "small"}}>(Also in [35](https://github.com/electron/electron/pull/45678))</span>
+- Added `ffmpeg.dll` to delay load configuration. [#46173](https://github.com/electron/electron/pull/46173) (Also in [34](https://github.com/electron/electron/pull/46174), [35](https://github.com/electron/electron/pull/46172))
+- Added `nativeTheme.shouldUseDarkColorsForSystemIntegratedUI` to distinguish system and app theme. [#46598](https://github.com/electron/electron/pull/46598) (Also in [35](https://github.com/electron/electron/pull/46599))
+- Added `excludeUrls` to `webRequest` filter and deprecated the use of empty arrays in `urls` property. [#44692](https://github.com/electron/electron/pull/44692) (Also in [35](https://github.com/electron/electron/pull/45678))
 - Added support for Autofill, Writing Tools and Services macOS level menu items in context menus via the new `frame` option in `menu.popup`. [#46350](https://github.com/electron/electron/pull/46350)
 - Added support for `system-context-menu` on Linux. [#46399](https://github.com/electron/electron/pull/46399)
 - Improved ASAR integrity checks on Windows. [#46537](https://github.com/electron/electron/pull/46537)
-- Improved performance of `desktopCapturer.getSources` when not requesting thumbnails on macOS. [#46251](https://github.com/electron/electron/pull/46251) <span style={{fontSize: "small"}}>(Also in [34](https://github.com/electron/electron/pull/46250), [35](https://github.com/electron/electron/pull/46249))</span>
-- Removed 240 FPS limit when use shared texture OSR. [#45669](https://github.com/electron/electron/pull/45669) <span style={{fontSize: "small"}}>(Also in [35](https://github.com/electron/electron/pull/45781))</span>
+- Improved performance of `desktopCapturer.getSources` when not requesting thumbnails on macOS. [#46251](https://github.com/electron/electron/pull/46251) (Also in [34](https://github.com/electron/electron/pull/46250), [35](https://github.com/electron/electron/pull/46249))
+- Removed 240 FPS limit when use shared texture OSR. [#45669](https://github.com/electron/electron/pull/45669) (Also in [35](https://github.com/electron/electron/pull/45781))
 
 ### Breaking Changes
 
