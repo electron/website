@@ -19,12 +19,12 @@ If you have any feedback, please share it with us on [Bluesky](https://bsky.app/
 
 ### Writing Tools Support
 
-In Electron 36, you can enable macOS system-level features like Writing Tools (spelling and grammar), Autofill, and Services menu items in your context menus. Simply pass a `frame` in the `options` object that you pass to `menu.popup`.
+In Electron 36, you can enable macOS system-level features like Writing Tools (spelling and grammar), Autofill, and Services menu items in your context menus. To do so, pass a [WebFrameMain](https://www.electronjs.org/docs/latest/api/web-frame-main#class-webframemain) instance into the `frame` parameter for `menu.popup()`.
 
 ```js
 import { BrowserWindow, Menu, WebFrameMain } from 'electron';
 
-const currentWindow: Electron.BrowserWindow = BrowserWindow.getFocusedWindow();
+const currentWindow = BrowserWindow.getFocusedWindow();
 const focusedFrame = currentWindow.webContents.focusedFrame;
 const menu = Menu.buildFromTemplate([{ label: 'Copy', role: 'copy' }]);
 
@@ -41,7 +41,7 @@ menu.popup({
   - [New in 135](https://developer.chrome.com/blog/new-in-chrome-135/)
 - Node `22.14.0`
   - [Node 22.14.0 blog post](https://nodejs.org/en/blog/release/v22.14.0/)
-- V8 `13.5`
+- V8 `13.6`
 
 Electron 36 upgrades Chromium from `134.0.6998.23` to `136.0.7103.48`, and V8 from `13.5` to `13.6`.
 
