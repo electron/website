@@ -69,9 +69,10 @@ The two functions both return a newly-allocated copy of the bitmap and are funct
 ### Deprecated: Extension methods and events on `session`
 
 `session.loadExtension`, `session.removeExtension`, `session.getExtension`,
-`session.getAllExtensions`, `extension-loaded` event, `extension-unloaded`
-event, and `extension-ready` events have all moved to the new
-`session.extensions` class.
+`session.getAllExtensions`, and the events `extension-loaded`,
+`extension-unloaded`, and `extension-ready` have all moved to the new
+[`Extensions` object](https://www.electronjs.org/docs/latest/api/extensions-api)
+accessible via the `session.extensions` instance property.
 
 ### Removed: `quota` type `syncable` in `session.clearStorageData(options)`
 
