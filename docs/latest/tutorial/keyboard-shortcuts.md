@@ -140,9 +140,10 @@ function handleKeyPress (event) {
 window.addEventListener('keyup', handleKeyPress, true)
 ```
 
-> Note:  the third parameter `true` indicates that the listener will always receive
-key presses before other listeners so they can't have `stopPropagation()`
-called on them.
+> [!NOTE]
+> The third parameter `true` indicates that the listener will always receive
+> key presses before other listeners so they can't have `stopPropagation()`
+> called on them.
 
 #### Intercepting events in the main process
 

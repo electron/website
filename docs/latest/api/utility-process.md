@@ -51,7 +51,8 @@ Process: [Main](../glossary.md#main-process)<br />
 
 Returns [`UtilityProcess`](utility-process.md#class-utilityprocess)
 
-**Note:** `utilityProcess.fork` can only be called after the `ready` event has been emitted on `App`.
+> [!NOTE]
+> `utilityProcess.fork` can only be called after the `ready` event has been emitted on `App`.
 
 ## Class: UtilityProcess
 
@@ -115,7 +116,8 @@ child.on('exit', () => {
 })
 ```
 
-**Note:** You can use the `pid` to determine if the process is currently running.
+> [!NOTE]
+> You can use the `pid` to determine if the process is currently running.
 
 #### `child.stdout`
 

@@ -16,8 +16,9 @@ module is emitted.
 
 `screen` is an [EventEmitter][event-emitter].
 
-**Note:** In the renderer / DevTools, `window.screen` is a reserved DOM
-property, so writing `let { screen } = require('electron')` will not work.
+> [!NOTE]
+> In the renderer / DevTools, `window.screen` is a reserved DOM
+> property, so writing `let { screen } = require('electron')` will not work.
 
 An example of creating a window that fills the whole screen:
 
@@ -108,7 +109,8 @@ Returns [`Point`](structures/point.md)
 
 The current absolute position of the mouse pointer.
 
-**Note:** The return value is a DIP point, not a screen physical point.
+> [!NOTE]
+> The return value is a DIP point, not a screen physical point.
 
 ### `screen.getPrimaryDisplay()`
 

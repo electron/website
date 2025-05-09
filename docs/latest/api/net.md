@@ -124,8 +124,9 @@ protocol.handle('https', (req) => {
 })
 ```
 
-Note: in the [utility process](../glossary.md#utility-process) custom protocols
-are not supported.
+> [!NOTE]
+> In the [utility process](../glossary.md#utility-process), custom protocols
+> are not supported.
 
 ### `net.isOnline()`
 

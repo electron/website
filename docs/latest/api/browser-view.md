@@ -13,7 +13,7 @@ deprecated:
     breaking-changes-header: deprecated-browserview
 ```
 
-> **Note**
+> [!NOTE]
 > The `BrowserView` class is deprecated, and replaced by the new
 > [`WebContentsView`](web-contents-view.md) class.
 
@@ -32,7 +32,7 @@ deprecated:
 
 > Create and control views.
 
-> **Note**
+> [!NOTE]
 > The `BrowserView` class is deprecated, and replaced by the new
 > [`WebContentsView`](web-contents-view.md) class.
 
@@ -167,4 +167,5 @@ Examples of valid `color` values:
   * Similar to CSS Color Module Level 3 keywords, but case-sensitive.
     * e.g. `blueviolet` or `red`
 
-**Note:** Hex format with alpha takes `AARRGGBB` or `ARGB`, _not_ `RRGGBBAA` or `RGB`.
+> [!NOTE]
+> Hex format with alpha takes `AARRGGBB` or `ARGB`, _not_ `RRGGBBAA` or `RGB`.
