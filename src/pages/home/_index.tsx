@@ -142,9 +142,7 @@ export default function Home() {
                 Mac App Store
               </Link>{' '}
               (macOS), the{' '}
-              <Link to="https://www.microsoft.com/en-ca/store/apps/windows">
-                Microsoft Store
-              </Link>{' '}
+              <Link to="https://apps.microsoft.com/">Microsoft Store</Link>{' '}
               (Windows), or the{' '}
               <Link to="https://snapcraft.io/store">Snap Store</Link> (Linux).
             </Feature>
