@@ -58,7 +58,7 @@
     "@docusaurus/tsconfig": "3.7.0",
     "@docusaurus/types": "3.7.0",
     "@electron/docs-parser": "^1.0.1",
-    "@electron/lint-roller": "^3.0.0",
+    "@electron/lint-roller": "^3.1.1",
     "@tsconfig/docusaurus": "^2.0.3",
     "@types/adm-zip": "^0.5.5",
     "@types/mdast": "^4.0.4",
