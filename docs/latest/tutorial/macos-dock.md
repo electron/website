@@ -1,11 +1,11 @@
 ---
-title: Dock
+title: Dock Menu
 description: Configure your application's Dock presence on macOS.
 slug: macos-dock
 hide_title: true
 ---
 
-# Dock
+# Dock Menu
 
 Electron has APIs to configure the app's icon in the macOS Dock. A macOS-only
 API exists to create a custom dock menu, but Electron also uses the app dock

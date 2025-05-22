@@ -1,11 +1,11 @@
 ---
-title: "Accelerator"
+title: "Menu Accelerators"
 description: "Define keyboard shortcuts."
 slug: accelerator
 hide_title: false
 ---
 
-# Accelerator
+# Menu Accelerators
 
 > Define keyboard shortcuts.
 

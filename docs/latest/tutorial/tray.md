@@ -1,16 +1,12 @@
 ---
-title: Tray
+title: Tray Menu
 description: This guide will take you through the process of creating
   a Tray icon with its own context menu to the system's notification area.
 slug: tray
 hide_title: true
 ---
 
-# Tray
-
-## Overview
-
-<!-- ✍ Update this section if you want to provide more details -->
+# Tray Menu
 
 This guide will take you through the process of creating a
 [Tray](../api/tray.md) icon with

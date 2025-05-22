@@ -159,8 +159,6 @@ A `MenuItem[]` array containing the menu's items.
 Each `Menu` consists of multiple [`MenuItem`](menu-item.md)s and each `MenuItem`
 can have a submenu.
 
-## Examples
-
 An example of creating the application menu with the simple template API:
 
 ```js @ts-expect-error=[107]
@@ -273,40 +271,6 @@ const template = [
 
 const menu = Menu.buildFromTemplate(template)
 Menu.setApplicationMenu(menu)
-```
-
-### Render process
-
-To create menus initiated by the renderer process, send the required
-information to the main process using IPC and have the main process display the
-menu on behalf of the renderer.
-
-Below is an example of showing a menu when the user right clicks the page:
-
-```js @ts-expect-error=[21]
-// renderer
-window.addEventListener('contextmenu', (e) => {
-  e.preventDefault()
-  ipcRenderer.send('show-context-menu')
-})
-
-ipcRenderer.on('context-menu-command', (e, command) => {
-  // ...
-})
-
-// main
-ipcMain.on('show-context-menu', (event) => {
-  const template = [
-    {
-      label: 'Menu Item 1',
-      click: () => { event.sender.send('context-menu-command', 'menu-item-1') }
-    },
-    { type: 'separator' },
-    { label: 'Menu Item 2', type: 'checkbox', checked: true }
-  ]
-  const menu = Menu.buildFromTemplate(template)
-  menu.popup({ window: BrowserWindow.fromWebContents(event.sender) })
-})
 ```
 
 ## Notes on macOS Application Menu
