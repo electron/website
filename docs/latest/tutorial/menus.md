@@ -7,26 +7,30 @@ hide_title: true
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import DocCardList from '@theme/DocCardList';
 
 # Menus
 
 Electron's [Menu](../api/menu.md) class provides a standardized way to create cross-platform native
 menus throughout your application.
 
+## Types of menus
+
 The same menu API is used for multiple use cases:
 
 * The **application menu** is the top-level menu for your application. Each app only has a single
-  application menu at a time. On macOS, this menu is shown in the menu bar of the operating system.
-	On Windows and Linux, this menu is shown at the top of each [BaseWindow](../api/base-window.md).
-	This menu can be set using the [`Menu.setApplicationMenu`](../api/menu.md#menusetapplicationmenumenu)
-	static function. Electron will set a default menu for your app if none is programmatically set.
+  application menu at a time.
 * **Context menus** are triggered by the user when right-clicking on a portion of your app's
   interface.
 * The **tray menu** is a special context menu triggered when right-clicking on your app's [Tray](../api/tray.md)
-  instance. On macOS, the tray is located in the top menu bar. On Windows, it is located
-	in the corner of the taskbar. For Linux, the tray implementation varies between desktop environments.
+  instance.
 * On macOS, the **dock menu** is a special context menu triggered when right-clicking on your app's
   icon in the system [Dock](https://support.apple.com/en-ca/guide/mac-help/mh35859/mac).
+
+To learn more about the various types of native menus you can create and how to specify keyboard
+shortcut strings (also known as **accelerators**), see the individual guides in this section:
+
+<DocCardList />
 
 ## Building menus
 
@@ -76,7 +80,7 @@ Below is an example of a minimal application menu:
 > All menu items (except for the `separator` type) must have a label. Labels can either be manually
 > defined using the `label` property or inherited from the item's `role`.
 
-## Types
+### `MenuItem` types
 
 A menu item's type grants it a particular appearance and functionality. Some types are
 automatically assigned based on other constructor options:
@@ -101,7 +105,7 @@ Other available types, when specified, give special additional properties to the
 > ```
 
 
-## Roles
+### `MenuItem` roles
 
 Roles give `normal` type menu items predefined behaviors.
 
@@ -116,7 +120,7 @@ default to appropriate values for each platform.
 > Role strings are **case-insensitive**. For example, `toggleDevTools`, `toggledevtools`, and
 > `TOGGLEDEVTOOLS` are all equivalent roles when defining menu items.
 
-### Edit roles
+#### Edit roles
 
 * `undo`
 * `redo`
@@ -127,7 +131,7 @@ default to appropriate values for each platform.
 * `selectAll`
 * `delete`
 
-### Window roles
+#### Window roles
 
 * `about` - Trigger a native about panel (custom message box on Window, which does not provide its own).
 * `minimize` - Minimize current window.
@@ -142,14 +146,14 @@ default to appropriate values for each platform.
 * `zoomOut` - Zoom out the focused page by 10%.
 * `toggleSpellChecker` - Enable/disable built-in spellchecker.
 
-### Default menu roles
+#### Default menu roles
 
 * `fileMenu` - The submenu is a "File" menu (Close / Quit)
 * `editMenu` - The submenu is an "Edit" menu (Undo, Copy, etc.)
 * `viewMenu` - The submenu is a "View" menu (Reload, Toggle Developer Tools, etc.)
 * `windowMenu` - The submenu is a "Window" menu (Minimize, Zoom, etc.)
 
-### macOS-only roles
+#### macOS-only roles
 
 * `hide` - Map to the [`hide`](https://developer.apple.com/documentation/appkit/nsapplication/hide(_:)) action.
 * `hideOthers` - Map to the [`hideOtherApplications`](https://developer.apple.com/documentation/appkit/nsapplication/hideotherapplications(_:)) action.

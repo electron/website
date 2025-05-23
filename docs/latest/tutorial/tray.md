@@ -1,6 +1,6 @@
 ---
 title: Tray Menu
-description: Create a Tray icon with its own context menu in the system's notification area.
+description: Create a Tray icon with its own menu in the system's notification area.
 slug: tray
 hide_title: true
 ---

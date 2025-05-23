@@ -1,6 +1,6 @@
 ---
 title: Dock Menu
-description: Configure your application's Dock presence on macOS.
+description: Configure your app's Dock presence on macOS.
 slug: macos-dock
 hide_title: true
 ---

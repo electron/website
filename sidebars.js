@@ -59,15 +59,15 @@ module.exports = {
           label: 'Menus',
           link: { type: 'doc', id: 'latest/tutorial/menus' },
           items: [
-            'latest/api/accelerator',
-            'latest/tutorial/keyboard-shortcuts',
-            'latest/tutorial/context-menu',
+            'latest/tutorial/application-menu',
             {
               type: 'doc',
               id: 'latest/tutorial/macos-dock',
               customProps: { platforms: ['mac'] },
             },
             'latest/tutorial/tray',
+            'latest/tutorial/keyboard-shortcuts',
+            'latest/tutorial/context-menu',
           ],
         },
         'latest/tutorial/multithreading',
