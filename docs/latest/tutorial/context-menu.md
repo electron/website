@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 On macOS, the [Writing Tools](https://support.apple.com/en-ca/guide/mac-help/mchldcd6c260/15.0/mac/15.0),
 [AutoFill](https://support.apple.com/en-mz/guide/safari/ibrwf71ba236/mac), and
-[Services](https://support.apple.com/en-ca/guide/mac-help/mchlp1012/mac) native menu items
+[Services](https://support.apple.com/en-ca/guide/mac-help/mchlp1012/mac) menu items
 are disabled by default for context menus in Electron. To enable these features, pass the
 [WebFrameMain](../api/web-frame-main.md) associated to the target `webContents` to the `frame`
 parameter in `menu.popup`.
