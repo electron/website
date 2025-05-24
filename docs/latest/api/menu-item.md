@@ -28,7 +28,7 @@ See [`Menu`](menu.md) for examples.
   * `label` string (optional)
   * `sublabel` string (optional) _macOS_ - Available in macOS >= 14.4
   * `toolTip` string (optional) _macOS_ - Hover text for this menu item.
-  * `accelerator` [Accelerator](accelerator.md) (optional)
+  * `accelerator` string (optional) - An [accelerator](../tutorial/keyboard-shortcuts.md#accelerators) shortcut.
   * `icon` ([NativeImage](native-image.md) | string) (optional)
   * `enabled` boolean (optional) - If false, the menu item will be greyed out and
     unclickable.
