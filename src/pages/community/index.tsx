@@ -18,8 +18,10 @@ function Community() {
         <ul>
           <li>
             📣 <strong>Stay up to date</strong> by following{' '}
-            <a href="https://twitter.com/electronjs">@electronjs</a> on Twitter
-            and subscribing to the <Link to="/blog">blog feed.</Link>
+            <a href="https://bsky.app/profile/electronjs.org">
+              @electronjs.org
+            </a>{' '}
+            on Bluesky and subscribing to the <Link to="/blog">blog feed.</Link>
           </li>
           <li>
             🙋 <strong>Get help and feedback</strong> by joining the{' '}
