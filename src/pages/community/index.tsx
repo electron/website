@@ -25,7 +25,8 @@ function Community() {
           </li>
           <li>
             🙋 <strong>Get help and feedback</strong> by joining the{' '}
-            <a href="https://discord.gg/electronjs">Discord server</a>, or
+            <a href="https://discord.gg/electronjs">Discord server</a>,{' '}
+            <a href="https://www.reddit.com/r/electronjs">subreddit</a>, or
             visiting{' '}
             <a href="https://stackoverflow.com/questions/tagged/electron">
               Stack Overflow
