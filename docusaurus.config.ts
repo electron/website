@@ -262,10 +262,7 @@ const config: Config = {
             [
               remarkGithubAdmonitionsToDirectives,
               {
-                mapping: {
-                  ...DEFAULT_MAPPING,
-                  [GithubAlertType.NOTE]: DirectiveName.INFO,
-                },
+                mapping: DEFAULT_MAPPING,
               },
             ],
           ],
