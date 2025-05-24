@@ -123,12 +123,6 @@ const config: Config = {
           ],
         },
         {
-          label: 'Why Electron',
-          type: 'doc',
-          docId: 'latest/why-electron',
-          position: 'left',
-        },
-        {
           href: 'https://releases.electronjs.org',
           label: 'Releases',
           position: 'right',

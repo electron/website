@@ -207,7 +207,7 @@ html {
 
 .button {
   &--outline {
-    border: 1px solid;
+    outline: 1px solid;
     color: var(--ifm-color-primary);
     &:hover {
       color: var(--ifm-color-primary-dark);
@@ -228,6 +228,11 @@ html {
       background: var(--electron-color-light);
       border-color: var(--electron-color-light);
       color: black;
+    }
+
+    &.button--outline {
+      background: transparent;
+      color: var(--electron-color-light);
     }
   }
 }
