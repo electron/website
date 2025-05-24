@@ -138,9 +138,7 @@ export default function Home() {
             >
               Distribute your application to more users. Electron has
               first-class support for the{' '}
-              <Link to="https://www.apple.com/ca/osx/apps/app-store/index.html">
-                Mac App Store
-              </Link>{' '}
+              <Link to="https://www.apple.com/app-store/">Mac App Store</Link>{' '}
               (macOS), the{' '}
               <Link to="https://apps.microsoft.com/">Microsoft Store</Link>{' '}
               (Windows), or the{' '}
