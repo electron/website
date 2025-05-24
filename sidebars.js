@@ -60,6 +60,7 @@ module.exports = {
           link: { type: 'doc', id: 'latest/tutorial/menus' },
           items: [
             'latest/tutorial/application-menu',
+            'latest/tutorial/context-menu',
             {
               type: 'doc',
               id: 'latest/tutorial/macos-dock',
@@ -67,7 +68,6 @@ module.exports = {
             },
             'latest/tutorial/tray',
             'latest/tutorial/keyboard-shortcuts',
-            'latest/tutorial/context-menu',
           ],
         },
         'latest/tutorial/multithreading',

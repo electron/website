@@ -14,7 +14,7 @@ import DocCardList from '@theme/DocCardList';
 Electron's [Menu](../api/menu.md) class provides a standardized way to create cross-platform native
 menus throughout your application.
 
-## Types of menus
+## Available menus in Electron
 
 The same menu API is used for multiple use cases:
 
@@ -28,7 +28,7 @@ The same menu API is used for multiple use cases:
   icon in the system [Dock](https://support.apple.com/en-ca/guide/mac-help/mh35859/mac).
 
 To learn more about the various types of native menus you can create and how to specify keyboard
-shortcut strings (also known as **accelerators**), see the individual guides in this section:
+shortcuts, see the individual guides in this section:
 
 <DocCardList />
 
@@ -80,7 +80,7 @@ Below is an example of a minimal application menu:
 > All menu items (except for the `separator` type) must have a label. Labels can either be manually
 > defined using the `label` property or inherited from the item's `role`.
 
-### `MenuItem` types
+### Types
 
 A menu item's type grants it a particular appearance and functionality. Some types are
 automatically assigned based on other constructor options:
@@ -104,8 +104,7 @@ Other available types, when specified, give special additional properties to the
 >  ]
 > ```
 
-
-### `MenuItem` roles
+### Roles
 
 Roles give `normal` type menu items predefined behaviors.
 
@@ -155,39 +154,194 @@ default to appropriate values for each platform.
 
 #### macOS-only roles
 
+macOS has a number of platform-specific menu roles available. Many of these map to underlying
+[AppKit](https://developer.apple.com/documentation/appkit) APIs.
+
+##### App management roles
+
 * `hide` - Map to the [`hide`](https://developer.apple.com/documentation/appkit/nsapplication/hide(_:)) action.
 * `hideOthers` - Map to the [`hideOtherApplications`](https://developer.apple.com/documentation/appkit/nsapplication/hideotherapplications(_:)) action.
 * `unhide` - Map to the [`unhideAllApplications`](https://developer.apple.com/documentation/appkit/nsapplication/unhideallapplications(_:)) action.
+* `front` - Map to the [`arrangeInFront`](https://developer.apple.com/documentation/appkit/nsapplication/arrangeinfront(_:)) action.
+* `zoom` - Map to the [`performZoom`](https://developer.apple.com/documentation/appkit/nswindow/performzoom(_:)) action.
+
+##### Edit roles
+
 * `showSubstitutions` - Map to the [`orderFrontSubstitutionsPanel`](https://developer.apple.com/documentation/appkit/nstextview/orderfrontsubstitutionspanel(_:)) action.
 * `toggleSmartQuotes` - Map to the [`toggleAutomaticQuoteSubstitution`](https://developer.apple.com/documentation/appkit/nstextview/toggleautomaticquotesubstitution(_:)) action.
 * `toggleSmartDashes` - Map to the [`toggleAutomaticDashSubstitution`](https://developer.apple.com/documentation/appkit/nstextview/toggleautomaticdashsubstitution(_:)) action.
 * `toggleTextReplacement` - Map to the [`toggleAutomaticTextReplacement`](https://developer.apple.com/documentation/appkit/nstextview/toggleautomatictextreplacement(_:)) action.
-* `startSpeaking` - Map to the `startSpeaking` action.
-* `stopSpeaking` - Map to the `stopSpeaking` action.
-* `front` - Map to the [`arrangeInFront`](https://developer.apple.com/documentation/appkit/nsapplication/arrangeinfront(_:)) action.
-* `zoom` - Map to the `performZoom` action.
-* `toggleTabBar` - Map to the `toggleTabBar` action.
-* `selectNextTab` - Map to the `selectNextTab` action.
-* `selectPreviousTab` - Map to the `selectPreviousTab` action.
-* `showAllTabs` - Map to the `showAllTabs` action.
-* `mergeAllWindows` - Map to the `mergeAllWindows` action.
-* `moveTabToNewWindow` - Map to the `moveTabToNewWindow` action.
+
+##### Speech roles
+
+* `startSpeaking` - Map to the [`startSpeaking`](https://developer.apple.com/documentation/appkit/nstextview/startspeaking(_:)) action.
+* `stopSpeaking` - Map to the [`stopSpeaking`](stopspeaking) action.
+
+##### Native tab roles
+
+* `toggleTabBar` - Map to the [`toggleTabBar`](https://developer.apple.com/documentation/appkit/nswindow/toggletabbar(_:)) action.
+* `selectNextTab` - Map to the [`selectNextTab`](https://developer.apple.com/documentation/appkit/nswindow/selectnexttab(_:)) action.
+* `selectPreviousTab` - Map to the [`selectPreviousTab`](https://developer.apple.com/documentation/appkit/nswindow/selectprevioustab(_:)) action.
+<!-- * `showAllTabs` - Map to the `showAllTabs` action. -->
+* `mergeAllWindows` - Map to the [`mergeAllWindows`](https://developer.apple.com/documentation/appkit/nswindow/mergeallwindows(_:)) action.
+* `moveTabToNewWindow` - Map to the [`moveTabToNewWindow`](https://developer.apple.com/documentation/appkit/nswindow/movetabtonewwindow(_:)) action.
+
+##### Default menu roles
+
 * `appMenu` - Whole default "App" menu (About, Services, etc.)
-* `services` - The submenu is a ["Services"](https://developer.apple.com/documentation/appkit/nsapplication/1428608-servicesmenu?language=objc) menu. This is only intended for use in the Application Menu and is _not_ the same as the "Services" submenu used in context menus in macOS apps, which is not implemented in Electron.
+* `services` - The submenu is a ["Services"](https://developer.apple.com/documentation/appkit/nsapplication/1428608-servicesmenu?language=objc) menu.
+* `window` - The submenu is a "Window" menu.
+* `help` - The submenu is a "Help" menu.
+
+##### Other menu roles
+
 * `recentDocuments` - The submenu is an "Open Recent" menu.
-* `clearRecentDocuments` - Map to the `clearRecentDocuments` action.
-<!-- * `window` - The submenu is a "Window" menu. -->
-<!-- * `help` - The submenu is a "Help" menu. -->
+* `clearRecentDocuments` - Map to the [`clearRecentDocuments`](https://developer.apple.com/documentation/appkit/nsdocumentcontroller/clearrecentdocuments(_:)) action.
 * `shareMenu` - The submenu is [share menu][ShareMenu]. The `sharingItem` property must also be set to indicate the item to share.
 
-When specifying a `role` on macOS, `label` and `accelerator` are the only
-options that will affect the menu item. All other options will be ignored.
+> [!IMPORTANT]
+> When specifying a `role` on macOS, `label` and `accelerator` are the only
+> options that will affect the menu item. All other options will be ignored.
 
-> [!NOTE]
-> The `enabled` and `visibility` properties are not available for top-level menu items in the tray on macOS.
+### Accelerators
+
+The `accelerator` property allows you to define accelerator strings to map menu items to keyboard
+shortcuts. For more details, see the [Keyboard Shortcuts](./keyboard-shortcuts.md) guide.
+
+## Advanced configuration
+
+### Programmatic item positioning
+
+You can make use of the `before`, `after`, `beforeGroupContaining`, `afterGroupContaining` and `id` attributes
+to control how menu items will be placed when building a menu with `Menu.buildFromTemplate`.
+
+* `before` - Inserts this item before the item with the specified id. If the
+  referenced item doesn't exist, the item will be inserted at the end of
+  the menu. Also implies that the menu item in question should be placed in the same “group” as the item.
+* `after` - Inserts this item after the item with the specified id. If the
+  referenced item doesn't exist, the item will be inserted at the end of
+  the menu. Also implies that the menu item in question should be placed in the same “group” as the item.
+* `beforeGroupContaining` - Provides a means for a single context menu to declare
+  the placement of their containing group before the containing group of the item with the specified id.
+* `afterGroupContaining` - Provides a means for a single context menu to declare
+  the placement of their containing group after the containing group of the item with the specified id.
+
+By default, items will be inserted in the order they exist in the template unless one of the specified
+positioning keywords is used.
+
+#### Examples
+
+Template:
+
+```js
+[
+  { id: '1', label: 'one' },
+  { id: '2', label: 'two' },
+  { id: '3', label: 'three' },
+  { id: '4', label: 'four' }
+]
+```
 
 
+Menu:
 
+```plaintext
+- one
+- two
+- three
+- four
+```
 
+Template:
+
+```js
+[
+  { id: '1', label: 'one' },
+  { type: 'separator' },
+  { id: '3', label: 'three', beforeGroupContaining: ['1'] },
+  { id: '4', label: 'four', afterGroupContaining: ['2'] },
+  { type: 'separator' },
+  { id: '2', label: 'two' }
+]
+```
+
+Menu:
+
+```plaintext
+- three
+- four
+- ---
+- one
+- ---
+- two
+```
+
+Template:
+
+```js
+[
+  { id: '1', label: 'one', after: ['3'] },
+  { id: '2', label: 'two', before: ['1'] },
+  { id: '3', label: 'three' }
+]
+```
+
+Menu:
+
+```plaintext
+- ---
+- three
+- two
+- one
+```
+
+### Icons
+
+To add visual aid to your menus, you can use the `icon` property to assign images to individual
+`MenuItem` instances.
+
+```js title='Adding a little green circle to a menu item'
+const { MenuItem, nativeImage } = require('electron/main')
+
+// highlight-next-line
+const green = nativeImage.createFromDataURL('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAACOSURBVHgBpZLRDYAgEEOrEzgCozCCGzkCbKArOIlugJvgoRAUNcLRpvGH19TkgFQWkqIohhK8UEaKwKcsOg/+WR1vX+AlA74u6q4FqgCOSzwsGHCwbKliAF89Cv89tWmOT4VaVMoVbOBrdQUz+FrD6XItzh4LzYB1HFJ9yrEkZ4l+wvcid9pTssh4UKbPd+4vED2Nd54iAAAAAElFTkSuQmCC')
+
+const item = new MenuItem({
+    label: 'Green Circle',
+    // highlight-next-line
+    icon: green
+})
+```
+
+### Sublabels _macOS_
+
+You can add sublabels (also known as [subtitles](https://developer.apple.com/documentation/appkit/nsmenuitem/subtitle))
+to menu items using the `sublabel` option on macOS 14.4 and above.
+
+```js title='Adding descriptions via sublabel'
+const { MenuItem } = require('electron/main')
+
+const item = new MenuItem({
+    label: 'Log Message',
+    // highlight-next-line
+    sublabel: 'This will use the console.log utility',
+    click: () => { console.log('Logging via menu...') }
+})
+```
+
+### Tooltips _macOS_
+
+Tooltips are informational indicators that appear when you hover over a menu item. You can set menu
+item tooltips on macOS using the `toolTip` option.
+
+```js title='Adding additional information via tooltip'
+const { MenuItem } = require('electron/main')
+
+const item = new MenuItem({
+    label: 'Hover Over Me',
+    // highlight-next-line
+    toolTip: 'This is additional info that appears on hover'
+})
+```
 
 

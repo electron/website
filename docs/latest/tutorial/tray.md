@@ -73,6 +73,9 @@ app.whenReady().then(() => {
 > [!TIP]
 > To learn more about crafting menus in Electron, see the [Menus](./menus.md#building-menus) guide.
 
+> [!WARNING]
+> The `enabled` and `visibility` properties are not available for top-level menu items in the tray on macOS.
+
 ## Runnable Fiddle demo
 
 Below is a runnable example of attaching various menu items to the Tray's context menu that help

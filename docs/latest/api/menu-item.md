@@ -22,7 +22,7 @@ See [`Menu`](menu.md) for examples.
     * `window` [BaseWindow](base-window.md) | undefined - This will not be defined if no window is open.
     * `event` [KeyboardEvent](structures/keyboard-event.md)
   * `role` string (optional) - Can be `undo`, `redo`, `cut`, `copy`, `paste`, `pasteAndMatchStyle`, `delete`, `selectAll`, `reload`, `forceReload`, `toggleDevTools`, `resetZoom`, `zoomIn`, `zoomOut`, `toggleSpellChecker`, `togglefullscreen`, `window`, `minimize`, `close`, `help`, `about`, `services`, `hide`, `hideOthers`, `unhide`, `quit`, `showSubstitutions`, `toggleSmartQuotes`, `toggleSmartDashes`, `toggleTextReplacement`, `startSpeaking`, `stopSpeaking`, `zoom`, `front`, `appMenu`, `fileMenu`, `editMenu`, `viewMenu`, `shareMenu`, `recentDocuments`, `toggleTabBar`, `selectNextTab`, `selectPreviousTab`, `showAllTabs`, `mergeAllWindows`, `clearRecentDocuments`, `moveTabToNewWindow` or `windowMenu` - Define the action of the menu item, when specified the
-    `click` property will be ignored. See [roles](#roles).
+    `click` property will be ignored. See the [roles](../tutorial/menus.md#menuitem-roles) guide for more details.
   * `type` string (optional) - Can be `normal`, `separator`, `submenu`, `checkbox` or
     `radio`.
   * `label` string (optional)

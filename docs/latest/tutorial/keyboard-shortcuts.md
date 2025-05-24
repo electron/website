@@ -86,7 +86,7 @@ Here are some examples of cross-platform Electron accelerators for common editin
 * Undo: `CommandOrControl+Z`
 * Redo: `CommandOrControl+Shift+Z`
 
-## Defining local shortcuts
+## Local shortcuts
 
 **Local** keyboard shortcuts are triggered only when the application is focused. These shortcuts
 map to specific menu items within the app's main [application menu](./application-menu.md).
@@ -121,7 +121,15 @@ Menu.setApplicationMenu(menu)
 In the above example, a native "Hello World" dialog will open when pressing <kbd>⌘ Cmd</kbd>+<kbd>⌥ Opt</kbd>+<kbd>R</kbd>
 on macOS or <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>R</kbd> on other platforms.
 
-## Defining global shortcuts
+> [!TIP]
+> Accelerators can work even when menu items are hidden. On macOS, this feature can be disabled by
+> setting `acceleratorWorksWhenHidden: false` when building a `MenuItem`.
+
+> [!TIP]
+> On Windows and Linux, the `registerAccelerator` property of the `MenuItem` can be set to `false`
+> so that the accelerator is visible in the system menu but not enabled.
+
+## Global shortcuts
 
 **Global** keyboard shortcuts work even when your app is out of focus. To configure a global keyboard
 shortcut, you can use the [`globalShortcut.register`](../api/global-shortcut.md#globalshortcutregisteraccelerator-callback)
