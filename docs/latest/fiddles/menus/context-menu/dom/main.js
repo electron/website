@@ -1,11 +1,6 @@
-const { app, BrowserWindow, ipcMain } = require('electron/main')
+// Modules to control application life and create native browser window
+const { app, BrowserWindow, ipcMain, Menu } = require('electron/main')
 const path = require('node:path')
-
-function handleSetTitle (event, title) {
-  const webContents = event.sender
-  const win = BrowserWindow.fromWebContents(webContents)
-  win.setTitle(title)
-}
 
 function createWindow () {
   const mainWindow = new BrowserWindow({
@@ -15,10 +10,23 @@ function createWindow () {
   })
 
   mainWindow.loadFile('index.html')
+  const menu = Menu.buildFromTemplate([
+    { role: 'copy' },
+    { role: 'cut' },
+    { role: 'paste' },
+    { role: 'selectall' }
+  ])
+
+  // highlight-start
+  ipcMain.on('context-menu', (event) => {
+    menu.popup({
+      window: BrowserWindow.fromWebContents(event.sender)
+    })
+  })
+  // highlight-end
 }
 
 app.whenReady().then(() => {
-  ipcMain.on('set-title', handleSetTitle)
   createWindow()
 
   app.on('activate', function () {
