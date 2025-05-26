@@ -240,6 +240,10 @@ html {
 
     &--active {
       font-weight: var(--ifm-font-weight-bold);
+
+      .navbar--dark & {
+        color: var(--electron-color-light);
+      }
     }
 
     // Note: this CSS class is added via the
