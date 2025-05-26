@@ -48,7 +48,6 @@ module.exports = {
           id: 'latest/tutorial/in-app-purchases',
           customProps: { platforms: ['mac'] },
         },
-        'latest/tutorial/keyboard-shortcuts',
         'latest/tutorial/launch-app-from-url-in-another-app',
         {
           type: 'doc',
@@ -56,9 +55,20 @@ module.exports = {
           customProps: { platforms: ['linux'] },
         },
         {
-          type: 'doc',
-          id: 'latest/tutorial/macos-dock',
-          customProps: { platforms: ['mac'] },
+          type: 'category',
+          label: 'Menus',
+          link: { type: 'doc', id: 'latest/tutorial/menus' },
+          items: [
+            'latest/tutorial/application-menu',
+            'latest/tutorial/context-menu',
+            {
+              type: 'doc',
+              id: 'latest/tutorial/macos-dock',
+              customProps: { platforms: ['mac'] },
+            },
+            'latest/tutorial/tray',
+            'latest/tutorial/keyboard-shortcuts',
+          ],
         },
         'latest/tutorial/multithreading',
         'latest/tutorial/native-file-drag-drop',
@@ -78,7 +88,6 @@ module.exports = {
           customProps: { platforms: ['mac'] },
         },
         'latest/tutorial/spellchecker',
-        'latest/tutorial/tray',
         'latest/tutorial/web-embeds',
         {
           type: 'doc',
