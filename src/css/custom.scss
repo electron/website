@@ -147,6 +147,10 @@ html {
       border-bottom-color: var(--ifm-link-color);
     }
   }
+
+  .menu__link--active {
+    color: var(--electron-color-light);
+  }
 }
 
 .footer {
@@ -240,10 +244,6 @@ html {
 
     &--active {
       font-weight: var(--ifm-font-weight-bold);
-
-      .navbar--dark & {
-        color: var(--electron-color-light);
-      }
     }
 
     // Note: this CSS class is added via the
