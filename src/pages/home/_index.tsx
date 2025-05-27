@@ -43,12 +43,6 @@ export default function Home() {
               >
                 Why Electron?
               </Link>
-              <Link
-                className="button button--electron button--outline button--dark"
-                to="https://github.com/electron/electron"
-              >
-                View on GitHub
-              </Link>
             </div>
           </div>
         </div>
