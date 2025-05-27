@@ -32,10 +32,16 @@ export default function Home() {
             <div className={clsx('col col--12', styles.heroHeadline)}>
               <h1>{siteConfig.tagline}</h1>
               <Link
-                className="button button--electron button--dark button--lg"
+                className="button button--lg button--electron button--dark margin-right--sm"
                 to="/docs/latest/"
               >
-                Docs
+                Get Started →
+              </Link>
+              <Link
+                className="button button--lg button--electron button--outline button--dark"
+                to="/docs/latest/why-electron"
+              >
+                Why Electron?
               </Link>
             </div>
           </div>
@@ -238,10 +244,6 @@ export default function Home() {
             <div className={clsx(styles.section)}>
               <div className={clsx(styles.explore, 'row')}>
                 <div className="col margin-bottom--lg">
-                  <div className="badge badge--info">
-                    <span className={styles.exploreSubtext}>New!</span>
-                  </div>
-
                   <h2>Electron Forge</h2>
                   <p>
                     Electron Forge is a batteries-included toolkit for building
