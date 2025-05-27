@@ -10,7 +10,7 @@ import path from 'path';
 import latestVersion from 'latest-version';
 import logger from '@docusaurus/logger';
 
-import { copy, download } from './tasks/download-docs';
+import { copyLocalDocumentation, download } from './tasks/download-docs';
 import { addFrontmatterToAllDocs } from './tasks/add-frontmatter';
 import { fixContent } from './tasks/md-fixers';
 import { copyNewContent } from './tasks/copy-new-content';
@@ -54,17 +54,20 @@ const start = async (source: string): Promise<void> => {
     });
     await fs.writeFile(path.join(DOCS_FOLDER, '.sha'), target);
   } else if (existsSync(source)) {
-    await copy({
-      target: source,
+    logger.info(
+      `Copying local docs from ${logger.green(path.resolve(logger.green(source)))}`,
+    );
+    await copyLocalDocumentation({
+      source,
       destination: DOCS_FOLDER,
       copyMatch: 'docs',
     });
   } else {
-    logger.error(`Path ${localElectron} does not exist`);
+    logger.error(`Local path ${logger.red(source)} does not exist`);
     return process.exit(1);
   }
 
-  logger.info('Copying new content');
+  logger.info('Copying additional content from website repository');
   await copyNewContent(DOCS_FOLDER);
 
   logger.info('Finding, validating, and uncommenting API history blocks');

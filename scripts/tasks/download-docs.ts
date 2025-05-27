@@ -20,10 +20,10 @@ interface DownloadOptions {
 }
 
 interface CopyOptions {
+  /** The source to use for the copy action */
+  source: string;
   /** The copy destination as an absolute path */
   destination: string;
-  /** The source source to use for the copy action */
-  target: string;
   /** The glob match to use to filter the copied contents */
   copyMatch: string;
 }
@@ -32,8 +32,8 @@ interface CopyOptions {
  * Entry for each documentation page
  */
 interface Entry {
-  /** File name of the page */
-  filename: string;
+  /** Relative path of the file with respect to `/docs/latest/` */
+  relativeFilePath: string;
   /** Slug of the page */
   slug: string;
   /** Buffer contents of the page */
@@ -47,8 +47,8 @@ interface Entry {
  */
 const saveContents = async (files: Entry[], destination: string) => {
   for (const file of files) {
-    const { content, filename } = file;
-    const finalPath = path.join(destination, filename);
+    const { content, relativeFilePath } = file;
+    const finalPath = path.join(destination, relativeFilePath);
 
     // These are files we do not need to copy
     if (finalPath === '') {
@@ -101,7 +101,10 @@ const downloadFromGitHub = async (
                 stream.on('end', () => {
                   const content = Buffer.concat(chunks);
                   contents.push({
-                    filename: header.name.replace(`${downloadMatch}`, ''),
+                    relativeFilePath: header.name.replace(
+                      `${downloadMatch}`,
+                      '',
+                    ),
                     slug: path.basename(header.name, '.md'),
                     content,
                   } satisfies Entry);
@@ -145,22 +148,34 @@ export const download = async (userOptions: DownloadOptions) => {
  * as needed.
  * @param userOptions
  */
-export const copy = async ({
-  target,
+export const copyLocalDocumentation = async ({
+  source,
   destination,
   copyMatch = '.',
 }: CopyOptions) => {
-  const filesPaths = fs.glob(`${copyMatch}/**/*`, {
-    cwd: target,
+  const dirents = fs.glob(`${copyMatch}/**/*`, {
+    cwd: source,
+    withFileTypes: true,
   });
 
-  const contents = [];
+  const contents: Entry[] = [];
 
-  for await (const filePath of filesPaths) {
+  for await (const dirent of dirents) {
+    if (!dirent.isFile()) {
+      continue;
+    }
+
+    const sourceFilePath = path.join(dirent.parentPath, dirent.name);
+    // Transform path from `{REPO}/docs/my/file/path.md` to `my/file/path.md`
+    const relativeFilePath = path.relative(
+      path.join(source, 'docs'),
+      sourceFilePath,
+    );
+
     const content = {
-      filename: filePath.replace(`${copyMatch}/`, ''),
-      content: await fs.readFile(path.join(target, filePath)),
-      slug: path.basename(filePath, '.md'),
+      relativeFilePath,
+      content: await fs.readFile(sourceFilePath),
+      slug: path.basename(dirent.name, '.md'),
     };
 
     contents.push(content);
