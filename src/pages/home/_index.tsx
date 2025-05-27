@@ -38,7 +38,7 @@ export default function Home() {
                 Get Started →
               </Link>
               <Link
-                className="button button--electron button--outline button--dark margin-right--sm"
+                className="button button--electron button--outline button--dark"
                 to="/docs/latest/why-electron"
               >
                 Why Electron?
