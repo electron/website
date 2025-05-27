@@ -147,6 +147,10 @@ html {
       border-bottom-color: var(--ifm-link-color);
     }
   }
+
+  .menu__link--active {
+    color: var(--electron-color-light);
+  }
 }
 
 .footer {
