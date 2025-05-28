@@ -76,6 +76,6 @@ jobs:
           max_attempts: 3
           retry_on: error
           # Ensure that we upload the default locale and remove deleted files but don't touch translations
-          command: cd ./build && ../scripts/bin/azcopy sync "./" "https://electronwebsite.blob.core.windows.net/%24web/?$SAS" --delete-destination=true --exclude-regex="pt/*;ja/*;ru/*;fr/*;zh/*;es/*;de/*;" --dry-run
+          command: cd ./build && ../scripts/bin/azcopy sync "./" "https://electronwebsite.blob.core.windows.net/%24web/?$SAS" --delete-destination=true --exclude-regex="pt/*;ja/*;ru/*;fr/*;zh/*;es/*;de/*;" --compare-hash=MD5
         env:
           SAS: ${{ secrets.SAS }}
