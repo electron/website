@@ -2,7 +2,7 @@ name: Push and publish main
 
 on:
   schedule:
-    # twice a day at midnight and noon
+    # twice a day at midnight and noon UTC
     - cron: '0 0,12 * * *'
   push:
     branches:
@@ -75,6 +75,7 @@ jobs:
           timeout_seconds: 300
           max_attempts: 3
           retry_on: error
-          command: ./scripts/bin/azcopy copy "./build/*" "https://electronwebsite.blob.core.windows.net/%24web/?$SAS" --recursive
+          # Ensure that we upload the default locale and remove deleted files but don't touch translations
+          command: cd ./build && ./scripts/bin/azcopy sync "./" "https://electronwebsite.blob.core.windows.net/%24web/?$SAS" --delete-destination=true --exclude-regex="pt/*;ja/*;ru/*;fr/*;zh/*;es/*;de/*;" --dry-run
         env:
           SAS: ${{ secrets.SAS }}
