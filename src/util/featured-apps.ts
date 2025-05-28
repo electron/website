@@ -72,11 +72,6 @@ export const FEATURED_APPS: FeaturedApp[] = [
     href: 'https://signal.org/en/',
   },
   {
-    name: 'Skype',
-    image: '/assets/apps/skype.svg',
-    href: 'https://skype.com/',
-  },
-  {
     name: 'Slack',
     image: '/assets/apps/slack.svg',
     href: 'https://slack.com/',
