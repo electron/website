@@ -4,10 +4,6 @@ import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import clsx from 'clsx';
 
-import CrossPlatform from '@site/static/assets/img/cross-platform.svg';
-import OpenSource from '@site/static/assets/img/open-source.svg';
-import WebTech from '@site/static/assets/img/web-tech.svg';
-
 import styles from './_index.module.scss';
 import { HeroAnimation } from './_components/Header';
 import AppsGrid from './_components/AppsGrid';
@@ -92,25 +88,17 @@ export default function Home() {
                 <WhyCard
                   icon={<Activity />}
                   title="Stable"
-                  description={
-                    <>
-                      Electron&apos;s bundled Chromium build ensures that your
+                  description="Electron's bundled Chromium build ensures that your
                       app has a stable rendering target with all the newest web
-                      platform features.
-                    </>
-                  }
+                      platform features."
                 />
               </div>
               <div className="col col--4 margin-bottom--lg">
                 <WhyCard
                   icon={<Lock />}
                   title="Secure"
-                  description={
-                    <>
-                      Electron releases major versions in lockstep with Chromium
-                      so you get security fixes as soon as they are available.
-                    </>
-                  }
+                  description="Electron releases major versions in lockstep with Chromium
+                      so you get security fixes as soon as they are available."
                 />
               </div>
               <div className="col col--4 margin-bottom--lg">
