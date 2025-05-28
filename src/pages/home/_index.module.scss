@@ -47,8 +47,13 @@ summary {
 }
 
 .blurb {
+  height: 100%;
   h3 {
     font-size: 1.2rem;
+  }
+
+  p {
+    font-size: 0.9rem;
   }
 }
 
@@ -95,9 +100,4 @@ summary {
 
 .codeComment {
   color: #719fad;
-}
-
-.blurb2 {
-  margin: 1rem;
-  padding: 1.2rem;
 }

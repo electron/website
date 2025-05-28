@@ -50,31 +50,49 @@ export default function Home() {
       <main>
         <div className="container">
           <div className={clsx(styles.section)}>
-            <div className={clsx('row', styles.blurb)}>
-              <div className={clsx('col', styles.blurb2)}>
-                <WebTech width={48} height={48} />
-                <h3>Web Technologies</h3>
-                <p>
-                  Electron embeds Chromium and Node.js to enable web developers
-                  to create desktop applications.
-                </p>
+            <div className="row">
+              <div className="col">
+                <div className={clsx('card', styles.blurb)}>
+                  <div className="card__header">
+                    <WebTech width={36} height={36} />
+                    <h3>Web Technologies</h3>
+                  </div>
+                  <div className="card__body">
+                    <p>
+                      Electron embeds Chromium and Node.js to enable web
+                      developers to create desktop applications.
+                    </p>
+                  </div>
+                </div>
               </div>
-              <div className={clsx('col', styles.blurb2)}>
-                <CrossPlatform width={48} height={48} />
-                <h3>Cross Platform</h3>
-                <p>
-                  Compatible with macOS, Windows, and Linux, Electron apps run
-                  on three platforms across all supported architectures.
-                </p>
+              <div className="col">
+                <div className={clsx('card', styles.blurb)}>
+                  <div className="card__header">
+                    <CrossPlatform width={36} height={36} />
+                    <h3>Cross Platform</h3>
+                  </div>
+                  <div className="card__body">
+                    <p>
+                      Compatible with macOS, Windows, and Linux, Electron apps
+                      run on three platforms across all supported architectures.
+                    </p>
+                  </div>
+                </div>
               </div>
-              <div className={clsx('col', styles.blurb2)}>
-                <OpenSource width={48} height={48} />
-                <h3>Open Source</h3>
-                <p>
-                  Electron is an open source project maintained by the{' '}
-                  <Link to="https://openjsf.org/">OpenJS Foundation</Link> and
-                  an active community of contributors.
-                </p>
+              <div className="col">
+                <div className={clsx('card', styles.blurb)}>
+                  <div className="card__header">
+                    <OpenSource width={36} height={36} />
+                    <h3>Open Source</h3>
+                  </div>
+                  <div className="card__body">
+                    <p>
+                      Electron is an open source project maintained by the{' '}
+                      <Link to="https://openjsf.org/">OpenJS Foundation</Link>{' '}
+                      and an active community of contributors.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
