@@ -79,3 +79,10 @@ jobs:
           command: cd ./build && ../scripts/bin/azcopy sync "./" "https://electronwebsite.blob.core.windows.net/%24web/?$SAS" --delete-destination=true --exclude-regex="pt/*;ja/*;ru/*;fr/*;zh/*;es/*;de/*;" --compare-hash=MD5
         env:
           SAS: ${{ secrets.SAS }}
+      - name: Upload logging
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 #v4.6.2
+        with:
+          name: debug-log
+          path: .azcopy/*.log
+          include-hidden-files: true
+          retention-days: 3
