@@ -82,15 +82,25 @@ summary {
 }
 
 .heroHeadline {
-  h1 {
-    font-size: 2.2rem;
-    font-weight: 200;
-    max-width: 40rem;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
+  font-size: 2.2rem;
+  font-weight: 200;
+  max-width: 40rem;
+  margin-left: auto;
+  margin-right: auto;
   text-align: center;
+}
+
+.heroButtons {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+
+  @media screen and (max-width: 500px) {
+    :global(.button) {
+      width: 100%;
+    }
+  }
 }
 
 .codeComment {

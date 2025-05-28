@@ -29,20 +29,22 @@ export default function Home() {
             <div className="col col--12">
               <HeroAnimation />
             </div>
-            <div className={clsx('col col--12', styles.heroHeadline)}>
-              <h1>{siteConfig.tagline}</h1>
-              <Link
-                className="button button--lg button--electron button--dark margin-right--sm"
-                to="/docs/latest/"
-              >
-                Get Started →
-              </Link>
-              <Link
-                className="button button--lg button--electron button--outline button--dark"
-                to="/docs/latest/why-electron"
-              >
-                Why Electron?
-              </Link>
+            <div className="col col--12">
+              <h1 className={styles.heroHeadline}>{siteConfig.tagline}</h1>
+              <div className={styles.heroButtons}>
+                <Link
+                  className="button button--lg button--electron button--dark"
+                  to="/docs/latest/"
+                >
+                  Get Started →
+                </Link>
+                <Link
+                  className="button button--lg button--electron button--outline button--dark"
+                  to="/docs/latest/why-electron"
+                >
+                  Why Electron?
+                </Link>
+              </div>
             </div>
           </div>
         </div>
