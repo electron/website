@@ -53,13 +53,16 @@ app.on('will-quit', () => {
 })
 ```
 
+> [!TIP]
+> See also: [A detailed guide on Keyboard Shortcuts](../tutorial/keyboard-shortcuts.md).
+
 ## Methods
 
 The `globalShortcut` module has the following methods:
 
 ### `globalShortcut.register(accelerator, callback)`
 
-* `accelerator` [Accelerator](accelerator.md)
+* `accelerator` string - An [accelerator](../tutorial/keyboard-shortcuts.md#accelerators) shortcut.
 * `callback` Function
 
 Returns `boolean` - Whether or not the shortcut was registered successfully.
@@ -81,7 +84,7 @@ the app has been authorized as a [trusted accessibility client](https://develope
 
 ### `globalShortcut.registerAll(accelerators, callback)`
 
-* `accelerators` [Accelerator](accelerator.md)[] - an array of [Accelerator](accelerator.md)s.
+* `accelerators` string[] - An array of [accelerator](../tutorial/keyboard-shortcuts.md#accelerators) shortcuts.
 * `callback` Function
 
 Registers a global shortcut of all `accelerator` items in `accelerators`. The `callback` is called when any of the registered shortcuts are pressed by the user.
@@ -100,7 +103,7 @@ the app has been authorized as a [trusted accessibility client](https://develope
 
 ### `globalShortcut.isRegistered(accelerator)`
 
-* `accelerator` [Accelerator](accelerator.md)
+* `accelerator` string - An [accelerator](../tutorial/keyboard-shortcuts.md#accelerators) shortcut.
 
 Returns `boolean` - Whether this application has registered `accelerator`.
 
@@ -110,7 +113,7 @@ don't want applications to fight for global shortcuts.
 
 ### `globalShortcut.unregister(accelerator)`
 
-* `accelerator` [Accelerator](accelerator.md)
+* `accelerator` string - An [accelerator](../tutorial/keyboard-shortcuts.md#accelerators) shortcut.
 
 Unregisters the global shortcut of `accelerator`.
 
