@@ -23,7 +23,7 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Download crowdin translation
+      - name: Download Crowdin translation
         run: yarn i18n:download
         env:
           CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
@@ -39,8 +39,15 @@ jobs:
       - name: Build
         run: yarn i18n:build
 
-      - name: Deploy
+      - name: Sync build directory to Azure Blob Storage
         # The i18n build produces the default locale anyways so we can just sync the whole build directory
         run: cd build && ../scripts/bin/azcopy sync "./" "https://electronwebsite.blob.core.windows.net/%24web?$SAS" --delete-destination=true --compare-hash=MD5
         env:
           SAS: ${{ secrets.SAS }}
+      - name: Upload azcopy debug logs
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 #v4.6.2
+        with:
+          name: debug-log
+          path: /home/runner/.azcopy/*.log
+          include-hidden-files: true
+          retention-days: 3
