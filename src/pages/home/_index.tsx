@@ -4,10 +4,6 @@ import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import clsx from 'clsx';
 
-import CrossPlatform from '@site/static/assets/img/cross-platform.svg';
-import OpenSource from '@site/static/assets/img/open-source.svg';
-import WebTech from '@site/static/assets/img/web-tech.svg';
-
 import styles from './_index.module.scss';
 import { HeroAnimation } from './_components/Header';
 import AppsGrid from './_components/AppsGrid';
@@ -18,6 +14,15 @@ import CodeWindow from './_components/CodeWindow';
 import FeaturedAppsCarousel from './_components/FeaturedAppsCarousel';
 
 import { FEATURED_APPS, FEATURED_LOGOS } from '../../util/featured-apps';
+import WhyCard from '@site/src/pages/home/_components/WhyCard';
+import {
+  Activity,
+  AppWindowMac,
+  Blocks,
+  GitFork,
+  Lock,
+  SquareStack,
+} from 'lucide-react';
 
 export default function Home() {
   const { siteConfig } = useDocusaurusContext();
@@ -52,31 +57,68 @@ export default function Home() {
       <main>
         <div className="container">
           <div className={clsx(styles.section)}>
-            <div className={clsx('row', styles.blurb)}>
-              <div className={clsx('col', styles.blurb2)}>
-                <WebTech width={48} height={48} />
-                <h3>Web Technologies</h3>
-                <p>
-                  Electron embeds Chromium and Node.js to enable web developers
-                  to create desktop applications.
-                </p>
+            <div className="row">
+              <div className="col col--4 margin-bottom--lg">
+                <WhyCard
+                  icon={<AppWindowMac />}
+                  title="Powered by the web"
+                  description="Electron embeds Chromium and Node.js to bring JavaScript
+                  to the desktop."
+                />
               </div>
-              <div className={clsx('col', styles.blurb2)}>
-                <CrossPlatform width={48} height={48} />
-                <h3>Cross Platform</h3>
-                <p>
-                  Compatible with macOS, Windows, and Linux, Electron apps run
-                  on three platforms across all supported architectures.
-                </p>
+              <div className="col col--4 margin-bottom--lg">
+                <WhyCard
+                  icon={<SquareStack />}
+                  title="Cross-platform"
+                  description="Electron apps run natively on macOS, Windows, and Linux across all supported architectures."
+                />
               </div>
-              <div className={clsx('col', styles.blurb2)}>
-                <OpenSource width={48} height={48} />
-                <h3>Open Source</h3>
-                <p>
-                  Electron is an open source project maintained by the{' '}
-                  <Link to="https://openjsf.org/">OpenJS Foundation</Link> and
-                  an active community of contributors.
-                </p>
+              <div className="col col--4 margin-bottom--lg">
+                <WhyCard
+                  icon={<GitFork />}
+                  title="Open to all"
+                  description={
+                    <>
+                      Electron is an open-source project under the{' '}
+                      <Link to="https://openjsf.org/">OpenJS Foundation</Link>{' '}
+                      maintained by an active community of contributors.
+                    </>
+                  }
+                />
+              </div>
+              <div className="col col--4 margin-bottom--lg">
+                <WhyCard
+                  icon={<Activity />}
+                  title="Stable"
+                  description="Electron's bundled Chromium build ensures that your
+                      app has a stable rendering target with all the newest web
+                      platform features."
+                />
+              </div>
+              <div className="col col--4 margin-bottom--lg">
+                <WhyCard
+                  icon={<Lock />}
+                  title="Secure"
+                  description="Electron releases major versions in lockstep with Chromium
+                      so you get security fixes as soon as they are available."
+                />
+              </div>
+              <div className="col col--4 margin-bottom--lg">
+                <WhyCard
+                  icon={<Blocks />}
+                  title="Extensible"
+                  description={
+                    <>
+                      Use any package from the rich{' '}
+                      <Link to="https://www.npmjs.com/">npm</Link> ecosystem, or
+                      write your own{' '}
+                      <Link to="/docs/latest/tutorial/native-code-and-electron">
+                        native add-on code
+                      </Link>{' '}
+                      to extend Electron.
+                    </>
+                  }
+                />
               </div>
             </div>
           </div>
