@@ -108,11 +108,11 @@ export default function Home() {
                   description={
                     <>
                       Use any package from the rich{' '}
-                      <a href="https://www.npmjs.com/">npm</a> ecosystem, or
+                      <Link to="https://www.npmjs.com/">npm</Link> ecosystem, or
                       write your own{' '}
-                      <a href="./docs/latest/tutorial/native-code-and-electron">
+                      <Link to="/docs/latest/tutorial/native-code-and-electron">
                         native add-on code
-                      </a>{' '}
+                      </Link>{' '}
                       to extend Electron.
                     </>
                   }
