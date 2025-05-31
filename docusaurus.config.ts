@@ -8,8 +8,6 @@ import npm2yarn from '@docusaurus/remark-plugin-npm2yarn';
 import { themes as prismThemes } from 'prism-react-renderer';
 import remarkGithubAdmonitionsToDirectives, {
   DEFAULT_MAPPING,
-  DirectiveName,
-  GithubAlertType,
 } from 'remark-github-admonitions-to-directives';
 
 import apiLabels from './src/transformers/api-labels';
@@ -299,6 +297,11 @@ const config: Config = {
   ],
   future: {
     experimental_faster: true,
+    v4: {
+      removeLegacyPostBuildHeadAttribute: true,
+      // FIXME: enabling this change breaks compilation
+      useCssCascadeLayers: false,
+    },
   },
 };
 
