@@ -59,6 +59,10 @@
   flex-shrink: 0;
   padding: 0 2rem;
 
+  &:hover {
+    cursor: pointer;
+  }
+
   img {
     height: 2.5rem;
     width: auto;
