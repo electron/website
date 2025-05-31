@@ -2643,7 +2643,7 @@
     webpack "^5.95.0"
     webpackbar "^6.0.1"
 
-"@docusaurus/core@3.8.0", "@docusaurus/core@^3.8.0":
+"@docusaurus/core@3.8.0":
   version "3.8.0"
   resolved "https://registry.yarnpkg.com/@docusaurus/core/-/core-3.8.0.tgz#79d5e1084415c8834a8a5cb87162ca13f52fe147"
   integrity sha512-c7u6zFELmSGPEP9WSubhVDjgnpiHgDqMh1qVdCB7rTflh4Jx0msTYmMiO91Ez0KtHj4sIsDsASnjwfJ2IZp3Vw==
@@ -2701,7 +2701,7 @@
     postcss-sort-media-queries "^5.2.0"
     tslib "^2.6.0"
 
-"@docusaurus/faster@^3.8.0":
+"@docusaurus/faster@3.8.0":
   version "3.8.0"
   resolved "https://registry.yarnpkg.com/@docusaurus/faster/-/faster-3.8.0.tgz#2814c5ea4f19e10a6cebf9296b6f15f8a621bf61"
   integrity sha512-v9+8rT2gw/4zIRBwc4fIVhrTH/yFVDQgJgyYZjqr3fgojOypdQCOwkN6Z8dOwTei4/zo+b/zDPB4x1UvghJZRg==
@@ -2754,7 +2754,7 @@
     vfile "^6.0.1"
     webpack "^5.88.1"
 
-"@docusaurus/module-type-aliases@3.8.0", "@docusaurus/module-type-aliases@^3.8.0":
+"@docusaurus/module-type-aliases@3.8.0":
   version "3.8.0"
   resolved "https://registry.yarnpkg.com/@docusaurus/module-type-aliases/-/module-type-aliases-3.8.0.tgz#e487052c372538c5dcf2200999e13f328fa5ffaa"
   integrity sha512-/uMb4Ipt5J/QnD13MpnoC/A4EYAe6DKNWqTWLlGrqsPJwJv73vSwkA25xnYunwfqWk0FlUQfGv/Swdh5eCCg7g==
@@ -2911,7 +2911,7 @@
     tslib "^2.6.0"
     webpack "^5.88.1"
 
-"@docusaurus/preset-classic@^3.8.0":
+"@docusaurus/preset-classic@3.8.0":
   version "3.8.0"
   resolved "https://registry.yarnpkg.com/@docusaurus/preset-classic/-/preset-classic-3.8.0.tgz#ac8bc17e3b7b443d8a24f2f1da0c0be396950fef"
   integrity sha512-qOu6tQDOWv+rpTlKu+eJATCJVGnABpRCPuqf7LbEaQ1mNY//N/P8cHQwkpAU+aweQfarcZ0XfwCqRHJfjeSV/g==
@@ -2932,7 +2932,7 @@
     "@docusaurus/theme-search-algolia" "3.8.0"
     "@docusaurus/types" "3.8.0"
 
-"@docusaurus/remark-plugin-npm2yarn@^3.8.0":
+"@docusaurus/remark-plugin-npm2yarn@3.8.0":
   version "3.8.0"
   resolved "https://registry.yarnpkg.com/@docusaurus/remark-plugin-npm2yarn/-/remark-plugin-npm2yarn-3.8.0.tgz#37e9c270ee8f650ea27e3cebbcb433e4bef0dff6"
   integrity sha512-6YcpUipBV9e9PN1RRWl+o1F1e98V66pf2ogpJoI4Nr7V8DCgJTgtFernlPCJBVAB43fsuE/FIgLleDjLrFHqjA==
@@ -2993,7 +2993,7 @@
     tslib "^2.6.0"
     utility-types "^3.10.0"
 
-"@docusaurus/theme-mermaid@^3.8.0":
+"@docusaurus/theme-mermaid@3.8.0":
   version "3.8.0"
   resolved "https://registry.yarnpkg.com/@docusaurus/theme-mermaid/-/theme-mermaid-3.8.0.tgz#f0720ec89fd386870f30978ba984b1b126ca92a5"
   integrity sha512-ou0NJM37p4xrVuFaZp8qFe5Z/qBq9LuyRTP4KKRa0u2J3zC4f3saBJDgc56FyvvN1OsmU0189KGEPUjTr6hFxg==
@@ -3036,12 +3036,12 @@
     fs-extra "^11.1.1"
     tslib "^2.6.0"
 
-"@docusaurus/tsconfig@^3.8.0":
+"@docusaurus/tsconfig@3.8.0":
   version "3.8.0"
   resolved "https://registry.yarnpkg.com/@docusaurus/tsconfig/-/tsconfig-3.8.0.tgz#ea7ee0917e1562cf0a6e95e049c42f1f61351f32"
   integrity sha512-utLl48nNjSYBoq47RKukZ9fPLEX3nJWThzrujb0ndQQ1jc/gh4RhTRaAqItH9nImnsgGKmLMnyoMBpfGmoop+w==
 
-"@docusaurus/types@3.8.0", "@docusaurus/types@^3.8.0":
+"@docusaurus/types@3.8.0":
   version "3.8.0"
   resolved "https://registry.yarnpkg.com/@docusaurus/types/-/types-3.8.0.tgz#f6cd31c4e3e392e0270b8137d7fe4365ea7a022e"
   integrity sha512-RDEClpwNxZq02c+JlaKLWoS13qwWhjcNsi2wG1UpzmEnuti/z1Wx4SGpqbUqRPNSd8QWWePR8Cb7DvG0VN/TtA==
