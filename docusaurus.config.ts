@@ -8,8 +8,6 @@ import npm2yarn from '@docusaurus/remark-plugin-npm2yarn';
 import { themes as prismThemes } from 'prism-react-renderer';
 import remarkGithubAdmonitionsToDirectives, {
   DEFAULT_MAPPING,
-  DirectiveName,
-  GithubAlertType,
 } from 'remark-github-admonitions-to-directives';
 
 import apiLabels from './src/transformers/api-labels';
