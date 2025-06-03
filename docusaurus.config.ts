@@ -296,7 +296,16 @@ const config: Config = {
     ],
   ],
   future: {
-    experimental_faster: true,
+    experimental_faster: {
+      rspackBundler: true,
+      rspackPersistentCache: false,
+      swcHtmlMinimizer: true,
+      ssgWorkerThreads: true,
+      swcJsLoader: true,
+      swcJsMinimizer: true,
+      lightningCssMinimizer: true,
+      mdxCrossCompilerCache: true,
+    },
     v4: {
       removeLegacyPostBuildHeadAttribute: true,
       // FIXME: enabling this change breaks compilation
