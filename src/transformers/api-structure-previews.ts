@@ -131,7 +131,7 @@ async function transformer(tree: Parent, file: VFile) {
             `Timed out waiting for API structure content from ${relativeStructurePath}`,
           ),
         );
-      }, 60_000);
+      }, 120_000);
 
       const promise = new Promise<Parent>((resolve_, reject_) => {
         resolve = (value: Parent) => {
