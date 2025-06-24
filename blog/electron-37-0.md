@@ -53,31 +53,18 @@ Electron 37 upgrades Chromium from `136.0.7103.48` to `138.0.7204.35`, and V8 fr
 
 ### Breaking Changes
 
-### Deprecated: `NativeImage.getBitmap()`
+### Utility Process unhandled rejection behavior change
 
-The `NativeImage.getBitmap()` function is now deprecated and documented as an alias for `NativeImage.toBitmap()`.
-The two functions both return a newly-allocated copy of the bitmap and are functionally equivalent.
+Utility Processes will now warn with an error message when an unhandled
+rejection occurs instead of crashing the process.
 
-### Deprecated: Extension methods and events on `session`
+To restore the previous behavior, you can use:
 
-`session.loadExtension`, `session.removeExtension`, `session.getExtension`,
-`session.getAllExtensions`, and the events `extension-loaded`,
-`extension-unloaded`, and `extension-ready` have all moved to the new
-[`Extensions` object](https://www.electronjs.org/docs/latest/api/extensions-api)
-accessible via the `session.extensions` instance property.
-
-### Removed: `quota` type `syncable` in `session.clearStorageData(options)`
-
-When calling `session.clearStorageData(options)`, the `options.quota` type
-`syncable` is no longer supported because it has been
-[removed](https://chromium-review.googlesource.com/c/chromium/src/+/6309405)
-from upstream Chromium.
-
-### Deprecated: `quota` property in `session.clearStorageData(options)`
-
-When calling `Session.clearStorageData(options)`, the `options.quota`
-property is deprecated. Since the `syncable` type was removed, there
-is only type left -- `'temporary'` -- so specifying it is unnecessary.
+```js
+process.on('unhandledRejection', () => {
+  process.exit(1)
+})
+```
 
 ### Behavior Changed: `process.exit()` kills utility process synchronously
 
@@ -89,13 +76,28 @@ Please refer to the
 [PR #45690](https://github.com/electron/electron/pull/45690) to understand the potential
 implications of that, e.g., when calling `console.log()` before `process.exit()`.
 
-### Behavior Changed: `app.commandLine`
+### Behavior Changed: WebUSB and WebSerial Blocklist Support
 
-`app.commandLine` will convert uppercases switches and arguments to lowercase.
+[WebUSB](https://developer.mozilla.org/en-US/docs/Web/API/WebUSB_API) and [Web Serial](https://developer.mozilla.org/en-US/docs/Web/API/Web_Serial_API) now support the [WebUSB Blocklist](https://wicg.github.io/webusb/#blocklist) and [Web Serial Blocklist](https://wicg.github.io/serial/#blocklist) used by Chromium and outlined in their respective specifications.
 
-`app.commandLine` was only meant to handle Chromium switches (which aren't case-sensitive) and switches passed via `app.commandLine` will not be passed down to any of the child processes.
+To disable these, users can pass `disable-usb-blocklist` and `disable-serial-blocklist` as command line flags.
 
-If you were using `app.commandLine` to parse app-specific command line arguments, you should do this via `process.argv`.
+### Removed: `null` value for `session` property in `ProtocolResponse`
+
+This deprecated feature has been removed.
+
+Previously, setting the `ProtocolResponse.session` property to `null`
+would create a random independent session. This is no longer supported.
+
+Using single-purpose sessions here is discouraged due to overhead costs;
+however, old code that needs to preserve this behavior can emulate it by
+creating a random session with `session.fromPartition(some_random_string)`
+and then using it in `ProtocolResponse.session`.
+
+### Behavior Changed: `BrowserWindow.IsVisibleOnAllWorkspaces()` on Linux
+
+`BrowserWindow.IsVisibleOnAllWorkspaces()` will now return false on Linux if the
+window is not currently visible.
 
 ## End of Support for 34.x.y
 
