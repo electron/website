@@ -31,25 +31,14 @@ Electron 37 upgrades Chromium from `136.0.7103.48` to `138.0.7204.35`, and V8 fr
 
 ### New Features and Improvements
 
-- Added `BrowserWindow.isSnapped()` to indicate whether a given window has been arranged via Snap. [#46079](https://github.com/electron/electron/pull/46079) <span style="font-size:small;">(Also in [36](https://github.com/electron/electron/pull/46226))</span>
-- Added `before-mouse-event` to allow intercepting and preventing mouse events in WebContents. [#47364](https://github.com/electron/electron/pull/47364) <span style="font-size:small;">(Also in [36](https://github.com/electron/electron/pull/47365))</span>
-- Added `ffmpeg.dll` to delay load configuration. [#46151](https://github.com/electron/electron/pull/46151) <span style="font-size:small;">(Also in [34](https://github.com/electron/electron/pull/46174), [35](https://github.com/electron/electron/pull/46172), [36](https://github.com/electron/electron/pull/46173))</span>
-- Added `innerWidth` and `innerHeight` options for window.open. [#47039](https://github.com/electron/electron/pull/47039) <span style="font-size:small;">(Also in [35](https://github.com/electron/electron/pull/47045), [36](https://github.com/electron/electron/pull/47038))</span>
-- Added `nativeTheme.shouldUseDarkColorsForSystemIntegratedUI` to distinguish system and app theme. [#46438](https://github.com/electron/electron/pull/46438) <span style="font-size:small;">(Also in [35](https://github.com/electron/electron/pull/46599), [36](https://github.com/electron/electron/pull/46598))</span>
-- Added `scriptURL` property to `ServiceWorkerMain`. [#45863](https://github.com/electron/electron/pull/45863)
 - Added a CSS rule for smooth corners. [#45185](https://github.com/electron/electron/pull/45185)
-- Added sublabel functionality for menus on macOS >= 14.4. [#47042](https://github.com/electron/electron/pull/47042) <span style="font-size:small;">(Also in [35](https://github.com/electron/electron/pull/47041), [36](https://github.com/electron/electron/pull/47040))</span>
-- Added support for Autofill, Writing Tools and Services macOS level menu items in context menus via the new `frame` option in `menu.popup`. [#45138](https://github.com/electron/electron/pull/45138) <span style="font-size:small;">(Also in [36](https://github.com/electron/electron/pull/46350))</span>
-- Added support for `HIDDevice.collections`. [#47483](https://github.com/electron/electron/pull/47483) <span style="font-size:small;">(Also in [36](https://github.com/electron/electron/pull/47484))</span>
-- Added support for `--no-experimental-global-navigator` flag. [#47418](https://github.com/electron/electron/pull/47418) <span style="font-size:small;">(Also in [35](https://github.com/electron/electron/pull/47416), [36](https://github.com/electron/electron/pull/47417))</span>
-- Added support for `screen.dipToScreenPoint(point)` and `screen.screenToDipPoint(point)` on Linux X11. [#46895](https://github.com/electron/electron/pull/46895) <span style="font-size:small;">(Also in [35](https://github.com/electron/electron/pull/47124), [36](https://github.com/electron/electron/pull/47125))</span>
-- Added support for `system-context-menu` on Linux. [#45848](https://github.com/electron/electron/pull/45848) <span style="font-size:small;">(Also in [35](https://github.com/electron/electron/pull/46977), [36](https://github.com/electron/electron/pull/46399))</span>
-- Added support for menu item role `palette` and `header` on macOS. [#47245](https://github.com/electron/electron/pull/47245)
-- Added support for node option `--experimental-network-inspection`. [#47031](https://github.com/electron/electron/pull/47031) <span style="font-size:small;">(Also in [35](https://github.com/electron/electron/pull/47029), [36](https://github.com/electron/electron/pull/47030))</span>
-- Added the priority and priorityIncremental options to net.request(). [#47321](https://github.com/electron/electron/pull/47321) <span style="font-size:small;">(Also in [36](https://github.com/electron/electron/pull/47320))</span>
-- Exposed `win.isContentProtected()` to allow developers to check window protection status. [#47310](https://github.com/electron/electron/pull/47310) <span style="font-size:small;">(Also in [36](https://github.com/electron/electron/pull/47311))</span>
-- Improved ASAR integrity checks on Windows. [#46509](https://github.com/electron/electron/pull/46509) <span style="font-size:small;">(Also in [36](https://github.com/electron/electron/pull/46537))</span>
-- Improved performance of desktopCapturer.getSources when not requesting thumbnails on macOS. [#46138](https://github.com/electron/electron/pull/46138) <span style="font-size:small;">(Also in [34](https://github.com/electron/electron/pull/46250), [35](https://github.com/electron/electron/pull/46249), [36](https://github.com/electron/electron/pull/46251))</span>
+- Added support for Autofill, Writing Tools and Services macOS level menu items in context menus via the new `frame` option in `menu.popup`. [#45138](https://github.com/electron/electron/pull/45138) <span style="font-size:small;"
+- Added support for `screen.dipToScreenPoint(point)` and `screen.screenToDipPoint(point)` on Linux X11. [#46895](https://github.com/electron/electron/pull/46895)
+- Added `ffmpeg.dll` to delay load configuration. [#46151](https://github.com/electron/electron/pull/46151)
+- Added `nativeTheme.shouldUseDarkColorsForSystemIntegratedUI` to distinguish system and app theme. [#46438](https://github.com/electron/electron/pull/46438)
+- Added support for node option `--experimental-network-inspection`. [#47031](https://github.com/electron/electron/pull/47031)
+- Exposed `win.isContentProtected()` to allow developers to check window protection status. [#47310](https://github.com/electron/electron/pull/47310)
+- Improved ASAR integrity checks on Windows. [#46509](https://github.com/electron/electron/pull/46509)
 
 ### Breaking Changes
 
