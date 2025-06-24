@@ -3,7 +3,7 @@ title: Electron 37.0.0
 date: 2025-06-24T00:00:00.000Z
 authors:
   - georgexu99
-  - vertedinde
+  - VerteDinde
 slug: electron-37-0
 tags: [release]
 ---
@@ -18,6 +18,41 @@ If you have any feedback, please share it with us on [Bluesky](https://bsky.app/
 
 ## Notable Changes
 
+### Corner Smoothing is Here: A Design Enhancement Option
+
+![An image showing different corner smoothing values (0%, 30%, 60%, and 100%) applied to rectangles, with 60% labeled as matching macOS style](../static/assets/img/corner-smoothing.svg)
+
+Electron 37 introduces a new CSS feature that brings Apple-inspired smooth corners to your applications. The new `-electron-corner-smoothing` CSS property allows for further design customization closer aligning with the MacOS design language.
+
+```css
+.my-button {
+  border-radius: 48;
+  -electron-corner-smoothing: 60%;
+}
+```
+
+Unlike traditional `border-radius` which creates circular corners, this new property generates a more sophisticated curve that smoothly transitions from the straight edges. You can adjust the smoothness from 0% to 100%, or use `system-ui` to automatically match the operating system's style. This subtle but impactful design enhancement affects borders, outlines, and shadows, helping your app feel more native and polished.
+
+> **Note:** Read more about [@clavin](https://github.com/clavin)'s squircle [RFC here](https://github.com/electron/rfcs/blob/main/text/0012-corner-smoothing.md). The document goes over guide and reference-level explanations in more detail.
+>
+> release notes: Added a CSS rule for smooth corners. [#45185](https://github.com/electron/electron/pull/45185)
+
+### New Window Management Improvements
+
+- Added `BrowserWindow.isSnapped()` to indicate whether a given window has been arranged via Snap. [#46079](https://github.com/electron/electron/pull/46079) (Also in [36](https://github.com/electron/electron/pull/46226))
+
+- Added `innerWidth` and `innerHeight` options for window.open. [#47039](https://github.com/electron/electron/pull/47039) (Also in [35](https://github.com/electron/electron/pull/47045), [36](https://github.com/electron/electron/pull/47038))
+
+> **Note:** Stay tuned! We're excited about the upcoming [Save/Restore Window State API](https://github.com/electron/electron/pull/47425) feature that our Google Summer of Code Partipant, [@nilayarya](https://github.com/nilayarya) is developing.
+>
+> The new API will provide a built-in, standardized way to handle window state persistence.
+
+### Additional GSOC Plug:
+
+// TODO: add plug for Hitarth's Devtron changes
+
+##
+
 ### Stack Changes
 
 - Chromium `138.0.7204.35`
@@ -31,14 +66,22 @@ Electron 37 upgrades Chromium from `136.0.7103.48` to `138.0.7204.35`, and V8 fr
 
 ### New Features and Improvements
 
-- Added a CSS rule for smooth corners. [#45185](https://github.com/electron/electron/pull/45185)
-- Added support for Autofill, Writing Tools and Services macOS level menu items in context menus via the new `frame` option in `menu.popup`. [#45138](https://github.com/electron/electron/pull/45138) <span style="font-size:small;"
-- Added support for `screen.dipToScreenPoint(point)` and `screen.screenToDipPoint(point)` on Linux X11. [#46895](https://github.com/electron/electron/pull/46895)
-- Added `ffmpeg.dll` to delay load configuration. [#46151](https://github.com/electron/electron/pull/46151)
-- Added `nativeTheme.shouldUseDarkColorsForSystemIntegratedUI` to distinguish system and app theme. [#46438](https://github.com/electron/electron/pull/46438)
-- Added support for node option `--experimental-network-inspection`. [#47031](https://github.com/electron/electron/pull/47031)
-- Exposed `win.isContentProtected()` to allow developers to check window protection status. [#47310](https://github.com/electron/electron/pull/47310)
-- Improved ASAR integrity checks on Windows. [#46509](https://github.com/electron/electron/pull/46509)
+- Added `before-mouse-event` to allow intercepting and preventing mouse events in WebContents. [#47364](https://github.com/electron/electron/pull/47364) (Also in [36](https://github.com/electron/electron/pull/47365))
+- Added `ffmpeg.dll` to delay load configuration. [#46151](https://github.com/electron/electron/pull/46151) (Also in [34](https://github.com/electron/electron/pull/46174), [35](https://github.com/electron/electron/pull/46172), [36](https://github.com/electron/electron/pull/46173))
+- Added `nativeTheme.shouldUseDarkColorsForSystemIntegratedUI` to distinguish system and app theme. [#46438](https://github.com/electron/electron/pull/46438) Also in [35](https://github.com/electron/electron/pull/46599), [36](https://github.com/electron/electron/pull/46598)
+- Added `scriptURL` property to `ServiceWorkerMain`. [#45863](https://github.com/electron/electron/pull/45863)
+- Added sublabel functionality for menus on macOS >= 14.4. [#47042](https://github.com/electron/electron/pull/47042) (Also in [35](https://github.com/electron/electron/pull/47041), [36](https://github.com/electron/electron/pull/47040))
+- Added support for Autofill, Writing Tools and Services macOS level menu items in context menus via the new `frame` option in `menu.popup`. [#45138](https://github.com/electron/electron/pull/45138) (Also in [36](https://github.com/electron/electron/pull/46350))
+- Added support for `HIDDevice.collections`. [#47483](https://github.com/electron/electron/pull/47483) (Also in [36](https://github.com/electron/electron/pull/47484))
+- Added support for `--no-experimental-global-navigator` flag. [#47418](https://github.com/electron/electron/pull/47418) (Also in [35](https://github.com/electron/electron/pull/47416), [36](https://github.com/electron/electron/pull/47417))
+- Added support for `screen.dipToScreenPoint(point)` and `screen.screenToDipPoint(point)` on Linux X11. [#46895](https://github.com/electron/electron/pull/46895) (Also in [35](https://github.com/electron/electron/pull/47124), [36](https://github.com/electron/electron/pull/47125))
+- Added support for `system-context-menu` on Linux. [#45848](https://github.com/electron/electron/pull/45848) (Also in [35](https://github.com/electron/electron/pull/46977), [36](https://github.com/electron/electron/pull/46399))
+- Added support for menu item role `palette` and `header` on macOS. [#47245](https://github.com/electron/electron/pull/47245)
+- Added support for node option `--experimental-network-inspection`. [#47031](https://github.com/electron/electron/pull/47031) (Also in [35](https://github.com/electron/electron/pull/47029), [36](https://github.com/electron/electron/pull/47030))
+- Added the priority and priorityIncremental options to net.request(). [#47321](https://github.com/electron/electron/pull/47321) (Also in [36](https://github.com/electron/electron/pull/47320))
+- Exposed `win.isContentProtected()` to allow developers to check window protection status. [#47310](https://github.com/electron/electron/pull/47310) (Also in [36](https://github.com/electron/electron/pull/47311))
+- Improved ASAR integrity checks on Windows. [#46509](https://github.com/electron/electron/pull/46509) (Also in [36](https://github.com/electron/electron/pull/46537))
+- Improved performance of desktopCapturer.getSources when not requesting thumbnails on macOS. [#46138](https://github.com/electron/electron/pull/46138) (Also in [34](https://github.com/electron/electron/pull/46250), [35](https://github.com/electron/electron/pull/46249), [36](https://github.com/electron/electron/pull/46251))
 
 ### Breaking Changes
 
@@ -51,8 +94,8 @@ To restore the previous behavior, you can use:
 
 ```js
 process.on('unhandledRejection', () => {
-  process.exit(1)
-})
+  process.exit(1);
+});
 ```
 
 ### Behavior Changed: `process.exit()` kills utility process synchronously
