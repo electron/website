@@ -21,10 +21,53 @@ This document uses the following convention to categorize breaking changes:
 
 ## Planned Breaking API Changes (37.0)
 
+### Utility Process unhandled rejection behavior change
+
+Utility Processes will now warn with an error message when an unhandled
+rejection occurs instead of crashing the process.
+
+To restore the previous behavior, you can use:
+
+```js
+process.on('unhandledRejection', () => {
+  process.exit(1)
+})
+```
+
+### Behavior Changed: `process.exit()` kills utility process synchronously
+
+Calling `process.exit()` in a utility process will now kill the utility process synchronously.
+This brings the behavior of `process.exit()` in line with Node.js behavior.
+
+Please refer to the
+[Node.js docs](https://nodejs.org/docs/latest-v22.x/api/process.html#processexitcode) and
+[PR #45690](https://github.com/electron/electron/pull/45690) to understand the potential
+implications of that, e.g., when calling `console.log()` before `process.exit()`.
+
+### Behavior Changed: WebUSB and WebSerial Blocklist Support
+
+[WebUSB](https://developer.mozilla.org/en-US/docs/Web/API/WebUSB_API) and [Web Serial](https://developer.mozilla.org/en-US/docs/Web/API/Web_Serial_API) now support the [WebUSB Blocklist](https://wicg.github.io/webusb/#blocklist) and [Web Serial Blocklist](https://wicg.github.io/serial/#blocklist) used by Chromium and outlined in their respective specifications.
+
+To disable these, users can pass `disable-usb-blocklist` and `disable-serial-blocklist` as command line flags.
+
+### Removed: `null` value for `session` property in `ProtocolResponse`
+
+This deprecated feature has been removed.
+
+Previously, setting the `ProtocolResponse.session` property to `null`
+would create a random independent session. This is no longer supported.
+
+Using single-purpose sessions here is discouraged due to overhead costs;
+however, old code that needs to preserve this behavior can emulate it by
+creating a random session with `session.fromPartition(some_random_string)`
+and then using it in `ProtocolResponse.session`.
+
 ### Behavior Changed: `BrowserWindow.IsVisibleOnAllWorkspaces()` on Linux
 
 `BrowserWindow.IsVisibleOnAllWorkspaces()` will now return false on Linux if the
 window is not currently visible.
+
+## Planned Breaking API Changes (36.0)
 
 ### Behavior Changes: `app.commandLine`
 
@@ -47,9 +90,7 @@ bitmap = image.getBitmap()
 bitmap = image.toBitmap()
 ```
 
-## Planned Breaking API Changes (36.0)
-
-### Removed:`isDefault` and `status` properties on `PrinterInfo`
+### Removed: `isDefault` and `status` properties on `PrinterInfo`
 
 These properties have been removed from the PrinterInfo Object
 because they have been removed from upstream Chromium.
@@ -61,12 +102,6 @@ When calling `Session.clearStorageData(options)`, the `options.quota` type
 [removed](https://chromium-review.googlesource.com/c/chromium/src/+/6309405)
 from upstream Chromium.
 
-### Deprecated: `quota` property in `Session.clearStorageData(options)`
-
-When calling `Session.clearStorageData(options)`, the `options.quota`
-property is deprecated. Since the `syncable` type was removed, there
-is only type left -- `'temporary'` -- so specifying it is unnecessary.
-
 ### Deprecated: `null` value for `session` property in `ProtocolResponse`
 
 Previously, setting the ProtocolResponse.session property to `null`
@@ -76,6 +111,12 @@ Using single-purpose sessions here is discouraged due to overhead costs;
 however, old code that needs to preserve this behavior can emulate it by
 creating a random session with `session.fromPartition(some_random_string)`
 and then using it in `ProtocolResponse.session`.
+
+### Deprecated: `quota` property in `Session.clearStorageData(options)`
+
+When calling `Session.clearStorageData(options)`, the `options.quota`
+property is deprecated. Since the `syncable` type was removed, there
+is only type left -- `'temporary'` -- so specifying it is unnecessary.
 
 ### Deprecated: Extension methods and events on `session`
 
