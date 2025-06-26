@@ -22,7 +22,7 @@ If you have any feedback, please share it with us on [Bluesky](https://bsky.app/
 
 ![An image showing different corner smoothing values (0%, 30%, 60%, and 100%) applied to rectangles, with 60% labeled as matching macOS style](../static/assets/img/corner-smoothing.svg)
 
-Electron 37 (ok, you got us! This feature technically landed in Electron 36, but we felt like it deserved a larger spotlight) introduces a new CSS feature that brings Apple-inspired smooth corners to your applications. The new `-electron-corner-smoothing` CSS property allows for further design customization closer aligning with the MacOS design language.
+Electron 37 introduces a new CSS feature that brings Apple-inspired smooth corners to your applications. The new `-electron-corner-smoothing` CSS property allows for further design customization closer aligning with the macOS design language. This feature technically landed in Electron 36, but we felt like it deserved a larger spotlight.
 
 ```css
 .my-button {
@@ -31,9 +31,10 @@ Electron 37 (ok, you got us! This feature technically landed in Electron 36, but
 }
 ```
 
-Unlike the traditional `border-radius` which creates quarter-circle corners, this new property generates a more sophisticated curve that smoothly transitions from the straight edges. The curvature of a squircle's permiter is continuous, whereas a rounded square's is not (Furse, 2018). You can adjust the smoothness from 0% to 100%, or use `system-ui` to automatically match the operating system's style. This subtle but impactful design enhancement affects borders, outlines, and shadows, helping your app feel more native and polished.
+Unlike the traditional `border-radius` which creates quarter-circle corners, this new property generates a more sophisticated curve that smoothly transitions from the straight edges. This is known as a Squircle: [the curvature of a squircle's perimiter is continuous, whereas a rounded square's is not](https://www.figma.com/blog/desperately-seeking-squircles/). You can adjust the smoothness from 0% to 100%, or use `system-ui` to automatically match the operating system's style. This subtle but impactful design enhancement affects borders, outlines, and shadows, helping your app feel more native and polished.
 
-> **Note:** Read more about [@clavin](https://github.com/clavin)'s squircle [RFC here](https://github.com/electron/rfcs/blob/main/text/0012-corner-smoothing.md). The document goes over guide and reference-level explanations in more detail.
+> [!NOTE]
+> Read more about [@clavin](https://github.com/clavin)'s squircle [RFC here](https://github.com/electron/rfcs/blob/main/text/0012-corner-smoothing.md). The document goes over guide and reference-level explanations in more detail.
 >
 > Still wondering what a Squircle is? You can read more about Squircle design in Daniel Furse's blog post, ["Desperately seeking squircles"](https://www.figma.com/blog/desperately-seeking-squircles/).
 >
@@ -46,29 +47,28 @@ Unlike the traditional `border-radius` which creates quarter-circle corners, thi
 - Chromium `138.0.7204.35`
   - [New in 138](https://developer.chrome.com/blog/new-in-chrome-138/)
   - [New in 137](https://developer.chrome.com/blog/new-in-chrome-137/)
-- Node `22.14.0`
-  - [Node 22.14.0 blog post](https://nodejs.org/en/blog/release/v22.16.0/)
+- Node `22.16.0`
+  - [Node 22.16.0 blog post](https://nodejs.org/en/blog/release/v22.16.0/)
 - V8 `13.8`
 
 Electron 37 upgrades Chromium from `136.0.7103.48` to `138.0.7204.35`, and V8 from `13.6` to `13.8`.
 
-## Electron News
+## Google Summer of Code News
 
-Our Google Summer of Code participants are actively working on their projects! Stay tuned, we have two upcoming projects this Summer.
+Our Google Summer of Code participants are actively working on their projects! Stay tuned, we have two upcoming projects this summer.
 
 We're excited about the upcoming [Save/Restore Window State API](https://github.com/electron/rfcs/pull/16/) feature that our Google Summer of Code Partipant, [@nilayarya](https://github.com/nilayarya) is developing.
 The new API will provide a built-in, standardized way to handle window state persistence.
 
-Additionally, [@Hitarth-gg](https://github.com/hitarth-gg) is hard at work restoring and modernizing the Electron Devtron Extension.
+Additionally, [@hitarth-gg](https://github.com/hitarth-gg) is hard at work restoring and modernizing the Electron Devtron Extension.
 This project will provide tooling for developers to debug IPC communication, track event listeners, and visualize module dependencies in their Electron applications.
 
-It's an exciting couple of weeks for our GSOC participants, so stay tuned for more updates!
+It has been an exciting couple of weeks for our GSOC participants, so stay tuned for more updates!
 
 ### New Features and Improvements
 
 - Added `innerWidth` and `innerHeight` options for `window.open`. [#47039](https://github.com/electron/electron/pull/47039) (Also in [35](https://github.com/electron/electron/pull/47045), [36](https://github.com/electron/electron/pull/47038))
 - Added `before-mouse-event` to allow intercepting and preventing mouse events in `webContents`. [#47364](https://github.com/electron/electron/pull/47364) (Also in [36](https://github.com/electron/electron/pull/47365))
-- Added `nativeTheme.shouldUseDarkColorsForSystemIntegratedUI` to distinguish system and app theme. [#46438](https://github.com/electron/electron/pull/46438) Also in [35](https://github.com/electron/electron/pull/46599), [36](https://github.com/electron/electron/pull/46598)
 - Added `scriptURL` property to `ServiceWorkerMain`. [#45863](https://github.com/electron/electron/pull/45863)
 - Added `sublabel` functionality for menus on macOS >= 14.4. [#47042](https://github.com/electron/electron/pull/47042) (Also in [35](https://github.com/electron/electron/pull/47041), [36](https://github.com/electron/electron/pull/47040))
 - Added support for `HIDDevice.collections`. [#47483](https://github.com/electron/electron/pull/47483) (Also in [36](https://github.com/electron/electron/pull/47484))
@@ -77,7 +77,6 @@ It's an exciting couple of weeks for our GSOC participants, so stay tuned for mo
 - Added support for menu item role `palette` and `header` on macOS. [#47245](https://github.com/electron/electron/pull/47245)
 - Added support for node option `--experimental-network-inspection`. [#47031](https://github.com/electron/electron/pull/47031) (Also in [35](https://github.com/electron/electron/pull/47029), [36](https://github.com/electron/electron/pull/47030))
 - Exposed `win.isContentProtected()` to allow developers to check window protection status. [#47310](https://github.com/electron/electron/pull/47310) (Also in [36](https://github.com/electron/electron/pull/47311))
-- Improved performance of `desktopCapturer.getSources` when not requesting thumbnails on macOS. [#46138](https://github.com/electron/electron/pull/46138) (Also in [34](https://github.com/electron/electron/pull/46250), [35](https://github.com/electron/electron/pull/46249), [36](https://github.com/electron/electron/pull/46251))
 
 ### Breaking Changes
 
