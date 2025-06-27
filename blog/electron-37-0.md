@@ -31,17 +31,19 @@ Electron 37 introduces the custom `-electron-corner-smoothing` CSS property, whi
 </tr>
 <tr>
 <td>
-<pre lang="css">
+
+```css
 .box {
   width: 128px;
   height: 128px;
   border-radius: 24px;
   -electron-corner-smoothing: 100%;
 }
-</pre>
+```
+
 </td>
 <td>
-<img src="https://github.com/electron/rfcs/blob/main/images/0012/Rectangle.svg" width="128" alt="" />
+<img src="https://raw.githubusercontent.com/electron/rfcs/d89000c638a6d98b497ce2fbea07bce45c2760a8/images/0012/Rectangle.svg" width="128px" alt="" />
 </td>
 </tr>
 </table>
@@ -52,7 +54,7 @@ the curve into a [**squircle**](https://en.wikipedia.org/wiki/Squircle) shape wi
 You can adjust the smoothness using values from 0% to 100%, or use the `system-ui` value to match the operating system's style (60% on macOS and 0% otherwise).
 This design enhancement can be applied on borders, outlines, and shadows, giving your app a subtle layer of polish.
 
-> [!NOTE]
+> [!TIP]
 > Read more about Electron's squircle implementation in [@clavin](https://github.com/clavin)'s [RFC 0012](https://github.com/electron/rfcs/blob/main/text/0012-corner-smoothing.md).
 > The document goes over the motivation and technical implementation in more detail.
 >
@@ -72,7 +74,8 @@ Electron 37 upgrades Chromium from `136.0.7103.48` to `138.0.7204.35`, and V8 fr
 
 ## Google Summer of Code Begins
 
-Our two Google Summer of Code contributors have started the program's coding period!
+Our two [Google Summer of Code](https://summerofcode.withgoogle.com/) contributors have started the
+program's coding period!
 
 - [@nilayarya](https://github.com/nilayarya) is crafting a new [Save/Restore Window State API](https://github.com/electron/rfcs/pull/16/) in Electron core. The new APIs will provide a built-in, standardized way
   to handle window state persistence. See Nilay's in-progress RFC at [electron/rfcs#16](https://github.com/electron/rfcs/pull/16).
