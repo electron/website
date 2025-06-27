@@ -18,29 +18,46 @@ If you have any feedback, please share it with us on [Bluesky](https://bsky.app/
 
 ## Notable Changes
 
-### Corner Smoothing is Here: A Design Enhancement Option
+### Smooth Corners: Native CSS Squircles
 
 ![An image showing different corner smoothing values (0%, 30%, 60%, and 100%) applied to rectangles, with 60% labeled as matching macOS style](../static/assets/img/corner-smoothing.svg)
 
-Electron 37 introduces a new CSS feature that brings Apple-inspired smooth corners to your applications. The new `-electron-corner-smoothing` CSS property allows for further design customization closer aligning with the macOS design language. This feature technically landed in Electron 36, but we felt like it deserved a larger spotlight.
+Electron 37 introduces the custom `-electron-corner-smoothing` CSS property, which allows apps to create smoother rounded corners to match Apple's macOS design language. This feature originally landed in Electron 36, but we felt like it deserved a brighter spotlight.
 
-```css
-.my-button {
-  border-radius: 48;
-  -electron-corner-smoothing: 60%;
+<table>
+<tr>
+<th>Code</th>
+<th>Result</th>
+</tr>
+<tr>
+<td>
+<pre lang="css">
+.box {
+  width: 128px;
+  height: 128px;
+  border-radius: 24px;
+  -electron-corner-smoothing: 100%;
 }
-```
+</pre>
+</td>
+<td>
+<img src="https://github.com/electron/rfcs/blob/main/images/0012/Rectangle.svg" width="128" alt="" />
+</td>
+</tr>
+</table>
 
-Unlike the traditional `border-radius` which creates quarter-circle corners, this new property generates a more sophisticated curve that smoothly transitions from the straight edges. This is known as a Squircle: [the curvature of a squircle's perimiter is continuous, whereas a rounded square's is not](https://www.figma.com/blog/desperately-seeking-squircles/). You can adjust the smoothness from 0% to 100%, or use `system-ui` to automatically match the operating system's style. This subtle but impactful design enhancement affects borders, outlines, and shadows, helping your app feel more native and polished.
+Unlike the standard `border-radius` property, which carves quarter-circle corners out of a rectangle, `-electron-corner-smoothing` smoothly transitions
+the curve into a [**squircle**](https://en.wikipedia.org/wiki/Squircle) shape with a continuous perimeter.
+
+You can adjust the smoothness using values from 0% to 100%, or use the `system-ui` value to match the operating system's style (60% on macOS and 0% otherwise).
+This design enhancement can be applied on borders, outlines, and shadows, giving your app a subtle layer of polish.
 
 > [!NOTE]
-> Read more about [@clavin](https://github.com/clavin)'s squircle [RFC here](https://github.com/electron/rfcs/blob/main/text/0012-corner-smoothing.md). The document goes over guide and reference-level explanations in more detail.
+> Read more about Electron's squircle implementation in [@clavin](https://github.com/clavin)'s [RFC 0012](https://github.com/electron/rfcs/blob/main/text/0012-corner-smoothing.md).
+> The document goes over the motivation and technical implementation in more detail.
 >
-> Still wondering what a Squircle is? You can read more about Squircle design in Daniel Furse's blog post, ["Desperately seeking squircles"](https://www.figma.com/blog/desperately-seeking-squircles/).
->
-> release notes: Added a CSS rule for smooth corners. [#45185](https://github.com/electron/electron/pull/45185)
-
-##
+> The initial design drew inspiration from Figma's corner smoothing implementation. Read more about their own quest for smooth corners in
+> ["Desperately seeking squircles"](https://www.figma.com/blog/desperately-seeking-squircles/).
 
 ### Stack Changes
 
@@ -53,14 +70,13 @@ Unlike the traditional `border-radius` which creates quarter-circle corners, thi
 
 Electron 37 upgrades Chromium from `136.0.7103.48` to `138.0.7204.35`, and V8 from `13.6` to `13.8`.
 
-## Google Summer of Code News
+## Google Summer of Code Begins
 
-Our Google Summer of Code participants are actively working on their projects! Stay tuned, we have two upcoming projects this summer.
+Our two Google Summer of Code contributors have started the program's coding period!
 
-We're excited about the upcoming [Save/Restore Window State API](https://github.com/electron/rfcs/pull/16/) feature that our Google Summer of Code Partipant, [@nilayarya](https://github.com/nilayarya) is developing.
-The new API will provide a built-in, standardized way to handle window state persistence.
-
-Additionally, [@hitarth-gg](https://github.com/hitarth-gg) is hard at work restoring and modernizing the Electron Devtron Extension.
+* [@nilayarya](https://github.com/nilayarya) is crafting a new [Save/Restore Window State API](https://github.com/electron/rfcs/pull/16/) in Electron core. The new APIs will provide a built-in, standardized way
+  to handle window state persistence. See Nilay's in-progress RFC at [electron/rfcs#16](https://github.com/electron/rfcs/pull/16).
+* [@hitarth-gg](https://github.com/hitarth-gg) is hard at work modernizing the long-dormant [Devtron](https://github.com/electron-userland/devtron) extension using Chrome Manifest V3 APIs.
 This project will provide tooling for developers to debug IPC communication, track event listeners, and visualize module dependencies in their Electron applications.
 
 It has been an exciting couple of weeks for our GSOC participants, so stay tuned for more updates!
