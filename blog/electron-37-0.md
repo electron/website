@@ -74,10 +74,10 @@ Electron 37 upgrades Chromium from `136.0.7103.48` to `138.0.7204.35`, and V8 fr
 
 Our two Google Summer of Code contributors have started the program's coding period!
 
-* [@nilayarya](https://github.com/nilayarya) is crafting a new [Save/Restore Window State API](https://github.com/electron/rfcs/pull/16/) in Electron core. The new APIs will provide a built-in, standardized way
+- [@nilayarya](https://github.com/nilayarya) is crafting a new [Save/Restore Window State API](https://github.com/electron/rfcs/pull/16/) in Electron core. The new APIs will provide a built-in, standardized way
   to handle window state persistence. See Nilay's in-progress RFC at [electron/rfcs#16](https://github.com/electron/rfcs/pull/16).
-* [@hitarth-gg](https://github.com/hitarth-gg) is hard at work modernizing the long-dormant [Devtron](https://github.com/electron-userland/devtron) extension using Chrome Manifest V3 APIs.
-This project will provide tooling for developers to debug IPC communication, track event listeners, and visualize module dependencies in their Electron applications.
+- [@hitarth-gg](https://github.com/hitarth-gg) is hard at work modernizing the long-dormant [Devtron](https://github.com/electron-userland/devtron) extension using Chrome Manifest V3 APIs.
+  This project will provide tooling for developers to debug IPC communication, track event listeners, and visualize module dependencies in their Electron applications.
 
 It has been an exciting couple of weeks for our GSOC participants, so stay tuned for more updates!
 
