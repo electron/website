@@ -297,7 +297,7 @@ Specify ways of the inspector web socket url exposure.
 
 By default inspector websocket url is available in stderr and under /json/list endpoint on `http://host:port/json/list`.
 
-### `--experimental-network-inspector`
+### `--experimental-network-inspection`
 
 Enable support for devtools network inspector events, for visibility into requests made by the nodejs `http` and `https` modules.
 
@@ -332,6 +332,10 @@ Set the directory to which all Node.js diagnostic output files are written. Defa
 
 Affects the default output directory of [v8.setHeapSnapshotNearHeapLimit](https://nodejs.org/docs/latest/api/v8.html#v8setheapsnapshotnearheaplimitlimit).
 
+### `--no-experimental-global-navigator`
+
+Disable exposition of [Navigator API][] on the global scope from Node.js.
+
 [app]: app.md
 [append-switch]: command-line.md#commandlineappendswitchswitch-value
 [debugging-main-process]: ../tutorial/debugging-main-process.md
@@ -340,3 +344,4 @@ Affects the default output directory of [v8.setHeapSnapshotNearHeapLimit](https:
 [play-silent-audio]: https://github.com/atom/atom/pull/9485/files
 [ready]: app.md#event-ready
 [severities]: https://source.chromium.org/chromium/chromium/src/+/main:base/logging.h?q=logging::LogSeverity&ss=chromium
+[Navigator API]: https://github.com/nodejs/node/blob/main/doc/api/globals.md#navigator

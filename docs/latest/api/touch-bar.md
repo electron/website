@@ -1,11 +1,15 @@
 ---
 title: "TouchBar"
-description: "Create TouchBar layouts for native macOS applications"
+description: "!WARNING]  Electron's built-in classes cannot be subclassed in user code.  For more information, see [the FAQ."
 slug: touch-bar
 hide_title: false
 ---
 
 # TouchBar
+
+> [!WARNING]
+> Electron's built-in classes cannot be subclassed in user code.
+> For more information, see [the FAQ](../faq.md#class-inheritance-does-not-work-with-electron-built-in-modules).
 
 ## Class: TouchBar
 

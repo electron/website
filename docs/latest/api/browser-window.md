@@ -157,6 +157,10 @@ Process: [Main](../glossary.md#main-process)
 
 It creates a new `BrowserWindow` with native properties as set by the `options`.
 
+> [!WARNING]
+> Electron's built-in classes cannot be subclassed in user code.
+> For more information, see [the FAQ](../faq.md#class-inheritance-does-not-work-with-electron-built-in-modules).
+
 ### `new BrowserWindow([options])`
 
 * `options` [BrowserWindowConstructorOptions](structures/browser-window-options.md?inline) (optional)
@@ -1532,6 +1536,10 @@ On macOS it sets the NSWindow's sharingType to NSWindowSharingNone.
 On Windows it calls SetWindowDisplayAffinity with `WDA_EXCLUDEFROMCAPTURE`.
 For Windows 10 version 2004 and up the window will be removed from capture entirely,
 older Windows versions behave as if `WDA_MONITOR` is applied capturing a black window.
+
+#### `win.isContentProtected()` _macOS_ _Windows_
+
+Returns `boolean` - whether or not content protection is currently enabled.
 
 #### `win.setFocusable(focusable)` _macOS_ _Windows_
 

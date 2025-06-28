@@ -60,9 +60,9 @@ jobs:
             ${{ github.workspace }}/.docusaurus
             ${{ github.workspace }}/**/.cache
           key: |
-            ${{ runner.os }}-docusaurus-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+            ${{ runner.os }}-docusaurus-v2-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
           restore-keys: |
-            ${{ runner.os }}-docusaurus-${{ hashFiles('**/yarn.lock') }}
+            ${{ runner.os }}-docusaurus-v2-${{ hashFiles('**/yarn.lock') }}
       - name: Add Docusaurus problem matcher
         run: echo "::add-matcher::.github/problem-matchers/docusaurus.json"
       - name: Build default locale site
