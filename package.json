@@ -24,8 +24,8 @@
     "update-l10n-sources": "npx tsx scripts/update-l10n-sources.ts",
     "lint:eslint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" \"scripts/**/*.{js,ts}\"",
     "lint:markdown": "markdownlint-cli2 \"**/*.md\"",
-    "lint": "npx tsc --noEmit && prettier . --check && npm run lint:eslint && npm run lint:markdown",
-    "lint:fix": "prettier . --write && npm run lint:eslint --fix && npm run lint:markdown --fix",
+    "lint": "npx tsc --noEmit && prettier . --check --experimental-cli && npm run lint:eslint && npm run lint:markdown",
+    "lint:fix": "prettier . --write --experimental-cli && npm run lint:eslint --fix && npm run lint:markdown --fix",
     "pre-build": "npx tsx ./scripts/pre-build.ts",
     "prepare": "husky"
   },
@@ -91,7 +91,7 @@
     "mdast-util-mdx": "^3.0.0",
     "mdast-util-to-hast": "^13.2.0",
     "mdast-util-to-string": "^4.0.0",
-    "prettier": "^3.4.2",
+    "prettier": "^3.6.2",
     "remark": "^15.0.0",
     "remark-gfm": "^4.0.0",
     "tar-stream": "^2.2.0",
@@ -113,9 +113,9 @@
     ]
   },
   "lint-staged": {
-    "*.{html,json,md,yml,css,scss}": "prettier --write",
+    "*.{html,json,md,yml,css,scss}": "prettier --write --experimental-cli",
     "*.{js,jsx,ts,tsx}": [
-      "prettier --write",
+      "prettier --write --experimental-cli",
       "eslint --fix"
     ]
   },

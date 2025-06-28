@@ -62,7 +62,6 @@ The following APIs have been removed or are now deprecated:
 - Deprecated the `new-window` event of `WebContents`. It is replaced by `webContents.setWindowOpenHandler()`
 - Removed deprecated `shell.moveItemToTrash()`. [#26723](https://github.com/electron/electron/pull/26723)
 - Removed the following deprecated `BrowserWindow` extension APIs:
-
   - `BrowserWindow.addExtension(path)`
   - `BrowserWindow.addDevToolsExtension(path)`
   - `BrowserWindow.removeExtension(name)`
@@ -71,19 +70,16 @@ The following APIs have been removed or are now deprecated:
   - `BrowserWindow.getDevToolsExtensions()`
 
   Use the `session` APIs instead:
-
   - `ses.loadExtension(path)`
   - `ses.removeExtension(extension_id)`
   - `ses.getAllExtensions()`
 
 - The following `systemPreferences` methods have been deprecated:
-
   - `systemPreferences.isDarkMode()`
   - `systemPreferences.isInvertedColorScheme()`
   - `systemPreferences.isHighContrastColorScheme()`
 
   Use the following `nativeTheme` properties instead:
-
   - `nativeTheme.shouldUseDarkColors`
   - `nativeTheme.shouldUseInvertedColorScheme`
   - `nativeTheme.shouldUseHighContrastColors`
