@@ -44,7 +44,6 @@ export default async function appsPlugin() {
         'postman',
         'signal',
         'slack',
-        'skype',
         'splice',
         'tidal',
         'trello',
