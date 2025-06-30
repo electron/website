@@ -157,7 +157,7 @@ on the fact it is present in a v30.x.x release.
 I added a usage/style guide dedicated to writing API history documentation for
 new features. I described proper usages of the YAML schema in detail, provided
 typical/useful examples, etc. You can find it
-[here](https://github.com/electron/electron/blob/main/docs/styleguide.md#api-history).
+[here](https://github.com/electron/electron/blob/main/docs/development/style-guide.md#api-history).
 
 ### Migration guide
 
@@ -179,7 +179,6 @@ manually, on a file-by-file basis,
 ## Deliverables
 
 - `api-history.schema.json`
-
   - A comprehensive YAML schema for documenting API history which includes support
     for:
     - [x] Additions
@@ -192,7 +191,6 @@ manually, on a file-by-file basis,
   - [x] Used in: [electron/website#594][website]
 
 - `lint-markdown-api-history.ts`
-
   - Script for linting YAML API history written according to a custom YAML
     (technically JSON) schema.
     - [x] Useful error messages
@@ -203,20 +201,17 @@ manually, on a file-by-file basis,
   - [x] Used in: [electron/electron#42982][electron]
 
 - `preprocess-api-history.ts`
-
   - Performs simple validation just in case incorrect API History manages to make
     it into the repo. Also strips the HTML comment tags that wrap API History blocks
     since [Docusaurus](https://docusaurus.io/) cannot parse them.
   - [x] Implemented/Used in: [electron/website#594][website]
 
 - `transformers/api-history.ts`
-
   - Script for converting YAML API history blocks in the Markdown documentation files
     to ~~Markdown/HTML~~ [React](https://react.dev/) tables (`ApiHistoryTable.tsx`).
   - [x] Implemented/Used in: [electron/website#594][website]
 
 - `ApiHistoryTable.tsx`
-
   - React table component used to display parsed API History data on the
     documentation website.
     - [x] Uses styling that follows the rest of the website's design.
@@ -224,7 +219,6 @@ manually, on a file-by-file basis,
   - [x] Implemented/Used in: [electron/website#594][website]
 
 - `styleguide.md`
-
   - Usage/style guide section for new API history documentation system.
     - [x] Easy to understand
     - [x] Well written
