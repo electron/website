@@ -21,7 +21,7 @@ API docs, tutorials, Electron-related npm packages, and more.
 ---
 
 Learning a new technology or framework like Electron can be intimidating.
-Once you get past the [quick-start] phase, it can
+Once you get past the [tutorial] phase, it can
 be difficult to learn best practices, find the right APIs, or discover the tools
 that will help you build the app of your dreams. We want the Electron website to
 be a better tool for finding the resources you need to build apps faster and
@@ -154,5 +154,5 @@ for building these new search capabilities, to [Libraries.io] for providing
 [`widnow`]: https://electronjs.org/?query=widnow
 [algolia]: https://algolia.com
 [libraries.io]: https://libraries.io
-[quick-start]: https://github.com/electron/electron-quick-start
+[tutorial]: https://www.electronjs.org/docs/tutorial/tutorial-first-app
 [sourcerank]: https://docs.libraries.io/overview.html#sourcerank
