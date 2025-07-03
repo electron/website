@@ -25,10 +25,16 @@ If you have any feedback, please share it with us on [Bluesky](https://bsky.app/
 Electron 37 introduces the custom `-electron-corner-smoothing` CSS property, which allows apps to create smoother rounded corners to match Apple's macOS design language. This feature originally landed in Electron 36, but we felt like it deserved a brighter spotlight.
 
 <table>
+<caption>
+Example with 100% Corner Smoothing
+</caption>
+<thead>
 <tr>
 <th>Code</th>
 <th>Result</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td>
 
@@ -46,6 +52,7 @@ Electron 37 introduces the custom `-electron-corner-smoothing` CSS property, whi
 <img src="https://raw.githubusercontent.com/electron/rfcs/d89000c638a6d98b497ce2fbea07bce45c2760a8/images/0012/Rectangle.svg" width="128px" alt="" />
 </td>
 </tr>
+</tbody>
 </table>
 
 Unlike the standard `border-radius` property, which carves quarter-circle corners out of a rectangle, `-electron-corner-smoothing` smoothly transitions
