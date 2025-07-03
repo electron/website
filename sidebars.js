@@ -273,6 +273,7 @@ module.exports = {
         'latest/api/push-notifications',
         'latest/api/safe-storage',
         'latest/api/screen',
+        'latest/api/service-worker-main',
         'latest/api/session',
         'latest/api/share-menu',
         'latest/api/shell',
