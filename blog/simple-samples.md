@@ -60,7 +60,7 @@ Loads a URL passed on the command line in a window.
 
 We hope these apps help you get started using Electron. Here are a handful other resources for learning more:
 
-- [electron-quick-start](https://github.com/electron/electron-quick-start): A minimal Electron application boilerplate.
+- [minimal-repro](https://github.com/electron/minimal-repro): A minimal Electron application boilerplate.
 - [Electron API Demos](https://github.com/electron/electron-api-demos): An interactive app that demonstrates the core features of the Electron API
 - [electronjs.org/docs/all](https://electronjs.org/docs/all/): All of the Electron documentation together on a single searchable page.
 - [hokein/electron-sample-apps](https://github.com/hokein/electron-sample-apps): Another collection of sample applications for Electron, compiled by Electron maintainer [Haojian Wu](https://github.com/hokein).
