@@ -18,6 +18,11 @@ jobs:
     name: Resolve PR Release Versions
     runs-on: ubuntu-latest
     steps:
+      - name: Setup Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'yarn'
       - name: Restore previous run data
         uses: dawidd6/action-download-artifact@4c1e823582f43b179e2cbb49c3eade4e41f992e2 # v10
         with:
@@ -25,7 +30,7 @@ jobs:
           if_no_artifact_found: ignore
           workflow_conclusion: 'completed'
           search_artifacts: true
-      - run: npm install @electron/fiddle-core
+      - run: npm install @electron/fiddle-core@2.0.0
       - uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
         with:
           script: |
@@ -133,7 +138,7 @@ jobs:
               }
             }
 
-            const { versions } = await ElectronVersions.create(undefined, { ignoreCache: true });
+            const { versions } = await ElectronVersions.create({ ignoreCache: true });
 
             try {
               while (true) {

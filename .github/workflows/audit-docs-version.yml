@@ -12,7 +12,12 @@ jobs:
     name: Audit Docs Version
     runs-on: ubuntu-latest
     steps:
-      - run: npm install @electron/fiddle-core
+      - name: Setup Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'yarn'
+      - run: npm install @electron/fiddle-core@2.0.0
       - name: Confirm latest version
         uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
         with:
@@ -32,7 +37,7 @@ jobs:
 
             const latestDocsSHA = (await resp.text()).match(DOCS_SHA_REGEX)?.[1];
 
-            const versions = await ElectronVersions.create(undefined, { ignoreCache: true });
+            const versions = await ElectronVersions.create({ ignoreCache: true });
 
             const { data } = await github.rest.repos.listCommits({
               owner: 'electron',
