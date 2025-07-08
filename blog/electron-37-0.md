@@ -20,7 +20,7 @@ If you have any feedback, please share it with us on [Bluesky](https://bsky.app/
 
 ### Smooth Corners: Native CSS Squircles
 
-![An image showing different corner smoothing values (0%, 30%, 60%, and 100%) applied to rectangles, with 60% labeled as matching macOS style](../static/assets/img/corner-smoothing.svg)
+![An image showing different corner smoothing values (0%, 30%, 60%, and 100%) applied to rectangles, with 60% labeled as matching macOS style](/assets/img/corner-smoothing.svg)
 
 Electron 37 introduces the custom `-electron-corner-smoothing` CSS property, which allows apps to create smoother rounded corners to match Apple's macOS design language. This feature originally landed in Electron 36, but we felt like it deserved a brighter spotlight.
 
