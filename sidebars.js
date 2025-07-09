@@ -122,6 +122,8 @@ module.exports = {
           items: [
             'latest/tutorial/native-code-and-electron',
             'latest/tutorial/native-code-and-electron-cpp-win32',
+            'latest/tutorial/native-code-and-electron-swift-macos',
+            'latest/tutorial/native-code-and-electron-cpp-linux',
           ],
         },
       ],
