@@ -304,6 +304,11 @@ module.exports = {
     },
     {
       type: 'category',
+      label: 'Utility Process Modules',
+      items: ['latest/api/net', 'latest/api/system-preferences'],
+    },
+    {
+      type: 'category',
       label: 'Custom DOM Elements',
       items: ['latest/api/webview-tag', 'latest/api/window-open'],
     },
