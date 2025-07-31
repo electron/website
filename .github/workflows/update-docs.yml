@@ -37,6 +37,10 @@ jobs:
         run: |
           yarn pre-build ${{ github.event.client_payload.sha || github.event.inputs.sha }}
           git add .
+          if [ "$(git status --porcelain | grep -v 'docs/latest/.sha')" = "" ]; then
+            echo "Unexpectedly found no new content for docs - this is probably a bug"
+            exit 1
+          fi
       - name: Push changes
         uses: dsanders11/github-app-commit-action@43de6da2f4d927e997c0784c7a0b61bd19ad6aac # v1.5.0
         with:
