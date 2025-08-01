@@ -20,10 +20,9 @@ import apiHistory from './src/transformers/api-history';
 let docsSHA = undefined;
 
 try {
-  docsSHA = fs.readFileSync(
-    path.resolve(__dirname, './docs/latest/.sha'),
-    'utf-8',
-  );
+  docsSHA = fs
+    .readFileSync(path.resolve(__dirname, './docs/latest/.sha'), 'utf-8')
+    .trim();
 } catch {
   logger.warn('No .sha file found in docs/latest directory');
 }
