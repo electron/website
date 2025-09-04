@@ -84,6 +84,7 @@ extension to be loaded.
 
 ```js
 const { app, session } = require('electron')
+
 const path = require('node:path')
 
 app.whenReady().then(async () => {

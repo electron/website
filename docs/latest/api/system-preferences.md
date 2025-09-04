@@ -13,6 +13,7 @@ Process: [Main](../glossary.md#main-process), [Utility](../glossary.md#utility-p
 
 ```js
 const { systemPreferences } = require('electron')
+
 console.log(systemPreferences.getEffectiveAppearance())
 ```
 

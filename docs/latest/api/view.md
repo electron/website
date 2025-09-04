@@ -16,6 +16,7 @@ module is emitted.
 
 ```js
 const { BaseWindow, View } = require('electron')
+
 const win = new BaseWindow()
 const view = new View()
 

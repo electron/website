@@ -74,6 +74,7 @@ code from this:
 
 ```js
 const { app, Tray } = require('electron')
+
 app.whenReady().then(() => {
   const tray = new Tray('/path/to/icon.png')
   tray.setTitle('hello world')
@@ -84,6 +85,7 @@ to this:
 
 ```js
 const { app, Tray } = require('electron')
+
 let tray = null
 app.whenReady().then(() => {
   tray = new Tray('/path/to/icon.png')
@@ -102,6 +104,7 @@ To solve this, you can turn off node integration in Electron:
 ```js
 // In the main process.
 const { BrowserWindow } = require('electron')
+
 const win = new BrowserWindow({
   webPreferences: {
     nodeIntegration: false
@@ -150,6 +153,7 @@ To achieve this goal, set the background in the constructor for [BrowserWindow][
 
 ```js
 const { BrowserWindow } = require('electron')
+
 const win = new BrowserWindow({
   backgroundColor: '#fff'
 })

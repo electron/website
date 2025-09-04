@@ -93,6 +93,7 @@ images/
 
 ```js title='Main Process'
 const { Tray } = require('electron')
+
 const appTray = new Tray('/Users/somebody/images/icon.png')
 ```
 

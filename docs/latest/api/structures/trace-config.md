@@ -33,6 +33,8 @@ hide_title: false
 
 An example TraceConfig that roughly matches what Chrome DevTools records:
 
+<!-- eslint-skip -->
+
 ```js
 {
   recording_mode: 'record-until-full',

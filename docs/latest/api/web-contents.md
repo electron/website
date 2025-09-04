@@ -62,6 +62,7 @@ These methods can be accessed from the `webContents` module:
 
 ```js
 const { webContents } = require('electron')
+
 console.log(webContents)
 ```
 
@@ -453,6 +454,7 @@ and allow the page to be unloaded.
 
 ```js
 const { BrowserWindow, dialog } = require('electron')
+
 const win = new BrowserWindow({ width: 800, height: 600 })
 win.webContents.on('will-prevent-unload', (event) => {
   const choice = dialog.showMessageBoxSync(win, {
@@ -490,16 +492,6 @@ Emitted when the web page becomes unresponsive.
 #### Event: 'responsive'
 
 Emitted when the unresponsive web page becomes responsive again.
-
-#### Event: 'plugin-crashed'
-
-Returns:
-
-* `event` Event
-* `name` string
-* `version` string
-
-Emitted when a plugin process has crashed.
 
 #### Event: 'destroyed'
 
@@ -1152,6 +1144,7 @@ Returns `string` - The URL of the current web page.
 
 ```js
 const { BrowserWindow } = require('electron')
+
 const win = new BrowserWindow({ width: 800, height: 600 })
 win.loadURL('https://github.com').then(() => {
   const currentURL = win.webContents.getURL()
@@ -1755,6 +1748,12 @@ When a custom `pageSize` is passed, Chromium attempts to validate platform speci
 Prints window's web page. When `silent` is set to `true`, Electron will pick
 the system's default printer if `deviceName` is empty and the default settings for printing.
 
+Some possible `failureReason`s for print failure include:
+
+* "Invalid printer settings"
+* "Print job canceled"
+* "Print job failed"
+
 Use `page-break-before: always;` CSS style to force to print to a new page.
 
 Example usage:
@@ -1805,9 +1804,10 @@ An example of `webContents.printToPDF`:
 
 ```js
 const { app, BrowserWindow } = require('electron')
+
 const fs = require('node:fs')
-const path = require('node:path')
 const os = require('node:os')
+const path = require('node:path')
 
 app.whenReady().then(() => {
   const win = new BrowserWindow()
@@ -1839,6 +1839,7 @@ creation:
 
 ```js
 const { BrowserWindow } = require('electron')
+
 const win = new BrowserWindow()
 win.webContents.on('devtools-opened', () => {
   win.webContents.addWorkSpace(__dirname)
@@ -1905,6 +1906,7 @@ An example of showing devtools in a `<webview>` tag:
 ```js
 // Main process
 const { ipcMain, webContents } = require('electron')
+
 ipcMain.on('open-devtools', (event, targetContentsId, devtoolsContentsId) => {
   const target = webContents.fromId(targetContentsId)
   const devtools = webContents.fromId(devtoolsContentsId)
@@ -2164,6 +2166,7 @@ Returns `Promise<void>` - resolves if the page is saved.
 
 ```js
 const { BrowserWindow } = require('electron')
+
 const win = new BrowserWindow()
 
 win.loadURL('https://github.com')

@@ -17,6 +17,7 @@ runtime that allows interacting with pages and instrumenting them.
 
 ```js
 const { BrowserWindow } = require('electron')
+
 const win = new BrowserWindow()
 
 try {

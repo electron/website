@@ -29,5 +29,6 @@ const oldPath = document.querySelector('input').files[0].path
 
 // After
 const { webUtils } = require('electron')
+
 const newPath = webUtils.getPathForFile(document.querySelector('input').files[0])
 ```

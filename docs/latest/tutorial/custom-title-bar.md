@@ -83,6 +83,7 @@ use the native UI to control the window.
 
 ```js
 const { BrowserWindow } = require('electron')
+
 const win = new BrowserWindow({ titleBarStyle: 'customButtonsOnHover' })
 ```
 
@@ -96,6 +97,7 @@ by a fixed amount.
 
 ```js title='main.js'
 const { BrowserWindow } = require('electron')
+
 const win = new BrowserWindow({ titleBarStyle: 'hiddenInset' })
 ```
 
@@ -105,6 +107,7 @@ constructor.
 
 ```js title='main.js'
 const { BrowserWindow } = require('electron')
+
 const win = new BrowserWindow({
   titleBarStyle: 'hidden',
   trafficLightPosition: { x: 10, y: 10 }
@@ -119,6 +122,7 @@ on the value of its boolean parameter.
 
 ```js title='main.js'
 const { BrowserWindow } = require('electron')
+
 const win = new BrowserWindow()
 // hides the traffic lights
 win.setWindowButtonVisibility(false)
@@ -160,6 +164,7 @@ default to the standard system height:
 
 ```js title='main.js'
 const { BrowserWindow } = require('electron')
+
 const win = new BrowserWindow({
   titleBarStyle: 'hidden',
   titleBarOverlay: {
