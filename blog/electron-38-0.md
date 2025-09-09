@@ -88,7 +88,7 @@ Stay tuned for a more detailed blog post outlining their projects and the outcom
 
 Electron 35.x.y has reached end-of-support as per the project's [support policy](https://www.electronjs.org/docs/latest/tutorial/electron-timelines#version-support-policy). Developers and applications are encouraged to upgrade to a newer version of Electron.
 
-| E38 (Aug'25) | E39 (Oct'25) | E40 (Jan'26) |
+| E38 (Sep'25) | E39 (Oct'25) | E40 (Jan'26) |
 | ------------ | ------------ | ------------ |
 | 38.x.y       | 39.x.y       | 40.x.y       |
 | 37.x.y       | 38.x.y       | 39.x.y       |
