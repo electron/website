@@ -38,7 +38,7 @@ Electron 38 upgrades Chromium from `138.0.7204.35` to `140.0.7339.41`, Node from
 - Added support for `app.getRecentDocuments()` on Windows and macOS. [#47924](https://github.com/electron/electron/pull/47924) (Also in [37](https://github.com/electron/electron/pull/47923))
 - Internally switched to using `DIR_ASSETS` instead of `DIR_MODULE`/`DIR_EXE` to locate assets and resources, and added "assets" as a key that can be queried via `app.getPath`. [#47950](https://github.com/electron/electron/pull/47950) (Also in [37](https://github.com/electron/electron/pull/47951))
 - Fixed an issue where `dialog.showMessageDialog` showed a window incorrectly centered to monitor instead of parent window when passed. [#48215](https://github.com/electron/electron/pull/48215)
-- Fixed an issue where users on MacOS were unable to interact with a webpage loaded via loadURL. [#47575](https://github.com/electron/electron/pull/47575)
+- Fixed an issue where users on macOS were unable to interact with a webpage loaded via `loadURL`. [#47575](https://github.com/electron/electron/pull/47575)
 
 ### Breaking Changes
 
