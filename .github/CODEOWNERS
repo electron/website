@@ -1,2 +1,6 @@
 * @electron/wg-ecosystem
 /blog/ @electron/wg-outreach
+
+# There is no code owner for the docs directory
+# so that bots can approve automated PRs to it
+/docs/
