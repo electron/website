@@ -149,6 +149,29 @@ html {
   }
 }
 
+//warning msg for older blogs
+.warning {
+  background-color: var(--ifm-color-primary-lightest);
+  border: 1px solid var(--ifm-color-primary-light);
+  color: var(--ifm-color-primary-darkest);
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--ifm-global-shadow-md);
+  font-size: 0.95rem;
+  line-height: 1.6;
+
+  strong {
+    color: var(--electron-color-secondary-light);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--ifm-color-primary-darker);
+    border-color: var(--ifm-color-primary-light);
+    color: var(--ifm-color-primary-lightest);
+  }
+}
+
 .footer {
   &--dark {
     --ifm-footer-background-color: --var(--electron-color-dark);
