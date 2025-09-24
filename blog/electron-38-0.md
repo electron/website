@@ -33,7 +33,7 @@ Electron 38 upgrades Chromium from `138.0.7204.35` to `140.0.7339.41`, Node from
 
 - Added support for customizing system accent color and highlighting of active window border. [#47285](https://github.com/electron/electron/pull/47285) (Also in [37](https://github.com/electron/electron/pull/47537))
 - Added `fileBacked` and `purgeable` fields to `process.getSystemMemoryInfo()` for macOS. [#48146](https://github.com/electron/electron/pull/48146) (Also in [37](https://github.com/electron/electron/pull/48143))
-- Added `tray.{get|set}AutosaveName` to enable macOS tray icons to maintain position across launches. [#48077](https://github.com/electron/electron/pull/48077) (Also in [37](https://github.com/electron/electron/pull/48076))
+- Added support for `guid` `Tray` constructor option on macOS to allow tray icons to maintain position across launches. [#48077](https://github.com/electron/electron/pull/48077) (Also in [37](https://github.com/electron/electron/pull/48076))
 - Added `webFrameMain.fromFrameToken(processId, frameToken)` to get a `WebFrameMain` instance from its frame token. [#47942](https://github.com/electron/electron/pull/47942)
 - Added support for `app.getRecentDocuments()` on Windows and macOS. [#47924](https://github.com/electron/electron/pull/47924) (Also in [37](https://github.com/electron/electron/pull/47923))
 - Internally switched to using `DIR_ASSETS` instead of `DIR_MODULE`/`DIR_EXE` to locate assets and resources, and added "assets" as a key that can be queried via `app.getPath`. [#47950](https://github.com/electron/electron/pull/47950) (Also in [37](https://github.com/electron/electron/pull/47951))
