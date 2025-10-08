@@ -4,7 +4,7 @@
  * in the build output.
  */
 
-import fs from 'node:fs/promises';
+import fs from 'node:fs';
 import path from 'node:path';
 import { Plugin } from '@docusaurus/types';
 import logger from '@docusaurus/logger';
@@ -14,17 +14,10 @@ const PREFIXES = ['docs/', 'blog/'];
 
 type Context = Parameters<Plugin['postBuild']>[0];
 
-async function fileExists(filePath: string): Promise<boolean> {
-  return fs.access(filePath).then(
-    () => true,
-    () => false,
-  );
-}
-
-async function findMarkdownSource(
+function findMarkdownSource(
   routePath: string,
   { siteDir }: Context,
-): Promise<string | null> {
+): string | null {
   for (const prefix of PREFIXES) {
     const routePrefix = `/${prefix}`;
 
@@ -37,41 +30,38 @@ async function findMarkdownSource(
 
     // Try direct file path first (e.g., /docs/tutorial/intro.md)
     const directPath = path.join(sourceDir, `${relativePath}.md`);
-    if (await fileExists(directPath)) return directPath;
+    if (fs.existsSync(directPath)) return directPath;
 
     // Try index.md in directory (e.g., /docs/tutorial/intro/index.md)
     const indexPath = path.join(sourceDir, relativePath, 'index.md');
-    if (await fileExists(indexPath)) return indexPath;
+    if (fs.existsSync(indexPath)) return indexPath;
   }
 
   return null;
 }
 
-async function copyMarkdownForRoute(
-  routePath: string,
-  context: Context,
-): Promise<boolean> {
+function copyMarkdownForRoute(routePath: string, context: Context): boolean {
   const { outDir } = context;
 
   // Find corresponding markdown source
-  const mdSourcePath = await findMarkdownSource(routePath, context);
+  const mdSourcePath = findMarkdownSource(routePath, context);
   if (!mdSourcePath) return false;
 
   // Check if HTML output exists
   const htmlPath = path.join(outDir, routePath, 'index.html');
-  if (!(await fileExists(htmlPath))) return false;
+  if (!fs.existsSync(htmlPath)) return false;
 
   // Copy markdown to output directory
   const outputMdPath = path.join(outDir, routePath, 'index.md');
-  await fs.copyFile(mdSourcePath, outputMdPath);
+  fs.copyFileSync(mdSourcePath, outputMdPath);
 
   return true;
 }
 
-export default async function markdownOutputPlugin(): Promise<Plugin> {
+export default function markdownOutputPlugin(): Plugin {
   return {
     name: 'markdown-output-plugin',
-    async postBuild(context) {
+    postBuild(context) {
       logger.info('Copying markdown files to build directory...');
 
       // Filter to only routes in target prefixes
@@ -79,15 +69,13 @@ export default async function markdownOutputPlugin(): Promise<Plugin> {
         PREFIXES.some((prefix) => routePath.startsWith(`/${prefix}`)),
       );
 
-      // Process all routes in parallel
-      const results = await Promise.allSettled(
-        routes.map((routePath) => copyMarkdownForRoute(routePath, context)),
-      );
-
-      // Count successful copies
-      const copiedCount = results.filter(
-        (result) => result.status === 'fulfilled' && result.value,
-      ).length;
+      // Process all routes
+      let copiedCount = 0;
+      for (const routePath of routes) {
+        if (copyMarkdownForRoute(routePath, context)) {
+          copiedCount += 1;
+        }
+      }
 
       logger.success(`Copied ${copiedCount} markdown files to build directory`);
     },
