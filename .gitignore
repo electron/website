@@ -10,3 +10,12 @@ i18n/*
 !i18n/en/
 !i18n/README.md
 docs/v**
+
+# yarn v4
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions

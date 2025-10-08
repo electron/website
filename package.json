@@ -123,5 +123,10 @@
     "http-cache-semantics": "4.1.1",
     "markdownlint-cli2/micromatch": "4.0.8"
   },
-  "packageManager": "yarn@1.22.19"
+  "packageManager": "yarn@4.10.3",
+  "dependenciesMeta": {
+    "@swc/core": {
+      "built": true
+    }
+  }
 }
