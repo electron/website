@@ -23,7 +23,7 @@ jobs:
     permissions:
       pull-requests: write
     steps:
-      - name: Generate GitHub App token
+      - name: Generate GitHub App token (updater app)
         uses: electron/github-app-auth-action@384fd19694fe7b6dcc9a684746c6976ad78228ae # v1.1.1
         id: generate-token
         with:
@@ -61,10 +61,15 @@ jobs:
             --body "Automated PR to update the docs to the latest commit (${SHA})" \
             --head "docs/update-to-${SHA}" \
             --base main
+      - name: Generate GitHub App token (approver app)
+        uses: electron/github-app-auth-action@384fd19694fe7b6dcc9a684746c6976ad78228ae # v1.1.1
+        id: generate-token-approver
+        with:
+          creds: ${{ secrets.APPROVER_GH_APP_CREDS }}
       - name: Approve and merge pull request
         shell: bash
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.generate-token-approver.outputs.token }}
         run: |
           gh pr review "docs/update-to-${SHA}" --approve
           gh pr merge "docs/update-to-${SHA}" --auto --squash
