@@ -128,11 +128,6 @@ html {
     --ifm-navbar-link-color: var(--electron-color-light);
   }
 
-  &__inner {
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-
   &__link {
     font-weight: var(--ifm-font-weight-normal);
     border-bottom: 2px solid transparent;
