@@ -72,10 +72,10 @@ webContents.setWindowOpenHandler((details) => {
   return {
     action: 'allow',
     overrideBrowserWindowOptions: {
-      resizable: details.features.includes('resizable=yes')
-    }
-  }
-})
+      resizable: details.features.includes('resizable=yes'),
+    },
+  };
+});
 ```
 
 #### Behavior Changed: shared texture OSR `paint` event data structure
