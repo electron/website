@@ -15,6 +15,7 @@ hide_title: false
   * `oom` - Process ran out of memory
   * `launch-failed` - Process never successfully launched
   * `integrity-failure` - Windows code integrity checks failed
+  * `memory-eviction` - Process proactively terminated to prevent a future out-of-memory (OOM) situation
 * `exitCode` Integer - The exit code of the process, unless `reason` is
   `launch-failed`, in which case `exitCode` will be a platform-specific
   launch failure error code.
