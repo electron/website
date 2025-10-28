@@ -69,5 +69,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ steps.generate-token-approver.outputs.token }}
         run: |
+          set -eo pipefail
           gh pr review "docs/update-to-${SHA}" --approve
-          gh pr merge "docs/update-to-${SHA}" --auto --squash
+          gh pr checks "docs/update-to-${SHA}" --watch --fail-fast
+          gh pr merge "docs/update-to-${SHA}" --squash
