@@ -71,5 +71,5 @@ jobs:
         run: |
           set -eo pipefail
           gh pr review "docs/update-to-${SHA}" --approve
-          gh pr checks "docs/update-to-${SHA}" --watch
+          gh pr checks "docs/update-to-${SHA}" --watch --fail-fast
           gh pr merge "docs/update-to-${SHA}" --squash
