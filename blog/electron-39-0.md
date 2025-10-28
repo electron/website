@@ -1,6 +1,6 @@
 ---
 title: Electron 39.0.0
-date: 2025-10-28:00:00.000Z
+date: 2025-10-28T00:00:00.000Z
 authors:
   - ckerr
 slug: electron-39-0
