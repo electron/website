@@ -93,7 +93,7 @@ Field trials to be forcefully enabled or disabled.
 
 For example: `WebRTC-Audio-Red-For-Opus/Enabled/`
 
-### --host-rules=`rules`
+### --host-rules=`rules` _Deprecated_
 
 A comma-separated list of `rules` that control how hostnames are mapped.
 
@@ -111,9 +111,23 @@ These mappings apply to the endpoint host in a net request (the TCP connect
 and host resolver in a direct connection, and the `CONNECT` in an HTTP proxy
 connection, and the endpoint host in a `SOCKS` proxy connection).
 
+**Deprecated:** Use the `--host-resolver-rules` switch instead.
+
 ### --host-resolver-rules=`rules`
 
-Like `--host-rules` but these `rules` only apply to the host resolver.
+A comma-separated list of `rules` that control how hostnames are mapped.
+
+For example:
+
+* `MAP * 127.0.0.1` Forces all hostnames to be mapped to 127.0.0.1
+* `MAP *.google.com proxy` Forces all google.com subdomains to be resolved to
+  "proxy".
+* `MAP test.com [::1]:77` Forces "test.com" to resolve to IPv6 loopback. Will
+  also force the port of the resulting socket address to be 77.
+* `MAP * baz, EXCLUDE www.google.com` Remaps everything to "baz", except for
+  "www.google.com".
+
+These `rules` only apply to the host resolver.
 
 ### --ignore-certificate-errors
 
@@ -337,6 +351,22 @@ Affects the default output directory of [v8.setHeapSnapshotNearHeapLimit](https:
 ### `--no-experimental-global-navigator`
 
 Disable exposition of [Navigator API][] on the global scope from Node.js.
+
+## Chromium Flags
+
+There isn't a documented list of all Chromium switches, but there are a few ways to find them.
+
+The easiest way is through Chromium's flags page, which you can access at `about://flags`. These flags don't directly match switch names, but they show up in the process's command-line arguments.
+
+To see these arguments, enable a flag in `about://flags`, then go to `about://version` in Chromium. You'll find a list of command-line arguments, including `--flag-switches-begin --your --list --flag-switches-end`, which contains the list of your flag enabled switches.
+
+Most flags are included as part of `--enable-features=`, but some are standalone switches, like `--enable-experimental-web-platform-features`.
+
+A complete list of flags exists in [Chromium's flag metadata page](https://source.chromium.org/chromium/chromium/src/+/main:chrome/browser/flag-metadata.json), but this list includes platform, environment and GPU specific, expired and potentially non-functional flags, so many of them might not always work in every situation.
+
+Keep in mind that standalone switches can sometimes be split into individual features, so there's no fully complete list of switches.
+
+Finally, you'll need to ensure that the version of Chromium in Electron matches the version of the browser you're using to cross-reference the switches.
 
 [app]: app.md
 [append-switch]: command-line.md#commandlineappendswitchswitch-value
