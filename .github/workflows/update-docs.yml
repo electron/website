@@ -73,4 +73,5 @@ jobs:
           gh pr review "docs/update-to-${SHA}" --approve
           sleep 30  # Checks don't always start immediately
           gh pr checks "docs/update-to-${SHA}" --watch --fail-fast
+          sleep 30  # Ensure GitHub thinks the PR is mergable
           gh pr merge "docs/update-to-${SHA}" --squash
