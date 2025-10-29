@@ -25,7 +25,7 @@ If you have any feedback, please share it with us on [Bluesky](https://bsky.app/
 - Node `22.20.0`
   - [v22.20.0 Announcement](https://nodejs.org/en/blog/release/v22.20.0)
   - [v22.19.0 Announcement](https://nodejs.org/en/blog/release/v22.19.0)
-- V8 `14.0`
+- V8 `14.2`
   - [V8 roll increment](https://chromium.googlesource.com/v8/v8.git/+/bb294624702efbb17691b642333f06bf5108e600)
 
 Electron 39 upgrades Chromium from `140.0.7339.41` to `142.0.7444.52`, Node.js from `22.18.0` to `v22.20.0`, and V8 from `14.0` to `14.2`.
