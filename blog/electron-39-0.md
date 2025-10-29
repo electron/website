@@ -78,7 +78,7 @@ webContents.setWindowOpenHandler((details) => {
 
 When using the shared texture offscreen rendering feature, the `paint` event now emits a more structured object.
 It moves the `sharedTextureHandle`, `planes`, `modifier` into a unified `handle` property.
-See [here](https://www.electronjs.org/docs/latest/api/structures/offscreen-shared-texture) for more details.
+See [the `OffscreenSharedTexture` documentation](https://www.electronjs.org/docs/latest/api/structures/offscreen-shared-texture) for more details.
 
 ## End of Support for 36.x.y
 
