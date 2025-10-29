@@ -57,7 +57,7 @@ Chromium is deprecating the `--host-rules` switch.
 
 You should use `--host-resolver-rules` instead.
 
-#### Behavior Changed: window.open popups are always resizable
+#### Behavior Changed: `window.open` popups are always resizable
 
 Per current [WHATWG spec](https://html.spec.whatwg.org/multipage/nav-history-apis.html#dom-open-dev), the `window.open` API will now always create a resizable popup window.
 
