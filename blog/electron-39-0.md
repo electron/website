@@ -34,7 +34,7 @@ Electron 39 upgrades Chromium from `140.0.7339.41` to `142.0.7444.52`, Node.js f
 
 A long-standing "experimental" feature -- ASAR integrity -- is now stable in Electron 39. When you enable this feature, it validates your packaged `app.asar` at runtime against a build-time hash to detect any tampering. If no hash is present or if there is a mismatch in the hashes, the app will forcefully terminate.
 
-See [this documentation](https://www.electronjs.org/docs/latest/tutorial/asar-integrity) for full information on how on the feature works, on how to use it in your application, and how to use it in Electron Forge and Electron Pacakger.
+See [the ASAR integrity documentation](https://www.electronjs.org/docs/latest/tutorial/asar-integrity) for full information on how on the feature works, on how to use it in your application, and how to use it in Electron Forge and Electron Packager.
 
 In related news, [Electron Packager](https://github.com/electron/packager) v19 now enables ASAR by default. [#1841](https://github.com/electron/packager/pull/1841)
 
