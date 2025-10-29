@@ -22,7 +22,7 @@ If you have any feedback, please share it with us on [Bluesky](https://bsky.app/
 - Chromium `142.0.7444.52`
   - [New in 142](https://developer.chrome.com/blog/new-in-chrome-142)
   - [New in 141](https://developer.chrome.com/blog/new-in-chrome-141)
-- Node `22.22.0`
+- Node `22.20.0`
   - [v22.20.0 Announcement](https://nodejs.org/en/blog/release/v22.20.0)
   - [v22.19.0 Announcement](https://nodejs.org/en/blog/release/v22.19.0)
 - V8 `14.0`
