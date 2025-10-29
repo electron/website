@@ -42,7 +42,6 @@ In related news, [Electron Packager](https://github.com/electron/packager) v19 n
 
 - Added `app.isHardwareAccelerationEnabled()`. [#48680](https://github.com/electron/electron/pull/48680)
 - Added `RGBAF16` output format with scRGB HDR color space support to Offscreen Rendering. [#48504](https://github.com/electron/electron/pull/48504)
-- Added `webFrameMain.fromFrameToken(processId, frameToken)` to get a `WebFrameMain` instance from its frame token. [#47850](https://github.com/electron/electron/pull/47850) <sup>(Also in [38](https://github.com/electron/electron/pull/47942))</sup>
 - Added methods to enable more granular accessibility support management. [#48625](https://github.com/electron/electron/pull/48625)
 - Added support for `USBDevice.configurations`. [#47459](https://github.com/electron/electron/pull/47459)
 - Added the ability to retrieve the system accent color on Linux using `systemPreferences.getAccentColor`. [#48628](https://github.com/electron/electron/pull/48628)
