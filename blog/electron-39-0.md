@@ -42,7 +42,6 @@ In related news, [Electron Packager](https://github.com/electron/packager) v19 n
 
 - Added `app.isHardwareAccelerationEnabled()`. [#48680](https://github.com/electron/electron/pull/48680)
 - Added `RGBAF16` output format with scRGB HDR color space support to Offscreen Rendering. [#48504](https://github.com/electron/electron/pull/48504)
-- Added `fileBacked` and `purgeable` fields to `process.getSystemMemoryInfo()` for macOS. [#47628](https://github.com/electron/electron/pull/47628) <sup>(Also in [37](https://github.com/electron/electron/pull/48143), [38](https://github.com/electron/electron/pull/48146))</sup>
 - Added `tray.{get|set}AutosaveName` to enable macOS tray icons to maintain position across launches. [#47838](https://github.com/electron/electron/pull/47838) <sup>(Also in [36](https://github.com/electron/electron/pull/48078), [37](https://github.com/electron/electron/pull/48076), [38](https://github.com/electron/electron/pull/48077))</sup>
 - Added `webFrameMain.fromFrameToken(processId, frameToken)` to get a `WebFrameMain` instance from its frame token. [#47850](https://github.com/electron/electron/pull/47850) <sup>(Also in [38](https://github.com/electron/electron/pull/47942))</sup>
 - Added methods to enable more granular accessibility support management. [#48625](https://github.com/electron/electron/pull/48625)
