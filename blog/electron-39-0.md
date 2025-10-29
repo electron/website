@@ -46,7 +46,6 @@ In related news, [Electron Packager](https://github.com/electron/packager) v19 n
 - Added support for `USBDevice.configurations`. [#47459](https://github.com/electron/electron/pull/47459)
 - Added the ability to retrieve the system accent color on Linux using `systemPreferences.getAccentColor`. [#48628](https://github.com/electron/electron/pull/48628)
 - Allowed for persisting File System API grant status within a given session. [#48326](https://github.com/electron/electron/pull/48326) <sup>(Also in [37](https://github.com/electron/electron/pull/48328), [38](https://github.com/electron/electron/pull/48327))</sup>
-- Internally switched to using `DIR_ASSETS` instead of `DIR_MODULE`/`DIR_EXE` to locate assets and resources, and added "assets" as a key that can be queried via `app.getPath`. [#47439](https://github.com/electron/electron/pull/47439) <sup>(Also in [37](https://github.com/electron/electron/pull/47951), [38](https://github.com/electron/electron/pull/47950))</sup>
 - Support dynamic ESM imports in non-context isolated preloads. [#48488](https://github.com/electron/electron/pull/48488) <sup>(Also in [37](https://github.com/electron/electron/pull/48487), [38](https://github.com/electron/electron/pull/48489))</sup>
 - Marked the [ASAR integrity](https://www.electronjs.org/docs/latest/tutorial/asar-integrity) feature as stable. It had previously been experimental. [#48434](https://github.com/electron/electron/pull/48434)
 
