@@ -58,6 +58,9 @@ This vulnerability was found and reported responsibly to the Electron project by
 
 To learn more about best practices for keeping your Electron apps secure, see our [security tutorial](https://electronjs.org/docs/tutorial/security).
 
-To report a vulnerability in Electron, please email security@electronjs.org.
+Please file a [GitHub Security Advisory] if you wish to report a vulnerability
+in Electron.
 
 Please join our [email list](https://groups.google.com/forum/#!forum/electronjs) to receive updates about releases and security updates.
+
+[GitHub Security Advisory]: https://github.com/electron/electron/security
