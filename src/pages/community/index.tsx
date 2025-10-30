@@ -38,8 +38,10 @@ function Community() {
             <a href="https://crowdin.com/project/electron">Crowdin</a>.
           </li>
           <li>
-            🔒 <strong>Report security issues</strong> by emailing{' '}
-            <a href="mailto:security@electronjs.org">security@electronjs.org</a>
+            🔒 <strong>Report security issues</strong> through{' '}
+            <a href="https://github.com/electron/electron/security">
+              GitHub Security Advisories
+            </a>
             .
           </li>
           <li>
