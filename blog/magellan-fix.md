@@ -33,6 +33,8 @@ This vulnerability was discovered by the Tencent Blade team, who have published 
 
 To learn more about best practices for keeping your Electron apps secure, see our [security tutorial].
 
-If you wish to report a vulnerability in Electron, email security@electronjs.org.
+Please file a [GitHub Security Advisory] if you wish to report a vulnerability
+in Electron.
 
 [security tutorial]: https://electronjs.org/docs/tutorial/security
+[GitHub Security Advisory]: https://github.com/electron/electron/security

@@ -68,7 +68,9 @@ This vulnerability was found and reported responsibly to the Electron project by
 
 To learn more about best practices for keeping your Electron apps secure, see our [security tutorial].
 
-If you wish to report a vulnerability in Electron, email security@electronjs.org.
+Please file a [GitHub Security Advisory] if you wish to report a vulnerability
+in Electron.
 
 [security tutorial]: https://electronjs.org/docs/tutorial/security
 [cve-2018-15685]: https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-15685
+[GitHub Security Advisory]: https://github.com/electron/electron/security
