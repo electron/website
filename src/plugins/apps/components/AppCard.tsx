@@ -4,13 +4,15 @@ import { App } from '..';
 
 import styles from './AppCard.module.scss';
 
-type AppCardProps = Omit<App, 'date' | 'faintColorOnWhite' | 'slug'>;
+type AppCardProps = Omit<
+  App,
+  'date' | 'faintColorOnWhite' | 'slug' | 'highlightColor'
+>;
 
 export default function AppCard({
   name,
   description,
   category,
-  highlightColor,
   logo,
   isFavorite,
   website,
@@ -25,10 +27,13 @@ export default function AppCard({
       )}
     >
       <div className={styles.forceLight}>
-        <div
-          className={styles.appLogoContainer}
-          style={{ background: highlightColor }}
-        >
+        <div className={styles.appLogoContainer}>
+          <img
+            className={styles.appLogoBlurred}
+            src={logo}
+            alt=""
+            aria-hidden="true"
+          />
           <img className={styles.appLogo} src={logo} alt="" loading="lazy" />
         </div>
       </div>

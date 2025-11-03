@@ -25,11 +25,25 @@
   padding: 2rem 0;
   border-top-left-radius: var(--ifm-card-border-radius);
   border-top-right-radius: var(--ifm-card-border-radius);
+  position: relative;
+  overflow: hidden;
+}
+
+.appLogoBlurred {
+  position: absolute;
+  width: auto;
+  height: 96px;
+  transform: scale(3);
+  filter: blur(30px);
+  opacity: 0.5;
+  z-index: 0;
 }
 
 .appLogo {
   width: auto;
   height: 96px;
+  position: relative;
+  z-index: 1;
 }
 
 .appCard {

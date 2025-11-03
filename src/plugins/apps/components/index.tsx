@@ -193,7 +193,6 @@ export default function AppsPage({ apps, categories }: AppsPluginContent) {
                     name={app.name}
                     description={app.description}
                     category={app.category}
-                    highlightColor={app.faintColorOnWhite}
                     logo={`https://raw.githubusercontent.com/erickzhao/apps/master/apps/${app.slug}/${app.slug}-icon-128.png`}
                     isFavorite={true}
                     website={app.website}
@@ -223,7 +222,6 @@ export default function AppsPage({ apps, categories }: AppsPluginContent) {
                   name={app.name}
                   description={app.description}
                   category={app.category}
-                  highlightColor={app.faintColorOnWhite}
                   logo={`https://raw.githubusercontent.com/erickzhao/apps/master/apps/${app.slug}/${app.slug}-icon-128.png`}
                   isFavorite={app.isFavorite}
                   website={app.website}
