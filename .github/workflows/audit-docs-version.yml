@@ -10,6 +10,7 @@ permissions: {}
 jobs:
   audit_docs_version:
     name: Audit Docs Version
+    if: github.repository == 'electron/website'
     runs-on: ubuntu-latest
     steps:
       - name: Setup Node.js
