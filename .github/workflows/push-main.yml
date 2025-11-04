@@ -14,6 +14,7 @@ concurrency: publish
 jobs:
   # Make a reusable workflow
   crowdin-upload:
+    if: github.repository == 'electron/website'
     name: Upload to Crowdin
     runs-on: ubuntu-latest
     steps:
@@ -30,6 +31,7 @@ jobs:
           CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
 
   build-and-deploy:
+    if: github.repository == 'electron/website'
     name: Build and deploy the website
     runs-on: ubuntu-latest
     permissions:

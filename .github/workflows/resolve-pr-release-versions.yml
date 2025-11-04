@@ -16,6 +16,7 @@ permissions:
 jobs:
   resolve_pr_release_versions:
     name: Resolve PR Release Versions
+    if: github.repository == 'electron/website'
     runs-on: ubuntu-latest
     steps:
       - name: Setup Node.js
