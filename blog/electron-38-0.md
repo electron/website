@@ -53,7 +53,8 @@ or later will be required to run Electron v38.0.0 and higher.
 
 The default value of the `--ozone-plaftform` flag [changed to `auto`](https://chromium-review.googlesource.com/c/chromium/src/+/6775426).
 
-You should use the `XDG_SESSION_TYPE=wayland` environment variable instead to use Wayland.
+Electron now runs as a native Wayland app by default when launched in a Wayland session on Linux. Some features and APIs behave differently in Wayland and X11.
+You can force Electron to run in X11 compatibility mode (Xwayland), like it did in older versions, by appending the flag `--ozone-platform=x11`.
 
 ### Removed: `plugin-crashed` event
 
