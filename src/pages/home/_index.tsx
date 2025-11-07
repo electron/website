@@ -254,7 +254,7 @@ export default function Home() {
                 {
                   name: 'Angular',
                   image:
-                    'https://upload.wikimedia.org/wikipedia/commons/c/cf/Angular_full_color_logo.svg',
+                    'https://angular.io/assets/images/logos/angular/angular.png',
                 },
                 {
                   name: 'TypeScript',
