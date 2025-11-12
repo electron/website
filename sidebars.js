@@ -267,6 +267,7 @@ module.exports = {
         'latest/api/desktop-capturer',
         'latest/api/dialog',
         'latest/api/global-shortcut',
+        'latest/api/image-view',
         'latest/api/in-app-purchase',
         'latest/api/ipc-main',
         'latest/api/menu',
