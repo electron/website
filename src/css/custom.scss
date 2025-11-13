@@ -295,3 +295,31 @@ html {
   height: 24px;
   width: 24px;
 }
+
+/**
+  * Make DocSearch compatible with navbar.style = dark
+  */
+.navbar--dark {
+  .DocSearch-Button {
+    // docsearch-searchbox-background
+    background-color: #000000a6;
+    // docsearch-subtle-color
+    border: 1px solid #212139;
+    // docsearch-muted-color
+    color: #7f8497;
+  }
+
+  .DocSearch-Button-Key {
+    // docsearch-key-background
+    background-color: #36395a;
+    // docsearch-key-color
+    color: #b6b7d5;
+  }
+
+  @supports (color: color-mix(in lch, red, blue)) {
+    .DocSearch-Button-Key {
+      // docsearch-subtle-color
+      border: 1px solid color-mix(in srgb, #212139 20%, transparent);
+    }
+  }
+}
