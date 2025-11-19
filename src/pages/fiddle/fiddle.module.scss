@@ -15,10 +15,10 @@
   margin: 0 auto;
   color: var(--ifm-color-white);
   font-weight: bolder;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
-.header {
+.hero {
   --ifm-button-size-multiplier: 0.9;
   background: var(--electron-color-dark);
   display: flex;
@@ -26,7 +26,7 @@
   justify-content: center;
   align-items: center;
   min-height: 80vh;
-  padding: 2rem;
+  padding: 8rem 2rem 2rem;
   margin-bottom: 10rem;
 }
 
@@ -43,6 +43,10 @@
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.heroDownloadButton {
+  font-size: 1rem;
 }
 
 .blurb {
@@ -118,6 +122,19 @@
   &:hover {
     background-position: 0 0;
   }
+}
+
+.logoContainer {
+  position: relative;
+}
+
+.logoBG {
+  position: absolute;
+  top: 0;
+  width: 96px;
+  height: 96px;
+  background: var(--fiddle-gradient);
+  filter: blur(64px);
 }
 
 .otherDownloadsLink {
