@@ -18,6 +18,8 @@ jobs:
   update-docs:
     runs-on: ubuntu-latest
     environment: docs-updater
+    permissions:
+      id-token: write # for secret service access
     env:
       SHA: ${{ github.event.client_payload.sha || github.event.inputs.sha }}
     steps:
