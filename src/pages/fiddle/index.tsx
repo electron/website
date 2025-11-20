@@ -34,17 +34,17 @@ export default function FiddlePage() {
       deb: {
         x64: `${downloadPrefix}/electron-fiddle_${version}_amd64.deb`,
         arm64: `${downloadPrefix}/electron-fiddle_${version}_arm64.deb`,
-        arm7l: `${downloadPrefix}/electron-fiddle_${version}_armhf.deb`,
+        armv7l: `${downloadPrefix}/electron-fiddle_${version}_armhf.deb`,
       },
       rpm: {
         x64: `${downloadPrefix}/electron-fiddle-${version}-1.x86_64.rpm`,
         arm64: `${downloadPrefix}/electron-fiddle-${version}-1.arm64.rpm`,
-        arm7l: `${downloadPrefix}/electron-fiddle-${version}-1.armv7hl.rpm`,
+        armv7l: `${downloadPrefix}/electron-fiddle-${version}-1.armv7hl.rpm`,
       },
-      appimage: {
+      AppImage: {
         x64: `${downloadPrefix}/Electron.Fiddle-${version}-x64.AppImage`,
         arm64: `${downloadPrefix}/Electron.Fiddle-${version}-arm64.AppImage`,
-        arm7l: `${downloadPrefix}/Electron.Fiddle-${version}-armv7l.AppImage`,
+        armv7l: `${downloadPrefix}/Electron.Fiddle-${version}-armv7l.AppImage`,
       },
     },
   };
@@ -53,16 +53,29 @@ export default function FiddlePage() {
     switch (OS) {
       case 'win32':
         return (
-          <div className={styles.responsiveButtonGroup}>
+          <div
+            className={clsx(
+              styles.responsiveButtonGroup,
+              styles.heroDownloadButton,
+            )}
+          >
             <a
               href={downloadLinks.win32.ia32}
-              className={clsx('button', styles.buttonFiddle)}
+              className={clsx(
+                'button',
+                styles.buttonFiddle,
+                styles.heroDownloadButton,
+              )}
             >
               Download (Windows, 32-bit)
             </a>
             <a
               href={downloadLinks.win32.x64}
-              className={clsx('button', styles.buttonFiddle)}
+              className={clsx(
+                'button',
+                styles.buttonFiddle,
+                styles.heroDownloadButton,
+              )}
             >
               Download (Windows, 64-bit)
             </a>
@@ -72,16 +85,24 @@ export default function FiddlePage() {
         return (
           <div className={styles.responsiveButtonGroup}>
             <a
-              href={downloadLinks.darwin.x64}
-              className={clsx('button button--block', styles.buttonFiddle)}
+              href={downloadLinks.darwin.arm64}
+              className={clsx(
+                'button button--block',
+                styles.buttonFiddle,
+                styles.heroDownloadButton,
+              )}
             >
-              Download (macOS, Intel x64)
+              Download (Apple Silicon)
             </a>
             <a
-              href={downloadLinks.darwin.arm64}
-              className={clsx('button button--block', styles.buttonFiddle)}
+              href={downloadLinks.darwin.x64}
+              className={clsx(
+                'button button--block',
+                styles.buttonFiddle,
+                styles.heroDownloadButton,
+              )}
             >
-              Download (macOS, Apple Silicon)
+              Download (Intel Mac)
             </a>
           </div>
         );
@@ -100,7 +121,11 @@ export default function FiddlePage() {
                   <a
                     key={arch}
                     href={link}
-                    className={clsx('button', styles.buttonFiddle)}
+                    className={clsx(
+                      'button',
+                      styles.buttonFiddle,
+                      styles.heroDownloadButton,
+                    )}
                   >
                     Download ({format}, {arch})
                   </a>
@@ -114,15 +139,19 @@ export default function FiddlePage() {
 
   return (
     <Layout title="Electron Fiddle">
-      <header className={styles.header}>
-        <FiddleLogo width={48} height={48} />
+      <header className={styles.hero}>
+        <div className={styles.logoContainer}>
+          <div className={styles.logoBG}></div>
+          <FiddleLogo width={96} height={96} />
+        </div>
         <h1 className={styles.tagline}>
           The <em className={styles.heroEmphasis}>easiest</em> way to get
           started with Electron
         </h1>
         {renderDownloadButtons()}
         <sub className={styles.otherDownloadsLink}>
-          Wrong operating system? See <a href="#downloads">other downloads</a>.
+          Need another operating system? See{' '}
+          <a href="#downloads">other downloads</a>.
         </sub>
         <img
           className={styles.fiddleHeroScreenshot}
@@ -145,8 +174,9 @@ export default function FiddlePage() {
               Try Electron without installing any dependencies: Fiddle includes
               everything you&apos;ll need to explore the platform. It also
               includes examples for every API available in Electron, so if you
-              want to quickly see what a <code>BrowserView</code> is or how the{' '}
-              <code>desktopCapturer</code> works, Fiddle has got you covered.
+              want to quickly see what a <code>BrowserWindow</code> is or how
+              the <code>desktopCapturer</code> works, Fiddle has got you
+              covered.
             </p>
           </div>
           <div className="col col--6 margin-bottom--md">
@@ -294,16 +324,16 @@ export default function FiddlePage() {
                   <code>.zip</code>{' '}
                   <div className="button-group">
                     <a
-                      href={downloadLinks.darwin.x64}
-                      className={clsx('button', styles.buttonFiddle)}
-                    >
-                      Intel x64
-                    </a>
-                    <a
                       href={downloadLinks.darwin.arm64}
                       className={clsx('button', styles.buttonFiddle)}
                     >
-                      Apple Silicon
+                      arm64
+                    </a>
+                    <a
+                      href={downloadLinks.darwin.x64}
+                      className={clsx('button', styles.buttonFiddle)}
+                    >
+                      x64
                     </a>
                   </div>
                 </div>
