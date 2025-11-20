@@ -58,11 +58,27 @@ jobs:
             }
 
             if (commit.sha !== latestDocsSHA) {
-              console.log(`Got ${latestDocsSHA}, expected ${commit.sha}`);
-              core.summary.addRaw('🚨 Docs are NOT up-to-date');
+              // A bug in `electron-website-updater` sometimes sends up new commits that
+              // touched any file with `docs` in the name, so allow commits to be newer
+              const comparison = await github.rest.repos.compareCommitsWithBasehead({
+                owner: 'electron',
+                repo: 'electron',
+                basehead: `${commit.sha}...${latestDocsSHA}`,
+              });
 
-              // Set this as failed so it's easy to scan runs to find failures
-              process.exitCode = 1;
+              if (comparison.status !== 200) {
+                throw new Error('Failed to compare commits');
+              }
+
+              if (comparison.data.behind_by === 0 && comparison.data.ahead_by >= 0) {
+                core.summary.addRaw('🎉 Docs are up-to-date');
+              } else {
+                console.log(`Got ${latestDocsSHA}, expected ${commit.sha}`);
+                core.summary.addRaw('🚨 Docs are NOT up-to-date');
+
+                // Set this as failed so it's easy to scan runs to find failures
+                process.exitCode = 1;
+              }
             } else {
               core.summary.addRaw('🎉 Docs are up-to-date');
             }
