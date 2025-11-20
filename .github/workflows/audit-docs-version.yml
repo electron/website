@@ -69,13 +69,13 @@ jobs:
               if (comparison.status !== 200) {
                 throw new Error('Failed to compare commits');
               }
-        
+
               if (comparison.data.behind_by === 0 && comparison.data.ahead_by >= 0) {
                 core.summary.addRaw('🎉 Docs are up-to-date');
               } else {
                 console.log(`Got ${latestDocsSHA}, expected ${commit.sha}`);
                 core.summary.addRaw('🚨 Docs are NOT up-to-date');
-  
+
                 // Set this as failed so it's easy to scan runs to find failures
                 process.exitCode = 1;
               }
