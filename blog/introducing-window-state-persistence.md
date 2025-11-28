@@ -63,13 +63,21 @@ For those of you who work on Electron and need to test features on multiple moni
 
 You can quickly try out the new API using [Electron Fiddle](https://electronjs.org/fiddle):
 
+<!-- markdownlint-disable MD029 -->
+
 1. Load the [demonstration gist](https://gist.github.com/nilayarya/ab802bea77a6079a3fb32a748448c9af)
+
 2. Inside Settings->Execution, enable **"Do not delete user data directories"**
+
 <div style={{marginLeft: '20px'}}>
 ![Settings image](/assets/img/fiddle-setting.jpeg)
 </div>
+
 3. Run the application, move and resize the window, then close it
+
 4. Run it again—the window returns to where you left it
+
+<!-- markdownlint-enable MD029 -->
 
 ## Future Possibilities
 
@@ -84,8 +92,3 @@ Implementing this feature has been a rewarding experience, and I'm excited to se
 I want to sincerely thank my mentors—Erick Zhao ([@erickzhao](https://github.com/erickzhao)), Keeley Hammond ([@VerteDinde](https://github.com/VerteDinde)), David Sanders ([@dsanders11](https://github.com/dsanders11)), and George Xu ([@georgexu99](https://github.com/georgexu99)).
 
 ...and everyone in the Electron community who provided feedback during the RFC process.
-
-[erickzhao]: https://github.com/erickzhao
-[VerteDinde]: https://github.com/vertedinde
-[dsanders11]: https://github.com/dsanders11
-[georgexu99]: https://github.com/georgexu99
