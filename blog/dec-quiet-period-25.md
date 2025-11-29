@@ -32,6 +32,7 @@ As we close out the year, we’d like to highlight some of the projects we’ve 
   - The [Save/Restore Window State API](https://github.com/electron/rfcs/blob/main/text/0016-save-restore-window-state.md) for Electron’s `BaseWindow` module was accepted as an RFC and is awaiting its final merge in Electron core.
 - 📦 Released modernized major versions for all `@electron/` npm packages as ECMAScript modules requiring at least Node 22.
 - 🔒 Moved package publishing from [Continuous Auth](https://docs.continuousauth.dev/) to the new token-less OIDC-based [trusted publishing](https://docs.npmjs.com/trusted-publishers) system in light of security incidents in the npm ecosystem.
+- 🧑‍💻 Onboarded four new maintainers who help us ship great software every day and keep the project running long-term.
 
 **Thanks for a great year, and see you in 2026!**
 
