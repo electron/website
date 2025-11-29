@@ -15,7 +15,7 @@ Starting December 1, the Electron project will enter a quiet period before picki
 
 Since 2020, December has been a time for project maintainers to take a breather from regular maintenance duties in order to take a break or focus on heads-down work. This break helps us rest up and come back energized for the year to come.
 
-That said, a month-long pause like this one is only achievable when an open-source project is in a healthy state—we’d like to thank all maintainers and external contributors for all of their continued efforts to keep the project moving ❤️. 
+That said, a month-long pause like this one is only achievable when an open-source project is in a healthy state—we’d like to thank all maintainers and external contributors for all of their continued efforts to keep the project moving ❤️.
 
 <!--truncate-->
 
@@ -28,8 +28,8 @@ As we close out the year, we’d like to highlight some of the projects we’ve 
 - ✨ Revamped the [releases.electronjs.org](http://releases.electronjs.org) page with a fresh new design.
 - ✅ Accepted four new [RFCs](https://github.com/electron/rfcs) and implemented two others into `electron/electron`.
 - ☀️ Completed two new [Google Summer of Code](https://summerofcode.withgoogle.com/) projects:
-    - The [Devtron](https://github.com/electron/devtron/) DevTools IPC tracker Extension is now available via `npm install --save-dev @electron/devtron`.
-    - The [Save/Restore Window State API](https://github.com/electron/rfcs/blob/main/text/0016-save-restore-window-state.md) for Electron’s `BaseWindow` module was accepted as an RFC and is awaiting its final merge in Electron core.
+  - The [Devtron](https://github.com/electron/devtron/) DevTools IPC tracker Extension is now available via `npm install --save-dev @electron/devtron`.
+  - The [Save/Restore Window State API](https://github.com/electron/rfcs/blob/main/text/0016-save-restore-window-state.md) for Electron’s `BaseWindow` module was accepted as an RFC and is awaiting its final merge in Electron core.
 - 📦 Released modernized major versions for all `@electron/` npm packages as ECMAScript modules requiring at least Node 22.
 - 🔒 Moved package publishing from [Continuous Auth](https://docs.continuousauth.dev/) to the new token-less OIDC-based [trusted publishing](https://docs.npmjs.com/trusted-publishers) system in light of security incidents in the npm ecosystem.
 
