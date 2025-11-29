@@ -15,7 +15,7 @@ Starting December 1, the Electron project will enter a quiet period before picki
 
 Since 2020, December has been a time for project maintainers to take a breather from regular maintenance duties in order to take a break or focus on heads-down work. This break helps us rest up and come back energized for the year to come.
 
-That said, a month-long pause like this one is only achievable when an open-source project is in a healthy state—we’d like to thank all maintainers and external contributors for all of their continued efforts to keep the project moving ❤️.
+That said, a month-long pause like this one is only achievable when an open-source project is in a healthy state—we’d like to thank all maintainers and external contributors for all of their continued efforts to keep the project moving. ❤️
 
 <!--truncate-->
 
