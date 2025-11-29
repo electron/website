@@ -47,7 +47,7 @@ Not much has changed from previous years, but we changed some of the wording aro
 ### What will be different in December
 
 1. The last stable branch releases of the year for Electron 37, 38, and 39 will occur on the week of December 1st. There will be no additional planned releases in December.
-1. There will be no Nightly and Alpha releases for the last two weeks of December.
+1. There will be no nightly, alpha and beta releases for the last two weeks of December.
 1. Regular [Working Group](https://github.com/electron/governance) meetings will be paused.
 1. Issue triage may be delayed.
 1. Pull request reviews and merges may be delayed.
