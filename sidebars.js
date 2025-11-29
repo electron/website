@@ -371,6 +371,7 @@ module.exports = {
         'latest/api/structures/browser-window-options',
         'latest/api/structures/certificate',
         'latest/api/structures/certificate-principal',
+        'latest/api/structures/color-space',
         'latest/api/structures/cookie',
         'latest/api/structures/cpu-usage',
         'latest/api/structures/crash-report',
