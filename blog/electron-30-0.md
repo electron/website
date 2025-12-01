@@ -74,6 +74,12 @@ The autoresizing behavior is now standardized across all platforms.
 If your app uses `BrowserView.setAutoResize` to do anything more complex than making a BrowserView fill the entire window, it's likely you already had custom logic in place to handle this difference in behavior on macOS.
 If so, that logic will no longer be needed in Electron 30 as autoresizing behavior is consistent.
 
+#### Behavior Changed: `app.getGpuInfo('complete')` will no longer cache the result of the first call
+
+In Electron 30, each call to `app.getGpuInfo('complete')` will request the latest GPU info from the GPU process.
+
+Previously, it would load the GPU information only once and return the cached result on subsequent calls.
+
 #### Removed: `params.inputFormType` property on `context-menu` on `WebContents`
 
 The `inputFormType` property of the params object in the `context-menu`
