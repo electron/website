@@ -11,7 +11,7 @@ tags: [news]
 
 Starting December 1, the Electron project will enter a quiet period before picking back up at full capacity in January 2026. For full details, see the [Policies](./dec-quiet-period-25.md#quiet-period-policies) section below.
 
-<iframe src="https://giphy.com/embed/xUA7b5i7joquX9Cp8I" width="676" height="271" frameBorder="0"></iframe>
+<div style={{ width: "100%", height: 0, paddingBottom: "56%", position: "relative", margin: "2rem 0"}}><iframe src="https://giphy.com/embed/xUA7b5i7joquX9Cp8I" width="100%" height="100%" style={{position: 'absolute'}} frameBorder="0"></iframe></div>
 
 Since 2020, December has been a time for project maintainers to take a breather from regular maintenance duties in order to take a break or focus on heads-down work. This break helps us rest up and come back energized for the year to come.
 
