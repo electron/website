@@ -33,7 +33,7 @@ export default function NotFound() {
                   id="theme.NotFound.p1"
                   description="The first paragraph of the 404 page"
                 >
-                  We could not find what you were looking for. Erick.
+                  We could not find what you were looking for.
                 </Translate>
               </p>
               <p>
