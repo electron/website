@@ -89,7 +89,7 @@
     "mdast-util-from-markdown": "^2.0.1",
     "mdast-util-frontmatter": "^2.0.1",
     "mdast-util-mdx": "^3.0.0",
-    "mdast-util-to-hast": "^13.2.0",
+    "mdast-util-to-hast": "^13.2.1",
     "mdast-util-to-string": "^4.0.0",
     "prettier": "^3.6.2",
     "remark": "^15.0.0",
