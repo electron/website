@@ -10,7 +10,7 @@ Electron 34.0.0 has been released! It includes upgrades to Chromium 132.0.6834.8
 
 ---
 
-The Electron team is excited to announce the release of Electron 34.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://releases.electronjs.org/releases/stable). Continue reading for details about this release.
+The Electron team is excited to announce the release of Electron 34.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://releases.electronjs.org/release?channel=stable). Continue reading for details about this release.
 
 If you have any feedback, please share it with us on [Bluesky](https://bsky.app/profile/electronjs.org) or [Mastodon](https://social.lfx.dev/@electronjs), or join our community [Discord](https://discord.com/invite/electronjs)! Bugs and feature requests can be reported in Electron's [issue tracker](https://github.com/electron/electron/issues).
 
@@ -55,7 +55,9 @@ app.on('web-contents-created', (_, webContents) => {
 > [!WARNING]
 > This API requires the `'Document-Policy': 'include-js-call-stacks-in-crash-reports'` header to be enabled. See [#45356](https://github.com/electron/electron/issues/45356) for more details.
 
-### Stack Changes
+<!--truncate-->
+
+## Stack Changes
 
 - Chromium `132.0.6834.83`
   - [New in 131](https://developer.chrome.com/blog/new-in-chrome-131/)
@@ -66,7 +68,7 @@ app.on('web-contents-created', (_, webContents) => {
 
 Electron 34 upgrades Chromium from `130.0.6723.44` to `132.0.6834.83`, Node from `20.18.0` to `20.18.1`, and V8 from `13.0` to `13.2`.
 
-### New Features
+## New Features
 
 - Added APIs to manage shared dictionaries for compression efficiency using Brotli or ZStandard. The new APIs are `session.getSharedDictionaryUsageInfo()`, `session.getSharedDictionaryInfo(options)`, `session.clearSharedDictionaryCache()`, and `session.clearSharedDictionaryCacheForIsolationKey(options)`. [#44950](https://github.com/electron/electron/pull/44950)
 - Added `WebFrameMain.collectJavaScriptCallStack()` for accessing the JavaScript call stack of unresponsive renderers. [#44938](https://github.com/electron/electron/pull/44938)
@@ -76,7 +78,7 @@ Electron 34 upgrades Chromium from `130.0.6723.44` to `132.0.6834.83`, Node from
 - Added error event in utility process to support diagnostic reports on V8 fatal errors. [#43774](https://github.com/electron/electron/pull/43774)
 - Feat: GPU accelerated shared texture offscreen rendering. [#42953](https://github.com/electron/electron/pull/42953)
 
-### Breaking Changes
+## Breaking Changes
 
 ### Behavior Changed: menu bar will be hidden during fullscreen on Windows
 

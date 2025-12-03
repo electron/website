@@ -15,9 +15,9 @@ The Electron team is excited to announce the release of Electron 38.0.0! You can
 
 If you have any feedback, please share it with us on [Bluesky](https://bsky.app/profile/electronjs.org) or [Mastodon](https://social.lfx.dev/@electronjs), or join our community [Discord](https://discord.com/invite/electronjs)! Bugs and feature requests can be reported in Electron's [issue tracker](https://github.com/electron/electron/issues).
 
-## Notable Changes
+<!--truncate-->
 
-### Stack Changes
+## Stack Changes
 
 - Chromium `140.0.7339.41`
   - [New in 140](https://developer.chrome.com/blog/new-in-chrome-140/)
@@ -29,7 +29,7 @@ If you have any feedback, please share it with us on [Bluesky](https://bsky.app/
 
 Electron 38 upgrades Chromium from `138.0.7204.35` to `140.0.7339.41`, Node from `22.16.0` to `22.18.0`, and V8 from `13.8` to `14.0`.
 
-### New Features and Improvements
+## New Features and Improvements
 
 - Added support for customizing system accent color and highlighting of active window border. [#47285](https://github.com/electron/electron/pull/47285) (Also in [37](https://github.com/electron/electron/pull/47537))
 - Added `fileBacked` and `purgeable` fields to `process.getSystemMemoryInfo()` for macOS. [#48146](https://github.com/electron/electron/pull/48146) (Also in [37](https://github.com/electron/electron/pull/48143))
@@ -40,7 +40,7 @@ Electron 38 upgrades Chromium from `138.0.7204.35` to `140.0.7339.41`, Node from
 - Fixed an issue where `dialog.showMessageDialog` showed a window incorrectly centered to monitor instead of parent window when passed. [#48215](https://github.com/electron/electron/pull/48215)
 - Fixed an issue where users on macOS were unable to interact with a webpage loaded via `loadURL`. [#47575](https://github.com/electron/electron/pull/47575)
 
-### Breaking Changes
+## Breaking Changes
 
 ### Removed: macOS 11 support
 

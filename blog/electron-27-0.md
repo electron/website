@@ -10,13 +10,13 @@ Electron 27.0.0 has been released! It includes upgrades to Chromium `118.0.5993.
 
 ---
 
-The Electron team is excited to announce the release of Electron 27.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://releases.electronjs.org/releases/stable). Continue reading for details about this release.
+The Electron team is excited to announce the release of Electron 27.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://releases.electronjs.org/release?channel=stable). Continue reading for details about this release.
 
 If you have any feedback, please share it with us on [Twitter](https://twitter.com/electronjs) or [Mastodon](https://social.lfx.dev/@electronjs), or join our community [Discord](https://discord.com/invite/electronjs)! Bugs and feature requests can be reported in Electron's [issue tracker](https://github.com/electron/electron/issues).
 
-## Notable Changes
+<!--truncate-->
 
-### Stack Changes
+## Stack Changes
 
 - Chromium `118.0.5993.32`
   - [New in Chrome 118](https://developer.chrome.com/blog/new-in-chrome-118/)
@@ -26,7 +26,7 @@ If you have any feedback, please share it with us on [Twitter](https://twitter.c
   - [Node 18.17.0 blog post](https://nodejs.org/en/blog/release/v18.17.0/)
 - V8 `11.8`
 
-### Breaking Changes
+## Breaking Changes
 
 ### Removed: macOS 10.13 / 10.14 support
 

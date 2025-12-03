@@ -17,7 +17,17 @@ If you have any feedback, please share it with us on [Bluesky](https://bsky.app/
 
 ## Notable Changes
 
-### Stack Changes
+### ASAR Integrity graduates to stable
+
+A long-standing "experimental" feature -- ASAR integrity -- is now stable in Electron 39. When you enable this feature, it validates your packaged `app.asar` at runtime against a build-time hash to detect any tampering. If no hash is present or if there is a mismatch in the hashes, the app will forcefully terminate.
+
+See [the ASAR integrity documentation](https://www.electronjs.org/docs/latest/tutorial/asar-integrity) for full information on how on the feature works, on how to use it in your application, and how to use it in Electron Forge and Electron Packager.
+
+In related news, [Electron Packager](https://github.com/electron/packager) v19 now enables ASAR by default. [#1841](https://github.com/electron/packager/pull/1841)
+
+<!--truncate-->
+
+## Stack Changes
 
 - Chromium `142.0.7444.52`
   - [New in 142](https://developer.chrome.com/blog/new-in-chrome-142)
@@ -30,15 +40,7 @@ If you have any feedback, please share it with us on [Bluesky](https://bsky.app/
 
 Electron 39 upgrades Chromium from `140.0.7339.41` to `142.0.7444.52`, Node.js from `22.18.0` to `v22.20.0`, and V8 from `14.0` to `14.2`.
 
-### ASAR Integrity graduates to stable
-
-A long-standing "experimental" feature -- ASAR integrity -- is now stable in Electron 39. When you enable this feature, it validates your packaged `app.asar` at runtime against a build-time hash to detect any tampering. If no hash is present or if there is a mismatch in the hashes, the app will forcefully terminate.
-
-See [the ASAR integrity documentation](https://www.electronjs.org/docs/latest/tutorial/asar-integrity) for full information on how on the feature works, on how to use it in your application, and how to use it in Electron Forge and Electron Packager.
-
-In related news, [Electron Packager](https://github.com/electron/packager) v19 now enables ASAR by default. [#1841](https://github.com/electron/packager/pull/1841)
-
-### New Features and Improvements
+## New Features and Improvements
 
 - Added `app.isHardwareAccelerationEnabled()`. [#48680](https://github.com/electron/electron/pull/48680)
 - Added `RGBAF16` output format with scRGB HDR color space support to Offscreen Rendering. [#48504](https://github.com/electron/electron/pull/48504)
@@ -49,15 +51,15 @@ In related news, [Electron Packager](https://github.com/electron/packager) v19 n
 - Support dynamic ESM imports in non-context isolated preloads. [#48488](https://github.com/electron/electron/pull/48488) <sup>(Also in [37](https://github.com/electron/electron/pull/48487), [38](https://github.com/electron/electron/pull/48489))</sup>
 - Marked the [ASAR integrity](https://www.electronjs.org/docs/latest/tutorial/asar-integrity) feature as stable. It had previously been experimental. [#48434](https://github.com/electron/electron/pull/48434)
 
-### Breaking Changes
+## Breaking Changes
 
-#### Deprecated: `--host-rules` command line switch
+### Deprecated: `--host-rules` command line switch
 
 Chromium is deprecating the `--host-rules` switch.
 
 You should use `--host-resolver-rules` instead.
 
-#### Behavior Changed: `window.open` popups are always resizable
+### Behavior Changed: `window.open` popups are always resizable
 
 Per current [WHATWG spec](https://html.spec.whatwg.org/multipage/nav-history-apis.html#dom-open-dev), the `window.open` API will now always create a resizable popup window.
 
@@ -74,7 +76,7 @@ webContents.setWindowOpenHandler((details) => {
 });
 ```
 
-#### Behavior Changed: shared texture OSR `paint` event data structure
+### Behavior Changed: shared texture OSR `paint` event data structure
 
 When using the shared texture offscreen rendering feature, the `paint` event now emits a more structured object.
 It moves the `sharedTextureHandle`, `planes`, `modifier` into a unified `handle` property.

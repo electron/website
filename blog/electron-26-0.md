@@ -10,13 +10,13 @@ Electron 26.0.0 has been released! It includes upgrades to Chromium `116.0.5845.
 
 ---
 
-The Electron team is excited to announce the release of Electron 26.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://releases.electronjs.org/releases/stable). Continue reading for details about this release.
+The Electron team is excited to announce the release of Electron 26.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://releases.electronjs.org/release?channel=stable). Continue reading for details about this release.
 
 If you have any feedback, please share it with us on Twitter, or join our community [Discord](https://discord.com/invite/electronjs)! Bugs and feature requests can be reported in Electron's [issue tracker](https://github.com/electron/electron/issues).
 
-## Notable Changes
+<!--truncate-->
 
-### Stack Changes
+## Stack Changes
 
 - Chromium `116.0.5845.62`
   - [New in Chrome 116](https://developer.chrome.com/blog/new-in-chrome-116/)
@@ -25,7 +25,7 @@ If you have any feedback, please share it with us on Twitter, or join our commun
   - [Node 18.16.1 blog post](https://nodejs.org/en/blog/release/v18.16.1/)
 - V8 `11.2`
 
-### Breaking Changes
+## Breaking Changes
 
 ### Deprecated: `webContents.getPrinters`
 

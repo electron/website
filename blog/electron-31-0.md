@@ -10,13 +10,11 @@ Electron 31.0.0 has been released! It includes upgrades to Chromium `126.0.6478.
 
 ---
 
-The Electron team is excited to announce the release of Electron 31.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://releases.electronjs.org/releases/stable). Continue reading for details about this release.
+The Electron team is excited to announce the release of Electron 31.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://releases.electronjs.org/release?channel=stable). Continue reading for details about this release.
 
 If you have any feedback, please share it with us on [Twitter](https://twitter.com/electronjs) or [Mastodon](https://social.lfx.dev/@electronjs), or join our community [Discord](https://discord.com/invite/electronjs)! Bugs and feature requests can be reported in Electron's [issue tracker](https://github.com/electron/electron/issues).
 
 ## Notable Changes
-
-### Highlights
 
 - Extended `WebContentsView` to accept pre-existing `webContents` object. [#42319](https://github.com/electron/electron/pull/42319)
 - Added support for `NODE_EXTRA_CA_CERTS`. [#41689](https://github.com/electron/electron/pull/41689)
@@ -25,7 +23,9 @@ If you have any feedback, please share it with us on [Twitter](https://twitter.c
 - `nativeImage.toDataURL` will preserve PNG colorspace [#41610](https://github.com/electron/electron/pull/41610)
 - Extended `webContents.setWindowOpenHandler` to support manual creation of BrowserWindow. [#41432](https://github.com/electron/electron/pull/41432)
 
-### Stack Changes
+<!--truncate-->
+
+## Stack Changes
 
 - Chromium`126.0.6478.36`
   - [New in 126](https://developer.chrome.com/blog/new-in-chrome-126/)
@@ -36,7 +36,7 @@ If you have any feedback, please share it with us on [Twitter](https://twitter.c
 
 Electron 31 upgrades Chromium from `124.0.6367.49` to `126.0.6478.36`, Node from `20.11.1` to `20.14.0`, and V8 from `12.4` to `12.6`.
 
-### New Features
+## New Features
 
 - Added `clearData` method to `Session`. [#40983](https://github.com/electron/electron/pull/40983)
   - Added options parameter to `Session.clearData` API. [#41355](https://github.com/electron/electron/pull/41355)
@@ -47,24 +47,24 @@ Electron 31 upgrades Chromium from `124.0.6367.49` to `126.0.6478.36`, Node from
 - Extended `WebContentsView` to accept pre-existing `WebContents` instances. [#42319](https://github.com/electron/electron/pull/42319)
 - Added a new instance property `navigationHistory` on webContents API with `navigationHistory.getEntryAtIndex` method, enabling applications to retrieve the URL and title of any navigation entry within the browsing history. [#41577](https://github.com/electron/electron/pull/41577) <sup>(Also in [29](https://github.com/electron/electron/pull/41661), [30](https://github.com/electron/electron/pull/41662))</sup>
 
-### Breaking Changes
+## Breaking Changes
 
-#### Removed: `WebSQL` support
+### Removed: `WebSQL` support
 
 Chromium has removed support for WebSQL upstream, transitioning it to Android only. See
 [Chromium's intent to remove discussion](https://groups.google.com/a/chromium.org/g/blink-dev/c/fWYb6evVA-w/m/pziWcvboAgAJ)
 for more information.
 
-#### Behavior Changed: `nativeImage.toDataURL` will preseve PNG colorspace
+### Behavior Changed: `nativeImage.toDataURL` will preseve PNG colorspace
 
 PNG decoder implementation has been changed to preserve colorspace data. The
 encoded data returned from this function now matches it.
 
 See [crbug.com/332584706](https://issues.chromium.org/issues/332584706) for more information.
 
-#### Behavior Changed: `win.flashFrame(bool)` will flash dock icon continuously on macOS
+### Behavior Changed: `win.flashFrame(bool)` will flash dock icon continuously on macOS
 
-This brings the behavior to parity with Windows and Linux. Prior behavior: The first `flashFrame(true)` bounces the dock icon only once (using the [NSInformationalRequest](https://developer.apple.com/documentation/appkit/nsrequestuserattentiontype/nsinformationalrequest) level) and `flashFrame(false)` does nothing. New behavior: Flash continuously until `flashFrame(false)` is called. This uses the [NSCriticalRequest](https://developer.apple.com/documentation/appkit/nsrequestuserattentiontype/nscriticalrequest) level instead. To explicitly use `NSInformationalRequest` to cause a single dock icon bounce, it is still possible to use [`dock.bounce('informational')`](https://www.electronjs.org/docs/latest/api/dock#dockbouncetype-macos).
+This brings the behavior to parity with Windows and Linux. Prior behavior: The first `flashFrame(true)` bounces the dock icon only once (using the [NSInformationalRequest](https://developer.apple.com/documentation/appkit/nsapplication/requestuserattentiontype/informationalrequest) level) and `flashFrame(false)` does nothing. New behavior: Flash continuously until `flashFrame(false)` is called. This uses the [NSCriticalRequest](https://developer.apple.com/documentation/appkit/nsapplication/requestuserattentiontype/criticalrequest) level instead. To explicitly use `NSInformationalRequest` to cause a single dock icon bounce, it is still possible to use [`dock.bounce('informational')`](https://www.electronjs.org/docs/latest/api/dock#dockbouncetype-macos).
 
 ## End of Support for 28.x.y
 

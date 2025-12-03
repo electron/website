@@ -10,20 +10,20 @@ Electron 32.0.0 has been released! It includes upgrades to Chromium `128.0.6613.
 
 ---
 
-The Electron team is excited to announce the release of Electron 32.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://releases.electronjs.org/releases/stable). Continue reading for details about this release.
+The Electron team is excited to announce the release of Electron 32.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://releases.electronjs.org/release?channel=stable). Continue reading for details about this release.
 
 If you have any feedback, please share it with us on [Twitter](https://twitter.com/electronjs) or [Mastodon](https://social.lfx.dev/@electronjs), or join our community [Discord](https://discord.com/invite/electronjs)! Bugs and feature requests can be reported in Electron's [issue tracker](https://github.com/electron/electron/issues).
 
 ## Notable Changes
-
-### Highlights
 
 - Added new API version history in our documentation, a feature created by @piotrpdev as part of Google Summer of Code. You can learn more about it in [this blog post](./introducing-api-history.md). [#42982](https://github.com/electron/electron/pull/42982)
 - Removed nonstandard File.path extension from the Web File API. [#42053](https://github.com/electron/electron/pull/42053)
 - Aligned failure pathway in Web [File System API](https://developer.mozilla.org/en-US/docs/Web/API/File_System_API) with upstream when attempting to open a file or directory in a blocked path. [#42993](https://github.com/electron/electron/pull/42993)
 - Added the following existing navigation-related APIs to `webcontents.navigationHistory`: `canGoBack`, `goBack`, `canGoForward`, `goForward`, `canGoToOffset`, `goToOffset`, `clear`. The previous navigation APIs are now deprecated. [#41752](https://github.com/electron/electron/pull/41752)
 
-### Stack Changes
+<!--truncate-->
+
+## Stack Changes
 
 - Chromium`128.0.6613.36`
   - [New in 128](https://developer.chrome.com/blog/new-in-chrome-128/)
@@ -34,7 +34,7 @@ If you have any feedback, please share it with us on [Twitter](https://twitter.c
 
 Electron 32 upgrades Chromium from `126.0.6478.36` to `128.0.6613.36`, Node from `20.14.0` to `20.16.0`, and V8 from `12.6` to `12.8`.
 
-### New Features
+## New Features
 
 - Added support for responding to auth requests initiated from the utility process via the `app` module's [`'login'`](https://www.electronjs.org/docs/latest/api/app) event. [#43317](https://github.com/electron/electron/pull/43317)
 - Added the `cumulativeCPUUsage` property to the `CPUUsage` structure, which returns the total seconds of CPU time used since process startup. [#41819](https://github.com/electron/electron/pull/41819)
@@ -45,9 +45,9 @@ Electron 32 upgrades Chromium from `126.0.6478.36` to `128.0.6613.36`, Node from
 - Enabled the Windows Control Overlay API on Linux. [#42681](https://github.com/electron/electron/pull/42681)
 - Enabled `zstd` compression in network requests. [#43300](https://github.com/electron/electron/pull/43300)
 
-### Breaking Changes
+## Breaking Changes
 
-#### Removed: `File.path`
+### Removed: `File.path`
 
 The nonstandard `path` property of the Web [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File) object was added in an early version of Electron as a convenience method for working with native files when doing everything in the renderer was more common. However, it represents a deviation from the standard and poses a minor security risk as well, so beginning in Electron 32.0 it has been removed in favor of the [`webUtils.getPathForFile`](https://github.com/electron/electron/tree/main/docs/api/web-utils.md#webutilsgetpathforfilefile) method.
 
@@ -75,7 +75,7 @@ contextBridge.exposeInMainWorld('electron', {
 });
 ```
 
-#### Deprecated: `clearHistory`, `canGoBack`, `goBack`, `canGoForward`, `goForward`, `goToIndex`, `canGoToOffset`, `goToOffset` on `WebContents`
+### Deprecated: `clearHistory`, `canGoBack`, `goBack`, `canGoForward`, `goForward`, `goToIndex`, `canGoToOffset`, `goToOffset` on `WebContents`
 
 Navigation-related APIs on `WebContents` instances are now deprecated. These APIs have been moved to the `navigationHistory` property of `WebContents` to provide a more structured and intuitive interface for managing navigation history.
 
@@ -100,7 +100,7 @@ win.webContents.navigationHistory.canGoToOffset();
 win.webContents.navigationHistory.goToOffset(index);
 ```
 
-#### Behavior changed: Directory `databases` in `userData` will be deleted
+### Behavior changed: Directory `databases` in `userData` will be deleted
 
 If you have a directory called `databases` in the directory returned by `app.getPath('userData')`, it will be deleted when Electron 32 is first run. The `databases` directory was used by WebSQL, which was removed in Electron 31. Chromium now performs a cleanup that deletes this directory. See [issue #45396](https://github.com/electron/electron/issues/45396).
 

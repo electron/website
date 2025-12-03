@@ -12,25 +12,15 @@ Electron 18.0.0 has been released! It includes upgrades to Chromium `100`, V8 `1
 
 ---
 
-The Electron team is excited to announce the release of Electron 18.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://www.electronjs.org/releases/stable). Continue reading for details about this release and please share any feedback you have!
+The Electron team is excited to announce the release of Electron 18.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://releases.electronjs.org/release?channel=stable). Continue reading for details about this release and please share any feedback you have!
 
-## Notable Changes
-
-### Electron Release Cadence Change
+## Electron Release Cadence Change
 
 As of Electron 15, Electron will release a new major stable version every 8 weeks. You can read the [full details here](https://www.electronjs.org/blog/8-week-cadence).
 
 Additionally, Electron has changed supported versions from latest three versions to latest four versions until May 2022. [See our versioning document](https://www.electronjs.org/docs/latest/tutorial/electron-versioning) for more detailed information about versioning in Electron. After May 2022, we will return to supporting latest three versions.
 
-### Stack Changes
-
-- Chromium `100`
-  - [New in Chrome 100](https://developer.chrome.com/blog/new-in-chrome-100/)
-- Node.js `16.13.2`
-  - [Node 16.13.2 blog post](https://nodejs.org/en/blog/release/v16.13.2/)
-- V8 `10.0`
-
-### Highlighted Features
+## Notable Changes
 
 - Added `ses.setCodeCachePath()` API for setting code cache directory. [#33286](https://github.com/electron/electron/pull/33286)
 - Removed the old `BrowserWindowProxy`-based implementation of `window.open`. This also removes the `nativeWindowOpen` option from `webPreferences`. [#29405](https://github.com/electron/electron/pull/29405)
@@ -40,6 +30,16 @@ Additionally, Electron has changed supported versions from latest three versions
 - Added support for more color formats in `setBackgroundColor`. [#33364](https://github.com/electron/electron/pull/33364)
 
 See the [18.0.0 release notes](https://github.com/electron/electron/releases/tag/v18.0.0) for a full list of new features and changes.
+
+<!--truncate-->
+
+## Stack Changes
+
+- Chromium `100`
+  - [New in Chrome 100](https://developer.chrome.com/blog/new-in-chrome-100/)
+- Node.js `16.13.2`
+  - [Node 16.13.2 blog post](https://nodejs.org/en/blog/release/v16.13.2/)
+- V8 `10.0`
 
 ## Breaking & API Changes
 

@@ -12,11 +12,19 @@ Electron 9.0.0 has been released! It includes upgrades to Chromium `83`, V8 `8.3
 
 ---
 
-The Electron team is excited to announce the release of Electron 9.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://electronjs.org/releases/stable). The release is packed with upgrades, fixes, and new features. We can't wait to see what you build with them! Continue reading for details about this release, and please share any feedback you have!
+The Electron team is excited to announce the release of Electron 9.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://releases.electronjs.org/release?channel=stable). The release is packed with upgrades, fixes, and new features. We can't wait to see what you build with them! Continue reading for details about this release, and please share any feedback you have!
 
 ## Notable Changes
 
-### Stack Changes
+- Multiple improvements to the spellchecker feature. See more details in [#22128](https://github.com/electron/electron/pull/22128) and [#22368](https://github.com/electron/electron/pull/22368).
+- Improved window events handler efficiency on Linux. [#23260](https://github.com/electron/electron/pull/23260).
+- Enable PDF viewer. [#22131](https://github.com/electron/electron/pull/22131).
+
+See the [9.0.0 release notes](https://github.com/electron/electron/releases/tag/v9.0.0) for a full list of new features and changes.
+
+<!--truncate-->
+
+## Stack Changes
 
 - Chromium `83.0.4103.64`
   - [New in Chrome 81](https://developers.google.com/web/updates/2020/04/nic81)
@@ -27,14 +35,6 @@ The Electron team is excited to announce the release of Electron 9.0.0! You can 
 - V8 `8.3`
   - [V8 8.1 blog post](https://v8.dev/blog/v8-release-81)
   - [V8 8.3 blog post](https://v8.dev/blog/v8-release-83)
-
-### Highlight Features
-
-- Multiple improvements to the spellchecker feature. See more details in [#22128](https://github.com/electron/electron/pull/22128) and [#22368](https://github.com/electron/electron/pull/22368).
-- Improved window events handler efficiency on Linux. [#23260](https://github.com/electron/electron/pull/23260).
-- Enable PDF viewer. [#22131](https://github.com/electron/electron/pull/22131).
-
-See the [9.0.0 release notes](https://github.com/electron/electron/releases/tag/v9.0.0) for a full list of new features and changes.
 
 ## Breaking Changes
 

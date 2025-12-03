@@ -12,31 +12,31 @@ Electron 17.0.0 has been released! It includes upgrades to Chromium `98`, V8 `9.
 
 ---
 
-The Electron team is excited to announce the release of Electron 17.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://www.electronjs.org/releases/stable). Continue reading for details about this release and please share any feedback you have!
+The Electron team is excited to announce the release of Electron 17.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://releases.electronjs.org/release?channel=stable). Continue reading for details about this release and please share any feedback you have!
 
-## Notable Changes
-
-### Electron Release Cadence Change
+## Electron Release Cadence Change
 
 As of Electron 15, Electron will release a new major stable version every 8 weeks. You can read the [full details here](https://www.electronjs.org/blog/8-week-cadence).
 
 Additionally, Electron has changed supported versions from latest three versions to latest four versions until May 2022. [See our versioning document](https://www.electronjs.org/docs/latest/tutorial/electron-versioning) for more detailed information about versioning in Electron. After May 2022, we will return to supporting latest three versions.
 
-### Stack Changes
-
-- Chromium `98`
-  - [New in Chrome 98](https://developer.chrome.com/blog/new-in-chrome-98/)
-- Node.js `16.13.0`
-  - [Node 16.13.0 blog post](https://nodejs.org/en/blog/release/v16.13.0/)
-- V8 `9.8`
-
-### Highlighted Features
+## Notable Changes
 
 - Added `webContents.getMediaSourceId()`, can be used with `getUserMedia` to get a stream for a WebContents. [#31204](https://github.com/electron/electron/pull/31204)
 - Deprecates `webContents.getPrinters()` and introduces `webContents.getPrintersAsync()`. [#31023](https://github.com/electron/electron/pull/31023)
 - `desktopCapturer.getSources` is now only available in the main process. [#30720](https://github.com/electron/electron/pull/30720)
 
 See the [17.0.0 release notes](https://github.com/electron/electron/releases/tag/v17.0.0) for a full list of new features and changes.
+
+<!--truncate-->
+
+## Stack Changes
+
+- Chromium `98`
+  - [New in Chrome 98](https://developer.chrome.com/blog/new-in-chrome-98/)
+- Node.js `16.13.0`
+  - [Node 16.13.0 blog post](https://nodejs.org/en/blog/release/v16.13.0/)
+- V8 `9.8
 
 ## Breaking Changes
 

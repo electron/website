@@ -10,18 +10,16 @@ Electron 28.0.0 has been released! It includes upgrades to Chromium `120.0.6099.
 
 ---
 
-The Electron team is excited to announce the release of Electron 28.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://releases.electronjs.org/releases/stable). Continue reading for details about this release.
+The Electron team is excited to announce the release of Electron 28.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://releases.electronjs.org/release?channel=stable). Continue reading for details about this release.
 
 If you have any feedback, please share it with us on [Twitter](https://twitter.com/electronjs) or [Mastodon](https://social.lfx.dev/@electronjs), or join our community [Discord](https://discord.com/invite/electronjs)! Bugs and feature requests can be reported in Electron's [issue tracker](https://github.com/electron/electron/issues).
 
 ## Notable Changes
 
-## Highlights
-
 - Implemented support for ECMAScript modules or ESM (What are ECMAScript modules? [learn more here](https://nodejs.org/api/esm.html#modules-ecmascript-modules). This includes support for ESM in Electron proper, as well as areas such as the `UtilityProcess` API entrypoints. [See our ESM documentation](https://www.electronjs.org/docs/latest/tutorial/esm) for more details.
 - In addition to enabling ESM support in Electron itself, Electron Forge also supports using ESM to package, build and develop Electron applications. You can find this support in [Forge v7.0.0](https://github.com/electron/forge/releases/tag/v7.0.0) or higher.
 
-### Stack Changes
+## Stack Changes
 
 - Chromium `120.0.6099.56`
   - New in [Chrome 119](https://developer.chrome.com/blog/new-in-chrome-119/) and in [DevTools 119](https://developer.chrome.com/blog/new-in-devtools-119/)
@@ -32,7 +30,7 @@ If you have any feedback, please share it with us on [Twitter](https://twitter.c
   - [Node 18.18.2 notes](https://nodejs.org/en/blog/release/v18.18.2/)
 - V8 `12.0`
 
-### New Features
+## New Features
 
 - Enabled ESM support. [#37535](https://github.com/electron/electron/pull/37535)
   - For more details, see the [ESM documentation](https://www.electronjs.org/docs/latest/tutorial/esm).
@@ -40,14 +38,14 @@ If you have any feedback, please share it with us on [Twitter](https://twitter.c
 - Added several properties to the `display` object including `detected`, `maximumCursorSize`, and `nativeOrigin`. [#40554](https://github.com/electron/electron/pull/40554)
 - Added support for `ELECTRON_OZONE_PLATFORM_HINT` environment variable on Linux. [#39792](https://github.com/electron/electron/pull/39792)
 
-### Breaking Changes
+## Breaking Changes
 
-#### Behavior Changed: `WebContents.backgroundThrottling` set to false affects all `WebContents` in the host `BrowserWindow`
+### Behavior Changed: `WebContents.backgroundThrottling` set to false affects all `WebContents` in the host `BrowserWindow`
 
 `WebContents.backgroundThrottling` set to false will disable frames throttling
 in the `BrowserWindow` for all `WebContents` displayed by it.
 
-#### Removed: `BrowserWindow.setTrafficLightPosition(position)`
+### Removed: `BrowserWindow.setTrafficLightPosition(position)`
 
 `BrowserWindow.setTrafficLightPosition(position)` has been removed, the
 `BrowserWindow.setWindowButtonPosition(position)` API should be used instead
@@ -64,7 +62,7 @@ win.setWindowButtonPosition({ x: 10, y: 10 });
 win.setWindowButtonPosition(null);
 ```
 
-#### Removed: `BrowserWindow.getTrafficLightPosition()`
+### Removed: `BrowserWindow.getTrafficLightPosition()`
 
 `BrowserWindow.getTrafficLightPosition()` has been removed, the
 `BrowserWindow.getWindowButtonPosition()` API should be used instead
@@ -85,13 +83,13 @@ if (ret === null) {
 }
 ```
 
-#### Removed: `ipcRenderer.sendTo()`
+### Removed: `ipcRenderer.sendTo()`
 
 The `ipcRenderer.sendTo()` API has been removed. It should be replaced by setting up a [`MessageChannel`](https://www.electronjs.org/docs/latest/tutorial/message-ports#setting-up-a-messagechannel-between-two-renderers) between the renderers.
 
 The `senderId` and `senderIsMainFrame` properties of `IpcRendererEvent` have been removed as well.
 
-#### Removed: `app.runningUnderRosettaTranslation`
+### Removed: `app.runningUnderRosettaTranslation`
 
 The `app.runningUnderRosettaTranslation` property has been removed.
 Use `app.runningUnderARM64Translation` instead.

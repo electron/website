@@ -13,11 +13,20 @@ Electron 13.0.0 has been released! It includes upgrades to Chromium `91` and V8 
 
 ---
 
-The Electron team is excited to announce the release of Electron 13.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://electronjs.org/releases/stable). Continue reading for details about this release, and please share any feedback you have!
+The Electron team is excited to announce the release of Electron 13.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://releases.electronjs.org/release?channel=stable). Continue reading for details about this release, and please share any feedback you have!
 
 ## Notable Changes
 
-### Stack Changes
+- Added `process.contextIsolated` property that indicates whether the current renderer context has `contextIsolation` enabled. [#28252](https://github.com/electron/electron/pull/28252)
+- Added new `session.storagePath` API to get the path on disk for session-specific data. [#28866](https://github.com/electron/electron/pull/28866)
+- Deprecated the `new-window` event of `WebContents`. It is replaced by `webContents.setWindowOpenHandler()`
+- Added `process.contextId` used by `@electron/remote`. [#28251](https://github.com/electron/electron/pull/28251)
+
+See the [13.0.0 release notes](https://github.com/electron/electron/releases/tag/v13.0.0) for a full list of new features and changes.
+
+<!--truncate-->
+
+## Stack Changes
 
 - Chromium `91`
   - [New in Chrome 91](https://developer.chrome.com/blog/new-in-chrome-91/)
@@ -28,15 +37,6 @@ The Electron team is excited to announce the release of Electron 13.0.0! You can
 - V8 `9.1`
   - [V8 9.1 blog post](https://v8.dev/blog/v8-release-91)
   - [V8 9.0 blog post](https://v8.dev/blog/v8-release-90)
-
-### Highlight Features
-
-- Added `process.contextIsolated` property that indicates whether the current renderer context has `contextIsolation` enabled. [#28252](https://github.com/electron/electron/pull/28252)
-- Added new `session.storagePath` API to get the path on disk for session-specific data. [#28866](https://github.com/electron/electron/pull/28866)
-- Deprecated the `new-window` event of `WebContents`. It is replaced by `webContents.setWindowOpenHandler()`
-- Added `process.contextId` used by `@electron/remote`. [#28251](https://github.com/electron/electron/pull/28251)
-
-See the [13.0.0 release notes](https://github.com/electron/electron/releases/tag/v13.0.0) for a full list of new features and changes.
 
 ## Breaking Changes
 

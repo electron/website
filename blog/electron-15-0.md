@@ -12,26 +12,15 @@ Electron 15.0.0 has been released! It includes upgrades to Chromium `94`, V8 `9.
 
 ---
 
-The Electron team is excited to announce the release of Electron 15.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://www.electronjs.org/releases/stable). Continue reading for details about this release and please share any feedback you have!
+The Electron team is excited to announce the release of Electron 15.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://releases.electronjs.org/release?channel=stable). Continue reading for details about this release and please share any feedback you have!
 
-## Notable Changes
-
-### Electron Release Cadence Change
+## Electron Release Cadence Change
 
 Starting with Electron 15, Electron will release a new major stable version every 8 weeks. You can read the [full details here](https://www.electronjs.org/blog/8-week-cadence).
 
 Additionally, Electron will be changing supported versions from latest three versions to latest four versions until May 2022. [See our versioning document](https://www.electronjs.org/docs/latest/tutorial/electron-versioning)for more detailed information about versioning in Electron.
 
-### Stack Changes
-
-- Chromium `94`
-  - [New in Chrome 94](https://developer.chrome.com/blog/new-in-chrome-94/)
-- Node.js `16.5.0`
-  - [Node 16.5.0 blog post](https://nodejs.org/en/blog/release/v16.5.0/)
-- V8 `9.4`
-  - [V8 9.4 blog post](https://v8.dev/blog/v8-release-94)
-
-### Highlight Features
+## Notable Changes
 
 - `nativeWindowOpen: true` is no longer experimental, and is now the default.
 - Added `safeStorage` string encryption API. [#30430](https://github.com/electron/electron/pull/30430)
@@ -39,6 +28,17 @@ Additionally, Electron will be changing supported versions from latest three ver
 - Added resize `edge` info to `BrowserWindow`'s `will-resize` event. [#29199](https://github.com/electron/electron/pull/29199)
 
 See the [15.0.0 release notes](https://github.com/electron/electron/releases/tag/v15.0.0) for a full list of new features and changes.
+
+<!--truncate-->
+
+## Stack Changes
+
+- Chromium `94`
+  - [New in Chrome 94](https://developer.chrome.com/blog/new-in-chrome-94/)
+- Node.js `16.5.0`
+  - [Node 16.5.0 blog post](https://nodejs.org/en/blog/release/v16.5.0/)
+- V8 `9.4`
+  - [V8 9.4 blog post](https://v8.dev/blog/v8-release-94)
 
 ## Breaking Changes
 
@@ -62,7 +62,7 @@ See the documentation for [window.open](https://www.electronjs.org/docs/latest/a
 - Added new `imageAnimationPolicy` web preference to control how images are animated. [#29095](https://github.com/electron/electron/pull/29095)
 - Added support for sending Blobs over the context bridge. [#29247](https://github.com/electron/electron/pull/29247)
 
-### Removed/Deprecated Changes
+## Removed/Deprecated Changes
 
 No APIs have been removed or deprecated.
 

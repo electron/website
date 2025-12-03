@@ -12,7 +12,7 @@ Electron 10.0.0 has been released! It includes upgrades to Chromium `85`, V8 `8.
 
 ---
 
-The Electron team is excited to announce the release of Electron 10.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://electronjs.org/releases/stable). The release is packed with upgrades, fixes, and new features.
+The Electron team is excited to announce the release of Electron 10.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://releases.electronjs.org/release?channel=stable). The release is packed with upgrades, fixes, and new features.
 
 In the Electron 10 release, we also made a change to our release notes. To make it easier to tell what's brand new in Electron 10 and what may have changed between Electron 10 and past releases, we now also include changes that were introduced to Electron 10, but backported to previous releases. We hope this makes it easier to apps to find new features and bug fixes when upgrading Electron.
 
@@ -20,7 +20,16 @@ We can't wait to see what you build with them! Continue reading for details abou
 
 ## Notable Changes
 
-### Stack Changes
+- Added `contents.getBackgroundThrottling()` method and `contents.backgroundThrottling` property. [#21036]
+- Exposed the `desktopCapturer` module in the main process. [#23548](https://github.com/electron/electron/pull/23548)
+- Can now check if a given `session` is persistent by calling the `ses.isPersistent()` API. [#22622](https://github.com/electron/electron/pull/22622)
+- Resolve network issues that prevented RTC calls from being connected due to network IP address changes and ICE. (Chromium issue 1113227). [#24998](https://github.com/electron/electron/pull/24998)
+
+See the [10.0.0 release notes](https://github.com/electron/electron/releases/tag/v10.0.0) for a full list of new features and changes.
+
+<!--truncate-->
+
+## Stack Changes
 
 - Chromium `85.0.4183.84`
   - [New in Chrome 84](https://developers.google.com/web/updates/2020/07/nic84)
@@ -30,15 +39,6 @@ We can't wait to see what you build with them! Continue reading for details abou
 - V8 `8.5`
   - [V8 8.4 blog post](https://v8.dev/blog/v8-release-84)
   - [V8 8.5 blog post](https://v8.dev/blog/v8-release-85)
-
-### Highlight Features
-
-- Added `contents.getBackgroundThrottling()` method and `contents.backgroundThrottling` property. [#21036]
-- Exposed the `desktopCapturer` module in the main process. [#23548](https://github.com/electron/electron/pull/23548)
-- Can now check if a given `session` is persistent by calling the `ses.isPersistent()` API. [#22622](https://github.com/electron/electron/pull/22622)
-- Resolve network issues that prevented RTC calls from being connected due to network IP address changes and ICE. (Chromium issue 1113227). [#24998](https://github.com/electron/electron/pull/24998)
-
-See the [10.0.0 release notes](https://github.com/electron/electron/releases/tag/v10.0.0) for a full list of new features and changes.
 
 ## Breaking Changes
 

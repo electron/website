@@ -10,17 +10,15 @@ Electron 29.0.0 has been released! It includes upgrades to Chromium `122.0.6261.
 
 ---
 
-The Electron team is excited to announce the release of Electron 29.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://releases.electronjs.org/releases/stable). Continue reading for details about this release.
+The Electron team is excited to announce the release of Electron 29.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://releases.electronjs.org/release?channel=stable). Continue reading for details about this release.
 
 If you have any feedback, please share it with us on [Twitter](https://twitter.com/electronjs) or [Mastodon](https://social.lfx.dev/@electronjs), or join our community [Discord](https://discord.com/invite/electronjs)! Bugs and feature requests can be reported in Electron's [issue tracker](https://github.com/electron/electron/issues).
 
 ## Notable Changes
 
-### Highlights
-
 - Added a new top-level `webUtils` module, a renderer process module that provides a utility layer to interact with Web API objects. The first available API in the module is `webUtils.getPathForFile`. Electron's previous `File.path` augmentation was a deviation from web standards; this new API is more in line with current web standards behavior.
 
-### Stack Changes
+## Stack Changes
 
 - Chromium `122.0.6261.39`
   - New in [Chrome 122](https://developer.chrome.com/blog/new-in-chrome-122/) and in [DevTools 122](https://developer.chrome.com/blog/new-in-devtools-122/)
@@ -32,7 +30,7 @@ If you have any feedback, please share it with us on [Twitter](https://twitter.c
 
 Electron 29 upgrades Chromium from `120.0.6099.56` to `122.0.6261.39`, Node from `18.18.2` to `20.9.0`, and V8 from `12.0` to `12.2`.
 
-### New Features
+## New Features
 
 - Added new `webUtils` module, a utility layer to interact with Web API objects, to replace `File.path` augmentation. [#38776](https://github.com/electron/electron/pull/38776)
 - Added [net](https://www.electronjs.org/docs/latest/api/net) module to [utility process](https://www.electronjs.org/docs/latest/glossary#utility-process). [#40890](https://github.com/electron/electron/pull/40890)
@@ -40,9 +38,9 @@ Electron 29 upgrades Chromium from `120.0.6099.56` to `122.0.6261.39`, Node from
 - Added an option in `protocol.registerSchemesAsPrivileged` to allow V8 code cache in custom schemes. [#40544](https://github.com/electron/electron/pull/40544)
 - Migrated `app.{set|get}LoginItemSettings(settings)` to use Apple's new recommended underlying framework on macOS 13.0+. [#37244](https://github.com/electron/electron/pull/37244)
 
-### Breaking Changes
+## Breaking Changes
 
-#### Behavior Changed: `ipcRenderer` can no longer be sent over the `contextBridge`
+### Behavior Changed: `ipcRenderer` can no longer be sent over the `contextBridge`
 
 Attempting to send the entire `ipcRenderer` module as an object over the `contextBridge` will now result in
 an empty object on the receiving side of the bridge. This change was made to remove / mitigate
@@ -55,7 +53,7 @@ contextBridge.exposeInMainWorld('app', {
 });
 ```
 
-#### Removed: `renderer-process-crashed` event on `app`
+### Removed: `renderer-process-crashed` event on `app`
 
 The `renderer-process-crashed` event on `app` has been removed.
 Use the new `render-process-gone` event instead.
@@ -72,7 +70,7 @@ app.on('render-process-gone', (event, webContents, details) => {
 });
 ```
 
-#### Removed: `crashed` event on `WebContents` and `<webview>`
+### Removed: `crashed` event on `WebContents` and `<webview>`
 
 The `crashed` events on `WebContents` and `<webview>` have been removed.
 Use the new `render-process-gone` event instead.
@@ -95,7 +93,7 @@ webview.addEventListener('render-process-gone', (event) => {
 });
 ```
 
-#### Removed: `gpu-process-crashed` event on `app`
+### Removed: `gpu-process-crashed` event on `app`
 
 The `gpu-process-crashed` event on `app` has been removed.
 Use the new `child-process-gone` event instead.

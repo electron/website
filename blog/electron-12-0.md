@@ -13,11 +13,11 @@ Electron 12.0.0 has been released! It includes upgrades to Chromium `89`, V8 `8.
 
 ---
 
-The Electron team is excited to announce the release of Electron 12.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://electronjs.org/releases/stable). Continue reading for details about this release, and please share any feedback you have!
+The Electron team is excited to announce the release of Electron 12.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://releases.electronjs.org/release?channel=stable). Continue reading for details about this release, and please share any feedback you have!
 
-## Notable Changes
+<!--truncate-->
 
-### Stack Changes
+## Stack Changes
 
 - Chromium `89`
   - [New in Chrome 88](https://developer.chrome.com/blog/new-in-chrome-88/)
@@ -26,10 +26,9 @@ The Electron team is excited to announce the release of Electron 12.0.0! You can
   - [Node 14.16.0 blog post](https://nodejs.org/en/blog/release/v14.16.0/)
   - [Node 14.0.0 blog post](https://nodejs.org/en/blog/release/v14.0.0/)
 - V8 `8.9`
-  - [V8 8.8 blog post](https://v8.dev/blog/v8-release-88)
   - [V8 8.9 blog post](https://v8.dev/blog/v8-release-89)
 
-### Highlight Features
+## Notable Changes
 
 - The ContextBridge `exposeInMainWorld` method can now expose non-object APIs. [#26834](https://github.com/electron/electron/pull/26834)
 - Upgraded from Node 12 to Node 14. [#23249](https://github.com/electron/electron/pull/25249)
@@ -52,7 +51,7 @@ More information about these and future changes can be found on the [Planned Bre
 
 ## API Changes
 
-- Added `webFrameMain` API: The `webFrameMain` module can be used to look up frames across existing [`WebContents`](https://www.electronjs.org/docs/api/web-contents.md) instances. This is the main process equivalent of the existing webFrame API. More information about this new API can be found [here](https://github.com/electron/electron/pull/25464), and in our [documentation](https://www.electronjs.org/docs/api/web-frame-main).
+- Added `webFrameMain` API: The `webFrameMain` module can be used to look up frames across existing [`WebContents`](https://www.electronjs.org/docs/api/web-contents) instances. This is the main process equivalent of the existing webFrame API. More information about this new API can be found [here](https://github.com/electron/electron/pull/25464), and in our [documentation](https://www.electronjs.org/docs/api/web-frame-main).
 - `app` API changes:
   - Added non-localized `serviceName` to `'child-process-gone'` / `app.getAppMetrics()`. [#25975](https://github.com/electron/electron/pull/25975)
   - Added new `app.runningUnderRosettaTranslation` property to detect when running under rosetta on Apple silicon. [#26444](https://github.com/electron/electron/pull/26444)

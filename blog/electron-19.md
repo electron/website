@@ -12,15 +12,15 @@ Electron 19.0.0 has been released! It includes upgrades to Chromium `102`, V8 `1
 
 ---
 
-The Electron team is excited to announce the release of Electron 19.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://www.electronjs.org/releases/stable). Continue reading for details about this release and please share any feedback you have!
+The Electron team is excited to announce the release of Electron 19.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://releases.electronjs.org/release?channel=stable). Continue reading for details about this release and please share any feedback you have!
 
-## Notable Changes
-
-### Electron Release Cadence Change
+## Electron Release Cadence Change
 
 The project is returning to its earlier policy of supporting the latest three major versions. [See our versioning document](https://www.electronjs.org/docs/latest/tutorial/electron-versioning) for more detailed information about Electron versioning and support. This had temporarily been four major versions to help users adjust to the new release cadence that began in Electron 15. You can read the [full details here](https://www.electronjs.org/blog/8-week-cadence).
 
-### Stack Changes
+<!--truncate-->
+
+## Stack Changes
 
 - Chromium `102`
   - [New in Chrome 102](https://developer.chrome.com/blog/new-in-chrome-102/)

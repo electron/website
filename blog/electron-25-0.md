@@ -12,19 +12,31 @@ Electron 25.0.0 has been released! It includes upgrades to Chromium `114`, V8 `1
 
 ---
 
-The Electron team is excited to announce the release of Electron 25.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://releases.electronjs.org/releases/stable). Continue reading for details about this release.
+The Electron team is excited to announce the release of Electron 25.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://releases.electronjs.org/release?channel=stable). Continue reading for details about this release.
 
 If you have any feedback, please share it with us on Twitter, or join our community [Discord](https://discord.com/invite/electronjs)! Bugs and feature requests can be reported in Electron's [issue tracker](https://github.com/electron/electron/issues).
 
-## Notable Changes
+## 22.x.y Continued Support
 
-### Highlights
+As noted in [Farewell, Windows 7/8/8.1](https://www.electronjs.org/blog/windows-7-to-8-1-deprecation-notice), Electron 22's (Chromium 108) planned end of life date will be extended from May 30, 2023 to October 10, 2023. The Electron team will continue to backport any security fixes that are part of this program to Electron 22 until October 10, 2023. The October
+support date follows the extended support dates from both Chromium and Microsoft. On October 11, the Electron team will drop support back to the latest three stable major versions, which will no longer support Windows 7/8/8.1.
+
+| E25 (May'23) | E26 (Aug'23) | E27 (Oct'23) |
+| ------------ | ------------ | ------------ |
+| 25.x.y       | 26.x.y       | 27.x.y       |
+| 24.x.y       | 25.x.y       | 26.x.y       |
+| 23.x.y       | 24.x.y       | 25.x.y       |
+| 22.x.y       | 22.x.y       | --           |
+
+## Notable Changes
 
 - Implemented `net.fetch` within Electron's net module, using Chromium's networking stack. This differs from Node's `fetch()`, which uses Node.js' HTTP stack. See [#36733](https://github.com/electron/electron/pull/36733) and [#36606](https://github.com/electron/electron/pull/36606).
 - Added `protocol.handle`, which replaces and deprecates `protocol.{register,intercept}{String,Buffer,Stream,Http,File}Protocol`. [#36674](https://github.com/electron/electron/pull/36674)
 - Extended support for Electron 22, in order to match Chromium and Microsoft's Windows 7/8/8.1 deprecation plan. See additional details at the end of this blog post.
 
-### Stack Changes
+<!--truncate-->
+
+## Stack Changes
 
 - Chromium `114`
   - [New in Chrome 114](https://developer.chrome.com/blog/new-in-chrome-114/)
@@ -35,9 +47,9 @@ If you have any feedback, please share it with us on Twitter, or join our commun
   - [Node 18.15.0 blog post](https://nodejs.org/en/blog/release/v18.15.0/)
 - V8 `11.4`
 
-### Breaking Changes
+## Breaking Changes
 
-#### Deprecated: `protocol.{register,intercept}{Buffer,String,Stream,File,Http}Protocol`
+### Deprecated: `protocol.{register,intercept}{Buffer,String,Stream,File,Http}Protocol`
 
 The `protocol.register*Protocol` and `protocol.intercept*Protocol` methods have
 been replaced with [`protocol.handle`](https://www.electronjs.org/docs/latest/api/protocol#protocolhandlescheme-handler).
@@ -84,7 +96,7 @@ protocol.handle('some-protocol', () => {
 });
 ```
 
-#### Deprecated: `BrowserWindow.setTrafficLightPosition(position)`
+### Deprecated: `BrowserWindow.setTrafficLightPosition(position)`
 
 `BrowserWindow.setTrafficLightPosition(position)` has been deprecated, the
 `BrowserWindow.setWindowButtonPosition(position)` API should be used instead
@@ -101,7 +113,7 @@ win.setWindowButtonPosition({ x: 10, y: 10 });
 win.setWindowButtonPosition(null);
 ```
 
-#### Deprecated: `BrowserWindow.getTrafficLightPosition()`
+### Deprecated: `BrowserWindow.getTrafficLightPosition()`
 
 `BrowserWindow.getTrafficLightPosition()` has been deprecated, the
 `BrowserWindow.getWindowButtonPosition()` API should be used instead
@@ -122,7 +134,7 @@ if (ret === null) {
 }
 ```
 
-### New Features
+## New Features
 
 - Added `net.fetch()`. [#36733](https://github.com/electron/electron/pull/36733)
   - `net.fetch` supports requests to `file:` URLs and custom protocols registered with `protocol.register*Protocol`. [#36606](https://github.com/electron/electron/pull/36606)
@@ -137,18 +149,6 @@ if (ret === null) {
 - Added thermal management information to `powerMonitor`. [#38028](https://github.com/electron/electron/pull/38028)
 - Allows an absolute path to be passed to the session.fromPath() API. [#37604](https://github.com/electron/electron/pull/37604)
 - Exposes the `audio-state-changed` event on `webContents`. [#37366](https://github.com/electron/electron/pull/37366)
-
-## 22.x.y Continued Support
-
-As noted in [Farewell, Windows 7/8/8.1](https://www.electronjs.org/blog/windows-7-to-8-1-deprecation-notice), Electron 22's (Chromium 108) planned end of life date will be extended from May 30, 2023 to October 10, 2023. The Electron team will continue to backport any security fixes that are part of this program to Electron 22 until October 10, 2023. The October
-support date follows the extended support dates from both Chromium and Microsoft. On October 11, the Electron team will drop support back to the latest three stable major versions, which will no longer support Windows 7/8/8.1.
-
-| E25 (May'23) | E26 (Aug'23) | E27 (Oct'23) |
-| ------------ | ------------ | ------------ |
-| 25.x.y       | 26.x.y       | 27.x.y       |
-| 24.x.y       | 25.x.y       | 26.x.y       |
-| 23.x.y       | 24.x.y       | 25.x.y       |
-| 22.x.y       | 22.x.y       | --           |
 
 ## What's Next
 

@@ -12,7 +12,7 @@ Electron 35.0.0 has been released! It includes upgrades to Chromium 134.0.6998.4
 
 ---
 
-The Electron team is excited to announce the release of Electron 35.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://releases.electronjs.org/releases/stable). Continue reading for details about this release.
+The Electron team is excited to announce the release of Electron 35.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://releases.electronjs.org/release?channel=stable). Continue reading for details about this release.
 
 If you have any feedback, please share it with us on [Bluesky](https://bsky.app/profile/electronjs.org) or [Mastodon](https://social.lfx.dev/@electronjs), or join our community [Discord](https://discord.com/invite/electronjs)! Bugs and feature requests can be reported in Electron's [issue tracker](https://github.com/electron/electron/issues).
 
@@ -42,7 +42,9 @@ This feature was preceded by many other changes that laid the groundwork for it:
 - [#45229](https://github.com/electron/electron/pull/45330) added the experimental `contextBridge.executeInMainWorld(executionScript)` script to evaluate JavaScript in the main world over the context bridge.
 - [#45341](https://github.com/electron/electron/pull/45341) added the `ServiceWorkerMain` class to interact with Service Workers in the main process.
 
-### Stack Changes
+<!--truncate-->
+
+## Stack Changes
 
 - Chromium `134.0.6998.44`
   - [New in 134](https://developer.chrome.com/blog/new-in-chrome-134/)

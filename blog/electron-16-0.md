@@ -12,26 +12,15 @@ Electron 16.0.0 has been released! It includes upgrades to Chromium `96`, V8 `9.
 
 ---
 
-The Electron team is excited to announce the release of Electron 16.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://www.electronjs.org/releases/stable). Continue reading for details about this release and please share any feedback you have!
+The Electron team is excited to announce the release of Electron 16.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://releases.electronjs.org/release?channel=stable). Continue reading for details about this release and please share any feedback you have!
 
-## Notable Changes
-
-### Electron Release Cadence Change
+## Electron Release Cadence Change
 
 As of Electron 15, Electron will release a new major stable version every 8 weeks. You can read the [full details here](https://www.electronjs.org/blog/8-week-cadence).
 
 Additionally, Electron has changed supported versions from latest three versions to latest four versions until May 2022. [See our versioning document](https://www.electronjs.org/docs/latest/tutorial/electron-versioning) for more detailed information about versioning in Electron. After May 2022, we will return to supporting latest three versions.
 
-### Stack Changes
-
-- Chromium `96`
-  - [New in Chrome 96](https://developer.chrome.com/blog/new-in-chrome-96/)
-- Node.js `16.9.1`
-  - [Node 16.9.1 blog post](https://nodejs.org/en/blog/release/v16.9.1/)
-- V8 `9.6`
-  - [V8 9.6 blog post](https://v8.dev/blog/v8-release-96)
-
-### Highlighted Features
+## Notable Changes
 
 - Now supports the [WebHID](https://developer.mozilla.org/en-US/docs/Web/API/WebHID_API) API. [#30213](https://github.com/electron/electron/pull/30213)
 - Add data parameter to `app.requestSingleInstanceLock` to share data between instances. [#30891](https://github.com/electron/electron/pull/30891)
@@ -39,6 +28,17 @@ Additionally, Electron has changed supported versions from latest three versions
 - Add `commandLine.removeSwitch`. [#30933](https://github.com/electron/electron/pull/30933)
 
 See the [16.0.0 release notes](https://github.com/electron/electron/releases/tag/v16.0.0) for a full list of new features and changes.
+
+<!--truncate-->
+
+## Stack Changes
+
+- Chromium `96`
+  - [New in Chrome 96](https://developer.chrome.com/blog/new-in-chrome-96/)
+- Node.js `16.9.1`
+  - [Node 16.9.1 blog post](https://nodejs.org/en/blog/release/v16.9.1/)
+- V8 `9.6`
+  - [V8 9.6 blog post](https://v8.dev/blog/v8-release-96)
 
 ## Breaking Changes
 
@@ -54,7 +54,7 @@ The underlying implementation of the `crashReporter` API on Linux has changed fr
 
 There are also some subtle changes to how annotations will be reported on Linux, including that long values will no longer be split between annotations appended with `__1`, `__2` and so on, and instead will be truncated at the (new, longer) annotation value limit.
 
-### API Changes
+## API Changes
 
 There were no API changes in Electron 16.
 

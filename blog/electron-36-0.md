@@ -34,7 +34,9 @@ menu.popup({
 });
 ```
 
-### Stack Changes
+<!--truncate-->
+
+## Stack Changes
 
 - Chromium `136.0.7103.48`
   - [New in 136](https://developer.chrome.com/blog/new-in-chrome-136/)
@@ -45,7 +47,7 @@ menu.popup({
 
 Electron 36 upgrades Chromium from `134.0.6998.23` to `136.0.7103.48`, and V8 from `13.5` to `13.6`.
 
-### New Features and Improvements
+## New Features and Improvements
 
 - Added `BrowserWindow.isSnapped()` to indicate whether a given window has been arranged via Snap on Windows. [#46226](https://github.com/electron/electron/pull/46226)
 - Added `WebContents.focusedFrame` to get the focused frame.
@@ -59,7 +61,7 @@ Electron 36 upgrades Chromium from `134.0.6998.23` to `136.0.7103.48`, and V8 fr
 - Improved performance of `desktopCapturer.getSources` when not requesting thumbnails on macOS. [#46251](https://github.com/electron/electron/pull/46251) (Also in [34](https://github.com/electron/electron/pull/46250), [35](https://github.com/electron/electron/pull/46249))
 - Removed 240 FPS limit when using shared texture OSR. [#45669](https://github.com/electron/electron/pull/45669) (Also in [35](https://github.com/electron/electron/pull/45781))
 
-### Breaking Changes
+## Breaking Changes
 
 ### Deprecated: `NativeImage.getBitmap()`
 
