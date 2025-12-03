@@ -10,7 +10,7 @@ Electron 11.0.0 has been released! It includes upgrades to Chromium `87`, V8 `8.
 
 ---
 
-The Electron team is excited to announce the release of Electron 11.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://electronjs.org/releases/stable). The release is packed with upgrades, fixes, and new support for Apple's M1 hardware.
+The Electron team is excited to announce the release of Electron 11.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://releases.electronjs.org/release?channel=stable). The release is packed with upgrades, fixes, and new support for Apple's M1 hardware.
 
 We can't wait to see what you build with them! Continue reading for details about this release, and please share any feedback you have!
 

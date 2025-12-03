@@ -13,7 +13,7 @@ Electron 13.0.0 has been released! It includes upgrades to Chromium `91` and V8 
 
 ---
 
-The Electron team is excited to announce the release of Electron 13.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://electronjs.org/releases/stable). Continue reading for details about this release, and please share any feedback you have!
+The Electron team is excited to announce the release of Electron 13.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://releases.electronjs.org/release?channel=stable). Continue reading for details about this release, and please share any feedback you have!
 
 ## Highlight Features
 

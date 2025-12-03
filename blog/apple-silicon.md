@@ -10,7 +10,7 @@ With Apple Silicon hardware being released later this year, what does the path l
 
 ---
 
-With the release of Electron 11.0.0-beta.1, the Electron team is now shipping builds of Electron that run on the new Apple Silicon hardware that Apple plans on shipping later this year. You can grab the latest beta with `npm install electron@beta` or download it directly from our [releases website](https://electronjs.org/releases/stable).
+With the release of Electron 11.0.0-beta.1, the Electron team is now shipping builds of Electron that run on the new Apple Silicon hardware that Apple plans on shipping later this year. You can grab the latest beta with `npm install electron@beta` or download it directly from our [releases website](https://releases.electronjs.org/release?channel=stable).
 
 ## How does it work?
 
