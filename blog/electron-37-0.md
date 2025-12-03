@@ -16,6 +16,18 @@ The Electron team is excited to announce the release of Electron 37.0.0! You can
 
 If you have any feedback, please share it with us on [Bluesky](https://bsky.app/profile/electronjs.org) or [Mastodon](https://social.lfx.dev/@electronjs), or join our community [Discord](https://discord.com/invite/electronjs)! Bugs and feature requests can be reported in Electron's [issue tracker](https://github.com/electron/electron/issues).
 
+## Google Summer of Code Begins
+
+Our two [Google Summer of Code](https://summerofcode.withgoogle.com/) contributors have started the
+program's coding period!
+
+- [@nilayarya](https://github.com/nilayarya) is crafting a new [Save/Restore Window State API](https://github.com/electron/rfcs/pull/16/) in Electron core. The new APIs will provide a built-in, standardized way
+  to handle window state persistence. See Nilay's in-progress RFC at [electron/rfcs#16](https://github.com/electron/rfcs/pull/16).
+- [@hitarth-gg](https://github.com/hitarth-gg) is hard at work modernizing the long-dormant [Devtron](https://github.com/electron-userland/devtron) extension using Chrome Manifest V3 APIs.
+  This project will provide tooling for developers to debug IPC communication, track event listeners, and visualize module dependencies in their Electron applications.
+
+It has been an exciting couple of weeks for our GSOC participants, so stay tuned for more updates!
+
 ## Notable Changes
 
 ### Smooth Corners: Native CSS Squircles
@@ -70,7 +82,7 @@ This design enhancement can be applied on borders, outlines, and shadows, giving
 
 <!--truncate-->
 
-### Stack Changes
+## Stack Changes
 
 - Chromium `138.0.7204.35`
   - [New in 138](https://developer.chrome.com/blog/new-in-chrome-138/)
@@ -80,20 +92,6 @@ This design enhancement can be applied on borders, outlines, and shadows, giving
 - V8 `13.8`
 
 Electron 37 upgrades Chromium from `136.0.7103.48` to `138.0.7204.35`, and V8 from `13.6` to `13.8`.
-
-## Google Summer of Code Begins
-
-Our two [Google Summer of Code](https://summerofcode.withgoogle.com/) contributors have started the
-program's coding period!
-
-- [@nilayarya](https://github.com/nilayarya) is crafting a new [Save/Restore Window State API](https://github.com/electron/rfcs/pull/16/) in Electron core. The new APIs will provide a built-in, standardized way
-  to handle window state persistence. See Nilay's in-progress RFC at [electron/rfcs#16](https://github.com/electron/rfcs/pull/16).
-- [@hitarth-gg](https://github.com/hitarth-gg) is hard at work modernizing the long-dormant [Devtron](https://github.com/electron-userland/devtron) extension using Chrome Manifest V3 APIs.
-  This project will provide tooling for developers to debug IPC communication, track event listeners, and visualize module dependencies in their Electron applications.
-
-It has been an exciting couple of weeks for our GSOC participants, so stay tuned for more updates!
-
-<!--truncate-->
 
 ## New Features and Improvements
 
