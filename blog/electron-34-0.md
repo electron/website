@@ -55,6 +55,8 @@ app.on('web-contents-created', (_, webContents) => {
 > [!WARNING]
 > This API requires the `'Document-Policy': 'include-js-call-stacks-in-crash-reports'` header to be enabled. See [#45356](https://github.com/electron/electron/issues/45356) for more details.
 
+<!--truncate-->
+
 ## Stack Changes
 
 - Chromium `132.0.6834.83`
