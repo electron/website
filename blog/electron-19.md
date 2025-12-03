@@ -12,7 +12,7 @@ Electron 19.0.0 has been released! It includes upgrades to Chromium `102`, V8 `1
 
 ---
 
-The Electron team is excited to announce the release of Electron 19.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://www.electronjs.org/releases/stable). Continue reading for details about this release and please share any feedback you have!
+The Electron team is excited to announce the release of Electron 19.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://releases.electronjs.org/release?channel=stable). Continue reading for details about this release and please share any feedback you have!
 
 ## Electron Release Cadence Change
 
