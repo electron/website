@@ -91,7 +91,9 @@ program's coding period!
 
 It has been an exciting couple of weeks for our GSOC participants, so stay tuned for more updates!
 
-### New Features and Improvements
+<!--truncate-->
+
+## New Features and Improvements
 
 - Added `innerWidth` and `innerHeight` options for `window.open`. [#47039](https://github.com/electron/electron/pull/47039) (Also in [35](https://github.com/electron/electron/pull/47045), [36](https://github.com/electron/electron/pull/47038))
 - Added `before-mouse-event` to allow intercepting and preventing mouse events in `webContents`. [#47364](https://github.com/electron/electron/pull/47364) (Also in [36](https://github.com/electron/electron/pull/47365))
@@ -104,7 +106,7 @@ It has been an exciting couple of weeks for our GSOC participants, so stay tuned
 - Added support for node option `--experimental-network-inspection`. [#47031](https://github.com/electron/electron/pull/47031) (Also in [35](https://github.com/electron/electron/pull/47029), [36](https://github.com/electron/electron/pull/47030))
 - Exposed `win.isContentProtected()` to allow developers to check window protection status. [#47310](https://github.com/electron/electron/pull/47310) (Also in [36](https://github.com/electron/electron/pull/47311))
 
-### Breaking Changes
+## Breaking Changes
 
 ### Utility Process unhandled rejection behavior change
 

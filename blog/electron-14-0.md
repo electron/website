@@ -18,9 +18,7 @@ install it with npm via `npm install electron@latest` or download it from our
 [releases website](https://electronjs.org/releases/stable). Continue reading for
 details about this release and please share any feedback you have!
 
-## Notable Changes
-
-### Electron Release Cadence Change
+## Electron Release Cadence Change
 
 Beginning in September 2021 with Electron 15, Electron will release a new major
 stable version every 8 weeks. You can read the [full details here](https://www.electronjs.org/blog/8-week-cadence).
@@ -31,7 +29,19 @@ versions to latest four versions until May 2022. See
 [see our versioning document](https://electronjs.org/docs/tutorial/electron-versioning)
 for more detailed information about versioning in Electron.
 
-### Stack Changes
+## Highlight Features
+
+- Default Changed: `nativeWindowOpen` now defaults to `true`. [(see docs)](https://www.electronjs.org/docs/api/window-open.md)
+- Child windows no longer inherit BrowserWindow construction options from their parents. [#28550](https://github.com/electron/electron/pull/28550)
+- Added new `session.storagePath` API to get the path on disk for session-specific data. [#28665](https://github.com/electron/electron/pull/28665)
+- Added `process.contextId` used by `@electron/remote`. [#28007](https://github.com/electron/electron/pull/28007)
+- Added experimental cookie encryption support behind an [Electron Fuse](https://www.electronjs.org/docs/tutorial/fuses). [#29492](https://github.com/electron/electron/pull/29492)
+
+See the [14.0.0 release notes](https://github.com/electron/electron/releases/tag/v14.0.0) for a full list of new features and changes.
+
+<!--truncate-->
+
+## Stack Changes
 
 - Chromium `93`
   - [New in Chrome 93](https://developer.chrome.com/blog/new-in-chrome-93/)
@@ -41,16 +51,6 @@ for more detailed information about versioning in Electron.
 - V8 `9.3`
   - [V8 9.3 blog post](https://v8.dev/blog/v8-release-93)
   - [V8 9.2 blog post](https://v8.dev/blog/v8-release-92)
-
-### Highlight Features
-
-- Default Changed: `nativeWindowOpen` now defaults to `true`. [(see docs)](https://www.electronjs.org/docs/api/window-open.md)
-- Child windows no longer inherit BrowserWindow construction options from their parents. [#28550](https://github.com/electron/electron/pull/28550)
-- Added new `session.storagePath` API to get the path on disk for session-specific data. [#28665](https://github.com/electron/electron/pull/28665)
-- Added `process.contextId` used by `@electron/remote`. [#28007](https://github.com/electron/electron/pull/28007)
-- Added experimental cookie encryption support behind an [Electron Fuse](https://www.electronjs.org/docs/tutorial/fuses). [#29492](https://github.com/electron/electron/pull/29492)
-
-See the [14.0.0 release notes](https://github.com/electron/electron/releases/tag/v14.0.0) for a full list of new features and changes.
 
 ## Breaking Changes
 

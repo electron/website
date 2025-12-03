@@ -14,9 +14,17 @@ The Electron team is excited to announce the release of Electron 11.0.0! You can
 
 We can't wait to see what you build with them! Continue reading for details about this release, and please share any feedback you have!
 
-## Notable Changes
+## Highlight Features
 
-### Stack Changes
+- Support for Apple M1: On November 10, Apple announced their [new M1 chips, which will be included in their upcoming hardware](https://www.apple.com/newsroom/2020/11/apple-unleashes-m1/). Beginning in Electron 11, Electron will be shipping separate versions of Electron for Intel Macs (x64) and Apple's upcoming M1 hardware (arm64). You can learn more about how to get your Electron app [running on Apple's M1 hardware here.](https://www.electronjs.org/blog/apple-silicon) [#24545](https://github.com/electron/electron/pull/24545)
+- Added V8 crash message and location information to crashReport parameters. [#24771](https://github.com/electron/electron/pull/24771)
+- Improved the performance of sending wide objects over the context bridge. [#24671](https://github.com/electron/electron/pull/24671)
+
+See the [11.0.0 release notes](https://github.com/electron/electron/releases/tag/v11.0.0) for a full list of new features and changes.
+
+<!--truncate-->
+
+## Stack Changes
 
 - Chromium `87.0.4280.47`
   - [New in Chrome 86](https://developers.google.com/web/updates/2020/10/nic86)
@@ -27,14 +35,6 @@ We can't wait to see what you build with them! Continue reading for details abou
 - V8 `8.7`
   - [V8 8.6 blog post](https://v8.dev/blog/v8-release-86)
   - [V8 8.7 blog post](https://v8.dev/blog/v8-release-87)
-
-### Highlight Features
-
-- Support for Apple M1: On November 10, Apple announced their [new M1 chips, which will be included in their upcoming hardware](https://www.apple.com/newsroom/2020/11/apple-unleashes-m1/). Beginning in Electron 11, Electron will be shipping separate versions of Electron for Intel Macs (x64) and Apple's upcoming M1 hardware (arm64). You can learn more about how to get your Electron app [running on Apple's M1 hardware here.](https://www.electronjs.org/blog/apple-silicon) [#24545](https://github.com/electron/electron/pull/24545)
-- Added V8 crash message and location information to crashReport parameters. [#24771](https://github.com/electron/electron/pull/24771)
-- Improved the performance of sending wide objects over the context bridge. [#24671](https://github.com/electron/electron/pull/24671)
-
-See the [11.0.0 release notes](https://github.com/electron/electron/releases/tag/v11.0.0) for a full list of new features and changes.
 
 ## Breaking Changes
 

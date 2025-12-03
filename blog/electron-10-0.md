@@ -18,9 +18,18 @@ In the Electron 10 release, we also made a change to our release notes. To make 
 
 We can't wait to see what you build with them! Continue reading for details about this release, and please share any feedback you have!
 
-## Notable Changes
+## Highlight Features
 
-### Stack Changes
+- Added `contents.getBackgroundThrottling()` method and `contents.backgroundThrottling` property. [#21036]
+- Exposed the `desktopCapturer` module in the main process. [#23548](https://github.com/electron/electron/pull/23548)
+- Can now check if a given `session` is persistent by calling the `ses.isPersistent()` API. [#22622](https://github.com/electron/electron/pull/22622)
+- Resolve network issues that prevented RTC calls from being connected due to network IP address changes and ICE. (Chromium issue 1113227). [#24998](https://github.com/electron/electron/pull/24998)
+
+See the [10.0.0 release notes](https://github.com/electron/electron/releases/tag/v10.0.0) for a full list of new features and changes.
+
+<!--truncate-->
+
+## Stack Changes
 
 - Chromium `85.0.4183.84`
   - [New in Chrome 84](https://developers.google.com/web/updates/2020/07/nic84)
@@ -30,15 +39,6 @@ We can't wait to see what you build with them! Continue reading for details abou
 - V8 `8.5`
   - [V8 8.4 blog post](https://v8.dev/blog/v8-release-84)
   - [V8 8.5 blog post](https://v8.dev/blog/v8-release-85)
-
-### Highlight Features
-
-- Added `contents.getBackgroundThrottling()` method and `contents.backgroundThrottling` property. [#21036]
-- Exposed the `desktopCapturer` module in the main process. [#23548](https://github.com/electron/electron/pull/23548)
-- Can now check if a given `session` is persistent by calling the `ses.isPersistent()` API. [#22622](https://github.com/electron/electron/pull/22622)
-- Resolve network issues that prevented RTC calls from being connected due to network IP address changes and ICE. (Chromium issue 1113227). [#24998](https://github.com/electron/electron/pull/24998)
-
-See the [10.0.0 release notes](https://github.com/electron/electron/releases/tag/v10.0.0) for a full list of new features and changes.
 
 ## Breaking Changes
 

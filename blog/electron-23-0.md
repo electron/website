@@ -17,9 +17,13 @@ The Electron team is excited to announce the release of Electron 23.0.0! You can
 
 If you have any feedback, please share it with us on Twitter, or join our community [Discord](https://discord.com/invite/electronjs)! Bugs and feature requests can be reported in Electron's [issue tracker](https://github.com/electron/electron/issues).
 
-## Notable Changes
+## Dropping Windows 7/8/8.1 Support
 
-### Stack Changes
+Electron 23 no longer supports Windows 7/8/8.1. Electron follows the planned Chromium deprecation policy, which will [deprecate Windows 7/8/8.1 , as well as Windows Server 2012 and 2012 R2 support in Chromium 109 (read more here)](https://support.google.com/chrome/thread/185534985/sunsetting-support-for-windows-7-8-8-1-in-early-2023?hl=en).
+
+<!--truncate-->
+
+## Stack Changes
 
 - Chromium `110`
   - [New in Chrome 110](https://developer.chrome.com/blog/new-in-chrome-110/)
@@ -30,17 +34,13 @@ If you have any feedback, please share it with us on Twitter, or join our commun
   - [Node 18.12.1 blog post](https://nodejs.org/en/blog/release/v18.12.1/)
 - V8 `11.0`
 
-### New Features
+## New Features
 
 - Added `label` property to [`Display`](https://www.electronjs.org/docs/latest/api/structures/display) objects. [#36933](https://github.com/electron/electron/pull/36933)
 - Added an `app.getPreferredSystemLanguages()` API to return the user's system languages. [#36035](https://github.com/electron/electron/pull/36035)
 - Added support for the [WebUSB](https://developer.mozilla.org/en-US/docs/Web/API/WebUSB_API) API. [#36289](https://github.com/electron/electron/pull/36289)
 - Added support for [`SerialPort.forget()`](https://developer.mozilla.org/en-US/docs/Web/API/SerialPort/forget) as well as a new event `serial-port-revoked` emitted on [Session](https://www.electronjs.org/docs/latest/api/session) objects when a given origin is revoked. [#35310](https://github.com/electron/electron/pull/35310)
 - Added new `win.setHiddenInMissionControl` API to allow developers to opt out of Mission Control on macOS. [#36092](https://github.com/electron/electron/pull/36092)
-
-## Dropping Windows 7/8/8.1 Support
-
-Electron 23 no longer supports Windows 7/8/8.1. Electron follows the planned Chromium deprecation policy, which will [deprecate Windows 7/8/8.1 , as well as Windows Server 2012 and 2012 R2 support in Chromium 109 (read more here)](https://support.google.com/chrome/thread/185534985/sunsetting-support-for-windows-7-8-8-1-in-early-2023?hl=en).
 
 ## Breaking API Changes
 

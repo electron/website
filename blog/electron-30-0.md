@@ -28,6 +28,8 @@ If you have any feedback, please share it with us on [Twitter](https://twitter.c
   - See [our Web Embeds documentation](https://www.electronjs.org/docs/latest/tutorial/web-embeds) for a comparison of the new `WebContentsView` API to other similar APIs.
 - Implemented support for the [File System API](https://developer.mozilla.org/en-US/docs/Web/API/File_System_API) ([#41827](https://github.com/electron/electron/commit/cf1087badd437906f280373decb923733a8523e6))
 
+<!--truncate-->
+
 ### Stack Changes
 
 - Chromium `124.0.6367.49`

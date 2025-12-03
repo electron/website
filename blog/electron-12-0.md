@@ -15,9 +15,9 @@ Electron 12.0.0 has been released! It includes upgrades to Chromium `89`, V8 `8.
 
 The Electron team is excited to announce the release of Electron 12.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://electronjs.org/releases/stable). Continue reading for details about this release, and please share any feedback you have!
 
-## Notable Changes
+<!--truncate-->
 
-### Stack Changes
+## Stack Changes
 
 - Chromium `89`
   - [New in Chrome 88](https://developer.chrome.com/blog/new-in-chrome-88/)
@@ -29,7 +29,7 @@ The Electron team is excited to announce the release of Electron 12.0.0! You can
   - [V8 8.8 blog post](https://v8.dev/blog/v8-release-88)
   - [V8 8.9 blog post](https://v8.dev/blog/v8-release-89)
 
-### Highlight Features
+## Highlight Features
 
 - The ContextBridge `exposeInMainWorld` method can now expose non-object APIs. [#26834](https://github.com/electron/electron/pull/26834)
 - Upgraded from Node 12 to Node 14. [#23249](https://github.com/electron/electron/pull/25249)

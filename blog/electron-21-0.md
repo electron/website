@@ -17,9 +17,9 @@ The Electron team is excited to announce the release of Electron 21.0.0! You can
 
 If you have any feedback, please share it with us on Twitter, or join our community [Discord](https://discord.com/invite/electronjs)! Bugs and feature requests can be reported in Electron's [issue tracker](https://github.com/electron/electron/issues).
 
-## Notable Changes
+<!--truncate-->
 
-### Stack Changes
+## Stack Changes
 
 - Chromium `106`
   - [New in Chrome 106](https://developer.chrome.com/blog/new-in-chrome-106/)
@@ -30,7 +30,7 @@ If you have any feedback, please share it with us on Twitter, or join our commun
   - [Node 16.16.0 blog post](https://nodejs.org/en/blog/release/v16.16.0/)
 - V8 `10.6`
 
-### New Features
+## New Features
 
 - Added `webFrameMain.origin`. [#35534](https://github.com/electron/electron/pull/35534)
 - Added new `WebContents.ipc` and `WebFrameMain.ipc` APIs. [#35231](https://github.com/electron/electron/pull/35231)

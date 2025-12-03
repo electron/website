@@ -42,7 +42,9 @@ This feature was preceded by many other changes that laid the groundwork for it:
 - [#45229](https://github.com/electron/electron/pull/45330) added the experimental `contextBridge.executeInMainWorld(executionScript)` script to evaluate JavaScript in the main world over the context bridge.
 - [#45341](https://github.com/electron/electron/pull/45341) added the `ServiceWorkerMain` class to interact with Service Workers in the main process.
 
-### Stack Changes
+<!--truncate-->
+
+## Stack Changes
 
 - Chromium `134.0.6998.44`
   - [New in 134](https://developer.chrome.com/blog/new-in-chrome-134/)

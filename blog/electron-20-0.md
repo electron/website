@@ -12,9 +12,9 @@ Electron 20.0.0 has been released! It includes upgrades to Chromium `104`, V8 `1
 
 The Electron team is excited to announce the release of Electron 20.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://www.electronjs.org/releases/stable). Continue reading for details about this release and please share any feedback you have!
 
-## Notable Changes
+<!--truncate-->
 
-### New Features
+## New Features
 
 - Added immersive dark mode on Windows. [#34549](https://github.com/electron/electron/pull/34549)
 - Added support for panel-like behavior. Window can float over full-screened apps. [#34665](https://github.com/electron/electron/pull/34665)
@@ -22,7 +22,7 @@ The Electron team is excited to announce the release of Electron 20.0.0! You can
 - Renderers are now sandboxed by default unless `nodeIntegration: true` or `sandbox: false` is specified. [#35125](https://github.com/electron/electron/pull/35125)
 - Added safeguards when building native modules with nan. [#35160](https://github.com/electron/electron/pull/35160)
 
-### Stack Changes
+## Stack Changes
 
 - Chromium `104`
   - [New in Chrome 104](https://developer.chrome.com/blog/new-in-chrome-104/)

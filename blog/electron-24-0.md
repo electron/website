@@ -14,9 +14,9 @@ The Electron team is excited to announce the release of Electron 24.0.0! You can
 
 If you have any feedback, please share it with us on Twitter, or join our community [Discord](https://discord.com/invite/electronjs)! Bugs and feature requests can be reported in Electron's [issue tracker](https://github.com/electron/electron/issues).
 
-## Notable Changes
+<!--truncate-->
 
-### Stack Changes
+## Stack Changes
 
 - Chromium `112.0.5615.49`
   - [New in Chrome 112](https://developer.chrome.com/blog/new-in-chrome-112/)
@@ -27,9 +27,9 @@ If you have any feedback, please share it with us on Twitter, or join our commun
   - [Node 18.14.0 blog post](https://nodejs.org/en/blog/release/v18.14.0/)
 - V8 `11.2`
 
-### Breaking Changes
+## Breaking Changes
 
-#### API Changed: `nativeImage.createThumbnailFromPath(path, size)`
+### API Changed: `nativeImage.createThumbnailFromPath(path, size)`
 
 The `maxSize` parameter has been changed to `size` to reflect that the size passed in will be the size the thumbnail created. Previously, Windows would not scale the image up if it were smaller than `maxSize`, and macOS would always set the size to `maxSize`. Behavior is now the same across platforms.
 
@@ -50,7 +50,7 @@ nativeImage.createThumbnailFromPath(imagePath, downSize).then((result) => {
 });
 ```
 
-### New Features
+## New Features
 
 - Added the ability to filter `HttpOnly` cookies with `cookies.get()`. [#37365](https://github.com/electron/electron/pull/37365)
 - Added `logUsage` to `shell.openExternal()` options, which allows passing the `SEE_MASK_FLAG_LOG_USAGE` flag to `ShellExecuteEx` on Windows. The `SEE_MASK_FLAG_LOG_USAGE` flag indicates a user initiated launch that enables tracking of frequently used programs and other behaviors. [#37291](https://github.com/electron/electron/pull/37291)

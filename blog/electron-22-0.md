@@ -16,27 +16,6 @@ The Electron team is excited to announce the release of Electron 22.0.0! You can
 
 If you have any feedback, please share it with us on Twitter, or join our community [Discord](https://discord.com/invite/electronjs)! Bugs and feature requests can be reported in Electron's [issue tracker](https://github.com/electron/electron/issues).
 
-## Notable Changes
-
-### Stack Changes
-
-- Chromium `108`
-  - [New in Chrome 108](https://developer.chrome.com/blog/new-in-chrome-108/)
-  - [New in Chrome 107](https://developer.chrome.com/blog/new-in-chrome-107/)
-  - [New in DevTools 108](https://developer.chrome.com/blog/new-in-devtools-108/)
-  - [New in DevTools 107](https://developer.chrome.com/blog/new-in-devtools-107/)
-- Node.js `16.17.1`
-  - [Node 16.17.1 blog post](https://nodejs.org/en/blog/release/v16.17.1/)
-- V8 `10.8`
-
-### Highlighted Features
-
-### UtilityProcess API [#36089](https://github.com/electron/electron/pull/36089)
-
-The new `UtilityProcess` main process module allows the creation of a lightweight Chromium child process with only Node.js integration while also allowing communication with a sandboxed renderer using `MessageChannel`. The API was designed based on Node.js `child_process.fork` to allow for easier transition, with one primary difference being that the entry point `modulePath` must be from within the packaged application to allow only for trusted scripts to be loaded. Additionally the module prevents establishing communication channels with renderers by default, upholding the contract in which the main process is the only trusted process in the application.
-
-You can read more about the [new UtilityProcess API in our docs here](https://www.electronjs.org/docs/latest/api/utility-process).
-
 ## Windows 7/8/8.1 Support Update
 
 :::info
@@ -58,18 +37,39 @@ Electron 22 will be the last Electron major version to support Windows 7/8/8.1. 
 
 Windows 7/8/8.1 will not be supported in Electron 23 and later major releases.
 
-#### Additional Highlighted Changes
+## Highlighted Features
+
+### UtilityProcess API [#36089](https://github.com/electron/electron/pull/36089)
+
+The new `UtilityProcess` main process module allows the creation of a lightweight Chromium child process with only Node.js integration while also allowing communication with a sandboxed renderer using `MessageChannel`. The API was designed based on Node.js `child_process.fork` to allow for easier transition, with one primary difference being that the entry point `modulePath` must be from within the packaged application to allow only for trusted scripts to be loaded. Additionally the module prevents establishing communication channels with renderers by default, upholding the contract in which the main process is the only trusted process in the application.
+
+You can read more about the [new UtilityProcess API in our docs here](https://www.electronjs.org/docs/latest/api/utility-process).
+
+### Additional Highlighted Changes
 
 - Added support for Web Bluetooth pin pairing on Linux and Windows. [#35416](https://github.com/electron/electron/pull/35416)
 - Added `LoadBrowserProcessSpecificV8Snapshot` as a new fuse that will let the main/browser process load its v8 snapshot from a file at `browser_v8_context_snapshot.bin`. Any other process will use the same path as is used today. [#35266](https://github.com/electron/electron/pull/35266)
 - Added `WebContents.opener` to access window opener and `webContents.fromFrame(frame)` to get the WebContents corresponding to a WebFrameMain instance. [#35140](https://github.com/electron/electron/pull/35140)
 - Added support for `navigator.mediaDevices.getDisplayMedia` via a new session handler, `ses.setDisplayMediaRequestHandler`. [#30702](https://github.com/electron/electron/pull/30702)
 
+<!--truncate-->
+
+## Stack Changes
+
+- Chromium `108`
+  - [New in Chrome 108](https://developer.chrome.com/blog/new-in-chrome-108/)
+  - [New in Chrome 107](https://developer.chrome.com/blog/new-in-chrome-107/)
+  - [New in DevTools 108](https://developer.chrome.com/blog/new-in-devtools-108/)
+  - [New in DevTools 107](https://developer.chrome.com/blog/new-in-devtools-107/)
+- Node.js `16.17.1`
+  - [Node 16.17.1 blog post](https://nodejs.org/en/blog/release/v16.17.1/)
+- V8 `10.8`
+
 ## Breaking API Changes
 
 Below are breaking changes introduced in Electron 22. You can read more about these changes and future changes on the [Planned Breaking Changes](https://github.com/electron/electron/blob/main/docs/breaking-changes.md) page.
 
-#### Deprecated: `webContents.incrementCapturerCount(stayHidden, stayAwake)`
+### Deprecated: `webContents.incrementCapturerCount(stayHidden, stayAwake)`
 
 `webContents.incrementCapturerCount(stayHidden, stayAwake)` has been deprecated.
 It is now automatically handled by `webContents.capturePage` when a page capture completes.
@@ -88,7 +88,7 @@ const w = new BrowserWindow({ show: false })
 + })
 ```
 
-#### Deprecated: `webContents.decrementCapturerCount(stayHidden, stayAwake)`
+### Deprecated: `webContents.decrementCapturerCount(stayHidden, stayAwake)`
 
 `webContents.decrementCapturerCount(stayHidden, stayAwake)` has been deprecated.
 It is now automatically handled by `webContents.capturePage` when a page capture completes.
@@ -107,7 +107,7 @@ const w = new BrowserWindow({ show: false })
 + })
 ```
 
-#### Removed: WebContents `new-window` event
+### Removed: WebContents `new-window` event
 
 The `new-window` event of WebContents has been removed. It is replaced by [`webContents.setWindowOpenHandler()`](https://electronjs.org/docs/latest/api/web-contents#contentssetwindowopenhandlerhandler).
 
@@ -121,7 +121,7 @@ The `new-window` event of WebContents has been removed. It is replaced by [`webC
 + })
 ```
 
-#### Deprecated: BrowserWindow `scroll-touch-*` events
+### Deprecated: BrowserWindow `scroll-touch-*` events
 
 The `scroll-touch-begin`, `scroll-touch-end` and `scroll-touch-edge` events on
 BrowserWindow are deprecated. Instead, use the newly available
