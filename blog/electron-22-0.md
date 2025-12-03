@@ -37,7 +37,7 @@ Electron 22 will be the last Electron major version to support Windows 7/8/8.1. 
 
 Windows 7/8/8.1 will not be supported in Electron 23 and later major releases.
 
-## Highlighted Features
+## Notable Changes
 
 ### UtilityProcess API [#36089](https://github.com/electron/electron/pull/36089)
 

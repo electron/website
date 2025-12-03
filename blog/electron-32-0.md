@@ -21,6 +21,8 @@ If you have any feedback, please share it with us on [Twitter](https://twitter.c
 - Aligned failure pathway in Web [File System API](https://developer.mozilla.org/en-US/docs/Web/API/File_System_API) with upstream when attempting to open a file or directory in a blocked path. [#42993](https://github.com/electron/electron/pull/42993)
 - Added the following existing navigation-related APIs to `webcontents.navigationHistory`: `canGoBack`, `goBack`, `canGoForward`, `goForward`, `canGoToOffset`, `goToOffset`, `clear`. The previous navigation APIs are now deprecated. [#41752](https://github.com/electron/electron/pull/41752)
 
+<!--truncate-->
+
 ## Stack Changes
 
 - Chromium`128.0.6613.36`

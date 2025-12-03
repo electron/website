@@ -20,7 +20,7 @@ As of Electron 15, Electron will release a new major stable version every 8 week
 
 Additionally, Electron has changed supported versions from latest three versions to latest four versions until May 2022. [See our versioning document](https://www.electronjs.org/docs/latest/tutorial/electron-versioning) for more detailed information about versioning in Electron. After May 2022, we will return to supporting latest three versions.
 
-## Highlighted Features
+## Notable Changes
 
 - Added `ses.setCodeCachePath()` API for setting code cache directory. [#33286](https://github.com/electron/electron/pull/33286)
 - Removed the old `BrowserWindowProxy`-based implementation of `window.open`. This also removes the `nativeWindowOpen` option from `webPreferences`. [#29405](https://github.com/electron/electron/pull/29405)

@@ -20,7 +20,7 @@ As of Electron 15, Electron will release a new major stable version every 8 week
 
 Additionally, Electron has changed supported versions from latest three versions to latest four versions until May 2022. [See our versioning document](https://www.electronjs.org/docs/latest/tutorial/electron-versioning) for more detailed information about versioning in Electron. After May 2022, we will return to supporting latest three versions.
 
-## Highlighted Features
+## Notable Changes
 
 - Added `webContents.getMediaSourceId()`, can be used with `getUserMedia` to get a stream for a WebContents. [#31204](https://github.com/electron/electron/pull/31204)
 - Deprecates `webContents.getPrinters()` and introduces `webContents.getPrintersAsync()`. [#31023](https://github.com/electron/electron/pull/31023)

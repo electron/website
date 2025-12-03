@@ -20,7 +20,7 @@ As of Electron 15, Electron will release a new major stable version every 8 week
 
 Additionally, Electron has changed supported versions from latest three versions to latest four versions until May 2022. [See our versioning document](https://www.electronjs.org/docs/latest/tutorial/electron-versioning) for more detailed information about versioning in Electron. After May 2022, we will return to supporting latest three versions.
 
-## Highlighted Features
+## Notable Changes
 
 - Now supports the [WebHID](https://developer.mozilla.org/en-US/docs/Web/API/WebHID_API) API. [#30213](https://github.com/electron/electron/pull/30213)
 - Add data parameter to `app.requestSingleInstanceLock` to share data between instances. [#30891](https://github.com/electron/electron/pull/30891)

@@ -20,6 +20,8 @@ If you have any feedback, please share it with us on [Twitter](https://twitter.c
 - Extended `navigationHistory` API with 2 new functions for better history management. [#42014](https://github.com/electron/electron/pull/42014)
 - Improved native theme transparency checking. [#42862](https://github.com/electron/electron/pull/42862)
 
+<!--truncate-->
+
 ## Stack Changes
 
 - Chromium `130.0.6723.44`

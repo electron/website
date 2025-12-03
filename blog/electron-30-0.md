@@ -18,8 +18,6 @@ If you have any feedback, please share it with us on [Twitter](https://twitter.c
 
 ## Notable Changes
 
-### Highlights
-
 - ASAR Integrity fuse now supported on Windows ([#40504](https://github.com/electron/electron/pull/40504))
   - Existing apps with ASAR Integrity enabled may not work on Windows if not configured correctly. Apps using Electron packaging tools should upgrade to `@electron/packager@18.3.1` or `@electron/forge@7.4.0`.
   - Take a look at our [ASAR Integrity tutorial](https://www.electronjs.org/docs/latest/tutorial/asar-integrity) for more information.
@@ -30,7 +28,7 @@ If you have any feedback, please share it with us on [Twitter](https://twitter.c
 
 <!--truncate-->
 
-### Stack Changes
+## Stack Changes
 
 - Chromium `124.0.6367.49`
   - New in [Chrome 124](https://developer.chrome.com/blog/new-in-chrome-124/) and in [DevTools 124](https://developer.chrome.com/blog/new-in-devtools-124/)
@@ -41,7 +39,7 @@ If you have any feedback, please share it with us on [Twitter](https://twitter.c
 
 Electron 30 upgrades Chromium from `122.0.6261.39` to `124.0.6367.49`, Node from `20.9.0` to `20.11.1`, and V8 from `12.2` to `12.4`.
 
-### New Features
+## New Features
 
 - Added a `transparent` webpreference to webviews. ([#40301](https://github.com/electron/electron/pull/40301))
 - Added a new instance property `navigationHistory` on webContents API with `navigationHistory.getEntryAtIndex` method, enabling applications to retrieve the URL and title of any navigation entry within the browsing history. ([#41662](https://github.com/electron/electron/pull/41662))
@@ -50,9 +48,9 @@ Electron 30 upgrades Chromium from `122.0.6261.39` to `124.0.6367.49`, Node from
 - Added support for Bluetooth ports being requested by service class ID in `navigator.serial`. ([#41734](https://github.com/electron/electron/pull/41734))
 - Added support for the Node.js [`NODE_EXTRA_CA_CERTS`](https://nodejs.org/api/cli.html#node_extra_ca_certsfile) CLI flag. ([#41822](https://github.com/electron/electron/pull/41822))
 
-### Breaking Changes
+## Breaking Changes
 
-#### Behavior Changed: cross-origin iframes now use Permission Policy to access features
+### Behavior Changed: cross-origin iframes now use Permission Policy to access features
 
 Cross-origin iframes must now specify features available to a given `iframe` via the `allow`
 attribute in order to access them.
@@ -60,11 +58,11 @@ attribute in order to access them.
 See [documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#allow) for
 more information.
 
-#### Removed: The `--disable-color-correct-rendering` command line switch
+### Removed: The `--disable-color-correct-rendering` command line switch
 
 This switch was never formally documented but its removal is being noted here regardless. Chromium itself now has better support for color spaces so this flag should not be needed.
 
-#### Behavior Changed: `BrowserView.setAutoResize` behavior on macOS
+### Behavior Changed: `BrowserView.setAutoResize` behavior on macOS
 
 In Electron 30, BrowserView is now a wrapper around the new [WebContentsView](https://www.electronjs.org/docs/latest/api/web-contents-view) API.
 
@@ -76,13 +74,13 @@ The autoresizing behavior is now standardized across all platforms.
 If your app uses `BrowserView.setAutoResize` to do anything more complex than making a BrowserView fill the entire window, it's likely you already had custom logic in place to handle this difference in behavior on macOS.
 If so, that logic will no longer be needed in Electron 30 as autoresizing behavior is consistent.
 
-#### Removed: `params.inputFormType` property on `context-menu` on `WebContents`
+### Removed: `params.inputFormType` property on `context-menu` on `WebContents`
 
 The `inputFormType` property of the params object in the `context-menu`
 event from `WebContents` has been removed. Use the new `formControlType`
 property instead.
 
-#### Removed: `process.getIOCounters()`
+### Removed: `process.getIOCounters()`
 
 Chromium has removed access to this information.
 

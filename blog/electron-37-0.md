@@ -68,6 +68,8 @@ This design enhancement can be applied on borders, outlines, and shadows, giving
 > The initial design drew inspiration from Figma's corner smoothing implementation. Read more about their own quest for smooth corners in
 > ["Desperately seeking squircles"](https://www.figma.com/blog/desperately-seeking-squircles/).
 
+<!--truncate-->
+
 ### Stack Changes
 
 - Chromium `138.0.7204.35`
