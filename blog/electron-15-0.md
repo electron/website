@@ -20,7 +20,7 @@ Starting with Electron 15, Electron will release a new major stable version ever
 
 Additionally, Electron will be changing supported versions from latest three versions to latest four versions until May 2022. [See our versioning document](https://www.electronjs.org/docs/latest/tutorial/electron-versioning)for more detailed information about versioning in Electron.
 
-## Highlight Features
+## Notable Changes
 
 - `nativeWindowOpen: true` is no longer experimental, and is now the default.
 - Added `safeStorage` string encryption API. [#30430](https://github.com/electron/electron/pull/30430)

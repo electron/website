@@ -14,7 +14,7 @@ The Electron team is excited to announce the release of Electron 11.0.0! You can
 
 We can't wait to see what you build with them! Continue reading for details about this release, and please share any feedback you have!
 
-## Highlight Features
+## Notable Changes
 
 - Support for Apple M1: On November 10, Apple announced their [new M1 chips, which will be included in their upcoming hardware](https://www.apple.com/newsroom/2020/11/apple-unleashes-m1/). Beginning in Electron 11, Electron will be shipping separate versions of Electron for Intel Macs (x64) and Apple's upcoming M1 hardware (arm64). You can learn more about how to get your Electron app [running on Apple's M1 hardware here.](https://www.electronjs.org/blog/apple-silicon) [#24545](https://github.com/electron/electron/pull/24545)
 - Added V8 crash message and location information to crashReport parameters. [#24771](https://github.com/electron/electron/pull/24771)

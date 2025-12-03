@@ -14,7 +14,7 @@ Electron 8.0.0 has been released! It includes upgrades to Chromium `80`, V8 `8.0
 
 The Electron team is excited to announce the release of Electron 8.0.0! You can install it with npm via `npm install electron@latest` or download it from our [releases website](https://releases.electronjs.org/release?channel=stable). The release is packed with upgrades, fixes, and new features. We can't wait to see what you build with them! Continue reading for details about this release, and please share any feedback you have!
 
-## Highlight Features
+## Notable Changes
 
 - Implemented usage of Chrome's built-in spellchecker feature. See more details in [#20692](https://github.com/electron/electron/pull/20692) and [#21266](https://github.com/electron/electron/pull/21266).
 - IPC communication now uses v8's Structured Clone Algorithm. This is faster, more featureful, and less surprising than the existing logic, and brings about a 2x performance boost for large buffers and complex objects. Latency for small messages is not significantly affected. See more details in [#20214](https://github.com/electron/electron/pull/20214).

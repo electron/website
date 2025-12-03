@@ -28,7 +28,7 @@ The Electron team is excited to announce the release of Electron 12.0.0! You can
 - V8 `8.9`
   - [V8 8.9 blog post](https://v8.dev/blog/v8-release-89)
 
-## Highlight Features
+## Notable Changes
 
 - The ContextBridge `exposeInMainWorld` method can now expose non-object APIs. [#26834](https://github.com/electron/electron/pull/26834)
 - Upgraded from Node 12 to Node 14. [#23249](https://github.com/electron/electron/pull/25249)

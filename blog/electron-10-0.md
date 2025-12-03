@@ -18,7 +18,7 @@ In the Electron 10 release, we also made a change to our release notes. To make 
 
 We can't wait to see what you build with them! Continue reading for details about this release, and please share any feedback you have!
 
-## Highlight Features
+## Notable Changes
 
 - Added `contents.getBackgroundThrottling()` method and `contents.backgroundThrottling` property. [#21036]
 - Exposed the `desktopCapturer` module in the main process. [#23548](https://github.com/electron/electron/pull/23548)

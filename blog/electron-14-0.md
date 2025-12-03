@@ -29,7 +29,7 @@ versions to latest four versions until May 2022. See
 [see our versioning document](https://electronjs.org/docs/tutorial/electron-versioning)
 for more detailed information about versioning in Electron.
 
-## Highlight Features
+## Notable Changes
 
 - Default Changed: `nativeWindowOpen` now defaults to `true`. [(see docs)](https://www.electronjs.org/docs/api/window-open)
 - Child windows no longer inherit BrowserWindow construction options from their parents. [#28550](https://github.com/electron/electron/pull/28550)
