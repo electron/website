@@ -47,6 +47,16 @@ export const FEATURED_APPS: FeaturedApp[] = [
     href: 'https://1password.com/',
   },
   {
+    name: 'Asana',
+    image: '/assets/apps/asana.svg',
+    href: 'https://asana.com/',
+  },
+  {
+    name: 'Claude',
+    image: '/assets/apps/claude.svg',
+    href: 'https://www.claude.com/download',
+  },
+  {
     name: 'Discord',
     image: '/assets/apps/discord.svg',
     href: 'https://discord.com/',
@@ -67,36 +77,6 @@ export const FEATURED_APPS: FeaturedApp[] = [
     href: 'https://www.loom.com/',
   },
   {
-    name: 'Signal',
-    image: '/assets/apps/signal.svg',
-    href: 'https://signal.org/en/',
-  },
-  {
-    name: 'Slack',
-    image: '/assets/apps/slack.svg',
-    href: 'https://slack.com/',
-  },
-  {
-    name: 'Notion',
-    image: '/assets/apps/notion.svg',
-    href: 'https://www.notion.so/',
-  },
-  {
-    name: 'VS Code',
-    image: '/assets/apps/vscode.svg',
-    href: 'https://code.visualstudio.com/',
-  },
-  {
-    name: 'Microsoft Teams',
-    image: '/assets/apps/teams.svg',
-    href: 'https://microsoft.com/en-ca/microsoft-teams/group-chat-software/',
-  },
-  {
-    name: 'Asana',
-    image: '/assets/apps/asana.svg',
-    href: 'https://asana.com/',
-  },
-  {
     name: 'GitHub Desktop',
     image: '/assets/apps/github-desktop.svg',
     href: 'https://desktop.github.com/',
@@ -110,6 +90,11 @@ export const FEATURED_APPS: FeaturedApp[] = [
     name: 'MongoDB Compass',
     image: '/assets/apps/mongodb.svg',
     href: 'https://www.mongodb.com/products/compass',
+  },
+  {
+    name: 'Notion',
+    image: '/assets/apps/notion.svg',
+    href: 'https://www.notion.so/',
   },
   {
     name: 'Obsidian',
@@ -132,6 +117,16 @@ export const FEATURED_APPS: FeaturedApp[] = [
     href: 'https://postman.com/',
   },
   {
+    name: 'Signal',
+    image: '/assets/apps/signal.svg',
+    href: 'https://signal.org/en/',
+  },
+  {
+    name: 'Slack',
+    image: '/assets/apps/slack.svg',
+    href: 'https://slack.com/',
+  },
+  {
     name: 'Splice',
     image: '/assets/apps/splice.svg',
     isMonochrome: true,
@@ -151,5 +146,10 @@ export const FEATURED_APPS: FeaturedApp[] = [
     name: 'Twitch',
     image: '/assets/apps/twitch.svg',
     href: 'https://www.twitch.tv/',
+  },
+  {
+    name: 'VS Code',
+    image: '/assets/apps/vscode.svg',
+    href: 'https://code.visualstudio.com/',
   },
 ];
