@@ -13,6 +13,7 @@ module.exports = {
     'no-alt-text': false,
     'no-newline-in-links': true,
     'no-shortcut-reference-links': false,
+    'descriptive-link-text': false,
   },
   customRules: [
     './node_modules/@electron/lint-roller/markdownlint-rules/index.mjs',
