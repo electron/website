@@ -24,7 +24,7 @@ We were seeing an issue on Windows where old frames would become visible while r
 ## What made this bug particularly interesting?
 
 1. It was challenging.
-2. It was deep in the Chromium codebase.
+2. It was deep in a large codebase.
 3. As you'll see later, there were two different bugs under the hood.
 
 ## Fixing the bug
