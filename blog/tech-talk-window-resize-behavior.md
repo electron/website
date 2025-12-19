@@ -267,7 +267,6 @@ On the `main` branch, Electron updates its Chromium version constantly. As a res
 
 However, commits that make it into `main` right now will only be included in an Electron release in about three months. Our existing release and pre-release [branches](../docs/latest/tutorial/electron-versioning#stabilization-branches) run on older Chromium versions.
 
-
 Thus, the next step was to backport the patches to [Electron 39](https://github.com/electron/electron/pull/49138) and [Electron 40](https://github.com/electron/electron/pull/49191).
 
 Electron keeps a list of Chromium patches in the [`patches/chromium` directory](https://github.com/electron/electron/tree/a90ccc753b4d38266323dd054db2b98a45917117/patches/chromium). When we backport a Chromium patch, we add it there. When building Electron, these patches are applied to the Chromium source code.
