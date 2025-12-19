@@ -72,7 +72,7 @@ The following flags reproduced the issue:
 - `--use-angle=d3d11` (this is currently the default on Windows)
 - `--use-angle=gl` (falls back to Direct3D 11 on Windows, see `chrome://gpu/`)
 
-None of the working flags were good enough to be used as the default in Electron apps on Windows. They were either too slow or lacked good driver support.
+None of the working flags were good enough to be used as the default in Electron apps on Windows. They were either too slow or lacked broad driver support.
 
 However, these workarounds pointed me into the right direction. They showed that the issue was in a code path that was only used with the ANGLE Direct3D 11 backend.
 
