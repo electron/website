@@ -271,7 +271,7 @@ Thus, the next step was to backport the patches to [Electron 39](https://github.
 
 Electron keeps a list of Chromium patches in the [`patches/chromium` directory](https://github.com/electron/electron/tree/a90ccc753b4d38266323dd054db2b98a45917117/patches/chromium). When we backport a Chromium patch, we add it there. When building Electron, these patches are applied to the Chromium source code.
 
-(In general, we try to keep the number of Chromium patches low. Every patch can lead to merge conflicts during Chromium updates. The maintenance burden from patches is real.)
+(In general, we try to [keep the number](../docs/latest/development/patches#patch-justification) of Chromium patches low. Every patch can lead to merge conflicts during Chromium updates. The maintenance burden from patches is real.)
 
 The Electron 39 [backport PR](https://github.com/electron/electron/pull/49138) was merged pretty quickly. The fix became part of [Electron 39.2.6](https://releases.electronjs.org/release/v39.2.6). 🎉
 
