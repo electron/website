@@ -123,7 +123,7 @@ _Note: From here on, the post will get a bit more technical and reference source
 
 I found that on the ANGLE Direct3D 11 backend, Chromium uses the Windows [DirectComposition](https://learn.microsoft.com/en-us/windows/win32/directcomp/directcomposition-portal) API for drawing the window contents.
 
-DirectComposition differs from all other output devices in Chromium. The DirectComposition `OutputSurface` has the capability `supports_viewporter` ([source link 1](https://source.chromium.org/chromium/chromium/src/+/main:ui/gl/dcomp_presenter.cc;l=144-146;drc=1cffe9643e1e70f1f369bbb28e015d9c5f968546), [source link 2](https://source.chromium.org/chromium/chromium/src/+/main:components/viz/service/display/output_surface.h;l=100-103;drc=c96a878b1cb45f60aac2285ffbdbd6b53dc92415)).
+Chromium's DirectComposition `OutputSurface` differs from most other output surfaces in Chromium. It has the capability `supports_viewporter` ([source link 1](https://source.chromium.org/chromium/chromium/src/+/main:ui/gl/dcomp_presenter.cc;l=144-146;drc=1cffe9643e1e70f1f369bbb28e015d9c5f968546), [source link 2](https://source.chromium.org/chromium/chromium/src/+/main:components/viz/service/display/output_surface.h;l=100-103;drc=c96a878b1cb45f60aac2285ffbdbd6b53dc92415)).
 
 An output surface is a bitmap that can be drawn to, often backed by a GPU texture.
 
