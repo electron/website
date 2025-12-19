@@ -260,7 +260,7 @@ Once the fixes made it into Chromium, we had to pull them into Electron, too.
 
 On the `main` branch, Electron updates its Chromium version constantly. As a result, the patches were merged into `main` in a [Chromium roll PR](https://github.com/electron/electron/pull/49145).
 
-However, commits that make it into `main` right now will only be included in an Electron release in about three months. Our existing release and pre-release branches run on older Chromium versions.
+However, commits that make it into `main` right now will only be included in an Electron release in about three months. Our existing release and pre-release [branches](../docs/latest/tutorial/electron-versioning#stabilization-branches) run on older Chromium versions.
 
 The Chromium patches made it into Chromium 145. Electron 39 runs on Chromium 142. The upcoming Electron 40 will run on Chromium 144. (For comparison, the stable channel of Google Chrome is based on Chromium 143 right now.)
 
