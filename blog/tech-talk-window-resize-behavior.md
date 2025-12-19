@@ -52,7 +52,7 @@ Additionally, the issue was not visible on macOS. That suggested that it was in 
 
 I tried a lot of different command line flags and configuration options.
 
-I noticed that [`app.disableHardwareAcceleration()`](/docs/latest/api/app.md#appdisablehardwareacceleration) fixed the issue. Without hardware acceleration, the issue was gone.
+I noticed that [`app.disableHardwareAcceleration()`](../docs/latest/api/app#appdisablehardwareacceleration) fixed the issue. Without hardware acceleration, the issue was gone.
 
 Here is some context: Chromium supports various different graphics APIs for showing pixels on screen (OpenGL, Vulkan, Metal, and more). On Windows, it uses different graphics APIs than on Windows or Linux. Even on Windows, Chromium can work with multiple different graphics backends.
 
