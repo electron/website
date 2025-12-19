@@ -1,12 +1,12 @@
 ---
-title: "Tech Talk #1: Improving Window Resize Behavior"
+title: 'Tech Talk #1: Improving Window Resize Behavior'
 date: 2025-12-18T00:00:00.000Z
 authors:
   - name: nikwen
     url: 'https://github.com/nikwen'
     image_url: 'https://github.com/nikwen.png?size=96'
 slug: tech-talk-window-resize-behavior
-tags: [techtalk,internals]
+tags: [techtalk, internals]
 ---
 
 _We're launching a new blog post series where we share glimpses into our work on Electron. If you find this work interesting, please consider [contributing](https://github.com/electron/electron/)!_
@@ -78,7 +78,7 @@ However, these workarounds pointed me into the right direction. They showed that
 
 [Direct3D](https://en.wikipedia.org/wiki/Direct3D) is a Windows API for hardware-accelerated graphics.
 
-[ANGLE](https://en.wikipedia.org/wiki/ANGLE_(software)) is a library that translates OpenGL calls into calls to the native graphics API of the given operating system, here Direct3D. ANGLE allows Chromium developers to write OpenGL calls on all platforms. ANGLE then translates them into Direct3D, Vulkan, or Metal API calls, depending on which graphics API is used.
+[ANGLE](<https://en.wikipedia.org/wiki/ANGLE_(software)>) is a library that translates OpenGL calls into calls to the native graphics API of the given operating system, here Direct3D. ANGLE allows Chromium developers to write OpenGL calls on all platforms. ANGLE then translates them into Direct3D, Vulkan, or Metal API calls, depending on which graphics API is used.
 
 ## Locating the relevant Chromium component
 
@@ -86,13 +86,13 @@ Chromium references Direct3D in tens of thousands of places. It wasn't realistic
 
 By chance, I stumbled across a few helpful debugging flags in the Chromium source code:
 
-* `--ui-show-paint-rects`
-* `--ui-show-property-changed-rects`
-* `--ui-show-surface-damage-rects`
-* `--ui-show-composited-layer-borders`
-* `--tint-composited-content`
-* `--tint-composited-content-modulate`
-* (And more)
+- `--ui-show-paint-rects`
+- `--ui-show-property-changed-rects`
+- `--ui-show-surface-damage-rects`
+- `--ui-show-composited-layer-borders`
+- `--tint-composited-content`
+- `--tint-composited-content-modulate`
+- (And more)
 
 They highlight areas of the browser window that were redrawn or updated by different parts of the Chromium graphics stack.
 
