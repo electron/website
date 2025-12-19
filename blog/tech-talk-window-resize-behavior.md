@@ -130,7 +130,7 @@ Without `supports_viewporter`, whenever the window size changes, Chromium will c
 
 `supports_viewporter` tries to reduce these costly surface allocations. With `supports_viewporter`, Chromium will not allocate a new surface on every resize. Instead, it will allocate a surface that is too large for what we need to draw. Then it will only paint to and show a certain sub-rectangle (the "viewport") of that surface on screen. The other parts of the surface are not supposed to be shown on screen.
 
-This is supposed to make resizing more efficient because all Chromium needs to do is pad the surface to the proper width and height instead of allocating a new surface on every resize. This surface resize logic lives [here](https://source.chromium.org/chromium/chromium/src/+/main:components/viz/service/display/direct_renderer.cc;l=1082;drc=c96a878b1cb45f60aac2285ffbdbd6b53dc92415).
+This is supposed to make resizing more efficient because all Chromium needs to do is pad the surface to the proper width and height instead of allocating a new surface on every resize. This surface resize logic lives in [`direct_renderer.cc`](https://source.chromium.org/chromium/chromium/src/+/main:components/viz/service/display/direct_renderer.cc;l=1082;drc=c96a878b1cb45f60aac2285ffbdbd6b53dc92415).
 
 Here's what that looks like:
 
