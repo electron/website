@@ -30,7 +30,7 @@ We were seeing an issue on Windows where old frames would become visible while r
 
 With a bug like this, the first challenge is figuring out where to start looking.
 
-Electron builds upon Chromium. Chromium is the open source version of Google Chrome. When compiling Electron, Electron's source code is added into the Chromium source tree as a subdirectory. Electron then relies on Chromium's code to provide most of the functionality of a modern browser.
+Electron builds upon Chromium, the open source version of Google Chrome. When compiling Electron, Electron's source code is added into the Chromium source tree as a subdirectory. Electron then relies on Chromium's code to provide most of the functionality of a modern browser.
 
 Chromium has about 36 million lines of code. Electron is a large project, too. That is a lot of code that could be causing this issue.
 
