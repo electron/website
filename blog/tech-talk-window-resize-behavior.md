@@ -224,7 +224,7 @@ Now, 10 years later with DirectComposition, that gutter was often filled with st
 
 Let's look at what was happening there:
 
-Every frame consists of multiple render passes. The render passes represent the various things that should be drawn on screen. From complicated bitmaps to rectangles filled with solid colors.
+Every frame consists of multiple render passes. These render passes represent the various things that should be drawn on screen. From complicated bitmaps to rectangles filled with solid colors.
 
 Every frame has a root render pass, which contains all other render passes and glues them together. (Render passes are arranged in a tree structure and the root render pass is the root of that tree.)
 
