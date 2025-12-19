@@ -251,7 +251,8 @@ We clip our surface to the size of the frame that we received. We don't show any
 
 Voilà, no more gutter, no more stale pixels!
 
-(Side note: Without `supports_viewporter`, this would be an expensive operation because it would allocate a new output surface. However, with DirectComposition, we use the "viewporter" feature. So we don't reallocate the surface when we change the viewport size. We just make a different portion of it visible. Thus, it is a cheap operation.)
+> [!NOTE]
+> Without `supports_viewporter`, this would be an expensive operation because it would allocate a new output surface. However, with DirectComposition, we use the "viewporter" feature. So we don't reallocate the surface when we change the viewport size. We just make a different portion of it visible. Thus, it is a cheap operation.
 
 ## Backporting the patches to Electron
 
