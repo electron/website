@@ -1,6 +1,6 @@
 ---
 title: 'Tech Talk #1: Improving Window Resize Behavior'
-date: 2025-12-18T00:00:00.000Z
+date: 2025-12-19T00:00:00.000Z
 authors:
   - name: nikwen
     url: 'https://github.com/nikwen'
