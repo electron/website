@@ -54,7 +54,7 @@ I tried a lot of different command line flags and configuration options.
 
 I noticed that [`app.disableHardwareAcceleration()`](../docs/latest/api/app#appdisablehardwareacceleration) fixed the issue. Without hardware acceleration, the issue was gone.
 
-Here is some context: Chromium supports various different graphics APIs for showing pixels on screen (OpenGL, Vulkan, Metal, and more). On Windows, it uses different graphics APIs than on Windows or Linux. Even on Windows, Chromium can work with multiple different graphics backends.
+Here is some context: Chromium supports various different graphics APIs for showing pixels on screen (OpenGL, Vulkan, Metal, and more). On Windows, it uses different graphics APIs than on macOS or Linux. Even on Windows, Chromium can work with multiple different graphics backends.
 
 Which graphics backend Chromium uses depends on the user's hardware. For example, some graphics backends require the computer to have a GPU.
 
