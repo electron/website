@@ -171,7 +171,7 @@ We use two different Windows APIs here:
 - [`IDXGISwapChain1::Present1`](https://source.chromium.org/chromium/chromium/src/+/main:gpu/command_buffer/service/shared_image/dxgi_swap_chain_image_backing.cc;l=283;drc=92e802d8fa66bafb0cca9ed32143d6148d8e0411) — This shows the new pixels on screen / updates the new viewport.
 - [`IDCompositionDevice::Commit`](https://source.chromium.org/chromium/chromium/src/+/main:ui/gl/dc_layer_tree.cc;l=1034;drc=35d26d364efb57d0386b98312ba739f7f65ae97e) — This updates the clip rect.
 
-Here's what's important to understand: both functions return synchronously on the CPU. However, they schedule tasks that run asynchronously on the GPU at a later time. Windows and its services (such as [DWM](https://en.wikipedia.org/wiki/Desktop_Window_Manager)) decide when they will run and in which order. So they take effect asynchronously, and not always within the same frame.
+Here's what's important to understand: both functions return synchronously on the CPU. However, they schedule tasks that run asynchronously on the GPU at a later time. Windows and its services (such as [DWM](https://en.wikipedia.org/wiki/Desktop_Window_Manager)) decide when these tasks will run and in which order. So they take effect asynchronously, and not always within the same frame.
 
 Unfortunately, Windows provides no way for us to synchronize those operations. So I had to find other approaches to fix this.
 
