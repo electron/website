@@ -249,7 +249,7 @@ The fix changes what we do when we receive a frame with a different size than ou
 
 We clip our surface to the size of the frame that we received. We don't show anything beyond the 600 pixels that we have draw instructions for.
 
-Voila, no more gutter, no more stale pixels!
+Voilà, no more gutter, no more stale pixels!
 
 (Side note: Without `supports_viewporter`, this would be an expensive operation because it would allocate a new output surface. However, with DirectComposition, we use the "viewporter" feature. So we don't reallocate the surface when we change the viewport size. We just make a different portion of it visible. Thus, it is a cheap operation.)
 
