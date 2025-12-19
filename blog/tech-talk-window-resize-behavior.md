@@ -137,7 +137,11 @@ Here's what that looks like:
 
 ![Visualization showing the surface, viewport, and clip rect](/assets/img/blog/tech-talk-window-resize-behavior/visualization-1.png)
 
-The blue rectangle is our surface. The green area is our viewport, i.e., the area of our surface that is supposed to be visible and that we actively draw to. The red rectangle is our clip rect(angle), i.e., the part of the surface that is actually being shown on screen.
+Here's how to read the image:
+
+* The blue rectangle is our surface.
+* The green area is our viewport, i.e., the area of the surface that is supposed to be visible and that we actively draw to.
+* The red rectangle is our clip rect(angle), i.e., the part of the surface that is actually being shown on screen.
 
 As a performance optimization, only the viewport (the green area) is repainted when we get a new frame. The rest is left unchanged. This is important. We only ever repaint the green viewport. We don't update the areas outside of the viewport.
 
