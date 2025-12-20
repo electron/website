@@ -24,6 +24,10 @@ security:
 showcase:
   label: 'Showcase'
   description: 'Highlighting featured Electron use cases'
+techtalk:
+  label: 'Tech Talk'
+  description: >
+    'Sharing glimpses into our work on Electron'
 website:
   label: 'Website'
   description: 'Updates on the electronjs.org website and docs'
