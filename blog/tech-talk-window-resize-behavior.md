@@ -137,7 +137,7 @@ Here's what that looks like:
 
 ![Visualization showing the surface, viewport, and clip rect](/assets/img/blog/tech-talk-window-resize-behavior/visualization-1.png)
 
-Here's how to read the image:
+Let me explain:
 
 - The blue rectangle is our surface.
 - The green area is our viewport, i.e., the area of the surface that is supposed to be visible and that we actively draw to.
