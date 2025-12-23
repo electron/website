@@ -5,13 +5,13 @@ import { Node, Parent } from 'unist';
 import { Code } from 'mdast';
 import { MdxJsxFlowElement } from 'mdast-util-mdx-jsx';
 import { visitParents, ActionTuple, SKIP } from 'unist-util-visit-parents';
-import latestVersion from 'latest-version';
+import { latestElectronVersion } from '../util/latest-electron-version';
 import { getJSXImport, isCode, isImport } from '../util/mdx-utils';
 
 let _version = '';
 async function getVersion() {
   if (_version === '') {
-    _version = await latestVersion('electron');
+    _version = await latestElectronVersion();
   }
 
   return _version;
