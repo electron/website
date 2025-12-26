@@ -222,7 +222,7 @@ export default function AppsPage({ apps, categories }: AppsPluginContent) {
                   name={app.name}
                   description={app.description}
                   category={app.category}
-                  logo={`https://raw.githubusercontent.com/electron/apps/main/${app.slug}/${app.slug}-icon-128.png`}
+                  logo={`https://raw.githubusercontent.com/electron/apps/main/apps/${app.slug}/${app.slug}-icon-128.png`}
                   isFavorite={app.isFavorite}
                   website={app.website}
                   repository={app.repository}
