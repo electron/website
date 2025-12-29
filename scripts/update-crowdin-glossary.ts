@@ -12,10 +12,11 @@ import {
   ElementDocumentationContainer,
 } from '@electron/docs-parser';
 import * as dotenv from 'dotenv';
-import latestVersion from 'latest-version';
 import { toString } from 'mdast-util-to-string';
 import remarkParse from 'remark-parse';
 import { unified } from 'unified';
+
+import { latestElectronVersion } from '../src/util/latest-electron-version';
 
 import { convertToCSV } from './utils/csv';
 import { Parent, Text } from 'mdast';
@@ -55,7 +56,7 @@ function collectGlobals() {
  * Collects all Electron APIs and their respective methods and properties.
  */
 async function collectElectronAPI() {
-  const version = await latestVersion('electron');
+  const version = await latestElectronVersion();
   const url = `https://github.com/electron/electron/releases/download/v${version}/electron-api.json`;
   const apis: ParsedDocumentationResult = await (await fetch(url)).json();
 

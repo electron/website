@@ -7,8 +7,9 @@ import { existsSync } from 'fs';
 import fs from 'fs/promises';
 import path from 'path';
 
-import latestVersion from 'latest-version';
 import logger from '@docusaurus/logger';
+
+import { latestElectronVersion } from '../src/util/latest-electron-version';
 
 import { copyLocalDocumentation, download } from './tasks/download-docs';
 import { addFrontmatterToAllDocs } from './tasks/add-frontmatter';
@@ -32,7 +33,7 @@ const start = async (source: string): Promise<void> => {
     source && (source.includes('/') || source.includes('\\'));
 
   if (!localElectron) {
-    const version = await latestVersion('electron');
+    const version = await latestElectronVersion();
     const stableBranch = version.replace(/\.\d+\.\d+/, '-x-y');
     logger.info(
       `Fetching ${logger.green(
