@@ -64,17 +64,17 @@ export default function BlogPostItemFooter(): ReactNode {
   else {
     return (
       <footer className="row docusaurus-mt-lg">
-        {tagsExists && (
-          <div className={clsx('col', {'col--9': truncatedPost})}>
-            <TagsListInline tags={tags} />
-          </div>
-        )}
         {truncatedPost && (
           <div
-            className={clsx('col text--right', {
+            className={clsx('col', {
               'col--3': tagsExists,
             })}>
             <ReadMoreLink blogPostTitle={title} to={metadata.permalink} />
+          </div>
+        )}
+        {tagsExists && (
+          <div className={clsx('col text--right', {'col--9': truncatedPost})}>
+            <TagsListInline tags={tags} />
           </div>
         )}
       </footer>
