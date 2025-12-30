@@ -21,6 +21,7 @@ export default function BlogPostItemFooterReadMoreLink(
   const {blogPostTitle, ...linkProps} = props;
   return (
     <Link
+      className={'button button--electron'}
       aria-label={translate(
         {
           message: 'Read more about {title}',
