@@ -253,11 +253,11 @@ It is very much appreciated.
 
 [dsanders11]: https://github.com/dsanders11
 [erickzhao]: https://github.com/erickzhao
-[js-proposed]: /assets/img/blog/api-history-js-proposed.png
-[js-revised]: /assets/img/blog/api-history-js-revised.png
-[prototype-closed-proposed]: /assets/img/blog/api-history-prototype-closed.png
-[prototype-open-proposed]: /assets/img/blog/api-history-prototype-open.png
-[open-implemented]: /assets/img/blog/api-history-open-implemented.png
+[js-proposed]: /static/assets/img/blog/api-history-js-proposed.png
+[js-revised]: /static/assets/img/blog/api-history-js-revised.png
+[prototype-closed-proposed]: /static/assets/img/blog/api-history-prototype-closed.png
+[prototype-open-proposed]: /static/assets/img/blog/api-history-prototype-open.png
+[open-implemented]: /static/assets/img/blog/api-history-open-implemented.png
 [electron]: https://github.com/electron/electron/pull/42982
 [website]: https://github.com/electron/website/pull/594
 [lint-roller]: https://github.com/electron/lint-roller/pull/73
