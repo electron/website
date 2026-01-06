@@ -55,7 +55,32 @@ const config: Config = {
     defaultLocale: 'en',
     locales: ['en', 'de', 'es', 'fr', 'ja', 'pt', 'ru', 'zh'],
     path: 'i18n',
-    localeConfigs: {},
+    // Due to a refactor in Docusaurus 3.9, the inferred localeDropdown baseURL paths
+    // get messed up because we build the `en` locale separately from the translated ones.
+    // This part of the config defines those manually.
+    localeConfigs: {
+      de: {
+        baseUrl: '/de/',
+      },
+      es: {
+        baseUrl: '/es/',
+      },
+      fr: {
+        baseUrl: '/fr/',
+      },
+      ja: {
+        baseUrl: '/ja/',
+      },
+      pt: {
+        baseUrl: '/pt/',
+      },
+      ru: {
+        baseUrl: '/ru/',
+      },
+      zh: {
+        baseUrl: '/zh/',
+      },
+    },
   },
   themeConfig: {
     colorMode: {
