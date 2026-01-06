@@ -75,7 +75,7 @@ async function getAllElectronVersions(): Promise<SemVer[]> {
     return _allElectronVersions;
   }
 
-  const { versions } = await ElectronVersions.create(undefined, {
+  const { versions } = await ElectronVersions.create({
     ignoreCache: true,
   });
 
