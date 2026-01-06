@@ -24,7 +24,7 @@ jobs:
         with:
           node-version: '22.13.0'
       - name: Restore previous run data
-        uses: dawidd6/action-download-artifact@4c1e823582f43b179e2cbb49c3eade4e41f992e2 # v10
+        uses: dawidd6/action-download-artifact@0bd50d53a6d7fb5cb921e607957e9cc12b4ce392 # v12
         with:
           name: resolved-pr-versions
           if_no_artifact_found: ignore
