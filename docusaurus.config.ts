@@ -245,7 +245,7 @@ const config: Config = {
         },
       ],
       copyright: `
-        <p>Copyright <a href="https://openjsf.org">OpenJS Foundation</a> and [project name] contributors. All rights reserved. 
+        <p>Copyright <a href="https://openjsf.org">OpenJS Foundation</a> and Electron contributors. All rights reserved. 
           The <a href="https://openjsf.org">OpenJS Foundation</a> has registered trademarks and uses trademarks.  
           For a list of trademarks of the <a href="https://openjsf.org">OpenJS Foundation</a>, please see our 
           <a href="https://trademark-policy.openjsf.org">Trademark Policy</a> and <a href="https://trademark-list.openjsf.org">Trademark List</a>.  
