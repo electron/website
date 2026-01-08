@@ -15,6 +15,7 @@ import apiOptionsClass from './src/transformers/api-options-class';
 import apiStructurePreviews from './src/transformers/api-structure-previews';
 import jsCodeBlocks from './src/transformers/js-code-blocks';
 import fiddleEmbedder from './src/transformers/fiddle-embedder';
+import githubContentsLinks from './src/transformers/github-content-links';
 import apiHistory from './src/transformers/api-history';
 
 let docsSHA = undefined;
@@ -298,6 +299,7 @@ const config: Config = {
             apiStructurePreviews,
             jsCodeBlocks,
             fiddleEmbedder,
+            githubContentsLinks,
             apiHistory,
             [npm2yarn, { sync: true, converters: ['yarn'] }],
           ],
