@@ -15,9 +15,9 @@ The Electron team is excited to announce the release of Electron 40.0.0! You can
 
 If you have any feedback, please share it with us on [Bluesky](https://bsky.app/profile/electronjs.org) or [Mastodon](https://social.lfx.dev/@electronjs), or join our community [Discord](https://discord.com/invite/electronjs)! Bugs and feature requests can be reported in Electron's [issue tracker](https://github.com/electron/electron/issues).
 
-## Notable Changes
+<!--truncate-->
 
-### Stack Changes
+## Stack Changes
 
 - Chromium `144.0.7559.31`
   - [New in 144](https://developer.chrome.com/blog/new-in-chrome-144/)
