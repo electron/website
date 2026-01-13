@@ -23,7 +23,7 @@ If you have any feedback, please share it with us on [Bluesky](https://bsky.app/
   - [New in 144](https://developer.chrome.com/blog/new-in-chrome-144/)
   - [New in 143](https://developer.chrome.com/blog/new-in-chrome-143/)
 
-* Node `v24.11.1`
+- Node `v24.11.1`
   - [Node 24.11.1 blog post](https://nodejs.org/en/blog/release/v24.11.1/)
 
 - V8 `14.4`
