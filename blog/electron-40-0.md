@@ -27,7 +27,7 @@ If you have any feedback, please share it with us on [Bluesky](https://bsky.app/
   - [Node 24.11.1 blog post](https://nodejs.org/en/blog/release/v24.11.1/)
 
 - V8 `14.4`
-  - [V8 roll increment]
+  - [V8 roll increment](https://chromium.googlesource.com/v8/v8.git/+/e4746e7564d601ae4dfb8355c0d7af00d1178694)
 
 Electron 40 upgrades Chromium from `142.0.7444.52` to `144.0.7559.31`, Node.js from `v22.20.0` to `v24.11.1`, and V8 from `14.2` to `14.4`.
 
