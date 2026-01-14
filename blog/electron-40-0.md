@@ -7,7 +7,7 @@ slug: electron-40-0
 tags: [release]
 ---
 
-Electron 40.0.0 has been released! It includes upgrades to Chromium 144.0.7559.31, V8 14.4, and Node 24.11.1.
+Electron 40.0.0 has been released! It includes upgrades to Chromium 144.0.7559.60, V8 14.4, and Node 24.11.1.
 
 ---
 
