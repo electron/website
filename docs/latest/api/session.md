@@ -73,7 +73,7 @@ The `session` module has the following properties:
 
 ### `session.defaultSession`
 
-A `Session` object, the default session object of the app.
+A `Session` object, the default session object of the app, available after `app.whenReady` is called.
 
 ## Class: Session
 
@@ -1519,7 +1519,7 @@ will not work on non-persistent (in-memory) sessions.
 * `options` Object (optional)
   * `allowFileAccess` boolean - Whether to allow the extension to read local files over `file://`
     protocol and inject content scripts into `file://` pages. This is required e.g. for loading
-    devtools extensions on `file://` URLs. Defaults to false.
+    DevTools extensions on `file://` URLs. Defaults to false.
 
 Returns `Promise<Extension>` - resolves when the extension is loaded.
 
@@ -1545,7 +1545,7 @@ const path = require('node:path')
 app.whenReady().then(async () => {
   await session.defaultSession.loadExtension(
     path.join(__dirname, 'react-devtools'),
-    // allowFileAccess is required to load the devtools extension on file:// URLs.
+    // allowFileAccess is required to load the DevTools extension on file:// URLs.
     { allowFileAccess: true }
   )
   // Note that in order to use the React DevTools extension, you'll need to

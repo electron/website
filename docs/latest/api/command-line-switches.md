@@ -200,6 +200,11 @@ Disables the Chromium [sandbox](https://www.chromium.org/developers/design-docum
 Forces renderer process and Chromium helper processes to run un-sandboxed.
 Should only be used for testing.
 
+### --no-stdio-init
+
+Disable stdio initialization during node initialization.
+Used to avoid node initialization crash when the nul device is disabled on Windows platform.
+
 ### --proxy-bypass-list=`hosts`
 
 Instructs Electron to bypass the proxy server for the given semi-colon-separated
@@ -315,7 +320,7 @@ By default inspector websocket url is available in stderr and under /json/list e
 
 ### `--experimental-network-inspection`
 
-Enable support for devtools network inspector events, for visibility into requests made by the nodejs `http` and `https` modules.
+Enable support for DevTools network inspector events, for visibility into requests made by the nodejs `http` and `https` modules.
 
 ### `--no-deprecation`
 
