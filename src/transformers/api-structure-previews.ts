@@ -24,6 +24,37 @@ const fileContent = new Map<
   { promise: Promise<Parent>; resolve?: (value: Parent) => void }
 >();
 
+// Tracks which files are waiting on which other files for cycle detection
+const waitingOn = new Map<string, Set<string>>();
+
+/**
+ * Detects if adding a dependency from `from` to `to` would create a cycle.
+ * Uses DFS to check if `to` transitively depends on `from`.
+ */
+function wouldCreateCycle(from: string, to: string): boolean {
+  const visited = new Set<string>();
+  const stack = [to];
+
+  while (stack.length > 0) {
+    const current = stack.pop();
+    if (current === from) {
+      return true;
+    }
+    if (visited.has(current)) {
+      continue;
+    }
+    visited.add(current);
+
+    const dependencies = waitingOn.get(current);
+    if (dependencies) {
+      for (const dep of dependencies) {
+        stack.push(dep);
+      }
+    }
+  }
+  return false;
+}
+
 const EXCLUDE_LIST = ['browser-window-options', 'web-preferences'];
 
 /**
@@ -40,6 +71,22 @@ export default function attacher() {
 async function transformer(tree: Parent, file: VFile) {
   const structureDefinitions = new Map<string, string>();
   const mutationPromises = new Set<Promise<void>>();
+
+  // Compute the current file's relative path for cycle detection
+  let currentFilePath: string | null = null;
+  if (file.path.includes('/api/structures/')) {
+    currentFilePath = `/${path.relative(file.cwd, file.path)}`;
+    const isTranslatedDoc = currentFilePath.startsWith('/i18n/');
+    if (isTranslatedDoc) {
+      const match = currentFilePath.match(
+        /\/i18n\/([a-z][a-z])\/docusaurus-plugin-content-docs\/current\/(.*)/,
+      );
+      if (match) {
+        const [, locale, docPath] = match;
+        currentFilePath = `/${locale}/docs/${docPath}`;
+      }
+    }
+  }
   /**
    * This function is the test function for the first pass of the tree visitor.
    * Any values returning 'true' will run {@link replaceLinkWithPreview}.
@@ -147,6 +194,22 @@ async function transformer(tree: Parent, file: VFile) {
     const { promise: targetStructure } = fileContent.get(relativeStructurePath);
 
     if (toString(node).length > 0) {
+      // Check for circular dependencies between structure files
+      if (currentFilePath) {
+        if (wouldCreateCycle(currentFilePath, relativeStructurePath)) {
+          logger.warn(
+            `Circular reference detected: ${currentFilePath} -> ${relativeStructurePath}. Skipping preview.`,
+          );
+          return;
+        }
+
+        // Track this dependency for cycle detection
+        if (!waitingOn.has(currentFilePath)) {
+          waitingOn.set(currentFilePath, new Set());
+        }
+        waitingOn.get(currentFilePath).add(relativeStructurePath);
+      }
+
       mutationPromises.add(
         targetStructure
           .then((structureContent) => {
@@ -257,6 +320,11 @@ async function transformer(tree: Parent, file: VFile) {
   visitParents(tree, checkLinksandDefinitions, replaceLinkWithPreview);
   visitParents(tree, isStructureLinkReference, replaceLinkWithPreview);
   await Promise.all(Array.from(mutationPromises));
+
+  // Clean up dependency tracking after processing is complete
+  if (currentFilePath) {
+    waitingOn.delete(currentFilePath);
+  }
 
   // After the entire tree for the current document is correctly
   // mutated, save the mutated tree into `fileContent`.
