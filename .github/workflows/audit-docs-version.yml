@@ -39,27 +39,28 @@ jobs:
 
             const versions = await ElectronVersions.create({ ignoreCache: true });
 
-            const { data } = await github.rest.repos.listCommits({
+            const { data: { published_at: publishedAt } } = await github.rest.repos.getReleaseByTag({
               owner: 'electron',
               repo: 'electron',
-              sha: `${versions.latestStable.major}-x-y`,
-              path: 'docs/',
-              per_page: 1
+              tag: `v${versions.latestStable.version}`,
             });
-            const commit = data[0];
 
-            const { date } = commit.commit.committer;
-            const delta = Date.now() - new Date(date).getTime();
+            const { data: commit } = await github.rest.repos.getCommit({
+              owner: 'electron',
+              repo: 'electron',
+              ref: `refs/tags/v${versions.latestStable.version}`,
+            });
 
-            // If the commit happened recently, wait a bit for the site
+            const delta = Date.now() - new Date(publishedAt).getTime();
+
+            // If the release was published recently, wait a bit for the site
             // to deploy before checking so we don't get a false positive
             if (delta < DELTA_THRESHOLD_MS) {
               await setTimeout(DELTA_THRESHOLD_MS - delta);
             }
 
             if (commit.sha !== latestDocsSHA) {
-              // A bug in `electron-website-updater` sometimes sends up new commits that
-              // touched any file with `docs` in the name, so allow commits to be newer
+              // Allow commits to be newer in case we want to deploy a docs hotfix
               const comparison = await github.rest.repos.compareCommitsWithBasehead({
                 owner: 'electron',
                 repo: 'electron',
