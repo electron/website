@@ -48,7 +48,7 @@ jobs:
             const { data: commit } = await github.rest.repos.getCommit({
               owner: 'electron',
               repo: 'electron',
-              ref: `tags/v${versions.latestStable.version}`,
+              ref: `refs/tags/v${versions.latestStable.version}`,
             });
 
             const delta = Date.now() - new Date(publishedAt).getTime();
