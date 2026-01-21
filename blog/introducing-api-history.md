@@ -253,11 +253,11 @@ It is very much appreciated.
 
 [dsanders11]: https://github.com/dsanders11
 [erickzhao]: https://github.com/erickzhao
-[js-proposed]: https://github.com/user-attachments/assets/3ec6c87b-1569-443b-8b63-eb20ee4fd96b
-[js-revised]: https://github.com/user-attachments/assets/321745a4-ad09-4717-94cc-7b3e08a85d3c
-[prototype-closed-proposed]: https://github.com/user-attachments/assets/a1c329d0-9f6b-4079-94d3-f9ff5b80c9ea
-[prototype-open-proposed]: https://github.com/user-attachments/assets/f1556d89-8fc8-485f-995c-1edaf8ee1413
-[open-implemented]: https://github.com/user-attachments/assets/a8ceb931-ac10-46bc-b747-bf8fd97c839f
+[js-proposed]: ../static/assets/img/blog/api-history-js-proposed.png
+[js-revised]: ../static/assets/img/blog/api-history-js-revised.png
+[prototype-closed-proposed]: ../static/assets/img/blog/api-history-prototype-closed.png
+[prototype-open-proposed]: ../static/assets/img/blog/api-history-prototype-open.png
+[open-implemented]: ../static/assets/img/blog/api-history-open-implemented.png
 [electron]: https://github.com/electron/electron/pull/42982
 [website]: https://github.com/electron/website/pull/594
 [lint-roller]: https://github.com/electron/lint-roller/pull/73
