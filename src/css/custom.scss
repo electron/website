@@ -323,3 +323,63 @@ html {
     }
   }
 }
+
+
+// Safe Blog List Customization
+.blog-list-page {
+  article footer.row {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  // "Read More" column (was text--right)
+  article footer.row .col.text--right {
+    text-align: left !important;
+    flex: 0 0 auto !important;
+    width: auto !important;
+  }
+
+  // Tags column (was col--9 and left-aligned)
+  article footer.row .col:not(.text--right) {
+    text-align: right !important;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex: 1 1 auto !important;
+  }
+
+  // Tags list reset
+  article footer.row .col:not(.text--right) ul {
+    margin-left: 0 !important;
+    margin-bottom: 0 !important;
+    padding-left: 0 !important;
+  }
+
+  // Button styling for "Read More"
+  article footer.row a[aria-label^="Read more"] {
+    appearance: none;
+    background-color: var(--ifm-color-primary);
+    border: 1px solid var(--ifm-color-primary);
+    border-radius: var(--ifm-button-border-radius, 0.4rem);
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 0.9rem;
+    font-weight: 700;
+    line-height: 1.5;
+    padding: 0.375rem 1.0rem;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+  }
+
+  article footer.row a[aria-label^="Read more"]:hover {
+    background-color: var(--ifm-color-primary-dark);
+    border-color: var(--ifm-color-primary-dark);
+    text-decoration: none;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+}
+
