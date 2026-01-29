@@ -38,20 +38,25 @@ jobs:
       - name: Install dependencies
         run: yarn install --immutable
       - name: Prebuild
+        id: prebuild
         run: |
           yarn pre-build ${SHA}
           git add .
           if [ "$(git status --porcelain | grep -v 'docs/latest/.sha')" = "" ]; then
-            echo "Unexpectedly found no new content for docs - this is probably a bug"
-            exit 1
+            echo "::warning:: Unexpectedly found no new content for docs - this might be a bug"
+            echo "changes=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changes=true" >> "$GITHUB_OUTPUT"
           fi
       - name: Push changes to branch
+        if: ${{ steps.prebuild.outputs.changes }}
         uses: dsanders11/github-app-commit-action@43de6da2f4d927e997c0784c7a0b61bd19ad6aac # v1.5.0
         with:
           message: 'chore: update ref to docs (🤖)'
           ref: 'docs/update-to-${{ env.SHA }}'
           token: ${{ steps.generate-token.outputs.token }}
       - name: Create pull request
+        if: ${{ steps.prebuild.outputs.changes }}
         shell: bash
         env:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
@@ -62,12 +67,14 @@ jobs:
             --head "docs/update-to-${SHA}" \
             --base main
       - name: Get GitHub App token (approver app)
+        if: ${{ steps.prebuild.outputs.changes }}
         id: secret-service
         uses: electron/secret-service-action@3476425e8b30555aac15b1b7096938e254b0e155 # v1.0.0
       - name: Approve and merge pull request
+        if: ${{ steps.prebuild.outputs.changes }}
         shell: bash
         env:
-          GITHUB_TOKEN: ${{ fromJSON(steps.secret-service.outputs.secrets).PR_APPROVER_GH_TOKEN }}
+          GITHUB_TOKEN: ${{ fromJSON(steps.secret-service.outputs.secrets || '{}').PR_APPROVER_GH_TOKEN }}
         run: |
           set -eo pipefail
           gh pr review "docs/update-to-${SHA}" --approve
