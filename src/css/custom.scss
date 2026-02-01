@@ -208,11 +208,8 @@ html {
   body:not(.navigation-with-keyboard) &--outline:focus {
     outline: 1px solid;
     color: var(--ifm-color-primary);
-    &:hover {
+    &:hover, &:focus-visible {
       color: var(--ifm-color-primary-dark);
-    }
-    &:focus-visible {
-      outline: 1.5px solid;
     }
   }
 
