@@ -18,11 +18,11 @@ async function fetchData(): Promise<WorkingGroup[]> {
     'api',
     'community-safety',
     'ecosystem',
+    'infra',
     'outreach',
     'releases',
     'security',
     'upgrades',
-    'infra',
   ];
 
   const groups = await Promise.all(groupNames.map(getWGInfo));
