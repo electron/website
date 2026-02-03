@@ -18,6 +18,7 @@ async function fetchData(): Promise<WorkingGroup[]> {
     'api',
     'community-safety',
     'ecosystem',
+    'infra',
     'outreach',
     'releases',
     'security',
