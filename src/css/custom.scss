@@ -210,7 +210,8 @@ html {
   body:not(.navigation-with-keyboard) &--outline:focus {
     outline: 1px solid;
     color: var(--ifm-color-primary);
-    &:hover, &:focus-visible {
+    &:hover,
+    &:focus-visible {
       color: var(--ifm-color-primary-dark);
     }
   }
