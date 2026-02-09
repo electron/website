@@ -221,63 +221,53 @@ export default function Home() {
               list={[
                 {
                   name: 'React',
-                  image:
-                    'https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg',
+                  image: '/assets/technologies/react.svg',
                 },
                 {
                   name: 'Vue.js',
-                  image:
-                    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg',
+                  image: '/assets/technologies/vue.svg',
                 },
                 {
                   name: 'Next.js',
-                  image:
-                    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg',
+                  image: '/assets/technologies/nextjs.svg',
                   isMonochrome: true,
                 },
                 {
                   name: 'Tailwind CSS',
-                  image:
-                    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg',
+                  image: '/assets/technologies/tailwind.svg',
                 },
                 {
                   name: 'Bootstrap',
-                  image:
-                    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg',
+                  image: '/assets/technologies/bootstrap.svg',
                 },
                 {
                   name: 'Three.js',
-                  image:
-                    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/threejs/threejs-original.svg',
+                  image: '/assets/technologies/threejs.svg',
                   isMonochrome: true,
                 },
                 {
                   name: 'Angular',
-                  image:
-                    'https://angular.io/assets/images/logos/angular/angular.png',
+                  image: '/assets/technologies/angular.png',
                 },
                 {
                   name: 'TypeScript',
-                  image:
-                    'https://upload.wikimedia.org/wikipedia/commons/4/4c/Typescript_logo_2020.svg',
+                  image: '/assets/technologies/typescript.svg',
                 },
                 {
                   name: 'webpack',
-                  image:
-                    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/webpack/webpack-original.svg',
+                  image: '/assets/technologies/webpack.svg',
                 },
                 {
                   name: 'Playwright',
-                  image: 'https://playwright.dev/img/playwright-logo.svg',
+                  image: '/assets/technologies/playwright.svg',
                 },
                 {
                   name: 'Testing Library',
-                  image: 'https://testing-library.com/img/octopus-64x64.png',
+                  image: '/assets/technologies/testing-library.png',
                 },
                 {
                   name: 'Sass',
-                  image:
-                    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sass/sass-original.svg',
+                  image: '/assets/technologies/sass.svg',
                 },
               ]}
             />
