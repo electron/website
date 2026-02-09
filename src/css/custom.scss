@@ -203,8 +203,10 @@ html {
 .button {
   &--outline,
   // Docusaurus adds its own focus styles which we need to
-  // override here to avoid losing the outline.
+  // override here to avoid losing the outline. This can be
+  // removed when we pick up the upstream fix in Docusaurus.
   // ref: https://github.com/electron/website/issues/1001
+  // ref: https://github.com/facebook/docusaurus/pull/11713
   body:not(.navigation-with-keyboard) &--outline:focus {
     outline: 1px solid;
     color: var(--ifm-color-primary);
