@@ -287,6 +287,7 @@ module.exports = {
         'latest/api/safe-storage',
         'latest/api/screen',
         'latest/api/session',
+        'latest/api/shared-texture',
         'latest/api/share-menu',
         'latest/api/shell',
         'latest/api/system-preferences',
