@@ -56,7 +56,9 @@ function isApiHistory(value: unknown): value is ApiHistory {
   );
 }
 
-export default function attacher() {
+export default async function attacher() {
+  // Fetch and cache Electron versions before starting plugin
+  await getAllElectronVersions();
   return transformer;
 }
 
