@@ -30,6 +30,7 @@ jobs:
           creds: ${{ secrets.DOCS_UPDATER_GH_APP_CREDS }}
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # tag: v6.0.2
         with:
+          persist-credentials: false
           token: ${{ steps.generate-token.outputs.token }}
       - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # tag: v6.2.0
         with:
