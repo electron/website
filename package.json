@@ -37,7 +37,7 @@
     "@electron/fiddle-core": "^2.0.1",
     "@mdx-js/react": "^3.0.0",
     "adm-zip": "^0.5.14",
-    "ajv": "^8.16.0",
+    "ajv": "^8.18.0",
     "clsx": "^1.1.1",
     "docusaurus-plugin-sass": "^0.2.1",
     "lucide-react": "^0.511.0",
