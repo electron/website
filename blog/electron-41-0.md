@@ -36,23 +36,23 @@ Electron 41 upgrades Chromium from `144.0.7559.60` to `146.0.7680.31`, Node.js f
 
 ### New Features and Improvements
 
-* Added --disable-geolocation command-line flag for macOS apps to disable location services. [#45934](https://github.com/electron/electron/pull/45934)
-* Added NV12 support for import shared texture. [#48922](https://github.com/electron/electron/pull/48922) <sup>(Also in [40](https://github.com/electron/electron/pull/49040))</sup>
-* Added a `disclaim` option to the UtilityProcess API to allow for TCC disclaiming on macOS. [#49693](https://github.com/electron/electron/pull/49693) <sup>(Also in [39](https://github.com/electron/electron/pull/49696), [40](https://github.com/electron/electron/pull/49695))</sup>
-* Added a `reason` property to the Notification 'closed' event on Windows to allow developers to know the reason the Notification was dismissed. [#50029](https://github.com/electron/electron/pull/50029) <sup>(Also in [40](https://github.com/electron/electron/pull/50030))</sup>
-* Added additional defence against privileged user modifications to ASAR Integrity protected applications on macOS. [#48587](https://github.com/electron/electron/pull/48587)
-* Added an `usePrinterDefaultPageSize` option to `webContents.print()` to allow using the printer's default page size. [#49812](https://github.com/electron/electron/pull/49812)
-* Added bypassCustomProtocolHandlers option to net.request. [#47331](https://github.com/electron/electron/pull/47331) <sup>(Also in [38](https://github.com/electron/electron/pull/48881), [39](https://github.com/electron/electron/pull/48882), [40](https://github.com/electron/electron/pull/48883))</sup>
-* Added support for MSIX auto-updating. [#49586](https://github.com/electron/electron/pull/49586) <sup>(Also in [39](https://github.com/electron/electron/pull/49585), [40](https://github.com/electron/electron/pull/49587))</sup>
-* Added support for WebSocket authentication through the `login` event on `webContents`. [#48512](https://github.com/electron/electron/pull/48512) <sup>(Also in [39](https://github.com/electron/electron/pull/49065), [40](https://github.com/electron/electron/pull/49064))</sup>
-* Added support for `--experimental-transform-types`. [#49882](https://github.com/electron/electron/pull/49882) <sup>(Also in [39](https://github.com/electron/electron/pull/49881), [40](https://github.com/electron/electron/pull/49883))</sup>
-* Added support for `long-animation-frame` script attribution (via `--enable-features=AlwaysLogLOAFURL`). [#49773](https://github.com/electron/electron/pull/49773) <sup>(Also in [39](https://github.com/electron/electron/pull/49771), [40](https://github.com/electron/electron/pull/49772))</sup>
-* Added support to import external shared texture as VideoFrame. [#47317](https://github.com/electron/electron/pull/47317) <sup>(Also in [40](https://github.com/electron/electron/pull/48831))</sup>
-* Added the ability to disable auto-focusing of WebContents on navigation using `webPreferences.focusOnNavigation`. [#49511](https://github.com/electron/electron/pull/49511) <sup>(Also in [40](https://github.com/electron/electron/pull/49512))</sup>
-* DevTools errors are no longer printed to console. [#49292](https://github.com/electron/electron/pull/49292) <sup>(Also in [40](https://github.com/electron/electron/pull/49359))</sup>
-* Enable wasm trap handlers behind `WasmTrapHandlers` [fuse](https://www.electronjs.org/docs/latest/tutorial/fuses). [#49839](https://github.com/electron/electron/pull/49839)
-* Extended actions support for Windows notifications to include buttons, select dropdowns, and replies. [#49787](https://github.com/electron/electron/pull/49787) <sup>(Also in [40](https://github.com/electron/electron/pull/49786))</sup>
-* On Wayland (Linux), frameless windows now have GTK drop shadows and extended resize boundaries. To create fully frameless windows with no decorations, set `hasShadow: false` in the window constructor. [#49885](https://github.com/electron/electron/pull/49885)
+- Added --disable-geolocation command-line flag for macOS apps to disable location services. [#45934](https://github.com/electron/electron/pull/45934)
+- Added NV12 support for import shared texture. [#48922](https://github.com/electron/electron/pull/48922) <sup>(Also in [40](https://github.com/electron/electron/pull/49040))</sup>
+- Added a `disclaim` option to the UtilityProcess API to allow for TCC disclaiming on macOS. [#49693](https://github.com/electron/electron/pull/49693) <sup>(Also in [39](https://github.com/electron/electron/pull/49696), [40](https://github.com/electron/electron/pull/49695))</sup>
+- Added a `reason` property to the Notification 'closed' event on Windows to allow developers to know the reason the Notification was dismissed. [#50029](https://github.com/electron/electron/pull/50029) <sup>(Also in [40](https://github.com/electron/electron/pull/50030))</sup>
+- Added additional defence against privileged user modifications to ASAR Integrity protected applications on macOS. [#48587](https://github.com/electron/electron/pull/48587)
+- Added an `usePrinterDefaultPageSize` option to `webContents.print()` to allow using the printer's default page size. [#49812](https://github.com/electron/electron/pull/49812)
+- Added bypassCustomProtocolHandlers option to net.request. [#47331](https://github.com/electron/electron/pull/47331) <sup>(Also in [38](https://github.com/electron/electron/pull/48881), [39](https://github.com/electron/electron/pull/48882), [40](https://github.com/electron/electron/pull/48883))</sup>
+- Added support for MSIX auto-updating. [#49586](https://github.com/electron/electron/pull/49586) <sup>(Also in [39](https://github.com/electron/electron/pull/49585), [40](https://github.com/electron/electron/pull/49587))</sup>
+- Added support for WebSocket authentication through the `login` event on `webContents`. [#48512](https://github.com/electron/electron/pull/48512) <sup>(Also in [39](https://github.com/electron/electron/pull/49065), [40](https://github.com/electron/electron/pull/49064))</sup>
+- Added support for `--experimental-transform-types`. [#49882](https://github.com/electron/electron/pull/49882) <sup>(Also in [39](https://github.com/electron/electron/pull/49881), [40](https://github.com/electron/electron/pull/49883))</sup>
+- Added support for `long-animation-frame` script attribution (via `--enable-features=AlwaysLogLOAFURL`). [#49773](https://github.com/electron/electron/pull/49773) <sup>(Also in [39](https://github.com/electron/electron/pull/49771), [40](https://github.com/electron/electron/pull/49772))</sup>
+- Added support to import external shared texture as VideoFrame. [#47317](https://github.com/electron/electron/pull/47317) <sup>(Also in [40](https://github.com/electron/electron/pull/48831))</sup>
+- Added the ability to disable auto-focusing of WebContents on navigation using `webPreferences.focusOnNavigation`. [#49511](https://github.com/electron/electron/pull/49511) <sup>(Also in [40](https://github.com/electron/electron/pull/49512))</sup>
+- DevTools errors are no longer printed to console. [#49292](https://github.com/electron/electron/pull/49292) <sup>(Also in [40](https://github.com/electron/electron/pull/49359))</sup>
+- Enable wasm trap handlers behind `WasmTrapHandlers` [fuse](https://www.electronjs.org/docs/latest/tutorial/fuses). [#49839](https://github.com/electron/electron/pull/49839)
+- Extended actions support for Windows notifications to include buttons, select dropdowns, and replies. [#49787](https://github.com/electron/electron/pull/49787) <sup>(Also in [40](https://github.com/electron/electron/pull/49786))</sup>
+- On Wayland (Linux), frameless windows now have GTK drop shadows and extended resize boundaries. To create fully frameless windows with no decorations, set `hasShadow: false` in the window constructor. [#49885](https://github.com/electron/electron/pull/49885)
 
 ### Breaking Changes
 
