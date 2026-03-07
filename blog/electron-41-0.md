@@ -27,7 +27,7 @@ To enable the feature for your app, you can run the following command:
 asar integrity-digest on /path/to/YourApp.app
 ```
 
-You ***must*** re-sign your app afterwards. For more information, see [the `asar` CLI documentation.](https://github.com/electron/asar/blob/v4.1.0/README.md#integrity-digest)
+You ***must*** re-sign your app afterwards. For more information, see [the `@electron/asar` CLI documentation.](https://github.com/electron/asar/blob/v4.1.0/README.md#integrity-digest)
 
 Support for this feature in [Electron Forge](https://github.com/electron) is planned for the near future. [#4159](https://github.com/electron/forge/pull/4159)  
 
