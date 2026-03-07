@@ -21,7 +21,7 @@ If you have any feedback, please share it with us on [Bluesky](https://bsky.app/
 
 As of Electron 41, macOS Electron apps can now embed a digest of their ASAR Integrity information. This adds an additional layer of tamper detection for apps that use ASAR Integrity by validating the integrity information itself at app launch.
 
-To enable the feature for your app, you can run the following command:
+To enable the feature for your app, you can run the following command with `@electron/asar` v4.1.0 and above:
 
 ```bash
 asar integrity-digest on /path/to/YourApp.app
