@@ -15,6 +15,22 @@ The Electron team is excited to announce the release of Electron 41.0.0! You can
 
 If you have any feedback, please share it with us on [Bluesky](https://bsky.app/profile/electronjs.org) or [Mastodon](https://social.lfx.dev/@electronjs), or join our community [Discord](https://discord.com/invite/electronjs)! Bugs and feature requests can be reported in Electron's [issue tracker](https://github.com/electron/electron/issues).
 
+## Notable Changes
+
+### ASAR Integrity digest for improved security
+
+As of Electron 41, macOS Electron apps can now embed a digest of their [ASAR Integrity](https://www.electronjs.org/docs/latest/tutorial/asar-integrity) information. This adds an additional layer of tamper detection for apps that use ASAR Integrity by validating the integrity information itself at app launch.
+
+To enable the feature for your app, you can run the following command with `@electron/asar` v4.1.0 and above:
+
+```bash
+asar integrity-digest on /path/to/YourApp.app
+```
+
+You ***must*** re-sign your app afterwards. For more information, see [the `@electron/asar` CLI documentation.](https://github.com/electron/asar/blob/v4.1.0/README.md#integrity-digest)
+
+Support for this feature in [Electron Forge](https://electronforge.io) is planned for the near future ([electron/forge#4159](https://github.com/electron/forge/pull/4159)).
+
 <!--truncate-->
 
 ## Stack Changes
