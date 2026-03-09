@@ -7,7 +7,7 @@ slug: electron-41-0
 tags: [release]
 ---
 
-Electron 41.0.0 has been released! It includes upgrades to Chromium 146.0.7680.31, V8 14.6, and Node v24.14.0.
+Electron 41.0.0 has been released! It includes upgrades to Chromium 146.0.7680.65, V8 14.6, and Node v24.14.0.
 
 ---
 
@@ -35,7 +35,7 @@ Support for this feature in [Electron Forge](https://electronforge.io) is planne
 
 ## Stack Changes
 
-- Chromium `147.0.7714.0`
+- Chromium `146.0.7680.65`
   - [New in 146](https://developer.chrome.com/blog/new-in-chrome-146/)
   - [New in 145](https://developer.chrome.com/blog/new-in-chrome-145/)
 
@@ -48,7 +48,7 @@ Support for this feature in [Electron Forge](https://electronforge.io) is planne
 - V8 `14.4`
   - [V8 roll increment](https://chromium.googlesource.com/v8/v8.git/+/3f4b2d428486d982bf51d7c0487adcd9f73f5fd8)
 
-Electron 41 upgrades Chromium from `144.0.7559.60` to `146.0.7680.31`, Node.js from `v24.11.1` to `v24.14.0`, and V8 from `14.4` to `14.6`.
+Electron 41 upgrades Chromium from `144.0.7559.60` to `146.0.7680.65`, Node.js from `v24.11.1` to `v24.14.0`, and V8 from `14.4` to `14.6`.
 
 ### New Features and Improvements
 
