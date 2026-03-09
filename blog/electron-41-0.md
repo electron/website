@@ -68,7 +68,7 @@ Electron 41 upgrades Chromium from `144.0.7559.60` to `146.0.7680.31`, Node.js f
 - DevTools errors are no longer printed to console. [#49292](https://github.com/electron/electron/pull/49292) <sup>(Also in [40](https://github.com/electron/electron/pull/49359))</sup>
 - Enable wasm trap handlers behind `WasmTrapHandlers` [fuse](https://www.electronjs.org/docs/latest/tutorial/fuses). [#49839](https://github.com/electron/electron/pull/49839)
 - Extended actions support for Windows notifications to include buttons, select dropdowns, and replies. [#49787](https://github.com/electron/electron/pull/49787) <sup>(Also in [40](https://github.com/electron/electron/pull/49786))</sup>
-- On Wayland (Linux), frameless windows now have GTK drop shadows and extended resize boundaries. To create fully frameless windows with no decorations, set `hasShadow: false` in the window constructor. [#49885](https://github.com/electron/electron/pull/49885)
+- On Wayland (Linux), frameless windows now have drop shadows and extended resize boundaries. To create fully frameless windows with no decorations, set `hasShadow: false` in the window constructor. [#49885](https://github.com/electron/electron/pull/49885)
 
 ### Breaking Changes
 
