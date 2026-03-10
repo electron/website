@@ -50,7 +50,7 @@ Support for this feature in [Electron Forge](https://electronforge.io) is planne
 
 Electron 41 upgrades Chromium from `144.0.7559.60` to `146.0.7680.65`, Node.js from `v24.11.1` to `v24.14.0`, and V8 from `14.4` to `14.6`.
 
-### New Features and Improvements
+## New Features and Improvements
 
 - Added `--disable-geolocation` command-line flag for macOS apps to disable location services. [#45934](https://github.com/electron/electron/pull/45934)
 - Added NV12 support for import shared texture. [#48922](https://github.com/electron/electron/pull/48922) <sup>(Also in [40](https://github.com/electron/electron/pull/49040))</sup>
