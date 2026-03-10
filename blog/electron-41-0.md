@@ -37,6 +37,12 @@ On Wayland (Linux), frameless windows now have drop shadows and extended resize 
 
 Mitchell Cohen is writing on a blog article about recent work to improve Electron's support of Wayland and CSD on Linux. Watch this space!
 
+### Added support for MSIX auto-updating.
+
+The Electron team recently added MSIX auto-updated support according to https://github.com/electron/rfcs/pull/21. The new updater module supports auto-updating via Mac.Squirrel [JSON server format](https://github.com/Squirrel/Squirrel.Mac?tab=readme-ov-file#update-server-json-format) and [static update file format](https://github.com/Squirrel/Squirrel.Mac?tab=readme-ov-file#update-file-json-format).
+
+This was added in Electron 41 by [#49586](https://github.com/electron/electron/pull/49586) and has also been backported to Electron [39](https://github.com/electron/electron/pull/49585) and [40](https://github.com/electron/electron/pull/49587).
+
 <!--truncate-->
 
 ## Stack Changes
@@ -65,7 +71,6 @@ Electron 41 upgrades Chromium from `144.0.7559.60` to `146.0.7680.65`, Node.js f
 - Added additional defence against privileged user modifications to ASAR Integrity protected applications on macOS. [#48587](https://github.com/electron/electron/pull/48587)
 - Added an `usePrinterDefaultPageSize` option to `webContents.print()` to allow using the printer's default page size. [#49812](https://github.com/electron/electron/pull/49812)
 - Added `bypassCustomProtocolHandlers` option to `net.request`. [#47331](https://github.com/electron/electron/pull/47331) <sup>(Also in [38](https://github.com/electron/electron/pull/48881), [39](https://github.com/electron/electron/pull/48882), [40](https://github.com/electron/electron/pull/48883))</sup>
-- Added support for MSIX auto-updating. [#49586](https://github.com/electron/electron/pull/49586) <sup>(Also in [39](https://github.com/electron/electron/pull/49585), [40](https://github.com/electron/electron/pull/49587))</sup>
 - Added support for WebSocket authentication through the `login` event on `webContents`. [#48512](https://github.com/electron/electron/pull/48512) <sup>(Also in [39](https://github.com/electron/electron/pull/49065), [40](https://github.com/electron/electron/pull/49064))</sup>
 - Added support for the Node.js [`--experimental-transform-types`](https://nodejs.org/docs/latest-v22.x/api/cli.html#--experimental-transform-types) flag. [#49882](https://github.com/electron/electron/pull/49882) <sup>(Also in [39](https://github.com/electron/electron/pull/49881), [40](https://github.com/electron/electron/pull/49883))</sup>
 - Added support for `long-animation-frame` script attribution (via `--enable-features=AlwaysLogLOAFURL`). [#49773](https://github.com/electron/electron/pull/49773) <sup>(Also in [39](https://github.com/electron/electron/pull/49771), [40](https://github.com/electron/electron/pull/49772))</sup>
