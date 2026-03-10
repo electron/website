@@ -3,6 +3,9 @@ title: Electron 41.0.0
 date: 2026-03-10T00:00:00.000Z
 authors:
   - ckerr
+  - name: nmggithub
+    url: https://github.com/nmggithub
+    image_url: https://github.com/nmggithub.png?size=96
 slug: electron-41-0
 tags: [release]
 ---
