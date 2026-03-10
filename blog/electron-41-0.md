@@ -27,9 +27,15 @@ To enable the feature for your app, you can run the following command with `@ele
 asar integrity-digest on /path/to/YourApp.app
 ```
 
-You ***must*** re-sign your app afterwards. For more information, see [the `@electron/asar` CLI documentation.](https://github.com/electron/asar/blob/v4.1.0/README.md#integrity-digest)
+You **_must_** re-sign your app afterwards. For more information, see [the `@electron/asar` CLI documentation.](https://github.com/electron/asar/blob/v4.1.0/README.md#integrity-digest)
 
 Support for this feature in [Electron Forge](https://electronforge.io) is planned for the near future ([electron/forge#4159](https://github.com/electron/forge/pull/4159)).
+
+### Improved Wayland Support
+
+On Wayland (Linux), frameless windows now have drop shadows and extended resize boundaries. To create fully frameless windows with no decorations, set `hasShadow: false` in the window constructor. [#49885](https://github.com/electron/electron/pull/49885)
+
+Mitchell Cohen is writing on a blog article about recent work to improve Electron's support of Wayland and CSD on Linux. Watch this space!
 
 <!--truncate-->
 
@@ -68,7 +74,6 @@ Electron 41 upgrades Chromium from `144.0.7559.60` to `146.0.7680.65`, Node.js f
 - Irrelevant errors from the Chromium DevTools frontend are now silenced in the main process. [#49292](https://github.com/electron/electron/pull/49292) <sup>(Also in [40](https://github.com/electron/electron/pull/49359))</sup>
 - Enable V8 trap handlers for WASM behind `WasmTrapHandlers` [fuse](https://www.electronjs.org/docs/latest/tutorial/fuses). [#49839](https://github.com/electron/electron/pull/49839)
 - Extended actions support for Windows notifications to include buttons, select dropdowns, and replies. [#49787](https://github.com/electron/electron/pull/49787) <sup>(Also in [40](https://github.com/electron/electron/pull/49786))</sup>
-- On Wayland (Linux), frameless windows now have drop shadows and extended resize boundaries. To create fully frameless windows with no decorations, set `hasShadow: false` in the window constructor. [#49885](https://github.com/electron/electron/pull/49885)
 
 ### Breaking Changes
 
