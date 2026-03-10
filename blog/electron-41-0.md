@@ -52,7 +52,7 @@ Electron 41 upgrades Chromium from `144.0.7559.60` to `146.0.7680.65`, Node.js f
 
 ### New Features and Improvements
 
-- Added --disable-geolocation command-line flag for macOS apps to disable location services. [#45934](https://github.com/electron/electron/pull/45934)
+- Added `--disable-geolocation` command-line flag for macOS apps to disable location services. [#45934](https://github.com/electron/electron/pull/45934)
 - Added NV12 support for import shared texture. [#48922](https://github.com/electron/electron/pull/48922) <sup>(Also in [40](https://github.com/electron/electron/pull/49040))</sup>
 - Added a `disclaim` option to the UtilityProcess API to allow for TCC disclaiming on macOS. [#49693](https://github.com/electron/electron/pull/49693) <sup>(Also in [39](https://github.com/electron/electron/pull/49696), [40](https://github.com/electron/electron/pull/49695))</sup>
 - Added a `reason` property to the Notification 'closed' event on Windows to allow developers to know the reason the Notification was dismissed. [#50029](https://github.com/electron/electron/pull/50029) <sup>(Also in [40](https://github.com/electron/electron/pull/50030))</sup>
