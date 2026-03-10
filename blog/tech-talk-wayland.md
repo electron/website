@@ -1,6 +1,6 @@
 ---
 title: 'Tech Talk: How Electron went Wayland-native (and how it affects your apps)'
-date: 2026-03-10T00:00:00.000Z
+date: 2026-03-11T00:00:00.000Z
 authors:
   - name: mitchchn
     url: 'https://github.com/mitchchn'
@@ -97,6 +97,8 @@ Effectively, CSD makes it so that the “real” window (represented internally 
 All this complexity needs to be managed throughout the window lifecycle and across state changes. It also needs to be abstracted from other parts of the Electron API and app developers, who are generally not thinking about the extents of invisible resize targets when they set their app's dimensions.
 
 The good news: much of this was sorted out between last September and March, and as a result, Electron 41 supports CSD on Wayland in all window configurations, including frameless windows with [Window Controls Overlay](https://www.electronjs.org/docs/latest/api/structures/base-window-options).
+
+![Screenshot of VS Code using a prerelease version of Electron 41.x with CSD shadows.](/assets/img/blog/tech-talk-wayland/vscodecsd.png)
 
 ## What’s next
 
