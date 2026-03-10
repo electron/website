@@ -13,7 +13,7 @@ _Tech talks are a new blog post series where we share glimpses into our work on 
 
 When Electron switched to the [Wayland](https://wayland.freedesktop.org/) display protocol last fall, most people didn't even notice.
 
-That's likely a good thing. Wayland is the modern successor to the X11 framework, which Linux has used to display graphical interfaces for decades. Major Linux distributions have already adopted Wayland for their default desktop sessions, and both the KDE Plasma and GNOME desktop environments are in the process of [dropping X11 support](https://blogs.kde.org/2025/11/26/going-all-in-on-a-wayland-future/) [completely](https://www.phoronix.com/news/GNOME-50-Alpha/).
+That's likely a good thing. Major Linux distributions have already adopted Wayland for their default graphical sessions, and both the KDE Plasma and GNOME desktop environments are in the process of [dropping X11 support](https://blogs.kde.org/2025/11/26/going-all-in-on-a-wayland-future/) [completely](https://www.phoronix.com/news/GNOME-50-Alpha/).
 
 But a platform migration isn't complete without apps, and the Linux app ecosystem went through a rapid Wayland transition last August after Chromium [turned on Wayland support by default](https://chromium-review.googlesource.com/c/chromium/src/+/6819616). That move brought along the Electron framework and dozens of Linux desktop apps built on top of it.
 
@@ -43,11 +43,13 @@ Supporting Wayland required [dozens of changes](https://github.com/electron/elec
 
 Wayland’s answer to these questions is essentially “no.” When you open a window on Wayland, the compositor — not the app developer — decides where it goes. Apps can't change their size, position, or focus without user input, and they can only interact with the rest of the desktop through optional [protocol extensions](https://wayland.app/protocols/) and [XDG portals](https://flatpak.github.io/xdg-desktop-portal/).
 
-In practice, apps are more restricted on Wayland than they are on X11 or Xwayland. The exact outcomes depend on the compositor. On KDE (KWin), for example, an app that tries to focus one of its windows will flash its icon in the panel instead.
+These rules are understandable; no one likes it when misbehaving apps steal focus or draw halfway off the screen. But for a cross-platform framework like Electron, Wayland's design philosophy makes it harder for developers to achieve consistency.
+
+In practice, Electron apps have more restrictions on Wayland than they do on X11 and other platforms. Some widely used APIs, like [`BrowserWindow.setPosition(x, y)`](https://www.electronjs.org/docs/latest/api/base-window#winsetpositionx-y-animate), simply don't work on Wayland.
+
+Exact outcomes can vary by compositor. On KDE (KWin), for example, an app that tries to focus one of its windows with [`BrowserWindow.focus()`](https://www.electronjs.org/docs/latest/api/browser-window#winfocus) will flash its icon in the panel instead.
 
 ![Screenshot of Slack flashing its app icon in the panel on KDE instead of receiving focus](/assets/img/blog/tech-talk-wayland/focus.png)
-
-These rules are understandable; no one likes it when misbehaving apps steal focus or draw halfway off the screen. But for a cross-platform framework like Electron, Wayland's design philosophy makes it harder for developers to achieve consistency. Some widely used APIs, like [`BrowserWindow.setPosition(x, y)`](https://www.electronjs.org/docs/latest/api/base-window#winsetpositionx-y-animate), simply don't work on Wayland. Others, like [`BrowserWindow.focus()`](https://www.electronjs.org/docs/latest/api/browser-window#winfocus), have different effects, as shown above.
 
 On the other hand, some capabilities work better on Wayland, especially around colors, transparency, and hardware-accelerated rendering. APIs like [`setOpacity(n)`](https://www.electronjs.org/docs/latest/api/base-window#winsetopacityopacity-windows-macos) do not currently work on Linux, but they are now more feasible to support.
 
@@ -59,9 +61,9 @@ The Wayland protocol is very lightweight, and its simplicity extends to the way 
 
 ![Screenshot of a blank app window on Wayland with no decorations. It's just a white rectangle.](/assets/img/blog/tech-talk-wayland/waylandnocsd.png)
 
-That rectangle is a powerful canvas. On a modern compositor like GNOME’s Mutter, it’s triple-buffered and GPU-accelerated. But if you want any of the trimmings that users might expect on their windows — title bar buttons, drop shadows, even resize handles —  you have to add them all yourself. This requirement is called client-side decorations (CSD), and it’s one of the major differences between X11 and Wayland.
+That rectangle is a powerful canvas. On a modern compositor like GNOME’s Mutter, it’s triple-buffered and GPU-accelerated. But if you want any of the trimmings that users might expect on their windows — title bar buttons, drop shadows, even resize handles —  you have to add them all yourself. This requirement is called client-side decorations (CSD), and it’s one of the major differences between X11 and Wayland.
 
-Electron already had some support for client-side decorations, provided by a class called `ClientFrameViewLinux` which uses GTK to paint convincing native window frames entirely in-framework. This class was put to the test by many more developers and users when Electron flipped the switch in September.
+Electron already had some support for client-side decorations, provided by a class called `ClientFrameViewLinux` which uses GTK to paint convincing native window frames. While these look very similar to the ones GNOME used to provide on X11, they are produced entirely in-framework.
 
 ![Screenshot of a ClientFrameViewLinux with client-side decorations on GNOME](/assets/img/blog/tech-talk-wayland/clientframeviewlinux.png)
 
@@ -69,7 +71,9 @@ Electron's client-side window frames are "native" in the sense that they use GTK
 
 ![Screenshot of four apps with CSD from different frameworks (clockwise from top-left: Adwaita, Qt, Electron, and Firefox)](/assets/img/blog/tech-talk-wayland/csdcomparison.png)
 
-The differences are usually minor, but when CSD is completely absent from a window, the result can be visually jarring. Many popular Electron apps, including VS Code, Obsidian, and Discord, use [frameless windows](https://www.electronjs.org/docs/latest/tutorial/custom-window-styles) with [custom title bars](https://www.electronjs.org/docs/latest/tutorial/custom-title-bar). Prior to [Electron 41](https://www.electronjs.org/blog/electron-41-0), frameless windows did not support CSD at all. Even if these apps did not need full GTK title bars, they still required the framework to provide CSD to avoid looking like flat, shadowless rectangles on Wayland.
+The differences are usually minor, but when CSD is completely absent from a window, the result can be visually jarring.
+
+Many popular Electron apps, including VS Code, Obsidian, and Discord, use [frameless windows](https://www.electronjs.org/docs/latest/tutorial/custom-window-styles) with [custom title bars](https://www.electronjs.org/docs/latest/tutorial/custom-title-bar). Prior to [Electron 41](https://www.electronjs.org/blog/electron-41-0), frameless windows did not support CSD at all. Even if these apps did not need full GTK title bars, they still required the framework to provide CSD to avoid looking like flat, shadowless rectangles on Wayland.
 
 ![Screenshot of VS Code on GNOME with no CSD](/assets/img/blog/tech-talk-wayland/vscodenocsd.png)
 
@@ -94,18 +98,20 @@ All this complexity needs to be managed throughout the window lifecycle and acro
 
 The good news: much of this was sorted out between last September and March, and as a result, Electron 41 supports CSD on Wayland in all window configurations, including frameless windows with [Window Controls Overlay](https://www.electronjs.org/docs/latest/api/structures/base-window-options).
 
-Now that the hardest part is behind us, CSD opens up new possibilities for Electron apps. Developers can have new ways to customize window frames and integrate them seamlessly with both their web content and the platform. One feature on my own shortlist is rounded corners.
-
-![Screenshot of a frameless window with rounded corners (not currently possible in Electron, but soon?)](/assets/img/blog/tech-talk-wayland/roundedcorners.png)
-
 ## What’s next
 
 Wayland is an everyday reality for Linux users in 2026, so a great Wayland experience is now just a part of what it means to support Linux.
+
+Now that the hardest work is behind us, Wayland opens up new possibilities for Electron apps. CSD could provide developers with new ways to customize window frames and integrate them seamlessly with both their web content and the platform. One feature on my own shortlist is rounded corners.
+
+![Screenshot of a frameless window with rounded corners (not currently possible in Electron, but soon?)](/assets/img/blog/tech-talk-wayland/roundedcorners.png)
 
 Electron reached an important milestone last month with the creation of a [Wayland test job in CI](https://github.com/electron/electron/pull/49908). Not every existing test has been ported over, but it’s now much easier to catch regressions.
 
 The framework is only part of the story. If you develop an Electron app that you haven’t thoroughly tested on Linux in a while (even as recently as last fall), give it a spin with Electron 41+ on a modern Linux distribution like Ubuntu 25.10 or Fedora 43. You may discover changes you could make to accommodate Wayland's unique constraints. Some differences are covered in the [Electron documentation](https://www.electronjs.org/docs/latest/api/browser-window), but the best way to understand the new environment is to use it.
 
 And if you’d like to see faster progress and support for more platform features, consider [becoming a contributor](https://www.electronjs.org/docs/latest/development/build-instructions-gn). Like Linux itself, Electron is a community-run [free software project](https://openjsf.org/blog/electron-joins-the-openjs-foundation) that’s open to everyone.
+
+We're actively looking for Linux contributors and maintainers. Electron powers many of the most popular desktop apps across platforms, so getting involved is a great way to help make desktop Linux even more viable for more people.
 
 We're actively looking for Linux contributors and maintainers. Electron powers many of the most popular desktop apps across platforms, so getting involved is a great way to help make desktop Linux even more viable for more people.
