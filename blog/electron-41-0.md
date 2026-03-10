@@ -37,7 +37,7 @@ On Wayland (Linux), frameless windows now have drop shadows and extended resize 
 
 Mitchell Cohen is writing on a blog article about recent work to improve Electron's support of Wayland and CSD on Linux. Watch this space!
 
-### Added support for MSIX auto-updating.
+### Added support for MSIX auto-updating
 
 The Electron team recently added MSIX auto-updated support according to https://github.com/electron/rfcs/pull/21. The new updater module supports auto-updating via Mac.Squirrel [JSON server format](https://github.com/Squirrel/Squirrel.Mac?tab=readme-ov-file#update-server-json-format) and [static update file format](https://github.com/Squirrel/Squirrel.Mac?tab=readme-ov-file#update-file-json-format).
 
