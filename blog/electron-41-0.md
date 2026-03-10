@@ -39,7 +39,7 @@ Mitchell Cohen is writing on a blog article about recent work to improve Electro
 
 ### Added support for MSIX auto-updating
 
-The Electron team recently added MSIX auto-updated support according to https://github.com/electron/rfcs/pull/21. The new updater module supports auto-updating via Mac.Squirrel [JSON server format](https://github.com/Squirrel/Squirrel.Mac?tab=readme-ov-file#update-server-json-format) and [static update file format](https://github.com/Squirrel/Squirrel.Mac?tab=readme-ov-file#update-file-json-format).
+The Electron team recently added MSIX auto-updater support according to [RFC #21](https://github.com/electron/rfcs/pull/21). Electron's `autoUpdater` module supports auto-updating via the Squirrel.Mac [JSON server](https://github.com/Squirrel/Squirrel.Mac?tab=readme-ov-file#update-server-json-format) and [static update file](https://github.com/Squirrel/Squirrel.Mac?tab=readme-ov-file#update-file-json-format) formats.
 
 This was added in Electron 41 by [#49586](https://github.com/electron/electron/pull/49586) and has also been backported to Electron [39](https://github.com/electron/electron/pull/49585) and [40](https://github.com/electron/electron/pull/49587).
 
