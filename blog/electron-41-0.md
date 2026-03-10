@@ -31,17 +31,17 @@ You **_must_** re-sign your app afterwards. For more information, see [the `@ele
 
 Support for this feature in [Electron Forge](https://electronforge.io) is planned for the near future ([electron/forge#4159](https://github.com/electron/forge/pull/4159)).
 
-### Improved Wayland Support
+### Improved Wayland support
 
 On Wayland (Linux), frameless windows now have drop shadows and extended resize boundaries. To create fully frameless windows with no decorations, set `hasShadow: false` in the window constructor. [#49885](https://github.com/electron/electron/pull/49885)
 
-Mitchell Cohen is writing on a blog article about recent work to improve Electron's support of Wayland and CSD on Linux. Watch this space!
+[Mitchell Cohen](https://github.com/mitchchn) is writing on a blog article about recent work to improve Electron's support of Wayland and CSD on Linux. Watch this space!
 
 ### Added support for MSIX auto-updating
 
 The Electron team recently added MSIX auto-updater support according to [RFC #21](https://github.com/electron/rfcs/pull/21). Electron's `autoUpdater` module supports auto-updating via the Squirrel.Mac [JSON server](https://github.com/Squirrel/Squirrel.Mac?tab=readme-ov-file#update-server-json-format) and [static update file](https://github.com/Squirrel/Squirrel.Mac?tab=readme-ov-file#update-file-json-format) formats. See the [autoUpdater documentation](https://www.electronjs.org/docs/latest/api/auto-updater) for more information.
 
-This was added in Electron 41 by [#49586](https://github.com/electron/electron/pull/49586) and has also been backported to Electron [39](https://github.com/electron/electron/pull/49585) and [40](https://github.com/electron/electron/pull/49587).
+This was added in Electron 41 by [#49586](https://github.com/electron/electron/pull/49586) and has also been backported to Electron 39.5.0 ([#49585](https://github.com/electron/electron/pull/49585)) and 40.2.0 ([#49587](https://github.com/electron/electron/pull/49587)).
 
 <!--truncate-->
 
