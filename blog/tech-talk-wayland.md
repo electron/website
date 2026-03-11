@@ -9,13 +9,17 @@ slug: tech-talk-wayland
 tags: [techtalk, internals]
 ---
 
-_Tech talks are a new blog post series where we share glimpses into our work on Electron. If you find this work interesting, please consider [contributing](https://github.com/electron/electron/)!_
+> [!IMPORTANT]
+> Tech talks are a new blog post series where we share glimpses into our work on Electron. If you find this work interesting, please consider [contributing](https://github.com/electron/electron/)!
 
 When Electron switched to the [Wayland](https://wayland.freedesktop.org/) display protocol last fall, most people didn't even notice.
 
 That's likely a good thing. Major Linux distributions have already adopted Wayland for their default graphical sessions, and both the KDE Plasma and GNOME desktop environments are in the process of [dropping X11 support](https://blogs.kde.org/2025/11/26/going-all-in-on-a-wayland-future/) [completely](https://www.phoronix.com/news/GNOME-50-Alpha/).
 
 But a platform migration isn't complete without apps, and the Linux app ecosystem went through a rapid Wayland transition last August after Chromium [turned on Wayland support by default](https://chromium-review.googlesource.com/c/chromium/src/+/6819616). That move brought along the Electron framework and dozens of Linux desktop apps built on top of it.
+
+
+<!--truncate-->
 
 ## The third impact: Electron goes Wayland-native
 
@@ -45,13 +49,13 @@ Wayland’s answer to these questions is essentially “no.” When you open a w
 
 These rules are understandable; no one likes it when misbehaving apps steal focus or draw halfway off the screen. But for a cross-platform framework like Electron, Wayland's design philosophy makes it harder for developers to achieve consistency.
 
-In practice, Electron apps have more restrictions on Wayland than they do on X11 and other platforms. Some widely used APIs, like [`BrowserWindow.setPosition(x, y)`](https://www.electronjs.org/docs/latest/api/base-window#winsetpositionx-y-animate), simply don't work on Wayland.
+In practice, Electron apps have more restrictions on Wayland than they do on X11 and other platforms. Some widely used APIs, like [`win.setPosition(x, y)`](https://www.electronjs.org/docs/latest/api/base-window#winsetpositionx-y-animate), simply don't work on Wayland.
 
 Exact outcomes can vary by compositor. On KDE (KWin), for example, an app that tries to focus one of its windows with [`BrowserWindow.focus()`](https://www.electronjs.org/docs/latest/api/browser-window#winfocus) will flash its icon in the panel instead.
 
 ![Screenshot of Slack flashing its app icon in the panel on KDE instead of receiving focus](/assets/img/blog/tech-talk-wayland/focus.png)
 
-On the other hand, some capabilities work better on Wayland, especially around colors, transparency, and hardware-accelerated rendering. APIs like [`setOpacity(n)`](https://www.electronjs.org/docs/latest/api/base-window#winsetopacityopacity-windows-macos) do not currently work on Linux, but they are now more feasible to support.
+On the other hand, some capabilities work better on Wayland, especially around colors, transparency, and hardware-accelerated rendering. APIs like [`win.setOpacity(n)`](https://www.electronjs.org/docs/latest/api/base-window#winsetopacityopacity-windows-macos) do not currently work on Linux, but they are now more feasible to support.
 
 In some areas, Wayland gives developers more flexibility, but also more responsibility, than before. An example that directly affects end users is client-side decorations (CSD).
 
