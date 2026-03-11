@@ -40,6 +40,13 @@ The `contentTracing` module has the following methods:
 
 ### `contentTracing.getCategories()`
 
+```YAML history
+changes:
+  - pr-url: https://github.com/electron/electron/pull/16583
+    description: "This method now returns a Promise instead of using a callback function."
+    breaking-changes-header: api-changed-callback-based-versions-of-promisified-apis
+```
+
 Returns `Promise<string[]>` - resolves with an array of category groups once all child processes have acknowledged the `getCategories` request
 
 Get a set of category groups. The category groups can change as new code paths
@@ -50,6 +57,15 @@ are reached. See also the
 > This category can be used to capture Electron-specific tracing events.
 
 ### `contentTracing.startRecording(options)`
+
+```YAML history
+changes:
+  - pr-url: https://github.com/electron/electron/pull/13914
+    description: "The `options` parameter now accepts `TraceConfig` in addition to `TraceCategoriesAndOptions`."
+  - pr-url: https://github.com/electron/electron/pull/16584
+    description: "This function now returns a callback`Promise<void>`."
+    breaking-changes-header: api-changed-callback-based-versions-of-promisified-apis
+```
 
 * `options` ([TraceConfig](structures/trace-config.md) | [TraceCategoriesAndOptions](structures/trace-categories-and-options.md))
 
@@ -64,6 +80,15 @@ If a recording is already running, the promise will be immediately resolved, as
 only one trace operation can be in progress at a time.
 
 ### `contentTracing.stopRecording([resultFilePath])`
+
+```YAML history
+changes:
+  - pr-url: https://github.com/electron/electron/pull/16584
+    description: "This method now returns a Promise instead of using a callback function."
+    breaking-changes-header: api-changed-callback-based-versions-of-promisified-apis
+  - pr-url: https://github.com/electron/electron/pull/18411
+    description: "The `resultFilePath` parameter is now optional."
+```
 
 * `resultFilePath` string (optional)
 
@@ -82,6 +107,13 @@ or not provided, trace data will be written to a temporary file, and the path
 will be returned in the promise.
 
 ### `contentTracing.getTraceBufferUsage()`
+
+```YAML history
+changes:
+  - pr-url: https://github.com/electron/electron/pull/16600
+    description: "This method now returns a Promise instead of using a callback function."
+    breaking-changes-header: api-changed-callback-based-versions-of-promisified-apis
+```
 
 Returns `Promise<Object>` - Resolves with an object containing the `value` and `percentage` of trace buffer maximum usage
 

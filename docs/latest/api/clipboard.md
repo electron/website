@@ -1,11 +1,18 @@
 ---
 title: "clipboard"
-description: "Perform copy and paste operations on the system clipboard."
+description: "YAML history deprecated: - pr-url: https://github.com/electron/electron/pull/48877 description: \"Using the clipboard API directly in the renderer process is deprecated.\" breaking-changes-header: deprecated-clipboard-api-access-from-renderer-processes"
 slug: clipboard
 hide_title: false
 ---
 
 # clipboard
+
+```YAML history
+deprecated:
+  - pr-url: https://github.com/electron/electron/pull/48877
+    description: "Using the `clipboard` API directly in the renderer process is deprecated."
+    breaking-changes-header: deprecated-clipboard-api-access-from-renderer-processes
+```
 
 > Perform copy and paste operations on the system clipboard.
 

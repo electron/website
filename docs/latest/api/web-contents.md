@@ -1739,11 +1739,12 @@ Returns `Promise<PrinterInfo[]>` - Resolves with a [`PrinterInfo[]`](structures/
   * `footer` string (optional) - string to be printed as page footer.
   * `pageSize` string | Size (optional) - Specify page size of the printed document. Can be `A0`, `A1`, `A2`, `A3`,
   `A4`, `A5`, `A6`, `Legal`, `Letter`, `Tabloid` or an Object containing `height` and `width`.
+  * `usePrinterDefaultPageSize` boolean (optional) - Whether to use a given printer's default page size. Default is `false`. Cannot be combined with `pageSize`. When `deviceName` is provided, uses the default page size of that specific printer. When `deviceName` is not provided, uses the default page size of the system's default printer. If the printer's default page size cannot be retrieved, falls back to A4 (210mm x 297mm).
 * `callback` Function (optional)
   * `success` boolean - Indicates success of the print call.
   * `failureReason` string - Error description called back if the print fails.
 
-When a custom `pageSize` is passed, Chromium attempts to validate platform specific minimum values for `width_microns` and `height_microns`. Width and height must both be minimum 353 microns but may be higher on some operating systems.
+When a custom `pageSize` is passed, Chromium attempts to validate platform specific minimum values for `width_microns` and `height_microns`. Width and height must both be minimum 353 microns but may be higher on some operating systems. If a valid `pageSize` is not passed and `usePrinterDefaultPageSize` is `false`, an error will be thrown.
 
 Prints window's web page. When `silent` is set to `true`, Electron will pick
 the system's default printer if `deviceName` is empty and the default settings for printing.
@@ -2224,6 +2225,16 @@ Setting the WebRTC UDP Port Range allows you to restrict the udp port range used
 Returns `string` - The identifier of a WebContents stream. This identifier can be used
 with `navigator.mediaDevices.getUserMedia` using a `chromeMediaSource` of `tab`.
 The identifier is restricted to the web contents that it is registered to and is only valid for 10 seconds.
+
+#### `contents.getOrCreateDevToolsTargetId()`
+
+Returns `string` - The Chrome DevTools Protocol
+[TargetID](https://chromedevtools.github.io/devtools-protocol/tot/Target/#type-TargetID)
+associated with this WebContents. This is the reverse of
+[`webContents.fromDevToolsTargetId()`](#webcontentsfromdevtoolstargetidtargetid).
+
+> [!NOTE]
+> This method creates a new DevTools agent for this WebContents if one does not already exist.
 
 #### `contents.getOSProcessId()`
 
