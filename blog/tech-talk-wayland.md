@@ -33,7 +33,7 @@ But running apps through a compatibility layer is not the same as running them d
 
 ![Screenshot of an Electron app running natively on Wayland, demonstrating support for wide gamut color and HDR](/assets/img/blog/tech-talk-wayland/hdr.png)
 
-These are all good reasons for Electron apps to make the switch. In late September, Electron followed Chromium’s lead and began [defaulting to Wayland](https://www.electronjs.org/blog/electron-38-0#removed-electron_ozone_platform_hint-environment-variable). As apps began to update, people who had been “using Wayland” without issues for months or years started to find out what it was really like to experience their apps on Wayland for the first time.
+These are all good reasons for Electron apps to make the switch. In late September, Electron followed Chromium’s lead and began [defaulting to Wayland](https://www.electronjs.org/blog/electron-38-0#removed-electron_ozone_platform_hint-environment-variable). And as apps began to update, people who had been “using Wayland” without issues for months or years started to find out what it was really like to experience their apps on Wayland for the first time.
 
 ## Wayland’s house, Wayland’s rules
 
@@ -45,15 +45,15 @@ Supporting Wayland required [dozens of changes](https://github.com/electron/elec
 - Choose where to position their own windows on the screen (and which physical monitor to appear on)
 - Resize their windows at any time
 
-Wayland’s answer to these questions is essentially “no.” When you open a window on Wayland, the compositor — not the app developer — decides where it goes. Apps can't change their size, position, or focus without user input, and they can only interact with the rest of the desktop through optional [protocol extensions](https://wayland.app/protocols/) and [XDG portals](https://flatpak.github.io/xdg-desktop-portal/).
+Wayland’s answer to these questions is essentially “no.” When you open a window on Wayland, the compositor — not the app developer — decides where it goes. Apps cannot unilaterally change their size, position, or focus without user input, and they can only interact with the rest of the desktop through optional [protocol extensions](https://wayland.app/protocols/) and [XDG portals](https://flatpak.github.io/xdg-desktop-portal/).
 
-These kinds of rules are understandable; no one likes it when misbehaving apps steal focus or draw halfway off the screen. But for a cross-platform framework like Electron, Wayland's design philosophy makes it harder for developers to achieve consistency.
+These kinds of rules are understandable; no one likes it when misbehaving apps steal focus or appear halfway off the screen. But for a cross-platform framework like Electron, Wayland's design philosophy makes it harder for developers to achieve consistency. Behaviors that work just fine across macOS, Windows, and Linux (X11), might work differently or not at all on Wayland.
 
-In practice, Electron apps have more restrictions on Wayland than they do on X11 and other platforms. Some widely used APIs, like [`win.setPosition(x, y)`](https://www.electronjs.org/docs/latest/api/base-window#winsetpositionx-y-animate), simply don't work on Wayland.
+In practice, Electron apps face more restrictions on Wayland. Some widely used APIs, like [`win.setPosition(x, y)`](https://www.electronjs.org/docs/latest/api/base-window#winsetpositionx-y-animate) and [`screen.getCursorScreenPoint()`](https://www.electronjs.org/docs/latest/api/screen#screengetcursorscreenpoint), simply aren't possible to support.
 
-Making this more complicated is that Wayland is not a single piece of software, but a protocol. Each desktop environment has its own Wayland compositor, and their implementations differ almost like browser engines. On GNOME (Mutter), for example, [`BrowserWindow.focus()`](https://www.electronjs.org/docs/latest/api/browser-window#winfocus) will silently fail, but on KDE Plasma (KWin), the app will flash its icon in the panel. Both of these are valid interpretations of [the spec](https://wayland.app/protocols/xdg-activation-v1).
+Making this more complicated is the fact that Wayland isn't a single piece of software, but a protocol. Every desktop environment brings along its own Wayland compositor, and their implementations differ almost like browser engines. On GNOME (Mutter), for example, calling [`win.focus()`](https://www.electronjs.org/docs/latest/api/browser-window#winfocus) on an unfocused window shows a notification. On KDE Plasma (KWin), the app flashes its icon in the panel. These decisions are made by the compositor, and both are valid interpretations of [the spec](https://wayland.app/protocols/xdg-activation-v1).
 
-![Screenshot of Slack flashing its app icon in the panel on KDE instead of receiving focus](/assets/img/blog/tech-talk-wayland/focus.png)
+![Screenshot comparing what happens when Slack tries to focus itself on GNOME and KDE](/assets/img/blog/tech-talk-wayland/focus.png)
 
 On the other hand, some capabilities work better across the board on Wayland, especially around colors, transparency, and hardware-accelerated rendering. Other APIs like [`win.setOpacity(n)`](https://www.electronjs.org/docs/latest/api/base-window#winsetopacityopacity-windows-macos) do not currently work on Linux, but they are now more feasible to support.
 
