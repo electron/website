@@ -18,7 +18,6 @@ That's likely a good thing. Major Linux distributions have already adopted Wayla
 
 But a platform migration isn't complete without apps, and the Linux app ecosystem went through a rapid Wayland transition last August after Chromium [turned on Wayland support by default](https://chromium-review.googlesource.com/c/chromium/src/+/6819616). That move brought along the Electron framework and dozens of Linux desktop apps built on top of it.
 
-
 <!--truncate-->
 
 ## The third impact: Electron goes Wayland-native
@@ -65,13 +64,13 @@ The Wayland protocol is very lightweight, and its simplicity extends to the way 
 
 ![Screenshot of a blank app window on Wayland with no decorations. It's just a white rectangle.](/assets/img/blog/tech-talk-wayland/waylandnocsd.png)
 
-That rectangle is a powerful canvas. On a modern compositor like GNOME’s Mutter, it’s triple-buffered and GPU-accelerated. But if you want any of the trimmings that users might expect on their windows — title bar buttons, drop shadows, even resize handles —  you have to add them all yourself. This requirement is called client-side decorations (CSD), and it’s one of the major differences between X11 and Wayland.
+That rectangle is a powerful canvas. On a modern compositor like GNOME’s Mutter, it’s triple-buffered and GPU-accelerated. But if you want any of the trimmings that users might expect on their windows — title bar buttons, drop shadows, even resize handles — you have to add them all yourself. This requirement is called client-side decorations (CSD), and it’s one of the major differences between X11 and Wayland.
 
 Electron already had some support for client-side decorations, provided by a class called `ClientFrameViewLinux` which uses GTK to paint convincing native window frames. While these look very similar to the ones GNOME used to provide on X11, they are produced entirely in-framework.
 
 ![Screenshot of a ClientFrameViewLinux with client-side decorations on GNOME](/assets/img/blog/tech-talk-wayland/clientframeviewlinux.png)
 
-Electron's client-side window frames are "native" in the sense that they use GTK and derive style information from the platform, but they are not an exact match for the server-side decorations (SSD) users may remember from X11. With CSD, the details are implemented by each app or framework, so apps from different frameworks can look noticeably different side by side, right down to their drop shadows and corner shapes. 
+Electron's client-side window frames are "native" in the sense that they use GTK and derive style information from the platform, but they are not an exact match for the server-side decorations (SSD) users may remember from X11. With CSD, the details are implemented by each app or framework, so apps from different frameworks can look noticeably different side by side, right down to their drop shadows and corner shapes.
 
 ![Screenshot of four apps with CSD from different frameworks (clockwise from top-left: Adwaita, Qt, Electron, and Firefox)](/assets/img/blog/tech-talk-wayland/csdcomparison.png)
 
@@ -86,7 +85,7 @@ Improving coverage for CSD was a task with framework-wide consequences. The bigg
 - **“window bounds”**, the size of the opaque window, including its titlebar, menubar, and frame.
 - **“content bounds”**, the size of the internal web view which hosts the app’s web content.
 
-Both values can be controlled independently by app developers. The framework converts between them internally, applying constraints and resolving any conflicts. If a developer calls for an 800x600 window, Electron will calculate the height of the title bar and shrink the web app to something like 800x540. (It also works the other way around.) 
+Both values can be controlled independently by app developers. The framework converts between them internally, applying constraints and resolving any conflicts. If a developer calls for an 800x600 window, Electron will calculate the height of the title bar and shrink the web app to something like 800x540. (It also works the other way around.)
 
 ![Diagram of an Electron app's window and content bounds without CSD](/assets/img/blog/tech-talk-wayland/bounds.png)
 
@@ -121,4 +120,3 @@ The framework is only part of the story. If you develop an Electron app that you
 And if you’d like to see faster progress and support for more platform features, consider [becoming a contributor](https://www.electronjs.org/docs/latest/development/build-instructions-gn). Like Linux itself, Electron is a community-run [free software project](https://openjsf.org/blog/electron-joins-the-openjs-foundation) that’s open to everyone.
 
 We're actively looking for Linux contributors and maintainers. Electron powers many of the most popular desktop apps across platforms, so getting involved is a great way to help make desktop Linux even more viable for more people.
-
