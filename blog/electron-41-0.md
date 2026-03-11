@@ -84,7 +84,7 @@ Electron 41 upgrades Chromium from `144.0.7559.60` to `146.0.7680.65`, Node.js f
 
 #### Behavior Changed: PDFs no longer create a separate WebContents
 
-Previously, PDF resources created a separate guest [WebContents](https://www.electronjs.org/docs/latest/api/web-contents) for rendering. Now, PDFs are rendered within the same WebContents instead. If you have code to detect PDF resources, use the [frame tree](https://www.electronjs.org/docs/latest/api/web-frame-main) instead of WebContents.
+Previously, PDF resources created a separate guest [`WebContents`](https://www.electronjs.org/docs/latest/api/web-contents) for rendering. Now, PDFs are rendered within the same `WebContents` instead. If you have code to detect PDF resources, use the [frame tree](https://www.electronjs.org/docs/latest/api/web-frame-main) instead of `WebContents`.
 
 Under the hood, Chromium [enabled](https://chromium-review.googlesource.com/c/chromium/src/+/7239572) a feature that changes PDFs to use out-of-process iframes (OOPIFs) instead of the `MimeHandlerViewGuest` extension.
 
