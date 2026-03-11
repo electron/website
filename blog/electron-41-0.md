@@ -90,7 +90,7 @@ Under the hood, Chromium [enabled](https://chromium-review.googlesource.com/c/ch
 
 #### Behavior Changed: Updated Cookie Change Cause in the Cookie `'changed'` Event
 
-We have updated the [cookie](https://www.electronjs.org/docs/latest/api/cookies#event-changed) change cause in the cookie 'changed' event.
+We have updated the cookie change cause in the cookie [`'changed'` event](https://www.electronjs.org/docs/latest/api/cookies#event-changed).
 When a new cookie is set, the change cause is `inserted`.
 When a cookie is deleted, the change cause remains `explicit`.
 When the cookie being set is identical to an existing one (same name, domain, path, and value, with no actual changes), the change cause is `inserted-no-change-overwrite`.
