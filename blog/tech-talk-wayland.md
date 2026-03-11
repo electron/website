@@ -47,15 +47,15 @@ Supporting Wayland required [dozens of changes](https://github.com/electron/elec
 
 Wayland’s answer to these questions is essentially “no.” When you open a window on Wayland, the compositor — not the app developer — decides where it goes. Apps can't change their size, position, or focus without user input, and they can only interact with the rest of the desktop through optional [protocol extensions](https://wayland.app/protocols/) and [XDG portals](https://flatpak.github.io/xdg-desktop-portal/).
 
-These rules are understandable; no one likes it when misbehaving apps steal focus or draw halfway off the screen. But for a cross-platform framework like Electron, Wayland's design philosophy makes it harder for developers to achieve consistency.
+These kinds of rules are understandable; no one likes it when misbehaving apps steal focus or draw halfway off the screen. But for a cross-platform framework like Electron, Wayland's design philosophy makes it harder for developers to achieve consistency.
 
 In practice, Electron apps have more restrictions on Wayland than they do on X11 and other platforms. Some widely used APIs, like [`win.setPosition(x, y)`](https://www.electronjs.org/docs/latest/api/base-window#winsetpositionx-y-animate), simply don't work on Wayland.
 
-Exact outcomes can vary by compositor. On KDE (KWin), for example, an app that tries to focus one of its windows with [`BrowserWindow.focus()`](https://www.electronjs.org/docs/latest/api/browser-window#winfocus) will flash its icon in the panel instead.
+Making this more complicated is that Wayland is not a single piece of software, but a protocol. Each desktop environment has its own Wayland compositor, and their implementations differ almost like browser engines. On GNOME (Mutter), for example, [`BrowserWindow.focus()`](https://www.electronjs.org/docs/latest/api/browser-window#winfocus) will silently fail, but on KDE Plasma (KWin), the app will flash its icon in the panel. Both of these are valid interpretations of [the spec](https://wayland.app/protocols/xdg-activation-v1).
 
 ![Screenshot of Slack flashing its app icon in the panel on KDE instead of receiving focus](/assets/img/blog/tech-talk-wayland/focus.png)
 
-On the other hand, some capabilities work better on Wayland, especially around colors, transparency, and hardware-accelerated rendering. APIs like [`win.setOpacity(n)`](https://www.electronjs.org/docs/latest/api/base-window#winsetopacityopacity-windows-macos) do not currently work on Linux, but they are now more feasible to support.
+On the other hand, some capabilities work better across the board on Wayland, especially around colors, transparency, and hardware-accelerated rendering. Other APIs like [`win.setOpacity(n)`](https://www.electronjs.org/docs/latest/api/base-window#winsetopacityopacity-windows-macos) do not currently work on Linux, but they are now more feasible to support.
 
 In some areas, Wayland gives developers more flexibility, but also more responsibility, than before. An example that directly affects end users is client-side decorations (CSD).
 
@@ -86,15 +86,17 @@ Improving coverage for CSD was a task with framework-wide consequences. The bigg
 - **“window bounds”**, the size of the opaque window, including its titlebar, menubar, and frame.
 - **“content bounds”**, the size of the internal web view which hosts the app’s web content.
 
-Both values can be controlled independently by app developers. The framework converts between them internally, applying constraints and resolving any conflicts.
+Both values can be controlled independently by app developers. The framework converts between them internally, applying constraints and resolving any conflicts. If a developer calls for an 800x600 window, Electron will calculate the height of the title bar and shrink the web app to something like 800x540. (It also works the other way around.) 
 
 ![Diagram of an Electron app's window and content bounds without CSD](/assets/img/blog/tech-talk-wayland/bounds.png)
 
-But to have full coverage for CSD, Electron also needed to keep track of a new kind of boundary:
+But to support CSD, Electron also needed to keep track of a new kind of boundary:
 
-- **“widget bounds”**, the size of the underlying transparent surface which draws everything inside of it, including the window frame, but also external decorations like drop shadows and resize targets.
+- **“widget bounds”**, the size of the underlying transparent surface which draws everything inside of it, including the window frame and its external decorations.
 
-Effectively, CSD makes it so that the “real” window (represented internally as a Chromium “accelerated widget”) is larger than the opaque window which developers and users see and interact with. That part — the “logical” window — is inset inside the transparent widget. So a window that visibly measures 800x600 needs to be set inside a larger, transparent window that might measure something like 844x644 (depending on the GTK theme).
+When CSD is required, Electron takes the window (accessed internally via a Chromium [accelerated widget](https://source.chromium.org/chromium/chromium/src/+/main:ui/ozone/platform/wayland/host/wayland_window.cc;l=94)), makes it transparent, and inflates it. The opaque bits (title bar, frame, and web content) are then painted at the appropriate sizes and positions _inside_ the transparent widget, along with drop shadows and resize targets.
+
+So the 800x600 window from earlier might grow to something like an 840x640 transparent window with CSD. The exact widget bounds depend on the user's theme and the window state, which affect the size and shape of any decorations.
 
 ![Diagram of an Electron app's full CSD bounds, including the transparent widget surrounding the window](/assets/img/blog/tech-talk-wayland/csdbounds.png)
 
