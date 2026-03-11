@@ -88,7 +88,7 @@ Both values can be controlled independently by app developers. The framework con
 
 But to have full coverage for CSD, Electron also needed to keep track of a new kind of boundary:
 
-- “widget bounds”, the size of the underlying transparent surface which draws everything inside of it, including the window frame, but also external decorations like drop shadows and resize targets.
+- **“widget bounds”**, the size of the underlying transparent surface which draws everything inside of it, including the window frame, but also external decorations like drop shadows and resize targets.
 
 Effectively, CSD makes it so that the “real” window (represented internally as a Chromium “accelerated widget”) is larger than the opaque window which developers and users see and interact with. That part — the “logical” window — is inset inside the transparent widget. So a window that visibly measures 800x600 needs to be set inside a larger, transparent window that might measure something like 844x644 (depending on the GTK theme).
 
@@ -116,4 +116,3 @@ And if you’d like to see faster progress and support for more platform feature
 
 We're actively looking for Linux contributors and maintainers. Electron powers many of the most popular desktop apps across platforms, so getting involved is a great way to help make desktop Linux even more viable for more people.
 
-We're actively looking for Linux contributors and maintainers. Electron powers many of the most popular desktop apps across platforms, so getting involved is a great way to help make desktop Linux even more viable for more people.
