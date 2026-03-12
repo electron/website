@@ -68,19 +68,18 @@ function matchApiHistoryCodeBlock(node: Node): node is Code {
   );
 }
 
-let _allElectronVersions: SemVer[] | undefined;
+let _allElectronVersionsPromise: Promise<SemVer[]> | undefined;
 
 async function getAllElectronVersions(): Promise<SemVer[]> {
-  if (_allElectronVersions) {
-    return _allElectronVersions;
+  if (_allElectronVersionsPromise) {
+    return await _allElectronVersionsPromise;
   }
 
-  const { versions } = await ElectronVersions.create({
+  _allElectronVersionsPromise = ElectronVersions.create({
     ignoreCache: true,
-  });
+  }).then(({ versions }) => versions);
 
-  _allElectronVersions = versions;
-  return _allElectronVersions;
+  return await _allElectronVersionsPromise;
 }
 
 let _allPrReleaseVersions: PrReleaseVersionsContainer | undefined;
