@@ -90,7 +90,7 @@ The differences are usually minor, but when CSD is completely absent from a wind
 
 Many popular apps, including Visual Studio Code, Obsidian, and Discord, use [frameless windows](https://www.electronjs.org/docs/latest/tutorial/custom-window-styles) with [custom title bars](https://www.electronjs.org/docs/latest/tutorial/custom-title-bar). Prior to [Electron 41](https://www.electronjs.org/blog/electron-41-0), frameless windows did not support CSD at all, so they looked like featureless rectangles on Wayland.
 
-![Screenshot of VS Code on GNOME with no CSD](/assets/img/blog/tech-talk-wayland/vscodenocsd.png)
+![Screenshot of VS Code on KDE with no CSD](/assets/img/blog/tech-talk-wayland/vscodenocsd.png)
 
 Improving coverage for CSD was a task with framework-wide consequences. The biggest obstacle involved window sizes and how to measure and set them accurately. Electron already manages two different kinds of window boundaries:
 
