@@ -18,6 +18,11 @@ The Electron team is excited to announce the release of Electron 41! You can ins
 
 If you have any feedback, please share it with us on [Bluesky](https://bsky.app/profile/electronjs.org) or [Mastodon](https://social.lfx.dev/@electronjs), or join our community [Discord](https://discord.com/invite/electronjs)! Bugs and feature requests can be reported in Electron's [issue tracker](https://github.com/electron/electron/issues).
 
+> [!IMPORTANT]
+> After publishing the initial 41.0.0 package, we integrated some high-priority
+> bugs into follow-up patch releases. We recommend installing **41.0.2** when
+> upgrading to Electron 41.
+
 ## Notable Changes
 
 ### ASAR Integrity digest for improved security
