@@ -28,7 +28,7 @@ This change was possible because the Chromium and Electron projects have been [w
 
 ![Screenshot of an Electron app running in X11 compatibility mode (XWayland) in a Wayland session on Ubuntu](/assets/img/blog/tech-talk-wayland/xwayland.png)
 
-But running apps through a compatibility layer is not the same as running them directly on Wayland. On Wayland, there’s less sitting between your app and the compositor, so there's lower overhead and much stronger isolation between applications. Modern Wayland compositors also let apps take advantage of newer platform and display features like variable refresh rates, HiDPI and fractional scaling, and HDR.
+Running apps through a compatibility layer is not the same as running them directly on Wayland. On Wayland, there’s less sitting between your app and the compositor, so there's lower overhead and much stronger isolation between applications. Modern Wayland compositors also let apps take advantage of newer platform and display features like variable refresh rates, HiDPI and fractional scaling, and HDR.
 
 ![Screenshot of an Electron app running natively on Wayland, demonstrating support for wide gamut color and HDR](/assets/img/blog/tech-talk-wayland/hdr.png)
 
@@ -52,7 +52,7 @@ These kinds of rules are understandable: no one likes it when a misbehaving app 
 
 Some widely used Electron APIs that work on X11, macOS, and Windows are not available on Wayland. For example, [`win.setPosition(x, y)`](https://www.electronjs.org/docs/latest/api/base-window#winsetpositionx-y-animate) and [`screen.getCursorScreenPoint()`](https://www.electronjs.org/docs/latest/api/screen#screengetcursorscreenpoint) aren't supported, as Wayland [deliberately forbids](https://lists.freedesktop.org/archives/wayland-devel/2015-September/024410.html) apps from accessing global screen coordinates.
 
-Other features work differently: recording the screen with [`desktopCapturer`](https://www.electronjs.org/docs/latest/api/desktop-capturer) and setting keyboard shortcuts with [`globalShortcut`](https://www.electronjs.org/docs/latest/api/global-shortcut) both depend heavily on the available portals. Here's what it looks like when screen sharing in Signal Desktop on GNOME.
+Other features work differently: recording the screen with [`desktopCapturer`](https://www.electronjs.org/docs/latest/api/desktop-capturer) and setting keyboard shortcuts with [`globalShortcut`](https://www.electronjs.org/docs/latest/api/global-shortcut) both depend on the desktop environment and portal versions. Here's what it looks like when screen sharing in Signal Desktop on GNOME 48.
 
 ![Screenshot of Signal Desktop requesting permission to share the screen on GNOME](/assets/img/blog/tech-talk-wayland/signalscreenshare.png)
 
@@ -64,11 +64,11 @@ So when Slack tries to focus its main window with [`win.focus()`](https://www.el
 
 Some capabilities simply work better on Wayland than on X11, especially around colors, transparency, and hardware-accelerated rendering. [`win.setOpacity(n)`](https://www.electronjs.org/docs/latest/api/base-window#winsetopacityopacity-windows-macos) is an example of an Electron API which hasn't been available on Linux in the past, but which will now be feasible to support.
 
-Even the stricter restrictions can benefit apps. When 1Password runs on Wayland, its [SSH agent](https://developer.1password.com/docs/ssh/agent/) lets users confirm requests with a single click instead of asking them to enter their passwords. That's because Wayland's input isolation is strong enough to prevent other processes from [clickjacking](https://en.wikipedia.org/wiki/Clickjacking) the dialog.
+Even the stricter restrictions can benefit apps. When 1Password runs on Wayland, its [SSH agent](https://developer.1password.com/docs/ssh/agent/) lets users confirm requests with a single click instead of asking them to enter their passwords. Wayland's input isolation is strong enough to prevent other processes from [clickjacking](https://en.wikipedia.org/wiki/Clickjacking) the dialog, so 1Password can trust that confirmation was provided by a human being.
 
 ![Screenshot of the 1Password SSH agent showing a prompt with an Authorize button, floating over a terminal with an SSH command.](/assets/img/blog/tech-talk-wayland/1passwordssh.png)
 
-That's the tradeoff: Wayland takes away or changes some familiar behaviors while making other parts of the platform more capable and secure. And in one area, Wayland gives developers both more flexibility and more responsibility than before: client-side decorations (CSD).
+That's the basic tradeoff: Wayland restricts some of what apps can do but also enables them to be more capable and secure. And in one area, Wayland gives developers more flexibility and more responsibility than before: client-side decorations (CSD).
 
 ## Understanding CSD, or when a window isn’t a window
 
@@ -82,7 +82,7 @@ Electron already had some support for client-side decorations, provided by a cla
 
 ![Screenshot of a ClientFrameViewLinux with client-side decorations on GNOME](/assets/img/blog/tech-talk-wayland/clientframeviewlinux.png)
 
-But client-side window frames are not an exact match for the server-side decorations (SSD) from X11 window managers. They need to be implemented by each app or framework, so the details can look noticeably different when you put apps side by side, from their title bar areas right down to their drop shadows and corner shapes.
+But client-side window frames are not an exact match for server-side decorations (SSD) from X11 window managers. They need to be implemented by each app or framework, so the details can look noticeably different when you put apps side by side, from their title bar areas right down to their drop shadows and corner shapes.
 
 ![Screenshot of four apps with CSD from different frameworks (clockwise from top-left: Adwaita, Qt, Electron, and Firefox)](/assets/img/blog/tech-talk-wayland/csdcomparison.png)
 
@@ -99,7 +99,7 @@ Improving coverage for CSD was a task with framework-wide consequences. The bigg
 
 Both values can be controlled independently. If a developer calls for an 800x600 window, Electron calculates the height of the title bar and shrinks the web app to something like 800x540. (It also works the other way around for [content-sized](https://www.electronjs.org/docs/latest/api/base-window#new-basewindowoptions) windows.)
 
-![Diagram of an Electron app's window and content bounds without CSD](/assets/img/blog/tech-talk-wayland/bounds.png)
+![Diagram of an Electron app's window and content bounds without CSD](/assets/img/blog/tech-talk-wayland/windowbounds.png)
 
 To support CSD, Electron also needed to keep track of a new kind of boundary:
 
@@ -111,7 +111,7 @@ The framework then paints the opaque bits of the window (title bar, frame, and w
 
 With CSD, a "logical" window at 800x600 might be inset into a 840x640 widget. The exact geometries depend on the user's theme and the window's state: whether it is currently active, maximized, tiled, or fullscreen can affect the size and presence of decorations.
 
-![Diagram of an Electron app's full CSD bounds, including the transparent widget surrounding the window](/assets/img/blog/tech-talk-wayland/csdbounds.png)
+![Diagram of an Electron app's full CSD bounds, including the transparent widget surrounding the window](/assets/img/blog/tech-talk-wayland/widgetbounds.png)
 
 Of course, widget bounds should never leak into the public API. The framework needs to abstract this complexity away from app developers, who are generally not thinking about the extents of resize targets or shadow insets changing underneath them.
 
@@ -123,7 +123,7 @@ The good news is that much of this was sorted out between last September and Mar
 
 Wayland is an everyday reality for Linux users in 2026, so a great Wayland experience is now just what it means to support Linux.
 
-Now that the basic support is in place, Wayland opens up new possibilities for Electron apps. CSD could provide developers with new ways to customize window frames and integrate them seamlessly with both their web content and the platform. One feature on my own shortlist is rounded corners.
+Now that the basic support is in place, Wayland opens up new possibilities for Electron apps. CSD in particular offers developers more ways to customize window frames and integrate them with both their web content and the platform. One feature that's high on my own shortlist is rounded corners.
 
 ![Screenshot of a frameless window with rounded corners (not currently possible in Electron, but soon?)](/assets/img/blog/tech-talk-wayland/roundedcorners.png)
 
