@@ -19,6 +19,22 @@ This document uses the following convention to categorize breaking changes:
 * **Deprecated:** An API was marked as deprecated. The API will continue to function, but will emit a deprecation warning, and will be removed in a future release.
 * **Removed:** An API or feature was removed, and is no longer supported by Electron.
 
+## Planned Breaking API Changes (41.0)
+
+### Behavior Changed: PDFs no longer create a separate WebContents
+
+Previously, PDF resources created a separate guest [WebContents](https://www.electronjs.org/docs/latest/api/web-contents) for rendering. Now, PDFs are rendered within the same WebContents instead. If you have code to detect PDF resources, use the [frame tree](https://www.electronjs.org/docs/latest/api/web-frame-main) instead of WebContents.
+
+Under the hood, Chromium [enabled](https://chromium-review.googlesource.com/c/chromium/src/+/7239572) a feature that changes PDFs to use out-of-process iframes (OOPIFs) instead of the `MimeHandlerViewGuest` extension.
+
+### Behavior Changed: Updated Cookie Change Cause in the Cookie 'changed' Event
+
+We have updated the [cookie](https://www.electronjs.org/docs/latest/api/cookies#event-changed) change cause in the cookie 'changed' event.
+When a new cookie is set, the change cause is `inserted`.
+When a cookie is deleted, the change cause remains `explicit`.
+When the cookie being set is identical to an existing one (same name, domain, path, and value, with no actual changes), the change cause is `inserted-no-change-overwrite`.
+When the value of the cookie being set remains unchanged but some of its attributes are updated, such as the expiration attribute, the change cause will be `inserted-no-value-change-overwrite`.
+
 ## Planned Breaking API Changes (40.0)
 
 ### Deprecated: `clipboard` API access from renderer processes
@@ -31,6 +47,12 @@ your preload script and expose it using the [contextBridge](https://www.electron
 
 Debug symbols for MacOS (dSYM) now use xz compression in order to handle larger file sizes. `dsym.zip` files are now
 `dsym.tar.xz` files. End users using debug symbols may need to update their zip utilities.
+
+### Deprecated: `showHiddenFiles` in Dialogs on Linux
+
+This property will still be honored on macOS and Windows, but support on Linux
+will be removed in Electron 42. GTK intends for this to be a user choice rather
+than an app choice and has removed the API to do this programmatically.
 
 ## Planned Breaking API Changes (39.0)
 

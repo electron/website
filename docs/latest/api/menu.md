@@ -1,6 +1,6 @@
 ---
 title: "Menu"
-description: "Create native application menus and context menus."
+description: "Create application menus and context menus."
 slug: menu
 hide_title: false
 ---
@@ -9,9 +9,14 @@ hide_title: false
 
 ## Class: Menu
 
-> Create native application menus and context menus.
+> Create application menus and context menus.
 
 Process: [Main](../glossary.md#main-process)
+
+The presentation of menus varies depending on the operating system:
+
+- Under Windows and Linux, menus are visually similar to Chromium.
+- Under macOS, these will be native menus.
 
 > [!TIP]
 > See also: [A detailed guide about how to implement menus in your application](../tutorial/menus.md).
