@@ -8,7 +8,6 @@ authors:
 slug: tech-talk-wayland
 tags: [techtalk, internals]
 description: "Electron recently switched to Wayland by default on Linux, bringing dozens of popular desktop apps along with it. Here's what changed and how it affects developers and users."
-image: 'https://www.electronjs.org/assets/img/blog/tech-talk-wayland/clientframeviewlinux.png'
 ---
 
 > [!IMPORTANT]

@@ -272,6 +272,7 @@ const config: Config = {
     path.resolve(__dirname, './src/plugins/fiddle/index.ts'),
     path.resolve(__dirname, './src/plugins/governance/index.ts'),
     path.resolve(__dirname, './src/plugins/markdown-output/index.ts'),
+    path.resolve(__dirname, './src/plugins/og-image/index.ts'),
   ],
   presets: [
     [

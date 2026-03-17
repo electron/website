@@ -48,7 +48,9 @@
     "react-useportal": "^1.0.14",
     "remark-github-admonitions-to-directives": "^2.0.0",
     "sass": "^1.37.5",
+    "satori": "^0.25.0",
     "semver": "^7.5.4",
+    "sharp": "^0.34.5",
     "yaml": "^2.4.3"
   },
   "devDependencies": {
