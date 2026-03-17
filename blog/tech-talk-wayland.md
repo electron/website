@@ -38,7 +38,7 @@ These are all good reasons for Electron to make the switch. In late September, E
 
 ## Wayland’s house, Wayland’s rules
 
-Supporting Wayland required dozens of changes throughout [Chromium](https://chromium-review.googlesource.com/q/subject:%22wayland%22) and [Electron](https://github.com/electron/electron/pulls?q=is%253Apr+wayland), from internals to developer-facing APIs. It also required a different way of thinking about what desktop apps should be able to do.
+Supporting Wayland required dozens of changes throughout [Chromium](https://chromium-review.googlesource.com/q/subject:%22wayland%22) and [Electron](https://github.com/electron/electron/pulls?q=is%3Apr+wayland), from internals to developer-facing APIs. It also required a different way of thinking about what desktop apps should be able to do.
 
 Wayland reconsiders assumptions made by older systems and asks whether apps should be able to:
 
