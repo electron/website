@@ -125,7 +125,7 @@ Wayland is an everyday reality for Linux users in 2026, so a great Wayland exper
 
 Electron reached an important milestone last month with the creation of a [Wayland test job in CI](https://github.com/electron/electron/pull/49908). More tests still need to be ported over, but it’s now much easier to catch regressions.
 
-Now that the basic support is in place, Wayland opens up new possibilities for Electron apps. CSD in particular offers developers more ways to customize window frames and integrate them with both their web content and the platform. [Let us know](https://github.com/electron/issues) what you'd like to see; one feature that's high on my own shortlist is rounded corners.
+Now that the basic support is in place, Wayland opens up new possibilities for Electron apps. CSD in particular offers developers more ways to customize window frames and integrate them with both their web content and the platform. [Let us know](https://github.com/electron/electron/issues) what you'd like to see; one feature that's high on my own shortlist is rounded corners.
 
 ![Screenshot of a frameless window with rounded corners (not currently possible in Electron, but soon?)](/assets/img/blog/tech-talk-wayland/roundedcorners.png)
 
