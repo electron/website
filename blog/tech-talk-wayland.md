@@ -16,7 +16,7 @@ When Electron switched to [Wayland](https://wayland.freedesktop.org/) on Linux l
 
 Major Linux distributions adopted the modern display protocol years ago, and both the KDE Plasma and GNOME desktop environments are in the process of [dropping X11 support](https://blogs.kde.org/2025/11/26/going-all-in-on-a-wayland-future/) [completely](https://www.phoronix.com/news/GNOME-50-Alpha/).
 
-But a platform migration isn't complete without apps, and a large part of the Linux app ecosystem went through a second Wayland transition last August — well after most distros had changed their defaults. That's when Chromium [turned on Wayland support by default](https://chromium-review.googlesource.com/c/chromium/src/+/6819616), bringing Electron and dozens of Linux desktop apps along with it.
+But a platform migration isn't complete without apps, and a large part of the Linux app ecosystem went through a second Wayland transition last August — well after most distros had changed their defaults. That's when Chromium [turned on Wayland by default](https://chromium-review.googlesource.com/c/chromium/src/+/6819616), bringing Electron and dozens of Linux desktop apps along with it.
 
 <!--truncate-->
 
@@ -48,11 +48,11 @@ Wayland reconsiders assumptions made by older systems and asks whether apps shou
 
 Wayland's answer to these questions is essentially “no.” When you open a window, the compositor — not the app developer — decides where it goes. Apps cannot unilaterally move, resize, or focus their windows without user input, and they can only interact with the rest of the desktop through optional [protocol extensions](https://wayland.app/protocols/) and [XDG portals](https://flatpak.github.io/xdg-desktop-portal/).
 
-These kinds of rules are understandable: no one likes it when a misbehaving app steals focus or loads halfway off the screen. But for a cross-platform framework like Electron, Wayland's design philosophy makes it harder for developers to achieve consistency.
+These kinds of rules are understandable; no one likes it when a misbehaving app steals focus or loads halfway off the screen. But it can still surprise people when their apps suddenly lose access to familiar affordances on Wayland. This is especially the case for a cross-platform framework like Electron, which exists to help developers achieve consistent results everywhere.
 
 Some widely used Electron APIs that work on X11, macOS, and Windows are not available on Wayland. For example, [`win.setPosition(x, y)`](https://www.electronjs.org/docs/latest/api/base-window#winsetpositionx-y-animate) and [`screen.getCursorScreenPoint()`](https://www.electronjs.org/docs/latest/api/screen#screengetcursorscreenpoint) aren't supported, as Wayland [deliberately forbids](https://lists.freedesktop.org/archives/wayland-devel/2015-September/024410.html) apps from accessing global screen coordinates.
 
-Other features work differently: recording the screen with [`desktopCapturer`](https://www.electronjs.org/docs/latest/api/desktop-capturer) and setting keyboard shortcuts with [`globalShortcut`](https://www.electronjs.org/docs/latest/api/global-shortcut) both depend on the desktop environment and portal versions. Here's what it looks like when screen sharing in Signal Desktop on GNOME 48.
+Other features work differently: recording the screen with [`desktopCapturer`](https://www.electronjs.org/docs/latest/api/desktop-capturer) and setting keyboard shortcuts with [`globalShortcut`](https://www.electronjs.org/docs/latest/api/global-shortcut) are more restricted, and both heavily depend on the desktop environment and portal versions. Here's what it looks like when screen sharing in Signal Desktop on GNOME 48.
 
 ![Screenshot of Signal Desktop requesting permission to share the screen on GNOME](/assets/img/blog/tech-talk-wayland/signalscreenshare.png)
 
@@ -62,13 +62,13 @@ So when Slack tries to focus its main window with [`win.focus()`](https://www.el
 
 ![Screenshot comparing what happens when Slack tries to focus itself on GNOME and KDE](/assets/img/blog/tech-talk-wayland/focus.png)
 
-Some capabilities simply work better on Wayland than on X11, especially around colors, transparency, and hardware-accelerated rendering. [`win.setOpacity(n)`](https://www.electronjs.org/docs/latest/api/base-window#winsetopacityopacity-windows-macos) is an example of an Electron API which hasn't been available on Linux in the past, but which will now be feasible to support.
+Some capabilities simply work better on Wayland than on X11, including anything to do with colors, transparency, and hardware-accelerated rendering. [`win.setOpacity(n)`](https://www.electronjs.org/docs/latest/api/base-window#winsetopacityopacity-windows-macos) is an example of an Electron API which hasn't been available on Linux in the past, but which will now be feasible to support.
 
-Even the stricter restrictions can benefit apps. When 1Password runs on Wayland, its [SSH agent](https://developer.1password.com/docs/ssh/agent/) lets users confirm requests with a single click instead of asking them to enter their passwords. Wayland's input isolation is strong enough to prevent other processes from [clickjacking](https://en.wikipedia.org/wiki/Clickjacking) the dialog, so 1Password can trust that confirmation was provided by a human being.
+Even the stricter restrictions can benefit apps. When 1Password runs on Wayland, its [SSH agent](https://developer.1password.com/docs/ssh/agent/) lets users confirm requests with a single click instead of asking them to enter their passwords. This is safe because Wayland's input isolation is strong enough to prevent the prompt from being skipped with [clickjacking](https://en.wikipedia.org/wiki/Clickjacking) — only a real human being can click the button.
 
 ![Screenshot of the 1Password SSH agent showing a prompt with an Authorize button, floating over a terminal with an SSH command.](/assets/img/blog/tech-talk-wayland/1passwordssh.png)
 
-That's the basic tradeoff: Wayland restricts some of what apps can do but also enables them to be more capable and secure. And in one area, Wayland gives developers more flexibility and more responsibility than before: client-side decorations (CSD).
+The basic tradeoff is that Wayland restricts some of what apps can do but also enables them to be more capable and secure. And in one area, Wayland gives developers more flexibility and more responsibility than before: client-side decorations (CSD).
 
 ## Understanding CSD, or when a window isn’t a window
 
@@ -119,15 +119,15 @@ The good news is that much of this was sorted out between last September and Mar
 
 ![Screenshot of VS Code using a prerelease version of Electron 41.x with CSD shadows.](/assets/img/blog/tech-talk-wayland/vscodecsd.png)
 
-## What’s next
+## What’s next — and how you can help
 
 Wayland is an everyday reality for Linux users in 2026, so a great Wayland experience is now just what it means to support Linux.
 
-Now that the basic support is in place, Wayland opens up new possibilities for Electron apps. CSD in particular offers developers more ways to customize window frames and integrate them with both their web content and the platform. One feature that's high on my own shortlist is rounded corners.
+Electron reached an important milestone last month with the creation of a [Wayland test job in CI](https://github.com/electron/electron/pull/49908). More tests still need to be ported over, but it’s now much easier to catch regressions.
+
+Now that the basic support is in place, Wayland opens up new possibilities for Electron apps. CSD in particular offers developers more ways to customize window frames and integrate them with both their web content and the platform. [Let us know](https://github.com/electron/issues) what you'd like to see; one feature that's high on my own shortlist is rounded corners.
 
 ![Screenshot of a frameless window with rounded corners (not currently possible in Electron, but soon?)](/assets/img/blog/tech-talk-wayland/roundedcorners.png)
-
-Electron reached an important milestone last month with the creation of a [Wayland test job in CI](https://github.com/electron/electron/pull/49908). Not every existing test has been ported over, but it’s now much easier to catch regressions.
 
 The framework is only part of the story. If you develop an Electron app and you haven’t thoroughly tested it on Linux in a while (even as recently as last fall), give it a spin with Electron 41+ on a modern distribution like Ubuntu 25.10 or Fedora 43. Try your app on both KDE Plasma and GNOME, and maybe something more exotic like [Niri](https://github.com/niri-wm/niri).
 
