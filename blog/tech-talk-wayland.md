@@ -107,7 +107,7 @@ To support CSD, Electron also needed to keep track of a new kind of boundary:
 
 - **“widget bounds”**, the size of the transparent widget which draws everything inside of it, including the window frame and its external decorations.
 
-When CSD is required, Electron first takes the window's underlying [surface](https://wayland.app/protocols/xdg-shell#xdg_surface) (accessed internally via a Chromium [accelerated widget](https://source.chromium.org/chromium/chromium/src/+/main:ui/ozone/platform/wayland/host/wayland_window.cc;l=94)) and inflates it so it's large enough to fit all the decorations.
+When CSD is required, Electron first takes the window's underlying [surface](https://wayland.app/protocols/xdg-shell#xdg_surface) (accessed internally via a Chromium [accelerated widget](https://source.chromium.org/chromium/chromium/src/+/main:ui/ozone/platform/wayland/host/wayland_window.cc;l=94;drc=ac4eed7b549169cd64f0e15b503f4f0635dc1bd9)) and inflates it so it's large enough to fit all the decorations.
 
 The framework then paints the opaque bits of the window (title bar, frame, and web content) at their appropriate sizes and positions inside the transparent widget. The outermost areas are filled in with drop shadows and resize hit targets, creating the look and feel of a native, three-dimensional window without relying on server-side decorations.
 
