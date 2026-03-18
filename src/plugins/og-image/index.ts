@@ -18,11 +18,17 @@ interface OgAuthor {
 interface OgTemplateOptions {
   title: string;
   authors: OgAuthor[];
+  tags: string[];
   /** base64 data URI for the Electron logo */
   logoDataUri: string;
 }
 
-function buildOgImage({ title, authors, logoDataUri }: OgTemplateOptions) {
+function buildOgImage({
+  title,
+  authors,
+  tags,
+  logoDataUri,
+}: OgTemplateOptions) {
   const h = React.createElement;
 
   return h(
@@ -132,50 +138,89 @@ function buildOgImage({ title, authors, logoDataUri }: OgTemplateOptions) {
         title,
       ),
     ),
-    // Authors
-    ...(authors.length > 0
-      ? [
+    // Footer: authors (left) + tags (right)
+    h(
+      'div',
+      {
+        style: {
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          marginTop: '20px',
+          width: '100%',
+        },
+      },
+      // Authors
+      h(
+        'div',
+        {
+          style: {
+            display: 'flex',
+            alignItems: 'center',
+            gap: '32px',
+          },
+        },
+        ...authors.map((author) =>
           h(
             'div',
             {
+              key: author.name,
               style: {
                 display: 'flex',
                 alignItems: 'center',
-                gap: '32px',
-                marginTop: '20px',
+                gap: '12px',
               },
             },
-            ...authors.map((author) =>
-              h(
-                'div',
-                {
-                  key: author.name,
-                  style: {
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '12px',
-                  },
+            ...(author.avatarDataUri
+              ? [
+                  h('img', {
+                    src: author.avatarDataUri,
+                    width: 48,
+                    height: 48,
+                    style: { borderRadius: '50%' },
+                  }),
+                ]
+              : []),
+            h(
+              'span',
+              { style: { fontSize: '24px', color: '#cccccc' } },
+              author.name,
+            ),
+          ),
+        ),
+      ),
+      // Tags
+      ...(tags.length > 0
+        ? [
+            h(
+              'div',
+              {
+                style: {
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '12px',
+                  flexWrap: 'wrap',
+                  justifyContent: 'flex-end',
                 },
-                ...(author.avatarDataUri
-                  ? [
-                      h('img', {
-                        src: author.avatarDataUri,
-                        width: 48,
-                        height: 48,
-                        style: { borderRadius: '50%' },
-                      }),
-                    ]
-                  : []),
+              },
+              ...tags.map((tag) =>
                 h(
                   'span',
-                  { style: { fontSize: '24px', color: '#cccccc' } },
-                  author.name,
+                  {
+                    key: tag,
+                    style: {
+                      fontSize: '24px',
+                      color: '#9feaf9',
+                      opacity: 0.8,
+                    },
+                  },
+                  `#${tag}`,
                 ),
               ),
             ),
-          ),
-        ]
-      : []),
+          ]
+        : []),
+    ),
   );
 }
 
@@ -335,6 +380,11 @@ module.exports = function ogImagePlugin(): Plugin {
         if (frontmatter.image) continue;
 
         const title: string = frontmatter.title || 'Electron Blog';
+        const tags: string[] = Array.isArray(frontmatter.tags)
+          ? frontmatter.tags.filter(
+              (t: unknown): t is string => typeof t === 'string',
+            )
+          : [];
         const authors = resolveAuthors(frontmatter.authors, authorsMap);
 
         const ogAuthors: OgAuthor[] = await Promise.all(
@@ -349,6 +399,7 @@ module.exports = function ogImagePlugin(): Plugin {
         const element = buildOgImage({
           title,
           authors: ogAuthors,
+          tags,
           logoDataUri,
         });
 
