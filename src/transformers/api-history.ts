@@ -82,21 +82,29 @@ async function getAllElectronVersions(): Promise<SemVer[]> {
   return await _allElectronVersionsPromise;
 }
 
-let _allPrReleaseVersions: PrReleaseVersionsContainer | undefined;
+let _allPrReleaseVersionsPromise:
+  | Promise<PrReleaseVersionsContainer>
+  | undefined;
 
 async function getAllPrReleaseVersions(): Promise<PrReleaseVersionsContainer> {
-  if (_allPrReleaseVersions) {
-    return _allPrReleaseVersions;
+  if (_allPrReleaseVersionsPromise) {
+    return _allPrReleaseVersionsPromise;
   }
 
   if (!process.env.GH_TOKEN) {
     logger.warn(
       'No GitHub token found, skipping fetching PR release versions.',
     );
-    _allPrReleaseVersions = {};
-    return _allPrReleaseVersions;
+    _allPrReleaseVersionsPromise = Promise.resolve({});
+    return _allPrReleaseVersionsPromise;
   }
 
+  _allPrReleaseVersionsPromise = _getAllPrReleaseVersions();
+
+  return await _allPrReleaseVersionsPromise;
+}
+
+async function _getAllPrReleaseVersions(): Promise<PrReleaseVersionsContainer> {
   const fetchOptions = {
     method: 'GET',
     headers: {
@@ -110,6 +118,11 @@ async function getAllPrReleaseVersions(): Promise<PrReleaseVersionsContainer> {
     GH_ACTIONS_ARTIFACTS_URL,
     fetchOptions,
   );
+  if (!artifactsListResponse.ok) {
+    throw new Error(
+      `Failed to fetch GitHub artifacts list: ${artifactsListResponse.status} ${artifactsListResponse.statusText}`,
+    );
+  }
   const artifactsListResponseJson = await artifactsListResponse.json();
 
   if (!isGithubArtifactsListResponse(artifactsListResponseJson)) {
@@ -128,6 +141,11 @@ async function getAllPrReleaseVersions(): Promise<PrReleaseVersionsContainer> {
     latestArtifact.archive_download_url,
     fetchOptions,
   );
+  if (!archiveDownloadResponse.ok) {
+    throw new Error(
+      `Failed to download GitHub artifact: ${archiveDownloadResponse.status} ${archiveDownloadResponse.statusText}`,
+    );
+  }
   const archiveDownloadResponseBuffer =
     await archiveDownloadResponse.arrayBuffer();
   const archiveDownloadBuffer = Buffer.from(archiveDownloadResponseBuffer);
@@ -146,8 +164,7 @@ async function getAllPrReleaseVersions(): Promise<PrReleaseVersionsContainer> {
     throw new Error('Invalid PR release artifact.');
   }
 
-  _allPrReleaseVersions = parsedData.data;
-  return _allPrReleaseVersions;
+  return parsedData.data;
 }
 
 // Most of this is copy-pasted from: <https://github.com/electron/website/blob/ac3bab3131fc0f5de563574189ad5eab956a60b9/src/transformers/js-code-blocks.ts>
