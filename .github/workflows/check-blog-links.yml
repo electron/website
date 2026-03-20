@@ -37,5 +37,5 @@ jobs:
             BLOG_POSTS=$(gh api repos/electron/website/pulls/${PULL_REQUEST_NUMBER}/files --jq '.[] | select((.filename | startswith("blog/")) and (.status != "removed")) | .filename')
             echo $BLOG_POSTS | xargs npx lint-roller-markdown-links --ignore-path .markdownlintignore --fetch-external-links
           else
-            lint-roller-markdown-links --ignore-path .markdownlintignore --fetch-external-links blog/*.md
+            npx lint-roller-markdown-links --ignore-path .markdownlintignore --fetch-external-links blog/*.md
           fi
