@@ -4480,9 +4480,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@electron/lint-roller@npm:^3.1.3":
-  version: 3.1.3
-  resolution: "@electron/lint-roller@npm:3.1.3"
+"@electron/lint-roller@npm:^3.3.0":
+  version: 3.3.0
+  resolution: "@electron/lint-roller@npm:3.3.0"
   dependencies:
     "@dsanders11/vscode-markdown-languageservice": "npm:^0.3.0"
     ajv: "npm:^8.16.0"
@@ -4507,7 +4507,7 @@ __metadata:
     lint-roller-markdown-links: dist/bin/lint-markdown-links.js
     lint-roller-markdown-standard: dist/bin/lint-markdown-standard.js
     lint-roller-markdown-ts-check: dist/bin/lint-markdown-ts-check.js
-  checksum: 10c0/657b17b4921a8887334287e245dde85022704c673e1bba867e2a79abb643392b4e4e3962b8745074e78811938b28c4653c37b0c07a76a298a2a00ab3276f475e
+  checksum: 10c0/55c2496811116734d04384158d6f564eb7b1fd90123bb9a1197fa623108739fa63cca8c363d8cb6ca49a7bbcc5e07663a60a398666f2817912ca51c84caee8fd
   languageName: node
   linkType: hard
 
@@ -10418,7 +10418,7 @@ __metadata:
     "@docusaurus/types": "npm:3.9.2"
     "@electron/docs-parser": "npm:^1.0.1"
     "@electron/fiddle-core": "npm:^2.0.1"
-    "@electron/lint-roller": "npm:^3.1.3"
+    "@electron/lint-roller": "npm:^3.3.0"
     "@mdx-js/react": "npm:^3.0.0"
     "@tsconfig/docusaurus": "npm:^2.0.3"
     "@types/adm-zip": "npm:^0.5.5"
