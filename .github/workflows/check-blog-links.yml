@@ -31,4 +31,4 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           BLOG_POSTS=$(gh api repos/electron/website/pulls/${{ github.event.pull_request.number }}/files --jq '.[] | select((.filename | startswith("blog/")) and (.status != "removed")) | .filename')
-          echo $BLOG_POSTS | xargs npx lint-roller-markdown-links --ignore-path .markdownlintignore --fetch-external-links
+          echo $BLOG_POSTS | xargs npx lint-roller-markdown-links --ignore-path .markdownlintignore --fetch-external-links --allow-absolute-links --resource-root static
