@@ -2,7 +2,6 @@ import assert from 'node:assert';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-import { Glossaries, UploadStorage } from '@crowdin/crowdin-api-client';
 import logger from '@docusaurus/logger';
 import {
   ParsedDocumentationResult,
@@ -164,31 +163,56 @@ async function main() {
         `Missing ${logger.red('CROWDIN_PERSONAL_TOKEN')} environment variable`,
       );
     }
-    const glossaries = new Glossaries({
-      token: process.env.CROWDIN_PERSONAL_TOKEN,
-    });
-
-    const uploadStorage = new UploadStorage({
-      token: process.env.CROWDIN_PERSONAL_TOKEN,
-    });
+    const headers = {
+      Authorization: `Bearer ${process.env.CROWDIN_PERSONAL_TOKEN}`,
+    };
 
     // Step 1: Upload the CSV to the Crowdin server storage
     logger.info('Uploading glossary.csv to Crowdin server storage');
-    const response = await uploadStorage.addStorage(
-      `glossary-${Date.now()}.csv`,
-      csv,
+    const storageResponse = await fetch(
+      'https://api.crowdin.com/api/v2/storages',
+      {
+        method: 'POST',
+        headers: {
+          ...headers,
+          'Crowdin-API-FileName': `glossary-${Date.now()}.csv`,
+          'Content-Type': 'application/octet-stream',
+        },
+        body: csv,
+      },
     );
-    const { id } = response.data;
+    if (!storageResponse.ok) {
+      throw new Error(
+        `Failed to upload storage: ${storageResponse.status} ${await storageResponse.text()}`,
+      );
+    }
+    const { data: storageData } = await storageResponse.json();
+    const { id } = storageData;
 
     // Step 2: Assign the CSV in storage to the Electron glossary
     logger.info('Importing glossary.csv into Electron project glossary');
-    await glossaries.importGlossaryFile(GLOSSARY_ID, {
-      storageId: id,
-      scheme: {
-        term_en: 0,
-        description_en: 1,
+    const importResponse = await fetch(
+      `https://api.crowdin.com/api/v2/glossaries/${GLOSSARY_ID}/imports`,
+      {
+        method: 'POST',
+        headers: {
+          ...headers,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          storageId: id,
+          scheme: {
+            term_en: 0,
+            description_en: 1,
+          },
+        }),
       },
-    });
+    );
+    if (!importResponse.ok) {
+      throw new Error(
+        `Failed to import glossary: ${importResponse.status} ${await importResponse.text()}`,
+      );
+    }
     logger.info(
       `✨ Done! See https://crowdin.com/resources/glossaries/${GLOSSARY_ID} for output.`,
     );
