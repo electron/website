@@ -346,6 +346,7 @@ module.exports = {
         'latest/api/debugger',
         'latest/api/dock',
         'latest/api/download-item',
+        'latest/api/extensions-api',
         'latest/api/incoming-message',
         'latest/api/navigation-history',
         'latest/api/service-worker-main',
