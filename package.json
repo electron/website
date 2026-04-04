@@ -22,10 +22,11 @@
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
     "update-l10n-sources": "tsx scripts/update-l10n-sources.ts",
+    "lint:fmt": "oxfmt --check .",
     "lint:oxlint": "oxlint src scripts",
     "lint:markdown": "markdownlint-cli2 \"**/*.md\"",
-    "lint": "tsc --noEmit && prettier . --check --experimental-cli && npm run lint:oxlint && npm run lint:markdown",
-    "lint:fix": "prettier . --write --experimental-cli && npm run lint:oxlint -- --fix && npm run lint:markdown -- --fix",
+    "lint": "tsc --noEmit && npm run lint:fmt && npm run lint:oxlint && npm run lint:markdown",
+    "lint:fix": "oxfmt --write . && npm run lint:oxlint -- --fix && npm run lint:markdown -- --fix",
     "pre-build": "tsx ./scripts/pre-build.ts",
     "prepare": "husky"
   },
@@ -84,8 +85,8 @@
     "mdast-util-mdx": "^3.0.0",
     "mdast-util-to-hast": "^13.2.1",
     "mdast-util-to-string": "^4.0.0",
+    "oxfmt": "^0.42.0",
     "oxlint": "^1.57.0",
-    "prettier": "^3.6.2",
     "remark": "^15.0.0",
     "remark-gfm": "^4.0.0",
     "satori": "^0.25.0",
@@ -109,9 +110,9 @@
     ]
   },
   "lint-staged": {
-    "*.{html,json,md,yml,css,scss}": "prettier --write --experimental-cli",
+    "*.{html,json,md,yml,css,scss}": "oxfmt --write --no-error-on-unmatched-pattern",
     "*.{js,jsx,ts,tsx}": [
-      "prettier --write --experimental-cli",
+      "oxfmt --write --no-error-on-unmatched-pattern",
       "oxlint --fix"
     ]
   },
