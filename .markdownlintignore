@@ -1,3 +1,5 @@
 create-electron-documentation/templates/documentation.md
 docs/**
 node_modules/**
+build/**
+i18n/**
