@@ -24,12 +24,14 @@ jobs:
         with:
           node-version: '22.13.0'
       - name: Restore previous run data
-        uses: dawidd6/action-download-artifact@fe9d59ce33ce92db8a6ac90b2c8be6b6d90417c8 # v15
-        with:
-          name: resolved-pr-versions
-          if_no_artifact_found: ignore
-          workflow_conclusion: 'completed'
-          search_artifacts: true
+        run: |
+          RUN_ID=$(gh run list --workflow resolve-pr-release-versions.yml --branch main --status completed --limit 1 --json databaseId --jq '.[0].databaseId')
+          if [ -n "$RUN_ID" ]; then
+            gh run download "$RUN_ID" --name resolved-pr-versions
+          fi
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
       - run: npm install @electron/fiddle-core@2.0.1
       - uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
         with:

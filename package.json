@@ -79,7 +79,7 @@
     "husky": "^9.1.6",
     "json5": "^2.2.2",
     "lint-staged": "^16.2.7",
-    "markdownlint-cli2": "^0.20.0",
+    "markdownlint-cli2": "^0.21.0",
     "mdast-util-from-markdown": "^2.0.1",
     "mdast-util-frontmatter": "^2.0.1",
     "mdast-util-mdx": "^3.0.0",
@@ -117,8 +117,8 @@
     ]
   },
   "resolutions": {
-    "http-cache-semantics": "4.1.1",
-    "markdownlint-cli2/micromatch": "4.0.8"
+    "fsevents": "npm:@electron/fsevents@2.3.3-fork",
+    "serialize-javascript": "^7.0.5"
   },
   "packageManager": "yarn@4.10.3+sha512.c38cafb5c7bb273f3926d04e55e1d8c9dfa7d9c3ea1f36a4868fa028b9e5f72298f0b7f401ad5eb921749eb012eb1c3bb74bf7503df3ee43fd600d14a018266f",
   "dependenciesMeta": {
