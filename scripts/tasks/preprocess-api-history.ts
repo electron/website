@@ -128,7 +128,7 @@ function findValidApiHistoryBlocks(
 
     try {
       unsafeHistory = parseYaml(codeBlock.value);
-    } catch (error) {
+    } catch {
       hasWarned = true;
       logger.warn(
         `(Skipping block) Error parsing YAML in possible history block (${logger.green(

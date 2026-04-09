@@ -1,0 +1,21 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["eslint", "oxc", "react", "typescript", "unicorn"],
+  "options": {
+    // can't enable this and upgrade to tsgo due to upstream @docusaurus/tsconfig incompatibility
+    // https://github.com/facebook/docusaurus/issues/11893
+    "typeAware": false
+  },
+  "categories": {
+    "correctness": "error"
+  },
+  "rules": {
+    "no-unused-vars": [
+      "warn",
+      {
+        "varsIgnorePattern": "^_"
+      }
+    ]
+  },
+  "ignorePatterns": ["docs/**", "create-electron-documentation"]
+}
