@@ -71,7 +71,7 @@ const downloadFromGitHub = async (
 
   const tarballUrl = `https://github.com/${org}/${repository}/archive/${target}.tar.gz`;
 
-  const contents = [];
+  const contents: any = [];
 
   return new Promise((resolve) => {
     fetch(tarballUrl).then((response) => {
@@ -94,7 +94,7 @@ const downloadFromGitHub = async (
               header.name = header.name.replace(`${repository}-${target}`, '');
 
               if (header.type === 'file' && header.name.match(downloadMatch)) {
-                const chunks = [];
+                const chunks: any = [];
                 stream.on('data', (data) => {
                   chunks.push(data);
                 });
@@ -129,15 +129,9 @@ const downloadFromGitHub = async (
  * with the option to choose the download destination,
  * filtering by path, and reorganizing the folder structure
  * as needed.
- * @param userOptions
  */
 export const download = async (userOptions: DownloadOptions) => {
-  const options = {
-    ...{ target: 'main' },
-    ...userOptions,
-  };
-
-  const contents = await downloadFromGitHub(options);
+  const contents = await downloadFromGitHub(userOptions);
 
   await saveContents(contents, userOptions.destination);
 };
