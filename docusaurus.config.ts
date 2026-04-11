@@ -17,6 +17,7 @@ import jsCodeBlocks from './src/transformers/js-code-blocks';
 import fiddleEmbedder from './src/transformers/fiddle-embedder';
 import githubContentsLinks from './src/transformers/github-content-links';
 import apiHistory from './src/transformers/api-history';
+import copyPageButton from './src/transformers/copy-page-button';
 
 let docsSHA = undefined;
 
@@ -302,6 +303,7 @@ const config: Config = {
             fiddleEmbedder,
             githubContentsLinks,
             apiHistory,
+            copyPageButton,
             [npm2yarn, { sync: true, converters: ['yarn'] }],
           ],
         },

@@ -1,0 +1,66 @@
+.wrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
+.copyButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.75rem;
+
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: var(--ifm-font-weight-semibold);
+  line-height: 1.25;
+
+  color: var(--ifm-color-emphasis-800);
+  background-color: var(--ifm-background-color);
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: var(--ifm-button-border-radius, 0.4rem);
+
+  cursor: pointer;
+  transition:
+    background-color 0.5s ease,
+    border-color 0.5s ease,
+    color 0.5s ease;
+
+  &:hover {
+    background-color: var(--ifm-color-emphasis-100);
+    border-color: var(--ifm-color-emphasis-400);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--ifm-color-primary);
+    outline-offset: 2px;
+  }
+
+  svg {
+    flex-shrink: 0;
+  }
+
+  :root[data-theme='dark'] & {
+    color: var(--ifm-color-emphasis-700);
+    background-color: var(--ifm-background-color);
+    border-color: var(--ifm-color-emphasis-300);
+
+    &:hover {
+      background-color: var(--ifm-color-emphasis-200);
+      border-color: var(--ifm-color-emphasis-500);
+      color: var(--ifm-color-emphasis-900);
+    }
+  }
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
