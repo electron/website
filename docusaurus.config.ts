@@ -327,7 +327,7 @@ const config: Config = {
     ],
   ],
   future: {
-    experimental_faster: {
+    faster: {
       rspackBundler: true,
       rspackPersistentCache: false,
       swcHtmlMinimizer: true,
