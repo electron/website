@@ -43,7 +43,7 @@ Support for this feature in [Electron Forge](https://electronforge.io) is planne
 
 On Wayland (Linux), frameless windows now have drop shadows and extended resize boundaries. To create fully frameless windows with no decorations, set `hasShadow: false` in the window constructor. [#49885](https://github.com/electron/electron/pull/49885)
 
-[Mitchell Cohen](https://github.com/mitchchn) is writing a blog article about recent work to improve Electron's support of Wayland and client-side decorations on Linux. Watch this space!
+[Mitchell Cohen](https://github.com/mitchchn) has written a [blog article](./tech-talk-wayland.md) about recent work to improve Electron's support of Wayland and client-side decorations on Linux.
 
 ### Added support for MSIX auto-updating
 
