@@ -65,7 +65,7 @@ This was added in Electron 41 by [#49586](https://github.com/electron/electron/p
   - [Node 24.13.0 blog post](https://nodejs.org/en/blog/release/v24.13.0)
   - [Node 24.12.0 blog post](https://nodejs.org/en/blog/release/v24.12.0)
 
-- V8 `14.4`
+- V8 `14.6`
   - [V8 roll increment](https://chromium.googlesource.com/v8/v8.git/+/3f4b2d428486d982bf51d7c0487adcd9f73f5fd8)
 
 Electron 41 upgrades Chromium from `144.0.7559.60` to `146.0.7680.65`, Node.js from `v24.11.1` to `v24.14.0`, and V8 from `14.4` to `14.6`.
