@@ -17,7 +17,9 @@ permissions: {}
 jobs:
   update-docs:
     runs-on: ubuntu-latest
-    environment: docs-updater
+    environment:
+      name: docs-updater
+      deployment: false
     permissions:
       id-token: write # for secret service access
     env:
