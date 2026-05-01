@@ -187,7 +187,7 @@ async function transformer(tree: Parent) {
       children: [],
       data: {
         _mdxExplicitJsx: true,
-      },
+      } as MdxJsxFlowElement['data'],
     };
 
     children.push(fiddleBlock);

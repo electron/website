@@ -275,7 +275,7 @@ async function transformer(tree: Parent, file: VFile) {
                   href: relativeStructureUrl,
                   text: title,
                 },
-              };
+              } as MdxJsxFlowElement['data'];
               previewNode.attributes = [
                 {
                   type: 'mdxJsxAttribute',

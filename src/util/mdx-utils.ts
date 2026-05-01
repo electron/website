@@ -83,6 +83,7 @@ export function getJSXImport(componentName: string): MdxjsEsm {
               value: `@site/src/components/${componentName}`,
               raw: `'@site/src/components/${componentName}'`,
             },
+            attributes: [],
           },
         ],
         sourceType: 'module',
