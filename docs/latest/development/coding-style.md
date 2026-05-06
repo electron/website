@@ -10,7 +10,7 @@ hide_title: false
 These are the style guidelines for coding in Electron.
 
 You can run `npm run lint` to show any style issues detected by `cpplint` and
-`eslint`.
+`oxlint`.
 
 ## General Code
 
@@ -46,7 +46,7 @@ etc.
 
 ## Documentation
 
-* Write [remark](https://github.com/remarkjs/remark) markdown style.
+* Write prose according to our [documentation style guide](./style-guide.md).
 
 You can run `npm run lint:docs` to ensure that your documentation changes are
 formatted correctly.

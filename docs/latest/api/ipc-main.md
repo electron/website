@@ -46,6 +46,11 @@ Listens to `channel`, when a new message arrives `listener` would be called with
 
 ### `ipcMain.off(channel, listener)`
 
+```YAML history
+added:
+  - pr-url: https://github.com/electron/electron/pull/44651
+```
+
 * `channel` string
 * `listener` Function
   * `event` [IpcMainEvent][ipc-main-event]
@@ -89,6 +94,11 @@ Removes all listeners from the specified `channel`. Removes all listeners from a
 
 ### `ipcMain.handle(channel, listener)`
 
+```YAML history
+added:
+  - pr-url: https://github.com/electron/electron/pull/18449
+```
+
 * `channel` string
 * `listener` Function\<Promise\<any\> | any\>
   * `event` [IpcMainInvokeEvent][ipc-main-invoke-event]
@@ -126,6 +136,11 @@ provided to the renderer process. Please refer to
 
 ### `ipcMain.handleOnce(channel, listener)`
 
+```YAML history
+added:
+  - pr-url: https://github.com/electron/electron/pull/18449
+```
+
 * `channel` string
 * `listener` Function\<Promise\<any\> | any\>
   * `event` [IpcMainInvokeEvent][ipc-main-invoke-event]
@@ -135,6 +150,11 @@ Handles a single `invoke`able IPC message, then removes the listener. See
 `ipcMain.handle(channel, listener)`.
 
 ### `ipcMain.removeHandler(channel)`
+
+```YAML history
+added:
+  - pr-url: https://github.com/electron/electron/pull/18449
+```
 
 * `channel` string
 

@@ -1106,7 +1106,8 @@ static Napi::Object Init(Napi::Env env, Napi::Object exports) {
     Napi::Function func = DefineClass(env, "CppWin32Addon", {
         InstanceMethod("helloWorld", &CppAddon::HelloWorld),
         InstanceMethod("helloGui", &CppAddon::HelloGui),
-        InstanceMethod("on", &CppAddon::On)
+        InstanceMethod("on", &CppAddon::On),
+        InstanceMethod("destroy", &CppAddon::Destroy)
     });
 
     // ... rest of Init function
@@ -1124,9 +1125,21 @@ Napi::Value On(const Napi::CallbackInfo& info) {
     callbacks.Value().Set(info[0].As<Napi::String>(), info[1].As<Napi::Function>());
     return env.Undefined();
 }
+
+Napi::Value Destroy(const Napi::CallbackInfo& info) {
+    callbacks.Reset();
+    emitter.Reset();
+
+    if (tsfn_ != nullptr) {
+        napi_release_threadsafe_function(tsfn_, napi_tsfn_abort);
+        tsfn_ = nullptr;
+    }
+
+    return info.Env().Undefined();
+}
 ```
 
-This allows JavaScript to register callbacks for specific event types.
+This allows JavaScript to register callbacks for specific event types. The `Destroy` method releases all persistent references and aborts the threadsafe function, which must be called before the app quits to prevent the process from hanging.
 
 ### Putting the bridge together
 
@@ -1268,6 +1281,18 @@ private:
         callbacks.Value().Set(info[0].As<Napi::String>(), info[1].As<Napi::Function>());
         return env.Undefined();
     }
+
+    Napi::Value Destroy(const Napi::CallbackInfo& info) {
+        callbacks.Reset();
+        emitter.Reset();
+
+        if (tsfn_ != nullptr) {
+            napi_release_threadsafe_function(tsfn_, napi_tsfn_abort);
+            tsfn_ = nullptr;
+        }
+
+        return info.Env().Undefined();
+    }
 };
 
 Napi::Object Init(Napi::Env env, Napi::Object exports) {
@@ -1316,6 +1341,10 @@ class CppWin32Addon extends EventEmitter {
     this.addon.helloGui()
   }
 
+  destroy() {
+    this.addon.destroy()
+  }
+
   #parse(payload) {
     const parsed = JSON.parse(payload)
 
@@ -1329,6 +1358,9 @@ if (process.platform === 'win32') {
   module.exports = {}
 }
 ```
+
+> [!IMPORTANT]
+> You must call `destroy()` before the app quits (e.g. in the `will-quit` or `before-quit` event handler). Without this, persistent references to callbacks and the threadsafe function will prevent the native addon's destructor from running, causing Electron to hang on quit.
 
 ## 7) Building and Testing the Addon
 
