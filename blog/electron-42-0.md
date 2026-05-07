@@ -9,7 +9,7 @@ slug: electron-42-0
 tags: [release]
 ---
 
-Electron 42 has been released! It includes upgrades to Chromium 148.0.7778.56, V8 14.8, and Node v24.15.0.
+Electron 42 has been released! It includes upgrades to Chromium 148.0.7778.96, V8 14.8, and Node v24.15.0.
 
 ---
 
@@ -23,7 +23,7 @@ If you have any feedback, please share it with us on [Bluesky](https://bsky.app/
 
 Electron has migrated from the deprecated `NSUserNotification` API to the [`UNNotification`](https://developer.apple.com/documentation/usernotifications) API on macOS. The new API requires that an application be code-signed in order for notifications to be displayed. If an application is not code-signed, notifications will emit a `failed` event on the `Notification` object. [#47817](https://github.com/electron/electron/pull/47817)
 
-Additionally, Electron 42 adds `Notification.getHistory()` for macOS ([#51123](https://github.com/electron/electron/pull/51123)), and `id` and `groupId` options to the Notification constructor to allow custom identifiers and visual grouping in Notification Center ([#50304](https://github.com/electron/electron/pull/50304)).
+Additionally, Electron 42 adds `Notification.getHistory()` for macOS ([#51123](https://github.com/electron/electron/pull/51123)), and `id` and `groupId` options to the `Notification` constructor to allow custom identifiers and visual grouping in Notification Center ([#50304](https://github.com/electron/electron/pull/50304)).
 
 ### `electron` no longer downloads itself via `postinstall` script
 
@@ -42,13 +42,13 @@ Added `app.configureWebAuthn({ touchID: { keychainAccessGroup } })` to enable th
 
 ### View animations and background blur
 
-Added animation functionality to `view.setBounds` and added `view.setBackgroundBlur`, allowing for smoother UI transitions and native background blur effects. [#48812](https://github.com/electron/electron/pull/48812)
+Added animation functionality to `view.setBounds()` and added `view.setBackgroundBlur()`, allowing for smoother UI transitions and native background blur effects. [#48812](https://github.com/electron/electron/pull/48812)
 
 <!--truncate-->
 
 ## Stack Changes
 
-- Chromium `148.0.7778.56`
+- Chromium `148.0.7778.96`
   - [New in 148](https://developer.chrome.com/blog/new-in-chrome-148/)
   - [New in 147](https://developer.chrome.com/blog/new-in-chrome-147/)
 
@@ -57,7 +57,7 @@ Added animation functionality to `view.setBounds` and added `view.setBackgroundB
 
 - V8 `14.8`
 
-Electron 42 upgrades Chromium from `146.0.7680.65` to `148.0.7778.56`, Node.js from `v24.14.0` to `v24.15.0`, and V8 from `14.6` to `14.8`.
+Electron 42 upgrades Chromium from `146.0.7680.65` to `148.0.7778.96`, Node.js from `v24.14.0` to `v24.15.0`, and V8 from `14.6` to `14.8`.
 
 ## New Features and Improvements
 
@@ -67,14 +67,14 @@ Electron 42 upgrades Chromium from `146.0.7680.65` to `148.0.7778.56`, Node.js f
 - Added `ELECTRON_INSTALL_PLATFORM` and `ELECTRON_INSTALL_ARCH` variables to install binaries from other platforms and architectures. [#49981](https://github.com/electron/electron/pull/49981)
 - Added `app.isActive()` to check if the app is the active/foreground application (macOS only). [#49622](https://github.com/electron/electron/pull/49622)
 - Added `globalShortcut.setSuspended()` and `globalShortcut.isSuspended()` methods to temporarily suspend and resume global shortcut handling. [#50777](https://github.com/electron/electron/pull/50777)
-- Added `id` and `groupId` options to the Notification constructor on macOS for custom identifiers and visual grouping in Notification Center. [#50304](https://github.com/electron/electron/pull/50304)
+- Added `id` and `groupId` options to the `Notification` constructor on macOS for custom identifiers and visual grouping in Notification Center. [#50304](https://github.com/electron/electron/pull/50304)
 - Added `id`, `groupId`, and `groupTitle` support for Windows notifications. [#50895](https://github.com/electron/electron/pull/50895)
 - Added `nativeTheme.shouldDifferentiateWithoutColor` on macOS. [#50409](https://github.com/electron/electron/pull/50409) <sup>(Also in [41](https://github.com/electron/electron/pull/50408))</sup>
 - Added animation functionality to `view.setBounds` and added `view.setBackgroundBlur`. [#48812](https://github.com/electron/electron/pull/48812)
 - Added support for heap profiling in `contentTracing`. [#51162](https://github.com/electron/electron/pull/51162)
 - Added support for importing shared textures using the nv16 pixel format. [#51187](https://github.com/electron/electron/pull/51187)
 - Added support for importing shared textures using the p010le 10-bit YUV pixel format. [#49272](https://github.com/electron/electron/pull/49272)
-- Added support for several more `safeStorage` backends via new asynchronous functionality in safeStorage. [#49054](https://github.com/electron/electron/pull/49054)
+- Added support for several more `safeStorage` backends via new asynchronous functionality in `safeStorage`. [#49054](https://github.com/electron/electron/pull/49054)
 - Added support for the `urgency` option in Notifications on Windows. [#50383](https://github.com/electron/electron/pull/50383) <sup>(Also in [41](https://github.com/electron/electron/pull/50382))</sup>
 - Added the ability to capture JS stack trace on renderer OOM. [#50911](https://github.com/electron/electron/pull/50911)
 - Electron now downloads its binary into `node_modules` dynamically on first launch instead of running a `postinstall` script. Added the `install-electron` script to manually trigger the download as well. [#49328](https://github.com/electron/electron/pull/49328)
