@@ -17,6 +17,8 @@ The Electron team is excited to announce the release of Electron 42! You can ins
 
 If you have any feedback, please share it with us on [Bluesky](https://bsky.app/profile/electronjs.org) or [Mastodon](https://social.lfx.dev/@electronjs), or join our community [Discord](https://discord.com/invite/electronjs)! Bugs and feature requests can be reported in Electron's [issue tracker](https://github.com/electron/electron/issues).
 
+<!--truncate-->
+
 ## Notable Changes
 
 ### macOS notifications now use `UNNotification` API
@@ -44,8 +46,6 @@ Added `app.configureWebAuthn({ touchID: { keychainAccessGroup } })` to enable th
 
 Added animation functionality to `view.setBounds()` and added `view.setBackgroundBlur()`, allowing for smoother UI transitions and native background blur effects. [#48812](https://github.com/electron/electron/pull/48812)
 
-<!--truncate-->
-
 ## Stack Changes
 
 - Chromium `148.0.7778.96`
@@ -58,26 +58,6 @@ Added animation functionality to `view.setBounds()` and added `view.setBackgroun
 - V8 `14.8`
 
 Electron 42 upgrades Chromium from `146.0.7680.65` to `148.0.7778.96`, Node.js from `v24.14.0` to `v24.15.0`, and V8 from `14.6` to `14.8`.
-
-## New Features and Improvements
-
-- Added `app.configureWebAuthn({ touchID: { keychainAccessGroup } })` to enable the WebAuthn Touch ID platform authenticator on macOS. Also introduces a `select-webauthn-account` session event for discoverable-credential selection. [#51411](https://github.com/electron/electron/pull/51411)
-- Added `Notification.getHistory()` for macOS. [#51123](https://github.com/electron/electron/pull/51123)
-- Added `Notification.handleActivation(callback)` API on Windows to handle notification clicks, replies, and action buttons — including when the app is launched from a notification (cold start). [#49919](https://github.com/electron/electron/pull/49919)
-- Added `ELECTRON_INSTALL_PLATFORM` and `ELECTRON_INSTALL_ARCH` variables to install binaries from other platforms and architectures. [#49981](https://github.com/electron/electron/pull/49981)
-- Added `app.isActive()` to check if the app is the active/foreground application (macOS only). [#49622](https://github.com/electron/electron/pull/49622)
-- Added `globalShortcut.setSuspended()` and `globalShortcut.isSuspended()` methods to temporarily suspend and resume global shortcut handling. [#50777](https://github.com/electron/electron/pull/50777)
-- Added `id` and `groupId` options to the `Notification` constructor on macOS for custom identifiers and visual grouping in Notification Center. [#50304](https://github.com/electron/electron/pull/50304)
-- Added `id`, `groupId`, and `groupTitle` support for Windows notifications. [#50895](https://github.com/electron/electron/pull/50895)
-- Added `nativeTheme.shouldDifferentiateWithoutColor` on macOS. [#50409](https://github.com/electron/electron/pull/50409) <sup>(Also in [41](https://github.com/electron/electron/pull/50408))</sup>
-- Added animation functionality to `view.setBounds` and added `view.setBackgroundBlur`. [#48812](https://github.com/electron/electron/pull/48812)
-- Added support for heap profiling in `contentTracing`. [#51162](https://github.com/electron/electron/pull/51162)
-- Added support for importing shared textures using the nv16 pixel format. [#51187](https://github.com/electron/electron/pull/51187)
-- Added support for importing shared textures using the p010le 10-bit YUV pixel format. [#49272](https://github.com/electron/electron/pull/49272)
-- Added support for several more `safeStorage` backends via new asynchronous functionality in `safeStorage`. [#49054](https://github.com/electron/electron/pull/49054)
-- Added support for the `urgency` option in Notifications on Windows. [#50383](https://github.com/electron/electron/pull/50383) <sup>(Also in [41](https://github.com/electron/electron/pull/50382))</sup>
-- Added the ability to capture JS stack trace on renderer OOM. [#50911](https://github.com/electron/electron/pull/50911)
-- Electron now downloads its binary into `node_modules` dynamically on first launch instead of running a `postinstall` script. Added the `install-electron` script to manually trigger the download as well. [#49328](https://github.com/electron/electron/pull/49328)
 
 ### Breaking Changes
 
