@@ -31,7 +31,7 @@ If you have any feedback, please share it with us on [Bluesky](https://bsky.app/
 
 Electron 40 upgrades Chromium from `142.0.7444.52` to `144.0.7559.60`, Node.js from `v22.20.0` to `v24.11.1`, and V8 from `14.2` to `14.4`.
 
-### New Features and Improvements
+## New Features and Improvements
 
 - Added `"memory-eviction"` as a possible reason for a child process to exit. [#48362](https://github.com/electron/electron/pull/48362)
 - Added `bypassCustomProtocolHandlers` option to `net.request`. [#48883](https://github.com/electron/electron/pull/48883) <sup>(Also in [38](https://github.com/electron/electron/pull/48881), [39](https://github.com/electron/electron/pull/48882))</sup>
@@ -40,13 +40,13 @@ Electron 40 upgrades Chromium from `142.0.7444.52` to `144.0.7559.60`, Node.js f
 - Enabled resetting accent color to follow system accent settings if a previous color has been set via `window.setAccentColor(null)`. [#48274](https://github.com/electron/electron/pull/48274) <sup>(Also in [38](https://github.com/electron/electron/pull/48853), [39](https://github.com/electron/electron/pull/48852))</sup>
 - Updated `nativeImage.createFromNamedImage` to support SF Symbol names. [#48772](https://github.com/electron/electron/pull/48772) <sup>(Also in [39](https://github.com/electron/electron/pull/48773))</sup>
 
-### Breaking Changes
+## Breaking Changes
 
-#### Deprecated: clipboard API access from renderer processes
+### Deprecated: clipboard API access from renderer processes
 
 Using the `clipboard` API directly in the renderer process is deprecated. If you want to call this API from a renderer process, place the API call in your preload script and expose it using the `contextBridge` API.
 
-#### Behavior Changed: macOS dSYM files now compressed with tar.xz
+### Behavior Changed: macOS dSYM files now compressed with tar.xz
 
 Debug symbols for macOS (dSYM) now use xz compression in order to handle larger file sizes. `dsym.zip` files are now `dsym.tar.xz` files. End users using debug symbols may need to update their zip utilities.
 

@@ -86,15 +86,15 @@ Electron 41 upgrades Chromium from `144.0.7559.60` to `146.0.7680.65`, Node.js f
 - Enabled V8 trap handlers for WASM behind `WasmTrapHandlers` [fuse](https://www.electronjs.org/docs/latest/tutorial/fuses). [#49839](https://github.com/electron/electron/pull/49839)
 - Extended actions support for Windows notifications to include buttons, select dropdowns, and replies. [#49787](https://github.com/electron/electron/pull/49787) <sup>(Also in [40](https://github.com/electron/electron/pull/49786))</sup>
 
-### Breaking Changes
+## Breaking Changes
 
-#### Behavior Changed: PDFs no longer create a separate WebContents
+### Behavior Changed: PDFs no longer create a separate WebContents
 
 Previously, PDF resources created a separate guest [`WebContents`](https://www.electronjs.org/docs/latest/api/web-contents) for rendering. Now, PDFs are rendered within the same `WebContents` instead. If you have code to detect PDF resources, use the [frame tree](https://www.electronjs.org/docs/latest/api/web-frame-main) instead of `WebContents`.
 
 Under the hood, Chromium [enabled](https://chromium-review.googlesource.com/c/chromium/src/+/7239572) a feature that changes PDFs to use out-of-process iframes (OOPIFs) instead of the `MimeHandlerViewGuest` extension.
 
-#### Behavior Changed: Updated Cookie Change Cause in the Cookie `'changed'` Event
+### Behavior Changed: Updated Cookie Change Cause in the Cookie `'changed'` Event
 
 We have updated the cookie change cause in the cookie [`'changed'` event](https://www.electronjs.org/docs/latest/api/cookies#event-changed).
 When a new cookie is set, the change cause is `inserted`.
@@ -102,7 +102,7 @@ When a cookie is deleted, the change cause remains `explicit`.
 When the cookie being set is identical to an existing one (same name, domain, path, and value, with no actual changes), the change cause is `inserted-no-change-overwrite`.
 When the value of the cookie being set remains unchanged but some of its attributes are updated, such as the expiration attribute, the change cause will be `inserted-no-value-change-overwrite`.
 
-#### Deprecated: `showHiddenFiles` in Dialogs on Linux
+### Deprecated: `showHiddenFiles` in Dialogs on Linux
 
 This property will still be honored on macOS and Windows, but support on Linux
 will be removed in a future version of Electron. GTK intends for this to be a user choice rather
