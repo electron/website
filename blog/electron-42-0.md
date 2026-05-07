@@ -62,7 +62,7 @@ Electron 42 upgrades Chromium from `146.0.7680.65` to `148.0.7778.96`, Node.js f
 ## New Features and Improvements
 
 - Added `app.configureWebAuthn({ touchID: { keychainAccessGroup } })` to enable the WebAuthn Touch ID platform authenticator on macOS. Also introduces a `select-webauthn-account` session event for discoverable-credential selection. [#51411](https://github.com/electron/electron/pull/51411) <sup>(Also in [41](https://github.com/electron/electron/pull/51411))</sup>
-- Added `allowExtensions` privilege to protocol.registerSchemesAsPrivileged() to enable Chrome extensions on custom protocols. [#49951](https://github.com/electron/electron/pull/49951)
+- Added `allowExtensions` privilege to `protocol.registerSchemesAsPrivileged()` to enable Chrome extensions on custom protocols. [#49951](https://github.com/electron/electron/pull/49951)
 - Added `Notification.getHistory()` for macOS. [#51123](https://github.com/electron/electron/pull/51123)
 - Added `Notification.handleActivation(callback)` API on Windows to handle notification clicks, replies, and action buttons — including when the app is launched from a notification (cold start). [#49919](https://github.com/electron/electron/pull/49919)
 - Added `ELECTRON_INSTALL_PLATFORM` and `ELECTRON_INSTALL_ARCH` variables to install binaries from other platforms and architectures. [#49981](https://github.com/electron/electron/pull/49981)
