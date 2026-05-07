@@ -81,6 +81,12 @@ When calling `Session.clearStorageData(options)`, the `options.quotas` object is
 
 This environment variable is no longer supported due to the new lazy download behavior. [#50459](https://github.com/electron/electron/pull/50459)
 
+## Removed: `showHiddenFiles` in Dialogs on Linux
+
+This property will still be honored on macOS and Windows, but support on Linux
+will be removed in Electron 42. GTK intends for this to be a user choice rather
+than an app choice and has removed the API to do this programmatically.
+
 #### Deprecated: Passing only an array `hslShift` to `nativeImage.createFromNamedImage()`
 
 Passing only an array `hslShift` to `nativeImage.createFromNamedImage()` is deprecated. You should now pass an options object with an `hslShift` property instead:
@@ -93,12 +99,6 @@ nativeImage.createFromNamedImage(imageName, {
   hslShift: [0, 1, -1],
 });
 ```
-
-## Deprecated: `showHiddenFiles` in Dialogs on Linux
-
-This property will still be honored on macOS and Windows, but support on Linux
-will be removed in Electron 42. GTK intends for this to be a user choice rather
-than an app choice and has removed the API to do this programmatically.
 
 ## End of Support for 39.x.y
 
