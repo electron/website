@@ -59,35 +59,55 @@ Added animation functionality to `view.setBounds()` and added `view.setBackgroun
 
 Electron 42 upgrades Chromium from `146.0.7680.65` to `148.0.7778.96`, Node.js from `v24.14.0` to `v24.15.0`, and V8 from `14.6` to `14.8`.
 
-### Breaking Changes
+## New Features and Improvements
 
-#### Behavior Changed: macOS notifications now use `UNNotification` API
+- Added `app.configureWebAuthn({ touchID: { keychainAccessGroup } })` to enable the WebAuthn Touch ID platform authenticator on macOS. Also introduces a `select-webauthn-account` session event for discoverable-credential selection. [#51411](https://github.com/electron/electron/pull/51411) <sup>(Also in [41](https://github.com/electron/electron/pull/51411))</sup>
+- Added `allowExtensions` privilege to protocol.registerSchemesAsPrivileged() to enable Chrome extensions on custom protocols. [#49951](https://github.com/electron/electron/pull/49951)
+- Added `Notification.getHistory()` for macOS. [#51123](https://github.com/electron/electron/pull/51123)
+- Added `Notification.handleActivation(callback)` API on Windows to handle notification clicks, replies, and action buttons — including when the app is launched from a notification (cold start). [#49919](https://github.com/electron/electron/pull/49919)
+- Added `ELECTRON_INSTALL_PLATFORM` and `ELECTRON_INSTALL_ARCH` variables to install binaries from other platforms and architectures. [#49981](https://github.com/electron/electron/pull/49981)
+- Added `app.isActive()` to check if the app is the active/foreground application (macOS only). [#49622](https://github.com/electron/electron/pull/49622)
+- Added `globalShortcut.setSuspended()` and `globalShortcut.isSuspended()` methods to temporarily suspend and resume global shortcut handling. [#50777](https://github.com/electron/electron/pull/50777)
+- Added `id` and `groupId` options to the notification constructor on macOS for custom identifiers and visual grouping in Notification Center. [#50304](https://github.com/electron/electron/pull/50304)
+- Added `id`, `groupId`, and `groupTitle` support for Windows notifications. [#50895](https://github.com/electron/electron/pull/50895)
+- Added `nativeTheme.shouldDifferentiateWithoutColor` on macOS. [#50409](https://github.com/electron/electron/pull/50409) <sup>(Also in [41](https://github.com/electron/electron/pull/50408))</sup>
+- Added `webContents.getOrCreateDevToolsTargetId()`. [#49733](https://github.com/electron/electron/pull/49733) <sup>(Also in [41](https://github.com/electron/electron/pull/50176))</sup>
+- Added an `usePrinterDefaultPageSize` option to `webContents.print()` to allow using the printer's default page size. [#49523](https://github.com/electron/electron/pull/49523) <sup>(Also in [41](https://github.com/electron/electron/pull/49812))</sup>
+- Added animation functionality to `view.setBounds()` and added `view.setBackgroundBlur()`. [#48812](https://github.com/electron/electron/pull/48812)
+- Added support for heap profiling in `contentTracing`. [#51162](https://github.com/electron/electron/pull/51162) <sup>(Also in [41](https://github.com/electron/electron/pull/51162))</sup>
+- Added support for importing shared textures using the nv16 pixel format. [#51187](https://github.com/electron/electron/pull/51187)
+- Added support for importing shared textures using the p010le 10-bit YUV pixel format. [#49272](https://github.com/electron/electron/pull/49272)
+- Added support for several more `safeStorage` backends via new asynchronous functionality in safeStorage. [#49054](https://github.com/electron/electron/pull/49054)
+- Added support for the `urgency` option in notifications on Windows. [#50383](https://github.com/electron/electron/pull/50383) <sup>(Also in [41](https://github.com/electron/electron/pull/50382))</sup>
+- Added the ability to capture JS stack trace on renderer OOM. [#50911](https://github.com/electron/electron/pull/50911)
+- Electron now downloads its binary into `node_modules` dynamically on first launch instead of running a `postinstall` script. Added the `install-electron` script to manually trigger the download as well. [#49328](https://github.com/electron/electron/pull/49328)
+- Enabled wasm trap handlers behind `WasmTrapHandlers` [fuse](https://www.electronjs.org/docs/latest/tutorial/fuses). [#48983](https://github.com/electron/electron/pull/48983) <sup>(Also in [41](https://github.com/electron/electron/pull/49839))</sup>
+- On Wayland (Linux), frameless windows now have GTK drop shadows and extended resize boundaries. To create fully frameless windows with no decorations, set `hasShadow: false` in the window constructor. [#49295](https://github.com/electron/electron/pull/49295) <sup>(Also in [41](https://github.com/electron/electron/pull/49885))</sup>
+- Replaced deprecated `NSUserNotification` with User Notifications. [#47817](https://github.com/electron/electron/pull/47817)
+
+## Breaking Changes
+
+### Behavior Changed: macOS notifications now use `UNNotification` API
 
 Electron has migrated from the deprecated `NSUserNotification` API to the `UNNotification` API on macOS. The new API requires that an application be code-signed in order for notifications to be displayed. If an application is not code-signed, notifications will emit a `failed` event on the `Notification` object. [#47817](https://github.com/electron/electron/pull/47817)
 
-#### Behavior Changed: `electron` no longer downloads itself via `postinstall` script
+### Behavior Changed: `electron` no longer downloads itself via `postinstall` script
 
 Previously, the `electron` npm package would download the Electron binary from the repository's GitHub Releases in the package's `postinstall` script. With recent supply chain security attacks against the npm ecosystem with `postinstall` scripts as a common attack vector, Electron will now download itself dynamically the first time that its main `bin` script is run (e.g. via `npx electron`). See [RFC #22](https://github.com/electron/rfcs/pull/22) for more context. [#49328](https://github.com/electron/electron/pull/49328)
 
-#### Behavior Changed: Offscreen rendering default device scale factor
+### Behavior Changed: Offscreen rendering default device scale factor
 
 Previously, OSR used the primary display's device scale factor for rendering. Starting from Electron 42, the default changes to a constant value of `1.0` for more consistent output sizes. Use `webPreferences.offscreen.deviceScaleFactor` to specify a custom value. [#49683](https://github.com/electron/electron/pull/49683)
 
-#### Removed: `quotas` object from `Session.clearStorageData(options)`
+### Removed: `quotas` object from `Session.clearStorageData(options)`
 
 When calling `Session.clearStorageData(options)`, the `options.quotas` object is no longer supported because it has been removed from upstream Chromium.
 
-#### Removed: `ELECTRON_SKIP_BINARY_DOWNLOAD` environment variable
+### Removed: `ELECTRON_SKIP_BINARY_DOWNLOAD` environment variable
 
 This environment variable is no longer supported due to the new lazy download behavior. [#50459](https://github.com/electron/electron/pull/50459)
 
-## Removed: `showHiddenFiles` in Dialogs on Linux
-
-This property will still be honored on macOS and Windows, but support on Linux
-will be removed in Electron 42. GTK intends for this to be a user choice rather
-than an app choice and has removed the API to do this programmatically.
-
-#### Deprecated: Passing only an array `hslShift` to `nativeImage.createFromNamedImage()`
+### Deprecated: Passing only an array `hslShift` to `nativeImage.createFromNamedImage()`
 
 Passing only an array `hslShift` to `nativeImage.createFromNamedImage()` is deprecated. You should now pass an options object with an `hslShift` property instead:
 
