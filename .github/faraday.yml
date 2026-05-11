@@ -1,0 +1,13 @@
+# faraday trust configuration for electron/website.
+# A bot listed here is "trusted" and its paired `approvers` may stand in
+# for a human review on its PRs only.
+# See: https://github.com/electron/faraday
+
+trusted-bots:
+  # Docs sync from electron/electron, verified and approved by
+  # electron-pr-approver.
+  - login: electron-website-docs-updater[bot]
+    id: 166660481
+    approvers:
+      - login: electron-pr-approver[bot]
+        id: 237345921
