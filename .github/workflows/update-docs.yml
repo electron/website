@@ -49,7 +49,7 @@ jobs:
             echo "::warning:: Unexpectedly found no new content for docs - this might be a bug"
           fi
       - name: Push changes to branch
-        uses: dsanders11/github-app-commit-action@43de6da2f4d927e997c0784c7a0b61bd19ad6aac # v1.5.0
+        uses: dsanders11/github-app-commit-action@2bbcd331016d8c950b05a24b56e7eb9cb50d545e # v2.1.0
         with:
           message: 'chore: update ref to docs (🤖)'
           ref: 'docs/update-to-${{ env.SHA }}'
