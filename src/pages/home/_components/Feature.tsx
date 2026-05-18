@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from 'react';
+import React, { type PropsWithChildren } from 'react';
 import clsx from 'clsx';
 import styles from './Feature.module.scss';
 

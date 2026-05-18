@@ -3,6 +3,8 @@
   "exclude": ["**/node_modules/*", "blog", "docs", "build", "i18n"],
   "compilerOptions": {
     "baseUrl": ".",
-    "target": "ES2015"
+    "target": "ES2015",
+    "allowImportingTsExtensions": true,
+    "rewriteRelativeImportExtensions": true
   }
 }

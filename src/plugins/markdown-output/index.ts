@@ -6,8 +6,8 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { Plugin } from '@docusaurus/types';
-import logger from '@docusaurus/logger';
+import type { Plugin } from '@docusaurus/types';
+import { logger } from '@docusaurus/logger';
 
 /** Route prefixes to copy markdown files within. */
 const PREFIXES = ['docs/', 'blog/'];

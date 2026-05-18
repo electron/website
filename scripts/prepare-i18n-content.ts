@@ -6,16 +6,16 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-import logger from '@docusaurus/logger';
+import { logger } from '@docusaurus/logger';
 
-import { addFrontmatterToAllDocs } from './tasks/add-frontmatter';
-import { fixContent } from './tasks/md-fixers';
-import config from '../docusaurus.config';
+import { addFrontmatterToAllDocs } from './tasks/add-frontmatter.ts';
+import { fixContent } from './tasks/md-fixers.ts';
+import config from '../docusaurus.config.ts';
 
 const DOCS_FOLDER = path.join('docs', 'latest');
 
 const start = async () => {
-  const locales = new Set(config.i18n.locales);
+  const locales = new Set(config.i18n?.locales);
   locales.delete('en');
   for (const locale of locales) {
     const localeDocs = path.join(

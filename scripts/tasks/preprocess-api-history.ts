@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
 
-import logger from '@docusaurus/logger';
-import Ajv, { JSONSchemaType, ValidateFunction } from 'ajv';
+import { logger } from '@docusaurus/logger';
+import Ajv, { type JSONSchemaType, type ValidateFunction } from 'ajv';
 import { readFile, writeFile } from 'fs/promises';
 import { fromHtml } from 'hast-util-from-html';
 import type { Html, Root } from 'mdast';

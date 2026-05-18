@@ -1,8 +1,8 @@
-import { Parent } from 'unist';
-import { ListItem } from 'mdast';
-import { Data as HastData } from 'hast';
+import type { Parent } from 'unist';
+import type { ListItem } from 'mdast';
+import type { Data as HastData } from 'hast';
 import { visitParents } from 'unist-util-visit-parents';
-import { isOptions, isParagraph } from '../util/mdx-utils';
+import { isOptions, isParagraph } from '../util/mdx-utils.ts';
 
 /**
  * This transformer adds the class="electron-api-options-list"

@@ -5,15 +5,15 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import clsx from 'clsx';
 
 import styles from './_index.module.scss';
-import { HeroAnimation } from './_components/Header';
-import AppsGrid from './_components/AppsGrid';
-import InstallSteps from './_components/InstallSteps';
-import Feature from './_components/Feature';
-import TechnologiesGrid from './_components/TechnologiesGrid';
-import CodeWindow from './_components/CodeWindow';
-import FeaturedAppsCarousel from './_components/FeaturedAppsCarousel';
+import { HeroAnimation } from './_components/Header.tsx';
+import AppsGrid from './_components/AppsGrid.tsx';
+import InstallSteps from './_components/InstallSteps.tsx';
+import Feature from './_components/Feature.tsx';
+import TechnologiesGrid from './_components/TechnologiesGrid.tsx';
+import CodeWindow from './_components/CodeWindow.tsx';
+import FeaturedAppsCarousel from './_components/FeaturedAppsCarousel.tsx';
 
-import { FEATURED_APPS, FEATURED_LOGOS } from '../../util/featured-apps';
+import { FEATURED_APPS, FEATURED_LOGOS } from '../../util/featured-apps.ts';
 import WhyCard from '@site/src/pages/home/_components/WhyCard';
 import {
   Activity,

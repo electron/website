@@ -7,7 +7,7 @@ import isInternalUrl from '@docusaurus/isInternalUrl';
 import IconExternalLink from '@theme/Icon/ExternalLink';
 import type { Props } from '@theme/DocSidebarItem/Link';
 
-import TagContent from './TagContent';
+import TagContent from './TagContent.tsx';
 import styles from './styles.module.css';
 
 export default function DocSidebarItemLink({

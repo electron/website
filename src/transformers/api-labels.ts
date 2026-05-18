@@ -1,8 +1,8 @@
-import { Parent } from 'unist';
+import type { Parent } from 'unist';
 import { visitParents } from 'unist-util-visit-parents';
-import { Data as HastData } from 'hast';
-import { Emphasis } from 'mdast';
-import { isText } from '../util/mdx-utils';
+import type { Data as HastData } from 'hast';
+import type { Emphasis } from 'mdast';
+import { isText } from '../util/mdx-utils.ts';
 
 /**
  * This transformer adds badge styling to our raw API documentation.
