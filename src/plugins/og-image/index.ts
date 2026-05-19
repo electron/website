@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-import logger from '@docusaurus/logger';
+import { logger } from '@docusaurus/logger';
 import type { Plugin } from '@docusaurus/types';
 import matter from 'gray-matter';
 import React from 'react';

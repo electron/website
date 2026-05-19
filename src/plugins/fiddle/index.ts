@@ -1,5 +1,5 @@
 import semver from 'semver';
-import { Plugin } from '@docusaurus/types';
+import type { Plugin } from '@docusaurus/types';
 
 module.exports = async function fiddleVersionPlugin() {
   const plugin: Plugin<string> = {

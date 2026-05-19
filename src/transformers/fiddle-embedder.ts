@@ -1,12 +1,12 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-import { Node, Parent } from 'unist';
-import { Code } from 'mdast';
-import { MdxJsxFlowElement } from 'mdast-util-mdx-jsx';
-import { visitParents, ActionTuple, SKIP } from 'unist-util-visit-parents';
-import { latestElectronVersion } from '../util/latest-electron-version';
-import { getJSXImport, isCode, isImport } from '../util/mdx-utils';
+import type { Node, Parent } from 'unist';
+import type { Code } from 'mdast';
+import type { MdxJsxFlowElement } from 'mdast-util-mdx-jsx';
+import { visitParents, type ActionTuple, SKIP } from 'unist-util-visit-parents';
+import { latestElectronVersion } from '../util/latest-electron-version.ts';
+import { getJSXImport, isCode, isImport } from '../util/mdx-utils.ts';
 
 let _version = '';
 async function getVersion() {

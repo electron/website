@@ -1,8 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-import logger from '@docusaurus/logger';
-import { Config } from '@docusaurus/types';
+import { logger } from '@docusaurus/logger';
+import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 import npm2yarn from '@docusaurus/remark-plugin-npm2yarn';
 import { themes as prismThemes } from 'prism-react-renderer';
@@ -10,13 +10,13 @@ import remarkGithubAdmonitionsToDirectives, {
   DEFAULT_MAPPING,
 } from 'remark-github-admonitions-to-directives';
 
-import apiLabels from './src/transformers/api-labels';
-import apiOptionsClass from './src/transformers/api-options-class';
-import apiStructurePreviews from './src/transformers/api-structure-previews';
-import jsCodeBlocks from './src/transformers/js-code-blocks';
-import fiddleEmbedder from './src/transformers/fiddle-embedder';
-import githubContentsLinks from './src/transformers/github-content-links';
-import apiHistory from './src/transformers/api-history';
+import apiLabels from './src/transformers/api-labels.ts';
+import apiOptionsClass from './src/transformers/api-options-class.ts';
+import apiStructurePreviews from './src/transformers/api-structure-previews.ts';
+import jsCodeBlocks from './src/transformers/js-code-blocks.ts';
+import fiddleEmbedder from './src/transformers/fiddle-embedder.ts';
+import githubContentsLinks from './src/transformers/github-content-links.ts';
+import apiHistory from './src/transformers/api-history.ts';
 
 let docsSHA = undefined;
 

@@ -6,16 +6,34 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-import logger from '@docusaurus/logger';
+import { logger } from '@docusaurus/logger';
 
-import { addFrontmatterToAllDocs } from './tasks/add-frontmatter';
-import { fixContent } from './tasks/md-fixers';
-import config from '../docusaurus.config';
+import { addFrontmatterToAllDocs } from './tasks/add-frontmatter.ts';
+import { fixContent } from './tasks/md-fixers.ts';
 
 const DOCS_FOLDER = path.join('docs', 'latest');
 
 const start = async () => {
-  const locales = new Set(config.i18n.locales);
+  // TODO(dsanders11): This is a nasty hack to get around
+  // CJS vs ESM issues with Node.js type stripping. Once
+  // Docusaurus fully supports ESM, switch this back to
+  // just importing the config file directly and drop this.
+  const configPath = path.join(
+    import.meta.dirname,
+    '..',
+    'docusaurus.config.ts',
+  );
+  const configSource = await fs.readFile(configPath, 'utf8');
+  const localesMatch = configSource.match(/locales:\s*\[([^\]]*)\]/);
+  if (!localesMatch) {
+    throw new Error('Could not find locales array in docusaurus.config.ts');
+  }
+  const locales = new Set(
+    Array.from(
+      localesMatch[1].matchAll(/'([^']+)'|"([^"]+)"/g),
+      (m) => m[1] ?? m[2],
+    ),
+  );
   locales.delete('en');
   for (const locale of locales) {
     const localeDocs = path.join(

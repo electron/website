@@ -1,4 +1,4 @@
-import {
+import type {
   PhrasingContent,
   Text,
   Paragraph,
@@ -8,8 +8,8 @@ import {
   Definition,
   Code,
 } from 'mdast';
-import { MdxjsEsm } from 'mdast-util-mdxjs-esm';
-import { Node } from 'unist';
+import type { MdxjsEsm } from 'mdast-util-mdxjs-esm';
+import type { Node } from 'unist';
 
 export function isCode(node: Node): node is Code {
   return node.type === 'code';

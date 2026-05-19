@@ -1,8 +1,8 @@
 import { remark } from 'remark';
 import gfm from 'remark-gfm';
 import { toString } from 'mdast-util-to-string';
-import { Node, Parent } from 'unist';
-import { Table, Link } from 'mdast';
+import type { Node, Parent } from 'unist';
+import type { Table, Link } from 'mdast';
 
 export interface WorkingGroup {
   name: string;

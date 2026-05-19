@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import Translate from '@docusaurus/Translate';
 
 import styles from './governance.module.scss';
-import { WorkingGroup } from '../fetch-data';
+import type { WorkingGroup } from '../fetch-data.ts';
 
 export default function GovernancePage({
   governance,

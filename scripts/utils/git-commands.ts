@@ -1,4 +1,4 @@
-import { execute } from './execute';
+import { execute } from './execute.ts';
 
 /**
  * Returns the current modified files in the repo.

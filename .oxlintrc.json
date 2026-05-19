@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["eslint", "oxc", "react", "typescript", "unicorn"],
+  "plugins": ["eslint", "import", "oxc", "react", "typescript", "unicorn"],
   "options": {
     // can't enable this and upgrade to tsgo due to upstream @docusaurus/tsconfig incompatibility
     // https://github.com/facebook/docusaurus/issues/11893
@@ -10,12 +10,14 @@
     "correctness": "error"
   },
   "rules": {
+    "import/extensions": ["error", "always", { "ignorePackages": true }],
     "no-unused-vars": [
       "warn",
       {
         "varsIgnorePattern": "^_"
       }
-    ]
+    ],
+    "typescript/consistent-type-imports": "error"
   },
   "ignorePatterns": ["docs/**", "create-electron-documentation"]
 }

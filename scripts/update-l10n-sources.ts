@@ -1,14 +1,14 @@
 /**
- * This is a pre-hook task that checks if the files `docusaurus.config.js` or
+ * This is a pre-hook task that checks if the files `docusaurus.config.ts` or
  * `sidebars.js` have been modified and if so makes sure that the files
  * needed for localization are regenerated.
  */
-import logger from '@docusaurus/logger';
+import { logger } from '@docusaurus/logger';
 
-import { getChanges } from './utils/git-commands';
-import { execute } from './utils/execute';
+import { getChanges } from './utils/git-commands.ts';
+import { execute } from './utils/execute.ts';
 
-const files = ['docusaurus.config.js', 'sidebars.js'];
+const files = ['docusaurus.config.ts', 'sidebars.js'];
 
 const start = async () => {
   logger.info(`Checking if the following files have been modified:

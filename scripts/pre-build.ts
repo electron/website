@@ -7,17 +7,17 @@ import { existsSync } from 'fs';
 import fs from 'fs/promises';
 import path from 'path';
 
-import logger from '@docusaurus/logger';
+import { logger } from '@docusaurus/logger';
 
-import { latestElectronVersion } from '../src/util/latest-electron-version';
+import { latestElectronVersion } from '../src/util/latest-electron-version.ts';
 
-import { copyLocalDocumentation, download } from './tasks/download-docs';
-import { addFrontmatterToAllDocs } from './tasks/add-frontmatter';
-import { fixContent } from './tasks/md-fixers';
-import { copyNewContent } from './tasks/copy-new-content';
-import { preprocessApiHistory } from './tasks/preprocess-api-history';
+import { copyLocalDocumentation, download } from './tasks/download-docs.ts';
+import { addFrontmatterToAllDocs } from './tasks/add-frontmatter.ts';
+import { fixContent } from './tasks/md-fixers.ts';
+import { copyNewContent } from './tasks/copy-new-content.ts';
+import { preprocessApiHistory } from './tasks/preprocess-api-history.ts';
 
-const DOCS_FOLDER = path.join(__dirname, '..', 'docs', 'latest');
+const DOCS_FOLDER = path.join(import.meta.dirname, '..', 'docs', 'latest');
 
 /**
  *

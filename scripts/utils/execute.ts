@@ -1,5 +1,5 @@
 import path from 'path';
-import execa, { Options } from 'execa';
+import execa, { type Options } from 'execa';
 
 /**
  * Groups all string arguments into a single one. E.g.:
