@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { App } from '..';
+import type { App } from '../index.tsx';
 
 import styles from './AppCard.module.scss';
 

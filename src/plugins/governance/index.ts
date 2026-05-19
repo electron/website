@@ -1,4 +1,4 @@
-import { fetchData } from './fetch-data';
+import { fetchData } from './fetch-data.ts';
 
 module.exports = function governancePlugin() {
   return {

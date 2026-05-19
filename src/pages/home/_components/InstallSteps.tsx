@@ -3,8 +3,8 @@ import { usePluginData } from '@docusaurus/useGlobalData';
 import clsx from 'clsx';
 import styles from './InstallSteps.module.scss';
 import semver from 'semver';
-import CodeWindow from './CodeWindow';
-import { ReleasesPluginContent } from '../../../plugins/releases';
+import CodeWindow from './CodeWindow.tsx';
+import type { ReleasesPluginContent } from '../../../plugins/releases/index.tsx';
 
 export default function InstallSteps() {
   const [channel, setChannel] = useState('stable');

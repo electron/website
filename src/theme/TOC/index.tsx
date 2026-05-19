@@ -10,8 +10,8 @@
 
 import React from 'react';
 import TOC from '@theme-original/TOC';
-import { cleanTOC } from '../../util/cleanHeadings';
-import { TOCItem } from '@docusaurus/mdx-loader';
+import { cleanTOC } from '../../util/cleanHeadings.ts';
+import type { TOCItem } from '@docusaurus/mdx-loader';
 
 export default function TOCWrapper(props: { toc: TOCItem[] }) {
   const cleanedTOC = cleanTOC(props.toc);

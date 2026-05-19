@@ -3,11 +3,11 @@ import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import * as semver from 'semver';
 
-import {
+import type {
   ApiHistory,
   PrReleaseVersions,
   PrReleaseVersionsContainer,
-} from '../transformers/api-history';
+} from '../transformers/api-history.ts';
 import styles from './ApiHistoryTable.module.scss';
 
 enum Change {

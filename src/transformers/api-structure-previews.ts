@@ -1,20 +1,20 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-import logger from '@docusaurus/logger';
+import { logger } from '@docusaurus/logger';
 import { h } from 'hastscript';
 import { visitParents } from 'unist-util-visit-parents';
 import { filter } from 'unist-util-filter';
-import { Node, Parent } from 'unist';
+import type { Node, Parent } from 'unist';
 import type { Heading, Link, LinkReference, Root } from 'mdast';
-import { MdxJsxFlowElement } from 'mdast-util-mdx-jsx';
+import type { MdxJsxFlowElement } from 'mdast-util-mdx-jsx';
 import type { VFile } from 'vfile';
 import {
   getJSXImport,
   isDefinition,
   isLink,
   isLinkReference,
-} from '../util/mdx-utils';
+} from '../util/mdx-utils.ts';
 import { toHast } from 'mdast-util-to-hast';
 import { defaultSchema, sanitize } from 'hast-util-sanitize';
 import { toString } from 'mdast-util-to-string';

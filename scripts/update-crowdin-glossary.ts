@@ -3,8 +3,8 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 
 import { Glossaries, UploadStorage } from '@crowdin/crowdin-api-client';
-import logger from '@docusaurus/logger';
-import {
+import { logger } from '@docusaurus/logger';
+import type {
   ParsedDocumentationResult,
   ClassDocumentationContainer,
   ModuleDocumentationContainer,
@@ -16,10 +16,10 @@ import { toString } from 'mdast-util-to-string';
 import remarkParse from 'remark-parse';
 import { unified } from 'unified';
 
-import { latestElectronVersion } from '../src/util/latest-electron-version';
+import { latestElectronVersion } from '../src/util/latest-electron-version.ts';
 
-import { convertToCSV } from './utils/csv';
-import { Parent, Text } from 'mdast';
+import { convertToCSV } from './utils/csv.ts';
+import type { Parent, Text } from 'mdast';
 
 dotenv.config();
 const GLOSSARY_ID = 66562;
@@ -118,7 +118,13 @@ async function collectElectronAPI() {
  */
 async function collectElectronGlossary() {
   // Generate a Markdown AST from remark
-  const source = path.join(__dirname, '..', 'docs', 'latest', 'glossary.md');
+  const source = path.join(
+    import.meta.dirname,
+    '..',
+    'docs',
+    'latest',
+    'glossary.md',
+  );
   const md = await fs.readFile(source, 'utf8');
   const syntaxTree = unified().use(remarkParse).parse(md);
 

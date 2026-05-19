@@ -3,9 +3,9 @@ import Layout from '@theme/Layout';
 import clsx from 'clsx';
 
 import styles from './apps.module.scss';
-import AppCard from './AppCard';
+import AppCard from './AppCard.tsx';
 import { useState } from 'react';
-import { AppsPluginContent } from '..';
+import type { AppsPluginContent } from '../index.ts';
 
 const SORTS = {
   ALPHABETICAL: 'Alphabetical',

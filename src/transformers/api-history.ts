@@ -1,13 +1,13 @@
-import logger from '@docusaurus/logger';
-import { ElectronVersions, SemVer } from '@electron/fiddle-core';
+import { logger } from '@docusaurus/logger';
+import { ElectronVersions, type SemVer } from '@electron/fiddle-core';
 import AdmZip from 'adm-zip';
-import { Code, Node } from 'mdast';
+import type { Code, Node } from 'mdast';
 import semver from 'semver';
-import { Parent } from 'unist';
-import { ActionTuple, SKIP, visitParents } from 'unist-util-visit-parents';
+import type { Parent } from 'unist';
+import { type ActionTuple, SKIP, visitParents } from 'unist-util-visit-parents';
 import { parse as parseYaml } from 'yaml';
 
-import { getJSXImport, isCode, isImport } from '../util/mdx-utils';
+import { getJSXImport, isCode, isImport } from '../util/mdx-utils.ts';
 
 const GH_ACTIONS_ARTIFACTS_URL =
   'https://api.github.com/repos/electron/website/actions/artifacts';

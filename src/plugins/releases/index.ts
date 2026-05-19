@@ -1,6 +1,6 @@
 import semver from 'semver';
 
-import { Plugin } from '@docusaurus/types';
+import type { Plugin } from '@docusaurus/types';
 
 /**
  * A partial implementation of the Electron header type

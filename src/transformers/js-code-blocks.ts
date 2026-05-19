@@ -1,8 +1,8 @@
-import { Node, Parent } from 'unist';
-import { Code } from 'mdast';
+import type { Node, Parent } from 'unist';
+import type { Code } from 'mdast';
 
-import { visitParents, ActionTuple, SKIP } from 'unist-util-visit-parents';
-import { getJSXImport, isCode, isImport } from '../util/mdx-utils';
+import { visitParents, type ActionTuple, SKIP } from 'unist-util-visit-parents';
+import { getJSXImport, isCode, isImport } from '../util/mdx-utils.ts';
 
 const CJS_PREAMBLE = '// CommonJS\n';
 const MJS_PREAMBLE = '// ESM\n';

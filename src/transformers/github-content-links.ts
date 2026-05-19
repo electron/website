@@ -1,11 +1,11 @@
 import path from 'node:path';
 
 import { visitParents } from 'unist-util-visit-parents';
-import { Node, Parent } from 'unist';
+import type { Node, Parent } from 'unist';
 import type { Definition, Link } from 'mdast';
 import type { VFile } from 'vfile';
-import { latestElectronVersion } from '../util/latest-electron-version';
-import { isDefinition, isLink } from '../util/mdx-utils';
+import { latestElectronVersion } from '../util/latest-electron-version.ts';
+import { isDefinition, isLink } from '../util/mdx-utils.ts';
 
 const DOCS_FOLDER = path.join(__dirname, '..', '..', 'docs', 'latest');
 const RELATIVE_LINK_REGEX = /^(?:\.\.?\/)+(\S+)$/;
