@@ -300,7 +300,7 @@ app.whenReady().then(() => {
 })
 ```
 
-#### Event: 'failed' _Windows_
+#### Event: 'failed' _macOS_ _Windows_
 
 Returns:
 
