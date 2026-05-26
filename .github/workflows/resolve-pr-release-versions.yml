@@ -25,7 +25,7 @@ jobs:
           node-version: '22.13.0'
       - name: Restore previous run data
         run: |
-          RUN_ID=$(gh run list --workflow resolve-pr-release-versions.yml --branch main --status completed --limit 1 --json databaseId --jq '.[0].databaseId')
+          RUN_ID=$(gh run list --workflow resolve-pr-release-versions.yml --branch main --status success --limit 1 --json databaseId --jq '.[0].databaseId')
           if [ -n "$RUN_ID" ]; then
             gh run download "$RUN_ID" --name resolved-pr-versions
           fi
