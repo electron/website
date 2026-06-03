@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" role="img" aria-label="Electron performance improvements. Startup: sandboxed renderer startup drops from about 230 ms to about 130 ms (about 43%); browser-process startup drops from about 125 ms to about 75 ms (about 40%). Runtime: Speedometer 3.1 on an M5 MacBook rises from 56.6 to 66.2 (about 17%); contextBridge calls are about 28% faster overall.">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#161b22"/>
+      <stop offset="1" stop-color="#0d1117"/>
+    </linearGradient>
+    <linearGradient id="barA" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#2dd4bf"/><stop offset="1" stop-color="#9feaf9"/>
+    </linearGradient>
+    <linearGradient id="barB" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#7c93f9"/><stop offset="1" stop-color="#a9b9ff"/>
+    </linearGradient>
+    <linearGradient id="barC" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#2ea043"/><stop offset="1" stop-color="#56d364"/>
+    </linearGradient>
+    <linearGradient id="barD" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#d29922"/><stop offset="1" stop-color="#e3b341"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="0" y="0" width="960" height="540" rx="16" fill="url(#bg)"/>
+  <rect x="0.5" y="0.5" width="959" height="539" rx="16" fill="none" stroke="#30363d"/>
+
+  <text x="40" y="50" fill="#8b949e" font-size="15" font-weight="600" letter-spacing="0.12em">ELECTRON · FASTER, NO API CHANGES</text>
+
+  <!-- ===================== ROW 1: STARTUP ===================== -->
+  <text x="40" y="94" fill="#6e7681" font-size="12" font-weight="700" letter-spacing="0.14em">STARTUP</text>
+  <line x1="122" y1="89" x2="920" y2="89" stroke="#21262d"/>
+
+  <line x1="480" y1="106" x2="480" y2="276" stroke="#30363d"/>
+
+  <!-- Col 1: sandboxed renderer -->
+  <text x="40" y="174" fill="#9feaf9" font-size="58" font-weight="800" letter-spacing="-0.02em">~43%</text>
+  <text x="42" y="204" fill="#e6edf3" font-size="17" font-weight="600">sandboxed renderer startup</text>
+  <text x="42" y="225" fill="#8b949e" font-size="13">preload setup off synchronous IPC<tspan fill="#6e7681"> *</tspan></text>
+  <rect x="42" y="242" width="288" height="10" rx="5" fill="#3d4450"/>
+  <text x="338" y="251" fill="#8b949e" font-size="11.5" font-weight="600">~230 ms</text>
+  <rect x="42" y="262" width="288" height="10" rx="5" fill="#21262d"/>
+  <rect x="42" y="262" width="163" height="10" rx="5" fill="url(#barA)"/>
+  <text x="338" y="271" fill="#9feaf9" font-size="11.5" font-weight="700">~130 ms</text>
+
+  <!-- Col 2: browser process -->
+  <text x="512" y="174" fill="#a9b9ff" font-size="58" font-weight="800" letter-spacing="-0.02em">~40%</text>
+  <text x="514" y="204" fill="#e6edf3" font-size="17" font-weight="600">browser process startup</text>
+  <text x="514" y="225" fill="#8b949e" font-size="13">Node.js bootstrap from a snapshot<tspan fill="#6e7681"> *</tspan></text>
+  <rect x="514" y="242" width="288" height="10" rx="5" fill="#3d4450"/>
+  <text x="810" y="251" fill="#8b949e" font-size="11.5" font-weight="600">~125 ms</text>
+  <rect x="514" y="262" width="288" height="10" rx="5" fill="#21262d"/>
+  <rect x="514" y="262" width="173" height="10" rx="5" fill="url(#barB)"/>
+  <text x="810" y="271" fill="#a9b9ff" font-size="11.5" font-weight="700">~75 ms</text>
+
+  <!-- ===================== ROW 2: RUNTIME ===================== -->
+  <text x="40" y="324" fill="#6e7681" font-size="12" font-weight="700" letter-spacing="0.14em">EVERYTHING AFTER STARTUP</text>
+  <line x1="252" y1="319" x2="920" y2="319" stroke="#21262d"/>
+
+  <line x1="480" y1="336" x2="480" y2="496" stroke="#30363d"/>
+
+  <!-- Col 3: Speedometer -->
+  <text x="40" y="404" fill="#56d364" font-size="58" font-weight="800" letter-spacing="-0.02em">+17%</text>
+  <text x="42" y="434" fill="#e6edf3" font-size="17" font-weight="600">Speedometer 3.1</text>
+  <text x="42" y="455" fill="#8b949e" font-size="13">link-time optimization + Electron PGO<tspan fill="#6e7681"> &#8224;</tspan></text>
+  <rect x="42" y="472" width="288" height="10" rx="5" fill="#21262d"/>
+  <rect x="42" y="472" width="246" height="10" rx="5" fill="#3d4450"/>
+  <text x="338" y="481" fill="#8b949e" font-size="11.5" font-weight="600">56.6</text>
+  <rect x="42" y="492" width="288" height="10" rx="5" fill="#21262d"/>
+  <rect x="42" y="492" width="288" height="10" rx="5" fill="url(#barC)"/>
+  <text x="338" y="501" fill="#56d364" font-size="11.5" font-weight="700">66.2</text>
+
+  <!-- Col 4: contextBridge -->
+  <text x="512" y="404" fill="#e3b341" font-size="58" font-weight="800" letter-spacing="-0.02em">+28%</text>
+  <text x="514" y="434" fill="#e6edf3" font-size="17" font-weight="600">contextBridge calls</text>
+  <text x="514" y="455" fill="#8b949e" font-size="13">optimized with Electron's own profile<tspan fill="#6e7681"> &#8224;</tspan></text>
+  <rect x="514" y="472" width="288" height="10" rx="5" fill="#21262d"/>
+  <rect x="514" y="472" width="225" height="10" rx="5" fill="#3d4450"/>
+  <text x="810" y="481" fill="#8b949e" font-size="11.5" font-weight="600">baseline</text>
+  <rect x="514" y="492" width="288" height="10" rx="5" fill="#21262d"/>
+  <rect x="514" y="492" width="288" height="10" rx="5" fill="url(#barD)"/>
+  <text x="810" y="501" fill="#e3b341" font-size="11.5" font-weight="700">+28%</text>
+
+  <!-- footnotes -->
+  <text x="40" y="530" fill="#6e7681" font-size="10.5">* Sample app, two ~150&#8201;KB preloads, cold launch, Apple Silicon. &#160;&#160;&#8224; Speedometer on MacBook (M5); contextBridge geomean across 13 tests (Linux x64). Numbers vary by hardware.</text>
+</svg>

@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 360" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" role="img" aria-label="Speedometer 3.1 scores on an M5 MacBook as each optimization layer is added. Stock Electron scores 56.6. Adding ThinLTO link-time optimization raises it to 59.2, a 5% step. Adding Electron's own C++ PGO profile raises it to 65.5, an 11% step and the largest single gain. Adding Electron's V8 builtins profile raises it to 66.2. Total improvement is about 17%, and the largest step comes from replacing Chrome's borrowed profile with Electron's own.">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#f6f8fa"/></linearGradient>
+    <linearGradient id="gPgo" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#1a7f37"/><stop offset="1" stop-color="#2da44e"/></linearGradient>
+  </defs>
+  <rect width="880" height="360" rx="16" fill="url(#bg)"/>
+  <rect x="0.5" y="0.5" width="879" height="359" rx="16" fill="none" stroke="#d0d7de"/>
+
+  <text x="32" y="44" fill="#1f2328" font-size="18" font-weight="700">Each layer stacks</text>
+  <text x="32" y="68" fill="#57606a" font-size="13">Speedometer 3.1, MacBook (M5), identical source</text>
+
+  <!-- bars: x from 32, max width 660 maps to score 70 -> px/score = 9.43 -->
+  <!-- 56.6 -> 534 ; 59.2 -> 558 ; 65.5 -> 618 ; 66.2 -> 624 -->
+
+  <!-- Stock -->
+  <text x="32" y="112" fill="#1f2328" font-size="13" font-weight="600">Stock Electron</text>
+  <rect x="32" y="120" width="534" height="22" rx="4" fill="#afb8c1"/>
+  <text x="576" y="136" fill="#57606a" font-size="13" font-weight="700">56.6</text>
+
+  <!-- + ThinLTO -->
+  <text x="32" y="174" fill="#1f2328" font-size="13" font-weight="600">+ ThinLTO <tspan fill="#57606a" font-weight="400">--lto-O2</tspan></text>
+  <rect x="32" y="182" width="534" height="22" rx="4" fill="#afb8c1"/>
+  <rect x="566" y="182" width="24" height="22" fill="#4b59c7"/>
+  <rect x="566" y="182" width="24" height="22" rx="4" fill="#4b59c7"/>
+  <text x="600" y="198" fill="#4b59c7" font-size="13" font-weight="700">59.2 <tspan fill="#57606a" font-weight="600" font-size="12">(+5%)</tspan></text>
+
+  <!-- + C++ PGO (the big one) -->
+  <text x="32" y="236" fill="#1f2328" font-size="13" font-weight="600">+ Electron C++ PGO</text>
+  <rect x="32" y="244" width="534" height="22" rx="4" fill="#afb8c1"/>
+  <rect x="566" y="244" width="24" height="22" fill="#4b59c7"/>
+  <rect x="590" y="244" width="59" height="22" fill="url(#gPgo)"/>
+  <rect x="590" y="244" width="59" height="22" rx="4" fill="url(#gPgo)"/>
+  <text x="659" y="260" fill="#1a7f37" font-size="13" font-weight="700">65.5 <tspan font-size="12">(+11%, the big one)</tspan></text>
+
+  <!-- + V8 builtins PGO -->
+  <text x="32" y="298" fill="#1f2328" font-size="13" font-weight="600">+ Electron V8 builtins PGO</text>
+  <rect x="32" y="306" width="534" height="22" rx="4" fill="#afb8c1"/>
+  <rect x="566" y="306" width="24" height="22" fill="#4b59c7"/>
+  <rect x="590" y="306" width="59" height="22" fill="url(#gPgo)"/>
+  <rect x="649" y="306" width="7" height="22" fill="#1a7f37"/>
+  <rect x="649" y="306" width="7" height="22" rx="3" fill="#1a7f37"/>
+  <text x="666" y="322" fill="#1a7f37" font-size="13" font-weight="800">66.2</text>
+  <text x="720" y="322" fill="#1f2328" font-size="13" font-weight="800">+17% total</text>
+
+  <!-- legend strip -->
+  <rect x="32" y="344" width="10" height="10" rx="2" fill="#afb8c1"/><text x="48" y="353" fill="#57606a" font-size="11">stock</text>
+  <rect x="100" y="344" width="10" height="10" rx="2" fill="#4b59c7"/><text x="116" y="353" fill="#57606a" font-size="11">link-time optimization</text>
+  <rect x="262" y="344" width="10" height="10" rx="2" fill="#1a7f37"/><text x="278" y="353" fill="#57606a" font-size="11">Electron's own profiles (the borrowed-data fix)</text>
+</svg>

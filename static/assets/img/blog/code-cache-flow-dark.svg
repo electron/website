@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 460" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" role="img" aria-label="How the build-time code cache works. At build time, Electron's framework JavaScript is compiled once per process flavor, producing five caches: sandbox, renderer, browser, utility, and worker, each keyed to that process type's V8 flags. At runtime, each process deserializes the cache that matches its own flags. A mismatched cache is silently rejected and V8 falls back to compiling from source.">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#161b22"/><stop offset="1" stop-color="#0d1117"/></linearGradient>
+  </defs>
+  <rect width="880" height="460" rx="16" fill="url(#bg)"/>
+  <rect x="0.5" y="0.5" width="879" height="459" rx="16" fill="none" stroke="#30363d"/>
+
+  <text x="32" y="44" fill="#e6edf3" font-size="18" font-weight="700">One code cache per process flavor</text>
+
+  <!-- BUILD TIME band -->
+  <text x="32" y="80" fill="#6e7681" font-size="11.5" font-weight="700" letter-spacing="0.12em">BUILD TIME</text>
+  <line x1="125" y1="76" x2="848" y2="76" stroke="#21262d"/>
+
+  <!-- source box -->
+  <rect x="32" y="94" width="240" height="46" rx="8" fill="#21262d" stroke="#30363d"/>
+  <text x="152" y="114" fill="#e6edf3" font-size="13.5" font-weight="600" text-anchor="middle">Electron framework JS</text>
+  <text x="152" y="132" fill="#8b949e" font-size="11.5" text-anchor="middle">embedded in the binary as source</text>
+
+  <!-- generator box -->
+  <rect x="328" y="94" width="220" height="46" rx="8" fill="#21262d" stroke="#30363d"/>
+  <text x="438" y="114" fill="#e6edf3" font-size="13.5" font-weight="600" text-anchor="middle">compiled at build time</text>
+  <text x="438" y="132" fill="#8b949e" font-size="11.5" text-anchor="middle">once per process flavor</text>
+
+  <!-- arrow source -> generator -->
+  <line x1="272" y1="117" x2="320" y2="117" stroke="#8b949e" stroke-width="1.5"/>
+  <path d="M 320 117 l -8 -4 l 0 8 z" fill="#8b949e"/>
+
+  <!-- arrows generator -> caches -->
+  <line x1="438" y1="140" x2="438" y2="166" stroke="#8b949e" stroke-width="1.5"/>
+  <path d="M 438 166 l -4 -8 l 8 0 z" fill="#8b949e"/>
+
+  <!-- 5 flavor cache chips -->
+  <!-- widths: 5 chips across 816px with gaps: chip w=152, gap=14 -->
+  <g>
+    <rect x="32"  y="176" width="152" height="56" rx="8" fill="#0d2a3d" stroke="#2dd4bf"/>
+    <text x="108" y="199" fill="#9feaf9" font-size="13" font-weight="700" text-anchor="middle">sandbox</text>
+    <text x="108" y="218" fill="#8b949e" font-size="10.5" text-anchor="middle">no Node env flags</text>
+
+    <rect x="198" y="176" width="152" height="56" rx="8" fill="#1c2440" stroke="#7c93f9"/>
+    <text x="274" y="199" fill="#a9b9ff" font-size="13" font-weight="700" text-anchor="middle">renderer</text>
+    <text x="274" y="218" fill="#8b949e" font-size="10.5" text-anchor="middle">+Node env flags</text>
+
+    <rect x="364" y="176" width="152" height="56" rx="8" fill="#193a2e" stroke="#3fb950"/>
+    <text x="440" y="199" fill="#56d364" font-size="13" font-weight="700" text-anchor="middle">browser</text>
+    <text x="440" y="218" fill="#8b949e" font-size="10.5" text-anchor="middle">main-process flags</text>
+
+    <rect x="530" y="176" width="152" height="56" rx="8" fill="#3a2c14" stroke="#d29922"/>
+    <text x="606" y="199" fill="#e3b341" font-size="13" font-weight="700" text-anchor="middle">utility</text>
+    <text x="606" y="218" fill="#8b949e" font-size="10.5" text-anchor="middle">utility-process flags</text>
+
+    <rect x="696" y="176" width="152" height="56" rx="8" fill="#21262d" stroke="#8b949e"/>
+    <text x="772" y="199" fill="#c9d1d9" font-size="13" font-weight="700" text-anchor="middle">worker</text>
+    <text x="772" y="218" fill="#8b949e" font-size="10.5" text-anchor="middle">worker flags</text>
+  </g>
+
+  <!-- RUNTIME band -->
+  <text x="32" y="282" fill="#6e7681" font-size="11.5" font-weight="700" letter-spacing="0.12em">RUNTIME</text>
+  <line x1="110" y1="278" x2="848" y2="278" stroke="#21262d"/>
+
+  <!-- matching arrows (3 examples), keyed by color -->
+  <line x1="108" y1="232" x2="108" y2="300" stroke="#2dd4bf" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <path d="M 108 300 l -4 -8 l 8 0 z" fill="#2dd4bf"/>
+  <line x1="440" y1="232" x2="440" y2="300" stroke="#3fb950" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <path d="M 440 300 l -4 -8 l 8 0 z" fill="#3fb950"/>
+  <line x1="606" y1="232" x2="606" y2="300" stroke="#d29922" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <path d="M 606 300 l -4 -8 l 8 0 z" fill="#d29922"/>
+
+  <!-- process boxes -->
+  <rect x="32" y="308" width="236" height="62" rx="8" fill="#21262d" stroke="#2dd4bf"/>
+  <text x="150" y="333" fill="#e6edf3" font-size="13.5" font-weight="600" text-anchor="middle">sandboxed renderer</text>
+  <text x="150" y="353" fill="#9feaf9" font-size="11.5" text-anchor="middle">deserializes the sandbox cache</text>
+
+  <rect x="322" y="308" width="236" height="62" rx="8" fill="#21262d" stroke="#3fb950"/>
+  <text x="440" y="333" fill="#e6edf3" font-size="13.5" font-weight="600" text-anchor="middle">browser process</text>
+  <text x="440" y="353" fill="#56d364" font-size="11.5" text-anchor="middle">deserializes the browser cache</text>
+
+  <rect x="612" y="308" width="236" height="62" rx="8" fill="#21262d" stroke="#d29922"/>
+  <text x="730" y="333" fill="#e6edf3" font-size="13.5" font-weight="600" text-anchor="middle">utility process</text>
+  <text x="730" y="353" fill="#e3b341" font-size="11.5" text-anchor="middle">deserializes the utility cache</text>
+
+  <!-- failure-mode note -->
+  <text x="32" y="408" fill="#8b949e" font-size="12.5">Each process's V8 flags are part of the cache key. The right match deserializes instantly;</text>
+  <text x="32" y="427" fill="#8b949e" font-size="12.5">a mismatch is <tspan fill="#ff7b72" font-weight="600">silently rejected</tspan> and V8 falls back to compiling from source. That's why one cache can't serve every process.</text>
+</svg>
