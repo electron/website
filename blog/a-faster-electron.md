@@ -3,20 +3,20 @@ title: 'A Faster Electron'
 date: 2026-05-20T00:00:00.000Z
 authors: MarshallOfSound
 slug: a-faster-electron
-tags: [internals]
+tags: [techtalk, internals]
 ---
 
 import ThemedImage from '@theme/ThemedImage';
 
-We've spent the last few releases making Electron faster. The work covers startup, IPC, `contextBridge`, networking, module loading, and raw JavaScript throughput, and it applies to every app that runs on Electron.
+We've spent the last few releases making Electron faster. The work covers startup, IPC, `contextBridge`, networking, module loading, and raw JavaScript throughput, and it applies to every app that runs on Electron. It ships today in Electron 42.3.3, 43.0.0-beta.1, and 44.0.0-nightly.20260603.
 
 <div>
-  <ThemedImage alt="Electron performance improvements. Startup: sandboxed renderer startup drops from about 230 ms to about 130 ms (about 43%); browser-process startup drops from about 125 ms to about 75 ms (about 40%). Everything after startup: Speedometer 3.1 on an M5 MacBook rises from 56.6 to 66.2 (about 17%); contextBridge calls are about 28% faster overall." sources={{ light: '/assets/img/blog/faster-startup-hero-light.svg', dark: '/assets/img/blog/faster-startup-hero-dark.svg' }} />
+  <ThemedImage alt="Electron performance improvements. Startup: sandboxed renderer startup drops from about 230 ms to about 130 ms (about 43%); main-process startup drops from about 125 ms to about 75 ms (about 40%). Everything after startup: Speedometer 3.1 on an M5 MacBook rises from 56.6 to 66.2 (about 17%); contextBridge calls are about 28% faster overall." sources={{ light: '/assets/img/blog/faster-startup-hero-light.svg', dark: '/assets/img/blog/faster-startup-hero-dark.svg' }} />
 </div>
 
-The short version: sandboxed renderers start up ~43% faster, the browser process boots ~40% faster, and Electron's compiled code got quicker across the board. Speedometer is up ~17%, `contextBridge` calls are up 28-50%, and networking is up 19-40%. You don't have to change a line of your app to get any of this.
+The short version: sandboxed renderers start up ~43% faster, the main process boots ~40% faster, and Electron's compiled code got quicker across the board. Speedometer is up ~17%, `contextBridge` calls are up 28-50%, and networking is up 19-40%. You don't have to change a line of your app to get any of this.
 
-This post is in two parts. The first is startup: three changes that shrink the time between launching an app and seeing pixels. The second is everything after startup, and it begins with the discovery that Electron has been shipping with _Chrome's_ compiler optimization data for years.
+This post is in two parts. The first is startup: three changes that shrink the time between launching an app and seeing pixels. The second is everything after startup, and it begins with the discovery that Electron's release builds have spent years borrowing Chrome's compiler optimization data, which is almost, but not quite, right for Electron.
 
 <!--truncate-->
 
@@ -26,34 +26,34 @@ Before any of your code runs, a freshly spawned Electron process loads the binar
 
 Part one removes that work from the critical path with three independent changes:
 
-- Pushing sandboxed-renderer startup data over Mojo instead of a synchronous IPC, and caching the preload bytecode.
+- Pushing sandboxed-renderer startup data over [Mojo](https://chromium.googlesource.com/chromium/src/+/HEAD/mojo/README.md) instead of a synchronous IPC, and caching the preload bytecode.
 - A build-time V8 code cache for Electron's framework bundles, so they get deserialized instead of compiled.
-- A Node.js startup snapshot for the browser process, so the Node bootstrap gets restored instead of executed.
+- A Node.js startup snapshot for the main process, so the Node bootstrap gets restored instead of executed.
 
 <div>
-  <ThemedImage alt="Two startup timelines. The browser process, from spawn to first user JavaScript, shrinks mainly because the Node.js bootstrap is restored from a snapshot. The sandboxed renderer, from spawn to first paint, shrinks because preload setup is pushed instead of pulled and framework JavaScript comes from a build-time code cache. Bars are illustrative, not to exact scale." sources={{ light: '/assets/img/blog/startup-timeline-light.svg', dark: '/assets/img/blog/startup-timeline-dark.svg' }} />
+  <ThemedImage alt="Two startup timelines. The main process, from spawn to first user JavaScript, shrinks mainly because the Node.js bootstrap is restored from a snapshot. The sandboxed renderer, from spawn to first paint, shrinks because preload setup is pushed instead of pulled and framework JavaScript comes from a build-time code cache. Bars are illustrative, not to exact scale." sources={{ light: '/assets/img/blog/startup-timeline-light.svg', dark: '/assets/img/blog/startup-timeline-dark.svg' }} />
 </div>
 
 ### Getting the sandboxed renderer off synchronous IPC
 
-A sandboxed renderer historically bootstrapped by asking the browser process for its preload scripts and metadata over a synchronous IPC message, then blocking until the answer came back. The catch: at startup the browser process is the busiest it will ever be, so the renderer's cheap request keeps getting preempted by everything else. A reply that takes 2 ms of actual work can land 80 ms later, and the renderer is frozen the whole time.
+A sandboxed renderer historically bootstrapped by asking the main process for its preload scripts and metadata over a synchronous IPC message, then blocking until the answer came back. The catch: at startup the main process is the busiest it will ever be, so the renderer's cheap request keeps getting preempted by everything else. A reply that takes 2 ms of actual work can land 80 ms later, and the renderer is frozen the whole time.
 
 <div>
   <ThemedImage alt="Before and after of the synchronous preload IPC. Before: the renderer blocks while the main process is busy with other startup work, so the cheap reply isn't delivered until about 80 ms. After: the main process pushes the bundle one-way during navigation setup and the renderer resumes at about 22 ms." sources={{ light: '/assets/img/blog/sync-ipc-light.svg', dark: '/assets/img/blog/sync-ipc-dark.svg' }} />
 </div>
 
-The fix was to stop asking. The browser process already knows everything the renderer needs, so it now pushes that data down with the frame-creation parameters over Mojo, and the synchronous message is gone entirely. The preload scripts also gained a bytecode cache, so repeat launches deserialize them instead of re-compiling.
+The fix was to stop asking. The main process already knows everything the renderer needs, so it now pushes that data down with the frame-creation parameters over Mojo, and the synchronous message is gone entirely. The preload scripts also gained a bytecode cache, so repeat launches deserialize them instead of re-compiling.
 
 Together these make sandboxed renderer startup roughly 43% faster under real-world conditions, and the renderer's pre-paint time no longer depends on how busy your main process is.
 
 ### A build-time code cache for the framework bundles
 
-Electron's framework JavaScript is embedded in the binary as source, and V8 compiles it from scratch in every process, on every launch. V8 has a standard fix for this, a code cache: compile once, serialize the bytecode, deserialize on later runs. We now generate that cache at build time and embed it next to the source, so no process ever compiles the framework bundles again.
+Electron's framework JavaScript is embedded in the binary as source, and V8 has always compiled it from scratch in every process, on every launch. V8 has a standard fix for this, a code cache: compile once, serialize the bytecode, deserialize on later runs. Electron just never used it. We now generate that cache at build time and embed it next to the source, so no process ever compiles the framework bundles again.
 
-A code cache is only valid for the exact V8 configuration that produced it; if anything differs, V8 silently rejects it and compiles from source, and nothing tells you it happened. Since a sandboxed renderer, a normal renderer, and the browser process each run V8 with different flags, the build generates one cache per process flavor, and each process picks up the one that matches it.
+A code cache is only valid for the exact V8 configuration that produced it; if anything differs, V8 silently rejects it and compiles from source, and nothing tells you it happened. Since a sandboxed renderer, a normal renderer, and the main process each run V8 with different flags, the build generates one cache per process flavor, and each process picks up the one that matches it.
 
 <div>
-  <ThemedImage alt="How the build-time code cache works. At build time, Electron's framework JavaScript is compiled once per process flavor, producing five caches (sandbox, renderer, browser, utility, worker), each keyed to that process type's V8 flags. At runtime each process deserializes the cache that matches its own flags; a mismatch is silently rejected and V8 compiles from source." sources={{ light: '/assets/img/blog/code-cache-flow-light.svg', dark: '/assets/img/blog/code-cache-flow-dark.svg' }} />
+  <ThemedImage alt="How the build-time code cache works. At build time, Electron's framework JavaScript is compiled once per process flavor, producing five caches (sandbox, renderer, main, utility, worker), each keyed to that process type's V8 flags. At runtime each process deserializes the cache that matches its own flags; a mismatch is silently rejected and V8 compiles from source." sources={{ light: '/assets/img/blog/code-cache-flow-light.svg', dark: '/assets/img/blog/code-cache-flow-dark.svg' }} />
 </div>
 
 The cache is also built with eager compilation, so it covers every inner function rather than just the top level. The framework bundles run in full during bootstrap anyway; this just moves all of that compilation to build time.
@@ -67,15 +67,11 @@ The clearest win is the sandboxed renderer, whose pre-paint blocking window is a
 
 That saving applies on every launch, without any warm-up, because the cache ships inside the binary. The Node-enabled processes consume the cache too, but their startup is dominated by something a code cache can't fix: the Node bootstrap itself.
 
-### A Node.js startup snapshot for the browser process
+### A Node.js startup snapshot for the main process
 
 A code cache skips _compilation_. The Node.js bootstrap is mostly _execution_: building `process`, wiring the module loader, running ~50 internal setup scripts. Node has a feature designed for exactly this, the startup snapshot: serialize a fully bootstrapped environment once, then deserialize it on every launch instead of re-running the bootstrap. Upstream Node ships with it on. Electron has had it disabled for years.
 
-Why? Electron already boots from two snapshots, and neither is Node's:
-
-1. The V8 startup snapshot: V8's read-only heap and a bare context.
-2. The Blink context snapshot: the DOM bindings, with zero compiled JavaScript.
-3. The Node snapshot: the bootstrapped Node environment. This is the missing one.
+Why? Electron already boots from two snapshots, the V8 startup snapshot (V8's read-only heap and a bare context) and the Blink context snapshot (the DOM bindings, with zero compiled JavaScript), and neither captures Node's bootstrap. The Node snapshot would be the missing third layer.
 
 <div>
   <ThemedImage alt="The three snapshot layers stacked: the V8 startup snapshot and the Blink context snapshot were already loaded, but neither captures Node's bootstrap. The Node snapshot, the missing layer, is the one that does." sources={{ light: '/assets/img/blog/snapshot-layers-light.svg', dark: '/assets/img/blog/snapshot-layers-dark.svg' }} />
@@ -89,9 +85,9 @@ The way out is that you don't have to build a heap from scratch. You can extend 
   <ThemedImage alt="Two ways to create a snapshot. Building a heap from scratch needs V8's full setup-isolate delegate, which is only in V8's own mksnapshot and unavailable to embedders. Extending an existing snapshot loads snapshot_blob.bin as a base and uses the deserialize delegate Electron already links, which works." sources={{ light: '/assets/img/blog/extend-not-build-light.svg', dark: '/assets/img/blog/extend-not-build-dark.svg' }} />
 </div>
 
-The snapshot is consumed by the browser process only: a renderer's isolate already comes from the Blink snapshot, and V8 allows one snapshot per process. The browser process has no Blink, so Node's snapshot becomes its process-wide blob, and `node::CreateEnvironment` deserializes the environment instead of bootstrapping it.
+The snapshot is consumed by the main process only: a renderer's isolate already comes from the Blink snapshot, and V8 allows one snapshot per process. The main process has no Blink, so Node's snapshot becomes its process-wide blob, and `node::CreateEnvironment` deserializes the environment instead of bootstrapping it.
 
-Measured from process spawn in a release build (the win is everything that happens _before_ your entry script runs), the Node snapshot is worth roughly 40% of browser-process startup, about 50 ms on the hardware tested.
+Measured from process spawn in a release build (the win is everything that happens _before_ your entry script runs), the Node snapshot is worth roughly 40% of main-process startup, about 50 ms on the hardware tested.
 
 For all three changes, the hard part was the seams rather than the optimizations themselves: Chromium, V8, and Node each have their own model of how a process boots, and the bugs live where those models meet.
 
@@ -99,15 +95,15 @@ Startup is half the story. The other half starts with something we found while l
 
 ## Part two: Electron has been shipping with Chrome's optimization data
 
-Modern compilers optimize code around how it actually runs. The biggest lever is Profile-Guided Optimization (PGO): run an instrumented build through real workloads, record which functions are hot, then rebuild with that profile so the compiler knows what to inline, how to lay out branches, and what to keep in the hot path.
+Modern compilers optimize code around how it actually runs. The biggest lever is [Profile-Guided Optimization](https://chromium.googlesource.com/chromium/src.git/+/HEAD/docs/pgo.md) (PGO): run an instrumented build through real workloads, record which functions are hot, then rebuild with that profile so the compiler knows what to inline, how to lay out branches, and what to keep in the hot path.
 
-Chrome uses PGO aggressively, and Google publishes fresh Chrome profiles every few hours. Here's the uncomfortable part: Electron's release builds have been applying Chrome's profile. Not a profile of Electron. Chrome's.
+Chrome uses PGO aggressively, and Google publishes fresh Chrome profiles every few hours. Electron's release builds have been applying Chrome's profile rather than one trained on Electron. That profile is mostly right for Electron too, which is exactly why the parts it gets wrong went unnoticed.
 
 ### What borrowing a profile costs
 
 A profile matches functions by name plus a hash of their code. Functions that exist in Electron but not Chrome (all of Node.js, all of Electron's own C++, `contextBridge`) were never in Chrome's profile. Functions that exist in both but are compiled differently in Electron (different patches, flags, V8 configuration) match by name but fail the hash check and are silently rejected. Either way, the compiler gets no guidance and lays the code out as cold.
 
-We measured it with `llvm-profdata`: about a quarter of the code Electron executes gets zero optimization guidance, and it's concentrated in exactly the code that makes Electron _Electron_.
+We measured it with [`llvm-profdata`](https://llvm.org/docs/CommandGuide/llvm-profdata.html): about a quarter of the code Electron executes gets zero optimization guidance, and it's concentrated in exactly the code that makes Electron _Electron_.
 
 <div>
   <ThemedImage alt="What Chrome's profile knows about Electron's code: 74.5% is optimized (name and hash match), 19.3% is silently rejected (same name, different code: Skia SIMD kernels, V8's JSON stringifier, Mojo, net), and 6.2% is not in Chrome's profile at all (all of Node.js, contextBridge, Electron's own C++). One quarter of the code Electron executes gets zero optimization guidance." sources={{ light: '/assets/img/blog/pgo-coverage-light.svg', dark: '/assets/img/blog/pgo-coverage-dark.svg' }} />
@@ -115,13 +111,13 @@ We measured it with `llvm-profdata`: about a quarter of the code Electron execut
 
 This isn't theoretical. While doing this work we found that `crypto.randomBytes` in Electron 44 runs at less than half its Electron 42 speed. Nobody touched the crypto code: a BoringSSL patch changed the functions' hashes, Chrome's profile silently stopped covering them, and the compiler started treating them as cold. That's what makes a borrowed profile insidious: code gets slower without anyone changing it, and nothing warns you. With an Electron profile, the regression disappears.
 
-### Fix one: turn on link-time optimization
+### Turning on link-time optimization
 
 Chromium links with ThinLTO, which lets the compiler optimize across source files at link time, but the default setting does no optimization at all (`--lto-O0`). Chrome's release builds opt into `--lto-O2`. Electron never did.
 
-Opting in is worth about +5% on Speedometer 3.1 on an M5 MacBook (and more on older hardware). Useful, but as it turns out, the smaller of the two fixes.
+Opting in is worth about +5% on [Speedometer 3.1](https://browserbench.org/Speedometer3.1/), the industry-standard benchmark of web-app responsiveness, on an M5 MacBook (and more on older hardware). Useful, but as it turns out, the smaller of the two fixes.
 
-### Fix two: Electron's own profiles
+### Electron's own profiles
 
 If borrowing Chrome's profile is the problem, the fix is to train our own: instrumented builds for every release platform, training workloads that exercise Electron the way apps actually use it, and a pipeline that publishes the profiles for release builds to consume.
 
@@ -135,7 +131,7 @@ The training suite now covers what Electron apps actually do: main-process Node.
 
 ### The results
 
-Each layer stacks on the last. On Speedometer 3.1, on an M5 MacBook:
+Each layer stacks on the last. On Speedometer 3.1, on an M5 MacBook, starting from a stock nightly build from before this work landed:
 
 | Configuration              | Score | Step |
 | -------------------------- | ----- | ---- |
@@ -144,13 +140,13 @@ Each layer stacks on the last. On Speedometer 3.1, on an M5 MacBook:
 | + Electron C++ PGO         | 65.5  | +11% |
 | + Electron V8 builtins PGO | 66.2  | +1%  |
 
-That's +17% end to end, and the biggest single step is Electron's own profile, not the compiler flag. The borrowed optimization data really was the main problem.
+That's a +17% end-to-end score increase, with the dedicated Electron performance profiles providing most of the results. Other platforms show similar effects, though we haven't measured them as precisely.
 
 <div>
   <ThemedImage alt="Speedometer 3.1 on an M5 MacBook as each layer is added: stock Electron 56.6, plus ThinLTO 59.2 (+5%), plus Electron's C++ PGO 65.5 (+11%, the largest step), plus Electron's V8 builtins PGO 66.2. Total +17%, and the biggest gain comes from replacing Chrome's borrowed profile with Electron's own." sources={{ light: '/assets/img/blog/speedometer-stack-light.svg', dark: '/assets/img/blog/speedometer-stack-dark.svg' }} />
 </div>
 
-We also validated the whole stack against the official nightly across a 38-test suite covering `contextBridge`, IPC, and networking, with statistical significance testing: 37 significant improvements, zero regressions, and one tie.
+The same builds, measured on Electron-specific workloads:
 
 | Area                                     | Improvement (geomean) |
 | ---------------------------------------- | --------------------- |
@@ -173,9 +169,9 @@ A useful frame: a UI interaction that costs 19.7 ms today misses the 60 fps fram
 
 ## Putting it together
 
-- Startup: sandboxed renderers start ~43% faster, framework JavaScript comes from an embedded code cache, and the browser process restores its Node.js bootstrap from a snapshot.
+- Startup: sandboxed renderers start ~43% faster, framework JavaScript comes from an embedded code cache, and the main process restores its Node.js bootstrap from a snapshot.
 - Everything after: Electron stopped borrowing Chrome's compiler optimization data and started generating its own, removing a silent ~20-25% CPU penalty on its hottest code paths.
 
-Apps don't need to do anything except update.
+Apps don't need to do anything except update: everything here ships in Electron 42.3.3, 43.0.0-beta.1, and 44.0.0-nightly.20260603.
 
 If this kind of work sounds fun, the [Electron repository](https://github.com/electron/electron) is always looking for contributors.

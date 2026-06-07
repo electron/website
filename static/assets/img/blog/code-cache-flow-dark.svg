@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 460" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" role="img" aria-label="How the build-time code cache works. At build time, Electron's framework JavaScript is compiled once per process flavor, producing five caches: sandbox, renderer, browser, utility, and worker, each keyed to that process type's V8 flags. At runtime, each process deserializes the cache that matches its own flags. A mismatched cache is silently rejected and V8 falls back to compiling from source.">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 460" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" role="img" aria-label="How the build-time code cache works. At build time, Electron's framework JavaScript is compiled once per process flavor, producing five caches: sandbox, renderer, main, utility, and worker, each keyed to that process type's V8 flags. At runtime, each process deserializes the cache that matches its own flags. A mismatched cache is silently rejected and V8 falls back to compiling from source.">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#161b22"/><stop offset="1" stop-color="#0d1117"/></linearGradient>
   </defs>
@@ -41,7 +41,7 @@
     <text x="274" y="218" fill="#8b949e" font-size="10.5" text-anchor="middle">+Node env flags</text>
 
     <rect x="364" y="176" width="152" height="56" rx="8" fill="#193a2e" stroke="#3fb950"/>
-    <text x="440" y="199" fill="#56d364" font-size="13" font-weight="700" text-anchor="middle">browser</text>
+    <text x="440" y="199" fill="#56d364" font-size="13" font-weight="700" text-anchor="middle">main</text>
     <text x="440" y="218" fill="#8b949e" font-size="10.5" text-anchor="middle">main-process flags</text>
 
     <rect x="530" y="176" width="152" height="56" rx="8" fill="#3a2c14" stroke="#d29922"/>
@@ -71,8 +71,8 @@
   <text x="150" y="353" fill="#9feaf9" font-size="11.5" text-anchor="middle">deserializes the sandbox cache</text>
 
   <rect x="322" y="308" width="236" height="62" rx="8" fill="#21262d" stroke="#3fb950"/>
-  <text x="440" y="333" fill="#e6edf3" font-size="13.5" font-weight="600" text-anchor="middle">browser process</text>
-  <text x="440" y="353" fill="#56d364" font-size="11.5" text-anchor="middle">deserializes the browser cache</text>
+  <text x="440" y="333" fill="#e6edf3" font-size="13.5" font-weight="600" text-anchor="middle">main process</text>
+  <text x="440" y="353" fill="#56d364" font-size="11.5" text-anchor="middle">deserializes the main cache</text>
 
   <rect x="612" y="308" width="236" height="62" rx="8" fill="#21262d" stroke="#d29922"/>
   <text x="730" y="333" fill="#e6edf3" font-size="13.5" font-weight="600" text-anchor="middle">utility process</text>

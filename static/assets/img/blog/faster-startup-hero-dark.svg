@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" role="img" aria-label="Electron performance improvements. Startup: sandboxed renderer startup drops from about 230 ms to about 130 ms (about 43%); browser-process startup drops from about 125 ms to about 75 ms (about 40%). Runtime: Speedometer 3.1 on an M5 MacBook rises from 56.6 to 66.2 (about 17%); contextBridge calls are about 28% faster overall.">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" role="img" aria-label="Electron performance improvements. Startup: sandboxed renderer startup drops from about 230 ms to about 130 ms (about 43%); main-process startup drops from about 125 ms to about 75 ms (about 40%). Runtime: Speedometer 3.1 on an M5 MacBook rises from 56.6 to 66.2 (about 17%); contextBridge calls are about 28% faster overall.">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#161b22"/>
@@ -39,9 +39,9 @@
   <rect x="42" y="262" width="163" height="10" rx="5" fill="url(#barA)"/>
   <text x="338" y="271" fill="#9feaf9" font-size="11.5" font-weight="700">~130 ms</text>
 
-  <!-- Col 2: browser process -->
+  <!-- Col 2: main process -->
   <text x="512" y="174" fill="#a9b9ff" font-size="58" font-weight="800" letter-spacing="-0.02em">~40%</text>
-  <text x="514" y="204" fill="#e6edf3" font-size="17" font-weight="600">browser process startup</text>
+  <text x="514" y="204" fill="#e6edf3" font-size="17" font-weight="600">main process startup</text>
   <text x="514" y="225" fill="#8b949e" font-size="13">Node.js bootstrap from a snapshot<tspan fill="#6e7681"> *</tspan></text>
   <rect x="514" y="242" width="288" height="10" rx="5" fill="#3d4450"/>
   <text x="810" y="251" fill="#8b949e" font-size="11.5" font-weight="600">~125 ms</text>
