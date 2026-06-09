@@ -8,15 +8,6 @@ import { visitParents, type ActionTuple, SKIP } from 'unist-util-visit-parents';
 import { latestElectronVersion } from '../util/latest-electron-version.ts';
 import { getJSXImport, isCode, isImport } from '../util/mdx-utils.ts';
 
-let _version = '';
-async function getVersion() {
-  if (_version === '') {
-    _version = await latestElectronVersion();
-  }
-
-  return _version;
-}
-
 export default function attacher() {
   return transformer;
 }
@@ -44,7 +35,7 @@ const importNode = getJSXImport('FiddleEmbed');
 
 async function transformer(tree: Parent) {
   let needImport = false;
-  const version = await getVersion();
+  const version = await latestElectronVersion();
   visitParents(tree, matchFiddleBlock, generateFiddleEmbed);
   visitParents(tree, 'mdxjsEsm', checkForFiddleEmbedImport);
 
