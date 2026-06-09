@@ -10,15 +10,6 @@ import { isDefinition, isLink } from '../util/mdx-utils.ts';
 const DOCS_FOLDER = path.join(__dirname, '..', '..', 'docs', 'latest');
 const RELATIVE_LINK_REGEX = /^(?:\.\.?\/)+(\S+)$/;
 
-let _version = '';
-async function getVersion() {
-  if (_version === '') {
-    _version = await latestElectronVersion();
-  }
-
-  return _version;
-}
-
 /**
  * `attacher` runs once for the entire plugin's lifetime.
  */
@@ -31,7 +22,7 @@ export default function attacher() {
  * processed by this MDX plugin.
  */
 async function transformer(tree: Parent, vfile: VFile) {
-  const version = await getVersion();
+  const version = await latestElectronVersion();
 
   const findRelativeLinksOutsideDocs = (node: Node) => {
     if (
