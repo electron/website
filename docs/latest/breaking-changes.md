@@ -19,6 +19,110 @@ This document uses the following convention to categorize breaking changes:
 * **Deprecated:** An API was marked as deprecated. The API will continue to function, but will emit a deprecation warning, and will be removed in a future release.
 * **Removed:** An API or feature was removed, and is no longer supported by Electron.
 
+## Planned Breaking API Changes (44.0)
+
+### Removed: Windows 32-bit (ia32) and Linux 32-bit ARM (armv7l) support
+
+Electron no longer publishes prebuilt binaries for 32-bit platforms: Windows x86
+(`win32-ia32`) and Linux ARM (`linux-armv7l`). All related release artifacts
+(`chromedriver`, `mksnapshot`, `ffmpeg`, and the Windows x86 `node.lib` on the
+Electron headers CDN) are no longer published either.
+
+Older versions of Electron will continue to support these platforms, but Electron
+v44.0.0 and higher will only be published for 64-bit platforms.
+
+Once the v44 series reaches end of life in January 2027, Electron will no longer
+support these platforms completely.
+
+### Removed: `clipboard` module is no longer available in the renderer process
+
+The `clipboard` module is no longer exposed to renderer processes. It was
+[previously deprecated](#deprecated-clipboard-api-access-from-renderer-processes)
+and is now removed in line with
+[RFC&nbsp;0019](https://github.com/electron/rfcs/blob/main/text/0019-clipboard-rearchitecture.md#removing-the-clipboard-api-from-the-renderer)
+to close the security risk of granting non-sandboxed renderers direct clipboard access.
+
+Renderers should use the [`navigator.clipboard` API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API) to safely work with the system clipboard. If more advanced usage is necessary, expose the necessary helpers from a
+preload script using the [`contextBridge` API](api/context-bridge.md).
+When using `contextBridge` care must be taken to ensure that the [`clipboard API` is not exposed to untrusted content](https://www.electronjs.org/docs/latest/tutorial/security#20-do-not-expose-electron-apis-to-untrusted-web-content).
+
+## Planned Breaking API Changes (43.0)
+
+### Behavior Changed: Rounded corners on Linux
+
+Frameless windows default to rounded corners on Linux if the desktop environment supports client-side decorations. This can be configured using the existing `roundedCorners` option on `BrowserWindow`,
+which is now supported on Linux and defaults to `true` on all platforms.
+
+### Behavior Changed: WCO respects the native title bar layout on Linux
+
+Frameless windows with Window Controls Overlay (WCO) now adopt the native title bar layout and user settings on Linux. For example, controls will appear on the left side of the frame on RTL systems, and only the close button will be visible by default on GNOME. Depending on the user's desktop environment and configuration, buttons can appear on the left or right side of the frame (or both). To account for all possibilities, use the CSS variables `env(titlebar-area-x, 0px)` and `env(titlebar-area-width, 100%)` to constrain your app's title bar content to a safe area.
+
+### Behavior Changed: `NativeImage.toBitmap()` now normalizes color space
+
+`NativeImage.toBitmap()` (and its deprecated alias `NativeImage.getBitmap()`) now normalizes pixel data to sRGB by default. Previously, raw pixel data was returned without color space conversion, which meant pixel values from images with different embedded color profiles (e.g., Display P3 on macOS) could differ for the same visual color.
+
+To preserve the previous behavior, pass the image's original color space in the `colorSpace`
+option. You can also pass `colorSpace` to convert to any other specific color space:
+
+```js
+const image = nativeImage.createFromPath('photo.png')
+// New default: normalized to sRGB
+const srgbBitmap = image.toBitmap()
+// Convert to Display P3
+const p3Bitmap = image.toBitmap({
+  colorSpace: {
+    primaries: 'p3',
+    transfer: 'srgb',
+    matrix: 'rgb',
+    range: 'full'
+  }
+})
+```
+
+### Behavior Changed: `chrome.scripting` CSS injection matches more fallback frames
+
+Extensions using `chrome.scripting.insertCSS()` or `chrome.scripting.removeCSS()`
+now follow Chrome's behavior when Electron cannot match a frame's URL directly,
+such as with `about:blank` or `data:` frames. If the extension has access to the
+page that created the frame, CSS may now be inserted into or removed from those
+fallback frames as well.
+
+Apps or extensions that relied on Electron skipping those frames should narrow their
+injection target, frame IDs, or match patterns.
+
+### Behavior Changed: Dialog methods default to Downloads directory
+
+The `defaultPath` option for the following methods now defaults to the user's Downloads folder (or their home directory if Downloads doesn't exist) when not explicitly provided:
+
+* `dialog.showOpenDialog`
+* `dialog.showOpenDialogSync`
+* `dialog.showSaveDialog`
+* `dialog.showSaveDialogSync`
+
+Previously, when no `defaultPath` was provided, the underlying OS file dialog would determine the initial directory — typically remembering the last directory the user navigated to, or falling back to an OS-specific default. Now, Electron explicitly sets the initial directory to Downloads, which also means the OS will no longer track and restore the last-used directory between dialog invocations.
+
+To preserve the old behavior, you can track the last-used directory yourself and pass it as `defaultPath`:
+
+```js
+const path = require('node:path')
+
+let lastUsedPath
+const result = await dialog.showOpenDialog({
+  defaultPath: lastUsedPath
+})
+
+if (!result.canceled && result.filePaths.length > 0) {
+  lastUsedPath = path.dirname(result.filePaths[0])
+}
+```
+
+### Removed: `showHiddenFiles` in Dialogs on Linux
+
+The `showHiddenFiles` property is no longer supported on Linux.
+It continues to work on macOS and Windows. GTK intends for this feature
+to be a user choice rather than an app choice, and has removed the API
+to do this programmatically.
+
 ## Planned Breaking API Changes (42.0)
 
 ### Behavior Changed: macOS notifications now use `UNNotification` API
@@ -85,6 +189,19 @@ longer supported, as its primary purpose was to prevent the `postinstall` script
 When calling `Session.clearStorageData(options)`, the `options.quotas` object is no longer supported because it has been
 [removed](https://chromium-review.googlesource.com/c/chromium/src/+/7596126)
 from upstream Chromium.
+
+### Deprecated: Passing only an array `hslShift` to `nativeImage.createFromNamedImage()`
+
+Passing only an array `hslShift` to `nativeImage.createFromNamedImage()` is deprecated. You should now pass an options object with an `hslShift` property instead:
+
+```js
+// Deprecated
+nativeImage.createFromNamedImage(imageName, [0, 1, -1])
+// Replace with
+nativeImage.createFromNamedImage(imageName, {
+  hslShift: [0, 1, -1]
+})
+```
 
 ## Planned Breaking API Changes (41.0)
 
