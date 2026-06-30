@@ -33,7 +33,10 @@ added:
 * `window` [BaseWindow](base-window.md) (optional)
 * `options` Object
   * `title` string (optional)
-  * `defaultPath` string (optional)
+  * `defaultPath` string (optional) - Absolute directory path, absolute file
+    path, or file name to use by default. If not provided, the dialog will
+    default to the user's Downloads folder, or their home directory if Downloads
+    doesn't exist.
   * `buttonLabel` string (optional) - Custom label for the confirmation button, when
     left empty the default label will be used.
   * `filters` [FileFilter[]](structures/file-filter.md) (optional)
@@ -42,7 +45,7 @@ added:
     * `openFile` - Allow files to be selected.
     * `openDirectory` - Allow directories to be selected.
     * `multiSelections` - Allow multiple paths to be selected.
-    * `showHiddenFiles` _macOS_ _Windows_ _Deprecated_ - Show hidden files in dialog. Deprecated on Linux.
+    * `showHiddenFiles` _macOS_ _Windows_ - Show hidden files in dialog.
     * `createDirectory` _macOS_ - Allow creating new directories from dialog.
     * `promptToCreate` _Windows_ - Prompt for creation if the file path entered
       in the dialog does not exist. This does not actually create the file at
@@ -112,7 +115,10 @@ changes:
 * `window` [BaseWindow](base-window.md) (optional)
 * `options` Object
   * `title` string (optional)
-  * `defaultPath` string (optional)
+  * `defaultPath` string (optional) - Absolute directory path, absolute file
+    path, or file name to use by default. If not provided, the dialog will
+    default to the user's Downloads folder, or their home directory if Downloads
+    doesn't exist.
   * `buttonLabel` string (optional) - Custom label for the confirmation button, when
     left empty the default label will be used.
   * `filters` [FileFilter[]](structures/file-filter.md) (optional)
@@ -121,7 +127,7 @@ changes:
     * `openFile` - Allow files to be selected.
     * `openDirectory` - Allow directories to be selected.
     * `multiSelections` - Allow multiple paths to be selected.
-    * `showHiddenFiles` _macOS_ _Windows_ _Deprecated_ - Show hidden files in dialog. Deprecated on Linux.
+    * `showHiddenFiles` _macOS_ _Windows_ - Show hidden files in dialog.
     * `createDirectory` _macOS_ - Allow creating new directories from dialog.
     * `promptToCreate` _Windows_ - Prompt for creation if the file path entered
       in the dialog does not exist. This does not actually create the file at
@@ -199,7 +205,9 @@ added:
 * `options` Object
   * `title` string (optional) - The dialog title. Cannot be displayed on some _Linux_ desktop environments.
   * `defaultPath` string (optional) - Absolute directory path, absolute file
-    path, or file name to use by default.
+    path, or file name to use by default. If not provided, the dialog will
+    default to the user's Downloads folder, or their home directory if Downloads
+    doesn't exist.
   * `buttonLabel` string (optional) - Custom label for the confirmation button, when
     left empty the default label will be used.
   * `filters` [FileFilter[]](structures/file-filter.md) (optional)
@@ -209,7 +217,7 @@ added:
   * `showsTagField` boolean (optional) _macOS_ - Show the tags input box,
     defaults to `true`.
   * `properties` string[]&#32;(optional)
-    * `showHiddenFiles` _macOS_ _Windows_ _Deprecated_ - Show hidden files in dialog. Deprecated on Linux.
+    * `showHiddenFiles` _macOS_ _Windows_ - Show hidden files in dialog.
     * `createDirectory` _macOS_ - Allow creating new directories from dialog.
     * `treatPackageAsDirectory` _macOS_ - Treat packages, such as `.app` folders,
       as a directory instead of a file.
@@ -237,7 +245,9 @@ changes:
 * `options` Object
   * `title` string (optional) - The dialog title. Cannot be displayed on some _Linux_ desktop environments.
   * `defaultPath` string (optional) - Absolute directory path, absolute file
-    path, or file name to use by default.
+    path, or file name to use by default. If not provided, the dialog will
+    default to the user's Downloads folder, or their home directory if Downloads
+    doesn't exist.
   * `buttonLabel` string (optional) - Custom label for the confirmation button, when
     left empty the default label will be used.
   * `filters` [FileFilter[]](structures/file-filter.md) (optional)
@@ -246,7 +256,7 @@ changes:
     displayed in front of the filename text field.
   * `showsTagField` boolean (optional) _macOS_ - Show the tags input box, defaults to `true`.
   * `properties` string[]&#32;(optional)
-    * `showHiddenFiles` _macOS_ _Windows_ _Deprecated_ - Show hidden files in dialog. Deprecated on Linux.
+    * `showHiddenFiles` _macOS_ _Windows_ - Show hidden files in dialog.
     * `createDirectory` _macOS_ - Allow creating new directories from dialog.
     * `treatPackageAsDirectory` _macOS_ - Treat packages, such as `.app` folders,
       as a directory instead of a file.
