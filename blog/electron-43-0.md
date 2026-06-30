@@ -98,9 +98,10 @@ On Linux, frameless windows now have rounded corners by default, matching the be
 
 ### Behavior Changed: WCO respects the native title bar layout on Linux
 
-Frameless windows with Window Controls Overlay (WCO) now adopt the native title bar layout and user settings on Linux. For example, controls will appear on the left side of the frame on RTL systems, and only the close button will be visible by default on GNOME. Depending on the user's desktop environment and configuration, buttons can appear on the left or right side of the frame (or both). To account for all possibilities, use the CSS variables `env(titlebar-area-x, 0px)` and `env(titlebar-area-width, 100%)` to constrain your app's title bar content to a safe area.  [#52018](https://github.com/electron/electron/pull/52018)
+Frameless windows with Window Controls Overlay (WCO) now adopt the native title bar layout and user settings on Linux. For example, controls will appear on the left side of the frame on RTL systems, and only the close button will be visible by default on GNOME. Depending on the user's desktop environment and configuration, buttons can appear on the left or right side of the frame (or both). To account for all possibilities, use the CSS variables `env(titlebar-area-x, 0px)` and `env(titlebar-area-width, 100%)` to constrain your app's title bar content to a safe area. [#52018](https://github.com/electron/electron/pull/52018)
 
 ### Behavior Changed: `chrome.scripting` CSS injection matches more fallback frames
+
 Extensions using `chrome.scripting.insertCSS()` or `chrome.scripting.removeCSS()`
 now follow Chrome's behavior when Electron cannot match a frame's URL directly,
 such as with `about:blank` or `data:` frames. If the extension has access to the
