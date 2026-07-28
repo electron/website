@@ -10,8 +10,15 @@ import { logger } from '@docusaurus/logger';
 
 import { addFrontmatterToAllDocs } from './tasks/add-frontmatter.ts';
 import { fixContent } from './tasks/md-fixers.ts';
+import { repairApiHistory } from './tasks/repair-api-history.ts';
+import {
+  type ApiHistoryProblem,
+  logApiHistoryProblems,
+  validateApiHistory,
+} from './tasks/validate-api-history.ts';
 
 const DOCS_FOLDER = path.join('docs', 'latest');
+const API_HISTORY_SCHEMA = path.join(DOCS_FOLDER, 'api-history.schema.json');
 
 const start = async () => {
   // TODO(dsanders11): This is a nasty hack to get around
@@ -35,6 +42,9 @@ const start = async () => {
     ),
   );
   locales.delete('en');
+
+  const apiHistoryProblems: ApiHistoryProblem[] = [];
+
   for (const locale of locales) {
     const localeDocs = path.join(
       'i18n',
@@ -58,6 +68,34 @@ const start = async () => {
 
     logger.info(`Adding automatic frontmatter (${logger.green(locale)})`);
     await addFrontmatterToAllDocs(path.join(localeDocs, 'latest'));
+
+    logger.info(
+      `Repairing broken API history blocks (${logger.green(locale)})`,
+    );
+    const { repaired } = await repairApiHistory(
+      path.join(localeDocs, 'latest'),
+      DOCS_FOLDER,
+      API_HISTORY_SCHEMA,
+    );
+    logger.info(
+      `Repaired ${logger.green(String(repaired))} API history block(s) (${logger.green(locale)})`,
+    );
+
+    logger.info(`Validating API history blocks (${logger.green(locale)})`);
+    apiHistoryProblems.push(
+      ...(await validateApiHistory(localeDocs, API_HISTORY_SCHEMA, 'latest')),
+    );
+  }
+
+  // Repaired blocks are valid by construction, so anything left is a broken
+  // block we could not match to an English one. It would otherwise only fail
+  // much later as an opaque `Invalid API history YAML` from inside the MDX
+  // loader, so fail here with the offending files instead.
+  if (apiHistoryProblems.length > 0) {
+    logApiHistoryProblems(apiHistoryProblems);
+    throw new Error(
+      `Found ${apiHistoryProblems.length} invalid API history block(s) in the translated content`,
+    );
   }
 };
 
