@@ -8,6 +8,8 @@ trusted-bots:
   # electron-pr-approver.
   - login: electron-website-docs-updater[bot]
     id: 166660481
+    paths:
+      - "docs/latest/**"
     approvers:
       - login: electron-pr-approver[bot]
         id: 237345921
