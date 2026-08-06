@@ -84,4 +84,20 @@ jobs:
               core.summary.addRaw('🎉 Docs are up-to-date');
             }
 
+            // Persist the findings to a file before write() empties the
+            // summary buffer, so they can be uploaded as an artifact
+            let auditResults = core.summary.stringify();
+            if (process.exitCode === 1) {
+              auditResults += `\n\nGot ${latestDocsSHA}, expected ${commit.sha}`;
+            }
+            require('fs').writeFileSync('audit-results.md', auditResults);
+
             await core.summary.write();
+      # Step summaries are not API-readable; this artifact lets agents fetch the findings
+      - name: Upload audit results artifact
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        if: ${{ always() }}
+        with:
+          name: audit-results
+          path: audit-results.md
+          if-no-files-found: warn
