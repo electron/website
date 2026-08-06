@@ -101,3 +101,4 @@ jobs:
           name: audit-results
           path: audit-results.md
           if-no-files-found: warn
+          archive: false
