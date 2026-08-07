@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 300" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" role="img" aria-label="The 60 frames-per-second budget gives an interaction 16.7 milliseconds. Before optimization, an interaction costing 19.7 milliseconds misses the budget and the app drops a frame, which feels janky. After optimization, the same interaction at about 19.5% less CPU costs about 16.4 milliseconds, inside the budget, and the app stays at 60 fps.">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#161b22"/><stop offset="1" stop-color="#0d1117"/></linearGradient>
+    <linearGradient id="gOver" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#d29922"/><stop offset="1" stop-color="#da3633"/></linearGradient>
+    <linearGradient id="gIn" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2ea043"/><stop offset="1" stop-color="#56d364"/></linearGradient>
+  </defs>
+  <rect width="880" height="300" rx="16" fill="url(#bg)"/>
+  <rect x="0.5" y="0.5" width="879" height="299" rx="16" fill="none" stroke="#30363d"/>
+
+  <text x="32" y="44" fill="#e6edf3" font-size="18" font-weight="700">The same interaction, before and after</text>
+
+  <!-- axis: 0 to 24 ms maps to x 110..830 -> 30px per ms -->
+  <!-- budget line at 16.7ms: x = 110 + 16.7*30 = 611 -->
+
+  <!-- ms scale -->
+  <text x="110" y="86" fill="#6e7681" font-size="11">0 ms</text>
+  <text x="260" y="86" fill="#6e7681" font-size="11">5 ms</text>
+  <text x="410" y="86" fill="#6e7681" font-size="11">10 ms</text>
+  <text x="560" y="86" fill="#6e7681" font-size="11">15 ms</text>
+  <text x="710" y="86" fill="#6e7681" font-size="11">20 ms</text>
+  <line x1="110" y1="92" x2="830" y2="92" stroke="#21262d"/>
+
+  <!-- budget line -->
+  <line x1="611" y1="92" x2="611" y2="252" stroke="#e6edf3" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="611" y="276" fill="#e6edf3" font-size="12.5" font-weight="700" text-anchor="middle">16.7 ms</text>
+  <text x="611" y="292" fill="#8b949e" font-size="11" text-anchor="middle">60 fps frame budget</text>
+
+  <!-- BEFORE bar: 19.7ms -> width 591 -->
+  <text x="32" y="130" fill="#8b949e" font-size="12.5" font-weight="600">before</text>
+  <rect x="110" y="114" width="501" height="26" fill="#3d4450"/>
+  <rect x="110" y="114" width="501" height="26" rx="5" fill="#3d4450"/>
+  <rect x="611" y="114" width="90" height="26" fill="url(#gOver)"/>
+  <rect x="611" y="114" width="90" height="26" rx="5" fill="url(#gOver)"/>
+  <rect x="110" y="114" width="591" height="26" rx="5" fill="none" stroke="#0d1117" stroke-width="1"/>
+  <text x="711" y="132" fill="#ff7b72" font-size="13" font-weight="700">19.7 ms</text>
+  <text x="711" y="150" fill="#8b949e" font-size="11.5">misses the frame: <tspan fill="#ff7b72" font-weight="600">janky</tspan></text>
+
+  <!-- AFTER bar: 16.4ms -> width 492 -->
+  <text x="32" y="206" fill="#8b949e" font-size="12.5" font-weight="600">after</text>
+  <rect x="110" y="190" width="492" height="26" fill="url(#gIn)"/>
+  <rect x="110" y="190" width="492" height="26" rx="5" fill="url(#gIn)"/>
+  <text x="612" y="208" fill="#56d364" font-size="13" font-weight="700">16.4 ms</text>
+  <text x="612" y="226" fill="#8b949e" font-size="11.5">inside the budget: <tspan fill="#56d364" font-weight="600">smooth 60 fps</tspan></text>
+
+  <!-- annotation -->
+  <text x="110" y="166" fill="#6e7681" font-size="11.5">~19.5% less CPU for the same work</text>
+</svg>

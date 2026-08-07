@@ -264,9 +264,22 @@ const config: Config = {
       indexName: 'electronjs',
       contextualSearch: true,
     },
+    // Lightbox (click-to-zoom) for blog post images.
+    // Images wrapped in links are excluded so they navigate instead of zooming.
+    zoom: {
+      selector: '.blog-wrapper .markdown :not(a) > img',
+      background: {
+        light: 'rgba(255, 255, 255, 0.95)',
+        dark: 'rgba(27, 28, 38, 0.95)',
+      },
+      config: {
+        margin: 24,
+      },
+    },
   } satisfies Preset.ThemeConfig,
   plugins: [
     'docusaurus-plugin-sass',
+    'docusaurus-plugin-image-zoom',
     path.resolve(__dirname, './src/plugins/apps/index.ts'),
     path.resolve(__dirname, './src/plugins/releases/index.ts'),
     path.resolve(__dirname, './src/plugins/fiddle/index.ts'),

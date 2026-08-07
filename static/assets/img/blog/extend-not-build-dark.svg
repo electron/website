@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 320" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" role="img" aria-label="Two ways to create a snapshot. Building a heap from scratch needs V8's full setup-isolate delegate, which is linked only into V8's own mksnapshot and is not available to embedders, so that path fails. Extending an existing snapshot loads snapshot_blob.bin as a base and hands it to the SnapshotCreator; this uses the deserialize delegate that Electron already links, and it works.">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#161b22"/><stop offset="1" stop-color="#0d1117"/></linearGradient>
+  </defs>
+  <rect width="880" height="320" rx="16" fill="url(#bg)"/>
+  <rect x="0.5" y="0.5" width="879" height="319" rx="16" fill="none" stroke="#30363d"/>
+
+  <text x="32" y="44" fill="#e6edf3" font-size="18" font-weight="700">You don't build a heap, you extend one</text>
+
+  <line x1="440" y1="72" x2="440" y2="296" stroke="#30363d"/>
+
+  <!-- LEFT: build from scratch (fails) -->
+  <text x="32" y="98" fill="#f85149" font-size="13" font-weight="700" letter-spacing="0.06em">BUILD FROM SCRATCH</text>
+  <rect x="32" y="116" width="376" height="40" rx="6" fill="#21262d" stroke="#30363d"/>
+  <text x="52" y="141" fill="#c9d1d9" font-size="13">SnapshotCreator builds the heap + builtins</text>
+  <text x="212" y="178" fill="#6e7681" font-size="18" text-anchor="middle">&#8595;</text>
+  <rect x="32" y="190" width="376" height="40" rx="6" fill="#21262d" stroke="#30363d"/>
+  <text x="52" y="215" fill="#c9d1d9" font-size="13">needs the <tspan font-weight="600">full</tspan> setup-isolate delegate</text>
+  <text x="212" y="252" fill="#6e7681" font-size="18" text-anchor="middle">&#8595;</text>
+  <rect x="32" y="264" width="376" height="36" rx="6" fill="#3d1d1d" stroke="#f85149"/>
+  <text x="52" y="287" fill="#ff7b72" font-size="12.5">linked only into V8's own <tspan font-weight="600">mksnapshot</tspan> &#8212; not for embedders</text>
+
+  <!-- RIGHT: extend (works) -->
+  <text x="464" y="98" fill="#3fb950" font-size="13" font-weight="700" letter-spacing="0.06em">EXTEND AN EXISTING SNAPSHOT</text>
+  <rect x="464" y="116" width="384" height="40" rx="6" fill="#21262d" stroke="#30363d"/>
+  <text x="484" y="141" fill="#c9d1d9" font-size="13">load <tspan font-weight="600">snapshot_blob.bin</tspan> as the base</text>
+  <text x="656" y="178" fill="#6e7681" font-size="18" text-anchor="middle">&#8595;</text>
+  <rect x="464" y="190" width="384" height="40" rx="6" fill="#21262d" stroke="#30363d"/>
+  <text x="484" y="215" fill="#c9d1d9" font-size="13">SnapshotCreator(<tspan font-weight="600">params.snapshot_blob</tspan>)</text>
+  <text x="656" y="252" fill="#6e7681" font-size="18" text-anchor="middle">&#8595;</text>
+  <rect x="464" y="264" width="384" height="36" rx="6" fill="#193a2e" stroke="#3fb950"/>
+  <text x="484" y="287" fill="#56d364" font-size="12.5">uses the <tspan font-weight="600">deserialize</tspan> delegate Electron already links &#10003;</text>
+</svg>

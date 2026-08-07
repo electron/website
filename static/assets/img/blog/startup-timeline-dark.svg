@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 430" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" role="img" aria-label="Where each optimization lands in startup. The main process timeline, from spawn to first user JavaScript, has phases for process and Chromium/V8 init, then the Node.js bootstrap, then framework JavaScript. The Node bootstrap shrinks dramatically with the startup snapshot. The sandboxed renderer timeline, from spawn to first paint, has process and Chromium init, preload setup, framework JavaScript compile, and paint. Preload setup shrinks with the one-way Mojo push, and framework JavaScript shrinks with the build-time code cache. Bars are illustrative and not to exact scale.">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#161b22"/><stop offset="1" stop-color="#0d1117"/></linearGradient>
+  </defs>
+  <rect width="880" height="430" rx="16" fill="url(#bg)"/>
+  <rect x="0.5" y="0.5" width="879" height="429" rx="16" fill="none" stroke="#30363d"/>
+
+  <text x="32" y="42" fill="#e6edf3" font-size="18" font-weight="700">Where each win lands in startup</text>
+
+  <!-- legend -->
+  <rect x="32" y="58" width="12" height="12" rx="2" fill="#3d4450"/><text x="50" y="68" fill="#8b949e" font-size="11.5">process + Chromium/V8 init</text>
+  <rect x="232" y="58" width="12" height="12" rx="2" fill="#7c93f9"/><text x="250" y="68" fill="#8b949e" font-size="11.5">Node bootstrap</text>
+  <rect x="372" y="58" width="12" height="12" rx="2" fill="#da3633"/><text x="390" y="68" fill="#8b949e" font-size="11.5">preload setup</text>
+  <rect x="500" y="58" width="12" height="12" rx="2" fill="#2ea043"/><text x="518" y="68" fill="#8b949e" font-size="11.5">framework JavaScript</text>
+  <rect x="672" y="58" width="12" height="12" rx="2" fill="#1f6feb"/><text x="690" y="68" fill="#8b949e" font-size="11.5">paint</text>
+
+  <!-- ===== Main process ===== -->
+  <text x="32" y="104" fill="#e6edf3" font-size="14" font-weight="600">Main process <tspan fill="#6e7681" font-weight="400" font-size="12.5">· spawn &#8594; first user JavaScript</tspan></text>
+
+  <text x="32" y="132" fill="#6e7681" font-size="11.5">before</text>
+  <rect x="84" y="120" width="120" height="22" rx="3" fill="#3d4450"/>
+  <rect x="206" y="120" width="176" height="22" rx="3" fill="#7c93f9"/>
+  <rect x="384" y="120" width="44"  height="22" rx="3" fill="#2ea043"/>
+
+  <text x="32" y="166" fill="#6e7681" font-size="11.5">after</text>
+  <rect x="84" y="154" width="120" height="22" rx="3" fill="#3d4450"/>
+  <rect x="206" y="154" width="48"  height="22" rx="3" fill="#7c93f9"/>
+  <rect x="256" y="154" width="36"  height="22" rx="3" fill="#2ea043"/>
+  <text x="300" y="170" fill="#a9b9ff" font-size="11" font-weight="600">Node bootstrap restored from snapshot</text>
+
+  <!-- ===== Sandboxed renderer ===== -->
+  <text x="32" y="232" fill="#e6edf3" font-size="14" font-weight="600">Sandboxed renderer <tspan fill="#6e7681" font-weight="400" font-size="12.5">· spawn &#8594; first paint</tspan></text>
+
+  <text x="32" y="260" fill="#6e7681" font-size="11.5">before</text>
+  <rect x="84"  y="248" width="150" height="22" rx="3" fill="#3d4450"/>
+  <rect x="236" y="248" width="300" height="22" rx="3" fill="#da3633"/>
+  <rect x="538" y="248" width="150" height="22" rx="3" fill="#2ea043"/>
+  <rect x="690" y="248" width="44"  height="22" rx="3" fill="#1f6feb"/>
+
+  <text x="32" y="294" fill="#6e7681" font-size="11.5">after</text>
+  <rect x="84"  y="282" width="150" height="22" rx="3" fill="#3d4450"/>
+  <rect x="236" y="282" width="66"  height="22" rx="3" fill="#da3633"/>
+  <rect x="304" y="282" width="104" height="22" rx="3" fill="#2ea043"/>
+  <rect x="410" y="282" width="44"  height="22" rx="3" fill="#1f6feb"/>
+
+  <text x="236" y="326" fill="#f0b3b0" font-size="11" font-weight="600">preload setup pushed, not pulled</text>
+  <text x="304" y="344" fill="#56d364" font-size="11" font-weight="600">framework JS from code cache</text>
+
+  <text x="32" y="392" fill="#8b949e" font-size="12">All three wins are off the critical path between launching your app and seeing its first pixels.</text>
+  <text x="32" y="414" fill="#6e7681" font-size="11">Bars are illustrative and not drawn to exact scale; see the figures above for measured numbers.</text>
+</svg>
