@@ -8590,7 +8590,6 @@ __metadata:
     react-useportal: "npm:^1.0.14"
     remark: "npm:^15.0.0"
     remark-gfm: "npm:^4.0.0"
-    remark-github-admonitions-to-directives: "npm:^2.0.0"
     sass: "npm:^1.37.5"
     satori: "npm:^0.25.0"
     semver: "npm:^7.5.4"
@@ -15653,18 +15652,6 @@ __metadata:
     remark-stringify: "npm:^11.0.0"
     unified: "npm:^11.0.0"
   checksum: 10c0/db0aa85ab718d475c2596e27c95be9255d3b0fc730a4eda9af076b919f7dd812f7be3ac020611a8dbe5253fd29671d7b12750b56e529fdc32dfebad6dbf77403
-  languageName: node
-  linkType: hard
-
-"remark-github-admonitions-to-directives@npm:^2.0.0":
-  version: 2.1.0
-  resolution: "remark-github-admonitions-to-directives@npm:2.1.0"
-  dependencies:
-    "@types/mdast": "npm:^4.0.0"
-    mdast-util-directive: "npm:^3.0.0"
-    unified: "npm:^11.0.0"
-    unist-util-visit: "npm:^5.0.0"
-  checksum: 10c0/63f82349eff26d28228f0d19af6bcb423fe95e71959f0485ace882cd9e3d6c645ae4a2dab093877339885da5934baf1d658653fe8aba44f65156c3ef94524a45
   languageName: node
   linkType: hard
 
