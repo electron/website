@@ -91,9 +91,9 @@ async function getAllPrReleaseVersions(): Promise<PrReleaseVersionsContainer> {
     return _allPrReleaseVersionsPromise;
   }
 
-  if (!process.env.GH_TOKEN) {
+  if (!process.env.GITHUB_TOKEN) {
     logger.warn(
-      'No GitHub token found, skipping fetching PR release versions.',
+      'No GITHUB_TOKEN found, skipping fetching PR release versions. API history tables will render without versions.',
     );
     _allPrReleaseVersionsPromise = Promise.resolve({});
     return _allPrReleaseVersionsPromise;
@@ -110,7 +110,7 @@ async function _getAllPrReleaseVersions(): Promise<PrReleaseVersionsContainer> {
     headers: {
       Accept: 'application/vnd.github+json',
       'X-GitHub-Api-Version': '2022-11-28',
-      Authorization: `Bearer ${process.env.GH_TOKEN}`,
+      Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
     },
   };
 

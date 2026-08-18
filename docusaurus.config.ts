@@ -5,6 +5,7 @@ import { logger } from '@docusaurus/logger';
 import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 import npm2yarn from '@docusaurus/remark-plugin-npm2yarn';
+import * as dotenv from 'dotenv';
 import { themes as prismThemes } from 'prism-react-renderer';
 import remarkGithubAdmonitionsToDirectives, {
   DEFAULT_MAPPING,
@@ -17,6 +18,10 @@ import jsCodeBlocks from './src/transformers/js-code-blocks.ts';
 import fiddleEmbedder from './src/transformers/fiddle-embedder.ts';
 import githubContentsLinks from './src/transformers/github-content-links.ts';
 import apiHistory from './src/transformers/api-history.ts';
+
+// Picks up a local GITHUB_TOKEN so API history tables resolve versions in local
+// dev. Existing environment variables win, which keeps CI behavior unchanged.
+dotenv.config();
 
 let docsSHA = undefined;
 

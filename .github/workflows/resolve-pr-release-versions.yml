@@ -22,7 +22,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
-          node-version: '22.13.0'
+          node-version: '24.19.0'
       - name: Restore previous run data
         run: |
           RUN_ID=$(gh run list --workflow resolve-pr-release-versions.yml --branch main --status success --limit 1 --json databaseId --jq '.[0].databaseId')
@@ -30,7 +30,7 @@ jobs:
             gh run download "$RUN_ID" --name resolved-pr-versions
           fi
         env:
-          GH_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
       - run: npm install @electron/fiddle-core@2.0.1
       - uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
