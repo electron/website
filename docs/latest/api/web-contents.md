@@ -262,10 +262,11 @@ Returns:
   * `frame` WebFrameMain | null - The frame to be navigated.
     May be `null` if accessed after the frame has either navigated or been destroyed.
   * `initiator` WebFrameMain | null (optional) - The frame which initiated the
-    navigation, which can be a parent frame (e.g. via `window.open` with a
-    frame's name), or null if the navigation was not initiated by a frame. This
-    can also be null if the initiating frame was deleted before the event was
-    emitted.
+    navigation. This can be a parent frame (e.g. via `window.open` with a
+    frame's name), a child frame (e.g. an unsandboxed iframe navigating its
+    parent via `<a target="_top">`), or null if the navigation was not initiated
+    by a frame. This can also be null if the initiating frame was deleted before
+    the event was emitted.
 * `url` string _Deprecated_
 * `isInPlace` boolean _Deprecated_
 * `isMainFrame` boolean _Deprecated_
@@ -296,10 +297,11 @@ Returns:
   * `frame` WebFrameMain | null - The frame to be navigated.
     May be `null` if accessed after the frame has either navigated or been destroyed.
   * `initiator` WebFrameMain | null (optional) - The frame which initiated the
-    navigation, which can be a parent frame (e.g. via `window.open` with a
-    frame's name), or null if the navigation was not initiated by a frame. This
-    can also be null if the initiating frame was deleted before the event was
-    emitted.
+    navigation. This can be a parent frame (e.g. via `window.open` with a
+    frame's name), a child frame (e.g. an unsandboxed iframe navigating its
+    parent via `<a target="_top">`), or null if the navigation was not initiated
+    by a frame. This can also be null if the initiating frame was deleted before
+    the event was emitted.
 
 Emitted when a user or the page wants to start navigation in any frame. It can happen when
 the `window.location` object is changed or a user clicks a link in the page.
@@ -328,10 +330,11 @@ Returns:
   * `frame` WebFrameMain | null - The frame to be navigated.
     May be `null` if accessed after the frame has either navigated or been destroyed.
   * `initiator` WebFrameMain | null (optional) - The frame which initiated the
-    navigation, which can be a parent frame (e.g. via `window.open` with a
-    frame's name), or null if the navigation was not initiated by a frame. This
-    can also be null if the initiating frame was deleted before the event was
-    emitted.
+    navigation. This can be a parent frame (e.g. via `window.open` with a
+    frame's name), a child frame (e.g. an unsandboxed iframe navigating its
+    parent via `<a target="_top">`), or null if the navigation was not initiated
+    by a frame. This can also be null if the initiating frame was deleted before
+    the event was emitted.
 * `url` string _Deprecated_
 * `isInPlace` boolean _Deprecated_
 * `isMainFrame` boolean _Deprecated_
@@ -353,10 +356,11 @@ Returns:
   * `frame` WebFrameMain | null - The frame to be navigated.
     May be `null` if accessed after the frame has either navigated or been destroyed.
   * `initiator` WebFrameMain | null (optional) - The frame which initiated the
-    navigation, which can be a parent frame (e.g. via `window.open` with a
-    frame's name), or null if the navigation was not initiated by a frame. This
-    can also be null if the initiating frame was deleted before the event was
-    emitted.
+    navigation. This can be a parent frame (e.g. via `window.open` with a
+    frame's name), a child frame (e.g. an unsandboxed iframe navigating its
+    parent via `<a target="_top">`), or null if the navigation was not initiated
+    by a frame. This can also be null if the initiating frame was deleted before
+    the event was emitted.
 * `url` string _Deprecated_
 * `isInPlace` boolean _Deprecated_
 * `isMainFrame` boolean _Deprecated_
@@ -385,10 +389,11 @@ Returns:
   * `frame` WebFrameMain | null - The frame to be navigated.
     May be `null` if accessed after the frame has either navigated or been destroyed.
   * `initiator` WebFrameMain | null (optional) - The frame which initiated the
-    navigation, which can be a parent frame (e.g. via `window.open` with a
-    frame's name), or null if the navigation was not initiated by a frame. This
-    can also be null if the initiating frame was deleted before the event was
-    emitted.
+    navigation. This can be a parent frame (e.g. via `window.open` with a
+    frame's name), a child frame (e.g. an unsandboxed iframe navigating its
+    parent via `<a target="_top">`), or null if the navigation was not initiated
+    by a frame. This can also be null if the initiating frame was deleted before
+    the event was emitted.
 * `url` string _Deprecated_
 * `isInPlace` boolean _Deprecated_
 * `isMainFrame` boolean _Deprecated_
@@ -1523,6 +1528,26 @@ Returns `boolean` - Whether this page has been muted.
 
 Returns `boolean` - Whether audio is currently playing.
 
+#### `contents.setCaretBrowsingEnabled(enabled)`
+
+```YAML history
+added:
+  - pr-url: https://github.com/electron/electron/pull/52696
+```
+
+* `enabled` boolean
+
+Sets whether [caret browsing](#contentscaretbrowsingenabled) is enabled on the current web page.
+
+#### `contents.isCaretBrowsingEnabled()`
+
+```YAML history
+added:
+  - pr-url: https://github.com/electron/electron/pull/52696
+```
+
+Returns `boolean` - Whether [caret browsing](#contentscaretbrowsingenabled) is enabled for this page.
+
 #### `contents.setZoomFactor(factor)`
 
 * `factor` Double - Zoom factor; default is 1.0.
@@ -1546,13 +1571,47 @@ limits of 300% and 50% of original size, respectively. The formula for this is
 `scale := 1.2 ^ level`.
 
 > [!NOTE]
-> The zoom policy at the Chromium level is same-origin, meaning that the
-> zoom level for a specific domain propagates across all instances of windows with
-> the same domain. Differentiating the window URLs will make zoom work per-window.
+> The zoom policy at the Chromium level is same-origin by default, meaning that
+> the zoom level for a specific domain propagates across all instances of windows
+> with the same domain. To use per-webContents zoom instead, set the zoom mode to
+> `'isolated'` via [`contents.setZoomMode('isolated')`](#contentssetzoommodemode).
 
 #### `contents.getZoomLevel()`
 
 Returns `number` - the current zoom level.
+
+#### `contents.setZoomMode(mode)`
+
+```YAML history
+added:
+  - pr-url: https://github.com/electron/electron/pull/49962
+```
+
+* `mode` string - Can be `default`, `isolated`, `manual`, or `disabled`.
+
+Sets the zoom mode for this web contents.
+
+* `default` - Zoom changes are handled automatically on a per-origin basis.
+  Other webContents navigated to the same origin will share the same zoom level.
+* `isolated` - Zoom changes are handled automatically but on a per-webContents basis.
+  This webContents will not be affected by zoom changes in other webContents, and vice versa.
+* `manual` - Automatic zoom handling is disabled. The `zoom-changed` event
+  will still be dispatched, but the page will not actually be zoomed.
+  The zoom level can be managed manually by the application.
+* `disabled` - All zooming in this webContents is disabled. The webContents will revert
+  to the default zoom level and all zoom changes will be ignored.
+
+The `isolated` and `manual` zoom modes persist across navigations.
+
+#### `contents.getZoomMode()`
+
+```YAML history
+added:
+  - pr-url: https://github.com/electron/electron/pull/49962
+```
+
+Returns `string` - The current zoom mode. Can be `default`, `isolated`,
+`manual`, or `disabled`.
 
 #### `contents.setVisualZoomLevelLimits(minimumLevel, maximumLevel)`
 
@@ -2365,6 +2424,27 @@ register handlers on the appropriate frame directly using the
 
 A `boolean` property that determines whether this page is muted.
 
+#### `contents.caretBrowsingEnabled`
+
+```YAML history
+added:
+  - pr-url: https://github.com/electron/electron/pull/52696
+```
+
+A `boolean` property that determines whether caret browsing is enabled for this page.
+
+When enabled, a movable cursor is placed in the page's text, allowing the user to navigate and select content with the keyboard. Changes apply to the live page without reloading it.
+
+A `<webview>` guest inherits this value from its embedder when it is created and
+then tracks it independently, so disabling caret browsing on the embedder leaves
+an existing guest enabled.
+
+While any `WebContents` in the process has caret browsing enabled, assistive
+technology is notified process-wide that caret browsing is active, so that screen
+readers report the caret's position as it moves. That notification is only
+withdrawn once every `WebContents` that enabled caret browsing has either
+disabled it or been destroyed.
+
 #### `contents.userAgent`
 
 A `string` property that determines the user agent for this web page.
@@ -2380,6 +2460,18 @@ The original size is 0 and each increment above or below represents zooming 20% 
 A `number` property that determines the zoom factor for this web contents.
 
 The zoom factor is the zoom percent divided by 100, so 300% = 3.0.
+
+#### `contents.zoomMode`
+
+```YAML history
+added:
+  - pr-url: https://github.com/electron/electron/pull/49962
+```
+
+A `string` property that determines the zoom mode for this web contents.
+
+See [`contents.setZoomMode`](#contentssetzoommodemode) for a description of the
+available modes.
 
 #### `contents.frameRate`
 
