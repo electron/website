@@ -70,15 +70,15 @@ Electron 44 upgrades Chromium from `150.0.7871.46` to `152.0.7977.54`, Node.js f
 
 ## Breaking Changes
 
+### Removed: macOS 12 support
+
+macOS 12 (Monterey) is no longer supported by [Chromium](https://chromium-review.googlesource.com/c/chromium/src/+/7907086). Older versions of Electron will continue to run on Monterey, but macOS 13 (Ventura) or later is required to run Electron 44 and higher. [#51967](https://github.com/electron/electron/pull/51967)
+
 ### Behavior Changed: `webContents` may be `null` in `select-client-certificate`
 
 The `app` `'select-client-certificate'` event is now also emitted for requests made through the `net` module and for utility processes created with `respondToAuthRequestsFromMainProcess: true`. For these requests, the `webContents` argument is `null`. Applications handling the event must check the argument before using it. [#52397](https://github.com/electron/electron/pull/52397)
 
 This also means that `net.request()` and `net.fetch()` can now select a client certificate instead of failing with `ERR_SSL_CLIENT_AUTH_CERT_NEEDED` when a server requests one.
-
-### Removed: macOS 12 support
-
-macOS 12 (Monterey) is no longer supported by [Chromium](https://chromium-review.googlesource.com/c/chromium/src/+/7907086). Older versions of Electron will continue to run on Monterey, but macOS 13 (Ventura) or later is required to run Electron 44 and higher. [#51967](https://github.com/electron/electron/pull/51967)
 
 ### Behavior Changed: ANGLE is statically linked on all platforms
 
