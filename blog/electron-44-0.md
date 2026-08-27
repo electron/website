@@ -27,11 +27,7 @@ As part of this change, the `clipboard` module is no longer exposed directly to 
 
 ### Cross-platform window state persistence
 
-Electron 44 adds a cross-platform API for saving and restoring window state. Set `windowStatePersistence: true` and provide a unique `name` in the `BaseWindow` or `BrowserWindow` constructor to preserve the window's position, size, and display mode across launches. Applications can selectively persist bounds or display modes, and clear saved state with `BaseWindow.clearPersistedState()`. See the [Window State Persistence tutorial](https://www.electronjs.org/docs/latest/tutorial/window-state-persistence) for details. [#52270](https://github.com/electron/electron/pull/52270)
-
-### A WHATWG-compatible WebSocket client for the main process
-
-The new `net.WebSocket` API provides a WHATWG-compatible WebSocket client for the main process backed by Chromium's network stack. It supports Electron sessions, Chromium proxy configuration, the platform trust store, and session cookies. [#51593](https://github.com/electron/electron/pull/51593)
+Electron 44 adds API for saving and restoring window state. Set `windowStatePersistence: true` and provide a unique `name` in the `BaseWindow` or `BrowserWindow` constructor to preserve the window's position, size, and display mode across launches. Applications can selectively persist bounds or display modes, and clear saved state with `BaseWindow.clearPersistedState()`. See the [Window State Persistence tutorial](https://www.electronjs.org/docs/latest/tutorial/window-state-persistence) for details. [#52270](https://github.com/electron/electron/pull/52270)
 
 ### Improved Linux desktop integration
 
