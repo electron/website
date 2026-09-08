@@ -118,6 +118,7 @@ module.exports = {
         'latest/tutorial/boilerplates-and-clis',
         'latest/tutorial/esm',
         'latest/tutorial/fuses',
+        'latest/tutorial/window-state-persistence',
         'latest/tutorial/windows-arm',
       ],
     },
