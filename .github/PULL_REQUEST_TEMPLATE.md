@@ -6,4 +6,4 @@
 
 <!-- Please confirm the following by changing [ ] to [x]. -->
 
-- [ ] This PR was not created with AI. (PRs created mainly with AI will be closed. They waste our team's time. We ban repeat offenders.)
+- [ ] [I have reviewed and verified the changes](https://github.com/electron/governance/blob/main/policy/ai.md)
