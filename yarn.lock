@@ -4734,91 +4734,107 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swc/html-darwin-arm64@npm:1.13.21":
-  version: 1.13.21
-  resolution: "@swc/html-darwin-arm64@npm:1.13.21"
+"@swc/html-darwin-arm64@npm:1.16.1":
+  version: 1.16.1
+  resolution: "@swc/html-darwin-arm64@npm:1.16.1"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@swc/html-darwin-x64@npm:1.13.21":
-  version: 1.13.21
-  resolution: "@swc/html-darwin-x64@npm:1.13.21"
+"@swc/html-darwin-x64@npm:1.16.1":
+  version: 1.16.1
+  resolution: "@swc/html-darwin-x64@npm:1.16.1"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@swc/html-linux-arm-gnueabihf@npm:1.13.21":
-  version: 1.13.21
-  resolution: "@swc/html-linux-arm-gnueabihf@npm:1.13.21"
+"@swc/html-linux-arm-gnueabihf@npm:1.16.1":
+  version: 1.16.1
+  resolution: "@swc/html-linux-arm-gnueabihf@npm:1.16.1"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
 
-"@swc/html-linux-arm64-gnu@npm:1.13.21":
-  version: 1.13.21
-  resolution: "@swc/html-linux-arm64-gnu@npm:1.13.21"
+"@swc/html-linux-arm64-gnu@npm:1.16.1":
+  version: 1.16.1
+  resolution: "@swc/html-linux-arm64-gnu@npm:1.16.1"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@swc/html-linux-arm64-musl@npm:1.13.21":
-  version: 1.13.21
-  resolution: "@swc/html-linux-arm64-musl@npm:1.13.21"
+"@swc/html-linux-arm64-musl@npm:1.16.1":
+  version: 1.16.1
+  resolution: "@swc/html-linux-arm64-musl@npm:1.16.1"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@swc/html-linux-x64-gnu@npm:1.13.21":
-  version: 1.13.21
-  resolution: "@swc/html-linux-x64-gnu@npm:1.13.21"
+"@swc/html-linux-ppc64-gnu@npm:1.16.1":
+  version: 1.16.1
+  resolution: "@swc/html-linux-ppc64-gnu@npm:1.16.1"
+  conditions: os=linux & cpu=ppc64 & libc=glibc
+  languageName: node
+  linkType: hard
+
+"@swc/html-linux-s390x-gnu@npm:1.16.1":
+  version: 1.16.1
+  resolution: "@swc/html-linux-s390x-gnu@npm:1.16.1"
+  conditions: os=linux & cpu=s390x & libc=glibc
+  languageName: node
+  linkType: hard
+
+"@swc/html-linux-x64-gnu@npm:1.16.1":
+  version: 1.16.1
+  resolution: "@swc/html-linux-x64-gnu@npm:1.16.1"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@swc/html-linux-x64-musl@npm:1.13.21":
-  version: 1.13.21
-  resolution: "@swc/html-linux-x64-musl@npm:1.13.21"
+"@swc/html-linux-x64-musl@npm:1.16.1":
+  version: 1.16.1
+  resolution: "@swc/html-linux-x64-musl@npm:1.16.1"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@swc/html-win32-arm64-msvc@npm:1.13.21":
-  version: 1.13.21
-  resolution: "@swc/html-win32-arm64-msvc@npm:1.13.21"
+"@swc/html-win32-arm64-msvc@npm:1.16.1":
+  version: 1.16.1
+  resolution: "@swc/html-win32-arm64-msvc@npm:1.16.1"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@swc/html-win32-ia32-msvc@npm:1.13.21":
-  version: 1.13.21
-  resolution: "@swc/html-win32-ia32-msvc@npm:1.13.21"
+"@swc/html-win32-ia32-msvc@npm:1.16.1":
+  version: 1.16.1
+  resolution: "@swc/html-win32-ia32-msvc@npm:1.16.1"
   conditions: os=win32 & cpu=ia32
   languageName: node
   linkType: hard
 
-"@swc/html-win32-x64-msvc@npm:1.13.21":
-  version: 1.13.21
-  resolution: "@swc/html-win32-x64-msvc@npm:1.13.21"
+"@swc/html-win32-x64-msvc@npm:1.16.1":
+  version: 1.16.1
+  resolution: "@swc/html-win32-x64-msvc@npm:1.16.1"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
 "@swc/html@npm:^1.13.5":
-  version: 1.13.21
-  resolution: "@swc/html@npm:1.13.21"
+  version: 1.16.1
+  resolution: "@swc/html@npm:1.16.1"
   dependencies:
     "@swc/counter": "npm:^0.1.3"
-    "@swc/html-darwin-arm64": "npm:1.13.21"
-    "@swc/html-darwin-x64": "npm:1.13.21"
-    "@swc/html-linux-arm-gnueabihf": "npm:1.13.21"
-    "@swc/html-linux-arm64-gnu": "npm:1.13.21"
-    "@swc/html-linux-arm64-musl": "npm:1.13.21"
-    "@swc/html-linux-x64-gnu": "npm:1.13.21"
-    "@swc/html-linux-x64-musl": "npm:1.13.21"
-    "@swc/html-win32-arm64-msvc": "npm:1.13.21"
-    "@swc/html-win32-ia32-msvc": "npm:1.13.21"
-    "@swc/html-win32-x64-msvc": "npm:1.13.21"
+    "@swc/html-darwin-arm64": "npm:1.16.1"
+    "@swc/html-darwin-x64": "npm:1.16.1"
+    "@swc/html-linux-arm-gnueabihf": "npm:1.16.1"
+    "@swc/html-linux-arm64-gnu": "npm:1.16.1"
+    "@swc/html-linux-arm64-musl": "npm:1.16.1"
+    "@swc/html-linux-ppc64-gnu": "npm:1.16.1"
+    "@swc/html-linux-s390x-gnu": "npm:1.16.1"
+    "@swc/html-linux-x64-gnu": "npm:1.16.1"
+    "@swc/html-linux-x64-musl": "npm:1.16.1"
+    "@swc/html-win32-arm64-msvc": "npm:1.16.1"
+    "@swc/html-win32-ia32-msvc": "npm:1.16.1"
+    "@swc/html-win32-x64-msvc": "npm:1.16.1"
   dependenciesMeta:
     "@swc/html-darwin-arm64":
       optional: true
@@ -4830,6 +4846,10 @@ __metadata:
       optional: true
     "@swc/html-linux-arm64-musl":
       optional: true
+    "@swc/html-linux-ppc64-gnu":
+      optional: true
+    "@swc/html-linux-s390x-gnu":
+      optional: true
     "@swc/html-linux-x64-gnu":
       optional: true
     "@swc/html-linux-x64-musl":
@@ -4840,7 +4860,7 @@ __metadata:
       optional: true
     "@swc/html-win32-x64-msvc":
       optional: true
-  checksum: 10c0/aa7f0116e2e1e586b9430f68bd4d8c55e669b17e567e1fbd283c19fb6ba5f9419c6528e3c6fdb720ca7ae68156d3edfa0e0908907ea5fcb88920f60c03c74117
+  checksum: 10c0/33d35f9b89ea1dbb102df03be305d3037fbef1ae4fd84d52a5446408121f5887d200663d1320cea04deb6a6db95d3e2e10d1a362134b5bb74fed5cf256c726b3
   languageName: node
   linkType: hard
 
