@@ -78,7 +78,7 @@
     "hastscript": "^9.0.0",
     "husky": "^9.1.6",
     "json5": "^2.2.2",
-    "lint-staged": "^16.2.7",
+    "lint-staged": "^17.4.1",
     "markdownlint-cli2": "^0.21.0",
     "mdast-util-from-markdown": "^2.0.1",
     "mdast-util-frontmatter": "^2.0.1",
