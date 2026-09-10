@@ -11,6 +11,7 @@ import remarkGithubAdmonitionsToDirectives, {
   DEFAULT_MAPPING,
 } from 'remark-github-admonitions-to-directives';
 
+import apiInheritedMembers from './src/transformers/api-inherited-members.ts';
 import apiLabels from './src/transformers/api-labels.ts';
 import apiOptionsClass from './src/transformers/api-options-class.ts';
 import apiStructurePreviews from './src/transformers/api-structure-previews.ts';
@@ -286,6 +287,10 @@ const config: Config = {
         docs: {
           path: 'docs',
           beforeDefaultRemarkPlugins: [
+            // Must run before the default heading/TOC plugins so that injected
+            // headings get anchors and TOC entries, and before every other
+            // transformer so that injected content is transformed as well.
+            apiInheritedMembers,
             [
               remarkGithubAdmonitionsToDirectives,
               {
