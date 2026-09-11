@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 330" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" role="img" aria-label="The three snapshot layers Electron loads. 1: the V8 startup snapshot (snapshot_blob.bin), V8's read-only heap and a bare context. 2: the Blink context snapshot (v8_context_snapshot.bin), DOM binding templates with zero compiled JavaScript. 3: the Node snapshot (node_snapshot.cc), the bootstrapped Node environment. Only the third captures Node's bootstrap, and it was the one Electron was missing.">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#161b22"/><stop offset="1" stop-color="#0d1117"/></linearGradient>
+  </defs>
+  <rect width="880" height="330" rx="16" fill="url(#bg)"/>
+  <rect x="0.5" y="0.5" width="879" height="329" rx="16" fill="none" stroke="#30363d"/>
+
+  <text x="32" y="44" fill="#e6edf3" font-size="18" font-weight="700">Three snapshots, only one holds Node's bootstrap</text>
+
+  <!-- layer 1 -->
+  <rect x="32" y="72" width="816" height="64" rx="8" fill="#21262d" stroke="#30363d"/>
+  <text x="52" y="100" fill="#e6edf3" font-size="15" font-weight="600">V8 startup snapshot <tspan fill="#6e7681" font-weight="400">snapshot_blob.bin</tspan></text>
+  <text x="52" y="122" fill="#8b949e" font-size="12.5">V8's read-only heap and a bare context. Pure V8 internals.</text>
+  <text x="828" y="109" fill="#6e7681" font-size="12" text-anchor="end">already loaded</text>
+
+  <!-- layer 2 -->
+  <rect x="32" y="146" width="816" height="64" rx="8" fill="#21262d" stroke="#30363d"/>
+  <text x="52" y="174" fill="#e6edf3" font-size="15" font-weight="600">Blink context snapshot <tspan fill="#6e7681" font-weight="400">v8_context_snapshot.bin</tspan></text>
+  <text x="52" y="196" fill="#8b949e" font-size="12.5">DOM / Web-IDL binding templates. Zero compiled JavaScript.</text>
+  <text x="828" y="183" fill="#6e7681" font-size="12" text-anchor="end">already loaded</text>
+
+  <!-- layer 3 (the missing one) -->
+  <rect x="32" y="220" width="816" height="64" rx="8" fill="#193a2e" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="52" y="248" fill="#e6edf3" font-size="15" font-weight="600">Node snapshot <tspan fill="#6e7681" font-weight="400">node_snapshot.cc</tspan></text>
+  <text x="52" y="270" fill="#8b949e" font-size="12.5">The bootstrapped Node environment: <tspan fill="#c9d1d9">process</tspan>, primordials, the module loader.</text>
+  <text x="828" y="257" fill="#56d364" font-size="12" font-weight="700" text-anchor="end">the missing piece</text>
+
+  <text x="32" y="312" fill="#6e7681" font-size="11.5">Layers 1 and 2 were always there, but neither captures Node's bootstrap. Layer 3 is the one that does.</text>
+</svg>

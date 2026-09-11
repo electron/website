@@ -330,3 +330,18 @@ html {
     }
   }
 }
+
+// Give the blog post table of contents a bit more room. By default it's a
+// `col--2` (~190px in the 1140px container), which wraps almost every
+// heading; widen it to 20% and take the difference from the post column.
+// Scoped by structure: only the blog layout has a `main.col--7` followed by
+// a `.col--2` TOC in the same row (docs use different column classes).
+.main-wrapper .row {
+  main.col.col--7 {
+    --ifm-col-width: 55%;
+  }
+
+  main.col.col--7 ~ .col.col--2 {
+    --ifm-col-width: 20%;
+  }
+}
