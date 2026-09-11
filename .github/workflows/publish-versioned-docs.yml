@@ -1,0 +1,253 @@
+name: Publish versioned docs
+
+# Builds immutable per-release docs snapshots (`/docs/vX.Y.Z/`) and the
+# mutable `/docs/next/` (from `electron/electron@main`) with
+# `docusaurus.versioned.config.ts`, and uploads them to the dedicated docs
+# storage account. `/docs/versions.json` is regenerated from the container's
+# contents afterwards so concurrent runs never race each other.
+
+on:
+  workflow_dispatch:
+    inputs:
+      versions:
+        description: 'Docs versions to publish: a comma or space separated list of `vX.Y.Z` and/or `next`'
+        type: string
+        required: true
+      dry_run:
+        description: 'Build the versions but skip the upload'
+        type: boolean
+        default: false
+  repository_dispatch:
+    types: [publish-versioned-docs]
+  schedule:
+    # Daily gap-fill at 04:00 UTC (push-main runs at 00:00/12:00,
+    # update-i18n-deploy at 08:00/16:00, audit-docs-version at 17:00)
+    - cron: '0 4 * * *'
+
+permissions: {}
+
+jobs:
+  plan:
+    name: Plan versions to publish
+    if: github.repository == 'electron/website'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      versions: ${{ steps.plan.outputs.versions }}
+      dry_run: ${{ steps.plan.outputs.dry_run }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # tag: v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # tag: v7.0.0
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'yarn'
+      - name: Install dependencies
+        run: yarn install --immutable
+      - name: Compute the version matrix
+        id: plan
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          INPUT_VERSIONS: ${{ github.event.inputs.versions }}
+          INPUT_DRY_RUN: ${{ github.event.inputs.dry_run }}
+          PAYLOAD_VERSION: ${{ github.event.client_payload.version }}
+        run: |
+          set -eo pipefail
+
+          case "$EVENT_NAME" in
+            workflow_dispatch) requested="$INPUT_VERSIONS" ;;
+            repository_dispatch) requested="$PAYLOAD_VERSION" ;;
+            schedule) requested="" ;;
+            *) echo "Unsupported event: $EVENT_NAME" >&2; exit 1 ;;
+          esac
+
+          if [ "$EVENT_NAME" = "schedule" ]; then
+            # Stable releases >= v38.0.0 that are not published yet (capped), plus next
+            versions="$(node scripts/versioned-docs/find-missing.ts)"
+          else
+            versions="[]"
+            for token in $(echo "$requested" | tr ',' ' '); do
+              if ! echo "$token" | grep -Eq '^(v[0-9]+\.[0-9]+\.[0-9]+|next)$'; then
+                echo "Invalid docs version: '$token' (expected vX.Y.Z or next)" >&2
+                exit 1
+              fi
+              versions="$(echo "$versions" | jq -c --arg v "$token" '. + [$v] | unique')"
+            done
+          fi
+
+          if [ "$versions" = "[]" ]; then
+            echo "Nothing to publish" >&2
+            exit 1
+          fi
+
+          if [ "$INPUT_DRY_RUN" = "true" ]; then dry_run=true; else dry_run=false; fi
+
+          echo "Publishing: $versions (dry run: $dry_run)"
+          echo "versions=$versions" >> "$GITHUB_OUTPUT"
+          echo "dry_run=$dry_run" >> "$GITHUB_OUTPUT"
+
+  publish:
+    name: Publish ${{ matrix.version }}
+    needs: plan
+    runs-on: ubuntu-latest
+    # Holds the OIDC federated credential for the docs storage account
+    environment:
+      name: docs-publish
+      deployment: false
+    permissions:
+      contents: read
+      id-token: write # for azure/login
+      actions: read # for the api-history transformer to download the resolved-pr-versions artifact
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        version: ${{ fromJSON(needs.plan.outputs.versions) }}
+    concurrency:
+      group: publish-versioned-docs-${{ matrix.version }}
+      cancel-in-progress: false
+    env:
+      VERSION: ${{ matrix.version }}
+      DRY_RUN: ${{ needs.plan.outputs.dry_run }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # tag: v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # tag: v7.0.0
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'yarn'
+      - name: Install dependencies
+        run: yarn install --immutable
+      - name: Download the docs
+        run: yarn pre-build:version "$VERSION"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Add Docusaurus problem matcher
+        run: echo "::add-matcher::.github/problem-matchers/docusaurus.json"
+      - name: Build
+        run: |
+          set -eo pipefail
+          ELECTRON_DOCS_VERSION="$VERSION" yarn build:version 2>&1 | tee build.log
+          # Older releases contain links that were only fixed later on; the
+          # versioned config downgrades them to warnings, surface the count.
+          broken="$(grep -cE -- "-> linking to|couldn't be resolved" build.log || true)"
+          echo "::notice title=Broken links in $VERSION::$broken broken link(s) reported by Docusaurus"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Prepare the upload
+        run: |
+          set -eo pipefail
+          # The build is self-contained: `baseUrl` is `/docs/$VERSION/`, so the
+          # whole output directory maps onto that prefix in the container.
+          out="build-versioned"
+          test -f "$out/index.html"
+          test -f "$out/api/app/index.html"
+          # Ship the source commit alongside the pages (read back by versions.json)
+          cp "docs/$VERSION/.sha" "$out/.sha"
+          # Container-level fallbacks: the storage account serves `/404.html` for
+          # missing blobs and `/index.html` for the (unrouted) container root.
+          mkdir -p root
+          cp "$out/404.html" root/404.html
+          cat > root/index.html <<'EOF'
+          <!doctype html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=https://www.electronjs.org/docs/latest/"><title>Electron documentation</title></head><body><a href="https://www.electronjs.org/docs/latest/">Electron documentation</a></body></html>
+          EOF
+          du -sh "$out"
+      - name: Azure login
+        if: env.DRY_RUN != 'true'
+        uses: azure/login@a641126d1b8aa4d1fa005f4f92df94a3a4c4c906 # v3.1.0
+        with:
+          client-id: ${{ secrets.AZURE_DOCS_OIDC_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_OIDC_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_OIDC_SUBSCRIPTION_ID }}
+      - name: Upload to Azure Blob Storage
+        if: env.DRY_RUN != 'true'
+        uses: nick-invision/retry@ad984534de44a9489a53aefd81eb77f87c70dc60 # tag: v4.0.0
+        with:
+          timeout_seconds: 3000
+          max_attempts: 3
+          retry_on: error
+          command: |
+            set -eo pipefail
+            web="https://${STORAGE_ACCOUNT}.blob.core.windows.net/%24web"
+            azcopy="$PWD/scripts/bin/azcopy"
+
+            if [ "$VERSION" = "next" ]; then
+              # `next` is mutable: mirror it, deleting only under its own prefix
+              "$azcopy" sync "./build-versioned" "$web/docs/next" --delete-destination=true --compare-hash=MD5
+            else
+              # Releases are immutable: additive copy, never delete
+              "$azcopy" copy "./build-versioned/*" "$web/docs/$VERSION/" --recursive
+            fi
+
+            "$azcopy" copy "./root/*" "$web/" --recursive
+        env:
+          AZCOPY_AUTO_LOGIN_TYPE: AZCLI
+          STORAGE_ACCOUNT: ${{ secrets.AZURE_DOCS_STORAGE_ACCOUNT_NAME }}
+      - name: Upload azcopy debug logs
+        if: always() && env.DRY_RUN != 'true'
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: azcopy-log-${{ matrix.version }}
+          path: /home/runner/.azcopy/*.log
+          include-hidden-files: true
+          retention-days: 3
+
+  versions-json:
+    name: Regenerate versions.json
+    needs: [plan, publish]
+    # Run even if some versions failed, as long as this was not a dry run
+    if: always() && needs.plan.result == 'success' && needs.plan.outputs.dry_run != 'true' && needs.publish.result != 'skipped' && needs.publish.result != 'cancelled'
+    runs-on: ubuntu-latest
+    environment:
+      name: docs-publish
+      deployment: false
+    permissions:
+      contents: read
+      id-token: write # for azure/login
+    concurrency:
+      group: publish-versioned-docs-versions-json
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # tag: v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # tag: v7.0.0
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'yarn'
+      - name: Install dependencies
+        run: yarn install --immutable
+      - name: Azure login
+        uses: azure/login@a641126d1b8aa4d1fa005f4f92df94a3a4c4c906 # v3.1.0
+        with:
+          client-id: ${{ secrets.AZURE_DOCS_OIDC_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_OIDC_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_OIDC_SUBSCRIPTION_ID }}
+      - name: Build versions.json from the container contents
+        env:
+          STORAGE_ACCOUNT: ${{ secrets.AZURE_DOCS_STORAGE_ACCOUNT_NAME }}
+        run: |
+          set -eo pipefail
+          blob() { az storage blob "$@" --auth-mode login --account-name "$STORAGE_ACCOUNT" --container-name '$web'; }
+
+          # Published releases = `docs/vX.Y.Z/` prefixes (one level deep)
+          blob list --prefix 'docs/v' --delimiter '/' --num-results '*' --output json > blobs.json
+
+          # `next` metadata, if it has been published
+          if blob download --name 'docs/next/.sha' --file next.sha --output none 2>/dev/null; then
+            NEXT_SHA="$(cat next.sha)"
+            NEXT_UPDATED="$(blob show --name 'docs/next/.sha' --query 'properties.lastModified' --output tsv)"
+          else
+            NEXT_SHA=""
+            NEXT_UPDATED=""
+          fi
+          export NEXT_SHA NEXT_UPDATED
+
+          node scripts/versioned-docs/build-versions-json.ts < blobs.json > versions.json
+          cat versions.json
+
+          blob upload --name 'docs/versions.json' --file versions.json --overwrite \
+            --content-type 'application/json' --content-cache-control 'max-age=300' --output none
