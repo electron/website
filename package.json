@@ -27,6 +27,7 @@
     "lint:markdown": "markdownlint-cli2 \"**/*.md\"",
     "lint": "tsc --noEmit && npm run lint:fmt && npm run lint:oxlint && npm run lint:markdown",
     "lint:fix": "oxfmt --write . && npm run lint:oxlint -- --fix && npm run lint:markdown -- --fix",
+    "test": "node --test \"src/**/*.spec.ts\"",
     "pre-build": "node ./scripts/pre-build.ts",
     "prepare": "husky"
   },
