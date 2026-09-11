@@ -212,10 +212,6 @@ const config: Config = {
             { label: 'Governance', to: '/governance' },
             { label: 'Resources', to: '/community' },
             {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/APGC3k5yaH',
-            },
-            {
               label: 'Bluesky',
               href: 'https://bsky.app/profile/electronjs.org',
             },
