@@ -51,10 +51,6 @@
     "message": "Resources",
     "description": "The label of footer link with label=Resources linking to /community"
   },
-  "link.item.label.Discord": {
-    "message": "Discord",
-    "description": "The label of footer link with label=Discord linking to https://discordapp.com/invite/APGC3k5yaH"
-  },
   "link.item.label.Stack Overflow": {
     "message": "Stack Overflow",
     "description": "The label of footer link with label=Stack Overflow linking to https://stackoverflow.com/questions/tagged/electron"
