@@ -4,11 +4,26 @@ import { visitParents } from 'unist-util-visit-parents';
 import type { Node, Parent } from 'unist';
 import type { Definition, Link } from 'mdast';
 import type { VFile } from 'vfile';
+import {
+  isReleaseVersion,
+  parseDocsVersionPath,
+  sourceRefForVersion,
+} from '../util/docs-version.ts';
 import { latestElectronVersion } from '../util/latest-electron-version.ts';
 import { isDefinition, isLink } from '../util/mdx-utils.ts';
 
-const DOCS_FOLDER = path.join(__dirname, '..', '..', 'docs', 'latest');
+const SITE_DIR = path.join(__dirname, '..', '..');
 const RELATIVE_LINK_REGEX = /^(?:\.\.?\/)+(\S+)$/;
+
+/**
+ * The git ref of `electron/electron` that links escaping the docs folder
+ * should point at: the release tag for `vX.Y.Z` docs, `main` for `next`
+ * and the latest stable tag for `latest`.
+ */
+async function sourceRef(version: string): Promise<string> {
+  const latest = isReleaseVersion(version) ? '' : await latestElectronVersion();
+  return sourceRefForVersion(version, latest);
+}
 
 /**
  * `attacher` runs once for the entire plugin's lifetime.
@@ -22,7 +37,11 @@ export default function attacher() {
  * processed by this MDX plugin.
  */
 async function transformer(tree: Parent, vfile: VFile) {
-  const version = await latestElectronVersion();
+  // `docs/<version>/...` (or its i18n mirror) tells us which docs version
+  // this file belongs to, and thus which folder counts as "the docs".
+  const version = parseDocsVersionPath(vfile.path)?.version ?? 'latest';
+  const docsFolder = path.join(SITE_DIR, 'docs', version);
+  const ref = await sourceRef(version);
 
   const findRelativeLinksOutsideDocs = (node: Node) => {
     if (
@@ -30,7 +49,7 @@ async function transformer(tree: Parent, vfile: VFile) {
       (node.url.startsWith('./') || node.url.startsWith('../'))
     ) {
       // Check if the path resolves outside to be outside of the doc folder
-      const relativePath = path.relative(DOCS_FOLDER, vfile.dirname);
+      const relativePath = path.relative(docsFolder, vfile.dirname);
       const resolvedPath = path.join(relativePath, node.url);
 
       return resolvedPath.startsWith('../');
@@ -51,6 +70,6 @@ async function transformer(tree: Parent, vfile: VFile) {
 
   for (const node of nodes) {
     // Strip off the leading relative path segments
-    node.url = `https://github.com/electron/electron/blob/v${version}/${node.url.match(RELATIVE_LINK_REGEX)[1]}`;
+    node.url = `https://github.com/electron/electron/blob/${ref}/${node.url.match(RELATIVE_LINK_REGEX)[1]}`;
   }
 }

@@ -5,6 +5,12 @@ import type { Node, Parent } from 'unist';
 import type { Code } from 'mdast';
 import type { MdxJsxFlowElement } from 'mdast-util-mdx-jsx';
 import { visitParents, type ActionTuple, SKIP } from 'unist-util-visit-parents';
+import type { VFile } from 'vfile';
+import {
+  fiddleVersionForDocsVersion,
+  isReleaseVersion,
+  parseDocsVersionPath,
+} from '../util/docs-version.ts';
 import { latestElectronVersion } from '../util/latest-electron-version.ts';
 import { getJSXImport, isCode, isImport } from '../util/mdx-utils.ts';
 
@@ -33,9 +39,22 @@ function matchFiddleBlock(node: Node): node is Code {
 
 const importNode = getJSXImport('FiddleEmbed');
 
-async function transformer(tree: Parent) {
+/**
+ * The Electron version whose fiddles the "Open in Fiddle" buttons should
+ * load: the release itself for `docs/vX.Y.Z/`, and the latest stable for
+ * `latest` and `next` (fiddles only exist for published releases).
+ */
+async function fiddleVersion(vfile: VFile): Promise<string> {
+  const docsVersion = parseDocsVersionPath(vfile.path)?.version ?? 'latest';
+  const latest = isReleaseVersion(docsVersion)
+    ? ''
+    : await latestElectronVersion();
+  return fiddleVersionForDocsVersion(docsVersion, latest);
+}
+
+async function transformer(tree: Parent, vfile: VFile) {
   let needImport = false;
-  const version = await latestElectronVersion();
+  const version = await fiddleVersion(vfile);
   visitParents(tree, matchFiddleBlock, generateFiddleEmbed);
   visitParents(tree, 'mdxjsEsm', checkForFiddleEmbedImport);
 
