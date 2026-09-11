@@ -29,6 +29,7 @@
     "lint:fix": "oxfmt --write . && npm run lint:oxlint -- --fix && npm run lint:markdown -- --fix",
     "pre-build": "node ./scripts/pre-build.ts",
     "pre-build:version": "node ./scripts/pre-build.ts --version",
+    "build:version": "docusaurus build --config docusaurus.versioned.config.ts --out-dir build-versioned --locale en",
     "prepare": "husky"
   },
   "dependencies": {

@@ -52,6 +52,28 @@ yarn pre-build ../relative/path/to/local/electron/repo
 yarn start
 ```
 
+## Versioned documentation
+
+Besides `/docs/latest`, the website publishes an immutable snapshot of the docs for every stable
+Electron release since v38 at `/docs/vX.Y.Z/`, and the docs from `electron/electron@main` at
+`/docs/next/`. Those are separate Docusaurus builds (`docusaurus.versioned.config.ts`) uploaded
+to a dedicated storage account by the [Publish versioned docs][publish-versioned-docs] workflow,
+which also maintains `/docs/versions.json` (the list read by the version dropdown in the navbar).
+
+To build one locally:
+
+```console
+yarn pre-build:version v44.3.0          # or `next`, downloads into docs/v44.3.0
+ELECTRON_DOCS_VERSION=v44.3.0 yarn build:version
+ELECTRON_DOCS_VERSION=v44.3.0 yarn serve --dir build-versioned --config docusaurus.versioned.config.ts
+```
+
+Each versioned build is self-contained under its `baseUrl` (`/docs/v44.3.0/`), so the whole
+`build-versioned` directory is uploaded to that prefix.
+
+The sidebar for every version comes from `sidebars-template.js` (new docs must be added there);
+entries whose page does not exist in a given version are dropped automatically.
+
 ## Search indexing
 
 The search functionality on electronjs.org is powered by [Algolia DocSearch](https://docsearch.algolia.com/). DocSearch is a program run by Algolia that offers free
@@ -95,3 +117,4 @@ The content of this repository is organized as follows:
 [electron/electron]: https://github.com/electron/electron/tree/main/docs
 [electron/electron-website-updater]: https://github.com/electron/electron-website-updater
 [i18n.md]: ./i18n.md
+[publish-versioned-docs]: https://github.com/electron/website/actions/workflows/publish-versioned-docs.yml
