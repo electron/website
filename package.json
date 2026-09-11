@@ -28,6 +28,7 @@
     "lint": "tsc --noEmit && npm run lint:fmt && npm run lint:oxlint && npm run lint:markdown",
     "lint:fix": "oxfmt --write . && npm run lint:oxlint -- --fix && npm run lint:markdown -- --fix",
     "pre-build": "node ./scripts/pre-build.ts",
+    "pre-build:version": "node ./scripts/pre-build.ts --version",
     "prepare": "husky"
   },
   "dependencies": {
