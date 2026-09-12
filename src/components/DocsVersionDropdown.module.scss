@@ -1,0 +1,10 @@
+.trigger {
+  white-space: nowrap;
+}
+
+.menu {
+  // Keep the list readable if many versions get published
+  max-height: 70vh;
+  overflow-y: auto;
+  min-width: 12rem;
+}

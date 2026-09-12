@@ -3,16 +3,23 @@ import path from 'node:path';
 
 const fiddlePathFixRegex = /```fiddle docs\//;
 
-const fiddleTransformer = (line: string) => {
+/**
+ * Fiddle embeds in `electron/electron` reference `docs/fiddles/...`, but on
+ * the website the docs live under `docs/<version>/`, so the path needs the
+ * version folder inserted.
+ * @param line
+ * @param version
+ */
+const fiddleTransformer = (line: string, version: string) => {
   const hasNewPath = fiddlePathFixRegex.test(line);
 
   if (hasNewPath) {
     return (
       line
-        .replace(fiddlePathFixRegex, '```fiddle docs/latest/')
+        .replace(fiddlePathFixRegex, `\`\`\`fiddle docs/${version}/`)
         // we could have a double transformation if the path is already the good one
         // this happens especially with the i18n content
-        .replace('latest/latest', 'latest')
+        .replace(`${version}/${version}`, version)
     );
   } else {
     return line;
@@ -80,12 +87,13 @@ const noUnclosedImageTags = (line: string) => {
  * * Fix types on regular text
  * * Update the fiddle format
  * @param doc
+ * @param version
  */
-const transform = (doc: string) => {
+const transform = (doc: string, version: string) => {
   const lines = doc.split('\n');
   const newDoc = [];
   const transformers = [
-    fiddleTransformer,
+    (line: string) => fiddleTransformer(line, version),
     newLineOnHTMLComment,
     newLineOnAdmonition,
     newLineOnDetails,
@@ -117,7 +125,7 @@ const fixReturnLines = (content: string) => {
  * found in the given `root` (recursively) and makes sure they are
  * ready to consumed by the website.
  * @param root
- * @param version
+ * @param version The docs version folder under `root` (e.g. `latest`)
  */
 export const fixContent = async (root: string, version = 'latest') => {
   const files = fs.glob(`${version}/**/*.md`, {
@@ -128,7 +136,7 @@ export const fixContent = async (root: string, version = 'latest') => {
     const fullFilePath = path.join(root, filePath);
     const content = await fs.readFile(fullFilePath, 'utf-8');
 
-    let fixedContent = transform(content);
+    let fixedContent = transform(content, version);
 
     // These analyze the document globally instead of line by line,
     // thus why they cannot be part of `transform`

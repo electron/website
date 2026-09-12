@@ -1,4 +1,5 @@
 import { Details } from '@docusaurus/theme-common/Details';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import * as semver from 'semver';
@@ -25,6 +26,7 @@ function generateTableRow(
   prReleaseVersions: PrReleaseVersions | undefined,
   type: Change,
   change: NonNullable<ApiHistory[keyof ApiHistory]>[0],
+  docsVersion: string,
 ) {
   const key = change['pr-url'] + '-' + type;
 
@@ -77,9 +79,7 @@ function generateTableRow(
   if ('breaking-changes-header' in change) {
     changesJsx = (
       <a
-        href={
-          '/docs/latest/breaking-changes#' + change['breaking-changes-header']
-        }
+        href={`/docs/${docsVersion}/breaking-changes#${change['breaking-changes-header']}`}
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -100,6 +100,11 @@ function generateTableRow(
 
 const ApiHistoryTable = (props: ApiHistoryTableProps) => {
   const { apiHistoryJson, prReleaseVersionsJson } = props;
+  const {
+    siteConfig: { customFields },
+  } = useDocusaurusContext();
+  // Link to the breaking changes of the docs version being viewed
+  const docsVersion = String(customFields?.electronDocsVersion ?? 'latest');
 
   const apiHistory = JSON.parse(apiHistoryJson) as ApiHistory;
   const prReleaseVersions = JSON.parse(
@@ -112,7 +117,12 @@ const ApiHistoryTable = (props: ApiHistoryTableProps) => {
   const generateChangeRows = (changeType, changes) => {
     return (changes ?? []).map((change) => {
       const prNumber = Number(change['pr-url'].split('/').at(-1));
-      return generateTableRow(prReleaseVersions[prNumber], changeType, change);
+      return generateTableRow(
+        prReleaseVersions[prNumber],
+        changeType,
+        change,
+        docsVersion,
+      );
     });
   };
 
