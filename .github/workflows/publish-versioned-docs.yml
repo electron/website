@@ -1,16 +1,18 @@
 name: Publish versioned docs
 
-# Builds immutable per-release docs snapshots (`/docs/vX.Y.Z/`) and the
-# mutable `/docs/next/` (from `electron/electron@main`) with
-# `docusaurus.versioned.config.ts`, and uploads them to the dedicated docs
-# storage account. `/docs/versions.json` is regenerated from the container's
-# contents afterwards so concurrent runs never race each other.
+# Builds immutable per-release docs snapshots (`/docs/vX.Y.Z/`, for stable
+# and alpha/beta release tags) and the mutable `/docs/dev/` (from
+# `electron/electron@main`) with `docusaurus.versioned.config.ts`, and uploads
+# them to the dedicated docs storage account. `/docs/versions.json` is
+# regenerated from the container's contents afterwards so concurrent runs
+# never race each other; its `next` field names the newest prerelease, which
+# the CDN serves as an alias at `/docs/next/` (no build of its own).
 
 on:
   workflow_dispatch:
     inputs:
       versions:
-        description: 'Docs versions to publish: a comma or space separated list of `vX.Y.Z` and/or `next`'
+        description: 'Docs versions to publish: a comma or space separated list of release tags (`vX.Y.Z`, `vX.Y.Z-alpha.N`, `vX.Y.Z-beta.N`) and/or `dev`'
         type: string
         required: true
       dry_run:
@@ -64,13 +66,13 @@ jobs:
           esac
 
           if [ "$EVENT_NAME" = "schedule" ]; then
-            # Stable releases >= v38.0.0 that are not published yet (capped), plus next
+            # Unpublished prereleases of the upcoming major and stable releases >= v38.0.0 (capped), plus dev
             versions="$(node scripts/versioned-docs/find-missing.ts)"
           else
             versions="[]"
             for token in $(echo "$requested" | tr ',' ' '); do
-              if ! echo "$token" | grep -Eq '^(v[0-9]+\.[0-9]+\.[0-9]+|next)$'; then
-                echo "Invalid docs version: '$token' (expected vX.Y.Z or next)" >&2
+              if ! echo "$token" | grep -Eq '^(v[0-9]+\.[0-9]+\.[0-9]+(-(alpha|beta)\.[0-9]+)?|dev)$'; then
+                echo "Invalid docs version: '$token' (expected vX.Y.Z, vX.Y.Z-alpha.N, vX.Y.Z-beta.N or dev; 'next' is an alias the CDN resolves to the newest prerelease)" >&2
                 exit 1
               fi
               versions="$(echo "$versions" | jq -c --arg v "$token" '. + [$v] | unique')"
@@ -174,11 +176,11 @@ jobs:
             web="https://${STORAGE_ACCOUNT}.blob.core.windows.net/%24web"
             azcopy="$PWD/scripts/bin/azcopy"
 
-            if [ "$VERSION" = "next" ]; then
-              # `next` is mutable: mirror it, deleting only under its own prefix
-              "$azcopy" sync "./build-versioned" "$web/docs/next" --delete-destination=true --compare-hash=MD5
+            if [ "$VERSION" = "dev" ]; then
+              # `dev` is mutable: mirror it, deleting only under its own prefix
+              "$azcopy" sync "./build-versioned" "$web/docs/dev" --delete-destination=true --compare-hash=MD5
             else
-              # Releases are immutable: additive copy, never delete
+              # Releases (stable and prerelease tags) are immutable: additive copy, never delete
               "$azcopy" copy "./build-versioned/*" "$web/docs/$VERSION/" --recursive
             fi
 
@@ -233,18 +235,18 @@ jobs:
           set -eo pipefail
           blob() { az storage blob "$@" --auth-mode login --account-name "$STORAGE_ACCOUNT" --container-name '$web'; }
 
-          # Published releases = `docs/vX.Y.Z/` prefixes (one level deep)
+          # Published releases = `docs/vX.Y.Z/` and `docs/vX.Y.Z-<pre>/` prefixes (one level deep)
           blob list --prefix 'docs/v' --delimiter '/' --num-results '*' --output json > blobs.json
 
-          # `next` metadata, if it has been published
-          if blob download --name 'docs/next/.sha' --file next.sha --output none 2>/dev/null; then
-            NEXT_SHA="$(cat next.sha)"
-            NEXT_UPDATED="$(blob show --name 'docs/next/.sha' --query 'properties.lastModified' --output tsv)"
+          # `dev` metadata, if it has been published
+          if blob download --name 'docs/dev/.sha' --file dev.sha --output none 2>/dev/null; then
+            DEV_SHA="$(cat dev.sha)"
+            DEV_UPDATED="$(blob show --name 'docs/dev/.sha' --query 'properties.lastModified' --output tsv)"
           else
-            NEXT_SHA=""
-            NEXT_UPDATED=""
+            DEV_SHA=""
+            DEV_UPDATED=""
           fi
-          export NEXT_SHA NEXT_UPDATED
+          export DEV_SHA DEV_UPDATED
 
           node scripts/versioned-docs/build-versions-json.ts < blobs.json > versions.json
           cat versions.json

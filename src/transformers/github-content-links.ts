@@ -17,8 +17,8 @@ const RELATIVE_LINK_REGEX = /^(?:\.\.?\/)+(\S+)$/;
 
 /**
  * The git ref of `electron/electron` that links escaping the docs folder
- * should point at: the release tag for `vX.Y.Z` docs, `main` for `next`
- * and the latest stable tag for `latest`.
+ * should point at: the release tag for `vX.Y.Z` (stable or prerelease)
+ * docs, `main` for `dev` and the latest stable tag for `latest`.
  */
 async function sourceRef(version: string): Promise<string> {
   const latest = isReleaseVersion(version) ? '' : await latestElectronVersion();

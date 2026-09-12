@@ -68,7 +68,7 @@ it gets displayed on the website.
 
 Adds the docs version banner (`src/components/DocsVersionBanner.tsx`) above
 every doc page. The banner only renders in the per-version builds
-(`docusaurus.versioned.config.ts`, `/docs/next` and `/docs/vX.Y.Z`) and links
+(`docusaurus.versioned.config.ts`, `/docs/dev` and `/docs/vX.Y.Z`) and links
 back to the same page under `/docs/latest`.
 
 ### `DocItem/Metadata` (wrapped)

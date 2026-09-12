@@ -1,10 +1,11 @@
 /**
  * Navbar dropdown listing the available docs versions.
  *
- * Each docs version is a separate static build (`/docs/latest`, `/docs/next`,
+ * Each docs version is a separate static build (`/docs/latest`, `/docs/dev`,
  * `/docs/vX.Y.Z`), so the list is fetched at runtime from
  * https://www.electronjs.org/docs/versions.json and every entry is a plain
  * link (full page load) to the same page path in the chosen version.
+ * `/docs/next/` is an alias the CDN redirects to the newest prerelease.
  *
  * Registered as the `custom-electronDocsVersionDropdown` navbar item type in
  * `src/theme/NavbarItem/ComponentTypes.tsx`.
@@ -23,6 +24,7 @@ import {
 } from '../util/docs-version.ts';
 import {
   buildDocsVersionEntries,
+  isEntryForVersion,
   type DocsVersionEntry,
   type DocsVersionsJson,
 } from '../util/docs-versions-list.ts';
@@ -87,7 +89,7 @@ function VersionLink({
   className,
   activeClassName,
 }: VersionLinkProps) {
-  const isActive = entry.version === currentVersion;
+  const isActive = isEntryForVersion(entry, currentVersion);
   return (
     <li>
       <a
@@ -260,7 +262,9 @@ export default function DocsVersionDropdown({
     return null;
   }
 
-  const current = entries.find((entry) => entry.version === currentVersion);
+  const current = entries.find((entry) =>
+    isEntryForVersion(entry, currentVersion),
+  );
   const label = `Version: ${current?.label ?? currentVersion}`;
 
   const props = { label, entries, currentVersion, pathname, className };

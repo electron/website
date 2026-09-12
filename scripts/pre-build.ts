@@ -5,9 +5,13 @@
  *
  * Usage:
  *
- *   yarn pre-build [source]                       → docs/latest
- *   yarn pre-build --version vX.Y.Z [source]      → docs/vX.Y.Z (tag vX.Y.Z)
- *   yarn pre-build --version next [source]        → docs/next   (branch main)
+ *   yarn pre-build [source]                          → docs/latest
+ *   yarn pre-build --version vX.Y.Z [source]         → docs/vX.Y.Z (tag vX.Y.Z)
+ *   yarn pre-build --version vX.Y.Z-beta.N [source]  → docs/vX.Y.Z-beta.N (prerelease tag)
+ *   yarn pre-build --version dev [source]            → docs/dev (branch main)
+ *
+ * `next` is not a version the website builds: the CDN redirects `/docs/next/`
+ * to the newest published prerelease.
  *
  * `source` is either a git ref of `electron/electron` (a SHA, branch or tag)
  * or a path to a local `electron/electron` checkout.
@@ -19,8 +23,9 @@ import path from 'path';
 import { logger } from '@docusaurus/logger';
 
 import {
+  DEV_VERSION,
   LATEST_VERSION,
-  NEXT_VERSION,
+  invalidDocsVersionHint,
   isReleaseVersion,
   isValidDocsVersion,
 } from '../src/util/docs-version.ts';
@@ -34,7 +39,7 @@ import { preprocessApiHistory } from './tasks/preprocess-api-history.ts';
 import { resolveElectronRef } from './tasks/resolve-ref.ts';
 
 interface PreBuildArgs {
-  /** The docs version folder to write to: `latest`, `next` or `vX.Y.Z` */
+  /** The docs version folder to write to: `latest`, `dev` or a release tag */
   version: string;
   /** Optional git ref or local path to get the docs from */
   source?: string;
@@ -57,8 +62,12 @@ const parseArgs = (argv: string[]): PreBuildArgs => {
 
   if (!version || !isValidDocsVersion(version)) {
     logger.error(
-      `Invalid --version ${logger.red(String(version))}. Expected ${logger.green('latest')}, ${logger.green('next')} or ${logger.green('vX.Y.Z')}`,
+      `Invalid --version ${logger.red(String(version))}. Expected ${logger.green('latest')}, ${logger.green('dev')}, ${logger.green('vX.Y.Z')} or ${logger.green('vX.Y.Z-(alpha|beta).N')}`,
     );
+    const hint = version && invalidDocsVersionHint(version);
+    if (hint) {
+      logger.error(hint);
+    }
     process.exit(1);
   }
 
@@ -70,7 +79,7 @@ const parseArgs = (argv: string[]): PreBuildArgs => {
  * when no explicit source is given.
  */
 const defaultTarget = async (version: string): Promise<string> => {
-  if (version === NEXT_VERSION) {
+  if (version === DEV_VERSION) {
     return 'main';
   }
 

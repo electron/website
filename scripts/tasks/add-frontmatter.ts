@@ -168,7 +168,7 @@ ${content}`;
  * files under `startPath` using the first heading as
  * title and paragraph as description.
  * @param startPath
- * @param version The docs version folder (`latest`, `next`, `vX.Y.Z`) used
+ * @param version The docs version folder (`latest`, `dev`, `vX.Y.Z`) used
  * for the slug of the start page
  */
 export const addFrontmatterToAllDocs = async (

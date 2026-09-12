@@ -3,6 +3,7 @@ import { describe, it } from 'node:test';
 
 import {
   buildDocsVersionEntries,
+  isEntryForVersion,
   newestPerMajor,
   sortVersionsDescending,
 } from './docs-versions-list.ts';
@@ -28,40 +29,106 @@ describe('newestPerMajor', () => {
 describe('buildDocsVersionEntries', () => {
   const data = {
     latest: 'v44.3.0',
+    next: 'v45.0.0-alpha.6',
     versions: ['v44.3.0', 'v44.2.1', 'v43.1.0', 'v38.0.0'],
-    next: { sha: 'a'.repeat(40), updated: '2026-09-11T00:00:00Z' },
+    prereleases: ['v45.0.0-alpha.6', 'v45.0.0-alpha.5'],
+    dev: { sha: 'a'.repeat(40), updated: '2026-09-11T00:00:00Z' },
   };
 
-  it('lists latest, next and the newest release per major', () => {
+  it('lists latest, next, dev and the newest release per major', () => {
+    const entries = buildDocsVersionEntries(data, 'latest');
     assert.deepEqual(
-      buildDocsVersionEntries(data, 'latest').map((e) => e.version),
-      ['latest', 'next', 'v44.3.0', 'v43.1.0', 'v38.0.0'],
+      entries.map((e) => e.version),
+      ['latest', 'next', 'dev', 'v44.3.0', 'v43.1.0', 'v38.0.0'],
     );
-    assert.equal(
-      buildDocsVersionEntries(data, 'latest')[0].label,
-      'latest (v44.3.0)',
-    );
+    assert.equal(entries[0].label, 'latest (v44.3.0)');
+    assert.deepEqual(entries[1], {
+      version: 'next',
+      label: 'next (v45.0.0-alpha.6)',
+      resolvesTo: 'v45.0.0-alpha.6',
+    });
+    assert.equal(entries[2].label, 'dev (unreleased)');
   });
 
-  it('omits next when it is not published', () => {
-    const { next: _next, ...withoutNext } = data;
+  it('hides next when it is null and dev when it is not published', () => {
     assert.deepEqual(
-      buildDocsVersionEntries(withoutNext, 'latest').map((e) => e.version),
+      buildDocsVersionEntries(
+        { ...data, next: null, dev: undefined },
+        'latest',
+      ).map((e) => e.version),
       ['latest', 'v44.3.0', 'v43.1.0', 'v38.0.0'],
     );
   });
 
-  it('always includes the version being viewed', () => {
+  it('copes with a versions.json that predates next / prereleases / dev', () => {
+    assert.deepEqual(
+      buildDocsVersionEntries(
+        { latest: 'v44.3.0', versions: ['v44.3.0', 'v43.1.0'] },
+        'v45.0.0-alpha.6',
+      ).map((e) => e.version),
+      ['latest', 'v44.3.0', 'v43.1.0'],
+    );
+  });
+
+  it('always includes the stable version being viewed', () => {
     assert.deepEqual(
       buildDocsVersionEntries(data, 'v44.2.1').map((e) => e.version),
-      ['latest', 'next', 'v44.3.0', 'v44.2.1', 'v43.1.0', 'v38.0.0'],
+      ['latest', 'next', 'dev', 'v44.3.0', 'v44.2.1', 'v43.1.0', 'v38.0.0'],
+    );
+  });
+
+  it('highlights next when viewing the prerelease it resolves to', () => {
+    const entries = buildDocsVersionEntries(data, 'v45.0.0-alpha.6');
+    assert.deepEqual(
+      entries.map((e) => e.version),
+      ['latest', 'next', 'dev', 'v44.3.0', 'v43.1.0', 'v38.0.0'],
+    );
+    assert.deepEqual(
+      entries.filter((e) => isEntryForVersion(e, 'v45.0.0-alpha.6')),
+      [entries[1]],
+    );
+  });
+
+  it('adds an entry for an older published prerelease being viewed', () => {
+    assert.deepEqual(
+      buildDocsVersionEntries(data, 'v45.0.0-alpha.5').map((e) => e.version),
+      [
+        'latest',
+        'next',
+        'dev',
+        'v45.0.0-alpha.5',
+        'v44.3.0',
+        'v43.1.0',
+        'v38.0.0',
+      ],
     );
   });
 
   it('does not invent versions that were never published', () => {
     assert.deepEqual(
       buildDocsVersionEntries(data, 'v40.0.0').map((e) => e.version),
-      ['latest', 'next', 'v44.3.0', 'v43.1.0', 'v38.0.0'],
+      ['latest', 'next', 'dev', 'v44.3.0', 'v43.1.0', 'v38.0.0'],
+    );
+    assert.deepEqual(
+      buildDocsVersionEntries(data, 'v45.0.0-beta.1').map((e) => e.version),
+      ['latest', 'next', 'dev', 'v44.3.0', 'v43.1.0', 'v38.0.0'],
+    );
+  });
+});
+
+describe('isEntryForVersion', () => {
+  it('matches the entry itself or the version an alias resolves to', () => {
+    const next = {
+      version: 'next',
+      label: 'next (v45.0.0-alpha.6)',
+      resolvesTo: 'v45.0.0-alpha.6',
+    };
+    assert.equal(isEntryForVersion(next, 'next'), true);
+    assert.equal(isEntryForVersion(next, 'v45.0.0-alpha.6'), true);
+    assert.equal(isEntryForVersion(next, 'v45.0.0-alpha.5'), false);
+    assert.equal(
+      isEntryForVersion({ version: 'dev', label: 'dev' }, 'dev'),
+      true,
     );
   });
 });

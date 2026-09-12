@@ -11,7 +11,7 @@ i18n/*
 !i18n/en/
 !i18n/README.md
 docs/v**
-docs/next
+docs/dev
 
 # yarn v4
 .pnp.*

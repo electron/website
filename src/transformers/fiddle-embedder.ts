@@ -41,8 +41,9 @@ const importNode = getJSXImport('FiddleEmbed');
 
 /**
  * The Electron version whose fiddles the "Open in Fiddle" buttons should
- * load: the release itself for `docs/vX.Y.Z/`, and the latest stable for
- * `latest` and `next` (fiddles only exist for published releases).
+ * load: the release itself for `docs/vX.Y.Z/` (stable or prerelease tags),
+ * and the latest stable for `latest` and `dev` (fiddles only exist for
+ * tagged releases).
  */
 async function fiddleVersion(vfile: VFile): Promise<string> {
   const docsVersion = parseDocsVersionPath(vfile.path)?.version ?? 'latest';

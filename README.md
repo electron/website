@@ -55,15 +55,19 @@ yarn start
 ## Versioned documentation
 
 Besides `/docs/latest`, the website publishes an immutable snapshot of the docs for every stable
-Electron release since v38 at `/docs/vX.Y.Z/`, and the docs from `electron/electron@main` at
-`/docs/next/`. Those are separate Docusaurus builds (`docusaurus.versioned.config.ts`) uploaded
-to a dedicated storage account by the [Publish versioned docs][publish-versioned-docs] workflow,
-which also maintains `/docs/versions.json` (the list read by the version dropdown in the navbar).
+Electron release since v38 and for the alpha/beta prereleases of the upcoming major at
+`/docs/vX.Y.Z/` (e.g. `/docs/v44.3.0/`, `/docs/v45.0.0-alpha.6/`), and the docs from
+`electron/electron@main` at `/docs/dev/`. Those are separate Docusaurus builds
+(`docusaurus.versioned.config.ts`) uploaded to a dedicated storage account by the
+[Publish versioned docs][publish-versioned-docs] workflow, which also maintains
+`/docs/versions.json`: `latest` (newest stable), `next` (newest prerelease, which the CDN serves
+as an alias at `/docs/next/`), `versions`, `prereleases` and `dev` (the `main` commit last built).
+The version dropdown in the navbar reads that file.
 
 To build one locally:
 
 ```console
-yarn pre-build:version v44.3.0          # or `next`, downloads into docs/v44.3.0
+yarn pre-build:version v44.3.0          # or `v45.0.0-alpha.6` / `dev`, downloads into docs/v44.3.0
 ELECTRON_DOCS_VERSION=v44.3.0 yarn build:version
 ELECTRON_DOCS_VERSION=v44.3.0 yarn serve --dir build-versioned --config docusaurus.versioned.config.ts
 ```

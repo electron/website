@@ -6,8 +6,12 @@
  * The website hosts one docs folder per version under `docs/`:
  *
  * - `docs/latest`  → `/docs/latest/...`  (the mutable, canonical docs)
- * - `docs/next`    → `/docs/next/...`    (built from `electron/electron@main`)
- * - `docs/vX.Y.Z`  → `/docs/vX.Y.Z/...`  (an immutable snapshot of a release)
+ * - `docs/dev`     → `/docs/dev/...`     (built from `electron/electron@main`)
+ * - `docs/vX.Y.Z`  → `/docs/vX.Y.Z/...`  (an immutable snapshot of a release,
+ *   stable `vX.Y.Z` or prerelease `vX.Y.Z-alpha.N` / `vX.Y.Z-beta.N`)
+ *
+ * `/docs/next/` is not a build: the CDN redirects it to the newest published
+ * prerelease (like the `next` npm dist-tag), see `/docs/versions.json`.
  *
  * The folder name is therefore the version identifier, and it shows up both
  * in file paths (`<siteDir>/docs/v44.3.0/api/app.md`) and in URL paths
@@ -16,29 +20,66 @@
  */
 
 export const LATEST_VERSION = 'latest';
-export const NEXT_VERSION = 'next';
+/** The mutable docs built from `electron/electron@main` */
+export const DEV_VERSION = 'dev';
+/** Alias for the newest prerelease, served by the CDN; never built */
+export const NEXT_ALIAS = 'next';
 
 /** Where the canonical (latest) docs live. Used for cross-build links. */
 export const WEBSITE_ORIGIN = 'https://www.electronjs.org';
 
-const RELEASE_VERSION_REGEX = /^v\d+\.\d+\.\d+$/;
+const STABLE_VERSION_REGEX = /^v\d+\.\d+\.\d+$/;
+const PRERELEASE_VERSION_REGEX = /^v\d+\.\d+\.\d+-(?:alpha|beta)\.\d+$/;
+const NIGHTLY_VERSION_REGEX = /^v\d+\.\d+\.\d+-nightly\./;
 
-/** `true` for `vX.Y.Z` style versions (immutable release snapshots). */
+/** `true` for `vX.Y.Z` stable release versions. */
+export function isStableVersion(version: string): boolean {
+  return STABLE_VERSION_REGEX.test(version);
+}
+
+/** `true` for `vX.Y.Z-alpha.N` / `vX.Y.Z-beta.N` prerelease versions. */
+export function isPrereleaseVersion(version: string): boolean {
+  return PRERELEASE_VERSION_REGEX.test(version);
+}
+
+/**
+ * `true` for any release tag the website publishes an immutable snapshot
+ * of: stable releases and alpha/beta prereleases (never nightlies).
+ */
 export function isReleaseVersion(version: string): boolean {
-  return RELEASE_VERSION_REGEX.test(version);
+  return isStableVersion(version) || isPrereleaseVersion(version);
 }
 
 /** `true` for anything the pre-build / versioned build accepts. */
 export function isValidDocsVersion(version: string): boolean {
   return (
     version === LATEST_VERSION ||
-    version === NEXT_VERSION ||
+    version === DEV_VERSION ||
     isReleaseVersion(version)
   );
 }
 
+/**
+ * A human-readable explanation for common invalid docs versions, to append
+ * to error messages. `undefined` when there is nothing specific to say.
+ */
+export function invalidDocsVersionHint(version: string): string | undefined {
+  if (version === NEXT_ALIAS) {
+    return (
+      `"${NEXT_ALIAS}" is an alias for the newest prerelease and is not built by the website; ` +
+      `publish the prerelease tag itself (e.g. v45.0.0-alpha.6), or "${DEV_VERSION}" for the docs on main.`
+    );
+  }
+
+  if (NIGHTLY_VERSION_REGEX.test(version)) {
+    return 'Nightly releases are not published as versioned docs.';
+  }
+
+  return undefined;
+}
+
 export interface DocsVersionPath {
-  /** The version folder name, e.g. `latest`, `next` or `v44.3.0` */
+  /** The version folder name, e.g. `latest`, `dev` or `v44.3.0` */
   version: string;
   /** Whatever follows the version segment, without a leading slash */
   rest: string;
@@ -76,7 +117,7 @@ export function parseDocsVersionPath(
  * The `electron/electron` git ref that the docs of a given version were
  * built from. Used for "view source on GitHub" style links.
  *
- * @param version The docs version (`latest`, `next` or `vX.Y.Z`)
+ * @param version The docs version (`latest`, `dev` or a release tag)
  * @param latestStable The latest stable Electron version (e.g. `44.3.0`),
  * only needed to resolve `latest`.
  */
@@ -84,7 +125,7 @@ export function sourceRefForVersion(
   version: string,
   latestStable: string,
 ): string {
-  if (version === NEXT_VERSION) {
+  if (version === DEV_VERSION) {
     return 'main';
   }
 
@@ -98,7 +139,7 @@ export function sourceRefForVersion(
 /**
  * The Electron version (without the `v` prefix) whose fiddles should be
  * used for the "Open in Fiddle" buttons of a docs version. Fiddles only
- * exist for released versions, so `next` falls back to the latest stable.
+ * exist for tagged releases, so `dev` falls back to the latest stable.
  */
 export function fiddleVersionForDocsVersion(
   version: string,

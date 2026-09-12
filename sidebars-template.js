@@ -3,7 +3,7 @@
  * Single source of truth for the docs sidebars.
  *
  * The website hosts one docs folder per Electron docs version under `docs/`
- * (`docs/latest`, `docs/next`, `docs/vX.Y.Z`), so doc IDs are prefixed with
+ * (`docs/latest`, `docs/dev`, `docs/vX.Y.Z`), so doc IDs are prefixed with
  * the folder name (`latest/api/app`). `createSidebars(prefix)` returns the
  * sidebar structure for one such prefix:
  *

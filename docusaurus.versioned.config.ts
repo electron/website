@@ -1,6 +1,7 @@
 /**
  * Docusaurus config for the per-version docs builds that are published to
- * `/docs/vX.Y.Z/` and `/docs/next/`.
+ * `/docs/vX.Y.Z/` (stable and alpha/beta release tags) and `/docs/dev/`
+ * (built from `electron/electron@main`).
  *
  * It derives from the main `docusaurus.config.ts` so that the docs render
  * exactly like `/docs/latest`, with these differences:
@@ -32,18 +33,21 @@ import type { NavbarItem, Footer } from '@docusaurus/theme-common';
 
 import baseConfig from './docusaurus.config.ts';
 import {
-  NEXT_VERSION,
+  DEV_VERSION,
+  LATEST_VERSION,
   WEBSITE_ORIGIN,
+  invalidDocsVersionHint,
   isReleaseVersion,
   isValidDocsVersion,
 } from './src/util/docs-version.ts';
 
 const version = process.env.ELECTRON_DOCS_VERSION;
 
-if (!version || !isValidDocsVersion(version) || version === 'latest') {
+if (!version || !isValidDocsVersion(version) || version === LATEST_VERSION) {
   throw new Error(
-    `ELECTRON_DOCS_VERSION must be set to "next" or "vX.Y.Z" (got "${version}"). ` +
-      'Use the default docusaurus.config.ts for the latest docs.',
+    `ELECTRON_DOCS_VERSION must be set to "${DEV_VERSION}", "vX.Y.Z" or "vX.Y.Z-(alpha|beta).N" (got "${version}"). ` +
+      (invalidDocsVersionHint(version ?? '') ??
+        'Use the default docusaurus.config.ts for the latest docs.'),
   );
 }
 
@@ -212,10 +216,10 @@ const config: Config = {
           path: `docs/${version}`,
           routeBasePath: '/',
           sidebarPath: require.resolve('./sidebars.versioned.js'),
-          // Release snapshots are immutable, so there is nothing to edit;
-          // `next` tracks `main` and can link straight to it.
+          // Release snapshots (stable or prerelease) are immutable, so there
+          // is nothing to edit; `dev` tracks `main` and can link straight to it.
           editUrl:
-            version === NEXT_VERSION
+            version === DEV_VERSION
               ? ({ docPath }) =>
                   `https://github.com/electron/electron/edit/main/docs/${docPath}`
               : undefined,

@@ -4,23 +4,50 @@
  */
 import semver from 'semver';
 
-import { LATEST_VERSION, NEXT_VERSION } from './docs-version.ts';
+import {
+  DEV_VERSION,
+  LATEST_VERSION,
+  NEXT_ALIAS,
+  isPrereleaseVersion,
+} from './docs-version.ts';
 
-/** Contract of https://www.electronjs.org/docs/versions.json */
+/**
+ * Contract of https://www.electronjs.org/docs/versions.json (see
+ * `scripts/versioned-docs/build-versions-json.ts`). Everything but
+ * `latest` / `versions` is treated as optional so the dropdown keeps
+ * working against an older or partial file.
+ */
 export interface DocsVersionsJson {
-  /** The newest published release, e.g. `v44.3.0` */
-  latest: string;
-  /** Every published release snapshot, newest first */
+  /** The newest published stable release, e.g. `v44.3.0` */
+  latest: string | null;
+  /** The newest published prerelease newer than `latest`, e.g. `v45.0.0-alpha.6` */
+  next?: string | null;
+  /** Every published stable release snapshot, newest first */
   versions: string[];
-  /** Present when `/docs/next` has been published */
-  next?: { sha: string; updated: string };
+  /** Every published prerelease snapshot, newest first */
+  prereleases?: string[];
+  /** Present when `/docs/dev` has been published */
+  dev?: { sha: string; updated: string } | null;
 }
 
 export interface DocsVersionEntry {
-  /** The docs version folder / URL segment: `latest`, `next` or `vX.Y.Z` */
+  /** The URL segment to link to: `latest`, `next`, `dev` or a release tag */
   version: string;
   /** What to show in the dropdown */
   label: string;
+  /**
+   * For aliases (`next`), the docs version the CDN actually serves, so the
+   * entry is highlighted when that version is being viewed.
+   */
+  resolvesTo?: string;
+}
+
+/** `true` when the entry is the one the given docs version is served from */
+export function isEntryForVersion(
+  entry: DocsVersionEntry,
+  version: string,
+): boolean {
+  return entry.version === version || entry.resolvesTo === version;
 }
 
 /**
@@ -49,9 +76,11 @@ export function newestPerMajor(versions: string[]): string[] {
 }
 
 /**
- * Builds the dropdown entries: `latest`, `next` (when published), then the
- * newest release of every major. The version currently being viewed is
- * always included so it can be highlighted, even if it is an older patch.
+ * Builds the dropdown entries: `latest`, `next` (when a prerelease newer
+ * than latest is published), `dev` (when published), then the newest
+ * stable release of every major. The version currently being viewed is
+ * always included so it can be highlighted, even if it is an older patch
+ * or a prerelease other than `next`.
  */
 export function buildDocsVersionEntries(
   data: DocsVersionsJson,
@@ -64,8 +93,24 @@ export function buildDocsVersionEntries(
     },
   ];
 
-  if (data.next) {
-    entries.push({ version: NEXT_VERSION, label: 'next (unreleased)' });
+  if (typeof data.next === 'string' && data.next) {
+    entries.push({
+      version: NEXT_ALIAS,
+      label: `next (${data.next})`,
+      resolvesTo: data.next,
+    });
+  }
+
+  if (data.dev) {
+    entries.push({ version: DEV_VERSION, label: 'dev (unreleased)' });
+  }
+
+  if (
+    isPrereleaseVersion(currentVersion) &&
+    currentVersion !== data.next &&
+    (data.prereleases ?? []).includes(currentVersion)
+  ) {
+    entries.push({ version: currentVersion, label: currentVersion });
   }
 
   const releases = newestPerMajor(data.versions ?? []);
