@@ -50,6 +50,12 @@ The following methods are available on instances of `WebRequest`:
 
 #### `webRequest.onBeforeRequest([filter, ]listener)`
 
+```YAML history
+changes:
+  - pr-url: https://github.com/electron/electron/pull/53685
+    description: "Added `details.initiatorOrigin`."
+```
+
 * `filter` [WebRequestFilter](structures/web-request-filter.md) (optional)
 * `listener` Function | null
   * `details` Object
@@ -60,6 +66,7 @@ The following methods are available on instances of `WebRequest`:
     * `webContents` WebContents (optional)
     * `frame` WebFrameMain | null (optional) - Requesting frame.
       May be `null` if accessed after the frame has either navigated or been destroyed.
+    * `initiatorOrigin` string (optional) - The origin that issued the request (for example `https://example.com`, or `null` for an opaque origin). Kept from the original request across redirects; absent for requests the browser started itself.
     * `resourceType` string - Can be `mainFrame`, `subFrame`, `stylesheet`, `script`, `image`, `font`, `object`, `xhr`, `ping`, `cspReport`, `media`, `webSocket` or `other`.
     * `referrer` string
     * `timestamp` Double
@@ -95,6 +102,12 @@ Some examples of valid `urls`:
 
 #### `webRequest.onBeforeSendHeaders([filter, ]listener)`
 
+```YAML history
+changes:
+  - pr-url: https://github.com/electron/electron/pull/53685
+    description: "Added `details.initiatorOrigin`."
+```
+
 * `filter` [WebRequestFilter](structures/web-request-filter.md) (optional)
 * `listener` Function | null
   * `details` Object
@@ -105,6 +118,7 @@ Some examples of valid `urls`:
     * `webContents` WebContents (optional)
     * `frame` WebFrameMain | null (optional) - Requesting frame.
       May be `null` if accessed after the frame has either navigated or been destroyed.
+    * `initiatorOrigin` string (optional) - The origin that issued the request (for example `https://example.com`, or `null` for an opaque origin). Kept from the original request across redirects; absent for requests the browser started itself.
     * `resourceType` string - Can be `mainFrame`, `subFrame`, `stylesheet`, `script`, `image`, `font`, `object`, `xhr`, `ping`, `cspReport`, `media`, `webSocket` or `other`.
     * `referrer` string
     * `timestamp` Double
@@ -124,6 +138,12 @@ The `callback` has to be called with a `response` object.
 
 #### `webRequest.onSendHeaders([filter, ]listener)`
 
+```YAML history
+changes:
+  - pr-url: https://github.com/electron/electron/pull/53685
+    description: "Added `details.initiatorOrigin`."
+```
+
 * `filter` [WebRequestFilter](structures/web-request-filter.md) (optional)
 * `listener` Function | null
   * `details` Object
@@ -134,6 +154,7 @@ The `callback` has to be called with a `response` object.
     * `webContents` WebContents (optional)
     * `frame` WebFrameMain | null (optional) - Requesting frame.
       May be `null` if accessed after the frame has either navigated or been destroyed.
+    * `initiatorOrigin` string (optional) - The origin that issued the request (for example `https://example.com`, or `null` for an opaque origin). Kept from the original request across redirects; absent for requests the browser started itself.
     * `resourceType` string - Can be `mainFrame`, `subFrame`, `stylesheet`, `script`, `image`, `font`, `object`, `xhr`, `ping`, `cspReport`, `media`, `webSocket` or `other`.
     * `referrer` string
     * `timestamp` Double
@@ -145,6 +166,12 @@ response are visible by the time this listener is fired.
 
 #### `webRequest.onHeadersReceived([filter, ]listener)`
 
+```YAML history
+changes:
+  - pr-url: https://github.com/electron/electron/pull/53685
+    description: "Added `details.initiatorOrigin`."
+```
+
 * `filter` [WebRequestFilter](structures/web-request-filter.md) (optional)
 * `listener` Function | null
   * `details` Object
@@ -155,6 +182,7 @@ response are visible by the time this listener is fired.
     * `webContents` WebContents (optional)
     * `frame` WebFrameMain | null (optional) - Requesting frame.
       May be `null` if accessed after the frame has either navigated or been destroyed.
+    * `initiatorOrigin` string (optional) - The origin that issued the request (for example `https://example.com`, or `null` for an opaque origin). Kept from the original request across redirects; absent for requests the browser started itself.
     * `resourceType` string - Can be `mainFrame`, `subFrame`, `stylesheet`, `script`, `image`, `font`, `object`, `xhr`, `ping`, `cspReport`, `media`, `webSocket` or `other`.
     * `referrer` string
     * `timestamp` Double
@@ -177,6 +205,12 @@ The `callback` has to be called with a `response` object.
 
 #### `webRequest.onResponseStarted([filter, ]listener)`
 
+```YAML history
+changes:
+  - pr-url: https://github.com/electron/electron/pull/53685
+    description: "Added `details.initiatorOrigin`."
+```
+
 * `filter` [WebRequestFilter](structures/web-request-filter.md) (optional)
 * `listener` Function | null
   * `details` Object
@@ -187,6 +221,7 @@ The `callback` has to be called with a `response` object.
     * `webContents` WebContents (optional)
     * `frame` WebFrameMain | null (optional) - Requesting frame.
       May be `null` if accessed after the frame has either navigated or been destroyed.
+    * `initiatorOrigin` string (optional) - The origin that issued the request (for example `https://example.com`, or `null` for an opaque origin). Kept from the original request across redirects; absent for requests the browser started itself.
     * `resourceType` string - Can be `mainFrame`, `subFrame`, `stylesheet`, `script`, `image`, `font`, `object`, `xhr`, `ping`, `cspReport`, `media`, `webSocket` or `other`.
     * `referrer` string
     * `timestamp` Double
@@ -202,6 +237,12 @@ and response headers are available.
 
 #### `webRequest.onBeforeRedirect([filter, ]listener)`
 
+```YAML history
+changes:
+  - pr-url: https://github.com/electron/electron/pull/53685
+    description: "Added `details.initiatorOrigin`."
+```
+
 * `filter` [WebRequestFilter](structures/web-request-filter.md) (optional)
 * `listener` Function | null
   * `details` Object
@@ -212,6 +253,7 @@ and response headers are available.
     * `webContents` WebContents (optional)
     * `frame` WebFrameMain | null (optional) - Requesting frame.
       May be `null` if accessed after the frame has either navigated or been destroyed.
+    * `initiatorOrigin` string (optional) - The origin that issued the request (for example `https://example.com`, or `null` for an opaque origin). Kept from the original request across redirects; absent for requests the browser started itself.
     * `resourceType` string - Can be `mainFrame`, `subFrame`, `stylesheet`, `script`, `image`, `font`, `object`, `xhr`, `ping`, `cspReport`, `media`, `webSocket` or `other`.
     * `referrer` string
     * `timestamp` Double
@@ -228,6 +270,12 @@ redirect is about to occur.
 
 #### `webRequest.onCompleted([filter, ]listener)`
 
+```YAML history
+changes:
+  - pr-url: https://github.com/electron/electron/pull/53685
+    description: "Added `details.initiatorOrigin`."
+```
+
 * `filter` [WebRequestFilter](structures/web-request-filter.md) (optional)
 * `listener` Function | null
   * `details` Object
@@ -238,6 +286,7 @@ redirect is about to occur.
     * `webContents` WebContents (optional)
     * `frame` WebFrameMain | null (optional) - Requesting frame.
       May be `null` if accessed after the frame has either navigated or been destroyed.
+    * `initiatorOrigin` string (optional) - The origin that issued the request (for example `https://example.com`, or `null` for an opaque origin). Kept from the original request across redirects; absent for requests the browser started itself.
     * `resourceType` string - Can be `mainFrame`, `subFrame`, `stylesheet`, `script`, `image`, `font`, `object`, `xhr`, `ping`, `cspReport`, `media`, `webSocket` or `other`.
     * `referrer` string
     * `timestamp` Double
@@ -252,6 +301,12 @@ completed.
 
 #### `webRequest.onErrorOccurred([filter, ]listener)`
 
+```YAML history
+changes:
+  - pr-url: https://github.com/electron/electron/pull/53685
+    description: "Added `details.initiatorOrigin`."
+```
+
 * `filter` [WebRequestFilter](structures/web-request-filter.md) (optional)
 * `listener` Function | null
   * `details` Object
@@ -262,6 +317,7 @@ completed.
     * `webContents` WebContents (optional)
     * `frame` WebFrameMain | null (optional) - Requesting frame.
       May be `null` if accessed after the frame has either navigated or been destroyed.
+    * `initiatorOrigin` string (optional) - The origin that issued the request (for example `https://example.com`, or `null` for an opaque origin). Kept from the original request across redirects; absent for requests the browser started itself.
     * `resourceType` string - Can be `mainFrame`, `subFrame`, `stylesheet`, `script`, `image`, `font`, `object`, `xhr`, `ping`, `cspReport`, `media`, `webSocket` or `other`.
     * `referrer` string
     * `timestamp` Double
