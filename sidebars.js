@@ -115,7 +115,6 @@ module.exports = {
         'latest/tutorial/installation',
         'latest/tutorial/asar-archives',
         'latest/tutorial/asar-integrity',
-        'latest/tutorial/boilerplates-and-clis',
         'latest/tutorial/esm',
         'latest/tutorial/fuses',
         'latest/tutorial/window-state-persistence',
