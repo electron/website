@@ -40,8 +40,7 @@ Electron 45 extends `app.configureWebAuthn()` with platform passkey support on m
 ## Stack Changes
 
 - Chromium `155.0.8038.2`
-  - [New in 155](https://developer.chrome.com/blog/new-in-chrome-155/)
-  - [New in 154](https://developer.chrome.com/blog/new-in-chrome-154/)
+  <!-- TODO at release: link https://developer.chrome.com/blog/new-in-chrome-155/ and new-in-chrome-154/ once Chrome publishes them (404 on 2026-09-18) -->
   - [New in 153](https://developer.chrome.com/blog/new-in-chrome-153/)
 
 - Node `v24.21.0`
@@ -75,9 +74,11 @@ Electron 45 upgrades Chromium from `152.0.7977.54` to `155.0.8038.2`, Node.js fr
 Requests to capture the screen, a window, or a tab, whether made through `navigator.mediaDevices.getDisplayMedia()` or through `getUserMedia()` with the `chromeMediaSource` constraints, are now passed to `session.setPermissionRequestHandler()` as `display-capture`. `media` is now used only for camera and microphone devices, and `details.mediaTypes` lists `video` and/or `audio` for both. A handler that allows only `media` must also allow `display-capture` to keep screen sharing working:
 
 ```js
-session.defaultSession.setPermissionRequestHandler((webContents, permission, callback) => {
-  callback(permission === 'media' || permission === 'display-capture');
-});
+session.defaultSession.setPermissionRequestHandler(
+  (webContents, permission, callback) => {
+    callback(permission === 'media' || permission === 'display-capture');
+  },
+);
 ```
 
 The `display-capture` Permissions-Policy now also applies to the `getUserMedia()` path, so a cross-origin `<iframe>` that captures the screen this way needs `allow="display-capture"`. [#52824](https://github.com/electron/electron/pull/52824)
