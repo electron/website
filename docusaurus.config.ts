@@ -96,7 +96,7 @@ const config: Config = {
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
-      additionalLanguages: ['diff', 'json'],
+      additionalLanguages: ['diff', 'json', 'json5'],
     },
     tableOfContents: {
       minHeadingLevel: 2,
