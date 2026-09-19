@@ -41,18 +41,24 @@ function findMarkdownSource(
 }
 
 function copyMarkdownForRoute(routePath: string, context: Context): boolean {
-  const { outDir } = context;
+  const { outDir, baseUrl } = context;
 
   // Find corresponding markdown source
   const mdSourcePath = findMarkdownSource(routePath, context);
   if (!mdSourcePath) return false;
 
+  // Route paths include the baseUrl but the build output does not
+  // (e.g. the versioned builds use `/docs/vX.Y.Z/` as baseUrl)
+  const outputPath = routePath.startsWith(baseUrl)
+    ? routePath.slice(baseUrl.length)
+    : routePath;
+
   // Check if HTML output exists
-  const htmlPath = path.join(outDir, routePath, 'index.html');
+  const htmlPath = path.join(outDir, outputPath, 'index.html');
   if (!fs.existsSync(htmlPath)) return false;
 
   // Copy markdown to output directory
-  const outputMdPath = path.join(outDir, routePath, 'index.md');
+  const outputMdPath = path.join(outDir, outputPath, 'index.md');
   fs.copyFileSync(mdSourcePath, outputMdPath);
 
   return true;
