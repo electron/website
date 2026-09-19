@@ -40,7 +40,8 @@ Electron 45 extends `app.configureWebAuthn()` with platform passkey support on m
 ## Stack Changes
 
 - Chromium `155.0.8038.2`
-  <!-- TODO at release: link https://developer.chrome.com/blog/new-in-chrome-155/ and new-in-chrome-154/ once Chrome publishes them (404 on 2026-09-18) -->
+  - [New in 155](https://developer.chrome.com/blog/new-in-chrome-155/)
+  - [New in 154](https://developer.chrome.com/blog/new-in-chrome-154/)
   - [New in 153](https://developer.chrome.com/blog/new-in-chrome-153/)
 
 - Node `v24.21.0`
