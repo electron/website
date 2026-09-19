@@ -142,7 +142,6 @@ function createSidebars(prefix) {
           `${prefix}tutorial/installation`,
           `${prefix}tutorial/asar-archives`,
           `${prefix}tutorial/asar-integrity`,
-          `${prefix}tutorial/boilerplates-and-clis`,
           `${prefix}tutorial/esm`,
           `${prefix}tutorial/fuses`,
           `${prefix}tutorial/window-state-persistence`,
