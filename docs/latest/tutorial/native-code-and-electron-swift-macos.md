@@ -1125,7 +1125,7 @@ You're so close! We now have working Objective-C, Swift, and thread-safe ways to
 const EventEmitter = require('node:events')
 
 class SwiftAddon extends EventEmitter {
-  constructor () {
+  constructor() {
     super()
 
     if (process.platform !== 'darwin') {
@@ -1148,19 +1148,19 @@ class SwiftAddon extends EventEmitter {
     })
   }
 
-  helloWorld (input = '') {
+  helloWorld(input = '') {
     return this.addon.helloWorld(input)
   }
 
-  helloGui () {
+  helloGui() {
     this.addon.helloGui()
   }
 
-  destroy () {
+  destroy() {
     this.addon.destroy()
   }
 
-  parse (payload) {
+  parse(payload) {
     const parsed = JSON.parse(payload)
 
     return { ...parsed, date: new Date(parsed.date) }
