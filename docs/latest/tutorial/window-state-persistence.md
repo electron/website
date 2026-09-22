@@ -22,7 +22,7 @@ To enable Window State Persistence, set `windowStatePersistence: true` in your w
 ```js
 const { app, BrowserWindow } = require('electron')
 
-function createWindow () {
+function createWindow() {
   const win = new BrowserWindow({
     name: 'main-window',
     width: 800,
@@ -53,7 +53,7 @@ You can control which aspects of the window state are persisted by passing an ob
 ```js
 const { app, BrowserWindow } = require('electron')
 
-function createWindow () {
+function createWindow() {
   const win = new BrowserWindow({
     name: 'main-window',
     width: 800,

@@ -276,8 +276,6 @@ Let's break down this code:
 
 Now, let's create a JavaScript wrapper to make the addon easier to use. Create `js/index.js`:
 
-<!-- eslint-disable import/newline-after-import,import/order -->
-
 ```js title='js/index.js' @ts-expect-error=[5]
 const EventEmitter = require('node:events')
 
@@ -288,7 +286,7 @@ const native = bindings('my_addon')
 
 // Create a nice JavaScript wrapper
 class MyNativeAddon extends EventEmitter {
-  constructor () {
+  constructor() {
     super()
 
     // Create an instance of our C++ class
@@ -296,7 +294,7 @@ class MyNativeAddon extends EventEmitter {
   }
 
   // Wrap the C++ method with a nicer JavaScript API
-  helloWorld (input = '') {
+  helloWorld(input = '') {
     if (typeof input !== 'string') {
       throw new TypeError('Input must be a string')
     }
