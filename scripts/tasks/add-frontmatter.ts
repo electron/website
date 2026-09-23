@@ -2,11 +2,21 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 
 /*
-  To make `/docs/latest` have content we need to set the
-  slug of a particular page to `/latest/`. `START_PAGE` is how we
+  To make `/docs/<version>` (e.g. `/docs/latest`) have content we need to
+  set the slug of a particular page to the docs root. `START_PAGE` is how we
   indicate the right document.
 */
 const START_PAGE = 'tutorial/introduction.md';
+
+/**
+ * The slug of the start page for a docs version. The main site serves every
+ * docs folder from one plugin instance rooted at `docs/` (so `latest` needs
+ * `/latest/`), while the per-version builds are rooted at `docs/<version>`
+ * with `/docs/<version>/` as `baseUrl` (so the start page is just `/`).
+ * @param version
+ */
+export const startPageSlug = (version: string) =>
+  version === 'latest' ? '/latest/' : '/';
 
 /**
  * Collects all documentation files in the repo.
@@ -105,10 +115,16 @@ const getDescriptionFromContent = (content: string) => {
  *
  * @param content
  * @param filepath
+ * @param version The docs version folder the file lives in (e.g. `latest`)
  */
-const addFrontMatter = (content: string, filepath: string) => {
+const addFrontMatter = (content: string, filepath: string, version: string) => {
   if (content.startsWith('---')) {
-    return content;
+    // Some upstream docs ship their own frontmatter, with the start page
+    // hardcoding `slug: /latest/`. Point it at the version folder instead.
+    return content.replace(
+      /^slug:\s*\/latest\/\s*$/m,
+      `slug: ${startPageSlug(version)}`,
+    );
   }
 
   // Some pages (under API mostly) start with ## instead of #
@@ -127,7 +143,7 @@ const addFrontMatter = (content: string, filepath: string) => {
   let slug: string;
 
   if (filepath.endsWith(START_PAGE)) {
-    slug = '/latest/';
+    slug = startPageSlug(version);
   } else if (path.dirname(filepath).endsWith(defaultSlug)) {
     // We want paths like `/security/security/` to be `/security/`
     slug = `/${defaultSlug}/`;
@@ -152,12 +168,17 @@ ${content}`;
  * files under `startPath` using the first heading as
  * title and paragraph as description.
  * @param startPath
+ * @param version The docs version folder (`latest`, `dev`, `vX.Y.Z`) used
+ * for the slug of the start page
  */
-export const addFrontmatterToAllDocs = async (startPath: string) => {
+export const addFrontmatterToAllDocs = async (
+  startPath: string,
+  version = 'latest',
+) => {
   const files = await getMarkdownFiles(startPath);
 
   for (const [filepath, content] of files) {
-    const newContent = addFrontMatter(content, filepath);
+    const newContent = addFrontMatter(content, filepath, version);
 
     await fs.writeFile(filepath, newContent, 'utf-8');
   }

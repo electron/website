@@ -91,7 +91,11 @@ const downloadFromGitHub = async (
           tar
             .extract()
             .on('entry', (header, stream, next) => {
-              header.name = header.name.replace(`${repository}-${target}`, '');
+              // Strip the top-level folder of the tarball. GitHub names it
+              // `<repository>-<target>`, except that a leading `v` is dropped
+              // from tag names (`electron-44.3.0` for `v44.3.0`), so just
+              // remove whatever the first path segment is.
+              header.name = header.name.replace(/^[^/]+/, '');
 
               if (header.type === 'file' && header.name.match(downloadMatch)) {
                 const chunks: any = [];

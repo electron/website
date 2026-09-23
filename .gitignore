@@ -5,11 +5,13 @@ node_modules
 .vscode/settings.json
 .tmp/
 build/
+build-versioned/
 content/
 i18n/*
 !i18n/en/
 !i18n/README.md
 docs/v**
+docs/dev
 
 # yarn v4
 .pnp.*

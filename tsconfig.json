@@ -1,6 +1,13 @@
 {
   "extends": "./node_modules/@docusaurus/tsconfig/tsconfig.json",
-  "exclude": ["**/node_modules/*", "blog", "docs", "build", "i18n"],
+  "exclude": [
+    "**/node_modules/*",
+    "blog",
+    "docs",
+    "build",
+    "build-versioned",
+    "i18n"
+  ],
   "compilerOptions": {
     "baseUrl": ".",
     "target": "ES2015",

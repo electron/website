@@ -25,9 +25,9 @@ const FiddleButton = (props: FiddleButtonProps) => {
   // NOTE: We hack together the version path using Docusaurus directories
   // but the actual directories on `e/e` don't contain that section of the path.
   // in fs : docs/latest/fiddles/path/to/fiddle/
-  //    or   docs/v14-x-y/fiddles/path/to/fiddle/
+  //    or   docs/v44.3.0/fiddles/path/to/fiddle/
   // in e/e: docs/fiddles/path/to/fiddle/
-  const gitDir = dir.replace(/docs\/[a-zA-Z0-9-]+\/fiddles/, 'docs/fiddles');
+  const gitDir = dir.replace(/docs\/[^/]+\/fiddles/, 'docs/fiddles');
 
   const fileNames = Object.keys(files).sort((a, b) => {
     return filePriority[b] - filePriority[a];

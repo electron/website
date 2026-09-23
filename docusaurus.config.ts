@@ -42,6 +42,11 @@ const config: Config = {
   favicon: 'assets/img/favicon.ico',
   organizationName: 'electron',
   projectName: 'electron',
+  customFields: {
+    // Which docs folder this build serves. The per-version builds
+    // (`docusaurus.versioned.config.ts`) override it with `next` / `vX.Y.Z`.
+    electronDocsVersion: 'latest',
+  },
   headTags: docsSHA
     ? [
         {
@@ -145,6 +150,10 @@ const config: Config = {
         {
           href: 'https://releases.electronjs.org',
           label: 'Releases',
+          position: 'right',
+        },
+        {
+          type: 'custom-electronDocsVersionDropdown',
           position: 'right',
         },
         {

@@ -63,3 +63,23 @@ deprecated, etc.). This clutters up heading titles.
 We customize the right-hand side Table of Contents (TOC) component to run a script
 (see `src/utils/cleanHeadings.js`) that cleans up the heading content before
 it gets displayed on the website.
+
+### `DocItem/Layout` (wrapped)
+
+Adds the docs version banner (`src/components/DocsVersionBanner.tsx`) above
+every doc page. The banner only renders in the per-version builds
+(`docusaurus.versioned.config.ts`, `/docs/dev` and `/docs/vX.Y.Z`) and links
+back to the same page under `/docs/latest`.
+
+### `DocItem/Metadata` (wrapped)
+
+In the per-version builds, replaces the canonical URL that Docusaurus emits
+for the page with its `/docs/latest/` counterpart, so search engines attribute
+the content to the canonical docs (versioned pages are also `noindex`).
+
+### `NavbarItem/ComponentTypes` (wrapped)
+
+Registers the `custom-electronDocsVersionDropdown` navbar item type
+(`src/components/DocsVersionDropdown.tsx`), which lists the published docs
+versions from `https://www.electronjs.org/docs/versions.json` and links to
+the current page in the chosen version.
