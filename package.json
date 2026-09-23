@@ -25,7 +25,8 @@
     "lint:fmt": "oxfmt --check .",
     "lint:oxlint": "oxlint docusaurus.config.ts src scripts",
     "lint:markdown": "markdownlint-cli2 \"**/*.md\"",
-    "lint": "tsc --noEmit && npm run lint:fmt && npm run lint:oxlint && npm run lint:markdown",
+    "lint:sidebars": "node scripts/check-sidebars.ts",
+    "lint": "tsc --noEmit && npm run lint:fmt && npm run lint:oxlint && npm run lint:markdown && npm run lint:sidebars",
     "lint:fix": "oxfmt --write . && npm run lint:oxlint -- --fix && npm run lint:markdown -- --fix",
     "pre-build": "node ./scripts/pre-build.ts",
     "prepare": "husky"
