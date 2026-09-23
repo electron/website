@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 400" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" role="img" aria-label="What Chrome's optimization profile covers of the code Electron actually executes. 74.5% matches by name and hash and gets optimized. 19.3% has the same name as a Chrome function but different code, so it is silently rejected. 6.2% does not exist in Chrome's profile at all. In total about a quarter of Electron's executed code gets zero optimization guidance, and that quarter includes Node.js Buffer operations, contextBridge marshaling, Electron's own C++, Skia's SIMD kernels, and V8's JSON stringifier.">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#161b22"/><stop offset="1" stop-color="#0d1117"/></linearGradient>
+    <linearGradient id="gOk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2ea043"/><stop offset="1" stop-color="#238636"/></linearGradient>
+    <linearGradient id="gRej" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0883e"/><stop offset="1" stop-color="#d4691f"/></linearGradient>
+    <linearGradient id="gMiss" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#da3633"/><stop offset="1" stop-color="#b62324"/></linearGradient>
+  </defs>
+  <rect width="880" height="400" rx="16" fill="url(#bg)"/>
+  <rect x="0.5" y="0.5" width="879" height="399" rx="16" fill="none" stroke="#30363d"/>
+
+  <text x="32" y="44" fill="#e6edf3" font-size="18" font-weight="700">What Chrome's profile knows about Electron's code</text>
+  <text x="32" y="68" fill="#8b949e" font-size="13">Share of the code Electron actually executes, by how Chrome's published PGO profile treats it</text>
+
+  <!-- stacked bar: total width 816, 74.5% / 19.3% / 6.2% -->
+  <!-- 816 * .745 = 608 ; 816 * .193 = 157 ; 816 * .062 = 51 -->
+  <rect x="32"  y="96" width="608" height="56" fill="url(#gOk)"/>
+  <rect x="640" y="96" width="157" height="56" fill="url(#gRej)"/>
+  <rect x="797" y="96" width="51"  height="56" fill="url(#gMiss)"/>
+  <rect x="32" y="96" width="816" height="56" rx="8" fill="none" stroke="#0d1117" stroke-width="2"/>
+
+  <!-- in-bar labels -->
+  <text x="52" y="120" fill="#ffffff" font-size="15" font-weight="700">74.5% optimized</text>
+  <text x="52" y="140" fill="#c8e6cd" font-size="12">name + hash match Chrome's</text>
+  <text x="652" y="120" fill="#ffffff" font-size="14" font-weight="700">19.3%</text>
+  <text x="806" y="120" fill="#ffffff" font-size="13" font-weight="700">6.2%</text>
+
+  <!-- callout: rejected -->
+  <line x1="718" y1="152" x2="718" y2="186" stroke="#f0883e" stroke-width="1.5"/>
+  <line x1="718" y1="186" x2="560" y2="186" stroke="#f0883e" stroke-width="1.5"/>
+  <rect x="312" y="170" width="248" height="92" rx="8" fill="#21262d" stroke="#f0883e"/>
+  <text x="330" y="196" fill="#f0883e" font-size="13.5" font-weight="700">Silently rejected</text>
+  <text x="330" y="216" fill="#c9d1d9" font-size="12">Same name, different code:</text>
+  <text x="330" y="234" fill="#8b949e" font-size="12">Skia SIMD raster kernels,</text>
+  <text x="330" y="251" fill="#8b949e" font-size="12">V8's JSON stringifier, Mojo, net</text>
+
+  <!-- callout: missing -->
+  <line x1="822" y1="152" x2="822" y2="206" stroke="#da3633" stroke-width="1.5"/>
+  <line x1="822" y1="206" x2="836" y2="206" stroke="#da3633" stroke-width="0"/>
+  <rect x="588" y="190" width="260" height="92" rx="8" fill="#21262d" stroke="#da3633"/>
+  <line x1="822" y1="152" x2="822" y2="190" stroke="#da3633" stroke-width="1.5"/>
+  <text x="606" y="216" fill="#ff7b72" font-size="13.5" font-weight="700">Not in Chrome's profile at all</text>
+  <text x="606" y="236" fill="#c9d1d9" font-size="12">All of Node.js, contextBridge,</text>
+  <text x="606" y="253" fill="#8b949e" font-size="12">Electron's own C++, libuv</text>
+
+  <!-- bottom takeaway -->
+  <rect x="32" y="296" width="816" height="64" rx="8" fill="#3d1d1d" stroke="#da3633"/>
+  <text x="52" y="323" fill="#ff7b72" font-size="14.5" font-weight="700">One quarter of the code Electron executes gets zero optimization guidance.</text>
+  <text x="52" y="345" fill="#c9d1d9" font-size="12.5">No error, no warning. The compiler just lays it out as cold. Among Electron's 2,000 hottest functions, that quarter carries 23% of all execution.</text>
+
+  <text x="32" y="384" fill="#6e7681" font-size="11">Measured with llvm-profdata: Chrome's published Linux profile vs a profile of Electron running Electron workloads.</text>
+</svg>
