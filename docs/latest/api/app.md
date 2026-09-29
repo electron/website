@@ -443,13 +443,19 @@ Returns:
     * `integrity-failure` - Windows code integrity checks failed
     * `memory-eviction` - Process proactively terminated to prevent a future out-of-memory (OOM) situation
   * `exitCode` number - The exit code for the process
-      (e.g. status from waitpid if on POSIX, from GetExitCodeProcess on Windows).
+      (e.g. status from waitpid if on POSIX, from GetExitCodeProcess on Windows),
+      unless `reason` is `launch-failed`, in which case `exitCode` will be a
+      platform-specific launch failure error code.
+  * `systemErrorCode` number (optional) _Windows_ - The Windows system error
+    code (`GetLastError()`) of the failed launch. Only set when `reason` is
+    `launch-failed`.
   * `serviceName` string (optional) - The non-localized name of the process.
   * `name` string (optional) - The name of the process.
     Examples for utility: `Audio Service`, `Content Decryption Module Service`, `Network Service`, `Video Capture`, etc.
 
 Emitted when the child process unexpectedly disappears. This is normally
-because it was crashed or killed. It does not include renderer processes.
+because it was crashed or killed, or because it failed to launch. It does not
+include renderer processes.
 
 ### Event: 'accessibility-support-changed' _macOS_ _Windows_
 
@@ -657,7 +663,8 @@ Returns `string` - The current application directory.
   * `videos` Directory for a user's videos.
   * `recent` Directory for the user's recent files (Windows only).
   * `logs` Directory for your app's log folder.
-  * `crashDumps` Directory where crash dumps are stored.
+  * `crashDumps` Directory where crash dumps are stored. See
+    [Crash Reporting](../tutorial/crash-reporting.md#what-happens-when-your-app-crashes).
 
 Returns `string` - A path to a special directory or file associated with `name`. On
 failure, an `Error` is thrown.
