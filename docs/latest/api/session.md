@@ -97,13 +97,21 @@ The following events are available on instances of `Session`:
 
 #### Event: 'will-download'
 
+```YAML history
+changes:
+  - pr-url: https://github.com/electron/electron/pull/53685
+    description: "Added the trailing `frame` argument."
+```
+
 Returns:
 
 * `event` Event
 * `item` [DownloadItem](download-item.md)
 * `webContents` [WebContents](web-contents.md)
+* `frame` [WebFrameMain](web-frame-main.md) | null - The frame that started the download, if it still exists.
 
-Emitted when Electron is about to download `item` in `webContents`.
+Emitted when Electron is about to download `item` in `webContents`. See also
+[`item.getInitiatorOrigin()`](download-item.md#downloaditemgetinitiatororigin).
 
 Calling `event.preventDefault()` will cancel the download and `item` will not be
 available from next tick of the process.
@@ -180,7 +188,7 @@ Returns:
 ```js
 const { app, dialog, BrowserWindow, session } = require('electron')
 
-async function createWindow () {
+async function createWindow() {
   const mainWindow = new BrowserWindow()
 
   await mainWindow.loadURL('https://buzzfeed.com')
@@ -203,14 +211,16 @@ async function createWindow () {
     }
   })
 
-  mainWindow.webContents.executeJavaScript(`
+  mainWindow.webContents.executeJavaScript(
+    `
     window.showDirectoryPicker({
       id: 'electron-demo',
       mode: 'readwrite',
       startIn: 'downloads',
     }).catch(e => {
       console.log(e)
-    })`, true
+    })`,
+    true
   )
 }
 
@@ -229,6 +239,12 @@ app.on('window-all-closed', function () {
 
 #### Event: 'preconnect'
 
+```YAML history
+changes:
+  - pr-url: https://github.com/electron/electron/pull/53685
+    description: "Added the trailing `frame` argument."
+```
+
 Returns:
 
 * `event` Event
@@ -237,6 +253,7 @@ Returns:
 * `allowCredentials` boolean - True if the renderer is requesting that the
   connection include credentials (see the
   [spec](https://w3c.github.io/resource-hints/#preconnect) for more details.)
+* `frame` [WebFrameMain](web-frame-main.md) | null - The frame that requested the preconnection, if it still exists.
 
 Emitted when a render process requests preconnection to a URL, generally due to
 a [resource hint](https://w3c.github.io/resource-hints/).
@@ -327,9 +344,12 @@ app.whenReady().then(() => {
 
       // Search through the list of devices that have previously been granted permission
       return grantedDevices.some((grantedDevice) => {
-        return grantedDevice.vendorId === details.device.vendorId &&
-              grantedDevice.productId === details.device.productId &&
-              grantedDevice.serialNumber && grantedDevice.serialNumber === details.device.serialNumber
+        return (
+          grantedDevice.vendorId === details.device.vendorId &&
+          grantedDevice.productId === details.device.productId &&
+          grantedDevice.serialNumber &&
+          grantedDevice.serialNumber === details.device.serialNumber
+        )
       })
     }
     return false
@@ -438,9 +458,12 @@ app.whenReady().then(() => {
 
       // Search through the list of devices that have previously been granted permission
       return grantedDevices.some((grantedDevice) => {
-        return grantedDevice.vendorId === details.device.vendorId &&
-              grantedDevice.productId === details.device.productId &&
-              grantedDevice.serialNumber && grantedDevice.serialNumber === details.device.serialNumber
+        return (
+          grantedDevice.vendorId === details.device.vendorId &&
+          grantedDevice.productId === details.device.productId &&
+          grantedDevice.serialNumber &&
+          grantedDevice.serialNumber === details.device.serialNumber
+        )
       })
     }
     return false
@@ -580,9 +603,12 @@ app.whenReady().then(() => {
 
       // Search through the list of devices that have previously been granted permission
       return grantedDevices.some((grantedDevice) => {
-        return grantedDevice.vendorId === details.device.vendorId &&
-              grantedDevice.productId === details.device.productId &&
-              grantedDevice.serialNumber && grantedDevice.serialNumber === details.device.serialNumber
+        return (
+          grantedDevice.vendorId === details.device.vendorId &&
+          grantedDevice.productId === details.device.productId &&
+          grantedDevice.serialNumber &&
+          grantedDevice.serialNumber === details.device.serialNumber
+        )
       })
     }
     return false
@@ -842,7 +868,7 @@ Node.js's HTTP stack.
 Example:
 
 ```js
-async function example () {
+async function example() {
   const response = await net.fetch('https://my.app')
   if (response.ok) {
     const body = await response.json()
@@ -1100,7 +1126,8 @@ session.fromPartition('some-partition').setPermissionCheckHandler((webContents, 
     * `audioRequested` Boolean - true if the web content requested an audio stream.
     * `userGesture` Boolean - Whether a user gesture was active when this request was triggered.
   * `callback` Function
-    * `streams` Object
+    * `streams` Object | null - Pass `null` to deny the request, which rejects
+      the `getDisplayMedia()` promise with an `AbortError`.
       * `video` Object | [WebFrameMain](web-frame-main.md) (optional)
         * `id` String - The id of the stream being granted. This will usually
           come from a [DesktopCapturerSource](structures/desktop-capturer-source.md)
@@ -1132,16 +1159,26 @@ is set to `true`, the handler will not be invoked.
 ```js
 const { session, desktopCapturer } = require('electron')
 
-session.defaultSession.setDisplayMediaRequestHandler((request, callback) => {
-  desktopCapturer.getSources({ types: ['screen'] }).then((sources) => {
-    // Grant access to the first screen found.
-    callback({ video: sources[0] })
-  })
-  // Use the system picker if available.
-  // Note: this is currently experimental. If the system picker
-  // is available, it will be used and the media request handler
-  // will not be invoked.
-}, { useSystemPicker: true })
+session.defaultSession.setDisplayMediaRequestHandler(
+  (request, callback) => {
+    desktopCapturer.getSources({ types: ['screen'] }).then(
+      (sources) => {
+        // Grant access to the first screen found.
+        callback({ video: sources[0] })
+      },
+      () => {
+        // Deny the request if no sources could be retrieved, for example
+        // when the user cancels the PipeWire picker on Linux.
+        callback(null)
+      }
+    )
+    // Use the system picker if available.
+    // Note: this is currently experimental. If the system picker
+    // is available, it will be used and the media request handler
+    // will not be invoked.
+  },
+  { useSystemPicker: true }
+)
 ```
 
 Passing a [WebFrameMain](web-frame-main.md) object as a video or audio stream
@@ -1216,9 +1253,12 @@ app.whenReady().then(() => {
 
       // Search through the list of devices that have previously been granted permission
       return grantedDevices.some((grantedDevice) => {
-        return grantedDevice.vendorId === details.device.vendorId &&
-              grantedDevice.productId === details.device.productId &&
-              grantedDevice.serialNumber && grantedDevice.serialNumber === details.device.serialNumber
+        return (
+          grantedDevice.vendorId === details.device.vendorId &&
+          grantedDevice.productId === details.device.productId &&
+          grantedDevice.serialNumber &&
+          grantedDevice.serialNumber === details.device.serialNumber
+        )
       })
     } else if (details.deviceType === 'serial') {
       if (details.device.vendorId === 123 && details.device.productId === 345) {
@@ -1327,7 +1367,7 @@ const { app, BrowserWindow, session } = require('electron')
 
 const path = require('node:path')
 
-function createWindow () {
+function createWindow() {
   let bluetoothPinCallback = null
 
   const mainWindow = new BrowserWindow({
@@ -1801,10 +1841,12 @@ const path = require('node:path')
 
 app.whenReady().then(() => {
   const protocol = session.fromPartition('some-partition').protocol
-  if (!protocol.registerFileProtocol('atom', (request, callback) => {
-    const url = request.url.substr(7)
-    callback({ path: path.normalize(path.join(__dirname, url)) })
-  })) {
+  if (
+    !protocol.registerFileProtocol('atom', (request, callback) => {
+      const url = request.url.substr(7)
+      callback({ path: path.normalize(path.join(__dirname, url)) })
+    })
+  ) {
     console.error('Failed to register protocol')
   }
 })

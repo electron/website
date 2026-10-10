@@ -93,7 +93,7 @@ You can create a `interface.d.ts` declaration file and globally augment the `Win
 
 ```ts title='interface.d.ts' @ts-noisolate
 export interface IElectronAPI {
-  loadPreferences: () => Promise<void>,
+  loadPreferences: () => Promise<void>
 }
 
 declare global {

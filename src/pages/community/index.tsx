@@ -24,10 +24,8 @@ function Community() {
             on Bluesky and subscribing to the <Link to="/blog">blog feed.</Link>
           </li>
           <li>
-            🙋 <strong>Get help and feedback</strong> by joining the{' '}
-            <a href="https://discord.gg/electronjs">Discord server</a>,{' '}
-            <a href="https://www.reddit.com/r/electronjs">subreddit</a>, or
-            visiting{' '}
+            🙋 <strong>Get help and feedback</strong> in the{' '}
+            <a href="https://www.reddit.com/r/electronjs">subreddit</a> or on{' '}
             <a href="https://stackoverflow.com/questions/tagged/electron">
               Stack Overflow
             </a>

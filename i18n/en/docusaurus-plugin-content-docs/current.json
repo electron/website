@@ -79,9 +79,9 @@
     "message": "Renderer Process Modules",
     "description": "The label for category Renderer Process Modules in sidebar api"
   },
-  "sidebar.api.category.Custom DOM Elements": {
-    "message": "Custom DOM Elements",
-    "description": "The label for category Custom DOM Elements in sidebar api"
+  "sidebar.api.category.Custom Web Features": {
+    "message": "Custom Web Features",
+    "description": "The label for category Custom Web Features in sidebar api"
   },
   "sidebar.api.category.Chromium and Node.js": {
     "message": "Chromium and Node.js",
