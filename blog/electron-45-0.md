@@ -13,8 +13,8 @@ Draft checklist before publication:
 - Refresh the stack versions against the final 45.0.0 build. Current values
   match 45-x-y at 528eb6fd7f and 45.0.0-beta.5.
 - Add the Chrome 155 and 156 "New in Chrome" links when available.
-- Recheck older-branch releases for newly shipped backports, particularly
-  the fixes with pending manual backports.
+- Refresh backport annotations and omit features already covered in earlier
+  release blog posts.
 -->
 
 Electron 45 has been released! It includes upgrades to Chromium 156.0.8078.36, V8 15.6, and Node v24.22.0.
@@ -72,8 +72,16 @@ Electron 45 upgrades Chromium from `152.0.7977.54` to `156.0.8078.36`, Node.js f
 
 ## New Features and Improvements
 
+Some of these changes are also available in earlier release lines. Their first releases on those lines are noted below.
+
 - Added experimental Prompt API support through `session.registerLocalAIHandler()`, `localAIHandler`, and `LanguageModelUtility`, allowing applications to provide their own local model implementation in a utility process. [#50659](https://github.com/electron/electron/pull/50659)
 - Added `platformPasskeys` to `app.configureWebAuthn()` on macOS, enabling the system passkey interface and configured credential providers. [#51563](https://github.com/electron/electron/pull/51563)
+- Added app shims on macOS, allowing applications to show windows under another app's Dock icon. [#55072](https://github.com/electron/electron/pull/55072) <sup>(Also in [44.9.0](https://github.com/electron/electron/pull/55073))</sup>
+- Added support for `Notification` action buttons on Linux. [#54889](https://github.com/electron/electron/pull/54889) <sup>(Also in [44.8.0](https://github.com/electron/electron/pull/54890))</sup>
+- Added experimental `protocol.registerSource()` to serve custom schemes from directories on disk, including ASAR archives, without a JavaScript handler or routing requests through the main thread. [#54521](https://github.com/electron/electron/pull/54521) <sup>(Also in [44.6.0](https://github.com/electron/electron/pull/54522))</sup>
+- Added launch-failure reporting with `systemErrorCode` to the `app` `child-process-gone` event. [#54230](https://github.com/electron/electron/pull/54230) <sup>(Also in [44.5.0](https://github.com/electron/electron/pull/54231))</sup>
+- Added `initiatorOrigin` to `webRequest` and protocol handler requests, `DownloadItem.getInitiatorOrigin()`, and a trailing `frame` argument to the `will-download` and `preconnect` session events. [#53700](https://github.com/electron/electron/pull/53700) <sup>(Also in [43.7.0](https://github.com/electron/electron/pull/53704), [44.4.0](https://github.com/electron/electron/pull/53703))</sup>
+- Added `ELECTRON_DEBUG_DRAGGABLE_REGIONS` to visualize and log draggable regions in unpackaged apps, helping developers debug custom title bars. [#53626](https://github.com/electron/electron/pull/53626) <sup>(Also in [43.7.0](https://github.com/electron/electron/pull/53633), [44.3.0](https://github.com/electron/electron/pull/53627))</sup>
 - Added `webFrame.getIsolatedWorlds()` and the `isolated-world-created` event to discover isolated worlds in a frame. [#50633](https://github.com/electron/electron/pull/50633)
 - Added the `disableWakeLocks` web preference to disable wake locks for a `WebContents`. [#52342](https://github.com/electron/electron/pull/52342)
 - Added native heap profiling to `contentTracing.startRecording()` through the `nativeHeapProfiling` option. [#54863](https://github.com/electron/electron/pull/54863)
@@ -84,6 +92,8 @@ Electron 45 upgrades Chromium from `152.0.7977.54` to `156.0.8078.36`, Node.js f
 - Improved the performance of building and showing menus. [#53914](https://github.com/electron/electron/pull/53914)
 - Reduced the cost of calling native methods and properties on `BrowserWindow`, `BaseWindow`, `WebContents`, `WebFrameMain`, and `View`, and improved the performance of `app.getName()`, `app.name`, `app.getVersion()`, and `app.getAppPath()`. [#54359](https://github.com/electron/electron/pull/54359)
 - Reduced IPC dispatch overhead by delivering messages to JavaScript listeners natively. [#53957](https://github.com/electron/electron/pull/53957)
+- The macOS `autoUpdater` now streams update downloads to disk instead of holding the ZIP in memory, can resume interrupted downloads when the server supports it, and supports binary delta updates when offered by the update feed. [#52820](https://github.com/electron/electron/pull/52820) <sup>(Also in [44.7.0](https://github.com/electron/electron/pull/54204))</sup>
+- Fixed `getDisplayMedia({ audio: { restrictOwnAudio: true } })` being ignored by `setDisplayMediaRequestHandler`, causing loopback audio to include local app playback. [#52455](https://github.com/electron/electron/pull/52455) <sup>(Also in [43.4.0](https://github.com/electron/electron/pull/52533), [44.0.0](https://github.com/electron/electron/pull/52534))</sup>
 - Fixed `app.getLoginItemSettings()` not finding Windows login items when the executable path contains spaces. [#54419](https://github.com/electron/electron/pull/54419)
 - Fixed notifications from long domains sometimes failing to appear on Windows. [#54348](https://github.com/electron/electron/pull/54348)
 - Fixed `process.nextTick` and promise callbacks queued in `protocol` and `webRequest` handlers running at the wrong time. [#54301](https://github.com/electron/electron/pull/54301)
