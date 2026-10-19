@@ -33,7 +33,8 @@ If you have any feedback, please share it with us on [Bluesky](https://bsky.app/
 
 Electron 45 reduces sandboxed renderer startup work by removing Electron's injected JavaScript bootstrap bundle, and improves cold-launch time on macOS by prefetching the framework's files. Building and showing menus is faster, and calls to native methods and properties on windows, views, and web contents have less overhead. [#54048](https://github.com/electron/electron/pull/54048) [#54528](https://github.com/electron/electron/pull/54528) [#53914](https://github.com/electron/electron/pull/53914) [#54359](https://github.com/electron/electron/pull/54359)
 
-Removing the sandboxed renderer bootstrap also removes its bundled Node.js polyfills. If your sandboxed preload scripts use `Buffer` or require the `events`, `timers`, or `url` modules, see the migration notes in the Breaking Changes section below.
+> [!IMPORTANT]
+> Sandboxed preload scripts no longer include `Buffer`, `setImmediate`, `clearImmediate`, or the `events`, `timers`, and `url` module shims. Update affected preloads to use Web APIs or bundle the polyfills they need before upgrading. See the [migration guide](https://www.electronjs.org/docs/latest/breaking-changes#removed-nodejs-module-shims-and-buffer-setimmediate-clearimmediate-globals-in-sandboxed-preload-scripts) for replacements.
 
 ### Experimental Prompt API support with a local AI handler
 
@@ -47,9 +48,40 @@ Applications can now enable the macOS system passkey interface with `app.configu
 
 This extends the existing Touch ID support with credentials that can sync across devices. Unlike device-bound Touch ID credentials, system passkeys are shared across Electron session partitions and other applications associated with the same domain. See the [`app.configureWebAuthn()` documentation](https://www.electronjs.org/docs/latest/api/app#appconfigurewebauthnoptions-macos) for details and limitations. [#51563](https://github.com/electron/electron/pull/51563)
 
+### Broader crash reporting on Windows
+
+Electron now ships a Windows Error Reporting (WER) helper so `crashReporter` can capture `__fastfail` terminations and other crashes that bypass the in-process handler on Windows 10 20H1 and later. The helper is registered when your application calls `crashReporter.start()`. [#53851](https://github.com/electron/electron/pull/53851)
+
+> [!IMPORTANT]
+> Package the helper DLL alongside your application's executable. If you rename `electron.exe` to `myapp.exe`, also rename `electron_wer.dll` to `myapp_wer.dll`. The helper must match the executable's name for Windows to load it.
+
+See the [`crashReporter` documentation](https://www.electronjs.org/docs/latest/api/crash-reporter) for registration details and how to opt out of this additional crash coverage.
+
 ### Native heap profiling with Perfetto
 
-Electron's `contentTracing` module now supports native heap profiling through Perfetto. Pass `nativeHeapProfiling` to `contentTracing.startRecording()` to collect sampled native allocations alongside your trace, then open the recording in the [Perfetto UI](https://ui.perfetto.dev).
+Electron's `contentTracing` module now supports experimental native heap profiling through Perfetto. Pass `nativeHeapProfiling` to `contentTracing.startRecording()` to collect sampled C/C++ allocations alongside your trace. This profiles native memory, not the JavaScript heap.
+
+For example, add this to your main process to record ten seconds while you reproduce an issue in your application:
+
+```js
+const { app, contentTracing } = require('electron');
+const { setTimeout } = require('node:timers/promises');
+
+app.whenReady().then(async () => {
+  await contentTracing.startRecording({
+    nativeHeapProfiling: {
+      samplingInterval: 128 * 1024,
+    },
+  });
+
+  await setTimeout(10_000);
+
+  const tracePath = await contentTracing.stopRecording();
+  console.log(`Trace saved to ${tracePath}`);
+});
+```
+
+Open the resulting recording in the [Perfetto UI](https://ui.perfetto.dev). `samplingInterval` is the average number of allocated bytes between samples; lower values provide more detail at a higher performance cost. See the [`contentTracing` documentation](https://www.electronjs.org/docs/latest/api/content-tracing) and [`NativeHeapProfilerOptions` reference](https://www.electronjs.org/docs/latest/api/structures/native-heap-profiler-options) for configuration details.
 
 This replaces the experimental `contentTracing.enableHeapProfiling()` method. All `contentTracing` recordings now use Perfetto's protobuf format rather than the legacy JSON format; see the Breaking Changes section below for migration details. [#54863](https://github.com/electron/electron/pull/54863)
 
@@ -85,14 +117,14 @@ Some of these changes are also available in earlier release lines. Their first r
 - Added `webFrame.getIsolatedWorlds()` and the `isolated-world-created` event to discover isolated worlds in a frame. [#50633](https://github.com/electron/electron/pull/50633)
 - Added the `disableWakeLocks` web preference to disable wake locks for a `WebContents`. [#52342](https://github.com/electron/electron/pull/52342)
 - Added native heap profiling to `contentTracing.startRecording()` through the `nativeHeapProfiling` option. [#54863](https://github.com/electron/electron/pull/54863)
-- Added a Windows Error Reporting helper so `crashReporter` can capture `__fastfail` terminations and other crashes that bypass the in-process handler on Windows 10 20H1 and later. When renaming the executable for packaging, also rename `electron_wer.dll` to match: for example, `myapp.exe` needs `myapp_wer.dll`. [#53851](https://github.com/electron/electron/pull/53851)
+- Added a Windows Error Reporting helper so `crashReporter` can capture `__fastfail` terminations and other crashes that bypass the in-process handler on Windows 10 20H1 and later. See [Broader crash reporting on Windows](#broader-crash-reporting-on-windows) above for packaging requirements. [#53851](https://github.com/electron/electron/pull/53851)
 - Files inside ASAR archives can now be opened, streamed, and copied directly from the archive without extracting a temporary file. Added ASAR support for `fs.opendir()` and `fs.readlink()`. See the Breaking Changes section below for changes to file descriptors and write access. [#52833](https://github.com/electron/electron/pull/52833)
 - Improved sandboxed renderer startup by removing Electron's injected JavaScript bootstrap bundle. [#54048](https://github.com/electron/electron/pull/54048)
 - Improved cold-launch time on macOS by prefetching Electron's framework files. [#54528](https://github.com/electron/electron/pull/54528)
 - Improved the performance of building and showing menus. [#53914](https://github.com/electron/electron/pull/53914)
 - Reduced the cost of calling native methods and properties on `BrowserWindow`, `BaseWindow`, `WebContents`, `WebFrameMain`, and `View`, and improved the performance of `app.getName()`, `app.name`, `app.getVersion()`, and `app.getAppPath()`. [#54359](https://github.com/electron/electron/pull/54359)
 - Reduced IPC dispatch overhead by delivering messages to JavaScript listeners natively. [#53957](https://github.com/electron/electron/pull/53957)
-- The macOS `autoUpdater` now streams update downloads to disk instead of holding the ZIP in memory, can resume interrupted downloads when the server supports it, and supports binary delta updates when offered by the update feed. [#52820](https://github.com/electron/electron/pull/52820) <sup>(Also in [44.7.0](https://github.com/electron/electron/pull/54204))</sup>
+- The macOS `autoUpdater` now streams update downloads to disk instead of holding the ZIP in memory, can resume interrupted downloads when the server supports it, and supports binary delta updates when offered by the update feed. Resuming requires `Range` support and an `ETag` or `Last-Modified` header from the server; delta updates require an optional `delta` entry in the feed. See the [`autoUpdater` documentation](https://www.electronjs.org/docs/latest/api/auto-updater#macos) for server and feed requirements. [#52820](https://github.com/electron/electron/pull/52820) <sup>(Also in [44.7.0](https://github.com/electron/electron/pull/54204))</sup>
 - Fixed `getDisplayMedia({ audio: { restrictOwnAudio: true } })` being ignored by `setDisplayMediaRequestHandler`, causing loopback audio to include local app playback. [#52455](https://github.com/electron/electron/pull/52455) <sup>(Also in [43.4.0](https://github.com/electron/electron/pull/52533), [44.0.0](https://github.com/electron/electron/pull/52534))</sup>
 - Fixed `app.getLoginItemSettings()` not finding Windows login items when the executable path contains spaces. [#54419](https://github.com/electron/electron/pull/54419)
 - Fixed notifications from long domains sometimes failing to appear on Windows. [#54348](https://github.com/electron/electron/pull/54348)
