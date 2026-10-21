@@ -1,6 +1,6 @@
 ---
 title: Electron 45
-date: 2026-10-20T00:00:00.000Z
+date: 2026-10-21T00:00:00.000Z
 authors:
   - name: Electron
     url: https://github.com/electron
@@ -9,7 +9,7 @@ slug: electron-45-0
 tags: [release]
 ---
 
-Electron 45 has been released! It includes upgrades to Chromium 155.0.8038.2, V8 15.5, and Node v24.21.0.
+Electron 45 has been released! It includes upgrades to Chromium 156.0.8078.48, V8 15.6, and Node v24.22.0.
 
 ---
 
@@ -39,17 +39,18 @@ Electron 45 extends `app.configureWebAuthn()` with platform passkey support on m
 
 ## Stack Changes
 
-- Chromium `155.0.8038.2`
+- Chromium `156.0.8078.48`
+  - [New in 156](https://developer.chrome.com/blog/new-in-chrome-156/)
   - [New in 155](https://developer.chrome.com/blog/new-in-chrome-155/)
   - [New in 154](https://developer.chrome.com/blog/new-in-chrome-154/)
   - [New in 153](https://developer.chrome.com/blog/new-in-chrome-153/)
 
-- Node `v24.21.0`
-  - [Node 24.21.0 blog post](https://nodejs.org/en/blog/release/v24.21.0/)
+- Node `v24.22.0`
+  - [Node 24.22.0 blog post](https://nodejs.org/en/blog/release/v24.22.0/)
 
-- V8 `15.5`
+- V8 `15.6`
 
-Electron 45 upgrades Chromium from `152.0.7977.54` to `155.0.8038.2`, Node.js from `v24.18.1` to `v24.21.0`, and V8 from `15.2` to `15.5`.
+Electron 45 upgrades Chromium from `152.0.7977.54` to `156.0.8078.48`, Node.js from `v24.18.1` to `v24.22.0`, and V8 from `15.2` to `15.6`.
 
 ## New Features and Improvements
 
