@@ -55,6 +55,7 @@ module.exports = {
           id: 'latest/tutorial/linux-desktop-actions',
           customProps: { platforms: ['linux'] },
         },
+        'latest/tutorial/local-ai-handler',
         {
           type: 'category',
           label: 'Menus',
@@ -175,7 +176,6 @@ module.exports = {
         'latest/tutorial/devtools-extension',
         'latest/tutorial/application-debugging',
         'latest/tutorial/testing-on-headless-ci',
-        'latest/tutorial/local-ai-handler',
       ],
     },
     {
