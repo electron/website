@@ -90,8 +90,8 @@ This replaces the experimental `contentTracing.enableHeapProfiling()` method. Al
 ## Stack Changes
 
 - Chromium `156.0.8078.48`
-  - [New in 156](https://developer.chrome.com/blog/new-in-chrome-156/)
-  - [New in 155](https://developer.chrome.com/blog/new-in-chrome-155/)
+  - [New in 156](https://chromestatus.com/release-notes/156)
+  - [New in 155](https://chromestatus.com/release-notes/155)
   - [New in 154](https://developer.chrome.com/blog/new-in-chrome-154/)
   - [New in 153](https://developer.chrome.com/blog/new-in-chrome-153/)
 
