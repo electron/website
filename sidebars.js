@@ -260,6 +260,7 @@ module.exports = {
           id: 'latest/api/browser-view',
           customProps: { deprecated: true },
         },
+        'latest/api/app-shim-host',
         'latest/api/browser-window',
         'latest/api/clipboard',
         'latest/api/content-tracing',
