@@ -18,6 +18,8 @@ jobs:
         with:
           node-version: '24.19.0'
       - run: npm install @electron/fiddle-core@2.0.0
+      - name: Lint sidebar
+        run: npm run lint:sidebars
       - name: Confirm latest version
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
