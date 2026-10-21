@@ -158,15 +158,15 @@ In sandboxed preload scripts and service worker preload scripts, `ipcRenderer`, 
 
 ### Behavior Changed: Subframe workers need `nodeIntegrationInSubFrames` for Node.js integration
 
-With `nodeIntegrationInWorker: true`, a `Worker` created by an `<iframe>` now only gets Node.js integration when `nodeIntegrationInSubFrames` is also enabled. Previously a worker created by an iframe in the main frame's process could receive Node.js integration even though the iframe itself had none. Workers created by the main frame are unaffected.
+With `nodeIntegrationInWorker: true`, a `Worker` created by an `<iframe>` now only gets Node.js integration when `nodeIntegrationInSubFrames` is also enabled. Previously a worker created by an iframe in the main frame's process could receive Node.js integration even though the iframe itself had none. Workers created by the main frame are unaffected. [#53706](https://github.com/electron/electron/pull/53706)
 
 ### Behavior Changed: Extension preload scripts respect their embedding frame
 
-A `chrome-extension://` document now receives window and session preload scripts only when it is a top-level frame or is hosted inside the DevTools front-end. An extension frame embedded in an ordinary page is treated like any other subframe and follows `nodeIntegrationInSubFrames`.
+A `chrome-extension://` document now receives window and session preload scripts only when it is a top-level frame or is hosted inside the DevTools front-end. An extension frame embedded in an ordinary page is treated like any other subframe and follows `nodeIntegrationInSubFrames`. [#53706](https://github.com/electron/electron/pull/53706)
 
 ### Behavior Changed: WebContents capture uses `chromeMediaSource: 'tab'`
 
-The legacy `chromeMediaSource: 'desktop'` constraint now only accepts screen and window source IDs from `desktopCapturer.getSources()`. To capture a WebContents, use `chromeMediaSource: 'tab'` with an ID from `webContents.getMediaSourceId()`, or use `session.setDisplayMediaRequestHandler()`. Passing a WebContents source ID with `'desktop'` now fails with an "Invalid state" error.
+The legacy `chromeMediaSource: 'desktop'` constraint in `getUserMedia()` now only accepts screen and window source IDs from `desktopCapturer.getSources()`. To capture a WebContents, use `chromeMediaSource: 'tab'` with an ID from `webContents.getMediaSourceId()`, or use `session.setDisplayMediaRequestHandler()`. Passing a WebContents source ID with `'desktop'` now fails with an "Invalid state" error. [#53708](https://github.com/electron/electron/pull/53708)
 
 These worker, extension-preload, and WebContents-capture changes were also backported to Electron 44.3.0, 43.7.0, and 42.11.3. See the [migration guide](https://www.electronjs.org/docs/latest/breaking-changes#breaking-api-changes-450) for details.
 
