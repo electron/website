@@ -34,7 +34,7 @@ Requests to capture the screen, a window, or a tab are now passed to `session.se
 
 Electron 45 adds an experimental way to connect Chromium's Prompt API to a model supplied by your application. Register a utility process with `session.registerLocalAIHandler()` and implement the handler with the new `localAIHandler` module and `LanguageModelUtility` class. With the `AIPromptAPI` Blink feature enabled, renderer code can then use `LanguageModel.create()` and the resulting model's `prompt()` method.
 
-Electron does not bundle a model or inference engine: your application chooses and provides the implementation. See the [Local AI Handler tutorial](https://github.com/electron/electron/blob/v45.0.0/docs/tutorial/local-ai-handler.md) for setup and examples. [#50659](https://github.com/electron/electron/pull/50659)
+Electron does not bundle a model or inference engine: your application chooses and provides the implementation. See the [Local AI Handler tutorial](https://www.electronjs.org/docs/latest/tutorial/local-ai-handler) for setup and examples. [#50659](https://github.com/electron/electron/pull/50659)
 
 ### System passkeys on macOS
 
@@ -83,7 +83,7 @@ app.whenReady().then(async () => {
 });
 ```
 
-Open the resulting recording in the [Perfetto UI](https://ui.perfetto.dev). `samplingInterval` is the average number of allocated bytes between samples; lower values provide more detail at a higher performance cost. See the [`contentTracing` documentation](https://www.electronjs.org/docs/latest/api/content-tracing) and [`NativeHeapProfilerOptions` reference](https://github.com/electron/electron/blob/v45.0.0/docs/api/structures/native-heap-profiler-options.md) for configuration details.
+Open the resulting recording in the [Perfetto UI](https://ui.perfetto.dev). `samplingInterval` is the average number of allocated bytes between samples; lower values provide more detail at a higher performance cost. See the [`contentTracing` documentation](https://www.electronjs.org/docs/latest/api/content-tracing) and [`NativeHeapProfilerOptions` reference](https://www.electronjs.org/docs/latest/api/structures/native-heap-profiler-options) for configuration details.
 
 This replaces the experimental `contentTracing.enableHeapProfiling()` method. All `contentTracing` recordings now use Perfetto's protobuf format rather than the legacy JSON format; see the Breaking Changes section below for migration details. [#54863](https://github.com/electron/electron/pull/54863)
 
@@ -219,4 +219,4 @@ In the short term, you can expect the team to continue to focus on keeping up wi
 
 You can find [Electron's public timeline here](https://www.electronjs.org/docs/latest/tutorial/electron-timelines).
 
-More information about future changes can be found on the [Planned Breaking Changes](https://github.com/electron/electron/blob/main/docs/breaking-changes.md) page.
+More information about future changes can be found on the [Planned Breaking Changes](https://www.electronjs.org/docs/latest/breaking-changes) page.
