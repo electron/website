@@ -90,7 +90,7 @@
     "oxlint": "^1.57.0",
     "remark": "^15.0.0",
     "remark-gfm": "^4.0.0",
-    "satori": "^0.25.0",
+    "satori": "^0.33.5",
     "sharp": "^0.35.5",
     "tar-stream": "^2.2.0",
     "typescript": "^5.9.3",
