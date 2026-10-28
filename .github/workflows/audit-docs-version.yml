@@ -12,12 +12,18 @@ jobs:
     name: Audit Docs Version
     if: github.repository == 'electron/website'
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
       - name: Setup Node.js
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: '24.22.1'
-      - run: npm install @electron/fiddle-core@2.0.0 # zizmor: ignore[adhoc-packages]
+      - name: Install dependencies
+        run: yarn install --immutable
       - name: Lint sidebar
         run: npm run lint:sidebars
       - name: Confirm latest version
