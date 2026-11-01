@@ -57,6 +57,27 @@
   }
 }
 
+// The Community page has no main: each content container becomes a sheet.
+@media (min-width: 997px) {
+  .hero--electron ~ .container {
+    margin: var(--lu-space-4) auto !important;
+    padding: var(--lu-space-8) 40px;
+    background: var(--lu-surface);
+    border-radius: var(--lu-radius-sheet);
+    box-shadow:
+      var(--lu-shadow-island),
+      inset 0 var(--lu-size-hairline) 0 var(--lu-rim-soft);
+  }
+}
+
+@media (max-width: 996px) {
+  .hero--electron ~ .container {
+    background: var(--lu-surface);
+    margin: 0 !important;
+    padding-block: var(--lu-space-8);
+  }
+}
+
 // The Showcase page's main is the sheet; keep its spacing inside the sheet
 // rather than above it.
 @media (min-width: 997px) {

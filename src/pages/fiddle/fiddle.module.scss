@@ -9,18 +9,36 @@
 }
 
 .tagline {
-  font-size: 3rem;
+  font: 600 48px/56px var(--lu-font-sans);
+  letter-spacing: var(--lu-type-display-tracking);
   text-align: center;
   max-width: 40rem;
   margin: 0 auto;
-  color: var(--ifm-color-white);
-  font-weight: bolder;
+  color: #eef1f8;
   margin-bottom: 1rem;
 }
 
 .hero {
   --ifm-button-size-multiplier: 0.9;
-  background: var(--electron-color-dark);
+  // An Electron-navy island on the window ground, lit from above in
+  // Fiddle's orange, in both themes.
+  background:
+    radial-gradient(
+      900px 420px at 50% -180px,
+      rgba(255, 122, 0, 0.18),
+      transparent 70%
+    ),
+    var(--electron-color-dark);
+  box-shadow:
+    var(--lu-shadow-island),
+    inset 0 1px 0 rgba(255, 182, 98, 0.14);
+
+  @media (min-width: 997px) {
+    margin-inline: var(--lu-space-4);
+    margin-top: var(--lu-space-4);
+    border-radius: var(--lu-radius-sheet);
+  }
+
   display: flex;
   flex-direction: column;
   justify-content: center;
