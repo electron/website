@@ -1,119 +1,74 @@
-/* stylelint-disable docusaurus/copyright-header */
 /**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
+ * Site-specific styles. The Lucent theme (tokens, Infima mapping, chrome,
+ * content, search) is in lucent.css and src/css/theme/, which load first.
  */
 
-/* You can override the default Infima variables here. */
-
-/* We maintain separate colours for light and dark mode */
 :root {
-  // modified base colors
-  --ifm-background-color: #fff;
-  --ifm-color-primary: var(--electron-color-mid);
-  --ifm-color-primary-dark: #000885;
-  --ifm-color-primary-darker: #000047;
-  --ifm-color-primary-darkest: #000000;
-  --ifm-color-primary-light: #00aeff;
-  --ifm-color-primary-lighter: #4cc8ff;
-  --ifm-color-primary-lightest: #97e1ff;
-
-  // modified base vars
-  --ifm-code-font-size: 95%;
-  --ifm-navbar-height: 70px;
-
-  // brand-specific colors
+  // brand colours, used by the homepage and Fiddle page
   --electron-color-light: #9feaf9;
   --electron-color-mid: #028399;
   --electron-color-dark: #1b1c26;
   --electron-color-secondary-light: #ff6e6e;
   --electron-color-secondary-mid: #e3112d;
 
-  // custom vars
-  --electron-heading: var(--electron-color-mid);
-  --electron-inline-code: var(--electron-color-secondary-mid);
-  --ifm-navbar-item-padding-horizontal: 8px;
+  --api-history-added: color-mix(
+    in srgb,
+    var(--lu-success) 16%,
+    var(--lu-surface)
+  );
+  --api-history-deprecated: var(--lu-spark-soft);
 
-  --api-history-added: var(--ifm-color-success-lighter);
-  --api-history-deprecated: var(--ifm-color-danger-light);
-  // These have better contrast if desired
-  // --api-history-added: var(--ifm-color-success-light);
-  // --api-history-deprecated: var(--ifm-color-danger-dark);
-
-  // docusaurus variables
-  --ifm-hover-overlay: rgba(162, 236, 251, 0.2);
-  --ifm-link-color: var(--electron-color-mid);
-  --ifm-menu-color-active: var(--electron-color-dark);
-  // these require !important because of some weirdness in CSS ordering
-  // see: https://github.com/facebook/docusaurus/issues/3678
-  --docusaurus-highlighted-code-line-bg: rgb(217, 220, 222);
-
-  // infima shadow levels
-  // generated from https://www.joshwcomeau.com/shadow-palette/
-  --shadow-color: 0deg 0% 63%;
-  --shadow-elevation-low:
-    0px 1px 1px hsl(var(--shadow-color) / 0.07),
-    0px 1.4px 1.4px -1.8px hsl(var(--shadow-color) / 0.06),
-    -0.1px 3px 2.9px -3.5px hsl(var(--shadow-color) / 0.04);
-  --shadow-elevation-medium:
-    0px 1px 1px hsl(var(--shadow-color) / 0.06),
-    0px 1.8px 1.7px -0.9px hsl(var(--shadow-color) / 0.05),
-    -0.1px 3.5px 3.4px -1.8px hsl(var(--shadow-color) / 0.05),
-    -0.1px 7.5px 7.3px -2.7px hsl(var(--shadow-color) / 0.04),
-    -0.3px 15px 14.5px -3.5px hsl(var(--shadow-color) / 0.03);
-  --shadow-elevation-high:
-    0px 1px 1px hsl(var(--shadow-color) / 0.06),
-    0px 2.1px 2px -0.4px hsl(var(--shadow-color) / 0.05),
-    -0.1px 3.4px 3.3px -0.8px hsl(var(--shadow-color) / 0.05),
-    -0.1px 5.2px 5px -1.2px hsl(var(--shadow-color) / 0.05),
-    -0.1px 7.9px 7.6px -1.6px hsl(var(--shadow-color) / 0.04),
-    -0.2px 12px 11.6px -2px hsl(var(--shadow-color) / 0.04),
-    -0.3px 17.9px 17.3px -2.4px hsl(var(--shadow-color) / 0.04),
-    -0.5px 25.9px 25.1px -2.8px hsl(var(--shadow-color) / 0.03),
-    -0.7px 36.5px 35.3px -3.2px hsl(var(--shadow-color) / 0.03),
-    -0.9px 50px 48.4px -3.5px hsl(var(--shadow-color) / 0.03);
-
-  --ifm-global-shadow-lw: var(--shadow-elevation-low);
-  --ifm-global-shadow-md: var(--shadow-elevation-medium);
-  --ifm-global-shadow-tl: var(--shadow-elevation-high);
+  // Infima shadow levels, still used by app cards
+  --shadow-elevation-low: var(--lu-shadow-lift);
+  --shadow-elevation-medium: var(--lu-shadow-popover);
+  --shadow-elevation-high: var(--lu-shadow-popover);
 }
 
-:root[data-theme='dark'] {
-  // modified base colors
-  --ifm-color-primary: #00aeff;
-  --ifm-color-primary-dark: #0057c2;
-  --ifm-color-primary-darker: #4d4d4f;
-  --ifm-color-primary-darkest: #000047;
-  --ifm-color-primary-light: #4cc8ff;
-  --ifm-color-primary-lighter: #97e1ff;
-  --ifm-color-primary-lightest: #e3f7ff;
+// Page heroes (Community): an Electron-navy island on the window ground, lit
+// from above in cyan, in both themes. The homepage hero is styled the same way
+// in src/pages/home/_index.module.scss.
+.hero--electron {
+  --ifm-heading-color: #eef1f8;
+  color: var(--electron-color-light);
+  background:
+    radial-gradient(
+      900px 360px at 30% -180px,
+      rgba(0, 163, 191, 0.3),
+      transparent 70%
+    ),
+    var(--electron-color-dark);
+  box-shadow:
+    var(--lu-shadow-island),
+    inset 0 1px 0 rgba(159, 234, 249, 0.14);
 
-  // docusaurus
-  --docusaurus-highlighted-code-line-bg: rgb(13, 15, 28);
-
-  // modified base vars
-  --ifm-menu-color: var(--ifm-color-primary-lightest);
-  --ifm-link-color: var(--electron-color-light);
-  --ifm-menu-color-active: var(--electron-color-light);
-
-  // custom vars
-  --electron-heading: var(--ifm-color-primary-lightest);
-  --electron-inline-code: var(--electron-color-secondary-light);
-  --api-history-added: var(--ifm-color-success-darker);
-  --api-history-deprecated: var(--ifm-color-danger-darkest);
-}
-
-html {
-  // transition for background-color when theme is changed
-  transition: background-color 0.5s ease;
-}
-
-.hero {
-  &--electron {
-    color: var(--electron-color-light);
-    background: var(--electron-color-dark);
+  .hero__title {
+    font: var(--lu-type-display);
+    letter-spacing: var(--lu-type-display-tracking);
   }
+
+  .hero__subtitle {
+    font-size: 18px;
+    line-height: 26px;
+  }
+
+  @media (min-width: 997px) {
+    margin: var(--lu-space-4) var(--lu-space-4) 0;
+    border-radius: var(--lu-radius-sheet);
+  }
+}
+
+// The Showcase page's main is the sheet; keep its spacing inside the sheet
+// rather than above it.
+@media (min-width: 997px) {
+  .main-wrapper > main.margin-vert--xl {
+    margin-top: var(--lu-space-4) !important;
+    padding-block: 48px;
+  }
+}
+
+// Blog post titles read as headings, not links.
+.plugin-blog article header h2 a {
+  color: var(--lu-ink);
 }
 
 @media (min-width: 1440px) {
@@ -122,147 +77,62 @@ html {
   }
 }
 
-.navbar {
-  &--dark {
-    --ifm-navbar-background-color: var(--electron-color-dark);
-    --ifm-navbar-link-color: var(--electron-color-light);
+// Electron's buttons are Lucent's primary action: navy with cyan ink in
+// light mode, cyan with navy ink in dark mode.
+.button--electron {
+  --ifm-button-background-color: var(--lu-action);
+  --ifm-button-border-color: transparent;
+  --ifm-button-color: var(--lu-on-action);
+  background-image: var(--lu-sheen-action);
+  box-shadow: var(--lu-shadow-primary);
+  color: var(--lu-on-action);
+
+  &:hover {
+    --ifm-button-background-color: var(--lu-action);
+    --ifm-button-border-color: transparent;
+    color: var(--lu-on-action);
+    background-image: var(--lu-sheen-action-hover);
+    box-shadow:
+      var(--lu-shadow-primary),
+      0 8px 22px -8px color-mix(in srgb, var(--lu-action) 70%, transparent);
   }
 
-  &__link {
-    font-weight: var(--ifm-font-weight-normal);
-    border-bottom: 2px solid transparent;
-    margin-bottom: -2px;
-
-    &--active {
-      color: var(--electron-color-light);
-      border-bottom-color: var(--ifm-link-color);
-    }
+  &:active {
+    --ifm-button-background-color: var(--lu-action-pressed);
   }
 
-  .menu__link--active {
-    color: var(--electron-color-light);
-  }
-}
+  // On the navy hero: cyan in both themes.
+  &.button--dark {
+    --ifm-button-background-color: var(--electron-color-light);
+    --ifm-button-color: var(--electron-color-dark);
+    color: var(--electron-color-dark);
 
-.footer {
-  &--dark {
-    --ifm-footer-background-color: --var(--electron-color-dark);
-  }
-
-  .footer__logo {
-    max-width: 200px;
-  }
-}
-
-.markdown {
-  a {
-    font-weight: var(--ifm-font-weight-bold);
-    // code is already semibold so make code links
-    // a bit thicker to differentiate the weight
-    code {
-      font-weight: var(--ifm-font-weight-bold);
-    }
-  }
-
-  p {
-    line-height: 180%;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    --ifm-h2-font-size: 1.6rem;
-    --ifm-h3-font-size: 1.2rem;
-    --ifm-h4-font-size: 1rem;
-    --ifm-h5-font-size: 0.8rem;
-  }
-
-  // Fixes inline code alignment in Firefox
-  code {
-    vertical-align: baseline;
-  }
-
-  // We want this to only apply to inline code, so don't apply
-  // this color to ``` code blocks nor any headings.
-  :not(pre):not(h2):not(h3):not(h4):not(h5):not(h6) > code {
-    border: none;
-  }
-
-  // don't apply --electron-inline-code colors to admonitions
-  // as well
-  .admonition {
-    code {
-      color: inherit;
-    }
-  }
-}
-
-.button {
-  &--outline,
-  // Docusaurus adds its own focus styles which we need to
-  // override here to avoid losing the outline. This can be
-  // removed when we pick up the upstream fix in Docusaurus.
-  // ref: https://github.com/electron/website/issues/1001
-  // ref: https://github.com/facebook/docusaurus/pull/11713
-  body:not(.navigation-with-keyboard) &--outline:focus {
-    outline: 1px solid;
-    color: var(--ifm-color-primary);
-    &:hover,
-    &:focus-visible {
-      color: var(--ifm-color-primary-dark);
-    }
-  }
-
-  &--electron {
-    background: var(--electron-color-dark);
-    border-color: var(--electron-color-dark);
     &:hover {
-      filter: brightness(0.9);
-      box-shadow: var(--ifm-global-shadow-md);
-      transition: 0.1s linear all;
+      --ifm-button-background-color: var(--electron-color-light);
+      color: var(--electron-color-dark);
     }
+  }
 
-    &.button--dark,
-    :root[data-theme='dark'] & {
-      background: var(--electron-color-light);
-      border-color: var(--electron-color-light);
-      color: black;
-    }
+  // A glass button on the navy hero.
+  &.button--outline {
+    --ifm-button-background-color: rgba(255, 255, 255, 0.08);
+    --ifm-button-color: var(--electron-color-light);
+    background-image: none;
+    box-shadow: inset 0 0 0 1px rgba(159, 234, 249, 0.35);
+    color: var(--electron-color-light);
 
-    &.button--outline {
-      background: transparent;
+    &:hover {
+      --ifm-button-background-color: rgba(255, 255, 255, 0.14);
       color: var(--electron-color-light);
+      box-shadow: inset 0 0 0 1px rgba(159, 234, 249, 0.6);
     }
   }
 }
 
-// sidebar
-.menu {
-  &__link {
-    font-size: 0.9rem;
-    font-weight: var(--ifm-font-weight-normal);
-
-    &--active {
-      font-weight: var(--ifm-font-weight-bold);
-    }
-
-    // Note: this CSS class is added via the
-    // swizzled src/theme/DocSidebarItem/index.jsx
-    // component.
-    &--collapsible {
-      font-weight: var(--ifm-font-weight-semibold);
-
-      .theme-doc-sidebar-item-category-level-1 & {
-        font-size: 1rem;
-      }
-      .theme-doc-sidebar-item-category-level-2 & {
-        font-size: 0.95rem;
-      }
-    }
-  }
+// Sidebar category weights. The CSS class is added by the swizzled
+// src/theme/DocSidebarItem/Link component.
+.theme-doc-sidebar-menu .menu__link--collapsible {
+  font-weight: 500;
 }
 
 // utility
@@ -271,16 +141,16 @@ html {
 }
 
 .card {
-  border: 1px solid rgba(200, 200, 200, 0.3);
+  border: none;
+  background: var(--lu-surface);
+  box-shadow:
+    var(--lu-shadow-lift),
+    inset 0 0 0 var(--lu-size-hairline) var(--lu-line);
 }
 
 .table-of-contents__link--active {
-  font-weight: var(--ifm-font-weight-bold);
-}
-
-// fix https://github.com/electron/website/issues/539
-.navbar__logo {
-  width: 2rem;
+  color: var(--lu-ink);
+  font-weight: 500;
 }
 
 // blog sidebar custom styles
@@ -288,45 +158,21 @@ html {
   padding: 0.5rem;
   & [class*='yearGroupHeading_'] {
     margin: 0.75rem 0 0.5rem;
-    color: var(--subtle);
-    border-bottom: 0.01rem solid var(--ifm-table-border-color);
+    font: var(--lu-type-caption);
+    color: var(--lu-ink-faint);
+    border-bottom: var(--lu-size-hairline) solid var(--lu-line);
     padding-bottom: 0.2rem;
   }
 }
 
+// The GitHub mark, drawn in the link colour so it follows the theme.
 .header-github-link:before {
-  background: url("data:image/svg+xml;charset=utf-8,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='white' d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'/%3E%3C/svg%3E")
-    no-repeat;
   content: '';
   display: flex;
-  height: 24px;
-  width: 24px;
-}
-
-/**
-  * Make DocSearch compatible with navbar.style = dark
-  */
-.navbar--dark {
-  .DocSearch-Button {
-    // docsearch-searchbox-background
-    background-color: #000000a6;
-    // docsearch-subtle-color
-    border: 1px solid #212139;
-    // docsearch-muted-color
-    color: #7f8497;
-  }
-
-  .DocSearch-Button-Key {
-    // docsearch-key-background
-    background-color: #36395a;
-    // docsearch-key-color
-    color: #b6b7d5;
-  }
-
-  @supports (color: color-mix(in lch, red, blue)) {
-    .DocSearch-Button-Key {
-      // docsearch-subtle-color
-      border: 1px solid color-mix(in srgb, #212139 20%, transparent);
-    }
-  }
+  height: 18px;
+  width: 18px;
+  background-color: currentColor;
+  --github-mark: url("data:image/svg+xml;charset=utf-8,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'/%3E%3C/svg%3E");
+  -webkit-mask: var(--github-mark) no-repeat center / contain;
+  mask: var(--github-mark) no-repeat center / contain;
 }

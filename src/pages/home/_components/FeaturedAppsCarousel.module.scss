@@ -1,6 +1,6 @@
 .heading {
-  font-size: 2.5em;
-  font-weight: 900;
+  font: var(--lu-type-display);
+  letter-spacing: var(--lu-type-display-tracking);
 }
 
 .carouselContainer {
@@ -21,28 +21,12 @@
 
   &::before {
     left: 0;
-    background: linear-gradient(to right, #fff 0%, transparent 100%);
-
-    [data-theme='dark'] & {
-      background: linear-gradient(
-        to right,
-        var(--ifm-background-color) 0%,
-        transparent 100%
-      );
-    }
+    background: linear-gradient(to right, var(--lu-surface) 0%, transparent);
   }
 
   &::after {
     right: 0;
-    background: linear-gradient(to left, #fff 0%, transparent 100%);
-
-    [data-theme='dark'] & {
-      background: linear-gradient(
-        to left,
-        var(--ifm-background-color) 0%,
-        transparent 100%
-      );
-    }
+    background: linear-gradient(to left, var(--lu-surface) 0%, transparent);
   }
 }
 

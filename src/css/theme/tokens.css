@@ -1,0 +1,73 @@
+/* Site tokens: values the docs need that Lucent doesn't name.
+   The accent stays Lucent's own Electron cyan, so nothing here recolours it. */
+
+:root {
+  /* Code blocks sit in the sheet, so they take the sunken surface. */
+  --lu-code-sheet: var(--lu-surface-sunken);
+  /* Docs type: Lucent's scale, with body and code one step up from Fiddle's
+     13px desktop UI because docs are read at length. Same weights and tracking. */
+  --lu-docs-font-size: 15px;
+  --lu-docs-line-height: 24px;
+  --lu-type-docs-body: 400 var(--lu-docs-font-size) / var(--lu-docs-line-height)
+    var(--lu-font-sans);
+  --lu-type-docs-h2: 650 22px/28px var(--lu-font-sans);
+  --lu-type-docs-h3: 600 17px/24px var(--lu-font-sans);
+  --lu-type-docs-h4: 600 15px/20px var(--lu-font-sans);
+  --lu-ring-focus: 0 0 0 3.5px
+    color-mix(in srgb, var(--lu-accent) 26%, transparent);
+  /* Info notes are the accent. */
+  --lu-info: var(--lu-accent);
+  --lu-info-soft: var(--lu-accent-soft);
+  /* Pressed primary: a touch deeper than the navy action. */
+  --lu-action-pressed: #0f1018;
+}
+
+[data-theme='dark'] {
+  --lu-code-sheet: var(--lu-window);
+  --lu-action-pressed: #7fdcef;
+}
+
+/* Light from the Lucent direction (felixrieseberg/fiddle-design, #dir=electron),
+   which Fiddle's tokens don't carry: the aura behind the glass and the lit rim
+   on glass edges. Cyan and blue, from the assist ring. */
+:root {
+  --lu-aura-a: rgba(0, 163, 191, 0.16);
+  --lu-aura-b: rgba(111, 214, 234, 0.3);
+  --lu-aura-c: rgba(31, 124, 255, 0.08);
+  --lu-sheen-glass: rgba(255, 255, 255, 0.34);
+  /* The primary button's sheen: a faint white curve over the navy action. */
+  --lu-sheen-action: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.14),
+    rgba(255, 255, 255, 0) 55%,
+    rgba(0, 0, 0, 0.12)
+  );
+  --lu-sheen-action-hover: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.04) 55%,
+    rgba(0, 0, 0, 0.08)
+  );
+}
+
+[data-theme='dark'] {
+  --lu-aura-a: rgba(0, 163, 191, 0.16);
+  --lu-aura-b: rgba(71, 168, 255, 0.1);
+  --lu-aura-c: rgba(27, 28, 38, 0.5);
+  --lu-sheen-glass: rgba(255, 255, 255, 0.05);
+  /* Dark mode's action is bright cyan, which a faint white sheen vanishes
+     into. A brighter top and a deep shade at the bottom give it the same
+     curve. */
+  --lu-sheen-action: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.42),
+    rgba(255, 255, 255, 0) 50%,
+    rgba(8, 40, 52, 0.16)
+  );
+  --lu-sheen-action-hover: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.52),
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(8, 40, 52, 0.12)
+  );
+}

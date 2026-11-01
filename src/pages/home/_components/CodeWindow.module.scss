@@ -3,7 +3,10 @@
   color: var(--electron-color-light);
   padding: 3rem 2rem 2rem;
   margin-bottom: 0;
-  box-shadow: var(--ifm-global-shadow-tl);
+  border-radius: var(--lu-radius-panel);
+  box-shadow:
+    var(--lu-shadow-island),
+    inset 0 1px 0 rgba(159, 234, 249, 0.12);
 }
 
 .buttons {

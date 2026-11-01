@@ -6,7 +6,6 @@ import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 import npm2yarn from '@docusaurus/remark-plugin-npm2yarn';
 import * as dotenv from 'dotenv';
-import { themes as prismThemes } from 'prism-react-renderer';
 import remarkGithubAdmonitionsToDirectives, {
   DEFAULT_MAPPING,
 } from 'remark-github-admonitions-to-directives';
@@ -18,6 +17,7 @@ import jsCodeBlocks from './src/transformers/js-code-blocks.ts';
 import fiddleEmbedder from './src/transformers/fiddle-embedder.ts';
 import githubContentsLinks from './src/transformers/github-content-links.ts';
 import apiHistory from './src/transformers/api-history.ts';
+import lucentPrism from './src/prism/lucent.ts';
 
 // Picks up a local GITHUB_TOKEN so API history tables resolve versions in local
 // dev. Existing environment variables win, which keeps CI behavior unchanged.
@@ -94,8 +94,9 @@ const config: Config = {
       respectPrefersColorScheme: true,
     },
     prism: {
-      theme: prismThemes.github,
-      darkTheme: prismThemes.dracula,
+      // One theme for both modes: its colours are Lucent CSS variables.
+      theme: lucentPrism,
+      darkTheme: lucentPrism,
       additionalLanguages: ['diff', 'json', 'json5'],
     },
     tableOfContents: {
@@ -104,7 +105,6 @@ const config: Config = {
     },
     navbar: {
       title: 'Electron',
-      style: 'dark',
       logo: {
         alt: 'Electron homepage',
         src: 'assets/img/logo.svg',
@@ -335,7 +335,10 @@ const config: Config = {
           onUntruncatedBlogPosts: 'ignore',
         },
         theme: {
-          customCss: [require.resolve('./src/css/custom.scss')],
+          customCss: [
+            require.resolve('./src/css/lucent.css'),
+            require.resolve('./src/css/custom.scss'),
+          ],
         },
         gtag: {
           trackingID: 'UA-160365006-1',
