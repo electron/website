@@ -74,6 +74,18 @@
   color: var(--lu-ink-muted);
 }
 
+/* Code in headings shows in the TOC as plain text: a mono pill per line
+   is hard to scan, and long event names break mid-word. */
+.table-of-contents code {
+  padding: 0;
+  border: none;
+  background: none;
+  color: inherit;
+  font: inherit;
+  word-break: normal;
+  overflow-wrap: anywhere;
+}
+
 .table-of-contents li {
   margin: 6px var(--ifm-toc-padding-vertical);
 }
