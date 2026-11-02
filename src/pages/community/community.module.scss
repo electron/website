@@ -1,0 +1,174 @@
+// Community, in Lucent: a short hero on the window ground, then one sheet
+// of resource panels and language community links.
+
+.hero {
+  // Lines up with the sheet's content: 16px sheet margin + 40px padding.
+  max-width: calc(1080px + 112px);
+  margin: 0 auto;
+  padding: 72px 56px 48px;
+
+  @media (max-width: 996px) {
+    padding: 48px var(--lu-space-4) 32px;
+  }
+}
+
+.title {
+  margin: 0 0 var(--lu-space-3);
+  font: 650 52px/58px var(--lu-font-sans);
+  letter-spacing: var(--lu-type-display-tracking);
+
+  @media (max-width: 600px) {
+    font-size: 36px;
+    line-height: 42px;
+  }
+}
+
+.lead {
+  max-width: 34rem;
+  margin: 0;
+  font-size: 17px;
+  line-height: 27px;
+  color: var(--lu-ink-muted);
+}
+
+:global(.main-wrapper) main.sheet {
+  margin: 0 var(--lu-space-4) var(--lu-space-4);
+  padding: 40px 40px 56px;
+
+  @media (max-width: 996px) {
+    margin: 0;
+    padding: var(--lu-space-6) var(--lu-space-4) var(--lu-space-8);
+  }
+}
+
+.section {
+  max-width: 1080px;
+  margin: 0 auto;
+
+  & + & {
+    margin-top: 56px;
+  }
+}
+
+.sectionTitle {
+  margin: 0 0 var(--lu-space-4);
+  font: var(--lu-type-title);
+  letter-spacing: var(--lu-type-title-tracking);
+}
+
+.sectionLead {
+  max-width: 42rem;
+  margin: calc(-1 * var(--lu-space-2)) 0 var(--lu-space-4);
+  color: var(--lu-ink-muted);
+  text-wrap: pretty;
+}
+
+// ---------- Resources: panels with an icon tile ----------
+
+.resources {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--lu-space-3);
+}
+
+.resource,
+.resourceContact {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--lu-space-3);
+  padding: var(--lu-space-4);
+  border-radius: var(--lu-radius-panel);
+  background: var(--lu-surface-sunken);
+  box-shadow: inset 0 0 0 var(--lu-size-hairline) var(--lu-line);
+
+  h3 {
+    margin: 2px 0 4px;
+    font: var(--lu-type-headline);
+    letter-spacing: var(--lu-type-headline-tracking);
+  }
+
+  p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 21px;
+    color: var(--lu-ink-muted);
+    text-wrap: pretty;
+  }
+}
+
+// The catch-all is quieter: no panel, just the row.
+.resourceContact {
+  background: transparent;
+  box-shadow: inset 0 0 0 var(--lu-size-hairline) var(--lu-line);
+}
+
+.resourceIcon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--lu-surface-raised);
+  box-shadow:
+    var(--lu-shadow-lift),
+    inset 0 var(--lu-size-hairline) 0 var(--lu-rim-soft);
+  color: var(--lu-accent);
+}
+
+// ---------- Language communities: link tiles ----------
+
+.languages {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--lu-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.language {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 12px 14px;
+  border-radius: var(--lu-radius-control);
+  background: var(--lu-button);
+  box-shadow: var(--lu-shadow-button);
+  color: var(--lu-ink);
+  transition:
+    background-color var(--lu-dur-fast) var(--lu-ease),
+    transform var(--lu-dur-base) var(--lu-ease);
+
+  &:hover {
+    background: var(--lu-button-hover);
+    color: var(--lu-ink);
+    text-decoration: none;
+    transform: translateY(-1px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &:hover {
+      transform: none;
+    }
+  }
+}
+
+.languageName {
+  font: var(--lu-type-headline);
+  letter-spacing: var(--lu-type-headline-tracking);
+}
+
+.languageHandle {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font: var(--lu-type-label);
+  font-family: var(--lu-font-mono);
+  font-weight: 400;
+  color: var(--lu-ink-muted);
+
+  svg {
+    color: var(--lu-accent);
+  }
+}

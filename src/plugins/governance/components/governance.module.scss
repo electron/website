@@ -1,124 +1,237 @@
-@mixin description-text {
-  color: var(--ifm-color-emphasis-700);
-  letter-spacing: 0.01em;
-}
+// Governance, in Lucent: a short hero on the window ground, then one sheet
+// with a panel per working group.
 
-@mixin dark-mode-invert {
-  [data-theme='dark'] & {
-    filter: invert(1);
+.hero {
+  // Lines up with the sheet's content: 16px sheet margin + 40px padding.
+  max-width: calc(1160px + 112px);
+  margin: 0 auto;
+  padding: 72px 56px 48px;
+
+  @media (max-width: 996px) {
+    padding: 48px var(--lu-space-4) 32px;
   }
 }
 
-.header {
-  margin: 0 auto;
+.title {
+  margin: 0 0 var(--lu-space-3);
+  font: 650 52px/58px var(--lu-font-sans);
+  letter-spacing: var(--lu-type-display-tracking);
+
+  @media (max-width: 600px) {
+    font-size: 36px;
+    line-height: 42px;
+  }
+}
+
+.lead {
   max-width: 40rem;
-  text-align: center;
+  margin: 0;
+  font-size: 17px;
+  line-height: 27px;
+  color: var(--lu-ink-muted);
+  text-wrap: pretty;
+}
 
-  p {
-    @include description-text;
+:global(.main-wrapper) main.sheet {
+  margin: 0 var(--lu-space-4) var(--lu-space-4);
+  padding: 40px 40px 56px;
+
+  @media (max-width: 996px) {
+    margin: 0;
+    padding: var(--lu-space-6) var(--lu-space-4) var(--lu-space-8);
   }
 }
 
-.cardWrapper {
-  margin: 1rem 0;
-}
-
-.card {
-  max-width: 30rem;
-  padding: 1rem;
+.groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  align-items: start;
+  gap: var(--lu-space-4);
+  max-width: 1160px;
   margin: 0 auto;
-  height: 100%;
-}
 
-.cardTitle {
-  font-size: 1.2rem;
-  font-weight: 500;
-  margin-bottom: 0.2em;
-}
-
-.cardSubtitle {
-  font-size: 1em;
-  font-weight: 500;
-  margin-bottom: 0.1rem;
-}
-
-.cardLink {
-  display: inline-block;
-  vertical-align: middle;
-  opacity: 1;
-  &:hover {
-    opacity: 0.5;
-  }
-  img {
-    height: 1em;
-    margin-left: 0.2em;
-    @include dark-mode-invert;
+  @media (max-width: 400px) {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
-.cardIcon {
-  text-align: center;
-  color: var(--ifm-color-white);
-  line-height: var(--ifm-avatar-photo-size-sm);
-  // one-off colors
-  background: linear-gradient(to top, #dd5e89, #f7bb97);
+// ---------- A working group ----------
+
+.group {
+  display: flex;
+  flex-direction: column;
+  padding: var(--lu-space-4);
+  border-radius: var(--lu-radius-panel);
+  background: var(--lu-surface-sunken);
+  box-shadow: inset 0 0 0 var(--lu-size-hairline) var(--lu-line);
 }
 
-.cardDescription {
-  display: block;
-  font-size: 0.9em;
-  min-height: 2em;
-  @include description-text;
+.groupHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--lu-space-3);
+  // Room for two lines of description, so the member lists line up.
+  min-height: 88px;
+  margin-bottom: var(--lu-space-3);
 }
 
-.cardList {
-  $num-items: 4;
-  $height-item: 50px;
-  $height-very-very-big: 9999px;
+.groupIcon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--lu-surface-raised);
+  box-shadow:
+    var(--lu-shadow-lift),
+    inset 0 var(--lu-size-hairline) 0 var(--lu-rim-soft);
+  color: var(--lu-accent);
+}
 
-  position: relative;
-  min-height: $height-item * $num-items;
-  max-height: $height-item * $num-items;
-  overflow: hidden;
-  transition: max-height 0.2s cubic-bezier(0, 1, 0, 1);
+.groupHeading {
+  min-width: 0;
 
-  // apply gradient to fold as pseudo-element
-  &.unexpanded {
-    &::after {
-      position: absolute;
-      content: '';
-      top: 0;
-      pointer-events: none;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(
-        to top,
-        var(--ifm-card-background-color) 0%,
-        rgba(255, 255, 255, 0) 50%
-      );
+  h2 {
+    margin: 2px 0 4px;
+    font: var(--lu-type-docs-h3);
+    letter-spacing: -0.01em;
+  }
+
+  h2 a {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--lu-ink);
+
+    svg {
+      color: var(--lu-ink-faint);
+      transition: color var(--lu-dur-fast) var(--lu-ease);
+    }
+
+    &:hover {
+      text-decoration: none;
+
+      svg {
+        color: var(--lu-accent);
+      }
     }
   }
 
-  &.expanded {
-    max-height: $height-very-very-big;
-    transition: max-height 0.5s ease-in-out;
+  p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 21px;
+    color: var(--lu-ink-muted);
+    text-wrap: pretty;
   }
+}
+
+// ---------- Members ----------
+
+.membersLabel {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: var(--lu-space-2);
+  font: var(--lu-type-caption);
+  letter-spacing: var(--lu-type-caption-tracking);
+  color: var(--lu-ink-faint);
+}
+
+.memberCount {
+  padding: 0 6px;
+  border-radius: var(--lu-radius-capsule);
+  background: var(--lu-fill);
+  color: var(--lu-ink-muted);
+  font-weight: 500;
+}
+
+.members {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2px var(--lu-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.members li:has(.chair) {
+  // The chair's row takes the full width, so the name and badge fit.
+  grid-column: 1 / -1;
+}
+
+.member {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  padding: 4px 6px;
+  margin-inline: -6px;
+  border-radius: var(--lu-radius-item);
+  color: var(--lu-ink);
+  transition: background-color var(--lu-dur-fast) var(--lu-ease);
+
+  &:hover {
+    background: var(--lu-hover);
+    color: var(--lu-ink);
+    text-decoration: none;
+  }
+}
+
+.avatar {
+  flex: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--lu-fill);
+  box-shadow: 0 0 0 var(--lu-size-hairline) var(--lu-line);
 }
 
 .memberName {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font: var(--lu-type-label);
   font-weight: 400;
-  font-size: 0.8em;
 }
 
-.buttonSubtle {
+.chair {
+  flex: none;
+  padding: 1px 6px;
+  border-radius: var(--lu-radius-capsule);
+  background: var(--lu-accent-soft);
+  color: var(--lu-accent);
+  font: var(--lu-type-caption);
+  letter-spacing: var(--lu-type-caption-tracking);
+}
+
+.expand {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 4px;
+  margin-top: var(--lu-space-3);
+  padding: 4px 10px;
+  margin-left: -10px;
   border: none;
-  font-size: 1.2em;
-  color: var(--ifm-color-primary);
+  border-radius: var(--lu-radius-capsule);
+  background: transparent;
+  color: var(--lu-accent);
+  font: var(--lu-type-label);
+  cursor: pointer;
+  transition: background-color var(--lu-dur-fast) var(--lu-ease);
+
   &:hover {
-    color: var(--ifm-color-primary-dark);
+    background: var(--lu-accent-soft);
+  }
+
+  svg {
+    transition: transform var(--lu-dur-base) var(--lu-ease);
   }
 }
 
-.hidden {
-  visibility: hidden;
+.expandOpen {
+  transform: rotate(180deg);
 }
