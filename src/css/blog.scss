@@ -10,6 +10,35 @@
   max-width: none;
 }
 
+// The post column fills the row: Docusaurus leaves a fifth of it empty on
+// list pages (where posts have no table of contents) and gives the table of
+// contents a share that grows with the window. The sidebar and table of
+// contents get fixed widths instead.
+@media (min-width: 997px) {
+  .blog-wrapper .main-wrapper > .container > .row > main {
+    flex: 1 1 0;
+    max-width: none;
+  }
+
+  .blog-wrapper .main-wrapper > .container > .row > aside.col--3 {
+    flex: 0 0 260px;
+    max-width: 260px;
+  }
+
+  .blog-wrapper .main-wrapper > .container > .row > .col--2 {
+    flex: 0 0 220px;
+    max-width: 220px;
+  }
+}
+
+// Between tablet and laptop widths a post's table of contents would squeeze
+// the text, so it waits for more room.
+@media (min-width: 997px) and (max-width: 1279px) {
+  .blog-wrapper .main-wrapper > .container > .row > .col--2 {
+    display: none;
+  }
+}
+
 // ---------- Sidebar ----------
 
 .plugin-blog [class*='sidebar_'] {

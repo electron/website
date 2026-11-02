@@ -25,8 +25,16 @@ function cleanHeading(str: string) {
   if (eventsMatch) {
     return `<code>'${eventsMatch[1]}'</code>`;
   } else if (propsMethodsMatch) {
-    return `<code>${propsMethodsMatch[1]}</code>`;
+    return `<code>${breakCamelCase(propsMethodsMatch[1])}</code>`;
   }
 
   return str;
+}
+
+/**
+ * Lets long camelCase names wrap between words in the narrow table of
+ * contents (`disableDomain<wbr>BlockingFor3DAPIs`), not mid-word.
+ */
+function breakCamelCase(name: string) {
+  return name.replace(/([a-z])([A-Z0-9])/g, '$1<wbr>$2');
 }

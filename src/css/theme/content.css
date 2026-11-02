@@ -74,6 +74,20 @@
   color: var(--lu-ink-muted);
 }
 
+/* The table of contents gets a fixed column wide enough for long API
+   names; the text column takes the rest (it is capped at 720px anyway). */
+@media (min-width: 997px) {
+  .row:has(> [class*='docItemCol_']) > .col--3 {
+    flex: 0 0 280px;
+    max-width: 280px;
+  }
+
+  .row > [class*='docItemCol_'] {
+    max-width: none !important;
+    min-width: 0;
+  }
+}
+
 /* Code in headings shows in the TOC as plain text: a mono pill per line
    is hard to scan, and long event names break mid-word. */
 .table-of-contents code {
