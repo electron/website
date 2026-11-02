@@ -19,8 +19,10 @@
   --api-history-deprecated: var(--lu-spark-soft);
 }
 
+// Wide screens keep the narrower container, except the blog, which uses
+// Docusaurus's default (wider) one.
 @media (min-width: 1440px) {
-  .container {
+  html:not(.plugin-blog) .container {
     max-width: var(--ifm-container-width);
   }
 }

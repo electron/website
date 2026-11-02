@@ -2,6 +2,14 @@
 // is one sheet. The sidebar reads like the docs menu: quiet rows, the open
 // post in the accent.
 
+// custom.scss leaves the blog's container at Docusaurus's default width,
+// and the docs' 720px measure doesn't apply to posts. Keep this file ASCII:
+// a non-ASCII character makes Sass emit a byte-order mark, which breaks the
+// first rule once the files are concatenated.
+.plugin-blog .markdown {
+  max-width: none;
+}
+
 // ---------- Sidebar ----------
 
 .plugin-blog [class*='sidebar_'] {
@@ -250,5 +258,215 @@
 @media (max-width: 996px) {
   .blog-post-page .main-wrapper main {
     padding-block: var(--lu-space-6) var(--lu-space-8);
+  }
+}
+
+// ---------- A tag's posts ----------
+
+// The header sits on the window ground above the stack of sheets, lined up
+// with the sheets' text.
+.blog-tags-post-list-page main > header {
+  margin: var(--lu-space-6) 0 var(--lu-space-2) !important;
+  padding: 0 44px;
+
+  h1 {
+    margin-bottom: var(--lu-space-2);
+    font: 650 32px/38px var(--lu-font-sans);
+    letter-spacing: var(--lu-type-display-tracking);
+  }
+
+  p {
+    margin-bottom: var(--lu-space-4);
+    font-size: 15px;
+    line-height: 24px;
+    color: var(--lu-ink-muted);
+  }
+
+  // "View all tags": a small capsule rather than a bare link.
+  a {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 12px;
+    border-radius: var(--lu-radius-capsule);
+    background: var(--lu-fill);
+    color: var(--lu-ink-muted);
+    font: var(--lu-type-label);
+    font-weight: 500;
+    font-size: 13px;
+    transition:
+      background-color var(--lu-dur-fast) var(--lu-ease),
+      color var(--lu-dur-fast) var(--lu-ease);
+
+    &::before {
+      content: '\2190';
+      margin-right: 6px;
+    }
+
+    &:hover {
+      background: var(--lu-accent-soft);
+      color: var(--lu-accent);
+      text-decoration: none;
+    }
+  }
+
+  @media (max-width: 996px) {
+    padding: 0 var(--lu-space-4);
+  }
+}
+
+// ---------- All tags ----------
+
+@media (min-width: 997px) {
+  .blog-tags-list-page .main-wrapper main {
+    padding: 48px 56px 56px;
+  }
+}
+
+@media (max-width: 996px) {
+  .blog-tags-list-page .main-wrapper main {
+    padding-block: var(--lu-space-6) var(--lu-space-8);
+  }
+}
+
+.blog-tags-list-page main {
+  h1 {
+    margin-bottom: var(--lu-space-2);
+    font: 650 44px/50px var(--lu-font-sans);
+    letter-spacing: var(--lu-type-display-tracking);
+  }
+
+  section {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: var(--lu-space-6) var(--lu-space-4);
+    margin-bottom: 0 !important;
+  }
+
+  hr {
+    display: none;
+  }
+
+  // Each letter: a caption over its tags.
+  article h2 {
+    margin-bottom: var(--lu-space-2);
+    font: var(--lu-type-caption);
+    letter-spacing: var(--lu-type-caption-tracking);
+    color: var(--lu-ink-faint);
+  }
+
+  article ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--lu-space-2);
+    margin: 0;
+  }
+
+  article li {
+    margin: 0 !important;
+  }
+}
+
+// A tag with its post count: a capsule, the count in a small inset badge.
+.plugin-blog a[class*='tagWithCount_'] {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 4px 6px 4px 12px;
+  border: none;
+
+  &::before,
+  &::after {
+    display: none;
+  }
+
+  span {
+    margin: 0;
+    padding: 0 7px;
+    border-radius: var(--lu-radius-capsule);
+    background: var(--lu-surface);
+    color: var(--lu-ink-faint);
+    font: 500 12px/18px var(--lu-font-sans);
+    font-variant-numeric: tabular-nums;
+  }
+
+  &:hover span {
+    color: var(--lu-accent);
+  }
+}
+
+// ---------- Archive ----------
+
+// The archive's banner becomes a plain hero on the window ground, like the
+// other pages'. Its subtitle only repeats "Archive".
+.plugin-blog .hero.hero--primary {
+  padding: 72px 0 40px;
+  background: none;
+  color: var(--lu-ink);
+
+  // Lines up with the year columns below: container padding plus the
+  // columns' own gutter.
+  .container {
+    padding-inline: var(--ifm-spacing-horizontal);
+  }
+
+  .hero__title {
+    margin: 0;
+    font: 650 52px/58px var(--lu-font-sans);
+    letter-spacing: var(--lu-type-display-tracking);
+  }
+
+  .hero__subtitle {
+    display: none;
+  }
+
+  @media (max-width: 996px) {
+    padding: 48px 0 24px;
+
+    .hero__title {
+      font-size: 36px;
+      line-height: 42px;
+    }
+  }
+}
+
+.plugin-blog .hero.hero--primary + main > section {
+  margin: 0 !important;
+  padding-block: var(--lu-space-6);
+
+  .row > [class*='col'] {
+    margin-block: var(--lu-space-4) !important;
+  }
+
+  h3 {
+    margin-bottom: var(--lu-space-2);
+    font: 650 20px/26px var(--lu-font-sans);
+    letter-spacing: -0.01em;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    margin: 0;
+  }
+
+  li a {
+    display: block;
+    margin-inline: -8px;
+    padding: 4px 8px;
+    border-radius: var(--lu-radius-item);
+    color: var(--lu-ink-muted);
+    font-size: 14px;
+    line-height: 20px;
+
+    &:hover {
+      background: var(--lu-hover);
+      color: var(--lu-ink);
+      text-decoration: none;
+    }
   }
 }

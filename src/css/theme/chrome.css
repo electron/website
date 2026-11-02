@@ -181,7 +181,9 @@ body,
   border-radius: var(--lu-radius-item);
 }
 
-/* Top-level groups: Lucent's caption style, sentence case, never shouted. */
+/* Top-level groups: section labels, sentence case, never shouted. Lucent's
+   caption size is too small for labels this long, so they use the label
+   size at a heavier weight. */
 .theme-doc-sidebar-item-category-level-1 {
   margin-top: var(--lu-space-4) !important;
 }
@@ -189,9 +191,9 @@ body,
 .theme-doc-sidebar-item-category-level-1
   > .menu__list-item-collapsible
   > .menu__link {
-  font: var(--lu-type-caption);
-  letter-spacing: var(--lu-type-caption-tracking);
-  color: var(--lu-ink-faint);
+  font: 600 14px/20px var(--lu-font-sans);
+  letter-spacing: 0;
+  color: var(--lu-ink-muted);
 }
 
 /* The page: one solid sheet, inset from the chrome, lifted by shadow rather than a border. */
