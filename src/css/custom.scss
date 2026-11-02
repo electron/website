@@ -17,20 +17,6 @@
     var(--lu-surface)
   );
   --api-history-deprecated: var(--lu-spark-soft);
-
-  // Infima shadow levels, still used by app cards
-  --shadow-elevation-low: var(--lu-shadow-lift);
-  --shadow-elevation-medium: var(--lu-shadow-popover);
-  --shadow-elevation-high: var(--lu-shadow-popover);
-}
-
-// The Showcase page's main is the sheet; keep its spacing inside the sheet
-// rather than above it.
-@media (min-width: 997px) {
-  .main-wrapper > main.margin-vert--xl {
-    margin-top: var(--lu-space-4) !important;
-    padding-block: 48px;
-  }
 }
 
 @media (min-width: 1440px) {

@@ -138,7 +138,6 @@ const config: Config = {
           position: 'left',
           items: [
             { to: 'governance', label: 'Governance' },
-            { to: 'apps', label: 'Showcase' },
             { to: 'community', label: 'Resources' },
           ],
         },
@@ -268,7 +267,6 @@ const config: Config = {
   } satisfies Preset.ThemeConfig,
   plugins: [
     'docusaurus-plugin-sass',
-    path.resolve(__dirname, './src/plugins/apps/index.ts'),
     path.resolve(__dirname, './src/plugins/releases/index.ts'),
     path.resolve(__dirname, './src/plugins/fiddle/index.ts'),
     path.resolve(__dirname, './src/plugins/governance/index.ts'),

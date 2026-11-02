@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from '@docusaurus/Link';
 import { useColorMode } from '@docusaurus/theme-common';
 import clsx from 'clsx';
 import styles from './AppsGrid.module.scss';
@@ -40,9 +39,6 @@ export default function AppsGrid({ list }: AppsGridProps) {
           </li>
         ))}
       </ul>
-      <Link to="/apps" className="button button--secondary">
-        See more
-      </Link>
     </div>
   );
 }
