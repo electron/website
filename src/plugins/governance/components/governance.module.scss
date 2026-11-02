@@ -45,7 +45,6 @@
 .groups {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  align-items: start;
   gap: var(--lu-space-4);
   max-width: 1160px;
   margin: 0 auto;
@@ -57,21 +56,27 @@
 
 // ---------- A working group ----------
 
+// Each card spans four rows of the page grid and shares them with its
+// neighbours (subgrid), so headers, member lists and footers line up across
+// a row of cards and every card in a row is the same height.
 .group {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-row: span 4;
+  grid-template-rows: subgrid;
+  row-gap: 0;
   padding: var(--lu-space-4);
   border-radius: var(--lu-radius-panel);
   background: var(--lu-surface-sunken);
   box-shadow: inset 0 0 0 var(--lu-size-hairline) var(--lu-line);
 }
 
+// The icon and name share the top line; the description runs the full
+// width of the card below them, so even the longest fits in four lines.
 .groupHeader {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--lu-space-3);
-  // Room for two lines of description, so the member lists line up.
-  min-height: 88px;
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr);
+  align-items: center;
+  column-gap: var(--lu-space-3);
   margin-bottom: var(--lu-space-3);
 }
 
@@ -90,10 +95,11 @@
 }
 
 .groupHeading {
-  min-width: 0;
+  display: contents;
 
   h2 {
-    margin: 2px 0 4px;
+    min-width: 0;
+    margin: 0;
     font: var(--lu-type-docs-h3);
     letter-spacing: -0.01em;
   }
@@ -119,7 +125,16 @@
   }
 
   p {
-    margin: 0;
+    grid-column: 1 / -1;
+    margin: var(--lu-space-3) 0 0;
+    // Room for the longest description (four lines), so rows of cards
+    // match each other too, not only the cards within a row.
+    min-height: calc(4 * 21px);
+
+    // Narrow cards need a fifth line.
+    @media (max-width: 800px) {
+      min-height: calc(5 * 21px);
+    }
     font-size: 14px;
     line-height: 21px;
     color: var(--lu-ink-muted);
@@ -150,6 +165,10 @@
 .members {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  // Three rows of members, folded or not (36px each, 2px apart).
+  grid-auto-rows: 36px;
+  align-content: start;
+  min-height: calc(3 * 36px + 2 * 2px);
   gap: 2px var(--lu-space-2);
   margin: 0;
   padding: 0;
@@ -207,12 +226,15 @@
   letter-spacing: var(--lu-type-caption-tracking);
 }
 
+.groupFooter {
+  min-height: calc(28px + var(--lu-space-3));
+  padding-top: var(--lu-space-3);
+}
+
 .expand {
   display: inline-flex;
   align-items: center;
-  align-self: flex-start;
   gap: 4px;
-  margin-top: var(--lu-space-3);
   padding: 4px 10px;
   margin-left: -10px;
   border: none;

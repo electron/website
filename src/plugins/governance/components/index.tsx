@@ -39,8 +39,9 @@ function iconFor(name: string): LucideIcon {
   return GROUP_ICONS.find(([match]) => key.startsWith(match))?.[1] ?? Users;
 }
 
-// Members shown before the list folds.
-const VISIBLE_MEMBERS = 6;
+// Every card shows the same three rows of members before the list folds, so
+// the cards line up. A row holds two members, or the chair alone.
+const VISIBLE_SLOTS = 6;
 
 export default function GovernancePage({
   governance,
@@ -80,9 +81,10 @@ const GroupCard = ({ group }: { group: WorkingGroup }) => {
     ...(group.chair ? [{ user: group.chair, isChair: true }] : []),
     ...group.members.map((user) => ({ user, isChair: false })),
   ];
-  const hasExpand = people.length > VISIBLE_MEMBERS;
+  const visibleCount = group.chair ? VISIBLE_SLOTS - 1 : VISIBLE_SLOTS;
+  const hasExpand = people.length > visibleCount;
   const [expanded, setExpanded] = useState(false);
-  const shown = expanded ? people : people.slice(0, VISIBLE_MEMBERS);
+  const shown = expanded ? people : people.slice(0, visibleCount);
 
   return (
     <article className={styles.group}>
@@ -119,35 +121,39 @@ const GroupCard = ({ group }: { group: WorkingGroup }) => {
         ))}
       </ul>
 
-      {hasExpand && (
-        <button
-          type="button"
-          className={styles.expand}
-          aria-expanded={expanded}
-          onClick={() => setExpanded(!expanded)}
-        >
-          {expanded ? (
-            <Translate
-              id="governance.less"
-              description="Label used to collapse the list of members of a working group"
-            >
-              See less
-            </Translate>
-          ) : (
-            <Translate
-              id="governance.more"
-              description="Label used to expand the list of members of a working group"
-            >
-              See more
-            </Translate>
-          )}
-          <ChevronDown
-            size={14}
-            aria-hidden="true"
-            className={clsx(expanded && styles.expandOpen)}
-          />
-        </button>
-      )}
+      {/* The footer row is always there, empty when the list doesn't fold,
+          so every card ends at the same line. */}
+      <div className={styles.groupFooter}>
+        {hasExpand && (
+          <button
+            type="button"
+            className={styles.expand}
+            aria-expanded={expanded}
+            onClick={() => setExpanded(!expanded)}
+          >
+            {expanded ? (
+              <Translate
+                id="governance.less"
+                description="Label used to collapse the list of members of a working group"
+              >
+                See less
+              </Translate>
+            ) : (
+              <Translate
+                id="governance.more"
+                description="Label used to expand the list of members of a working group"
+              >
+                See more
+              </Translate>
+            )}
+            <ChevronDown
+              size={14}
+              aria-hidden="true"
+              className={clsx(expanded && styles.expandOpen)}
+            />
+          </button>
+        )}
+      </div>
     </article>
   );
 };
