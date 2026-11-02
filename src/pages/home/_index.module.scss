@@ -239,3 +239,43 @@
 summary {
   font-weight: 600;
 }
+
+// A little heart over "Apps users love", beating now and then.
+@keyframes heartbeat {
+  0%,
+  70%,
+  100% {
+    transform: scale(1);
+  }
+  76% {
+    transform: scale(1.18);
+  }
+  82% {
+    transform: scale(0.96);
+  }
+  88% {
+    transform: scale(1.1);
+  }
+}
+
+.loveBadge {
+  display: inline-grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  margin-bottom: var(--lu-space-3);
+  border-radius: 50%;
+  background: var(--lu-spark-soft);
+  color: var(--lu-spark);
+  box-shadow: var(--lu-shadow-lift);
+
+  svg {
+    animation: heartbeat 2.4s var(--lu-ease) infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    svg {
+      animation: none;
+    }
+  }
+}

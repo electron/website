@@ -24,14 +24,17 @@ export default function AppsGrid({ list }: AppsGridProps) {
         {list.map((item) => (
           <li key={item.image}>
             <a href={item.href} className={styles.appCard}>
-              <img
-                className={clsx(
-                  styles.appLogo,
-                  isDarkTheme && item.isMonochrome && styles.darkModeInvert,
-                )}
-                src={item.image}
-                alt=""
-              />
+              <span className={styles.appIcon}>
+                <img
+                  className={clsx(
+                    styles.appLogo,
+                    isDarkTheme && item.isMonochrome && styles.darkModeInvert,
+                  )}
+                  src={item.image}
+                  alt=""
+                  loading="lazy"
+                />
+              </span>
               <span className={styles.appName}>{item.name}</span>
             </a>
           </li>

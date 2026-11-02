@@ -1,64 +1,158 @@
-// Apps built with Electron: link tiles, each a logo and a name.
+// Apps built with Electron, laid out like a launcher: each app is a squircle
+// icon on a raised tile with its name underneath. Tiles lean a little,
+// alternately left and right, and spring up on hover.
+
+$spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 
 .apps {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--lu-space-6);
+  gap: var(--lu-space-8);
 }
 
 .appsContainer {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(176px, 1fr));
-  gap: var(--lu-space-2);
+  // Flex rather than grid, so a short last row sits in the middle.
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--lu-space-6) var(--lu-space-3);
   width: 100%;
   margin: 0;
-  padding: 0;
+  padding: var(--lu-space-8) var(--lu-space-6);
+  border-radius: var(--lu-radius-panel);
   list-style: none;
-}
+  background:
+    radial-gradient(
+      420px 220px at 15% 0%,
+      color-mix(in srgb, var(--lu-accent) 12%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      420px 220px at 85% 100%,
+      color-mix(in srgb, var(--lu-spark, var(--lu-accent)) 10%, transparent),
+      transparent 70%
+    ),
+    var(--lu-surface-sunken);
+  box-shadow: inset 0 0 0 var(--lu-size-hairline) var(--lu-line);
 
-.appCard {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 12px;
-  border-radius: var(--lu-radius-control);
-  background: var(--lu-button);
-  box-shadow: var(--lu-shadow-button);
-  color: var(--lu-ink);
-  transition:
-    background-color var(--lu-dur-fast) var(--lu-ease),
-    transform var(--lu-dur-base) var(--lu-ease);
-
-  &:hover {
-    background: var(--lu-button-hover);
-    color: var(--lu-ink);
-    text-decoration: none;
-    transform: translateY(-1px);
+  > li {
+    width: 112px;
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    &:hover {
-      transform: none;
+  @media (max-width: 600px) {
+    padding: var(--lu-space-6) var(--lu-space-3);
+
+    gap: var(--lu-space-4) var(--lu-space-3);
+
+    > li {
+      width: 72px;
     }
   }
 }
 
+.appCard {
+  --tilt: -3deg;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--lu-space-2);
+  color: var(--lu-ink-muted);
+  text-decoration: none;
+
+  li:nth-child(even) & {
+    --tilt: 3deg;
+  }
+
+  li:nth-child(3n) & {
+    --tilt: -2deg;
+  }
+
+  &:hover,
+  &:focus-visible {
+    color: var(--lu-ink);
+    text-decoration: none;
+
+    .appIcon {
+      transform: translateY(-6px) rotate(var(--tilt)) scale(1.08);
+      box-shadow:
+        var(--lu-shadow-island),
+        0 14px 24px -12px color-mix(in srgb, var(--lu-accent) 45%, transparent),
+        inset 0 var(--lu-size-hairline) 0 var(--lu-rim-soft);
+    }
+  }
+
+  &:active .appIcon {
+    transform: translateY(-2px) rotate(var(--tilt)) scale(0.96);
+    transition-duration: var(--lu-dur-fast);
+  }
+
+  &:focus-visible {
+    outline: none;
+
+    .appIcon {
+      outline: 2px solid var(--lu-accent);
+      outline-offset: 3px;
+    }
+  }
+}
+
+.appIcon {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  // A squircle-ish corner, like an app icon.
+  border-radius: 18px;
+  background: var(--lu-surface-raised);
+  box-shadow:
+    var(--lu-shadow-lift),
+    inset 0 var(--lu-size-hairline) 0 var(--lu-rim-soft);
+  transition:
+    transform 360ms $spring,
+    box-shadow var(--lu-dur-base) var(--lu-ease);
+
+  @media (max-width: 600px) {
+    width: 52px;
+    height: 52px;
+    border-radius: 15px;
+  }
+}
+
 .appLogo {
-  flex: none;
-  width: 28px;
-  height: 28px;
+  width: 34px;
+  height: 34px;
   object-fit: contain;
+
+  @media (max-width: 600px) {
+    width: 28px;
+    height: 28px;
+  }
 }
 
 .appName {
-  min-width: 0;
+  max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   font: var(--lu-type-label);
+  font-size: 13px;
+  transition: color var(--lu-dur-fast) var(--lu-ease);
+
+  @media (max-width: 600px) {
+    font-size: 12px;
+  }
 }
 
 .darkModeInvert {
   filter: invert(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .appCard:hover .appIcon,
+  .appCard:focus-visible .appIcon,
+  .appCard:active .appIcon {
+    transform: none;
+  }
 }

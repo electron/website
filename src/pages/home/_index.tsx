@@ -20,6 +20,7 @@ import {
   AppWindowMac,
   Blocks,
   GitFork,
+  Heart,
   Lock,
   SquareStack,
 } from 'lucide-react';
@@ -368,6 +369,9 @@ export default function Home() {
           </div>
           <div className={styles.section}>
             <div className={styles.sectionHeader}>
+              <span className={styles.loveBadge} aria-hidden="true">
+                <Heart size={18} fill="currentColor" strokeWidth={0} />
+              </span>
               <h2>Apps users love, built with Electron</h2>
               <p>
                 Thousands of organizations spanning all industries use Electron
