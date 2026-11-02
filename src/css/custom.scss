@@ -33,11 +33,6 @@
   }
 }
 
-// Blog post titles read as headings, not links.
-.plugin-blog article header h2 a {
-  color: var(--lu-ink);
-}
-
 @media (min-width: 1440px) {
   .container {
     max-width: var(--ifm-container-width);
@@ -91,18 +86,6 @@
 .table-of-contents__link--active {
   color: var(--lu-ink);
   font-weight: 500;
-}
-
-// blog sidebar custom styles
-.plugin-blog [class*='sidebar_'] {
-  padding: 0.5rem;
-  & [class*='yearGroupHeading_'] {
-    margin: 0.75rem 0 0.5rem;
-    font: var(--lu-type-caption);
-    color: var(--lu-ink-faint);
-    border-bottom: var(--lu-size-hairline) solid var(--lu-line);
-    padding-bottom: 0.2rem;
-  }
 }
 
 // The GitHub mark, drawn in the link colour so it follows the theme.

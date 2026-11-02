@@ -1,0 +1,254 @@
+// The blog, in Lucent. The list is a stack of sheets, one per post; a post
+// is one sheet. The sidebar reads like the docs menu: quiet rows, the open
+// post in the accent.
+
+// ---------- Sidebar ----------
+
+.plugin-blog [class*='sidebar_'] {
+  padding: var(--lu-space-6) var(--lu-space-2) var(--lu-space-6) 0;
+
+  [class*='sidebarItemTitle_'] {
+    margin: 0 0 var(--lu-space-2) !important;
+    padding: 0 10px;
+    font: 650 15px/20px var(--lu-font-sans);
+    color: var(--lu-ink);
+  }
+
+  [class*='yearGroupHeading_'] {
+    margin: var(--lu-space-4) 0 var(--lu-space-1);
+    padding: 0 10px;
+    border: none;
+    font: var(--lu-type-caption);
+    letter-spacing: var(--lu-type-caption-tracking);
+    color: var(--lu-ink-faint);
+  }
+
+  [class*='sidebarItemList_'] {
+    font: 400 14px/20px var(--lu-font-sans);
+  }
+
+  [class*='sidebarItem_'] {
+    margin: 2px 0;
+  }
+
+  [class*='sidebarItemLink_'] {
+    display: block;
+    padding: 5px 10px;
+    border-radius: var(--lu-radius-item);
+    color: var(--lu-ink-muted);
+    transition:
+      background-color var(--lu-dur-fast) var(--lu-ease),
+      color var(--lu-dur-fast) var(--lu-ease);
+
+    &:hover {
+      background: var(--lu-hover);
+      color: var(--lu-ink);
+      text-decoration: none;
+    }
+  }
+
+  [class*='sidebarItemLinkActive_'] {
+    background: var(--lu-accent-soft);
+    color: var(--lu-accent);
+    font-weight: 500;
+
+    &:hover {
+      background: var(--lu-accent-soft);
+      color: var(--lu-accent);
+    }
+  }
+}
+
+// ---------- Sheets ----------
+
+@media (min-width: 997px) {
+  // A post: one sheet with room around the text.
+  .blog-post-page .main-wrapper main {
+    padding: 48px 56px 56px;
+  }
+
+  // The list: no sheet behind the posts; each post is its own.
+  .blog-list-page .main-wrapper main,
+  .blog-tags-post-list-page .main-wrapper main,
+  .blog-archive-page .main-wrapper main {
+    margin-left: var(--lu-space-2);
+    background: none;
+    box-shadow: none;
+  }
+}
+
+.blog-list-page main > article,
+.blog-tags-post-list-page main > article {
+  margin: var(--lu-space-4) 0 !important;
+  padding: 36px 44px 32px;
+  border-radius: var(--lu-radius-sheet);
+  background: var(--lu-surface);
+  box-shadow:
+    var(--lu-shadow-island),
+    inset 0 var(--lu-size-hairline) 0 var(--lu-rim-soft);
+
+  @media (max-width: 996px) {
+    padding: var(--lu-space-6) var(--lu-space-4);
+    border-radius: var(--lu-radius-panel);
+  }
+}
+
+// ---------- A post's header ----------
+
+.plugin-blog article header {
+  h1,
+  h2 {
+    margin-bottom: var(--lu-space-3);
+    letter-spacing: var(--lu-type-display-tracking);
+    text-wrap: balance;
+  }
+
+  h1 {
+    font: 650 44px/50px var(--lu-font-sans);
+
+    @media (max-width: 600px) {
+      font-size: 32px;
+      line-height: 38px;
+    }
+  }
+
+  h2 {
+    font: 650 30px/36px var(--lu-font-sans);
+
+    a {
+      color: var(--lu-ink);
+
+      &:hover {
+        color: var(--lu-accent);
+        text-decoration: none;
+      }
+    }
+
+    @media (max-width: 600px) {
+      font-size: 24px;
+      line-height: 30px;
+    }
+  }
+
+  // Date and reading time.
+  [class*='container_'] {
+    margin: 0 0 var(--lu-space-4) !important;
+    font: var(--lu-type-label);
+    font-weight: 400;
+    color: var(--lu-ink-muted);
+  }
+
+  // Authors: small chips, avatar and name.
+  .row {
+    margin: 0 0 var(--lu-space-6) !important;
+    gap: var(--lu-space-2) var(--lu-space-6);
+  }
+
+  [class*='authorCol_'] {
+    flex: 0 0 auto !important;
+    max-width: none !important;
+    width: auto;
+    padding: 0;
+  }
+
+  .avatar {
+    align-items: center;
+    gap: 10px;
+    margin: 0 !important;
+  }
+
+  .avatar__photo {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 var(--lu-size-hairline) var(--lu-line);
+  }
+
+  .avatar__intro {
+    margin-left: 0;
+  }
+
+  .avatar__name {
+    font: var(--lu-type-label);
+    font-weight: 600;
+
+    a {
+      color: var(--lu-ink);
+    }
+
+    a:hover {
+      color: var(--lu-accent);
+      text-decoration: none;
+    }
+  }
+
+  .avatar__subtitle {
+    margin-top: 0;
+    font-size: 13px;
+    line-height: 18px;
+    color: var(--lu-ink-faint);
+  }
+}
+
+.plugin-blog .markdown hr {
+  margin: var(--lu-space-6) 0;
+  border: none;
+  border-top: var(--lu-size-hairline) solid var(--lu-line);
+  background: none;
+  height: 0;
+}
+
+// ---------- A post's footer: tags and "Read more" ----------
+
+.plugin-blog article footer {
+  align-items: center;
+  margin-inline: 0;
+
+  > .col {
+    padding-inline: 0;
+  }
+
+  margin-top: var(--lu-space-6) !important;
+  padding-top: var(--lu-space-4);
+  border-top: var(--lu-size-hairline) solid var(--lu-line);
+
+  b {
+    font: var(--lu-type-caption);
+    letter-spacing: var(--lu-type-caption-tracking);
+    color: var(--lu-ink-faint);
+  }
+
+  .button {
+    padding: 6px 14px;
+    font-size: 13px;
+    line-height: 20px;
+  }
+}
+
+.plugin-blog a[class*='tag_'] {
+  padding: 2px 10px;
+  border: none;
+  border-radius: var(--lu-radius-capsule);
+  background: var(--lu-fill);
+  color: var(--lu-ink-muted);
+  font: var(--lu-type-label);
+  font-weight: 500;
+  font-size: 13px;
+
+  &:hover {
+    background: var(--lu-accent-soft);
+    color: var(--lu-accent);
+    text-decoration: none;
+  }
+}
+
+// The list's pager sits on the window ground, under the last sheet.
+.blog-list-page nav.pagination-nav {
+  margin-top: var(--lu-space-4);
+}
+
+@media (max-width: 996px) {
+  .blog-post-page .main-wrapper main {
+    padding-block: var(--lu-space-6) var(--lu-space-8);
+  }
+}

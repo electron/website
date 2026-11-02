@@ -338,6 +338,7 @@ const config: Config = {
           customCss: [
             require.resolve('./src/css/lucent.css'),
             require.resolve('./src/css/custom.scss'),
+            require.resolve('./src/css/blog.scss'),
           ],
         },
         gtag: {
