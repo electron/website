@@ -1,27 +1,62 @@
-.appsContainer {
+// Apps built with Electron: link tiles, each a logo and a name.
+
+.apps {
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 2rem;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--lu-space-6);
+}
+
+.appsContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(176px, 1fr));
+  gap: var(--lu-space-2);
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .appCard {
-  overflow: visible;
-  box-shadow: var(--ifm-global-shadow-lw);
-  position: relative;
-  background: --var(--ifm-background-surface-color);
-  backdrop-filter: blur(40px);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: var(--lu-radius-control);
+  background: var(--lu-button);
+  box-shadow: var(--lu-shadow-button);
+  color: var(--lu-ink);
+  transition:
+    background-color var(--lu-dur-fast) var(--lu-ease),
+    transform var(--lu-dur-base) var(--lu-ease);
+
   &:hover {
-    transform: translateY(-4px);
-    transition: 0.1s all ease-in;
+    background: var(--lu-button-hover);
+    color: var(--lu-ink);
     text-decoration: none;
-    box-shadow: var(--ifm-global-shadow-md);
-    filter: brightness(1.1);
+    transform: translateY(-1px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &:hover {
+      transform: none;
+    }
   }
 }
 
 .appLogo {
-  border-radius: 0;
+  flex: none;
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.appName {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font: var(--lu-type-label);
 }
 
 .darkModeInvert {

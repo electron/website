@@ -1,3 +1,5 @@
+// The Electron mark and app icons draw in the accent: teal on the light
+// window ground, Electron cyan on the dark one.
 @keyframes heroAnimation {
   0% {
     opacity: 0;
@@ -17,7 +19,7 @@
 
 .logo {
   transform-origin: 50% 50%;
-  stroke: var(--electron-color-light);
+  stroke: var(--lu-accent);
   stroke-width: 5;
   stroke-linecap: round;
 }
@@ -30,7 +32,7 @@
 
 .logoFilled {
   composes: logo;
-  fill: var(--electron-color-light);
+  fill: var(--lu-accent);
 }
 
 .logoLine {
@@ -61,7 +63,7 @@ $logo-all-delay: 9 * $logo-delay-diff + $logo-delay;
 }
 
 .app {
-  fill: var(--electron-color-light);
+  fill: var(--lu-accent);
   transform-origin: 50% 50%;
 }
 

@@ -39,36 +39,28 @@ export default function InstallSteps() {
   };
   return (
     <div>
-      <ul className="pills pills--block">
-        <li
-          className={clsx(
-            'pills__item',
-            channel === 'stable' && 'pills__item--active',
-          )}
-          onClick={() => setChannel('stable')}
-        >
-          Stable
-        </li>
-        <li
-          className={clsx(
-            'pills__item',
-            channel === 'prerelease' && 'pills__item--active',
-          )}
-          onClick={() => setChannel('prerelease')}
-        >
-          Prerelease
-        </li>
-        <li
-          className={clsx(
-            'pills__item',
-            channel === 'nightly' && 'pills__item--active',
-          )}
-          onClick={() => setChannel('nightly')}
-        >
-          Nightly
-        </li>
-      </ul>
-      <CodeWindow>
+      <div className={styles.channels} role="tablist" aria-label="Channel">
+        {(['stable', 'prerelease', 'nightly'] as const).map((name) => (
+          <button
+            key={name}
+            type="button"
+            role="tab"
+            aria-selected={channel === name}
+            className={clsx(
+              styles.channel,
+              channel === name && styles.channelActive,
+            )}
+            onClick={() => setChannel(name)}
+          >
+            {name === 'stable'
+              ? 'Stable'
+              : name === 'prerelease'
+                ? 'Prerelease'
+                : 'Nightly'}
+          </button>
+        ))}
+      </div>
+      <CodeWindow title="Terminal">
         <span className="no-select">$ </span>npm install --save-dev{' '}
         {releaseInfo[channel].invocation}
         <span className={clsx(styles.codeComment, 'no-select')}>

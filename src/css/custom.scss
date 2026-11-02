@@ -67,33 +67,6 @@
   &:active {
     --ifm-button-background-color: var(--lu-action-pressed);
   }
-
-  // On the navy hero: cyan in both themes.
-  &.button--dark {
-    --ifm-button-background-color: var(--electron-color-light);
-    --ifm-button-color: var(--electron-color-dark);
-    color: var(--electron-color-dark);
-
-    &:hover {
-      --ifm-button-background-color: var(--electron-color-light);
-      color: var(--electron-color-dark);
-    }
-  }
-
-  // A glass button on the navy hero.
-  &.button--outline {
-    --ifm-button-background-color: rgba(255, 255, 255, 0.08);
-    --ifm-button-color: var(--electron-color-light);
-    background-image: none;
-    box-shadow: inset 0 0 0 1px rgba(159, 234, 249, 0.35);
-    color: var(--electron-color-light);
-
-    &:hover {
-      --ifm-button-background-color: rgba(255, 255, 255, 0.14);
-      color: var(--electron-color-light);
-      box-shadow: inset 0 0 0 1px rgba(159, 234, 249, 0.6);
-    }
-  }
 }
 
 // Sidebar category weights. The CSS class is added by the swizzled

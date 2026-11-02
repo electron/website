@@ -1,137 +1,241 @@
-summary {
-  font-weight: bold;
-}
+// The homepage, in Lucent: the hero sits on the window ground, centred on the
+// Electron mark; everything after it is on one sheet of panels.
 
-.section {
-  &:first-of-type {
-    padding-top: 4rem;
-  }
+// ---------- Hero ----------
 
-  &:last-of-type {
-    padding-bottom: 8rem;
-  }
-
-  h2 {
-    font: var(--lu-type-display);
-    letter-spacing: var(--lu-type-display-tracking);
-  }
-
-  h3 {
-    font: var(--lu-type-docs-h2);
-    letter-spacing: -0.018em;
-  }
-
-  p {
-    font-size: 16px;
-    line-height: 26px;
-    color: var(--lu-ink-muted);
-  }
-
-  @media (max-width: 1000px) {
-    padding: 3rem 2rem;
-  }
-
-  padding: 4rem;
-}
-
-.center {
-  text-align: center;
-}
-
-.paragraphCenter {
-  max-width: 40rem;
+.hero {
+  max-width: 1080px;
   margin: 0 auto;
-}
+  padding: 24px var(--lu-space-6) 64px;
+  text-align: center;
 
-.accentBackground {
-  background: var(--lu-surface-sunken);
-}
-
-.explore {
-  display: flex;
-  align-items: center;
-  margin-top: 6rem;
-  margin-bottom: 12rem;
-
-  .button {
-    margin-bottom: 1rem;
+  svg {
+    display: block;
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    margin: 0 auto var(--lu-space-4);
   }
 
-  img {
-    box-shadow: var(--lu-shadow-island);
-    border-radius: var(--lu-radius-panel);
-  }
-}
-
-.exploreSubtext {
-  text-transform: uppercase;
-}
-
-.heroElectron {
-  // The hero is an Electron-navy island on the window ground, lit from
-  // above in cyan, in both themes.
-  color: var(--electron-color-light);
-  background:
-    radial-gradient(
-      900px 420px at 50% -180px,
-      rgba(0, 163, 191, 0.32),
-      transparent 70%
-    ),
-    radial-gradient(
-      600px 360px at 85% 120%,
-      rgba(31, 124, 255, 0.16),
-      transparent 70%
-    ),
-    var(--electron-color-dark);
-  padding: 0 2rem 4rem;
-  position: relative;
-  box-shadow:
-    var(--lu-shadow-island),
-    inset 0 1px 0 rgba(159, 234, 249, 0.14);
-
-  @media (min-width: 997px) {
-    margin: var(--lu-space-4) var(--lu-space-4) 0;
-    border-radius: var(--lu-radius-sheet);
-  }
-}
-
-// The content below the hero: the same insets on both sides.
-@media (min-width: 997px) {
-  .heroElectron + main {
-    margin-left: var(--lu-space-4) !important;
+  @media (max-width: 996px) {
+    padding: 16px var(--lu-space-4) 40px;
   }
 }
 
 .heroHeadline {
-  font: 600 44px/52px var(--lu-font-sans);
+  max-width: 60rem;
+  margin: 0 auto var(--lu-space-6);
+  font: 650 56px/62px var(--lu-font-sans);
   letter-spacing: var(--lu-type-display-tracking);
-  color: #eef1f8;
-  max-width: 48rem;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: var(--lu-space-6);
-  text-align: center;
+  color: var(--lu-ink);
   text-wrap: balance;
 
   @media (max-width: 600px) {
-    font-size: 32px;
-    line-height: 38px;
+    font-size: 36px;
+    line-height: 42px;
   }
+}
+
+.heroHeadlineMuted {
+  color: var(--lu-ink-faint);
 }
 
 .heroButtons {
   display: flex;
   justify-content: center;
-  gap: 0.6rem;
   flex-wrap: wrap;
+  gap: var(--lu-space-2);
 
-  @media screen and (max-width: 500px) {
+  :global(.button--lg) {
+    font-size: 15px;
+    padding: 10px 22px;
+  }
+
+  @media (max-width: 500px) {
     :global(.button) {
       width: 100%;
     }
   }
 }
 
+// ---------- The sheet ----------
+
+:global(.main-wrapper) main.sheet {
+  margin: 0 var(--lu-space-4) var(--lu-space-4);
+  padding: 56px 40px 64px;
+
+  @media (max-width: 996px) {
+    margin: 0;
+    padding: var(--lu-space-8) var(--lu-space-4);
+  }
+}
+
+.inner {
+  max-width: 1160px;
+  margin: 0 auto;
+}
+
+.section + .section,
+.inner > * + * {
+  margin-top: 96px;
+
+  @media (max-width: 996px) {
+    margin-top: 64px;
+  }
+}
+
+.sectionHeader {
+  max-width: 40rem;
+  margin: 0 auto var(--lu-space-8);
+  text-align: center;
+
+  h2 {
+    margin-bottom: var(--lu-space-2);
+    font: 650 32px/38px var(--lu-font-sans);
+    letter-spacing: -0.024em;
+  }
+
+  p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 26px;
+    color: var(--lu-ink-muted);
+    text-wrap: balance;
+  }
+}
+
+// ---------- Why Electron: six panels ----------
+
+.whyGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--lu-space-3);
+
+  @media (max-width: 996px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+// ---------- Features: two wide panels, then three ----------
+
+.featureGrid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: var(--lu-space-4);
+
+  > * {
+    grid-column: span 2;
+  }
+
+  > :nth-child(-n + 2) {
+    grid-column: span 3;
+  }
+
+  @media (max-width: 996px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    > *,
+    > :nth-child(-n + 2) {
+      grid-column: auto;
+    }
+
+    // The fifth panel takes the last row on its own.
+    > :nth-child(5) {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+// ---------- Forge, Installation, Fiddle: wide panels, text beside a visual ----------
+
+.exploreList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--lu-space-4);
+}
+
+.explore {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  align-items: center;
+  gap: 48px;
+  padding: 40px;
+  border-radius: var(--lu-radius-panel);
+  background:
+    radial-gradient(
+      700px 320px at 100% 0%,
+      color-mix(in srgb, var(--lu-accent) 10%, transparent),
+      transparent 70%
+    ),
+    var(--lu-surface-sunken);
+  box-shadow: inset 0 0 0 var(--lu-size-hairline) var(--lu-line);
+
+  @media (max-width: 996px) {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--lu-space-6);
+    padding: var(--lu-space-6) var(--lu-space-4);
+  }
+}
+
+.exploreText {
+  h2 {
+    margin-bottom: var(--lu-space-3);
+    font: var(--lu-type-title);
+    font-size: 26px;
+    line-height: 32px;
+    letter-spacing: var(--lu-type-title-tracking);
+  }
+
+  p {
+    font-size: 15px;
+    line-height: 24px;
+    color: var(--lu-ink-muted);
+    text-wrap: pretty;
+  }
+}
+
+.exploreSubtext {
+  display: block;
+  margin-bottom: var(--lu-space-2);
+  font: var(--lu-type-caption);
+  letter-spacing: var(--lu-type-caption-tracking);
+  color: var(--lu-accent);
+}
+
+.exploreVisual {
+  min-width: 0;
+}
+
+.exploreShot {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--lu-radius-panel);
+  box-shadow:
+    var(--lu-shadow-island),
+    0 18px 40px -20px rgba(20, 24, 48, 0.5);
+}
+
+.buttonRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--lu-space-2);
+  margin-top: var(--lu-space-6);
+}
+
 .codeComment {
   color: #719fad;
+}
+
+// Global: <details> summaries on the homepage, as before, at Lucent's weight.
+summary {
+  font-weight: 600;
 }

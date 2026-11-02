@@ -1,23 +1,46 @@
-.darkModeInvert {
-  filter: invert(1);
-}
+// Front-end tools: quiet tiles, a logo over a name. Not links, so no hover.
 
 .techContainer {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: var(--lu-space-2);
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
 
-  @media (max-width: 1000px) {
-    margin: 4rem 0;
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
-  margin: 4rem 12rem;
+  @media (max-width: 520px) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
-.techImageWrapper {
-  flex: 25%;
-  margin-bottom: 20px;
+.tech {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--lu-space-2);
+  padding: var(--lu-space-4) var(--lu-space-2);
+  border-radius: var(--lu-radius-panel);
+  background: var(--lu-surface-sunken);
+  box-shadow: inset 0 0 0 var(--lu-size-hairline) var(--lu-line);
 }
 
 .techImage {
-  border-radius: 0;
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.techName {
+  font: var(--lu-type-label);
+  color: var(--lu-ink-muted);
+  text-align: center;
+}
+
+.darkModeInvert {
+  filter: invert(1);
 }

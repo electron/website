@@ -1,6 +1,22 @@
+// Same as the homepage's other section headers (_index.module.scss).
+.header {
+  max-width: 40rem;
+  margin: 0 auto var(--lu-space-8);
+  text-align: center;
+
+  p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 26px;
+    color: var(--lu-ink-muted);
+    text-wrap: balance;
+  }
+}
+
 .heading {
-  font: var(--lu-type-display);
-  letter-spacing: var(--lu-type-display-tracking);
+  margin-bottom: var(--lu-space-2);
+  font: 650 32px/38px var(--lu-font-sans);
+  letter-spacing: -0.024em;
 }
 
 .carouselContainer {

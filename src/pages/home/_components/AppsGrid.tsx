@@ -19,32 +19,25 @@ export default function AppsGrid({ list }: AppsGridProps) {
   const { colorMode } = useColorMode();
   const isDarkTheme = colorMode === 'dark';
   return (
-    <div>
-      <div className={styles.appsContainer}>
+    <div className={styles.apps}>
+      <ul className={styles.appsContainer}>
         {list.map((item) => (
-          <a
-            href={item.href}
-            key={item.image}
-            className={clsx(styles.appCard, 'card')}
-          >
-            <div className="avatar card__body">
+          <li key={item.image}>
+            <a href={item.href} className={styles.appCard}>
               <img
                 className={clsx(
-                  'avatar__photo',
                   styles.appLogo,
                   isDarkTheme && item.isMonochrome && styles.darkModeInvert,
                 )}
                 src={item.image}
-                alt={''}
+                alt=""
               />
-              <div className="avatar__intro">
-                <small className="avatar__name">{item.name}</small>
-              </div>
-            </div>
-          </a>
+              <span className={styles.appName}>{item.name}</span>
+            </a>
+          </li>
         ))}
-      </div>
-      <Link to="/apps" className="button button--electron margin-top--lg">
+      </ul>
+      <Link to="/apps" className="button button--secondary">
         See more
       </Link>
     </div>

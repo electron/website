@@ -20,7 +20,7 @@ export default function FeaturedAppsCarousel({
 
   return (
     <div className={clsx(styles.section)}>
-      <div style={{ textAlign: 'center', marginBottom: '6rem' }}>
+      <div className={styles.header}>
         <h2 className={styles.heading}>Trusted by best-in-class apps</h2>
         <p>
           {
