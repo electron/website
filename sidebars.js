@@ -299,7 +299,6 @@ module.exports = {
         'latest/api/image-view',
         'latest/api/in-app-purchase',
         'latest/api/ipc-main',
-        'latest/api/local-ai-handler',
         'latest/api/menu',
         'latest/api/menu-item',
         'latest/api/message-channel-main',
@@ -348,6 +347,7 @@ module.exports = {
       label: 'Utility Process Modules',
       items: [
         'latest/api/language-model-utility',
+        'latest/api/local-ai-handler',
         'latest/api/net',
         'latest/api/parent-port',
         'latest/api/system-preferences',
