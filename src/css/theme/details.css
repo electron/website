@@ -14,7 +14,7 @@
 .markdown header + blockquote {
   padding: 0;
   background: none;
-  font: 400 18px/28px var(--lu-font-sans);
+  font: 400 1.2rem/1.8667rem var(--lu-font-sans);
 }
 
 /* The table of contents drops its left rule. */

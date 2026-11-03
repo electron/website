@@ -15,7 +15,7 @@
 }
 
 .markdown header h1 {
-  font: var(--lu-type-display);
+  font: var(--lu-type-docs-h1);
   letter-spacing: var(--lu-type-display-tracking);
   margin-bottom: var(--lu-space-4);
 }

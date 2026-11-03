@@ -24,13 +24,16 @@ const links = [
 // The Showcase (/apps and /apps/<app>) was removed. Production is a static
 // blob host with no redirect rules, so its old links land here and are sent
 // to the homepage of the same locale.
-const removedShowcase = /^\/(?:[a-z]{2}\/)?apps(?:\/|$)/;
+const removedShowcase = /^\/(?:(de|es|fr|ja|pt|ru|zh)\/)?apps(?:\/|$)/;
 
 export default function NotFound() {
   const home = useBaseUrl('/');
   useEffect(() => {
-    if (removedShowcase.test(window.location.pathname)) {
-      window.location.replace(home);
+    // Production serves the English 404 for every path, so the locale
+    // comes from the URL rather than the build.
+    const match = removedShowcase.exec(window.location.pathname);
+    if (match) {
+      window.location.replace(match[1] ? `/${match[1]}/` : home);
     }
   }, [home]);
 

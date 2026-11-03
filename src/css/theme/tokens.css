@@ -23,9 +23,11 @@
   --lu-docs-line-height: 1.6rem;
   --lu-type-docs-body: 400 var(--lu-docs-font-size) / var(--lu-docs-line-height)
     var(--lu-font-sans);
-  --lu-type-docs-h2: 650 22px/28px var(--lu-font-sans);
-  --lu-type-docs-h3: 600 17px/24px var(--lu-font-sans);
-  --lu-type-docs-h4: 600 15px/20px var(--lu-font-sans);
+  /* Headings scale with the body (22/17/15px at the default size). */
+  --lu-type-docs-h1: 650 2.6667rem/2.9333rem var(--lu-font-sans);
+  --lu-type-docs-h2: 650 1.4667rem/1.8667rem var(--lu-font-sans);
+  --lu-type-docs-h3: 600 1.1333rem/1.6rem var(--lu-font-sans);
+  --lu-type-docs-h4: 600 1rem/1.3333rem var(--lu-font-sans);
   --lu-ring-focus: 0 0 0 3.5px
     color-mix(in srgb, var(--lu-accent) 26%, transparent);
   /* Info notes are the accent. */

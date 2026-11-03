@@ -31,10 +31,11 @@
   }
 }
 
-// Between tablet and laptop widths a post's table of contents would squeeze
-// the text, so it waits for more room.
+// Between tablet and laptop widths three columns would squeeze a post's
+// text. The post keeps its table of contents (blog posts have no collapsible
+// one) and the recent-posts sidebar waits for more room.
 @media (min-width: 997px) and (max-width: 1279px) {
-  .blog-wrapper .main-wrapper > .container > .row > .col--2 {
+  .blog-post-page .main-wrapper > .container > .row > aside.col--3 {
     display: none;
   }
 }
