@@ -25,15 +25,10 @@
 .heroHeadline {
   max-width: 60rem;
   margin: 0 auto var(--lu-space-6);
-  font: 650 56px/62px var(--lu-font-sans);
+  font: var(--lu-type-hero);
   letter-spacing: var(--lu-type-display-tracking);
   color: var(--lu-ink);
   text-wrap: balance;
-
-  @media (max-width: 600px) {
-    font-size: 36px;
-    line-height: 42px;
-  }
 }
 
 .heroHeadlineMuted {
@@ -91,7 +86,7 @@
 
   h2 {
     margin-bottom: var(--lu-space-2);
-    font: 650 32px/38px var(--lu-font-sans);
+    font: var(--lu-type-section);
     letter-spacing: -0.024em;
   }
 

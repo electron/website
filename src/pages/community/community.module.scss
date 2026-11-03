@@ -3,7 +3,10 @@
 
 .hero {
   // Lines up with the sheet's content: 16px sheet margin + 40px padding.
-  max-width: calc(1080px + 112px);
+  // The page wrapper is a flex column, so the hero needs an explicit width
+  // or it shrinks to its text and centres.
+  width: 100%;
+  max-width: calc(1160px + 112px);
   margin: 0 auto;
   padding: 72px 56px 48px;
 
@@ -14,13 +17,8 @@
 
 .title {
   margin: 0 0 var(--lu-space-3);
-  font: 650 52px/58px var(--lu-font-sans);
+  font: var(--lu-type-page-title);
   letter-spacing: var(--lu-type-display-tracking);
-
-  @media (max-width: 600px) {
-    font-size: 36px;
-    line-height: 42px;
-  }
 }
 
 .lead {
@@ -42,7 +40,7 @@
 }
 
 .section {
-  max-width: 1080px;
+  max-width: 1160px;
   margin: 0 auto;
 
   & + & {
@@ -63,7 +61,7 @@
   text-wrap: pretty;
 }
 
-// ---------- Resources: panels with an icon tile ----------
+// ---------- Resources: icon panels, like the homepage's reasons ----------
 
 .resources {
   display: grid;
@@ -71,35 +69,29 @@
   gap: var(--lu-space-3);
 }
 
-.resource,
-.resourceContact {
+.resource {
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
-  gap: var(--lu-space-3);
-  padding: var(--lu-space-4);
+  gap: var(--lu-space-4);
+  padding: var(--lu-space-6) var(--lu-space-4);
   border-radius: var(--lu-radius-panel);
   background: var(--lu-surface-sunken);
   box-shadow: inset 0 0 0 var(--lu-size-hairline) var(--lu-line);
 
   h3 {
-    margin: 2px 0 4px;
-    font: var(--lu-type-headline);
-    letter-spacing: var(--lu-type-headline-tracking);
+    margin: 0 0 var(--lu-space-2);
+    font: var(--lu-type-docs-h3);
+    letter-spacing: -0.01em;
   }
 
   p {
     margin: 0;
     font-size: 14px;
-    line-height: 21px;
+    line-height: 22px;
     color: var(--lu-ink-muted);
     text-wrap: pretty;
   }
-}
-
-// The catch-all is quieter: no panel, just the row.
-.resourceContact {
-  background: transparent;
-  box-shadow: inset 0 0 0 var(--lu-size-hairline) var(--lu-line);
 }
 
 .resourceIcon {

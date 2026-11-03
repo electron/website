@@ -85,12 +85,13 @@
   }
 
   [class*='sidebarItemLinkActive_'] {
-    background: var(--lu-accent-soft);
+    background: var(--lu-selected);
+    box-shadow: var(--lu-selected-rim);
     color: var(--lu-accent);
-    font-weight: 500;
+    font-weight: 600;
 
     &:hover {
-      background: var(--lu-accent-soft);
+      background: var(--lu-selected);
       color: var(--lu-accent);
     }
   }
@@ -140,16 +141,11 @@
   }
 
   h1 {
-    font: 650 44px/50px var(--lu-font-sans);
-
-    @media (max-width: 600px) {
-      font-size: 32px;
-      line-height: 38px;
-    }
+    font: var(--lu-type-page-title);
   }
 
   h2 {
-    font: 650 30px/36px var(--lu-font-sans);
+    font: var(--lu-type-section);
 
     a {
       color: var(--lu-ink);
@@ -158,11 +154,6 @@
         color: var(--lu-accent);
         text-decoration: none;
       }
-    }
-
-    @media (max-width: 600px) {
-      font-size: 24px;
-      line-height: 30px;
     }
   }
 
@@ -174,10 +165,11 @@
     color: var(--lu-ink-muted);
   }
 
-  // Authors: small chips, avatar and name.
+  // Authors: capsules, an avatar inset in the left end and the name beside
+  // it, like a person chip in Fiddle.
   .row {
     margin: 0 0 var(--lu-space-6) !important;
-    gap: var(--lu-space-2) var(--lu-space-6);
+    gap: var(--lu-space-2);
   }
 
   [class*='authorCol_'] {
@@ -189,24 +181,47 @@
 
   .avatar {
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     margin: 0 !important;
+    padding: 3px 14px 3px 3px;
+    border-radius: var(--lu-radius-capsule);
+    background: var(--lu-fill);
+    transition: background-color var(--lu-dur-fast) var(--lu-ease);
+
+    &:hover {
+      background: var(--lu-accent-soft);
+    }
+  }
+
+  .avatar__photo-link {
+    display: block;
+    line-height: 0;
   }
 
   .avatar__photo {
-    width: 36px;
-    height: 36px;
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
+    background: var(--lu-surface);
     box-shadow: 0 0 0 var(--lu-size-hairline) var(--lu-line);
   }
 
   .avatar__intro {
+    justify-content: center;
     margin-left: 0;
   }
 
+  // An empty socials row would push the name off centre.
+  [class*='authorSocials_']:empty {
+    display: none;
+  }
+
   .avatar__name {
+    margin: 0;
     font: var(--lu-type-label);
-    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
 
     a {
       color: var(--lu-ink);
@@ -299,7 +314,7 @@
 
   h1 {
     margin-bottom: var(--lu-space-2);
-    font: 650 32px/38px var(--lu-font-sans);
+    font: var(--lu-type-section);
     letter-spacing: var(--lu-type-display-tracking);
   }
 
@@ -359,7 +374,7 @@
 .blog-tags-list-page main {
   h1 {
     margin-bottom: var(--lu-space-2);
-    font: 650 44px/50px var(--lu-font-sans);
+    font: var(--lu-type-page-title);
     letter-spacing: var(--lu-type-display-tracking);
   }
 
@@ -447,7 +462,7 @@
 
   .hero__title {
     margin: 0;
-    font: 650 52px/58px var(--lu-font-sans);
+    font: var(--lu-type-page-title);
     letter-spacing: var(--lu-type-display-tracking);
   }
 
@@ -457,11 +472,6 @@
 
   @media (max-width: 996px) {
     padding: 48px 0 24px;
-
-    .hero__title {
-      font-size: 36px;
-      line-height: 42px;
-    }
   }
 }
 

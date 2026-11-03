@@ -3,6 +3,9 @@
 
 .hero {
   // Lines up with the sheet's content: 16px sheet margin + 40px padding.
+  // The page wrapper is a flex column, so the hero needs an explicit width
+  // or it shrinks to its text and centres.
+  width: 100%;
   max-width: calc(1160px + 112px);
   margin: 0 auto;
   padding: 72px 56px 48px;
@@ -14,13 +17,8 @@
 
 .title {
   margin: 0 0 var(--lu-space-3);
-  font: 650 52px/58px var(--lu-font-sans);
+  font: var(--lu-type-page-title);
   letter-spacing: var(--lu-type-display-tracking);
-
-  @media (max-width: 600px) {
-    font-size: 36px;
-    line-height: 42px;
-  }
 }
 
 .lead {
@@ -70,14 +68,17 @@
   box-shadow: inset 0 0 0 var(--lu-size-hairline) var(--lu-line);
 }
 
-// The icon and name share the top line; the description runs the full
-// width of the card below them, so even the longest fits in four lines.
+// The icon tile sits above the name, as on the homepage and Community
+// panels; the description follows, room reserved for four lines.
 .groupHeader {
   display: grid;
-  grid-template-columns: 36px minmax(0, 1fr);
-  align-items: center;
-  column-gap: var(--lu-space-3);
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: start;
   margin-bottom: var(--lu-space-3);
+}
+
+.groupHeader > .groupIcon {
+  margin-bottom: var(--lu-space-4);
 }
 
 .groupIcon {

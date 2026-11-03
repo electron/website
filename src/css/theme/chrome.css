@@ -146,11 +146,11 @@ body,
   border-right: none !important;
 }
 
-/* The current page is a raised chip on the glass, like a selected row in Fiddle's tree. */
+/* The current page: an accent row, the same in the docs and blog sidebars. */
 .theme-doc-sidebar-menu .menu__link[aria-current='page'] {
-  background: var(--lu-chip);
-  box-shadow: var(--lu-shadow-lift);
-  color: var(--lu-ink);
+  background: var(--lu-selected);
+  box-shadow: var(--lu-selected-rim);
+  color: var(--lu-accent);
 }
 
 .theme-doc-sidebar-menu .menu__link:not(.menu__link--active):hover {
@@ -174,7 +174,7 @@ body,
 }
 
 .theme-doc-sidebar-menu .menu__link--active:not(.menu__link--sublist) {
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .theme-doc-sidebar-menu .menu__list-item-collapsible {

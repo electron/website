@@ -1,7 +1,18 @@
-/* Site tokens: values the docs need that Lucent doesn't name.
+/* Site tokens: values the site needs that Lucent doesn't name.
    The accent stays Lucent's own Electron cyan, so nothing here recolours it. */
 
 :root {
+  /* Page type scale, shared by every page outside the docs: the homepage
+     hero, page titles (Fiddle, Community, Governance, blog posts, archive,
+     tags) and section headings. Docs titles keep Lucent's display size. */
+  --lu-type-hero: 650 56px/62px var(--lu-font-sans);
+  --lu-type-page-title: 650 48px/54px var(--lu-font-sans);
+  --lu-type-section: 650 32px/38px var(--lu-font-sans);
+  /* The current page in a sidebar: the accent, a step stronger than
+     --lu-accent-soft so it reads at a glance on the glass. */
+  --lu-selected: color-mix(in srgb, var(--lu-accent) 16%, transparent);
+  --lu-selected-rim: inset 0 0 0 var(--lu-size-hairline)
+    color-mix(in srgb, var(--lu-accent) 28%, transparent);
   /* Code blocks sit in the sheet, so they take the sunken surface. */
   --lu-code-sheet: var(--lu-surface-sunken);
   /* Docs type: Lucent's scale, with body and code one step up from Fiddle's
@@ -70,4 +81,12 @@
     rgba(255, 255, 255, 0.08) 50%,
     rgba(8, 40, 52, 0.12)
   );
+}
+
+@media (max-width: 600px) {
+  :root {
+    --lu-type-hero: 650 38px/44px var(--lu-font-sans);
+    --lu-type-page-title: 650 34px/40px var(--lu-font-sans);
+    --lu-type-section: 650 26px/32px var(--lu-font-sans);
+  }
 }

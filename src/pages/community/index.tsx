@@ -160,7 +160,7 @@ function Community() {
                 </div>
               </article>
             ))}
-            <article className={styles.resourceContact}>
+            <article className={styles.resource}>
               <span className={styles.resourceIcon}>
                 <Mail size={18} aria-hidden="true" />
               </span>

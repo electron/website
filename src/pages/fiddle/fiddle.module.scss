@@ -59,15 +59,10 @@
 
 .tagline {
   margin: 0 0 var(--lu-space-4);
-  font: 650 52px/58px var(--lu-font-sans);
+  font: var(--lu-type-page-title);
   letter-spacing: var(--lu-type-display-tracking);
   color: var(--lu-ink);
   text-wrap: balance;
-
-  @media (max-width: 600px) {
-    font-size: 36px;
-    line-height: 42px;
-  }
 }
 
 .taglineMuted {
@@ -182,17 +177,9 @@
   padding: var(--lu-space-4) var(--lu-space-4) var(--lu-space-6);
 
   h2 {
-    display: flex;
-    align-items: center;
-    gap: 8px;
     margin: 0 0 var(--lu-space-2);
     font: var(--lu-type-docs-h3);
     letter-spacing: -0.01em;
-
-    svg {
-      flex: none;
-      color: var(--lu-accent);
-    }
   }
 
   p {

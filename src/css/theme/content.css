@@ -88,6 +88,19 @@
   }
 }
 
+/* Below 1200px a third column would squeeze the text, so the table of
+   contents moves into the page as the collapsible "On this page" that
+   phones get (Docusaurus always renders it and hides it with CSS). */
+@media (min-width: 997px) and (max-width: 1199px) {
+  .row:has(> [class*='docItemCol_']) > .col--3 {
+    display: none;
+  }
+
+  article .theme-doc-toc-mobile {
+    display: block;
+  }
+}
+
 /* Code in headings shows in the TOC as plain text: a mono pill per line
    is hard to scan, and long event names break mid-word. */
 .table-of-contents code {

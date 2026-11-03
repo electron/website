@@ -1,16 +1,7 @@
 import Layout from '@theme/Layout';
 import React, { useEffect, useState } from 'react';
 import clsx from 'clsx';
-import {
-  ArrowRight,
-  Boxes,
-  Braces,
-  Compass,
-  FolderOutput,
-  Github,
-  Package,
-  Share2,
-} from 'lucide-react';
+import { ArrowRight, Github, Share2 } from 'lucide-react';
 
 import styles from './fiddle.module.scss';
 import FiddleLogo from '@site/static/assets/fiddle/logo.svg';
@@ -25,7 +16,6 @@ type OS = 'win32' | 'darwin' | 'linux';
 
 const FEATURES = [
   {
-    icon: Compass,
     title: 'Explore Electron',
     image: '/assets/fiddle/explore.png',
     body: (
@@ -39,7 +29,6 @@ const FEATURES = [
     ),
   },
   {
-    icon: Package,
     title: 'Use npm packages',
     image: '/assets/fiddle/npm.png',
     body: (
@@ -51,7 +40,6 @@ const FEATURES = [
     ),
   },
   {
-    icon: Braces,
     title: 'Code with types',
     image: '/assets/fiddle/types.png',
     body: (
@@ -65,7 +53,6 @@ const FEATURES = [
     ),
   },
   {
-    icon: Boxes,
     title: 'Compile and package',
     image: '/assets/fiddle/package.png',
     body: (
@@ -78,7 +65,6 @@ const FEATURES = [
     ),
   },
   {
-    icon: FolderOutput,
     title: 'Start with Fiddle, continue wherever',
     image: '/assets/fiddle/export.png',
     body: (
@@ -234,16 +220,13 @@ export default function FiddlePage() {
 
       <main className={styles.sheet}>
         <section className={styles.features} aria-label="Features">
-          {FEATURES.map(({ icon: Icon, title, image, body }) => (
+          {FEATURES.map(({ title, image, body }) => (
             <article key={title} className={styles.feature}>
               <div className={styles.featureMedia}>
                 <img src={image} alt="" loading="lazy" />
               </div>
               <div className={styles.featureText}>
-                <h2>
-                  <Icon size={16} aria-hidden="true" />
-                  {title}
-                </h2>
+                <h2>{title}</h2>
                 <p>{body}</p>
               </div>
             </article>
@@ -256,10 +239,7 @@ export default function FiddlePage() {
               </div>
             </div>
             <div className={styles.featureText}>
-              <h2>
-                <Share2 size={16} aria-hidden="true" />
-                Share as a Gist
-              </h2>
+              <h2>Share as a Gist</h2>
               <p>
                 Save your fiddle locally or as a GitHub Gist. Once uploaded to
                 GitHub, anyone can try your fiddle out by just entering the Gist
