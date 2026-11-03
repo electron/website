@@ -48,6 +48,21 @@ be called, but they do nothing: no crash reports are collected or uploaded,
 [`getUploadToServer()`](#crashreportergetuploadtoserver) returns
 `false`.
 
+On Windows, some crashes never reach an in-process crash handler, most notably
+`__fastfail` terminations (`STATUS_STACK_BUFFER_OVERRUN`, raised by
+security-check failures, Control Flow Guard violations and the C runtime's
+`abort()`). To capture these, Electron ships `electron_wer.dll`, a Windows Error
+Reporting (WER) runtime exception helper that Windows (10 20H1 and later) loads
+out-of-process after such a crash and that asks the crashpad handler to write a
+minidump. When `crashReporter.start()` is called, Electron lists the DLL under
+`HKEY_CURRENT_USER\Software\Microsoft\Windows\Windows Error Reporting\RuntimeExceptionHelperModules`,
+which Windows requires before it will load a helper, and registers it for every
+Electron process. The helper is looked up as `<executable name>_wer.dll` next
+to the executable, so if you rename `electron.exe` to `myapp.exe` when
+packaging, rename `electron_wer.dll` to `myapp_wer.dll` as well. Installers
+that write to `HKEY_LOCAL_MACHINE` may list it there instead. To opt out, do
+not ship the DLL.
+
 ## Methods
 
 The `crashReporter` module has the following methods:
@@ -259,15 +274,15 @@ If the crash reporter is started in the main process, Node child processes are
 monitored automatically. There is no way to start the crash reporter from a
 Node child process.
 
-#### `process.crashReporter.getParameters()`
+### `process.crashReporter.getParameters()`
 
 See [`crashReporter.getParameters()`](#crashreportergetparameters).
 
-#### `process.crashReporter.addExtraParameter(key, value)`
+### `process.crashReporter.addExtraParameter(key, value)`
 
 See [`crashReporter.addExtraParameter(key, value)`](#crashreporteraddextraparameterkey-value).
 
-#### `process.crashReporter.removeExtraParameter(key)`
+### `process.crashReporter.removeExtraParameter(key)`
 
 See [`crashReporter.removeExtraParameter(key)`](#crashreporterremoveextraparameterkey).
 

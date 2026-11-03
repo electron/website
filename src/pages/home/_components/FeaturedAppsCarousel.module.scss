@@ -48,7 +48,9 @@
 
 .carouselTrack {
   display: flex;
-  animation: scroll 30s linear infinite;
+  width: max-content;
+  will-change: transform;
+  animation: scroll 90s linear infinite;
 
   &:hover {
     animation-play-state: paused;

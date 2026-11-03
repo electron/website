@@ -160,6 +160,52 @@ this event, such as launching the application for the first time, attempting
 to re-launch the application when it's already running, or clicking on the
 application's dock or taskbar icon.
 
+### Event: 'app-shim-connected' _macOS_ _Experimental_
+
+Returns:
+
+* `event` Event
+* `shim` [AppShimHost](app-shim-host.md)
+
+Emitted when an app shim connects to your app. Shims can only connect after
+[`app.startAppShimServer()`](#appstartappshimserveroptions-macos-experimental)
+has been called.
+
+Any process running as the same user can connect. Verify the shim before
+creating windows in it, for example with
+[`shim.satisfiesCodeRequirement()`](app-shim-host.md#shimsatisfiescoderequirementrequirement-experimental),
+and call `shim.quit()` to reject a shim that you do not trust.
+
+### Event: 'app-shim-version-mismatch' _macOS_ _Experimental_
+
+Returns:
+
+* `event` Event
+* `bundlePath` string - The path of the app shim's bundle.
+
+Emitted when an app shim was launched but could not connect because your app's
+bundle has been replaced by a different version since your app started. A shim
+loads the version of Electron that is on disk, which cannot communicate with
+the version that is still running.
+
+The shim quits without showing any UI, so use this event to tell the user what
+happened. Shims can connect again after your app restarts.
+
+```js
+const { app, dialog } = require('electron')
+
+app.on('app-shim-version-mismatch', async () => {
+  const { response } = await dialog.showMessageBox({
+    message: `Restart ${app.name} to finish updating`,
+    buttons: ['Restart', 'Later']
+  })
+  if (response === 0) {
+    app.relaunch()
+    app.quit()
+  }
+})
+```
+
 ### Event: 'did-become-active' _macOS_
 
 Returns:
@@ -636,8 +682,9 @@ Returns `string` - The current application directory.
     * `~/Library/Application Support` on macOS
   * `assets` The directory where app assets such as `resources.pak` are stored. By default this is the same as the folder containing the `exe` path. Available on Windows and Linux only.
   * `userData` The directory for storing your app's configuration files, which
-    by default is the `appData` directory appended with your app's name. By
-    convention files storing user data should be written to this directory, and
+    by default is the `appData` directory appended with your app's name. On
+    Windows, the app's name must not contain [reserved filename characters](#appgetname).
+    By convention files storing user data should be written to this directory, and
     it is not recommended to write large files here because some environments
     may backup this directory to cloud storage. It is recommended to store
     app-specific files within a subdirectory of `userData` (e.g.,
@@ -722,11 +769,20 @@ to the npm modules spec. You should usually also specify a `productName`
 field, which is your application's full capitalized name, and which will be
 preferred over `name` by Electron.
 
+Electron uses the application's name to construct the default `userData` directory.
+On Windows, neither `productName` nor `name` should contain the following special
+characters, which cannot be used in directory or file names:
+`<`, `>`, `:`, `"`, `\`, `/`, `|`, `?`, `*`. Using these characters in the application's
+name can prevent Electron from creating the default `userData` directory and cause
+the application to crash on startup.
+
 ### `app.setName(name)`
 
 * `name` string
 
 Overrides the current application's name.
+
+On Windows, avoid the [reserved filename characters](#appgetname) in `name`.
 
 > [!NOTE]
 > This function overrides the name used internally by Electron; it does not affect the name that the OS uses.
@@ -1221,6 +1277,30 @@ Activation policy types:
 * 'accessory' - The application doesn’t appear in the Dock and doesn’t have a menu bar, but it may be activated programmatically or by clicking on one of its windows.
 * 'prohibited' - The application doesn’t appear in the Dock and may not create windows or be activated.
 
+### `app.startAppShimServer([options])` _macOS_ _Experimental_
+
+* `options` Object (optional)
+  * `name` string (optional) - A name for this server, which lets several
+    running copies of your app each have their own. It can only contain
+    letters, digits, `.`, `-` and `_`, and must match the
+    `ElectronAppShimServerName` of the shims that connect to it. Default is
+    `appshim`.
+
+Starts accepting connections from [app shims](app-shim-host.md). An
+[`app-shim-connected`](#event-app-shim-connected-macos-experimental) event is
+emitted for each shim that connects.
+
+Throws if the server cannot be started, for example because another copy of
+your app has already started a server with the same `name`.
+
+This method can only be called after the app is ready. It is not available in
+Mac App Store builds.
+
+### `app.stopAppShimServer()` _macOS_ _Experimental_
+
+Stops accepting connections from app shims. Shims that have already connected
+stay connected.
+
 ### `app.importCertificate(options, callback)` _Linux_
 
 * `options` Object
@@ -1297,6 +1377,11 @@ This API must be called after the `ready` event is emitted.
 
 ### `app.configureWebAuthn(options)` _macOS_
 
+```YAML history
+added:
+  - pr-url: https://github.com/electron/electron/pull/51563
+```
+
 * `options` Object
   * `touchID` Object (optional) - Enables the Touch ID / Secure Enclave platform
     authenticator for [Web Authentication](https://www.w3.org/TR/webauthn-2/)
@@ -1311,6 +1396,12 @@ This API must be called after the `ready` event is emitted.
       lowercase sentence fragment. An optional `$1` placeholder is replaced
       with the relying party ID (e.g. `example.com`) of the request being
       authenticated. Defaults to `verify your identity on $1`.
+  * `platformPasskeys` boolean (optional) - Enables passkeys via Apple's
+    `ASAuthorizationController`. When enabled, passkey operations present the
+    system credential provider sheet (iCloud Keychain, 1Password, Bitwarden,
+    etc.) and credentials sync across the user's devices. Defaults to `false`.
+    Passing `null`/`undefined` (or omitting the key) leaves the previous
+    setting unchanged.
 
 Configures platform authenticators for the Web Authentication API
 (`navigator.credentials.create()` / `navigator.credentials.get()`). Until this
@@ -1322,6 +1413,20 @@ keychain and bound to this device's Secure Enclave. Electron automatically
 generates and persists a per-[`session`](session.md) metadata secret so that
 credentials created in one partition are not visible to another.
 
+When `platformPasskeys` is `true`, passkey operations use Apple's
+`ASAuthorizationController` which delegates to the system's configured
+Credential Provider Extensions. This enables the same passkey experience as
+Safari — credentials are available across all devices signed into the same
+account. Unlike Touch ID credentials, platform passkeys are stored by the
+credential provider and scoped to the relying party, not to Electron: they are
+shared across all [`session`](session.md) partitions and with any other app or
+browser associated with the same domain. Platform passkeys cannot serve
+cross-origin (iframe) requests; those requests are left to the other available
+authenticators (Touch ID supports iframes) and a warning is logged to the
+DevTools console. The `prf` and `largeBlob` WebAuthn extensions are not
+currently supported by this authenticator — `prf` inputs are ignored, and a
+`create()` call with `largeBlob: { support: 'required' }` fails.
+
 ```js
 const { app } = require('electron')
 
@@ -1329,11 +1434,12 @@ app.configureWebAuthn({
   touchID: {
     keychainAccessGroup: 'A1B2C3D4E5.com.example.app.webauthn',
     promptReason: 'sign in to $1'
-  }
+  },
+  platformPasskeys: true
 })
 ```
 
-With the matching entitlement in your app's `entitlements.plist`:
+With the matching entitlements in your app's `entitlements.plist`:
 
 ```xml
 <key>keychain-access-groups</key>
@@ -1341,6 +1447,75 @@ With the matching entitlement in your app's `entitlements.plist`:
   <string>A1B2C3D4E5.com.example.app.webauthn</string>
 </array>
 ```
+
+For platform passkeys, your app needs the Associated Domains entitlement plus an
+application identifier, both in the same `entitlements.plist`:
+
+```xml
+<key>com.apple.developer.associated-domains</key>
+<array>
+  <string>webcredentials:example.com</string>
+</array>
+<!-- Must match the App ID in your provisioning profile: <TEAM_ID>.<BUNDLE_ID>. -->
+<key>com.apple.application-identifier</key>
+<string>A1B2C3D4E5.com.example.app</string>
+```
+
+Listing these entitlements is **not** sufficient on its own — unlike most
+entitlements, `com.apple.developer.associated-domains` is _provisioning-profile
+backed_. For platform passkeys to work, **all** of the following must hold:
+
+* In the [Apple Developer portal](https://developer.apple.com/account/resources/identifiers/list),
+  your App ID (`com.example.app`) has the **Associated Domains** capability
+  enabled, and you have created a provisioning profile for that App ID.
+* That provisioning profile is **embedded in the built app bundle** at
+  `Contents/embedded.provisionprofile`. This is what authorizes the
+  associated-domains entitlement at runtime; without an embedded profile macOS
+  silently ignores the `webcredentials` association and the request fails. (Xcode
+  and [`@electron/osx-sign`](https://github.com/electron/osx-sign) embed the
+  profile for you; if you sign manually, copy it into the bundle before signing.)
+* The app is signed (ad-hoc / unsigned builds do not qualify). Both distribution
+  and development signing work — for development builds, use the developer-mode
+  path described below.
+* `com.apple.application-identifier` matches the profile's App ID. Without it,
+  `ASAuthorizationController` fails with "The calling process does not have an
+  application identifier" — this is `ASAuthorizationError` code 1004.
+* The relying party's domain (`example.com` above) serves a valid
+  [`apple-app-site-association`](https://developer.apple.com/documentation/xcode/supporting-associated-domains)
+  file over HTTPS at `/.well-known/apple-app-site-association` containing a
+  `webcredentials` entry whose `apps` array lists this app's
+  `<TEAM_ID>.<BUNDLE_ID>`.
+* The relying party ID of each request matches that associated domain.
+
+If these aren't satisfied, `ASAuthorizationController` fails before it can
+present the passkey sheet. The request surfaces to the page as a bare
+`NotAllowedError` with no further detail (Electron logs an explanatory message
+to the DevTools console on this path). Because the association is domain-based,
+platform passkeys always require a real associated domain and its AASA file —
+there is no `localhost` rpId escape hatch as there is in browsers.
+
+To test against your domain with a development-signed build (before shipping a
+distribution profile), append `?mode=developer` to the entitlement value and
+enable developer mode on the machine with `swcutil developer-mode -e true`. This
+makes macOS fetch the AASA directly from the domain — bypassing Apple's CDN
+cache — and honor the association for a development-signed app. You still need
+the embedded development provisioning profile described above:
+
+```xml
+<key>com.apple.developer.associated-domains</key>
+<array>
+  <string>webcredentials:example.com?mode=developer</string>
+</array>
+```
+
+> [!NOTE]
+> Because the request is fulfilled by the system credential provider (not a
+> browser), the `clientDataJSON` returned to the page reports
+> `origin: "https://<rpId>"` — the associated domain — rather than the page's
+> own origin. Relying-party servers that enforce a strict `expectedOrigin`
+> allowlist must include `https://<rpId>` for verification to succeed. This
+> also means the relying party cannot distinguish which subdomain of the
+> associated domain initiated the ceremony.
 
 > [!NOTE]
 > Touch ID WebAuthn credentials are device-bound and are not synced via iCloud
@@ -1874,6 +2049,10 @@ Usually the `name` field of `package.json` is a short lowercase name, according
 to the npm modules spec. You should usually also specify a `productName`
 field, which is your application's full capitalized name, and which will be
 preferred over `name` by Electron.
+
+On Windows, the application's name must not contain
+[reserved filename characters](#appgetname), because it is used to construct the
+default `userData` directory.
 
 ### `app.userAgentFallback`
 

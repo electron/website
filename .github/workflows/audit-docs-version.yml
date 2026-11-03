@@ -12,12 +12,20 @@ jobs:
     name: Audit Docs Version
     if: github.repository == 'electron/website'
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
-      - name: Setup Node.js
-        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          node-version: '24.19.0'
-      - run: npm install @electron/fiddle-core@2.0.0
+          persist-credentials: false
+      - name: Setup Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '24.22.1'
+      - name: Install dependencies
+        run: yarn install --immutable
+      - name: Lint sidebar
+        run: npm run lint:sidebars
       - name: Confirm latest version
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
@@ -95,7 +103,7 @@ jobs:
             await core.summary.write();
       # Step summaries are not API-readable; this artifact lets agents fetch the findings
       - name: Upload audit results artifact
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         if: ${{ always() }}
         with:
           name: audit-results

@@ -188,7 +188,7 @@ provided to the renderer process. Please refer to
 
 :::
 
-```js {6-13,25} title='main.js (Main Process)'
+```js {7-12,24} title='main.js (Main Process)'
 const { app, BrowserWindow, dialog, ipcMain } = require('electron')
 
 const path = require('node:path')
@@ -395,7 +395,7 @@ For this demo, we'll need to first build a custom menu in the main process using
 module that uses the `webContents.send` API to send an IPC message from the main process to the
 target renderer.
 
-```js {11-26} title='main.js (Main Process)'
+```js {12-27} title='main.js (Main Process)'
 const { app, BrowserWindow, Menu, ipcMain } = require('electron')
 
 const path = require('node:path')
