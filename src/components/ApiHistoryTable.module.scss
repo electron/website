@@ -1,68 +1,149 @@
+// The History block under an API heading: a quiet capsule toggle that opens
+// a sunken panel listing each change with its version chips.
 .api-history {
-  transform: translateY(
-    calc(var(--ifm-heading-vertical-rhythm-bottom) * var(--ifm-leading) * -0.5)
-  );
+  --docusaurus-details-decoration-color: currentColor;
+  margin: -4px 0 var(--lu-space-4);
 
-  summary {
+  & > summary {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
     width: fit-content;
+    padding: 3px 10px 3px 8px;
+    border-radius: var(--lu-radius-capsule);
+    background: var(--lu-fill);
     color: var(--lu-ink-muted);
-    font: var(--lu-type-label);
-
+    font: 500 12px/18px var(--lu-font-sans);
     word-wrap: normal;
+    transition:
+      background-color var(--lu-dur-fast) var(--lu-ease),
+      color var(--lu-dur-fast) var(--lu-ease);
+
+    // A chevron in place of Docusaurus's triangle; it turns when open.
+    &::before {
+      position: static;
+      width: 10px;
+      height: 10px;
+      border: none;
+      background: currentColor;
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M3.5 2 6.5 5 3.5 8' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+        center / contain no-repeat;
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M3.5 2 6.5 5 3.5 8' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+        center / contain no-repeat;
+      transform-origin: 50% 50%;
+    }
 
     &:hover {
-      cursor: pointer;
+      background: var(--lu-accent-soft);
+      color: var(--lu-accent);
     }
+  }
+
+  &[data-collapsed='false'] > summary,
+  &[open]:not([data-collapsed]) > summary {
+    color: var(--lu-ink);
   }
 
   & > div > div {
-    border-top: 0;
+    margin-top: 8px;
     padding-top: 0;
-    margin-top: 0.5rem;
+    border-top: 0;
   }
 
+  // The panel: a sunken surface, no table frame.
+  .markdown & table,
   table {
-    font-size: 1rem;
-    margin-bottom: 0;
+    width: 100%;
+    margin: 0;
+    padding: 4px 12px;
+    border: none;
+    border-radius: var(--lu-radius-control);
+    background: var(--lu-surface-sunken);
+    font-size: 13px;
+    line-height: 20px;
 
-    tr {
-      background-color: var(--ifm-table-background);
+    thead th {
+      padding: 6px 8px;
+      background: transparent;
+      color: var(--lu-ink-muted);
+      font: var(--lu-type-caption);
+      letter-spacing: var(--lu-type-caption-tracking);
+      text-align: left;
+      text-transform: uppercase;
+    }
+
+    tbody tr,
+    tbody tr:hover {
+      background: transparent;
     }
 
     td {
-      pre {
-        text-align: center;
-        margin: 0;
-        padding: 0.5rem;
+      padding: 8px;
+      vertical-align: top;
+
+      a {
+        text-decoration: none;
       }
 
-      &:nth-child(1) > a:not(:first-child) > pre {
-        margin-top: 0.5rem;
-      }
+      // Version chips.
+      &:nth-child(1) {
+        white-space: nowrap;
 
-      &:nth-child(2) {
-        width: 100%;
-        text-align: center;
-
-        code {
-          line-height: normal;
-          padding: 0.1rem 0.4rem;
+        pre {
+          display: inline-block;
+          margin: 0;
+          padding: 1px 8px;
+          border-radius: var(--lu-radius-capsule);
+          background: var(--lu-fill);
+          box-shadow: none;
+          color: var(--lu-ink);
+          font: 500 12px/18px var(--lu-font-mono);
         }
 
+        a:hover pre {
+          background: var(--lu-accent-soft);
+          color: var(--lu-accent);
+        }
+
+        & > a:not(:first-child) > pre {
+          margin-top: 4px;
+        }
+      }
+
+      // The change: a description, or an intent badge.
+      &:nth-child(2) {
+        width: 100%;
+
         p {
+          margin: 0;
           font-size: inherit;
-          text-align: left;
+        }
+
+        code {
+          padding: 0.05rem 0.35rem;
+          line-height: normal;
         }
 
         pre {
-          font-weight: bold;
-          letter-spacing: 0.04rem;
-          color: var(--ifm-badge-color);
+          display: inline-block;
+          margin: 0;
+          padding: 2px 8px;
+          border-radius: var(--lu-radius-capsule);
+          background: var(--lu-fill);
+          box-shadow: none;
+          color: var(--lu-ink-muted);
+          font: var(--lu-type-caption);
+          letter-spacing: 0.04em;
 
           // Soft fills, so the text takes the intent colour, not white.
           &.api-added {
             background-color: var(--api-history-added);
             color: var(--lu-success);
+          }
+
+          &.api-changed {
+            background-color: var(--lu-accent-soft);
+            color: var(--lu-accent);
           }
 
           &.api-deprecated {

@@ -1,29 +1,39 @@
-// The link: a dotted accent underline and a small "i" chip that says the
-// name opens a preview.
-.link {
-  display: inline-block;
-  margin-right: 1.25em;
-  position: relative;
-  overflow: visible;
-  text-decoration-color: color-mix(in srgb, var(--lu-accent) 55%, transparent);
-  text-decoration-line: underline;
-  text-decoration-style: dotted;
-  text-underline-offset: 4px;
+// The link: a small accent chip with an "i" that says the name opens a
+// preview.
+// Doubled class to beat `.markdown a` (underline, link colours).
+.link.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0 4px 0 7px;
+  border-radius: var(--lu-radius-sm);
+  background: var(--lu-accent-soft);
+  color: var(--lu-accent);
+  font-size: 0.9375em;
+  font-weight: 500;
+  line-height: 1.45;
+  text-decoration: none;
+  box-shadow: none;
+  vertical-align: baseline;
+  transition: background-color var(--lu-dur-fast) var(--lu-ease);
+
+  &:hover {
+    background: color-mix(in srgb, var(--lu-accent) 22%, var(--lu-surface));
+    color: var(--lu-accent);
+    text-decoration: none;
+  }
 
   &::after {
     content: 'i';
-    position: absolute;
-    left: calc(100% + 0.25em);
-    top: 50%;
-    width: 1.05em;
-    height: 1.05em;
+    flex: 0 0 auto;
+    width: 13px;
+    height: 13px;
     display: grid;
     place-items: center;
-    transform: translateY(-50%);
     border-radius: 50%;
-    background: var(--lu-accent-soft);
-    color: var(--lu-accent);
-    font: 700 0.65em/1 var(--lu-font-sans);
+    background: var(--lu-accent);
+    color: var(--lu-surface);
+    font: 700 9px/1 var(--lu-font-sans);
   }
 }
 
