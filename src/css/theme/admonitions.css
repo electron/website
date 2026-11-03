@@ -19,9 +19,15 @@
   color: var(--lu-ink-muted);
 }
 
-/* The heading's icon takes the first column; its text becomes the title. */
+/* The title sits in the second column as one block, so a title with code
+   or links wraps as normal text; the icon is lifted out into the first. */
+.theme-admonition.alert {
+  position: relative;
+}
+
 .theme-admonition [class*='admonitionHeading'] {
-  display: contents;
+  grid-column: 2;
+  margin: 0;
   color: var(--lu-ink);
   font: var(--lu-type-label);
   font-size: 14px;
@@ -39,10 +45,11 @@ html:not([lang^='en']) .theme-admonition [class*='admonitionHeading'] {
 }
 
 .theme-admonition [class*='admonitionIcon'] {
+  position: absolute;
+  top: 14px;
+  left: 14px;
   display: grid;
-  grid-row: 1 / span 2;
-  margin: 2px 0 0;
-  align-self: start;
+  margin: 0;
 }
 
 .theme-admonition [class*='admonitionIcon'] svg {

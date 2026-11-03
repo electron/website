@@ -17,8 +17,10 @@
   --lu-code-sheet: var(--lu-surface-sunken);
   /* Docs type: Lucent's scale, with body and code one step up from Fiddle's
      13px desktop UI because docs are read at length. Same weights and tracking. */
-  --lu-docs-font-size: 15px;
-  --lu-docs-line-height: 24px;
+  /* In rem, so docs text follows the reader's default font size (15px and
+     24px at the browser's default 16px; the root is 93.75% in infima.css). */
+  --lu-docs-font-size: 1rem;
+  --lu-docs-line-height: 1.6rem;
   --lu-type-docs-body: 400 var(--lu-docs-font-size) / var(--lu-docs-line-height)
     var(--lu-font-sans);
   --lu-type-docs-h2: 650 22px/28px var(--lu-font-sans);

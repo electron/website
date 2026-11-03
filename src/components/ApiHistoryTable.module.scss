@@ -59,12 +59,15 @@
           letter-spacing: 0.04rem;
           color: var(--ifm-badge-color);
 
+          // Soft fills, so the text takes the intent colour, not white.
           &.api-added {
             background-color: var(--api-history-added);
+            color: var(--lu-success);
           }
 
           &.api-deprecated {
             background-color: var(--api-history-deprecated);
+            color: var(--lu-spark);
           }
         }
       }
