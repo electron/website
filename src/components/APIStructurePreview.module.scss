@@ -37,15 +37,13 @@
   }
 }
 
-// The preview: a Lucent popover. Top and left are set in the component.
+// The preview: a Lucent popover with a caret pointing at the link. Top,
+// left, the gap and the caret's x are set in the component.
 .card {
   position: absolute;
   z-index: var(--ifm-z-index-overlay, 400);
   width: max-content;
   max-width: min(520px, calc(100vw - 32px));
-  max-height: 50vh;
-  overflow: auto;
-  padding: 14px 16px;
   border-radius: var(--lu-radius-menu);
   background: var(--lu-material-overlay);
   -webkit-backdrop-filter: var(--lu-blur-overlay);
@@ -56,7 +54,55 @@
   color: var(--lu-ink);
   font: 400 13px/20px var(--lu-font-sans);
 
-  // The structure's own page, rendered from Markdown.
+  // An invisible bridge over the gap, so the pointer can reach the card.
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: var(--preview-gap, 10px);
+  }
+
+  // The caret. A backdrop filter can't reach outside the card, so it takes
+  // the opaque raised surface, which matches the glass closely.
+  &::after {
+    content: '';
+    position: absolute;
+    left: calc(var(--preview-caret, 24px) - 8px);
+    width: 16px;
+    height: 8px;
+    background: var(--lu-surface-raised);
+  }
+
+  &[data-placement='above'] {
+    &::before {
+      top: 100%;
+    }
+
+    &::after {
+      top: 100%;
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+    }
+  }
+
+  &[data-placement='below'] {
+    &::before {
+      bottom: 100%;
+    }
+
+    &::after {
+      bottom: 100%;
+      clip-path: polygon(50% 0, 100% 100%, 0 100%);
+    }
+  }
+}
+
+// The structure's own page, rendered from Markdown.
+.body {
+  max-height: 50vh;
+  overflow: auto;
+  padding: 14px 16px;
+
   h1 {
     margin: 0 0 8px;
     color: var(--lu-ink);

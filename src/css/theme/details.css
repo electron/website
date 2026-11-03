@@ -206,3 +206,43 @@ body * {
   height: 14px;
   margin: 0;
 }
+
+/* "Process: Main, Renderer" on API pages (marked by the api-labels
+   transformer): a caption label and a row of process chips. */
+.api-process__label {
+  margin-right: 8px;
+  color: var(--lu-ink-muted);
+  font: var(--lu-type-caption);
+  font-style: normal;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.markdown p.api-process > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-right: 4px;
+  padding: 2px 10px 2px 8px;
+  border-radius: var(--lu-radius-capsule);
+  background: var(--lu-fill);
+  color: var(--lu-ink);
+  font: var(--lu-type-label);
+  text-decoration: none;
+  transition:
+    background-color var(--lu-dur-fast) var(--lu-ease),
+    color var(--lu-dur-fast) var(--lu-ease);
+}
+
+.markdown p.api-process > a::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--lu-accent);
+}
+
+.markdown p.api-process > a:hover {
+  background: var(--lu-accent-soft);
+  color: var(--lu-accent);
+}

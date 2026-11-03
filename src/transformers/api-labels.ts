@@ -1,7 +1,7 @@
 import type { Parent } from 'unist';
 import { visitParents } from 'unist-util-visit-parents';
 import type { Data as HastData } from 'hast';
-import type { Emphasis } from 'mdast';
+import type { Emphasis, Paragraph } from 'mdast';
 import { isText } from '../util/mdx-utils.ts';
 
 /**
@@ -36,7 +36,49 @@ const EXPERIMENTAL = 'Experimental';
 const READONLY = 'Readonly';
 
 function transformer(tree: Parent) {
+  visitParents(tree, 'paragraph', processVisitor);
   visitParents(tree, 'emphasis', visitor);
+}
+
+const PROCESS_PREFIX = 'Process: ';
+
+/**
+ * Marks the "Process: [Main](...), [Renderer](...)" line at the top of API
+ * pages so it can be styled as a label and a row of process chips. The
+ * "Process" text becomes its own span and the ", " separators between the
+ * links are dropped (the chips are spaced by CSS).
+ */
+function processVisitor(node: Paragraph) {
+  const [first] = node.children;
+  if (!first || !isText(first) || !first.value.startsWith(PROCESS_PREFIX)) {
+    return;
+  }
+  node.data = {
+    ...node.data,
+    hProperties: { className: ['api-process'] },
+  } satisfies HastData;
+  const label: Emphasis = {
+    type: 'emphasis',
+    data: { hName: 'span', hProperties: { className: ['api-process__label'] } },
+    children: [{ type: 'text', value: 'Process' }],
+  };
+  const rest = first.value.slice(PROCESS_PREFIX.length);
+  node.children.splice(
+    0,
+    1,
+    label,
+    ...(rest ? [{ ...first, value: rest }] : []),
+  );
+  // Drop the ", " text between two links.
+  node.children = node.children.filter(
+    (child, i, all) =>
+      !(
+        isText(child) &&
+        child.value.trim() === ',' &&
+        all[i - 1]?.type === 'link' &&
+        all[i + 1]?.type === 'link'
+      ),
+  );
 }
 
 function visitor(node: Emphasis) {

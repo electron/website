@@ -24,37 +24,46 @@ function APIStructurePreview(props: PreviewProps) {
   const linkRef = useRef(null);
   const cardRef = useRef(null);
   const [show, setShow] = useState(false);
-  const [position, setPosition] = useState(undefined);
+  const [position, setPosition] = useState<CardPosition | undefined>(undefined);
 
-  // Do some math: calculate the tooltip position 💯
+  // Place the card above the link in the lower half of the viewport and
+  // below it in the upper half, a small gap away, with a caret pointing at
+  // the link. The card's ::before bridges the gap so moving the pointer onto
+  // the card doesn't count as leaving the link.
   useEffect(() => {
     if (show) {
-      // small negative offset helps retain focus so
-      // we don't hit the onMouseLeave event if we
-      // need to interact with the tooltip.
-      const VERTICAL_OFFSET = -2;
-      const offset = { x: 0, y: 0 };
+      const GAP = 10;
+      const EDGE = 16;
+      const CARET_INSET = 20;
 
-      const linkRect = linkRef.current.getBoundingClientRect();
-      const isBottomHalfOfPage = window.innerHeight / 2 < linkRect.y;
-      const isRightHalfOfPage = window.innerWidth / 2 < linkRect.x;
+      const link = linkRef.current.getBoundingClientRect();
+      const card = cardRef.current.getBoundingClientRect();
+      const above = window.innerHeight / 2 < link.top;
+      const alignRight = window.innerWidth / 2 < link.left;
 
-      // display different offsets depending on
-      // link element position on viewport
-      if (isBottomHalfOfPage) {
-        offset.y = cardRef.current.clientHeight + VERTICAL_OFFSET;
-      } else {
-        offset.y = -linkRect.height - VERTICAL_OFFSET;
-      }
-      if (isRightHalfOfPage) {
-        offset.x = cardRef.current.clientWidth;
-      } else {
-        offset.x = 0;
-      }
+      let left = alignRight ? link.right - card.width + 12 : link.left - 12;
+      left = Math.max(
+        EDGE,
+        Math.min(
+          left,
+          document.documentElement.clientWidth - card.width - EDGE,
+        ),
+      );
+      const caret = Math.max(
+        CARET_INSET,
+        Math.min(link.left + link.width / 2 - left, card.width - CARET_INSET),
+      );
 
       setPosition({
-        top: linkRef.current.offsetTop - offset.y,
-        left: linkRef.current.offsetLeft - offset.x,
+        placement: above ? 'above' : 'below',
+        style: {
+          top:
+            window.scrollY +
+            (above ? link.top - card.height - GAP : link.bottom + GAP),
+          left: window.scrollX + left,
+          '--preview-gap': `${GAP}px`,
+          '--preview-caret': `${caret}px`,
+        } as React.CSSProperties,
       });
     }
   }, [show]);
@@ -65,6 +74,7 @@ function APIStructurePreview(props: PreviewProps) {
 
   const handleMouseLeave = useCallback(() => {
     setShow(false);
+    setPosition(undefined);
   }, []);
 
   return (
@@ -86,10 +96,15 @@ function APIStructurePreview(props: PreviewProps) {
   );
 }
 
+interface CardPosition {
+  placement: 'above' | 'below';
+  style: React.CSSProperties;
+}
+
 interface CardProps {
   content: string;
   innerRef: React.LegacyRef<HTMLElement>;
-  position: React.CSSProperties;
+  position: CardPosition | undefined;
 }
 
 const Card = (props: CardProps) => {
@@ -99,9 +114,12 @@ const Card = (props: CardProps) => {
       id="structures-tooltip"
       role="tooltip"
       className={styles.card}
-      style={props.position}
+      data-placement={props.position?.placement}
+      // Measured hidden first, then placed.
+      style={props.position?.style ?? { visibility: 'hidden', top: 0, left: 0 }}
     >
       <div
+        className={styles.body}
         dangerouslySetInnerHTML={{
           __html: toHtml(JSON.parse(props.content)),
         }}
