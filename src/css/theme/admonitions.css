@@ -32,6 +32,12 @@
   text-transform: none;
 }
 
+/* Translated labels come from Crowdin and may still be lower case, so
+   other locales keep Docusaurus's upper case until they're updated. */
+html:not([lang^='en']) .theme-admonition [class*='admonitionHeading'] {
+  text-transform: uppercase;
+}
+
 .theme-admonition [class*='admonitionIcon'] {
   display: grid;
   grid-row: 1 / span 2;

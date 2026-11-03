@@ -143,30 +143,10 @@
   background: var(--lu-hover);
 }
 
-/* On desktop the header row of a long table stays under the navbar while
-   the rows scroll. `clip` keeps the rounded corners without making the
-   table a scroll box, which would stop the header from sticking. */
-@media (min-width: 997px) {
-  /* The frame moves from an inset shadow to a border, so the header
-     cells' fill doesn't paint over it. */
-  .markdown table {
-    overflow: clip;
-    border: var(--lu-size-hairline) solid var(--lu-line);
-    box-shadow: none;
-  }
-
-  .markdown table thead th {
-    position: sticky;
-    top: var(--ifm-navbar-height);
-    z-index: 1;
-    background: var(--lu-surface-sunken);
-    box-shadow: inset 0 calc(-1 * var(--lu-size-hairline)) 0 var(--lu-line);
-    border-bottom: none;
-  }
-
-  .markdown table td code {
-    overflow-wrap: anywhere;
-  }
+/* The header row is a sunken band. */
+.markdown table thead th {
+  background: var(--lu-surface-sunken);
+  border-bottom: var(--lu-size-hairline) solid var(--lu-line);
 }
 
 /* Keys: small raised Lucent keycaps. */

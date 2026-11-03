@@ -154,9 +154,11 @@ code {
   max-width: 100%;
   border-collapse: separate;
   border-spacing: 0;
+  border: var(--lu-size-hairline) solid var(--lu-line);
   border-radius: var(--lu-radius-control);
-  box-shadow: inset 0 0 0 var(--lu-size-hairline) var(--lu-line);
-  overflow: hidden;
+  /* A table wider than the column scrolls sideways, as Infima's does; the
+     scroll box also clips the cells to the rounded corners. */
+  overflow-x: auto;
 }
 
 .markdown table tr {
@@ -181,17 +183,21 @@ code {
 }
 
 .pagination-nav__link {
+  /* A quiet link, not a panel: it's secondary to the page above it. */
+  padding: 8px 12px;
   border: none;
-  border-radius: var(--lu-radius-panel);
-  background:
-    linear-gradient(180deg, var(--lu-sheen-glass), transparent 60%),
-    var(--lu-surface-sunken);
-  box-shadow: inset 0 0 0 var(--lu-size-hairline) var(--lu-line);
+  border-radius: var(--lu-radius-control);
+  background: transparent;
+  box-shadow: none;
   transition: background-color var(--lu-dur-fast) var(--lu-ease);
 }
 
 .pagination-nav__link:hover {
   background: var(--lu-hover);
+}
+
+.pagination-nav__label {
+  font-weight: 500;
 }
 
 .pagination-nav__sublabel {

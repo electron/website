@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Link from '@docusaurus/Link';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 import Translate, { translate } from '@docusaurus/Translate';
 import { PageMetadata } from '@docusaurus/theme-common';
 import Layout from '@theme/Layout';
@@ -20,7 +21,19 @@ const links = [
   },
 ];
 
+// The Showcase (/apps and /apps/<app>) was removed. Production is a static
+// blob host with no redirect rules, so its old links land here and are sent
+// to the homepage of the same locale.
+const removedShowcase = /^\/(?:[a-z]{2}\/)?apps(?:\/|$)/;
+
 export default function NotFound() {
+  const home = useBaseUrl('/');
+  useEffect(() => {
+    if (removedShowcase.test(window.location.pathname)) {
+      window.location.replace(home);
+    }
+  }, [home]);
+
   return (
     <>
       <PageMetadata
