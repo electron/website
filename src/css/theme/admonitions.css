@@ -70,8 +70,9 @@ html:not([lang^='en']) .theme-admonition [class*='admonitionHeading'] {
 }
 
 /* Inline code takes a stronger tint of the callout's own intent, so it
-   stands out from the callout's fill. */
-.theme-admonition [class*='admonitionContent'] code {
+   stands out from the callout's fill. Inline code only: a code block in a
+   callout keeps its own colours. */
+.theme-admonition [class*='admonitionContent'] :not(pre) > code {
   background: color-mix(in srgb, var(--lu-intent) 14%, transparent);
 }
 
