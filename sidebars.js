@@ -32,6 +32,30 @@ module.exports = {
     },
     {
       type: 'category',
+      label: 'Concepts',
+      items: [
+        'latest/why-electron',
+        {
+          type: 'category',
+          label: 'Processes in Electron',
+          link: { type: 'doc', id: 'latest/tutorial/process-model' },
+          items: [
+            'latest/tutorial/context-isolation',
+            'latest/tutorial/sandbox',
+            'latest/tutorial/ipc',
+            'latest/tutorial/message-ports',
+            'latest/tutorial/multithreading',
+          ],
+        },
+        'latest/tutorial/web-embeds',
+        'latest/tutorial/esm',
+        'latest/tutorial/asar-archives',
+        'latest/tutorial/asar-integrity',
+        'latest/tutorial/distribution-overview',
+      ],
+    },
+    {
+      type: 'category',
       label: 'How-to Guides',
       link: { type: 'doc', id: 'latest/tutorial/examples' },
       items: [
@@ -158,30 +182,6 @@ module.exports = {
           label: 'Best Practices',
           items: ['latest/tutorial/performance', 'latest/tutorial/security'],
         },
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Concepts',
-      items: [
-        'latest/why-electron',
-        {
-          type: 'category',
-          label: 'Processes in Electron',
-          link: { type: 'doc', id: 'latest/tutorial/process-model' },
-          items: [
-            'latest/tutorial/context-isolation',
-            'latest/tutorial/sandbox',
-            'latest/tutorial/ipc',
-            'latest/tutorial/message-ports',
-            'latest/tutorial/multithreading',
-          ],
-        },
-        'latest/tutorial/web-embeds',
-        'latest/tutorial/esm',
-        'latest/tutorial/asar-archives',
-        'latest/tutorial/asar-integrity',
-        'latest/tutorial/distribution-overview',
       ],
     },
     {
