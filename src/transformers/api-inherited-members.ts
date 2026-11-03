@@ -35,6 +35,13 @@ import type { VFile } from 'vfile';
  * transform is a no-op for docs that duplicate their parent's sections (as
  * `browser-window.md` does today), which keeps all existing anchors intact.
  *
+ * Sections are matched by their English names. If the child or any ancestor
+ * has a depth-3 heading under its class heading that is neither one of those
+ * sections nor the constructor (e.g. a translated "Instanzmethoden" on a
+ * partially translated locale), the page is left untouched: the child's
+ * declared members could not be compared reliably, and injecting would
+ * duplicate them under new English sections.
+ *
  * This plugin must run in `beforeDefaultRemarkPlugins`, ahead of the built-in
  * Docusaurus heading/TOC plugins and of the other `api-*` transformers, so
  * that injected headings receive ids and TOC entries and injected bodies go
@@ -91,6 +98,11 @@ interface ClassDoc extends ClassInfo {
   sections: Map<SectionName, Member[]>;
   /** Reference-style link definitions, by identifier */
   definitions: Map<string, Definition>;
+  /**
+   * Depth-3 headings of the class that are neither a member section nor the
+   * constructor, such as translated section names
+   */
+  unknownHeadings: string[];
 }
 
 interface AncestorDoc extends ClassDoc {
@@ -117,6 +129,14 @@ function isApiDoc(filePath: string | undefined): boolean {
     typeof filePath === 'string' &&
     filePath.endsWith('.md') &&
     path.basename(path.dirname(filePath)) === 'api'
+  );
+}
+
+/** A constructor heading, e.g. ### `new BrowserWindow([options])` */
+function isConstructorHeading(heading: Heading, className: string): boolean {
+  const [first] = heading.children;
+  return (
+    first?.type === 'inlineCode' && first.value.startsWith(`new ${className}(`)
   );
 }
 
@@ -174,6 +194,7 @@ function memberKey(section: SectionName, heading: Heading): string {
 function readClassDoc(tree: Root, info: ClassInfo): ClassDoc {
   const sections = new Map<SectionName, Member[]>();
   const definitions = new Map<string, Definition>();
+  const unknownHeadings: string[] = [];
   let receiver: string | undefined;
 
   for (const node of tree.children) {
@@ -190,6 +211,9 @@ function readClassDoc(tree: Root, info: ClassInfo): ClassDoc {
       const text = toString(node).trim();
       section = isSectionName(text) ? text : undefined;
       member = undefined;
+      if (!section && !isConstructorHeading(node, info.className)) {
+        unknownHeadings.push(text);
+      }
     } else if (isHeading(node) && node.depth === 4) {
       member = undefined;
       if (!section) continue;
@@ -219,6 +243,7 @@ function readClassDoc(tree: Root, info: ClassInfo): ClassDoc {
     receiver: receiver ?? '',
     sections,
     definitions,
+    unknownHeadings,
   };
 }
 
@@ -310,6 +335,10 @@ function collectReferences(nodes: Node[], identifiers: Set<string>) {
   });
 }
 
+function escapeRegExp(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
 /**
  * Rewrites same-page anchors in `nodes` from the ancestor's receiver to the
  * child's (e.g. `#viewgetbounds` -> `#imagegetbounds`), since the headings
@@ -319,12 +348,14 @@ function rewriteAnchors(nodes: Node[], from: string, to: string) {
   // Member slugs drop the `.`, so the receiver is directly followed by the
   // member name (`#viewgetbounds`); `#view-customization` is not a member.
   const memberAnchor = new RegExp(
-    `^#${from.toLowerCase().replace(/\\$/g, '\\$&')}(?=[a-z0-9])`,
+    `^#${escapeRegExp(from.toLowerCase())}(?=[a-z0-9])`,
   );
+  const replacement = `#${to.toLowerCase()}`;
   visitAll(nodes, (node) => {
     if (node.type === 'link') {
       const link = node as Link;
-      link.url = link.url.replace(memberAnchor, `#${to.toLowerCase()}`);
+      // A function, so that a `$` in the receiver is not a replacement pattern
+      link.url = link.url.replace(memberAnchor, () => replacement);
     }
   });
 }
@@ -465,6 +496,12 @@ function transformer(tree: Root, file: VFile) {
   if (ancestors.length === 0) return;
 
   const child = readClassDoc(tree, info);
+  // Only inject when every class in the chain uses the known section names;
+  // otherwise skip the page entirely rather than inject part of the members.
+  if ([child, ...ancestors].some((doc) => doc.unknownHeadings.length > 0)) {
+    return;
+  }
+
   const declared = new Map<SectionName, Set<string>>(
     SECTIONS.map((section) => [
       section,
