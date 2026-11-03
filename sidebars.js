@@ -48,11 +48,6 @@ module.exports = {
       items: [
         {
           type: 'category',
-          label: 'Best Practices',
-          items: ['latest/tutorial/performance', 'latest/tutorial/security'],
-        },
-        {
-          type: 'category',
           label: 'Window Management',
           link: { type: 'doc', id: 'latest/tutorial/window-customization' },
           items: [
@@ -193,6 +188,11 @@ module.exports = {
           ],
         },
       ],
+    },
+    {
+      type: 'category',
+      label: 'Best Practices',
+      items: ['latest/tutorial/performance', 'latest/tutorial/security'],
     },
     {
       type: 'category',
