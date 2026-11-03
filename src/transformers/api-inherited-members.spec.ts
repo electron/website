@@ -816,8 +816,12 @@ See [\`BaseWindow.fromId(id)\`](#basewindowfromidid),
 
 See [\`win.setBounds(bounds)\`](#winsetboundsbounds),
 [\`BaseWindow.fromId(id)\`](#basewindowfromidid),
-[\`BaseWindow.getFocusedWindow()\`](#basewindowgetfocusedwindow) and
-[\`'close'\`](#event-close).
+[\`BaseWindow.getFocusedWindow()\`](#basewindowgetfocusedwindow),
+[\`'close'\`](#event-close),
+[from view][from-view] and [focused][focused].
+
+[from-view]: #basewindowfromviewview
+[focused]: #basewindowgetfocusedwindow
 
 #### \`win.setBounds(bounds)\`
 `,
@@ -887,6 +891,18 @@ See [\`win.setBounds(bounds)\`](#winsetboundsbounds),
       assert.ok(instanceLinks.includes('#event-close'));
     });
 
+    it('retargets carried link definitions the same way', () => {
+      const urls = Object.fromEntries(
+        tree.children
+          .filter((node) => node.type === 'definition')
+          .map(({ identifier, url }) => [identifier, url]),
+      );
+      assert.deepEqual(urls, {
+        'from-view': '#browserwindowfromviewview',
+        focused: './base-window.md#basewindowgetfocusedwindow',
+      });
+    });
+
     it('leaves links to other pages alone', () => {
       assert.ok(staticLinks.includes('web-contents.md#contentsloadurlurl'));
       assert.ok(
@@ -900,7 +916,10 @@ See [\`win.setBounds(bounds)\`](#winsetboundsbounds),
           .filter(isHeading)
           .map((heading) => slug(toString(heading))),
       );
-      for (const url of linkUrls(tree)) {
+      const definitions = tree.children.flatMap((node) =>
+        node.type === 'definition' ? [node.url] : [],
+      );
+      for (const url of [...linkUrls(tree), ...definitions]) {
         if (url.startsWith('#')) assert.ok(ids.has(url.slice(1)), url);
       }
     });

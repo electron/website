@@ -350,12 +350,13 @@ function slug(heading: Heading): string {
 }
 
 /**
- * Points the same-page links in nodes injected from `ancestor` at a heading
- * in `anchors` (the ids of the child page's member headings). A member anchor
- * is rewritten from the ancestor's class name or receiver to the child's
- * (e.g. `#viewgetbounds` -> `#imagegetbounds`) when that member is on the
- * child page; any other anchor, such as the constructor, a prose heading or a
- * member the child does not get, links to it on the ancestor's page instead.
+ * Points the same-page links and link definitions in nodes injected from
+ * `ancestor` at a heading in `anchors` (the ids of the child page's member
+ * headings). A member anchor is rewritten from the ancestor's class name or
+ * receiver to the child's (e.g. `#viewgetbounds` -> `#imagegetbounds`) when
+ * that member is on the child page; any other anchor, such as the constructor,
+ * a prose heading or a member the child does not get, links to it on the
+ * ancestor's page instead.
  */
 function retargetAnchors(
   nodes: Node[],
@@ -370,8 +371,8 @@ function retargetAnchors(
     .filter(([from, to]) => from && to && from !== to)
     .map(([from, to]) => [from.toLowerCase(), to.toLowerCase()]);
   visitAll(nodes, (node) => {
-    if (node.type !== 'link') return;
-    const link = node as Link;
+    if (node.type !== 'link' && node.type !== 'definition') return;
+    const link = node as Link | Definition;
     if (!link.url.startsWith('#')) return;
     const id = link.url.slice(1);
     const target = [
@@ -557,6 +558,7 @@ function transformer(tree: Root, file: VFile) {
         const clone = cloneNode(definition);
         child.definitions.set(identifier, clone);
         tree.children.push(clone);
+        injected.push({ ancestor, nodes: [clone] });
       }
     }
   }
