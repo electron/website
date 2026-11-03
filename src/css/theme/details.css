@@ -2,7 +2,8 @@
    big tables, keys, scrollbars and the "Edit this page" link. */
 
 /* Quotes: depth instead of Infima's left rule. The line under an API page's
-   title (its summary) reads as a lede; other quotes are a sunken panel. */
+   title (its summary) reads as a lede, also when a collapsed History block
+   sits between them; other quotes are a sunken panel. */
 .markdown blockquote {
   padding: var(--lu-space-3) var(--lu-space-4);
   border: none;
@@ -11,7 +12,8 @@
   color: var(--lu-ink-muted);
 }
 
-.markdown header + blockquote {
+.markdown header + blockquote,
+.markdown header + [class*='api-history'] + blockquote {
   padding: 0;
   background: none;
   font: 400 1.2rem/1.8667rem var(--lu-font-sans);

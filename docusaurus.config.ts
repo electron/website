@@ -301,7 +301,23 @@ const config: Config = {
               if (item.type === 'doc') return item.id;
               return 'label' in item ? (item.label ?? '') : '';
             };
-            return [...items].sort((a, b) =>
+            // Structure pages are titled like "Rectangle Object" or
+            // "IpcMainEvent Object extends `Event`". In the sidebar every
+            // entry is a structure, so show just the type name.
+            const titles = new Map(args.docs.map((doc) => [doc.id, doc.title]));
+            const labelled = items.map((item) => {
+              if (
+                item.type !== 'doc' ||
+                !item.id.includes('/api/structures/') ||
+                item.label
+              ) {
+                return item;
+              }
+              const title = titles.get(item.id);
+              const name = title?.match(/^(\S+) Object\b/)?.[1];
+              return name ? { ...item, label: name } : item;
+            });
+            return labelled.sort((a, b) =>
               sortKey(a).localeCompare(sortKey(b), 'en'),
             );
           },

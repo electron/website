@@ -1,4 +1,3 @@
-import clsx from 'clsx';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import usePortal from 'react-useportal';
 import { toHtml } from 'hast-util-to-html';
@@ -99,11 +98,10 @@ const Card = (props: CardProps) => {
       ref={props.innerRef}
       id="structures-tooltip"
       role="tooltip"
-      className={clsx('alert', 'alert--info', 'shadow--md', styles.card)}
+      className={styles.card}
       style={props.position}
     >
       <div
-        className="card__body"
         dangerouslySetInnerHTML={{
           __html: toHtml(JSON.parse(props.content)),
         }}
