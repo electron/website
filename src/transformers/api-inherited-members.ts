@@ -35,12 +35,14 @@ import type { VFile } from 'vfile';
  * transform is a no-op for docs that duplicate their parent's sections (as
  * `browser-window.md` does today), which keeps all existing anchors intact.
  *
- * Sections are matched by their English names. If the child or any ancestor
- * has a depth-3 heading under its class heading that is neither one of those
- * sections nor the constructor (e.g. a translated "Instanzmethoden" on a
- * partially translated locale), the page is left untouched: the child's
- * declared members could not be compared reliably, and injecting would
- * duplicate them under new English sections.
+ * Sections and members are matched by their English heading forms. If the
+ * child or any ancestor has a depth-3 heading under its class heading that is
+ * neither one of those sections nor the constructor (e.g. a translated
+ * "Instanzmethoden" on a partially translated locale), or a member heading
+ * in one of those sections that is not in the `Event: 'name'` or
+ * `receiver.member` form (e.g. a translated "Ereignis: 'close'"), the page is
+ * left untouched: the child's declared members could not be compared
+ * reliably, and injecting would duplicate them.
  *
  * This plugin must run in `beforeDefaultRemarkPlugins`, ahead of the built-in
  * Docusaurus heading/TOC plugins and of the other `api-*` transformers, so
@@ -100,7 +102,8 @@ interface ClassDoc extends ClassInfo {
   definitions: Map<string, Definition>;
   /**
    * Depth-3 headings of the class that are neither a member section nor the
-   * constructor, such as translated section names
+   * constructor, and member headings whose key cannot be parsed, such as
+   * translated section or event names
    */
   unknownHeadings: string[];
 }
@@ -173,22 +176,17 @@ function findNextHeading(tree: Root, start: number, depth: number): number {
  * Normalizes a member heading into a key that is stable across receivers and
  * class names, so that `win.setBounds(bounds)` and `window.setBounds(bounds)`
  * or `BaseWindow.fromId(id)` and `BrowserWindow.fromId(id)` compare equal.
+ * Returns `undefined` for a heading in neither the `Event: 'name'` (events)
+ * nor the `receiver.member` (everything else) form.
  */
-function memberKey(section: SectionName, heading: Heading): string {
-  const text = toString(heading).trim();
+function memberKey(section: SectionName, heading: Heading): string | undefined {
   if (section === 'Instance Events') {
-    const match = EVENT_HEADING.exec(text);
-    if (match) return `event:${match[1]}`;
+    const match = EVENT_HEADING.exec(toString(heading).trim());
+    return match ? `event:${match[1]}` : undefined;
   }
   const [first] = heading.children;
-  if (first?.type === 'inlineCode') {
-    const match = RECEIVER_MEMBER.exec(first.value);
-    if (match) return match[2];
-  }
-  // Fallback: heading text without labels such as _Readonly_ or _macOS_
-  return toString(
-    heading.children.filter((child) => child.type !== 'emphasis'),
-  ).trim();
+  if (first?.type !== 'inlineCode') return undefined;
+  return RECEIVER_MEMBER.exec(first.value)?.[2];
 }
 
 function readClassDoc(tree: Root, info: ClassInfo): ClassDoc {
@@ -217,7 +215,12 @@ function readClassDoc(tree: Root, info: ClassInfo): ClassDoc {
     } else if (isHeading(node) && node.depth === 4) {
       member = undefined;
       if (!section) continue;
-      member = { key: memberKey(section, node), heading: node, body: [] };
+      const key = memberKey(section, node);
+      if (key === undefined) {
+        unknownHeadings.push(toString(node).trim());
+        continue;
+      }
+      member = { key, heading: node, body: [] };
       if (!sections.has(section)) sections.set(section, []);
       sections.get(section).push(member);
       if (
@@ -496,8 +499,9 @@ function transformer(tree: Root, file: VFile) {
   if (ancestors.length === 0) return;
 
   const child = readClassDoc(tree, info);
-  // Only inject when every class in the chain uses the known section names;
-  // otherwise skip the page entirely rather than inject part of the members.
+  // Only inject when every class in the chain uses the known section and
+  // member heading forms; otherwise skip the page entirely rather than inject
+  // part of the members.
   if ([child, ...ancestors].some((doc) => doc.unknownHeadings.length > 0)) {
     return;
   }

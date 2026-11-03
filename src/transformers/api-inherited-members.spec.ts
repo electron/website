@@ -194,11 +194,35 @@ function ancestorsOf(filePath: string): ClassDoc[] {
   return ancestors;
 }
 
-/** Whether every h3 under the class heading is a member section or the constructor. */
-function hasOnlyKnownSections({ className, tree }: ClassDoc): boolean {
-  return classSections(tree).every(
-    (text) => SECTIONS.includes(text) || text.startsWith(`new ${className}(`),
-  );
+/**
+ * Whether every h3 under the class heading is a member section or the
+ * constructor, and every member h4 in those sections is in the
+ * `Event: 'name'` or `` `receiver.member` `` form.
+ */
+function hasOnlyKnownHeadings({ className, tree }: ClassDoc): boolean {
+  let inClass = false;
+  let section: string | undefined;
+  for (const node of tree.children) {
+    if (!isHeading(node)) continue;
+    const text = toString(node).trim();
+    if (node.depth === 2) {
+      if (inClass) break;
+      inClass = CLASS_HEADING.exec(text)?.[1] === className;
+    } else if (!inClass) {
+      continue;
+    } else if (node.depth === 3) {
+      section = SECTIONS.includes(text) ? text : undefined;
+      if (!section && !text.startsWith(`new ${className}(`)) return false;
+    } else if (node.depth === 4 && section) {
+      const [first] = node.children;
+      const known =
+        section === 'Instance Events'
+          ? /^Event:\s*'[^']+'/.test(text)
+          : first?.type === 'inlineCode' && /^[\w$]+\.[\w$]+/.test(first.value);
+      if (!known) return false;
+    }
+  }
+  return true;
 }
 
 /** Receiver of the instance members of a class, e.g. `win` */
@@ -240,8 +264,8 @@ describe('api-inherited-members', () => {
         const before = membersBySection(original);
         const after = membersBySection(tree);
 
-        if (![child, ...ancestors].every(hasOnlyKnownSections)) {
-          it('is left untouched (unrecognised section headings)', () => {
+        if (![child, ...ancestors].every(hasOnlyKnownHeadings)) {
+          it('is left untouched (unrecognised section or member headings)', () => {
             assert.deepEqual(tree, original);
           });
           return;
@@ -694,6 +718,44 @@ Sets the image.
           '### `new ImageView()`',
           "### `new ImageView()`\n\n### Instance Events\n\n#### Event: 'loaded'",
         ),
+      });
+      await assertUntouched(path.join(dir, 'image-view.md'));
+    });
+
+    it('injects nothing when a child event heading is translated', async () => {
+      const dir = writeFixtures({
+        'view.md': englishParent,
+        'image-view.md': englishChild.replace(
+          '### `new ImageView()`',
+          "### `new ImageView()`\n\n### Instance Events\n\n#### Ereignis: 'bounds-changed'",
+        ),
+      });
+      await assertUntouched(path.join(dir, 'image-view.md'));
+    });
+
+    it('injects nothing when a parent event heading is translated', async () => {
+      const dir = writeFixtures({
+        'view.md': englishParent
+          .replace(
+            "#### Event: 'bounds-changed'",
+            "#### Ereignis: 'bounds-changed'",
+          )
+          .replace(
+            '#### `view.getBounds()`',
+            '#### `view.getBounds()`\n\n#### `view.setBounds(bounds)`',
+          ),
+        'image-view.md': englishChild,
+      });
+      await assertUntouched(path.join(dir, 'image-view.md'));
+    });
+
+    it('injects nothing when a member heading lacks the receiver form', async () => {
+      const dir = writeFixtures({
+        'view.md': englishParent.replace(
+          '#### `view.getBounds()`',
+          '#### `view.getBounds()`\n\n#### Grenzen abrufen',
+        ),
+        'image-view.md': englishChild,
       });
       await assertUntouched(path.join(dir, 'image-view.md'));
     });
