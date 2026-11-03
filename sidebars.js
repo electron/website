@@ -5,6 +5,7 @@ module.exports = {
       label: 'Get Started',
       items: [
         'latest/tutorial/introduction',
+        'latest/why-electron',
         {
           type: 'category',
           label: 'Tutorial: Your First App',
@@ -17,24 +18,12 @@ module.exports = {
             'latest/tutorial/tutorial-6-publishing-updating',
           ],
         },
-        {
-          type: 'category',
-          label: 'Tutorial: Native Code and Electron',
-          link: { type: 'doc', id: 'latest/tutorial/native-code-and-electron' },
-          items: [
-            'latest/tutorial/native-code-and-electron-cpp-win32',
-            'latest/tutorial/native-code-and-electron-swift-macos',
-            'latest/tutorial/native-code-and-electron-objc-macos',
-            'latest/tutorial/native-code-and-electron-cpp-linux',
-          ],
-        },
       ],
     },
     {
       type: 'category',
       label: 'Concepts',
       items: [
-        'latest/why-electron',
         {
           type: 'category',
           label: 'Processes in Electron',
@@ -50,8 +39,6 @@ module.exports = {
         'latest/tutorial/web-embeds',
         'latest/tutorial/esm',
         'latest/tutorial/asar-archives',
-        'latest/tutorial/asar-integrity',
-        'latest/tutorial/distribution-overview',
       ],
     },
     {
@@ -61,7 +48,12 @@ module.exports = {
       items: [
         {
           type: 'category',
-          label: 'Windows',
+          label: 'Best Practices',
+          items: ['latest/tutorial/performance', 'latest/tutorial/security'],
+        },
+        {
+          type: 'category',
+          label: 'Window Management',
           link: { type: 'doc', id: 'latest/tutorial/window-customization' },
           items: [
             'latest/tutorial/custom-title-bar',
@@ -135,17 +127,40 @@ module.exports = {
           label: 'Project Setup',
           items: [
             'latest/tutorial/installation',
-            'latest/tutorial/using-native-node-modules',
             'latest/tutorial/windows-arm',
           ],
         },
         {
           type: 'category',
+          label: 'Native Code',
+          items: [
+            'latest/tutorial/using-native-node-modules',
+            {
+              type: 'category',
+              label: 'Tutorial: Native Code and Electron',
+              link: {
+                type: 'doc',
+                id: 'latest/tutorial/native-code-and-electron',
+              },
+              items: [
+                'latest/tutorial/native-code-and-electron-cpp-win32',
+                'latest/tutorial/native-code-and-electron-swift-macos',
+                'latest/tutorial/native-code-and-electron-objc-macos',
+                'latest/tutorial/native-code-and-electron-cpp-linux',
+              ],
+            },
+          ],
+        },
+        {
+          type: 'category',
           label: 'Packaging and Distribution',
+          link: { type: 'doc', id: 'latest/tutorial/distribution-overview' },
           items: [
             'latest/tutorial/forge-overview',
             'latest/tutorial/application-distribution',
             'latest/tutorial/code-signing',
+            'latest/tutorial/asar-integrity',
+            'latest/tutorial/fuses',
             'latest/tutorial/updates',
             {
               type: 'doc',
@@ -177,11 +192,6 @@ module.exports = {
             'latest/tutorial/testing-on-headless-ci',
           ],
         },
-        {
-          type: 'category',
-          label: 'Best Practices',
-          items: ['latest/tutorial/performance', 'latest/tutorial/security'],
-        },
       ],
     },
     {
@@ -194,7 +204,7 @@ module.exports = {
           href: '/docs/latest/api/app',
         },
         'latest/breaking-changes',
-        'latest/tutorial/fuses',
+        'latest/experimental',
         'latest/glossary',
         'latest/faq',
         {
