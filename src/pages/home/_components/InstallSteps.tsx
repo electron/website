@@ -39,13 +39,12 @@ export default function InstallSteps() {
   };
   return (
     <div>
-      <div className={styles.channels} role="tablist" aria-label="Channel">
+      <div className={styles.channels} role="group" aria-label="Channel">
         {(['stable', 'prerelease', 'nightly'] as const).map((name) => (
           <button
             key={name}
             type="button"
-            role="tab"
-            aria-selected={channel === name}
+            aria-pressed={channel === name}
             className={clsx(
               styles.channel,
               channel === name && styles.channelActive,

@@ -41,7 +41,7 @@
 
 // ---------- Sidebar ----------
 
-.plugin-blog [class*='sidebar_'] {
+.plugin-blog aside > nav[class*='sidebar_'] {
   padding: var(--lu-space-6) var(--lu-space-2) var(--lu-space-6) 0;
 
   [class*='sidebarItemTitle_'] {
@@ -106,8 +106,7 @@
 
   // The list: no sheet behind the posts; each post is its own.
   .blog-list-page .main-wrapper main,
-  .blog-tags-post-list-page .main-wrapper main,
-  .blog-archive-page .main-wrapper main {
+  .blog-tags-post-list-page .main-wrapper main {
     margin-left: var(--lu-space-2);
     background: none;
     box-shadow: none;
@@ -425,6 +424,13 @@
 }
 
 // ---------- Archive ----------
+
+// The archive has no sidebar, so its sheet gets an even inset on both sides.
+@media (min-width: 997px) {
+  html.plugin-blog:not(.blog-wrapper) .main-wrapper main {
+    margin-inline: var(--lu-space-4);
+  }
+}
 
 // The archive's banner becomes a plain hero on the window ground, like the
 // other pages'. Its subtitle only repeats "Archive".

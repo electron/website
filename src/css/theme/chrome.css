@@ -218,7 +218,7 @@ body,
     padding: var(--lu-space-8) 40px var(--lu-space-8) 48px !important;
   }
 
-  /* A page whose main is a centred .container (Fiddle) keeps its centring
+  /* A page whose main is a centred .container (the 404 page) keeps its centring
      and gets the same room inside the sheet. */
   .main-wrapper main.container {
     margin: var(--lu-space-4) auto;

@@ -1,5 +1,4 @@
 import React from 'react';
-import clsx from 'clsx';
 import styles from './FeaturedAppsCarousel.module.scss';
 import { useColorMode } from '@docusaurus/theme-common';
 import type { FeaturedApp } from '../../../util/featured-apps.ts';
@@ -19,7 +18,7 @@ export default function FeaturedAppsCarousel({
   }, [colorMode]);
 
   return (
-    <div className={clsx(styles.section)}>
+    <div>
       <div className={styles.header}>
         <h2 className={styles.heading}>Trusted by best-in-class apps</h2>
         <p>

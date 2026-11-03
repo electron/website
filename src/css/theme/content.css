@@ -191,3 +191,34 @@ code {
   font: var(--lu-type-caption);
   color: var(--lu-ink-muted);
 }
+
+/* Badges (API platform tags, Experimental, Readonly): soft capsules in the
+   accent, never white text on a saturated fill. Scoped to page content:
+   the sidebar has its own badges. */
+.markdown .badge {
+  padding: 1px 7px;
+  border: none;
+  border-radius: var(--lu-radius-capsule);
+  background: var(--lu-accent-soft);
+  color: var(--lu-accent);
+  font: var(--lu-type-caption);
+  font-style: normal;
+  letter-spacing: var(--lu-type-caption-tracking);
+  vertical-align: 0.1em;
+}
+
+.markdown .badge--warning {
+  background: color-mix(in srgb, var(--lu-warning) 16%, transparent);
+  color: var(--lu-ink);
+}
+
+.markdown .badge--info,
+.markdown .badge--secondary {
+  background: var(--lu-fill);
+  color: var(--lu-ink-muted);
+}
+
+.markdown .badge--danger {
+  background: var(--lu-spark-soft);
+  color: var(--lu-spark);
+}

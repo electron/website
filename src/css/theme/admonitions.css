@@ -27,8 +27,9 @@
   font-size: 14px;
   line-height: 20px;
   font-weight: 600;
-  /* Sentence case: "Warning", not "WARNING". */
-  text-transform: capitalize;
+  /* Sentence case: "Warning", not "WARNING". The default labels are
+     capitalised in i18n/en/code.json, so custom titles keep their case. */
+  text-transform: none;
 }
 
 .theme-admonition [class*='admonitionIcon'] {
@@ -80,4 +81,14 @@
 
 .theme-admonition.alert--danger [class*='admonitionHeading'] {
   color: var(--lu-spark);
+}
+
+/* Links in a callout use the accent, like links everywhere else. */
+.theme-admonition.alert a {
+  color: var(--lu-accent);
+  text-decoration-color: color-mix(in srgb, var(--lu-accent) 40%, transparent);
+}
+
+.theme-admonition.alert a:hover {
+  text-decoration-color: var(--lu-accent);
 }

@@ -96,10 +96,7 @@ const GroupCard = ({ group }: { group: WorkingGroup }) => {
           <h2>
             <a href={group.link}>
               {group.name}
-              <ArrowUpRight
-                size={14}
-                aria-label={`${group.name} README on GitHub`}
-              />
+              <ArrowUpRight size={14} aria-hidden="true" />
             </a>
           </h2>
           <p>{group.description}</p>

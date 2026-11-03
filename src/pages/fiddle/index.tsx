@@ -140,7 +140,7 @@ export default function FiddlePage() {
       secondary: ['32-bit', downloadLinks.win32.ia32],
     },
     darwin: {
-      primary: ['Download for macOS', downloadLinks.darwin.arm64],
+      primary: ['Download for Apple Silicon', downloadLinks.darwin.arm64],
       secondary: ['Intel Mac', downloadLinks.darwin.x64],
     },
     linux: {
@@ -182,7 +182,7 @@ export default function FiddlePage() {
   return (
     <Layout title="Electron Fiddle">
       <header className={styles.hero}>
-        <div className={styles.heroText}>
+        <div>
           <div className={styles.appIdentity}>
             <span className={styles.appIcon}>
               <FiddleLogo width={44} height={44} aria-hidden="true" />

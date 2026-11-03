@@ -226,6 +226,14 @@
   letter-spacing: var(--lu-type-caption-tracking);
 }
 
+// One card per row: nothing to line up with, so no reserved space.
+@media (max-width: 680px) {
+  .groupHeading p,
+  .members {
+    min-height: 0 !important;
+  }
+}
+
 .groupFooter {
   min-height: calc(28px + var(--lu-space-3));
   padding-top: var(--lu-space-3);

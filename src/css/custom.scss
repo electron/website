@@ -6,10 +6,7 @@
 :root {
   // brand colours, used by the homepage and Fiddle page
   --electron-color-light: #9feaf9;
-  --electron-color-mid: #028399;
   --electron-color-dark: #1b1c26;
-  --electron-color-secondary-light: #ff6e6e;
-  --electron-color-secondary-mid: #e3112d;
 
   --api-history-added: color-mix(
     in srgb,
@@ -24,31 +21,6 @@
 @media (min-width: 1440px) {
   html:not(.plugin-blog) .container {
     max-width: var(--ifm-container-width);
-  }
-}
-
-// Electron's buttons are Lucent's primary action: navy with cyan ink in
-// light mode, cyan with navy ink in dark mode.
-.button--electron {
-  --ifm-button-background-color: var(--lu-action);
-  --ifm-button-border-color: transparent;
-  --ifm-button-color: var(--lu-on-action);
-  background-image: var(--lu-sheen-action);
-  box-shadow: var(--lu-shadow-primary);
-  color: var(--lu-on-action);
-
-  &:hover {
-    --ifm-button-background-color: var(--lu-action);
-    --ifm-button-border-color: transparent;
-    color: var(--lu-on-action);
-    background-image: var(--lu-sheen-action-hover);
-    box-shadow:
-      var(--lu-shadow-primary),
-      0 8px 22px -8px color-mix(in srgb, var(--lu-action) 70%, transparent);
-  }
-
-  &:active {
-    --ifm-button-background-color: var(--lu-action-pressed);
   }
 }
 
