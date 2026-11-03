@@ -9,10 +9,12 @@
   grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
   align-items: center;
   gap: var(--lu-space-8);
-  // Lines up with the feature grid: 16px sheet margin + 40px padding.
-  max-width: calc(1160px + 112px);
+  // Lines up with the sheet's content (see the page-sheet rule in chrome.css).
+  max-width: calc(
+    var(--page-content) + 2 * (var(--lu-space-4) + var(--page-pad))
+  );
   margin: 0 auto;
-  padding: 72px 56px 56px;
+  padding: 72px calc(var(--lu-space-4) + var(--page-pad)) 56px;
 
   @media (max-width: 996px) {
     grid-template-columns: minmax(0, 1fr);
@@ -119,8 +121,7 @@
 // ---------- The sheet ----------
 
 :global(.main-wrapper) main.sheet {
-  margin: 0 var(--lu-space-4) var(--lu-space-4);
-  padding: var(--lu-space-8) 40px 48px;
+  // Desktop margin and padding come from chrome.css (page sheets).
 
   @media (max-width: 996px) {
     margin: 0;
@@ -134,7 +135,7 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--lu-space-4);
-  max-width: 1160px;
+  max-width: var(--page-content);
   margin: 0 auto 64px;
 
   @media (max-width: 1100px) {
@@ -160,7 +161,8 @@
   aspect-ratio: 16 / 10;
   overflow: hidden;
   margin: var(--lu-space-3) var(--lu-space-3) 0;
-  border-radius: calc(var(--lu-radius-panel) - 4px);
+  // Concentric with the panel, 12px in.
+  border-radius: max(calc(var(--lu-radius-panel) - var(--lu-space-3)), 6px);
   background: var(--electron-color-dark);
   box-shadow: var(--lu-shadow-lift);
 

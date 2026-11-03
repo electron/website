@@ -14,7 +14,8 @@
   aspect-ratio: 4 / 3;
   overflow: hidden;
   margin: var(--lu-space-3) var(--lu-space-3) 0;
-  border-radius: calc(var(--lu-radius-panel) - 4px);
+  // Concentric with the panel, 12px in.
+  border-radius: max(calc(var(--lu-radius-panel) - var(--lu-space-3)), 6px);
   background:
     radial-gradient(
       420px 260px at 15% 0%,

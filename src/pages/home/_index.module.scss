@@ -56,8 +56,7 @@
 // ---------- The sheet ----------
 
 :global(.main-wrapper) main.sheet {
-  margin: 0 var(--lu-space-4) var(--lu-space-4);
-  padding: 56px 40px 64px;
+  // Desktop margin and padding come from chrome.css (page sheets).
 
   @media (max-width: 996px) {
     margin: 0;
@@ -66,7 +65,7 @@
 }
 
 .inner {
-  max-width: 1160px;
+  max-width: var(--page-content);
   margin: 0 auto;
 }
 
@@ -213,7 +212,7 @@
   display: block;
   width: 100%;
   height: auto;
-  border-radius: var(--lu-radius-panel);
+  border-radius: var(--site-radius-shot);
   box-shadow:
     var(--lu-shadow-island),
     0 18px 40px -20px rgba(20, 24, 48, 0.5);

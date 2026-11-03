@@ -53,7 +53,7 @@
 
 .navbar .dropdown__link {
   padding: 6px 10px;
-  border-radius: var(--lu-radius-item);
+  border-radius: calc(var(--lu-radius-menu) - 6px);
   color: var(--lu-ink);
   font: var(--lu-type-label);
   font-weight: 400;
@@ -107,7 +107,8 @@
   align-items: center;
   justify-content: center;
   border: none;
-  border-radius: var(--lu-radius-item);
+  /* Concentric with the code block, 8px in. */
+  border-radius: max(calc(var(--ifm-pre-border-radius) - 8px), 4px);
   background: var(--lu-material-overlay);
   -webkit-backdrop-filter: var(--lu-blur-tooltip);
   backdrop-filter: var(--lu-blur-tooltip);

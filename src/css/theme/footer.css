@@ -7,7 +7,7 @@
   --ifm-footer-link-color: var(--lu-ink-muted);
   --ifm-footer-title-color: var(--lu-ink);
   margin: 0 16px 16px;
-  padding: var(--lu-space-8) 40px var(--lu-space-6);
+  padding: 40px 40px var(--lu-space-6);
   border-radius: var(--lu-radius-sheet);
   background:
     radial-gradient(

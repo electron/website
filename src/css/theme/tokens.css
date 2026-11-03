@@ -13,6 +13,18 @@
   --lu-selected: color-mix(in srgb, var(--lu-accent) 16%, transparent);
   --lu-selected-rim: inset 0 0 0 var(--lu-size-hairline)
     color-mix(in srgb, var(--lu-accent) 28%, transparent);
+  /* Nested corners are concentric: an inner radius is the outer radius
+     minus the gap between them, so the curves run parallel. A floor keeps
+     small items from going square where Lucent's radii are smaller
+     (browsers without corner-shape: squircle). */
+  --site-card-pad: 16px;
+  --site-radius-in-panel: max(
+    calc(var(--lu-radius-panel) - var(--site-card-pad)),
+    6px
+  );
+  /* App screenshots and drawn windows keep a window's own small corner. */
+  --site-radius-window: var(--lu-radius-sm);
+  --site-radius-shot: var(--lu-radius-code);
   /* Code blocks sit in the sheet, so they take the sunken surface. */
   --lu-code-sheet: var(--lu-surface-sunken);
   /* Docs type: Lucent's scale, with body and code one step up from Fiddle's

@@ -2,13 +2,15 @@
 // of resource panels and language community links.
 
 .hero {
-  // Lines up with the sheet's content: 16px sheet margin + 40px padding.
+  // Lines up with the sheet's content (see the page-sheet rule in chrome.css).
   // The page wrapper is a flex column, so the hero needs an explicit width
   // or it shrinks to its text and centres.
   width: 100%;
-  max-width: calc(1160px + 112px);
+  max-width: calc(
+    var(--page-content) + 2 * (var(--lu-space-4) + var(--page-pad))
+  );
   margin: 0 auto;
-  padding: 72px 56px 48px;
+  padding: 72px calc(var(--lu-space-4) + var(--page-pad)) 48px;
 
   @media (max-width: 996px) {
     padding: 48px var(--lu-space-4) 32px;
@@ -30,8 +32,7 @@
 }
 
 :global(.main-wrapper) main.sheet {
-  margin: 0 var(--lu-space-4) var(--lu-space-4);
-  padding: 40px 40px 56px;
+  // Desktop margin and padding come from chrome.css (page sheets).
 
   @media (max-width: 996px) {
     margin: 0;
@@ -40,7 +41,7 @@
 }
 
 .section {
-  max-width: 1160px;
+  max-width: var(--page-content);
   margin: 0 auto;
 
   & + & {
@@ -74,7 +75,7 @@
   flex-direction: column;
   align-items: flex-start;
   gap: var(--lu-space-4);
-  padding: var(--lu-space-6) var(--lu-space-4);
+  padding: var(--site-card-pad);
   border-radius: var(--lu-radius-panel);
   background: var(--lu-surface-sunken);
   box-shadow: inset 0 0 0 var(--lu-size-hairline) var(--lu-line);
@@ -100,7 +101,7 @@
   place-items: center;
   width: 36px;
   height: 36px;
-  border-radius: 10px;
+  border-radius: var(--site-radius-in-panel);
   background: var(--lu-surface-raised);
   box-shadow:
     var(--lu-shadow-lift),

@@ -140,6 +140,8 @@ code {
 
 /* Code blocks: a sunken panel inside the sheet. */
 .theme-code-block {
+  /* The frame (this) and the fill (pre) share one radius. */
+  border-radius: var(--ifm-pre-border-radius);
   box-shadow: inset 0 0 0 var(--lu-size-hairline) var(--lu-line);
 }
 

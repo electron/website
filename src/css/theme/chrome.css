@@ -218,6 +218,33 @@ body,
     padding: var(--lu-space-8) 40px var(--lu-space-8) 48px !important;
   }
 
+  /* Page sheets (home, Fiddle, Community, Governance): the content is at
+     most --page-content wide, and the gap from the sheet's edge to it is
+     the same at the top as at the sides, so the first panel's corner sits
+     square in the sheet's. Up to 1440px the sheet fills the window; wider,
+     it stops growing and centres. Heroes above use the same numbers to
+     line up with the content. */
+  .main-wrapper {
+    --page-content: 1240px;
+    --page-pad: clamp(
+      40px,
+      calc((100% - 2 * var(--lu-space-4) - var(--page-content)) / 2),
+      84px
+    );
+  }
+
+  .main-wrapper main[class*='sheet_'] {
+    width: calc(100% - 2 * var(--lu-space-4));
+    max-width: calc(var(--page-content) + 2 * var(--page-pad));
+    margin: 0 auto var(--lu-space-4);
+    padding: var(--page-pad) var(--page-pad) calc(var(--page-pad) + 16px);
+  }
+
+  /* Inside the docs sheet the gap is even on all sides too. */
+  .main-wrapper main[class*='docMainContainer'] > .container {
+    padding: 40px !important;
+  }
+
   /* A page whose main is a centred .container (the 404 page) keeps its centring
      and gets the same room inside the sheet. */
   .main-wrapper main.container {

@@ -103,7 +103,7 @@
 @media (min-width: 997px) {
   // A post: one sheet with room around the text.
   .blog-post-page .main-wrapper main {
-    padding: 48px 56px 56px;
+    padding: 48px 48px 56px;
   }
 
   // The list: no sheet behind the posts; each post is its own.
@@ -118,7 +118,7 @@
 .blog-list-page main > article,
 .blog-tags-post-list-page main > article {
   margin: var(--lu-space-4) 0 !important;
-  padding: 36px 44px 32px;
+  padding: 40px 40px 36px;
   border-radius: var(--lu-radius-sheet);
   background: var(--lu-surface);
   box-shadow:
@@ -311,7 +311,7 @@
 // with the sheets' text.
 .blog-tags-post-list-page main > header {
   margin: var(--lu-space-6) 0 var(--lu-space-2) !important;
-  padding: 0 44px;
+  padding: 0 40px;
 
   h1 {
     margin-bottom: var(--lu-space-2);
@@ -362,7 +362,7 @@
 
 @media (min-width: 997px) {
   .blog-tags-list-page .main-wrapper main {
-    padding: 48px 56px 56px;
+    padding: 48px 48px 56px;
   }
 }
 

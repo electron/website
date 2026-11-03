@@ -75,7 +75,7 @@
   --ifm-global-radius: var(--lu-radius-control);
   --ifm-button-border-radius: var(--lu-radius-capsule);
   --ifm-code-border-radius: var(--lu-radius-code);
-  --ifm-pre-border-radius: var(--lu-radius-panel);
+  --ifm-pre-border-radius: var(--lu-radius-control);
   --ifm-card-border-radius: var(--lu-radius-panel);
   --ifm-alert-border-radius: var(--lu-radius-control);
   --ifm-global-shadow-lw: var(--lu-shadow-lift);
