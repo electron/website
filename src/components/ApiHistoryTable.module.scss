@@ -2,7 +2,9 @@
 // a sunken panel listing each change with its version chips.
 .api-history {
   --docusaurus-details-decoration-color: currentColor;
-  margin: -4px 0 var(--lu-space-4);
+  /* Collapses with the heading's own bottom margin: an even 8px under any
+     heading level, 16px before the text. */
+  margin: 8px 0 var(--lu-space-4);
 
   & > summary {
     display: inline-flex;

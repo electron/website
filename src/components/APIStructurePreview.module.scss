@@ -70,7 +70,7 @@
     position: absolute;
     left: calc(var(--preview-caret, 24px) - 8px);
     width: 16px;
-    height: 8px;
+    height: 9px;
     background: var(--lu-surface-raised);
   }
 
@@ -79,8 +79,9 @@
       top: 100%;
     }
 
+    // 1px into the card, so the caret covers the card's hairline edge.
     &::after {
-      top: 100%;
+      top: calc(100% - 1px);
       clip-path: polygon(0 0, 100% 0, 50% 100%);
     }
   }
@@ -91,7 +92,7 @@
     }
 
     &::after {
-      bottom: 100%;
+      bottom: calc(100% - 1px);
       clip-path: polygon(50% 0, 100% 100%, 0 100%);
     }
   }

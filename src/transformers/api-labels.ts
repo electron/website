@@ -48,7 +48,7 @@ const PROCESS_PREFIX = 'Process: ';
  * "Process" text becomes its own span and the ", " separators between the
  * links are dropped (the chips are spaced by CSS).
  */
-function processVisitor(node: Paragraph) {
+function processVisitor(node: Paragraph, ancestors: Parent[]) {
   const [first] = node.children;
   if (!first || !isText(first) || !first.value.startsWith(PROCESS_PREFIX)) {
     return;
@@ -69,6 +69,8 @@ function processVisitor(node: Paragraph) {
     label,
     ...(rest ? [{ ...first, value: rest }] : []),
   );
+  liftNotExportedNotice(node, ancestors.at(-1));
+
   // Drop the ", " text between two links.
   node.children = node.children.filter(
     (child, i, all) =>
@@ -105,4 +107,35 @@ function visitor(node: Emphasis) {
       } satisfies HastData;
     }
   }
+}
+
+const NOT_EXPORTED = /^This (class|object) is not exported from the/;
+
+/**
+ * "_This class is not exported from the `'electron'` module..._" follows the
+ * Process line after a line break. Move it into its own paragraph after the
+ * Process line, marked as a notice, so it reads as a callout and not as an
+ * italic aside.
+ */
+function liftNotExportedNotice(node: Paragraph, parent: Parent | undefined) {
+  if (!parent) return;
+  const i = node.children.findIndex(
+    (child) =>
+      child.type === 'emphasis' &&
+      isText(child.children[0]) &&
+      NOT_EXPORTED.test(child.children[0].value),
+  );
+  if (i === -1) return;
+  const notice = node.children[i] as Emphasis;
+  // Remove the notice and the line break before it.
+  const from = node.children[i - 1]?.type === 'break' ? i - 1 : i;
+  node.children.splice(from, i - from + 1);
+  const index = parent.children.indexOf(node);
+  const paragraph: Paragraph = {
+    type: 'paragraph',
+    data: { hProperties: { className: ['api-notice'] } },
+    // One span, so the text stays a single flex item beside the icon.
+    children: [{ ...notice, data: { hName: 'span' } }],
+  };
+  parent.children.splice(index + 1, 0, paragraph);
 }
