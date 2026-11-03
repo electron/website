@@ -1,0 +1,225 @@
+/* Small Lucent details: quotes, navbar popovers, code block chrome, images,
+   big tables, keys, scrollbars and the "Edit this page" link. */
+
+/* Quotes: depth instead of Infima's left rule. The line under an API page's
+   title (its summary) reads as a lede; other quotes are a sunken panel. */
+.markdown blockquote {
+  padding: var(--lu-space-3) var(--lu-space-4);
+  border: none;
+  border-radius: var(--lu-radius-control);
+  background: var(--lu-surface-sunken);
+  color: var(--lu-ink-muted);
+}
+
+.markdown header + blockquote {
+  padding: 0;
+  background: none;
+  font: 400 18px/28px var(--lu-font-sans);
+}
+
+/* The table of contents drops its left rule. */
+:root {
+  --ifm-toc-border-color: transparent;
+}
+
+/* The search field sits in the navbar capsule without its own outline. */
+.navbar .DocSearch-Button {
+  border: none;
+  background: transparent;
+}
+
+.navbar .DocSearch-Button:hover {
+  background: var(--nav-hover);
+}
+
+.navbar .DocSearch-Button-Key {
+  border: none;
+  background: var(--lu-fill);
+}
+
+/* Navbar dropdowns (Tools, Community, language): Lucent popovers. */
+.navbar .dropdown__menu {
+  min-width: 200px;
+  padding: 6px;
+  border: none;
+  border-radius: var(--lu-radius-menu);
+  background: var(--lu-material-overlay);
+  -webkit-backdrop-filter: var(--lu-blur-overlay);
+  backdrop-filter: var(--lu-blur-overlay);
+  box-shadow:
+    var(--lu-shadow-popover),
+    inset 0 var(--lu-size-hairline) 0 var(--lu-rim-soft);
+}
+
+.navbar .dropdown__link {
+  padding: 6px 10px;
+  border-radius: var(--lu-radius-item);
+  color: var(--lu-ink);
+  font: var(--lu-type-label);
+  font-weight: 400;
+  transition:
+    background-color var(--lu-dur-fast) var(--lu-ease),
+    color var(--lu-dur-fast) var(--lu-ease);
+}
+
+.navbar .dropdown__link:hover {
+  background: var(--lu-accent-soft);
+  color: var(--lu-accent);
+}
+
+.navbar .dropdown__link--active {
+  background: var(--lu-selected);
+  color: var(--lu-accent);
+  font-weight: 500;
+}
+
+/* Code blocks: a title bar like Fiddle's editor tabs, the file name in mono
+   beside a small file glyph, and a quiet copy button that shows on hover. */
+.theme-code-block [class*='codeBlockTitle'] {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-bottom: none !important;
+  background: var(--lu-fill);
+  box-shadow: inset 0 calc(-1 * var(--lu-size-hairline)) 0 var(--lu-line);
+  color: var(--lu-ink-muted);
+  font: 500 12.5px/18px var(--lu-font-mono);
+}
+
+.theme-code-block [class*='codeBlockTitle']::before {
+  content: '';
+  flex: 0 0 auto;
+  width: 14px;
+  height: 14px;
+  background: var(--lu-accent);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 1.5h5.2L13 5.3V13a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 3 13V3a1.5 1.5 0 0 1 1-1.5Z' fill='none' stroke='black' stroke-width='1.3' stroke-linejoin='round'/%3E%3Cpath d='M9 1.8V5.5h3.7' fill='none' stroke='black' stroke-width='1.3' stroke-linejoin='round'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 1.5h5.2L13 5.3V13a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 3 13V3a1.5 1.5 0 0 1 1-1.5Z' fill='none' stroke='black' stroke-width='1.3' stroke-linejoin='round'/%3E%3Cpath d='M9 1.8V5.5h3.7' fill='none' stroke='black' stroke-width='1.3' stroke-linejoin='round'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+}
+
+.theme-code-block [class*='buttonGroup'] button {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: var(--lu-radius-item);
+  background: var(--lu-material-overlay);
+  -webkit-backdrop-filter: var(--lu-blur-tooltip);
+  backdrop-filter: var(--lu-blur-tooltip);
+  box-shadow: var(--lu-shadow-lift);
+  color: var(--lu-ink-muted);
+}
+
+.theme-code-block [class*='buttonGroup'] button:hover {
+  color: var(--lu-accent);
+}
+
+.theme-code-block [class*='buttonGroup'] button svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Docs images: a screenshot on its own line is rounded and lifted off the
+   sheet. Inline images (badges, icons) are left alone. */
+.markdown p > img:only-child {
+  display: block;
+  margin-inline: auto;
+  border-radius: var(--lu-radius-control);
+  box-shadow: var(--lu-shadow-island);
+}
+
+/* Tables: the row under the pointer gets the hover fill. */
+.markdown table tbody tr {
+  background: transparent;
+  transition: background-color var(--lu-dur-fast) var(--lu-ease);
+}
+
+.markdown table tbody tr:hover {
+  background: var(--lu-hover);
+}
+
+/* On desktop the header row of a long table stays under the navbar while
+   the rows scroll. `clip` keeps the rounded corners without making the
+   table a scroll box, which would stop the header from sticking. */
+@media (min-width: 997px) {
+  /* The frame moves from an inset shadow to a border, so the header
+     cells' fill doesn't paint over it. */
+  .markdown table {
+    overflow: clip;
+    border: var(--lu-size-hairline) solid var(--lu-line);
+    box-shadow: none;
+  }
+
+  .markdown table thead th {
+    position: sticky;
+    top: var(--ifm-navbar-height);
+    z-index: 1;
+    background: var(--lu-surface-sunken);
+    box-shadow: inset 0 calc(-1 * var(--lu-size-hairline)) 0 var(--lu-line);
+    border-bottom: none;
+  }
+
+  .markdown table td code {
+    overflow-wrap: anywhere;
+  }
+}
+
+/* Keys: small raised Lucent keycaps. */
+kbd {
+  display: inline-block;
+  min-width: 1.6em;
+  padding: 0 6px;
+  border: none;
+  border-radius: var(--lu-radius-sm);
+  background: var(--lu-surface-raised);
+  box-shadow:
+    var(--lu-shadow-button),
+    inset 0 -1px 0 var(--lu-line);
+  color: var(--lu-ink);
+  font: 500 12px/20px var(--lu-font-sans);
+  text-align: center;
+  vertical-align: 0.08em;
+}
+
+/* Scrollbars take a soft accent thumb on a clear track. */
+:root {
+  scrollbar-color: color-mix(in srgb, var(--lu-accent) 38%, transparent)
+    transparent;
+}
+
+body * {
+  scrollbar-width: thin;
+}
+
+/* "Edit this page": a quiet capsule, accent on hover. */
+.theme-edit-this-page {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px 6px 10px;
+  border-radius: var(--lu-radius-capsule);
+  background: var(--lu-fill);
+  color: var(--lu-ink-muted);
+  font: var(--lu-type-label);
+  text-decoration: none;
+  transition:
+    background-color var(--lu-dur-fast) var(--lu-ease),
+    color var(--lu-dur-fast) var(--lu-ease);
+}
+
+.theme-edit-this-page:hover {
+  background: var(--lu-accent-soft);
+  color: var(--lu-accent);
+  text-decoration: none;
+}
+
+.theme-edit-this-page svg {
+  width: 14px;
+  height: 14px;
+  margin: 0;
+}

@@ -1,32 +1,64 @@
+// The bottom row: copyright on the left, hosting sponsors on the right,
+// under one divider (set on .footer__bottom in src/css/theme/footer.css).
 .footerSplit {
-  @media (max-width: 768px) {
-    display: flex;
-    flex-direction: column-reverse;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px 48px;
+}
 
-    > :first-child,
-    > :last-child {
-      text-align: center;
-    }
-  }
+.legal {
+  flex: 1 1 420px;
+  max-width: 640px;
 
-  > div {
-    display: inline-block;
-    width: 50%;
-
-    @media (max-width: 768px) {
-      width: 100%;
-
-      &:last-child {
-        margin-bottom: 24px;
-      }
-    }
+  p {
+    margin: 0;
   }
 }
 
-.logoCluster > img {
-  margin: 0 12px;
-  height: 40px;
+.sponsors {
+  flex: 0 1 auto;
+  text-align: right;
+
+  @media (max-width: 768px) {
+    text-align: left;
+  }
+}
+
+.sponsorsLabel {
+  margin-bottom: 8px;
+  font: var(--lu-type-caption);
+  letter-spacing: var(--lu-type-caption-tracking);
+  color: var(--lu-ink-faint);
+}
+
+// Sponsor marks sit quietly in the ink colour and come up to full colour
+// on hover.
+.logoCluster {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px 24px;
+
+  @media (max-width: 768px) {
+    justify-content: flex-start;
+  }
+
+  > img {
+    height: 32px;
+    filter: grayscale(1);
+    opacity: 0.7;
+    transition:
+      filter var(--lu-dur-fast) var(--lu-ease),
+      opacity var(--lu-dur-fast) var(--lu-ease);
+
+    &:hover {
+      filter: none;
+      opacity: 1;
+    }
+  }
 }
 
 .darkOnly {

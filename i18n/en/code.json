@@ -35,6 +35,18 @@
     "message": "Please contact the owner of the site that linked you to the original URL and let them know their link is broken.",
     "description": "The 2nd paragraph of the 404 page"
   },
+  "theme.NotFound.docs": {
+    "message": "Docs",
+    "description": "The 404 page link to the docs"
+  },
+  "theme.NotFound.api": {
+    "message": "API",
+    "description": "The 404 page link to the API reference"
+  },
+  "theme.NotFound.search": {
+    "message": "Search",
+    "description": "The 404 page link to search"
+  },
   "theme.admonition.note": {
     "message": "Note",
     "description": "The default label used for the Note admonition (:::note)"

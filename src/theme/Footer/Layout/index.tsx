@@ -23,13 +23,13 @@ export default function FooterLayout({
       <div className="container container-fluid">
         {links}
         {(logo || copyright) && (
-          <div className={styles.footerSplit}>
-            <div className="footer__bottom text--left">
+          <div className={clsx('footer__bottom', styles.footerSplit)}>
+            <div className={styles.legal}>
               {logo && <div className="margin-bottom--sm">{logo}</div>}
               {copyright}
             </div>
-            <div className="footer__bottom text--right">
-              <div className="margin-bottom--sm">
+            <div className={styles.sponsors}>
+              <div className={styles.sponsorsLabel}>
                 Hosting and infrastructure graciously provided by
               </div>
               <div className={styles.logoCluster}>
