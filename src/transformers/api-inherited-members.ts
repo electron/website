@@ -338,28 +338,49 @@ function collectReferences(nodes: Node[], identifiers: Set<string>) {
   });
 }
 
-function escapeRegExp(value: string): string {
-  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+/**
+ * Approximates the heading id that Docusaurus generates with github-slugger,
+ * e.g. `win.setBounds(bounds)` -> `winsetboundsbounds`.
+ */
+function slug(heading: Heading): string {
+  return toString(heading)
+    .toLowerCase()
+    .replace(/[^\p{L}\p{M}\p{N}\p{Pc} -]/gu, '')
+    .replace(/ /g, '-');
 }
 
 /**
- * Rewrites same-page anchors in `nodes` from the ancestor's receiver to the
- * child's (e.g. `#viewgetbounds` -> `#imagegetbounds`), since the headings
- * those anchors point to are rewritten the same way when injected.
+ * Points the same-page links in nodes injected from `ancestor` at a heading
+ * in `anchors` (the ids of the child page's member headings). A member anchor
+ * is rewritten from the ancestor's class name or receiver to the child's
+ * (e.g. `#viewgetbounds` -> `#imagegetbounds`) when that member is on the
+ * child page; any other anchor, such as the constructor, a prose heading or a
+ * member the child does not get, links to it on the ancestor's page instead.
  */
-function rewriteAnchors(nodes: Node[], from: string, to: string) {
-  // Member slugs drop the `.`, so the receiver is directly followed by the
-  // member name (`#viewgetbounds`); `#view-customization` is not a member.
-  const memberAnchor = new RegExp(
-    `^#${escapeRegExp(from.toLowerCase())}(?=[a-z0-9])`,
-  );
-  const replacement = `#${to.toLowerCase()}`;
+function retargetAnchors(
+  nodes: Node[],
+  ancestor: AncestorDoc,
+  child: ClassDoc,
+  anchors: Set<string>,
+) {
+  const renames = [
+    [ancestor.className, child.className],
+    [ancestor.receiver, child.receiver],
+  ]
+    .filter(([from, to]) => from && to && from !== to)
+    .map(([from, to]) => [from.toLowerCase(), to.toLowerCase()]);
   visitAll(nodes, (node) => {
-    if (node.type === 'link') {
-      const link = node as Link;
-      // A function, so that a `$` in the receiver is not a replacement pattern
-      link.url = link.url.replace(memberAnchor, () => replacement);
-    }
+    if (node.type !== 'link') return;
+    const link = node as Link;
+    if (!link.url.startsWith('#')) return;
+    const id = link.url.slice(1);
+    const target = [
+      ...renames.map(([from, to]) => replacePrefix(id, from, to)),
+      id,
+    ].find((candidate) => anchors.has(candidate));
+    link.url = target
+      ? `#${target}`
+      : `./${path.basename(ancestor.filePath)}${link.url}`;
   });
 }
 
@@ -409,11 +430,8 @@ function buildInjectedMember(
   const from = isStatic ? ancestor.className : ancestor.receiver;
   const to = isStatic ? child.className : child.receiver;
   const [first] = heading.children;
-  if (from && to && from !== to) {
-    if (first?.type === 'inlineCode') {
-      first.value = replacePrefix(first.value, `${from}.`, `${to}.`);
-    }
-    if (!isStatic) rewriteAnchors(body, from, to);
+  if (from && to && from !== to && first?.type === 'inlineCode') {
+    first.value = replacePrefix(first.value, `${from}.`, `${to}.`);
   }
 
   heading.data = {
@@ -513,6 +531,7 @@ function transformer(tree: Root, file: VFile) {
     ]),
   );
   const references = new Set<string>();
+  const injected: { ancestor: AncestorDoc; nodes: RootContent[] }[] = [];
 
   for (const ancestor of ancestors) {
     for (const section of SECTIONS) {
@@ -528,6 +547,7 @@ function transformer(tree: Root, file: VFile) {
       );
       collectReferences(nodes, references);
       insertIntoSection(tree, info, section, nodes);
+      injected.push({ ancestor, nodes });
     }
 
     // Carry over the reference-style link definitions the injected bodies use
@@ -539,5 +559,16 @@ function transformer(tree: Root, file: VFile) {
         tree.children.push(clone);
       }
     }
+  }
+
+  // Only now is every member on the page, so same-page links can be checked
+  const anchors = new Set(
+    [
+      ...[...child.sections.values()].flat().map(({ heading }) => heading),
+      ...injected.flatMap(({ nodes }) => nodes.filter(isHeading)),
+    ].map(slug),
+  );
+  for (const { ancestor, nodes } of injected) {
+    retargetAnchors(nodes, ancestor, child, anchors);
   }
 }

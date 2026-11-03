@@ -624,11 +624,12 @@ Sets the image.
       assert.ok(!injectedTexts(imageView).some((t) => t.startsWith('view.')));
     });
 
-    it('rewrites same-page member anchors only', () => {
+    it('rewrites same-page member anchors, linking others to the parent', () => {
       const urls = linkUrls(imageView);
       assert.ok(urls.includes('#imagegetbounds'));
       assert.ok(!urls.includes('#viewgetbounds'));
-      assert.ok(urls.includes('#view-customization'));
+      assert.ok(urls.includes('./view.md#view-customization'));
+      assert.ok(!urls.includes('#view-customization'));
     });
 
     it('leaves the parent itself untouched (no extends)', async () => {
@@ -774,6 +775,141 @@ Sets the image.
     });
   });
 
+  describe('same-page anchors in injected bodies (synthetic docs)', async () => {
+    const dir = writeFixtures({
+      'base-window.md': `# BaseWindow
+
+## Parent and child windows
+
+Prose that only the parent page has.
+
+## Class: BaseWindow
+
+### \`new BaseWindow([options])\`
+
+### Instance Events
+
+#### Event: 'close'
+
+### Static Methods
+
+#### \`BaseWindow.getAllWindows()\`
+
+See [\`BaseWindow.fromId(id)\`](#basewindowfromidid),
+[\`BaseWindow.fromView(view)\`](#basewindowfromviewview),
+[\`BaseWindow.getFocusedWindow()\`](#basewindowgetfocusedwindow),
+[\`win.getBounds()\`](#wingetbounds),
+[the constructor](#new-basewindowoptions),
+[parent and child windows](#parent-and-child-windows),
+[\`contents.loadURL(url)\`](web-contents.md#contentsloadurlurl) and
+[the spec](https://example.com/#basewindowfromidid).
+
+#### \`BaseWindow.fromId(id)\`
+
+#### \`BaseWindow.fromView(view)\`
+
+#### \`BaseWindow.getFocusedWindow()\`
+
+### Instance Methods
+
+#### \`win.getBounds()\`
+
+See [\`win.setBounds(bounds)\`](#winsetboundsbounds),
+[\`BaseWindow.fromId(id)\`](#basewindowfromidid),
+[\`BaseWindow.getFocusedWindow()\`](#basewindowgetfocusedwindow) and
+[\`'close'\`](#event-close).
+
+#### \`win.setBounds(bounds)\`
+`,
+      'browser-window.md': `# BrowserWindow
+
+## Class: BrowserWindow extends \`BaseWindow\`
+
+### \`new BrowserWindow([options])\`
+
+### Instance Events
+
+#### Event: 'close'
+
+### Static Methods
+
+#### \`BrowserWindow.fromId(id)\`
+
+#### \`BrowserWindow.getFocusedWindow(options)\`
+
+### Instance Methods
+
+#### \`browser.loadURL(url)\`
+`,
+    });
+    const childPath = path.join(dir, 'browser-window.md');
+    const tree = await transform(childPath);
+
+    /** Link URLs in the body of the member under `headingText`, sorted */
+    function bodyLinks(headingText: string): string[] {
+      const start = tree.children.findIndex(
+        (node) => isHeading(node) && toString(node) === headingText,
+      );
+      const end = tree.children.findIndex(
+        (node, index) => index > start && isHeading(node),
+      );
+      const body = tree.children.slice(start + 1, end === -1 ? undefined : end);
+      return linkUrls({ type: 'root', children: body }).sort();
+    }
+
+    const staticLinks = bodyLinks('BrowserWindow.getAllWindows()');
+    const instanceLinks = bodyLinks('browser.getBounds()');
+
+    it('rewrites static anchors to class-name statics on the child page', () => {
+      // `fromId` is declared by the child, `fromView` is injected
+      assert.ok(staticLinks.includes('#browserwindowfromidid'));
+      assert.ok(staticLinks.includes('#browserwindowfromviewview'));
+      assert.ok(instanceLinks.includes('#browserwindowfromidid'));
+    });
+
+    it('links class-name statics not on the child page to the parent', () => {
+      // The child declares `getFocusedWindow(options)`, so that id differs
+      for (const urls of [staticLinks, instanceLinks]) {
+        assert.ok(urls.includes('./base-window.md#basewindowgetfocusedwindow'));
+      }
+    });
+
+    it('links the parent constructor and prose headings to the parent', () => {
+      assert.ok(staticLinks.includes('./base-window.md#new-basewindowoptions'));
+      assert.ok(
+        staticLinks.includes('./base-window.md#parent-and-child-windows'),
+      );
+    });
+
+    it('still rewrites instance member anchors, in any section', () => {
+      assert.ok(instanceLinks.includes('#browsersetboundsbounds'));
+      assert.ok(staticLinks.includes('#browsergetbounds'));
+      assert.ok(instanceLinks.includes('#event-close'));
+    });
+
+    it('leaves links to other pages alone', () => {
+      assert.ok(staticLinks.includes('web-contents.md#contentsloadurlurl'));
+      assert.ok(
+        staticLinks.includes('https://example.com/#basewindowfromidid'),
+      );
+    });
+
+    it('leaves no same-page link without a heading on the child page', () => {
+      const ids = new Set(
+        tree.children
+          .filter(isHeading)
+          .map((heading) => slug(toString(heading))),
+      );
+      for (const url of linkUrls(tree)) {
+        if (url.startsWith('#')) assert.ok(ids.has(url.slice(1)), url);
+      }
+    });
+
+    it('is idempotent', async () => {
+      assert.deepEqual(await transform(childPath, 2), tree);
+    });
+  });
+
   describe('receivers with regex metacharacters (synthetic docs)', () => {
     it('rewrites anchors for a receiver containing $', async () => {
       const dir = writeFixtures({
@@ -802,7 +938,7 @@ See [\`$parent.bar()\`](#$parentbar) and [intro](#$parent-intro).
       assert.deepEqual(injectedTexts(tree), ['kid.foo()', 'kid.bar()']);
       const urls = linkUrls(tree);
       assert.ok(urls.includes('#kidbar'), urls.join(', '));
-      assert.ok(urls.includes('#$parent-intro'));
+      assert.ok(urls.includes('./dollar-parent.md#$parent-intro'));
     });
   });
 
