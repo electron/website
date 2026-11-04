@@ -2,6 +2,13 @@
 
 /* Reduce transparency: the glass goes opaque and drops its blur. */
 @media (prefers-reduced-transparency: reduce) {
+  /* The token file's own reset is on bare :root, which the dark palette
+     (:root[data-theme='dark']) outranks; repeat it at that specificity. */
+  :root[data-theme] {
+    --lu-material-chrome: var(--lu-window);
+    --lu-material-thin: var(--lu-surface-raised);
+    --lu-material-overlay: var(--lu-surface-raised);
+  }
   html {
     background: var(--lu-window);
   }

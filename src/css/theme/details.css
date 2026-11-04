@@ -19,11 +19,6 @@
   font: 400 1.2rem/1.8667rem var(--lu-font-sans);
 }
 
-/* The table of contents drops its left rule. */
-:root {
-  --ifm-toc-border-color: transparent;
-}
-
 /* The search field sits in the navbar capsule without its own outline. */
 .navbar .DocSearch-Button {
   border: none;
