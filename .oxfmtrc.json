@@ -10,6 +10,7 @@
     "docs/",
     "create-electron-documentation/",
     "i18n/",
-    "!i18n/en/"
+    "!i18n/en/",
+    "src/css/lucent/"
   ]
 }

@@ -1,0 +1,43 @@
+/* Accessibility fallbacks (from Lucent's extensions) */
+
+/* Reduce transparency: the glass goes opaque and drops its blur. */
+@media (prefers-reduced-transparency: reduce) {
+  /* The token file's own reset is on bare :root, which the dark palette
+     (:root[data-theme='dark']) outranks; repeat it at that specificity. */
+  :root[data-theme] {
+    --lu-material-chrome: var(--lu-window);
+    --lu-material-thin: var(--lu-surface-raised);
+    --lu-material-overlay: var(--lu-surface-raised);
+  }
+  html {
+    background: var(--lu-window);
+  }
+  .navbar {
+    background: var(--lu-material-chrome);
+  }
+  .navbar,
+  .navbar-sidebar {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+/* Increase contrast: 1px hairlines in line-strong, chrome near opaque. */
+@media (prefers-contrast: more) {
+  :root[data-theme] {
+    --lu-size-hairline: 1px;
+    --lu-line: var(--lu-line-strong);
+    --lu-material-chrome: rgba(250, 250, 253, 0.9);
+  }
+  :root[data-theme='dark'] {
+    --lu-material-chrome: rgba(22, 24, 36, 0.9);
+  }
+}
+
+@media (forced-colors: active) {
+  .navbar,
+  .navbar-sidebar {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}

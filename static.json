@@ -10,5 +10,15 @@
     "/assets/**": {
       "Cache-Control": "max-age=31536000, immutable"
     }
+  },
+  "redirects": {
+    "/apps": {
+      "url": "/",
+      "status": 301
+    },
+    "/apps/*": {
+      "url": "/",
+      "status": 301
+    }
   }
 }

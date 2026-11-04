@@ -1,124 +1,269 @@
-@mixin description-text {
-  color: var(--ifm-color-emphasis-700);
-  letter-spacing: 0.01em;
-}
+// Governance, in Lucent: a short hero on the window ground, then one sheet
+// with a panel per working group.
 
-@mixin dark-mode-invert {
-  [data-theme='dark'] & {
-    filter: invert(1);
+.hero {
+  // Lines up with the sheet's content (see the page-sheet rule in chrome.css).
+  // The page wrapper is a flex column, so the hero needs an explicit width
+  // or it shrinks to its text and centres.
+  width: 100%;
+  max-width: calc(
+    var(--page-content) + 2 * (var(--lu-space-4) + var(--page-pad))
+  );
+  margin: 0 auto;
+  padding: 72px calc(var(--lu-space-4) + var(--page-pad)) 48px;
+
+  @media (max-width: 996px) {
+    padding: 48px var(--lu-space-4) 32px;
   }
 }
 
-.header {
-  margin: 0 auto;
+.title {
+  margin: 0 0 var(--lu-space-3);
+  font: var(--lu-type-page-title);
+  letter-spacing: var(--lu-type-display-tracking);
+}
+
+.lead {
   max-width: 40rem;
-  text-align: center;
+  margin: 0;
+  font-size: 17px;
+  line-height: 27px;
+  color: var(--lu-ink-muted);
+  text-wrap: pretty;
+}
 
-  p {
-    @include description-text;
+:global(.main-wrapper) main.sheet {
+  // Desktop margin and padding come from chrome.css (page sheets).
+
+  @media (max-width: 996px) {
+    margin: 0;
+    padding: var(--lu-space-6) var(--lu-space-4) var(--lu-space-8);
   }
 }
 
-.cardWrapper {
-  margin: 1rem 0;
-}
-
-.card {
-  max-width: 30rem;
-  padding: 1rem;
+.groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--lu-space-4);
+  max-width: var(--page-content);
   margin: 0 auto;
-  height: 100%;
-}
 
-.cardTitle {
-  font-size: 1.2rem;
-  font-weight: 500;
-  margin-bottom: 0.2em;
-}
-
-.cardSubtitle {
-  font-size: 1em;
-  font-weight: 500;
-  margin-bottom: 0.1rem;
-}
-
-.cardLink {
-  display: inline-block;
-  vertical-align: middle;
-  opacity: 1;
-  &:hover {
-    opacity: 0.5;
-  }
-  img {
-    height: 1em;
-    margin-left: 0.2em;
-    @include dark-mode-invert;
+  @media (max-width: 400px) {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
-.cardIcon {
-  text-align: center;
-  color: var(--ifm-color-white);
-  line-height: var(--ifm-avatar-photo-size-sm);
-  // one-off colors
-  background: linear-gradient(to top, #dd5e89, #f7bb97);
+// ---------- A working group ----------
+
+// Each card spans four rows of the page grid and shares them with its
+// neighbours (subgrid), so headers, member lists and footers line up across
+// a row of cards and every card in a row is the same height.
+.group {
+  display: grid;
+  grid-row: span 4;
+  grid-template-rows: subgrid;
+  row-gap: 0;
+  padding: var(--site-card-pad);
+  border-radius: var(--lu-radius-panel);
+  background: var(--lu-surface-sunken);
+  box-shadow: inset 0 0 0 var(--lu-size-hairline) var(--lu-line);
 }
 
-.cardDescription {
-  display: block;
-  font-size: 0.9em;
-  min-height: 2em;
-  @include description-text;
+// The icon tile sits above the name, as on the homepage and Community
+// panels; the description follows, room reserved for four lines.
+.groupHeader {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: start;
+  margin-bottom: var(--lu-space-3);
 }
 
-.cardList {
-  $num-items: 4;
-  $height-item: 50px;
-  $height-very-very-big: 9999px;
+.groupHeader > .groupIcon {
+  margin-bottom: var(--lu-space-4);
+}
 
-  position: relative;
-  min-height: $height-item * $num-items;
-  max-height: $height-item * $num-items;
-  overflow: hidden;
-  transition: max-height 0.2s cubic-bezier(0, 1, 0, 1);
+.groupIcon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--site-radius-in-panel);
+  background: var(--lu-surface-raised);
+  box-shadow:
+    var(--lu-shadow-lift),
+    inset 0 var(--lu-size-hairline) 0 var(--lu-rim-soft);
+  color: var(--lu-accent);
+}
 
-  // apply gradient to fold as pseudo-element
-  &.unexpanded {
-    &::after {
-      position: absolute;
-      content: '';
-      top: 0;
-      pointer-events: none;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(
-        to top,
-        var(--ifm-card-background-color) 0%,
-        rgba(255, 255, 255, 0) 50%
-      );
+.groupHeading {
+  display: contents;
+
+  h2 {
+    min-width: 0;
+    margin: 0;
+    font: var(--lu-type-docs-h3);
+    letter-spacing: -0.01em;
+  }
+
+  h2 a {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--lu-ink);
+
+    svg {
+      color: var(--lu-ink-faint);
+      transition: color var(--lu-dur-fast) var(--lu-ease);
+    }
+
+    &:hover {
+      text-decoration: none;
+
+      svg {
+        color: var(--lu-accent);
+      }
     }
   }
 
-  &.expanded {
-    max-height: $height-very-very-big;
-    transition: max-height 0.5s ease-in-out;
+  p {
+    grid-column: 1 / -1;
+    margin: var(--lu-space-3) 0 0;
+    // Room for the longest description (four lines), so rows of cards
+    // match each other too, not only the cards within a row.
+    min-height: calc(4 * 21px);
+
+    // Narrow cards need a fifth line.
+    @media (max-width: 800px) {
+      min-height: calc(5 * 21px);
+    }
+    font-size: 14px;
+    line-height: 21px;
+    color: var(--lu-ink-muted);
+    text-wrap: pretty;
   }
+}
+
+// ---------- Members ----------
+
+.membersLabel {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: var(--lu-space-2);
+  font: var(--lu-type-caption);
+  letter-spacing: var(--lu-type-caption-tracking);
+  color: var(--lu-ink-faint);
+}
+
+.memberCount {
+  padding: 0 6px;
+  border-radius: var(--lu-radius-capsule);
+  background: var(--lu-fill);
+  color: var(--lu-ink-muted);
+  font-weight: 500;
+}
+
+.members {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  // Three rows of members, folded or not (36px each, 2px apart).
+  grid-auto-rows: 36px;
+  align-content: start;
+  min-height: calc(3 * 36px + 2 * 2px);
+  gap: 2px var(--lu-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.members li:has(.chair) {
+  // The chair's row takes the full width, so the name and badge fit.
+  grid-column: 1 / -1;
+}
+
+.member {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  padding: 4px 6px;
+  margin-inline: -6px;
+  border-radius: var(--lu-radius-item);
+  color: var(--lu-ink);
+  transition: background-color var(--lu-dur-fast) var(--lu-ease);
+
+  &:hover {
+    background: var(--lu-hover);
+    color: var(--lu-ink);
+    text-decoration: none;
+  }
+}
+
+.avatar {
+  flex: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--lu-fill);
+  box-shadow: 0 0 0 var(--lu-size-hairline) var(--lu-line);
 }
 
 .memberName {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font: var(--lu-type-label);
   font-weight: 400;
-  font-size: 0.8em;
 }
 
-.buttonSubtle {
-  border: none;
-  font-size: 1.2em;
-  color: var(--ifm-color-primary);
-  &:hover {
-    color: var(--ifm-color-primary-dark);
+.chair {
+  flex: none;
+  padding: 1px 6px;
+  border-radius: var(--lu-radius-capsule);
+  background: var(--lu-accent-soft);
+  color: var(--lu-accent);
+  font: var(--lu-type-caption);
+  letter-spacing: var(--lu-type-caption-tracking);
+}
+
+// One card per row: nothing to line up with, so no reserved space.
+@media (max-width: 680px) {
+  .groupHeading p,
+  .members {
+    min-height: 0 !important;
   }
 }
 
-.hidden {
-  visibility: hidden;
+.groupFooter {
+  min-height: calc(28px + var(--lu-space-3));
+  padding-top: var(--lu-space-3);
+}
+
+.expand {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  margin-left: -10px;
+  border: none;
+  border-radius: var(--lu-radius-capsule);
+  background: transparent;
+  color: var(--lu-accent);
+  font: var(--lu-type-label);
+  cursor: pointer;
+  transition: background-color var(--lu-dur-fast) var(--lu-ease);
+
+  &:hover {
+    background: var(--lu-accent-soft);
+  }
+
+  svg {
+    transition: transform var(--lu-dur-base) var(--lu-ease);
+  }
+}
+
+.expandOpen {
+  transform: rotate(180deg);
 }

@@ -1,5 +1,4 @@
 import React from 'react';
-import clsx from 'clsx';
 import styles from './WhyCard.module.scss';
 
 export default function WhyCard({
@@ -12,14 +11,12 @@ export default function WhyCard({
   icon: React.ReactNode;
 }) {
   return (
-    <div className={clsx('card', styles.whyCard)}>
-      <div className="card__header">
+    <article className={styles.whyCard}>
+      <span className={styles.whyCardIcon} aria-hidden="true">
         {icon}
-        <h3 className={styles.whyCardTitle}>{title}</h3>
-      </div>
-      <div className="card__body">
-        <p className={styles.whyCardDescription}>{description}</p>
-      </div>
-    </div>
+      </span>
+      <h3 className={styles.whyCardTitle}>{title}</h3>
+      <p className={styles.whyCardDescription}>{description}</p>
+    </article>
   );
 }

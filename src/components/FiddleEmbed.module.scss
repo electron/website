@@ -1,75 +1,109 @@
-/**
- * Adapted from facebook/docusaurus
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
+// A runnable example, drawn as a small Lucent window: traffic lights, the
+// example's path in the middle, "Open in Fiddle" on the right, then the file
+// tabs and code on the window's sunken body.
 
 .editorWindow {
-  background: var(--ifm-color-emphasis-200);
-  border: 3px solid var(--ifm-color-emphasis-200);
-  border-radius: var(--ifm-global-radius);
-  box-shadow: var(--ifm-global-shadow-md);
-  margin-bottom: var(--ifm-leading);
+  margin-bottom: var(--lu-space-4);
+  overflow: hidden;
+  border-radius: var(--lu-radius-panel);
+  background: var(--lu-surface-sunken);
+  box-shadow:
+    var(--lu-shadow-lift),
+    inset 0 0 0 var(--lu-size-hairline) var(--lu-line);
 }
 
 .editorWindowHeader {
+  display: grid;
+  grid-template-columns: 1fr minmax(0, auto) 1fr;
   align-items: center;
-  justify-content: space-between;
-  background: var(--ifm-color-emphasis-200);
-  display: flex;
-  padding: 0.5rem 1rem 0;
-}
+  gap: var(--lu-space-3);
+  min-height: 40px;
+  padding: 6px 6px 6px 14px;
+  border-bottom: var(--lu-size-hairline) solid var(--lu-line);
+  background: var(--lu-surface-raised);
 
-.buttons {
-  white-space: nowrap;
-}
+  // A compact title-bar control, 26px tall.
+  :global(.button) {
+    justify-self: end;
+    padding: 4px 11px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 18px;
+    white-space: nowrap;
+    text-decoration: none;
+  }
 
-.right {
-  align-self: center;
-  width: 10%;
-}
-
-.dot {
-  margin-right: 6px;
-  margin-top: 4px;
-  height: 12px;
-  width: 12px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-}
-
-.editorWindowMenuIcon {
-  margin-left: auto;
-}
-
-.bar {
-  width: 17px;
-  height: 3px;
-  background-color: #aaa;
-  margin: 3px 0;
-  display: block;
-}
-
-.editorWindowBody {
-  padding: 0 0.5rem;
-
-  li {
-    padding: 8px 12px;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    font-weight: var(--ifm-font-weight-normal);
-    font-size: var(--ifm-h6-font-size);
+  @media (max-width: 600px) {
+    grid-template-columns: auto minmax(0, 1fr) auto;
   }
 }
 
-.editorTitle {
-  font-size: 12px;
-  font-weight: 100;
-  text-transform: uppercase;
-  white-space: nowrap;
+.buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 var(--lu-size-hairline) rgba(0, 0, 0, 0.12);
+}
+
+// The markdown link rule underlines every link; the title is quieter.
+.markdown a.editorTitle,
+a.editorTitle {
+  min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: center;
+  font: 500 12px/18px var(--lu-font-mono);
+  color: var(--lu-ink-muted);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--lu-accent);
+    text-decoration: underline;
+  }
+}
+
+.editorWindowBody {
+  padding: var(--lu-space-3);
+
+  // Tabs sit flush with the body's inset; the code block follows them.
+  :global(.tabs-container) {
+    margin-bottom: 0;
+  }
+
+  // File tabs: a compact segmented control. It and the code block sit 12px
+  // inside the window, so their corners are the window's minus 12px.
+  :global(.tabs) {
+    margin-bottom: var(--lu-space-2);
+    padding: 2px;
+    border-radius: max(calc(var(--lu-radius-panel) - var(--lu-space-3)), 8px);
+  }
+
+  :global(.tabs__item) {
+    margin: 0;
+    padding: 2px 10px;
+    border-radius: max(
+      calc(var(--lu-radius-panel) - var(--lu-space-3) - 2px),
+      6px
+    );
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  :global(.theme-code-block) {
+    --ifm-pre-border-radius: max(
+      calc(var(--lu-radius-panel) - var(--lu-space-3)),
+      6px
+    );
+    margin-bottom: 0;
+  }
+
+  :global(.margin-top--md) {
+    margin-top: 0 !important;
+  }
 }

@@ -1,26 +1,37 @@
-.codeBlock {
-  background: var(--electron-color-dark);
-  color: var(--electron-color-light);
-  padding: 3rem 2rem 2rem;
-  margin-bottom: 0;
-  box-shadow: var(--ifm-global-shadow-tl);
+// The release channels are a segmented control above the terminal.
+
+.channels {
+  display: flex;
+  gap: 2px;
+  margin-bottom: var(--lu-space-3);
+  padding: 3px;
+  border-radius: var(--lu-radius-control);
+  background: var(--lu-fill);
+}
+
+.channel {
+  flex: 1;
+  padding: 5px 12px;
+  border: none;
+  border-radius: calc(var(--lu-radius-control) - 3px);
+  background: transparent;
+  color: var(--lu-ink-muted);
+  font: var(--lu-type-label);
+  cursor: pointer;
+  transition: background-color var(--lu-dur-fast) var(--lu-ease);
+
+  &:hover {
+    background: var(--lu-hover);
+  }
+}
+
+.channelActive,
+.channelActive:hover {
+  background: var(--lu-thumb);
+  color: var(--lu-ink);
+  box-shadow: var(--lu-shadow-lift);
 }
 
 .codeComment {
   color: #719fad;
-}
-
-.buttons {
-  margin-left: 10px;
-  margin-bottom: -30px;
-}
-
-.dot {
-  margin-right: 6px;
-  margin-top: 4px;
-  height: 12px;
-  width: 12px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
 }

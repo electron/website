@@ -1,0 +1,3 @@
+# The Showcase page was removed; send old links to the homepage.
+/apps    /  301
+/apps/*  /  301

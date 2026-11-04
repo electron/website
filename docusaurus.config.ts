@@ -6,7 +6,6 @@ import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 import npm2yarn from '@docusaurus/remark-plugin-npm2yarn';
 import * as dotenv from 'dotenv';
-import { themes as prismThemes } from 'prism-react-renderer';
 import remarkGithubAdmonitionsToDirectives, {
   DEFAULT_MAPPING,
 } from 'remark-github-admonitions-to-directives';
@@ -18,6 +17,7 @@ import jsCodeBlocks from './src/transformers/js-code-blocks.ts';
 import fiddleEmbedder from './src/transformers/fiddle-embedder.ts';
 import githubContentsLinks from './src/transformers/github-content-links.ts';
 import apiHistory from './src/transformers/api-history.ts';
+import lucentPrism from './src/prism/lucent.ts';
 
 // Picks up a local GITHUB_TOKEN so API history tables resolve versions in local
 // dev. Existing environment variables win, which keeps CI behavior unchanged.
@@ -94,8 +94,9 @@ const config: Config = {
       respectPrefersColorScheme: true,
     },
     prism: {
-      theme: prismThemes.github,
-      darkTheme: prismThemes.dracula,
+      // One theme for both modes: its colours are Lucent CSS variables.
+      theme: lucentPrism,
+      darkTheme: lucentPrism,
       additionalLanguages: ['diff', 'json', 'json5'],
     },
     tableOfContents: {
@@ -104,7 +105,6 @@ const config: Config = {
     },
     navbar: {
       title: 'Electron',
-      style: 'dark',
       logo: {
         alt: 'Electron homepage',
         src: 'assets/img/logo.svg',
@@ -138,7 +138,6 @@ const config: Config = {
           position: 'left',
           items: [
             { to: 'governance', label: 'Governance' },
-            { to: 'apps', label: 'Showcase' },
             { to: 'community', label: 'Resources' },
           ],
         },
@@ -268,7 +267,6 @@ const config: Config = {
   } satisfies Preset.ThemeConfig,
   plugins: [
     'docusaurus-plugin-sass',
-    path.resolve(__dirname, './src/plugins/apps/index.ts'),
     path.resolve(__dirname, './src/plugins/releases/index.ts'),
     path.resolve(__dirname, './src/plugins/fiddle/index.ts'),
     path.resolve(__dirname, './src/plugins/governance/index.ts'),
@@ -303,7 +301,23 @@ const config: Config = {
               if (item.type === 'doc') return item.id;
               return 'label' in item ? (item.label ?? '') : '';
             };
-            return [...items].sort((a, b) =>
+            // Structure pages are titled like "Rectangle Object" or
+            // "IpcMainEvent Object extends `Event`". In the sidebar every
+            // entry is a structure, so show just the type name.
+            const titles = new Map(args.docs.map((doc) => [doc.id, doc.title]));
+            const labelled = items.map((item) => {
+              if (
+                item.type !== 'doc' ||
+                !item.id.includes('/api/structures/') ||
+                item.label
+              ) {
+                return item;
+              }
+              const title = titles.get(item.id);
+              const name = title?.match(/^(\S+) Object\b/)?.[1];
+              return name ? { ...item, label: name } : item;
+            });
+            return labelled.sort((a, b) =>
               sortKey(a).localeCompare(sortKey(b), 'en'),
             );
           },
@@ -335,7 +349,11 @@ const config: Config = {
           onUntruncatedBlogPosts: 'ignore',
         },
         theme: {
-          customCss: [require.resolve('./src/css/custom.scss')],
+          customCss: [
+            require.resolve('./src/css/lucent.css'),
+            require.resolve('./src/css/custom.scss'),
+            require.resolve('./src/css/blog.scss'),
+          ],
         },
         gtag: {
           trackingID: 'UA-160365006-1',
