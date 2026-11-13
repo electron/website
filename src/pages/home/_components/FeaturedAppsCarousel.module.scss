@@ -1,6 +1,22 @@
+// Same as the homepage's other section headers (_index.module.scss).
+.header {
+  max-width: 40rem;
+  margin: 0 auto var(--lu-space-8);
+  text-align: center;
+
+  p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 26px;
+    color: var(--lu-ink-muted);
+    text-wrap: balance;
+  }
+}
+
 .heading {
-  font-size: 2.5em;
-  font-weight: 900;
+  margin-bottom: var(--lu-space-2);
+  font: var(--lu-type-section);
+  letter-spacing: -0.024em;
 }
 
 .carouselContainer {
@@ -21,28 +37,12 @@
 
   &::before {
     left: 0;
-    background: linear-gradient(to right, #fff 0%, transparent 100%);
-
-    [data-theme='dark'] & {
-      background: linear-gradient(
-        to right,
-        var(--ifm-background-color) 0%,
-        transparent 100%
-      );
-    }
+    background: linear-gradient(to right, var(--lu-surface) 0%, transparent);
   }
 
   &::after {
     right: 0;
-    background: linear-gradient(to left, #fff 0%, transparent 100%);
-
-    [data-theme='dark'] & {
-      background: linear-gradient(
-        to left,
-        var(--ifm-background-color) 0%,
-        transparent 100%
-      );
-    }
+    background: linear-gradient(to left, var(--lu-surface) 0%, transparent);
   }
 }
 
@@ -54,6 +54,10 @@
 
   &:hover {
     animation-play-state: paused;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
   }
 }
 

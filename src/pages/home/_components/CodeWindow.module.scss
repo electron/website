@@ -1,22 +1,51 @@
-.codeBlock {
+// A terminal window in Electron navy, lifted off the panel it sits on.
+
+.window {
+  overflow: hidden;
+  border-radius: var(--site-radius-window);
   background: var(--electron-color-dark);
-  color: var(--electron-color-light);
-  padding: 3rem 2rem 2rem;
-  margin-bottom: 0;
-  box-shadow: var(--ifm-global-shadow-tl);
+  box-shadow:
+    var(--lu-shadow-island),
+    0 18px 40px -20px rgba(20, 24, 48, 0.5),
+    inset 0 1px 0 rgba(159, 234, 249, 0.12);
 }
 
-.buttons {
-  margin-left: 10px;
-  margin-bottom: -30px;
+.titleBar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  padding: 0 14px;
+  box-shadow: inset 0 -1px 0 rgba(159, 234, 249, 0.1);
 }
 
 .dot {
-  margin-right: 6px;
-  margin-top: 4px;
-  height: 12px;
   width: 12px;
-  background-color: #bbb;
+  height: 12px;
   border-radius: 50%;
-  display: inline-block;
+}
+
+.title {
+  flex: 1;
+  margin-right: 52px;
+  text-align: center;
+  font: var(--lu-type-label);
+  color: rgba(238, 241, 248, 0.55);
+}
+
+.codeBlock {
+  margin: 0;
+  padding: var(--lu-space-4) var(--lu-space-6) var(--lu-space-6);
+  background: transparent;
+  border-radius: 0;
+  color: var(--electron-color-light);
+  font: var(--lu-type-code);
+  white-space: pre-wrap;
+
+  code {
+    padding: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+  }
 }

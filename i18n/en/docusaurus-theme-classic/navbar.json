@@ -43,10 +43,6 @@
     "message": "Governance",
     "description": "Navbar item with label Governance"
   },
-  "item.label.Showcase": {
-    "message": "Showcase",
-    "description": "Navbar item with label Showcase"
-  },
   "item.label.Resources": {
     "message": "Resources",
     "description": "Navbar item with label Resources"

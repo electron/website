@@ -1,0 +1,518 @@
+// The blog, in Lucent. The list is a stack of sheets, one per post; a post
+// is one sheet. The sidebar reads like the docs menu: quiet rows, the open
+// post in the accent.
+
+// custom.scss leaves the blog's container at Docusaurus's default width,
+// and the docs' 720px measure doesn't apply to posts. Keep this file ASCII:
+// a non-ASCII character makes Sass emit a byte-order mark, which breaks the
+// first rule once the files are concatenated.
+.plugin-blog .markdown {
+  max-width: none;
+}
+
+// The post column fills the row: Docusaurus leaves a fifth of it empty on
+// list pages (where posts have no table of contents) and gives the table of
+// contents a share that grows with the window. The sidebar and table of
+// contents get fixed widths instead.
+@media (min-width: 997px) {
+  .blog-wrapper .main-wrapper > .container > .row > main {
+    flex: 1 1 0;
+    max-width: none;
+  }
+
+  .blog-wrapper .main-wrapper > .container > .row > aside.col--3 {
+    flex: 0 0 260px;
+    max-width: 260px;
+  }
+
+  .blog-wrapper .main-wrapper > .container > .row > .col--2 {
+    flex: 0 0 220px;
+    max-width: 220px;
+  }
+}
+
+// Between tablet and laptop widths three columns would squeeze a post's
+// text. The post keeps its table of contents (blog posts have no collapsible
+// one) and the recent-posts sidebar waits for more room.
+@media (min-width: 997px) and (max-width: 1279px) {
+  .blog-post-page .main-wrapper > .container > .row > aside.col--3 {
+    display: none;
+  }
+}
+
+// ---------- Sidebar ----------
+
+.plugin-blog aside > nav[class*='sidebar_'] {
+  padding: var(--lu-space-6) var(--lu-space-2) var(--lu-space-6) 0;
+
+  [class*='sidebarItemTitle_'] {
+    margin: 0 0 var(--lu-space-2) !important;
+    padding: 0 10px;
+    font: 650 15px/20px var(--lu-font-sans);
+    color: var(--lu-ink);
+  }
+
+  [class*='yearGroupHeading_'] {
+    margin: var(--lu-space-4) 0 var(--lu-space-1);
+    padding: 0 10px;
+    border: none;
+    font: var(--lu-type-caption);
+    letter-spacing: var(--lu-type-caption-tracking);
+    color: var(--lu-ink-faint);
+  }
+
+  [class*='sidebarItemList_'] {
+    font: 400 14px/20px var(--lu-font-sans);
+  }
+
+  [class*='sidebarItem_'] {
+    margin: 2px 0;
+  }
+
+  [class*='sidebarItemLink_'] {
+    display: block;
+    padding: 5px 10px;
+    border-radius: var(--lu-radius-item);
+    color: var(--lu-ink-muted);
+    transition:
+      background-color var(--lu-dur-fast) var(--lu-ease),
+      color var(--lu-dur-fast) var(--lu-ease);
+
+    &:hover {
+      background: var(--lu-hover);
+      color: var(--lu-ink);
+      text-decoration: none;
+    }
+  }
+
+  [class*='sidebarItemLinkActive_'] {
+    background: var(--lu-selected);
+    box-shadow: var(--lu-selected-rim);
+    color: var(--lu-accent);
+    font-weight: 600;
+
+    &:hover {
+      background: var(--lu-selected);
+      color: var(--lu-accent);
+    }
+  }
+}
+
+// ---------- Sheets ----------
+
+@media (min-width: 997px) {
+  // A post: one sheet with room around the text.
+  .blog-post-page .main-wrapper main {
+    padding: 48px 48px 56px;
+  }
+
+  // The list: no sheet behind the posts; each post is its own.
+  .blog-list-page .main-wrapper main,
+  .blog-tags-post-list-page .main-wrapper main {
+    margin-left: var(--lu-space-2);
+    background: none;
+    box-shadow: none;
+  }
+}
+
+.blog-list-page main > article,
+.blog-tags-post-list-page main > article {
+  margin: var(--lu-space-4) 0 !important;
+  padding: 40px 40px 36px;
+  border-radius: var(--lu-radius-sheet);
+  background: var(--lu-surface);
+  box-shadow:
+    var(--lu-shadow-island),
+    inset 0 var(--lu-size-hairline) 0 var(--lu-rim-soft);
+
+  @media (max-width: 996px) {
+    padding: var(--lu-space-6) var(--lu-space-4);
+    border-radius: var(--lu-radius-panel);
+  }
+}
+
+// ---------- A post's header ----------
+
+.plugin-blog article header {
+  h1,
+  h2 {
+    margin-bottom: var(--lu-space-3);
+    letter-spacing: var(--lu-type-display-tracking);
+    text-wrap: balance;
+  }
+
+  h1 {
+    font: var(--lu-type-page-title);
+  }
+
+  h2 {
+    font: var(--lu-type-section);
+
+    a {
+      color: var(--lu-ink);
+
+      &:hover {
+        color: var(--lu-accent);
+        text-decoration: none;
+      }
+    }
+  }
+
+  // Date and reading time.
+  [class*='container_'] {
+    margin: 0 0 var(--lu-space-4) !important;
+    font: var(--lu-type-label);
+    font-weight: 400;
+    color: var(--lu-ink-muted);
+  }
+
+  // Authors: capsules, an avatar inset in the left end and the name beside
+  // it, like a person chip in Fiddle.
+  .row {
+    margin: 0 0 var(--lu-space-6) !important;
+    gap: var(--lu-space-2);
+  }
+
+  [class*='authorCol_'] {
+    flex: 0 0 auto !important;
+    max-width: none !important;
+    width: auto;
+    padding: 0;
+  }
+
+  .avatar {
+    align-items: center;
+    gap: 8px;
+    margin: 0 !important;
+    padding: 3px 14px 3px 3px;
+    border-radius: var(--lu-radius-capsule);
+    background: var(--lu-fill);
+    transition: background-color var(--lu-dur-fast) var(--lu-ease);
+
+    &:hover {
+      background: var(--lu-accent-soft);
+    }
+  }
+
+  .avatar__photo-link {
+    display: block;
+    line-height: 0;
+  }
+
+  .avatar__photo {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--lu-surface);
+    box-shadow: 0 0 0 var(--lu-size-hairline) var(--lu-line);
+  }
+
+  .avatar__intro {
+    justify-content: center;
+    margin-left: 0;
+  }
+
+  // An empty socials row would push the name off centre.
+  [class*='authorSocials_']:empty {
+    display: none;
+  }
+
+  .avatar__name {
+    margin: 0;
+    font: var(--lu-type-label);
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+
+    a {
+      color: var(--lu-ink);
+    }
+
+    a:hover {
+      color: var(--lu-accent);
+      text-decoration: none;
+    }
+  }
+
+  .avatar__subtitle {
+    margin-top: 0;
+    font-size: 13px;
+    line-height: 18px;
+    color: var(--lu-ink-faint);
+  }
+}
+
+.plugin-blog .markdown hr {
+  margin: var(--lu-space-6) 0;
+  border: none;
+  border-top: var(--lu-size-hairline) solid var(--lu-line);
+  background: none;
+  height: 0;
+}
+
+// ---------- A post's footer: tags and "Read more" ----------
+
+.plugin-blog article footer {
+  align-items: center;
+  margin-inline: 0;
+
+  > .col {
+    padding-inline: 0;
+  }
+
+  margin-top: var(--lu-space-6) !important;
+  padding-top: var(--lu-space-4);
+  border-top: var(--lu-size-hairline) solid var(--lu-line);
+
+  b {
+    font: var(--lu-type-caption);
+    letter-spacing: var(--lu-type-caption-tracking);
+    color: var(--lu-ink-faint);
+  }
+
+  .button {
+    padding: 6px 14px;
+    font-size: 13px;
+    line-height: 20px;
+  }
+}
+
+.plugin-blog a[class*='tag_'] {
+  padding: 2px 10px;
+  border: none;
+  border-radius: var(--lu-radius-capsule);
+  background: var(--lu-fill);
+  color: var(--lu-ink-muted);
+  font: var(--lu-type-label);
+  font-weight: 500;
+  font-size: 13px;
+
+  &:hover {
+    background: var(--lu-accent-soft);
+    color: var(--lu-accent);
+    text-decoration: none;
+  }
+}
+
+// The list's pager sits on the window ground, under the last sheet.
+.blog-list-page nav.pagination-nav {
+  margin-top: var(--lu-space-4);
+}
+
+@media (max-width: 996px) {
+  .blog-post-page .main-wrapper main {
+    padding-block: var(--lu-space-6) var(--lu-space-8);
+  }
+}
+
+// ---------- A tag's posts ----------
+
+// The header sits on the window ground above the stack of sheets, lined up
+// with the sheets' text.
+.blog-tags-post-list-page main > header {
+  margin: var(--lu-space-6) 0 var(--lu-space-2) !important;
+  padding: 0 40px;
+
+  h1 {
+    margin-bottom: var(--lu-space-2);
+    font: var(--lu-type-section);
+    letter-spacing: var(--lu-type-display-tracking);
+  }
+
+  p {
+    margin-bottom: var(--lu-space-4);
+    font-size: 15px;
+    line-height: 24px;
+    color: var(--lu-ink-muted);
+  }
+
+  // "View all tags": a small capsule rather than a bare link.
+  a {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 12px;
+    border-radius: var(--lu-radius-capsule);
+    background: var(--lu-fill);
+    color: var(--lu-ink-muted);
+    font: var(--lu-type-label);
+    font-weight: 500;
+    font-size: 13px;
+    transition:
+      background-color var(--lu-dur-fast) var(--lu-ease),
+      color var(--lu-dur-fast) var(--lu-ease);
+
+    &::before {
+      content: '\2190';
+      margin-right: 6px;
+    }
+
+    &:hover {
+      background: var(--lu-accent-soft);
+      color: var(--lu-accent);
+      text-decoration: none;
+    }
+  }
+
+  @media (max-width: 996px) {
+    padding: 0 var(--lu-space-4);
+  }
+}
+
+// ---------- All tags ----------
+
+@media (min-width: 997px) {
+  .blog-tags-list-page .main-wrapper main {
+    padding: 48px 48px 56px;
+  }
+}
+
+@media (max-width: 996px) {
+  .blog-tags-list-page .main-wrapper main {
+    padding-block: var(--lu-space-6) var(--lu-space-8);
+  }
+}
+
+.blog-tags-list-page main {
+  h1 {
+    margin-bottom: var(--lu-space-2);
+    font: var(--lu-type-page-title);
+    letter-spacing: var(--lu-type-display-tracking);
+  }
+
+  section {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: var(--lu-space-6) var(--lu-space-4);
+    margin-bottom: 0 !important;
+  }
+
+  hr {
+    display: none;
+  }
+
+  // Each letter: a caption over its tags.
+  article h2 {
+    margin-bottom: var(--lu-space-2);
+    font: var(--lu-type-caption);
+    letter-spacing: var(--lu-type-caption-tracking);
+    color: var(--lu-ink-faint);
+  }
+
+  article ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--lu-space-2);
+    margin: 0;
+  }
+
+  article li {
+    margin: 0 !important;
+  }
+}
+
+// A tag with its post count: a capsule, the count in a small inset badge.
+.plugin-blog a[class*='tagWithCount_'] {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 4px 6px 4px 12px;
+  border: none;
+
+  &::before,
+  &::after {
+    display: none;
+  }
+
+  span {
+    margin: 0;
+    padding: 0 7px;
+    border-radius: var(--lu-radius-capsule);
+    background: var(--lu-surface);
+    color: var(--lu-ink-faint);
+    font: 500 12px/18px var(--lu-font-sans);
+    font-variant-numeric: tabular-nums;
+  }
+
+  &:hover span {
+    color: var(--lu-accent);
+  }
+}
+
+// ---------- Archive ----------
+
+// The archive has no sidebar, so its sheet gets an even inset on both sides.
+@media (min-width: 997px) {
+  html.plugin-blog:not(.blog-wrapper) .main-wrapper main {
+    margin-inline: var(--lu-space-4);
+  }
+}
+
+// The archive's banner becomes a plain hero on the window ground, like the
+// other pages'. Its subtitle only repeats "Archive".
+.plugin-blog .hero.hero--primary {
+  padding: 72px 0 40px;
+  background: none;
+  color: var(--lu-ink);
+
+  // Lines up with the year columns below: container padding plus the
+  // columns' own gutter.
+  .container {
+    padding-inline: var(--ifm-spacing-horizontal);
+  }
+
+  .hero__title {
+    margin: 0;
+    font: var(--lu-type-page-title);
+    letter-spacing: var(--lu-type-display-tracking);
+  }
+
+  .hero__subtitle {
+    display: none;
+  }
+
+  @media (max-width: 996px) {
+    padding: 48px 0 24px;
+  }
+}
+
+.plugin-blog .hero.hero--primary + main > section {
+  margin: 0 !important;
+  padding-block: var(--lu-space-6);
+
+  .row > [class*='col'] {
+    margin-block: var(--lu-space-4) !important;
+  }
+
+  h3 {
+    margin-bottom: var(--lu-space-2);
+    font: 650 20px/26px var(--lu-font-sans);
+    letter-spacing: -0.01em;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    margin: 0;
+  }
+
+  li a {
+    display: block;
+    margin-inline: -8px;
+    padding: 4px 8px;
+    border-radius: var(--lu-radius-item);
+    color: var(--lu-ink-muted);
+    font-size: 14px;
+    line-height: 20px;
+
+    &:hover {
+      background: var(--lu-hover);
+      color: var(--lu-ink);
+      text-decoration: none;
+    }
+  }
+}

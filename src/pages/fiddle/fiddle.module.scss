@@ -1,171 +1,375 @@
-:root {
-  --fiddle-gradient: linear-gradient(
-    45deg,
-    #ffb662 10.42%,
-    #ff7a00 70.83%,
-    #ff7a00 90.1%,
-    #ff7a00 90.11%
+// Electron Fiddle, in Lucent: Fiddle is where Lucent comes from, so the page
+// reads like the app. The hero sits on the window ground beside a screenshot;
+// everything you read is on one sheet. Fiddle's orange stays in its icon.
+
+// ---------- Hero ----------
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  align-items: center;
+  gap: var(--lu-space-8);
+  // Lines up with the sheet's content (see the page-sheet rule in chrome.css).
+  max-width: calc(
+    var(--page-content) + 2 * (var(--lu-space-4) + var(--page-pad))
   );
+  margin: 0 auto;
+  padding: 72px calc(var(--lu-space-4) + var(--page-pad)) 56px;
+
+  @media (max-width: 996px) {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 48px var(--lu-space-4) 32px;
+  }
+}
+
+.appIdentity {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: var(--lu-space-6);
+}
+
+// The app icon on a raised chip, with Fiddle's orange glowing behind it.
+.appIcon {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: var(--lu-surface-raised);
+  box-shadow:
+    var(--lu-shadow-lift),
+    0 10px 28px -10px rgba(255, 122, 0, 0.55),
+    inset 0 var(--lu-size-hairline) 0 var(--lu-rim-soft);
+}
+
+.appName {
+  display: flex;
+  flex-direction: column;
+  font: var(--lu-type-headline);
+  letter-spacing: var(--lu-type-headline-tracking);
+  color: var(--lu-ink);
+}
+
+.appVersion {
+  font: var(--lu-type-caption);
+  letter-spacing: var(--lu-type-caption-tracking);
+  color: var(--lu-ink-faint);
+  font-weight: 500;
 }
 
 .tagline {
-  font-size: 3rem;
-  text-align: center;
-  max-width: 40rem;
-  margin: 0 auto;
-  color: var(--ifm-color-white);
-  font-weight: bolder;
-  margin-bottom: 1rem;
+  margin: 0 0 var(--lu-space-4);
+  font: var(--lu-type-page-title);
+  letter-spacing: var(--lu-type-display-tracking);
+  color: var(--lu-ink);
+  text-wrap: balance;
 }
 
-.hero {
-  --ifm-button-size-multiplier: 0.9;
-  background: var(--electron-color-dark);
+.taglineMuted {
+  color: var(--lu-ink-faint);
+}
+
+.lead {
+  max-width: 34rem;
+  margin-bottom: var(--lu-space-6);
+  font-size: 17px;
+  line-height: 27px;
+  color: var(--lu-ink-muted);
+  text-wrap: pretty;
+}
+
+.heroActions {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--lu-space-2);
+  margin-bottom: var(--lu-space-4);
+
+  :global(.button--lg) {
+    font-size: 15px;
+    padding: 10px 22px;
+  }
+}
+
+.otherDownloads {
+  display: inline-flex;
   align-items: center;
-  min-height: 80vh;
-  padding: 8rem 2rem 2rem;
-  margin-bottom: 10rem;
-}
-
-.fiddleHeroScreenshot {
-  margin-top: 2rem;
-  margin-bottom: -10rem;
-  max-width: min(800px, 95vw);
-}
-
-.heroEmphasis {
-  background: var(--fiddle-gradient);
-  font-style: normal;
-  font-weight: bold;
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.heroDownloadButton {
-  font-size: 1rem;
-}
-
-.blurb {
-  text-align: center;
-  font-size: 1.1rem;
-  max-width: 60rem;
-  padding: 0 4rem 4rem;
-  margin: 0 auto;
-
-  @media (max-width: 768px) {
-    padding: 0 0 4rem;
-    text-align: left;
-  }
-}
-
-.downloadsContainer {
-  padding-top: 10rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 4rem;
-}
-
-.downloadsCardsContainer {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  margin-bottom: 2rem;
-
-  @media (max-width: 768px) {
-    grid-template-columns: none;
-  }
-}
-
-.downloadsCard {
-  --ifm-button-size-multiplier: 0.7;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-
-.downloadsCardFooter {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-size: 0.8rem;
-}
-
-.downloadOS {
-  path {
-    fill: var(--electron-color-dark);
-  }
-}
-:root[data-theme='dark'] {
-  .downloadOS {
-    path {
-      fill: var(--electron-color-light);
-    }
-  }
-}
-
-.buttonFiddle {
-  background: var(--fiddle-gradient);
-  background-size: 200% 100%;
-  background-position: 100% 0;
-  font-weight: bold;
-
-  transition: 0.2s background-position ease-in;
+  gap: 4px;
+  font: var(--lu-type-label);
+  color: var(--lu-ink-muted);
 
   &:hover {
-    background-position: 0 0;
+    color: var(--lu-accent);
+    text-decoration: none;
   }
 }
 
-.logoContainer {
-  position: relative;
+// The screenshot floats on the window ground, lifted by a long shadow.
+.heroShot {
+  min-width: 0;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 24px 40px rgba(20, 24, 48, 0.28))
+      drop-shadow(0 2px 6px rgba(20, 24, 48, 0.12));
+  }
 }
 
-.logoBG {
-  position: absolute;
-  top: 0;
-  width: 96px;
-  height: 96px;
-  background: var(--fiddle-gradient);
-  filter: blur(64px);
+// ---------- The sheet ----------
+
+:global(.main-wrapper) main.sheet {
+  // Desktop margin and padding come from chrome.css (page sheets).
+
+  @media (max-width: 996px) {
+    margin: 0;
+    padding: var(--lu-space-6) var(--lu-space-4) var(--lu-space-8);
+  }
 }
 
-.otherDownloadsLink {
-  margin: 1rem 0;
-  color: var(--ifm-color-white);
+// ---------- Features: a grid of panels, each a picture over its text ----------
 
-  a {
+.features {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--lu-space-4);
+  max-width: var(--page-content);
+  margin: 0 auto 64px;
+
+  @media (max-width: 1100px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (max-width: 680px) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.feature {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: var(--lu-radius-panel);
+  background: var(--lu-surface-sunken);
+  box-shadow: inset 0 0 0 var(--lu-size-hairline) var(--lu-line);
+}
+
+// The picture is cropped to its top left, where each screenshot's subject is.
+.featureMedia {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  margin: var(--lu-space-3) var(--lu-space-3) 0;
+  // Concentric with the panel, 12px in.
+  border-radius: max(calc(var(--lu-radius-panel) - var(--lu-space-3)), 6px);
+  background: var(--electron-color-dark);
+  box-shadow: var(--lu-shadow-lift);
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top left;
+  }
+}
+
+.featureText {
+  padding: var(--lu-space-4) var(--lu-space-4) var(--lu-space-6);
+
+  h2 {
+    margin: 0 0 var(--lu-space-2);
+    font: var(--lu-type-docs-h3);
+    letter-spacing: -0.01em;
+  }
+
+  p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 22px;
+    color: var(--lu-ink-muted);
+    text-wrap: pretty;
+  }
+
+  code {
+    font-size: 12px;
+  }
+}
+
+// The Gist card has no screenshot: a glass address bar on the aura instead.
+.shareMedia {
+  display: grid;
+  place-items: center;
+  padding: var(--lu-space-4);
+  background:
+    radial-gradient(
+      320px 200px at 20% 0%,
+      rgba(0, 163, 191, 0.45),
+      transparent 70%
+    ),
+    radial-gradient(
+      280px 200px at 100% 100%,
+      rgba(31, 124, 255, 0.3),
+      transparent 70%
+    ),
+    var(--electron-color-dark);
+}
+
+.addressBar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  max-width: 300px;
+  padding: 8px 14px;
+  border-radius: var(--lu-radius-capsule);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow:
+    inset 0 0 0 1px rgba(159, 234, 249, 0.25),
+    0 8px 24px -10px rgba(0, 0, 0, 0.5);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  color: #eef1f8;
+  font: 400 13px/18px var(--lu-font-mono);
+  white-space: nowrap;
+  overflow: hidden;
+
+  svg {
+    flex: none;
     color: var(--electron-color-light);
   }
+
+  span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 
-// Like infima's default .button-group class,
-// but instead removes the grouping for super narrow viewports.
-.responsiveButtonGroup {
-  display: flex;
+// ---------- Downloads: one panel, a row per platform ----------
 
-  @media (min-width: 501px) {
-    gap: var(--ifm-button-group-spacing);
-    & > :global(.button):not(:last-child) {
-      border-bottom-right-radius: 0;
-      border-top-right-radius: 0;
-    }
+.downloads {
+  max-width: 880px;
+  margin: 0 auto;
+  scroll-margin-top: calc(var(--ifm-navbar-height) + var(--lu-space-4));
+}
 
-    & > :global(.button):not(:first-child) {
-      border-bottom-left-radius: 0;
-      border-top-left-radius: 0;
-    }
+.downloadsHeader {
+  margin-bottom: var(--lu-space-4);
+  text-align: center;
+
+  h2 {
+    margin-bottom: var(--lu-space-1);
+    font: var(--lu-type-title);
+    letter-spacing: var(--lu-type-title-tracking);
   }
 
-  @media (max-width: 500px) {
-    flex-direction: column;
-    gap: 1rem;
+  p {
+    margin: 0;
+    color: var(--lu-ink-muted);
+  }
+}
+
+.platformList {
+  overflow: hidden;
+  border-radius: var(--lu-radius-panel);
+  background: var(--lu-surface-sunken);
+  box-shadow: inset 0 0 0 var(--lu-size-hairline) var(--lu-line);
+}
+
+.platform {
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr);
+  align-items: start;
+  gap: var(--lu-space-4);
+  padding: var(--lu-space-4) var(--lu-space-6);
+
+  & + & {
+    box-shadow: inset 0 var(--lu-size-hairline) 0 var(--lu-line);
+  }
+
+  @media (max-width: 680px) {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--lu-space-3);
+    padding: var(--lu-space-4);
+  }
+}
+
+.platformCurrent {
+  background: color-mix(in srgb, var(--lu-accent-soft) 60%, transparent);
+}
+
+.platformName {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  min-height: 30px;
+  font: var(--lu-type-headline);
+  letter-spacing: var(--lu-type-headline-tracking);
+  color: var(--lu-ink);
+}
+
+.platformLogo {
+  color: var(--lu-ink);
+
+  path {
+    fill: currentColor;
+  }
+}
+
+.currentBadge {
+  padding: 2px 8px;
+  border-radius: var(--lu-radius-capsule);
+  background: var(--lu-accent-soft);
+  color: var(--lu-accent);
+  font: var(--lu-type-caption);
+  letter-spacing: var(--lu-type-caption-tracking);
+}
+
+.formatList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--lu-space-2);
+}
+
+.format {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--lu-space-3);
+  min-height: 30px;
+}
+
+.formatLabel {
+  min-width: 84px;
+  font: var(--lu-type-label);
+  color: var(--lu-ink-muted);
+}
+
+.archList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+
+  :global(.button--sm) {
+    min-width: 72px;
+    padding: 4px 12px;
+    font: var(--lu-type-label);
+  }
+}
+
+.sourceLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: var(--lu-space-6);
+  font: var(--lu-type-label);
+  color: var(--lu-ink-muted);
+
+  &:hover {
+    color: var(--lu-accent);
+    text-decoration: none;
   }
 }

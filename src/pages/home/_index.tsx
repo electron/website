@@ -20,6 +20,7 @@ import {
   AppWindowMac,
   Blocks,
   GitFork,
+  Heart,
   Lock,
   SquareStack,
 } from 'lucide-react';
@@ -28,189 +29,178 @@ export default function Home() {
   const { siteConfig } = useDocusaurusContext();
   return (
     <Layout title={siteConfig.tagline} description={siteConfig.tagline}>
-      <header className={clsx('hero', 'hero--primary', styles.heroElectron)}>
-        <div className="container">
-          <div className="row">
-            <div className="col col--12">
-              <HeroAnimation />
-            </div>
-            <div className="col col--12">
-              <h1 className={styles.heroHeadline}>{siteConfig.tagline}</h1>
-              <div className={styles.heroButtons}>
-                <Link
-                  className="button button--lg button--electron button--dark"
-                  to="/docs/latest/"
-                >
-                  Get Started →
-                </Link>
-                <Link
-                  className="button button--lg button--electron button--outline button--dark"
-                  to="/docs/latest/why-electron"
-                >
-                  Why Electron?
-                </Link>
-              </div>
-            </div>
-          </div>
+      <header className={styles.hero}>
+        <HeroAnimation />
+        <h1 className={styles.heroHeadline}>
+          Build cross-platform desktop apps{' '}
+          <span className={styles.heroHeadlineMuted}>
+            with JavaScript, HTML, and CSS
+          </span>
+        </h1>
+        <div className={styles.heroButtons}>
+          <Link
+            className="button button--lg button--primary"
+            to="/docs/latest/"
+          >
+            Get Started →
+          </Link>
+          <Link
+            className="button button--lg button--secondary"
+            to="/docs/latest/why-electron"
+          >
+            Why Electron?
+          </Link>
         </div>
       </header>
-      <main>
-        <div className="container">
+      <main className={styles.sheet}>
+        <div className={styles.inner}>
           <div className={clsx(styles.section)}>
-            <div className="row">
-              <div className="col col--4 margin-bottom--lg">
-                <WhyCard
-                  icon={<AppWindowMac />}
-                  title="Powered by the web"
-                  description="Electron embeds Chromium and Node.js to bring JavaScript
+            <div className={styles.whyGrid}>
+              <WhyCard
+                icon={<AppWindowMac />}
+                title="Powered by the web"
+                description="Electron embeds Chromium and Node.js to bring JavaScript
                   to the desktop."
-                />
-              </div>
-              <div className="col col--4 margin-bottom--lg">
-                <WhyCard
-                  icon={<SquareStack />}
-                  title="Cross-platform"
-                  description="Electron apps run natively on macOS, Windows, and Linux across all supported architectures."
-                />
-              </div>
-              <div className="col col--4 margin-bottom--lg">
-                <WhyCard
-                  icon={<GitFork />}
-                  title="Open to all"
-                  description={
-                    <>
-                      Electron is an open-source project under the{' '}
-                      <Link to="https://openjsf.org/">OpenJS Foundation</Link>{' '}
-                      maintained by an active community of contributors.
-                    </>
-                  }
-                />
-              </div>
-              <div className="col col--4 margin-bottom--lg">
-                <WhyCard
-                  icon={<Activity />}
-                  title="Stable"
-                  description="Electron's bundled Chromium build ensures that your
+              />
+              <WhyCard
+                icon={<SquareStack />}
+                title="Cross-platform"
+                description="Electron apps run natively on macOS, Windows, and Linux across all supported architectures."
+              />
+              <WhyCard
+                icon={<GitFork />}
+                title="Open to all"
+                description={
+                  <>
+                    Electron is an open-source project under the{' '}
+                    <Link to="https://openjsf.org/">OpenJS Foundation</Link>{' '}
+                    maintained by an active community of contributors.
+                  </>
+                }
+              />
+              <WhyCard
+                icon={<Activity />}
+                title="Stable"
+                description="Electron's bundled Chromium build ensures that your
                       app has a stable rendering target with all the newest web
                       platform features."
-                />
-              </div>
-              <div className="col col--4 margin-bottom--lg">
-                <WhyCard
-                  icon={<Lock />}
-                  title="Secure"
-                  description="Electron releases major versions in lockstep with Chromium
+              />
+              <WhyCard
+                icon={<Lock />}
+                title="Secure"
+                description="Electron releases major versions in lockstep with Chromium
                       so you get security fixes as soon as they are available."
-                />
-              </div>
-              <div className="col col--4 margin-bottom--lg">
-                <WhyCard
-                  icon={<Blocks />}
-                  title="Extensible"
-                  description={
-                    <>
-                      Use any package from the rich{' '}
-                      <Link to="https://www.npmjs.com/">npm</Link> ecosystem, or
-                      write your own{' '}
-                      <Link to="/docs/latest/tutorial/native-code-and-electron">
-                        native add-on code
-                      </Link>{' '}
-                      to extend Electron.
-                    </>
-                  }
-                />
-              </div>
+              />
+              <WhyCard
+                icon={<Blocks />}
+                title="Extensible"
+                description={
+                  <>
+                    Use any package from the rich{' '}
+                    <Link to="https://www.npmjs.com/">npm</Link> ecosystem, or
+                    write your own{' '}
+                    <Link to="/docs/latest/tutorial/native-code-and-electron">
+                      native add-on code
+                    </Link>{' '}
+                    to extend Electron.
+                  </>
+                }
+              />
             </div>
           </div>
           <FeaturedAppsCarousel list={FEATURED_LOGOS} />
           <div className={clsx(styles.section)}>
-            <div style={{ textAlign: 'center', marginBottom: '6rem' }}>
+            <div className={styles.sectionHeader}>
               <h2>Desktop development made easy</h2>
               <p>
                 Electron takes care of the hard parts so you can focus on the
                 core of your application.
               </p>
             </div>
-            <Feature
-              title="Native graphical user interfaces"
-              src="/assets/marketing/menu.png"
-              alt="macOS operating system menu for VSCode.
+            <div className={styles.featureGrid}>
+              <Feature
+                title="Native graphical user interfaces"
+                src="/assets/marketing/menu.png"
+                alt="macOS operating system menu for VSCode.
               'Code' menu item is selected, and its submenu has items 'About Visual Studio Code',
               'Check for Updates...', 'Preferences', 'Services', 'Hide Visual Studio Code',
               'Hide Others', 'Show All', 'Quit Visual Studio Code'."
-            >
-              Interact with your operating system&apos;s interfaces with
-              Electron&apos;s main process APIs. Customize your{' '}
-              <Link to="/docs/latest/tutorial/window-customization">
-                application window
-              </Link>{' '}
-              appearance, control application{' '}
-              <Link to="/docs/latest/api/menu">menus</Link>, or alert users
-              through <Link to="/docs/latest/api/dialog">dialogs</Link> or{' '}
-              <Link to="/docs/latest/tutorial/notifications">
-                notifications
-              </Link>
-              .
-            </Feature>
-            <Feature
-              title="Automatic software updates"
-              src="/assets/marketing/auto-updater.png"
-              alt="Dialog for Electron Fiddle's auto-update. The user is prompted to update to v0.27.3.
+              >
+                Interact with your operating system&apos;s interfaces with
+                Electron&apos;s main process APIs. Customize your{' '}
+                <Link to="/docs/latest/tutorial/window-customization">
+                  application window
+                </Link>{' '}
+                appearance, control application{' '}
+                <Link to="/docs/latest/api/menu">menus</Link>, or alert users
+                through <Link to="/docs/latest/api/dialog">dialogs</Link> or{' '}
+                <Link to="/docs/latest/tutorial/notifications">
+                  notifications
+                </Link>
+                .
+              </Feature>
+              <Feature
+                title="Automatic software updates"
+                src="/assets/marketing/auto-updater.png"
+                alt="Dialog for Electron Fiddle's auto-update. The user is prompted to update to v0.27.3.
               'A new version has been downloaded. Restart the application to apply the updates.'
               There are two buttons underneath: 'Later' and 'Restart'.
               "
-            >
-              Send out software updates to your macOS and Windows users whenever
-              you release a new version with Electron&apos;s{' '}
-              <Link to="/docs/latest/api/auto-updater">autoUpdater module</Link>
-              , powered by{' '}
-              <Link to="https://github.com/Squirrel">Squirrel</Link>.
-            </Feature>
-            <Feature
-              title="Application installers"
-              src="/assets/marketing/installer.png"
-              alt="Window on macOS for the WhatsApp Installer (DMG).
+              >
+                Send out software updates to your macOS and Windows users
+                whenever you release a new version with Electron&apos;s{' '}
+                <Link to="/docs/latest/api/auto-updater">
+                  autoUpdater module
+                </Link>
+                , powered by{' '}
+                <Link to="https://github.com/Squirrel">Squirrel</Link>.
+              </Feature>
+              <Feature
+                title="Application installers"
+                src="/assets/marketing/installer.png"
+                alt="Window on macOS for the WhatsApp Installer (DMG).
               Two icons are present: 'WhatsApp' and 'Applications'. The user is prompted to
               drag the WhatsApp app icon into the Applications folder."
-            >
-              Use{' '}
-              <Link to="/docs/latest/tutorial/application-distribution">
-                community-supported tooling
-              </Link>{' '}
-              to generate platform-specific tooling like Apple Disk Image (.dmg)
-              on macOS, Windows Installer (.msi) on Windows, or RPM Package
-              Manager (.rpm) on Linux.
-            </Feature>
-            <Feature
-              title="App store distribution"
-              src="/assets/marketing/app-store.png"
-              alt="Mac App Store window open to the Rocket.Chat download page."
-            >
-              Distribute your application to more users. Electron has
-              first-class support for the{' '}
-              <Link to="https://www.apple.com/app-store/">Mac App Store</Link>{' '}
-              (macOS), the{' '}
-              <Link to="https://apps.microsoft.com/">Microsoft Store</Link>{' '}
-              (Windows), or the{' '}
-              <Link to="https://snapcraft.io/store">Snap Store</Link> (Linux).
-            </Feature>
-            <Feature
-              title="Crash reporting"
-              src="/assets/marketing/crash-reporting.png"
-              alt="Screenshot of Sentry crash reporting (https://sentry.io). Shows the error message
+              >
+                Use{' '}
+                <Link to="/docs/latest/tutorial/application-distribution">
+                  community-supported tooling
+                </Link>{' '}
+                to generate platform-specific tooling like Apple Disk Image
+                (.dmg) on macOS, Windows Installer (.msi) on Windows, or RPM
+                Package Manager (.rpm) on Linux.
+              </Feature>
+              <Feature
+                title="App store distribution"
+                src="/assets/marketing/app-store.png"
+                alt="Mac App Store window open to the Rocket.Chat download page."
+              >
+                Distribute your application to more users. Electron has
+                first-class support for the{' '}
+                <Link to="https://www.apple.com/app-store/">Mac App Store</Link>{' '}
+                (macOS), the{' '}
+                <Link to="https://apps.microsoft.com/">Microsoft Store</Link>{' '}
+                (Windows), or the{' '}
+                <Link to="https://snapcraft.io/store">Snap Store</Link> (Linux).
+              </Feature>
+              <Feature
+                title="Crash reporting"
+                src="/assets/marketing/crash-reporting.png"
+                alt="Screenshot of Sentry crash reporting (https://sentry.io). Shows the error message
               ('BrowserWindow Unresponsive'), user breadcrumbs, and user information."
-            >
-              Automatically collect JavaScript and native crash data from your
-              users with the{' '}
-              <Link to="/docs/latest/api/crash-reporter">crashReporter</Link>{' '}
-              module. Use a third-party service to collect this data or set up
-              your own on-premise Crashpad server.
-            </Feature>
+              >
+                Automatically collect JavaScript and native crash data from your
+                users with the{' '}
+                <Link to="/docs/latest/api/crash-reporter">crashReporter</Link>{' '}
+                module. Use a third-party service to collect this data or set up
+                your own on-premise Crashpad server.
+              </Feature>
+            </div>
           </div>
-          <div className={clsx(styles.section, styles.center)}>
-            <div>
+          <div className={styles.section}>
+            <div className={styles.sectionHeader}>
               <h2>Use the tools you love</h2>
-              <p className={styles.paragraphCenter}>
+              <p>
                 With the power of modern Chromium, Electron gives you an
                 unopinionated blank slate to build your app. Choose to integrate
                 your favourite libraries and frameworks from the front-end
@@ -282,113 +272,112 @@ export default function Home() {
               ]}
             />
           </div>
-        </div>
-        <div className={styles.accentBackground}>
-          <div className="container">
-            <div className={clsx(styles.section)}>
-              <div className={clsx(styles.explore, 'row')}>
-                <div className="col margin-bottom--lg">
-                  <h2>Electron Forge</h2>
-                  <p>
-                    Electron Forge is a batteries-included toolkit for building
-                    and publishing Electron apps. Get your Electron app started
-                    the right way with first-class support for JavaScript
-                    bundling and an extensible module ecosystem.
-                  </p>
-                  <div className="button-group">
-                    <Link
-                      to="https://electronforge.io"
-                      className="button button--electron"
-                    >
-                      Get started
-                    </Link>
-                    <Link
-                      to="https://github.com/electron/forge"
-                      className="button button--info"
-                    >
-                      Source code
-                    </Link>
-                  </div>
-                </div>
-                <div className="col">
-                  <CodeWindow>
-                    <span className="no-select">$ </span>npm init
-                    electron-app@latest my-app
-                    <span className={clsx(styles.codeComment, 'no-select')}>
-                      <br />✔ Locating custom template: &quot;base&quot;
-                      <br />✔ Initializing directory
-                      <br />✔ Preparing template
-                      <br />✔ Initializing template
-                      <br />✔ Installing template dependencies
-                    </span>
-                  </CodeWindow>
+          <div className={clsx(styles.section, styles.exploreList)}>
+            <div className={styles.explore}>
+              <div className={styles.exploreText}>
+                <h2>Electron Forge</h2>
+                <p>
+                  Electron Forge is a batteries-included toolkit for building
+                  and publishing Electron apps. Get your Electron app started
+                  the right way with first-class support for JavaScript bundling
+                  and an extensible module ecosystem.
+                </p>
+                <div className={styles.buttonRow}>
+                  <Link
+                    to="https://electronforge.io"
+                    className="button button--primary"
+                  >
+                    Get started
+                  </Link>
+                  <Link
+                    to="https://github.com/electron/forge"
+                    className="button button--secondary"
+                  >
+                    Source code
+                  </Link>
                 </div>
               </div>
-              <div className={clsx(styles.explore, 'row')}>
-                <div className="col margin-bottom--lg">
-                  <span className={styles.exploreSubtext}>Direct download</span>
-                  <h2>Installation</h2>
-                  <p>
-                    If you want to figure things out for yourself, you can
-                    install the Electron package directly from the npm registry.
-                  </p>
-                  <p>
-                    For a production-ready experience, install the latest stable
-                    version. If you want something a bit more experimental, try
-                    the prerelease or nightly channels.
-                  </p>
-                </div>
-                <div className="col">
-                  <InstallSteps />
-                </div>
-              </div>
-              <div className={clsx(styles.explore, 'row')}>
-                <div className="col margin-bottom--lg">
-                  <span className={styles.exploreSubtext}>
-                    Experiment with the API
+              <div className={styles.exploreVisual}>
+                <CodeWindow title="Terminal">
+                  <span className="no-select">$ </span>npm init
+                  electron-app@latest my-app
+                  <span className={clsx(styles.codeComment, 'no-select')}>
+                    <br />✔ Locating custom template: &quot;base&quot;
+                    <br />✔ Initializing directory
+                    <br />✔ Preparing template
+                    <br />✔ Initializing template
+                    <br />✔ Installing template dependencies
                   </span>
-                  <h2>Electron Fiddle</h2>
-                  <p>
-                    Electron Fiddle lets you create and play with small Electron
-                    experiments. It greets you with a quick-start template after
-                    opening — change a few things, choose the version of
-                    Electron you want to run it with, and play around.
-                  </p>
-                  <p>
-                    Save your Fiddle either as a GitHub Gist or to a local
-                    folder. Once pushed to GitHub, anyone can quickly try your
-                    Fiddle out by just entering it in the address bar.
-                  </p>
-                  <div className="button-group">
-                    <Link to="/fiddle" className="button button--electron">
-                      Download
-                    </Link>
-                    <Link
-                      to="https://github.com/electron/fiddle"
-                      className="button button--info"
-                    >
-                      Source code
-                    </Link>
-                  </div>
+                </CodeWindow>
+              </div>
+            </div>
+            <div className={styles.explore}>
+              <div className={styles.exploreText}>
+                <span className={styles.exploreSubtext}>Direct download</span>
+                <h2>Installation</h2>
+                <p>
+                  If you want to figure things out for yourself, you can install
+                  the Electron package directly from the npm registry.
+                </p>
+                <p>
+                  For a production-ready experience, install the latest stable
+                  version. If you want something a bit more experimental, try
+                  the prerelease or nightly channels.
+                </p>
+              </div>
+              <div className={styles.exploreVisual}>
+                <InstallSteps />
+              </div>
+            </div>
+            <div className={styles.explore}>
+              <div className={styles.exploreText}>
+                <span className={styles.exploreSubtext}>
+                  Experiment with the API
+                </span>
+                <h2>Electron Fiddle</h2>
+                <p>
+                  Electron Fiddle lets you create and play with small Electron
+                  experiments. It greets you with a quick-start template after
+                  opening — change a few things, choose the version of Electron
+                  you want to run it with, and play around.
+                </p>
+                <p>
+                  Save your Fiddle either as a GitHub Gist or to a local folder.
+                  Once pushed to GitHub, anyone can quickly try your Fiddle out
+                  by just entering it in the address bar.
+                </p>
+                <div className={styles.buttonRow}>
+                  <Link to="/fiddle" className="button button--primary">
+                    Download
+                  </Link>
+                  <Link
+                    to="https://github.com/electron/fiddle"
+                    className="button button--secondary"
+                  >
+                    Source code
+                  </Link>
                 </div>
-                <div className="col">
-                  <img
-                    className="shadow--tl"
-                    src="/assets/marketing/fiddle.png"
-                    alt="Screenshot of Electron Fiddle's main window"
-                  />
-                </div>
+              </div>
+              <div className={styles.exploreVisual}>
+                <img
+                  className={styles.exploreShot}
+                  src="/assets/marketing/fiddle.png"
+                  alt="Screenshot of Electron Fiddle's main window"
+                />
               </div>
             </div>
           </div>
-        </div>
-        <div className="container">
-          <div className={clsx(styles.section)} style={{ textAlign: 'center' }}>
-            <h2>Apps users love, built with Electron</h2>
-            <p>
-              Thousands of organizations spanning all industries use Electron to
-              build cross-platform software.
-            </p>
+          <div className={styles.section}>
+            <div className={styles.sectionHeader}>
+              <span className={styles.loveBadge} aria-hidden="true">
+                <Heart size={18} fill="currentColor" strokeWidth={0} />
+              </span>
+              <h2>Apps users love, built with Electron</h2>
+              <p>
+                Thousands of organizations spanning all industries use Electron
+                to build cross-platform software.
+              </p>
+            </div>
             <AppsGrid list={FEATURED_APPS} />
           </div>
         </div>

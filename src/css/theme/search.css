@@ -1,0 +1,116 @@
+/* Search: Algolia DocSearch in Lucent.
+   DocSearch sets its own palette on `html[data-theme='dark']`; `:root[data-theme]`
+   outranks it, so one block covers both themes through the Lucent tokens. */
+
+:root[data-theme] {
+  --docsearch-primary-color: var(--lu-accent);
+  --docsearch-highlight-color: var(--lu-accent);
+  --docsearch-logo-color: var(--lu-ink-muted);
+  --docsearch-focus-color: var(--lu-accent);
+  --docsearch-text-color: var(--lu-ink);
+  --docsearch-secondary-text-color: var(--lu-ink-muted);
+  --docsearch-muted-color: var(--lu-ink-faint);
+  --docsearch-icon-color: var(--lu-ink-muted);
+  --docsearch-subtle-color: var(--lu-line);
+  --docsearch-background-color: var(--lu-surface-sunken);
+  --docsearch-border-radius: var(--lu-radius-control);
+  --docsearch-container-background: color-mix(
+    in srgb,
+    var(--lu-window) 55%,
+    transparent
+  );
+
+  /* The button in the navbar: a field on glass. */
+  --docsearch-search-button-background: var(--lu-field-on-glass);
+  --docsearch-search-button-text-color: var(--lu-ink-muted);
+  --docsearch-key-background: var(--lu-fill);
+  --docsearch-key-color: var(--lu-ink-muted);
+  --docsearch-key-pressed-shadow: none;
+
+  /* The modal: solid, raised, lifted by shadow. The selected hit is a soft
+     accent row, not a fill. */
+  --docsearch-modal-background: var(--lu-surface-raised);
+  --docsearch-modal-shadow:
+    var(--lu-shadow-popover),
+    inset 0 var(--lu-size-hairline) 0 var(--lu-rim-soft);
+  --docsearch-searchbox-background: var(--lu-field);
+  --docsearch-searchbox-focus-background: var(--lu-field);
+  --docsearch-hit-background: transparent;
+  --docsearch-hit-shadow: none;
+  --docsearch-hit-color: var(--lu-ink);
+  --docsearch-hit-highlight-color: var(--lu-accent-soft);
+  --docsearch-soft-primary-color: var(--lu-accent-soft);
+  --docsearch-dropdown-menu-background: var(--lu-surface-raised);
+  --docsearch-dropdown-menu-item-hover-background: var(--lu-hover);
+  --docsearch-footer-background: var(--lu-surface-sunken);
+  --docsearch-footer-shadow: inset 0 var(--lu-size-hairline) 0 var(--lu-line);
+}
+
+.DocSearch-Button {
+  height: var(--lu-size-toolbar-inner);
+  border: none;
+  border-radius: var(--lu-radius-capsule);
+  box-shadow: none;
+  font: var(--lu-type-label);
+}
+
+.DocSearch-Button:hover {
+  background: var(--nav-hover);
+  box-shadow: none;
+  color: var(--lu-ink);
+}
+
+.DocSearch-Button-Key {
+  border: none;
+  box-shadow: none;
+  border-radius: var(--lu-radius-sm);
+  font: 500 11px/1 var(--lu-font-sans);
+}
+
+.DocSearch-Modal {
+  border-radius: var(--lu-radius-sheet);
+}
+
+/* Focus: the assist ring, Lucent's one gradient border. */
+.DocSearch-Form {
+  border: 1.5px solid transparent;
+  border-radius: var(--lu-radius-control);
+  background:
+    linear-gradient(var(--lu-field), var(--lu-field)) padding-box,
+    var(--lu-assist-ring) border-box;
+  box-shadow: 0 0 18px -4px
+    color-mix(in srgb, var(--lu-accent) 45%, transparent);
+}
+
+.DocSearch-Hit a {
+  border-radius: var(--lu-radius-item);
+  box-shadow: none;
+}
+
+.DocSearch-Hit[aria-selected='true'] a {
+  background: var(--lu-accent-soft);
+}
+
+/* The selected hit keeps ink text on its soft row, not white on a fill. */
+.DocSearch-Hit[aria-selected='true']
+  :is(
+    .DocSearch-Hit-title,
+    .DocSearch-Hit-path,
+    .DocSearch-Hit-icon,
+    .DocSearch-Hit-action,
+    .DocSearch-Hit-Tree,
+    mark
+  ) {
+  color: var(--lu-ink) !important;
+}
+
+.DocSearch-Hit[aria-selected='true'] mark {
+  color: var(--lu-accent) !important;
+}
+
+.DocSearch-Hit-source {
+  background: transparent;
+  color: var(--lu-ink-faint);
+  font: var(--lu-type-caption);
+  letter-spacing: var(--lu-type-caption-tracking);
+}
