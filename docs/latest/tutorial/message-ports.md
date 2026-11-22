@@ -15,6 +15,7 @@ your app.
 
 Here is a very brief example of what a MessagePort is and how it works:
 
+````mdx-code-block
 ```js title='renderer.js (Renderer Process)'
 // MessagePorts are created in pairs. A connected pair of message ports is
 // called a channel.
@@ -33,6 +34,7 @@ port2.postMessage({ answer: 42 })
 // also possible to send MessagePorts to other frames, or to Web Workers, etc.
 ipcRenderer.postMessage('port', null, [port1])
 ```
+````
 
 ```js title='main.js (Main Process)'
 // In the main process, we receive the port.
@@ -155,10 +157,12 @@ That means window.electronMessagePort is globally available and you can call
 `postMessage` on it from anywhere in your app to send a message to the other
 renderer.
 
+````mdx-code-block
 ```js title='renderer.js (Renderer Process)' @ts-window-type={electronMessagePort:MessagePort}
 // elsewhere in your code to send a message to the other renderers message handler
 window.electronMessagePort.postMessage('ping')
 ```
+````
 
 ### Worker process
 
@@ -252,6 +256,7 @@ Electron's built-in IPC methods only support two modes: fire-and-forget
 can implement a "response stream", where a single request responds with a
 stream of data.
 
+````mdx-code-block
 ```js title='renderer.js (Renderer Process)' @ts-expect-error=[14]
 const makeStreamingRequest = (element, callback) => {
   // MessageChannels are lightweight--it's cheap to create a new one for each
@@ -276,6 +281,7 @@ makeStreamingRequest(42, (data) => {
 })
 // We will see "got response data: 42" 10 times.
 ```
+````
 
 ```js  title='main.js (Main Process)'
 ipcMain.on('give-me-a-stream', (event, msg) => {
