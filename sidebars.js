@@ -3,12 +3,13 @@ module.exports = {
     {
       type: 'category',
       label: 'Get Started',
+      link: { type: 'generated-index' },
       items: [
         'latest/tutorial/introduction',
         'latest/why-electron',
         {
           type: 'category',
-          label: 'Tutorial',
+          label: 'Tutorial: Your First App',
           items: [
             'latest/tutorial/tutorial-1-prerequisites',
             'latest/tutorial/tutorial-2-first-app',
@@ -22,43 +23,50 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'Processes in Electron',
+      label: 'Concepts',
+      link: { type: 'generated-index' },
       items: [
-        'latest/tutorial/process-model',
-        'latest/tutorial/context-isolation',
-        'latest/tutorial/ipc',
-        'latest/tutorial/sandbox',
-        'latest/tutorial/message-ports',
+        {
+          type: 'category',
+          label: 'Processes in Electron',
+          link: { type: 'doc', id: 'latest/tutorial/process-model' },
+          items: [
+            'latest/tutorial/context-isolation',
+            'latest/tutorial/sandbox',
+            'latest/tutorial/ipc',
+            'latest/tutorial/message-ports',
+            'latest/tutorial/multithreading',
+          ],
+        },
+        'latest/tutorial/web-embeds',
+        'latest/tutorial/esm',
+        'latest/tutorial/asar-archives',
       ],
     },
     {
       type: 'category',
-      label: 'Best Practices',
-      items: ['latest/tutorial/performance', 'latest/tutorial/security'],
-    },
-    {
-      type: 'category',
-      label: 'Examples',
+      label: 'How-to Guides',
       link: { type: 'doc', id: 'latest/tutorial/examples' },
       items: [
-        'latest/tutorial/dark-mode',
-        'latest/tutorial/devices',
-        {
-          type: 'doc',
-          id: 'latest/tutorial/in-app-purchases',
-          customProps: { platforms: ['mac'] },
-        },
-        'latest/tutorial/keyboard-shortcuts',
-        'latest/tutorial/launch-app-from-url-in-another-app',
-        {
-          type: 'doc',
-          id: 'latest/tutorial/linux-desktop-actions',
-          customProps: { platforms: ['linux'] },
-        },
-        'latest/tutorial/local-ai-handler',
         {
           type: 'category',
-          label: 'Menus',
+          label: 'Window Management',
+          link: { type: 'doc', id: 'latest/tutorial/window-customization' },
+          items: [
+            'latest/tutorial/custom-title-bar',
+            'latest/tutorial/custom-window-interactions',
+            'latest/tutorial/custom-window-styles',
+            'latest/tutorial/window-state-persistence',
+            {
+              type: 'doc',
+              id: 'latest/tutorial/represented-file',
+              customProps: { platforms: ['mac'] },
+            },
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Menus and Input',
           link: { type: 'doc', id: 'latest/tutorial/menus' },
           items: [
             'latest/tutorial/application-menu',
@@ -69,92 +77,101 @@ module.exports = {
               customProps: { platforms: ['mac'] },
             },
             'latest/tutorial/tray',
+            'latest/tutorial/keyboard-shortcuts',
+            'latest/tutorial/native-file-drag-drop',
           ],
-        },
-        'latest/tutorial/multithreading',
-        'latest/tutorial/native-file-drag-drop',
-        'latest/tutorial/navigation-history',
-        'latest/tutorial/notifications',
-        'latest/tutorial/offscreen-rendering',
-        'latest/tutorial/online-offline-events',
-        'latest/tutorial/progress-bar',
-        {
-          type: 'doc',
-          id: 'latest/tutorial/recent-documents',
-          customProps: { platforms: ['mac', 'windows'] },
-        },
-        {
-          type: 'doc',
-          id: 'latest/tutorial/represented-file',
-          customProps: { platforms: ['mac'] },
-        },
-        'latest/tutorial/spellchecker',
-        'latest/tutorial/web-embeds',
-        {
-          type: 'doc',
-          id: 'latest/tutorial/windows-taskbar',
-          customProps: { platforms: ['windows'] },
         },
         {
           type: 'category',
-          label: 'Window Customization',
-          link: { type: 'doc', id: 'latest/tutorial/window-customization' },
+          label: 'OS Integration',
+          link: { type: 'generated-index' },
           items: [
-            'latest/tutorial/custom-title-bar',
-            'latest/tutorial/custom-window-interactions',
-            'latest/tutorial/custom-window-styles',
+            'latest/tutorial/accessibility',
+            'latest/tutorial/dark-mode',
+            'latest/tutorial/launch-app-from-url-in-another-app',
+            'latest/tutorial/devices',
+            {
+              type: 'doc',
+              id: 'latest/tutorial/linux-desktop-actions',
+              customProps: { platforms: ['linux'] },
+            },
+            'latest/tutorial/notifications',
+            'latest/tutorial/progress-bar',
+            {
+              type: 'doc',
+              id: 'latest/tutorial/recent-documents',
+              customProps: { platforms: ['mac', 'windows'] },
+            },
+            {
+              type: 'doc',
+              id: 'latest/tutorial/windows-taskbar',
+              customProps: { platforms: ['windows'] },
+            },
           ],
         },
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Development',
-      items: [
-        'latest/tutorial/accessibility',
-        'latest/tutorial/installation',
-        'latest/tutorial/asar-archives',
-        'latest/tutorial/asar-integrity',
-        'latest/tutorial/esm',
-        'latest/tutorial/fuses',
-        'latest/tutorial/window-state-persistence',
-        'latest/tutorial/windows-arm',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Native Node Modules',
-      items: [
-        'latest/tutorial/using-native-node-modules',
         {
           type: 'category',
-          label: 'Tutorial: Native Code and Electron',
+          label: 'Web Content and Rendering',
+          link: { type: 'generated-index' },
           items: [
-            'latest/tutorial/native-code-and-electron',
-            'latest/tutorial/native-code-and-electron-cpp-win32',
-            'latest/tutorial/native-code-and-electron-swift-macos',
-            'latest/tutorial/native-code-and-electron-objc-macos',
-            'latest/tutorial/native-code-and-electron-cpp-linux',
+            'latest/tutorial/local-ai-handler',
+            'latest/tutorial/navigation-history',
+            'latest/tutorial/offscreen-rendering',
+            'latest/tutorial/online-offline-events',
+            'latest/tutorial/spellchecker',
           ],
         },
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Distribution',
-      items: [
-        'latest/tutorial/forge-overview',
         {
           type: 'category',
-          label: 'Advanced Reference',
+          label: 'Project Setup',
+          link: { type: 'generated-index' },
+          items: [
+            'latest/tutorial/installation',
+            'latest/tutorial/windows-arm',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Native Code',
+          link: { type: 'generated-index' },
+          items: [
+            'latest/tutorial/using-native-node-modules',
+            {
+              type: 'category',
+              label: 'Tutorial: Native Code and Electron',
+              link: {
+                type: 'doc',
+                id: 'latest/tutorial/native-code-and-electron',
+              },
+              items: [
+                'latest/tutorial/native-code-and-electron-cpp-win32',
+                'latest/tutorial/native-code-and-electron-swift-macos',
+                'latest/tutorial/native-code-and-electron-objc-macos',
+                'latest/tutorial/native-code-and-electron-cpp-linux',
+              ],
+            },
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Packaging and Distribution',
           link: { type: 'doc', id: 'latest/tutorial/distribution-overview' },
           items: [
+            'latest/tutorial/forge-overview',
             'latest/tutorial/application-distribution',
             'latest/tutorial/code-signing',
+            'latest/tutorial/asar-integrity',
+            'latest/tutorial/fuses',
             'latest/tutorial/updates',
+            {
+              type: 'doc',
+              id: 'latest/tutorial/in-app-purchases',
+              customProps: { platforms: ['mac'] },
+            },
             {
               type: 'category',
               label: 'App Store Guides',
+              link: { type: 'generated-index' },
               items: [
                 'latest/tutorial/mac-app-store-submission-guide',
                 'latest/tutorial/windows-store-guide',
@@ -163,36 +180,64 @@ module.exports = {
             },
           ],
         },
+        {
+          type: 'category',
+          label: 'Debugging Your App',
+          link: { type: 'doc', id: 'latest/tutorial/application-debugging' },
+          items: [
+            'latest/tutorial/debugging-main-process',
+            'latest/tutorial/debugging-vscode',
+            'latest/tutorial/devtools-extension',
+            'latest/tutorial/repl',
+            'latest/tutorial/crash-reporting',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Testing Your App',
+          link: { type: 'generated-index' },
+          items: [
+            'latest/tutorial/automated-testing',
+            'latest/tutorial/testing-on-headless-ci',
+          ],
+        },
       ],
     },
     {
       type: 'category',
-      label: 'Testing And Debugging',
-      items: [
-        'latest/tutorial/automated-testing',
-        'latest/tutorial/crash-reporting',
-        'latest/tutorial/debugging-main-process',
-        'latest/tutorial/debugging-vscode',
-        'latest/tutorial/repl',
-        'latest/tutorial/devtools-extension',
-        'latest/tutorial/application-debugging',
-        'latest/tutorial/testing-on-headless-ci',
-      ],
+      label: 'Best Practices',
+      link: { type: 'generated-index' },
+      items: ['latest/tutorial/performance', 'latest/tutorial/security'],
     },
     {
       type: 'category',
-      label: 'References',
+      label: 'Reference',
+      link: { type: 'generated-index' },
       items: [
+        {
+          type: 'link',
+          label: 'API Reference',
+          href: '/docs/latest/api/app',
+        },
         'latest/breaking-changes',
-        'latest/tutorial/electron-timelines',
-        'latest/tutorial/electron-versioning',
-        'latest/faq',
+        'latest/experimental',
         'latest/glossary',
+        'latest/faq',
+        {
+          type: 'category',
+          label: 'Release Policy',
+          link: { type: 'generated-index' },
+          items: [
+            'latest/tutorial/electron-timelines',
+            'latest/tutorial/electron-versioning',
+          ],
+        },
       ],
     },
     {
       type: 'category',
       label: 'Contributing',
+      link: { type: 'generated-index' },
       items: [
         {
           type: 'category',
@@ -219,6 +264,7 @@ module.exports = {
         {
           type: 'category',
           label: 'Development Guides',
+          link: { type: 'generated-index' },
           items: [
             'latest/development/api-history-migration-guide',
             'latest/development/clang-tidy',
@@ -232,7 +278,8 @@ module.exports = {
         },
         {
           type: 'category',
-          label: 'GitHub',
+          label: 'Issues and Pull Requests',
+          link: { type: 'generated-index' },
           items: [
             'latest/development/issues',
             'latest/development/pull-requests',
@@ -241,6 +288,7 @@ module.exports = {
         {
           type: 'category',
           label: 'Upstream Development',
+          link: { type: 'generated-index' },
           items: [
             'latest/development/chromium-development',
             'latest/development/v8-development',
