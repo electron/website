@@ -162,5 +162,21 @@
   "sidebar.api.category.Utility Process Modules": {
     "message": "Utility Process Modules",
     "description": "The label for category 'Utility Process Modules' in sidebar 'api'"
+  },
+  "sidebar.docs.category.Web Content and Rendering": {
+    "message": "Web Content and Rendering",
+    "description": "The label for category 'Web Content and Rendering' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Debugging Your App": {
+    "message": "Debugging Your App",
+    "description": "The label for category 'Debugging Your App' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Testing Your App": {
+    "message": "Testing Your App",
+    "description": "The label for category 'Testing Your App' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Issues and Pull Requests": {
+    "message": "Issues and Pull Requests",
+    "description": "The label for category 'Issues and Pull Requests' in sidebar 'docs'"
   }
 }

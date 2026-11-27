@@ -3,6 +3,7 @@ module.exports = {
     {
       type: 'category',
       label: 'Get Started',
+      link: { type: 'generated-index' },
       items: [
         'latest/tutorial/introduction',
         'latest/why-electron',
@@ -23,6 +24,7 @@ module.exports = {
     {
       type: 'category',
       label: 'Concepts',
+      link: { type: 'generated-index' },
       items: [
         {
           type: 'category',
@@ -55,7 +57,6 @@ module.exports = {
             'latest/tutorial/custom-window-interactions',
             'latest/tutorial/custom-window-styles',
             'latest/tutorial/window-state-persistence',
-            'latest/tutorial/progress-bar',
             {
               type: 'doc',
               id: 'latest/tutorial/represented-file',
@@ -78,12 +79,12 @@ module.exports = {
             'latest/tutorial/tray',
             'latest/tutorial/keyboard-shortcuts',
             'latest/tutorial/native-file-drag-drop',
-            'latest/tutorial/spellchecker',
           ],
         },
         {
           type: 'category',
           label: 'OS Integration',
+          link: { type: 'generated-index' },
           items: [
             'latest/tutorial/accessibility',
             'latest/tutorial/dark-mode',
@@ -95,7 +96,7 @@ module.exports = {
               customProps: { platforms: ['linux'] },
             },
             'latest/tutorial/notifications',
-            'latest/tutorial/online-offline-events',
+            'latest/tutorial/progress-bar',
             {
               type: 'doc',
               id: 'latest/tutorial/recent-documents',
@@ -110,16 +111,20 @@ module.exports = {
         },
         {
           type: 'category',
-          label: 'Web Content',
+          label: 'Web Content and Rendering',
+          link: { type: 'generated-index' },
           items: [
             'latest/tutorial/local-ai-handler',
             'latest/tutorial/navigation-history',
             'latest/tutorial/offscreen-rendering',
+            'latest/tutorial/online-offline-events',
+            'latest/tutorial/spellchecker',
           ],
         },
         {
           type: 'category',
           label: 'Project Setup',
+          link: { type: 'generated-index' },
           items: [
             'latest/tutorial/installation',
             'latest/tutorial/windows-arm',
@@ -128,6 +133,7 @@ module.exports = {
         {
           type: 'category',
           label: 'Native Code',
+          link: { type: 'generated-index' },
           items: [
             'latest/tutorial/using-native-node-modules',
             {
@@ -165,6 +171,7 @@ module.exports = {
             {
               type: 'category',
               label: 'App Store Guides',
+              link: { type: 'generated-index' },
               items: [
                 'latest/tutorial/mac-app-store-submission-guide',
                 'latest/tutorial/windows-store-guide',
@@ -175,15 +182,22 @@ module.exports = {
         },
         {
           type: 'category',
-          label: 'Testing and Debugging',
+          label: 'Debugging Your App',
+          link: { type: 'doc', id: 'latest/tutorial/application-debugging' },
           items: [
-            'latest/tutorial/application-debugging',
-            'latest/tutorial/automated-testing',
-            'latest/tutorial/crash-reporting',
             'latest/tutorial/debugging-main-process',
             'latest/tutorial/debugging-vscode',
             'latest/tutorial/devtools-extension',
             'latest/tutorial/repl',
+            'latest/tutorial/crash-reporting',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Testing Your App',
+          link: { type: 'generated-index' },
+          items: [
+            'latest/tutorial/automated-testing',
             'latest/tutorial/testing-on-headless-ci',
           ],
         },
@@ -192,11 +206,13 @@ module.exports = {
     {
       type: 'category',
       label: 'Best Practices',
+      link: { type: 'generated-index' },
       items: ['latest/tutorial/performance', 'latest/tutorial/security'],
     },
     {
       type: 'category',
       label: 'Reference',
+      link: { type: 'generated-index' },
       items: [
         {
           type: 'link',
@@ -210,6 +226,7 @@ module.exports = {
         {
           type: 'category',
           label: 'Release Policy',
+          link: { type: 'generated-index' },
           items: [
             'latest/tutorial/electron-timelines',
             'latest/tutorial/electron-versioning',
@@ -220,6 +237,7 @@ module.exports = {
     {
       type: 'category',
       label: 'Contributing',
+      link: { type: 'generated-index' },
       items: [
         {
           type: 'category',
@@ -246,6 +264,7 @@ module.exports = {
         {
           type: 'category',
           label: 'Development Guides',
+          link: { type: 'generated-index' },
           items: [
             'latest/development/api-history-migration-guide',
             'latest/development/clang-tidy',
@@ -259,7 +278,8 @@ module.exports = {
         },
         {
           type: 'category',
-          label: 'GitHub',
+          label: 'Issues and Pull Requests',
+          link: { type: 'generated-index' },
           items: [
             'latest/development/issues',
             'latest/development/pull-requests',
@@ -268,6 +288,7 @@ module.exports = {
         {
           type: 'category',
           label: 'Upstream Development',
+          link: { type: 'generated-index' },
           items: [
             'latest/development/chromium-development',
             'latest/development/v8-development',
